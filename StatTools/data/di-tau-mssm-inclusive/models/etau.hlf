@@ -1,0 +1,161 @@
+
+
+//Luminosity
+Lumi_ETau[223.];
+
+
+//SignalShape PDFs with morphing
+GGH120PdfMorph_ETau   = import(diTau.root, w, GGH120PdfMorph_ETau);
+BBH120PdfMorph_ETau   = import(diTau.root, w, BBH120PdfMorph_ETau);
+SM120PdfMorph_ETau   = import(diTau.root, w, SM120PdfMorph_ETau);
+
+//Efficiency from MC 
+GGH120MCEff_ETau = import(diTau.root,w,GGH120MCEff_ETau);
+BBH120MCEff_ETau = import(diTau.root,w,BBH120MCEff_ETau);
+SM120MCEff_ETau = import(diTau.root,w,SM120MCEff_ETau);
+
+//signal yields for inclusive
+GGHYield_ETau = prod(r,GGH120MCEff_ETau,GGH120_Fraction,Lumi_ETau,EffCorr_Tau,EffCorr_ETauHLT,EffCorr_Electron,LumiScale);
+BBHYield_ETau = prod(r,BBH120MCEff_ETau,BBH120_Fraction,Lumi_ETau,EffCorr_Tau,EffCorr_ETauHLT,EffCorr_Electron,LumiScale);
+SMYield_ETau = prod(r,SM120MCEff_ETau,SM120_Sigma,Lumi_ETau,EffCorr_Tau,EffCorr_ETauHLT,EffCorr_Electron,LumiScale);
+
+//Background Shape Pdfs
+
+//QCD is taken from DATA
+QCDPdf_ETau   = import(diTau.root, w, QCDPdf_ETau);
+
+//Z ->mumu shape is not morphed(mu+track)
+ZEFTPdfMorph_ETau  = import(diTau.root, w, ZEFTPdfMorph_ETau);
+
+//Background Shape Pdfs with morphing (only MC!)
+ZTTPdfMorph_ETau   = import(diTau.root, w, ZTTPdfMorph_ETau);
+WPdfMorph_ETau     = import(diTau.root, w, WPdfMorph_ETau);
+ZJFTPdfMorph_ETau  = import(diTau.root, w, ZJFTPdfMorph_ETau);
+TOPPdfMorph_ETau   = import(diTau.root, w, TOPPdfMorph_ETau);
+VVPdfMorph_ETau    = import(diTau.root, w, VVPdfMorph_ETau);
+
+
+//Background Normalization PDFs with PZETA CUT
+//Background normalizations
+
+ZTTMCNorm_ETau    = import(diTau.root, w, ZTTMCNorm_ETau);
+
+ZTTNorm_ETau = prod(ZTTMCNorm_ETau,ZTTScale,Lumi_ETau,EffCorr_Tau,EffCorr_ETauHLT,EffCorr_Electron);
+
+QCDNormPdf_ETau   = Gamma(QCDNorm_ETau[698.08, 300., 1000.],  102.36, 6.819, 0);
+WNormPdf_ETau     = Gamma(WNorm_ETau[314.05, 100,  600],    473.99, 0.662, 0);
+ZEFTNormPdf_ETau  = Lognormal(ZEFTNorm_ETau[    391.50, 200, 500.], 391.50, 1.07); 
+ZJFTNormPdf_ETau  = Lognormal(ZJFTNorm_ETau[    111.13, 2, 250.], 111.13, 1.1); 
+TOPNormPdf_ETau   = Lognormal(TOPNorm_ETau[    34.06 ,10, 140.], 34.06, 1.12); 
+VVNormPdf_ETau    = Lognormal(VVNorm_ETau[7.78, 0.3, 50.1], 7.78, 1.4);  
+
+
+//Background Stack and yield definition for Yield Fit  
+ZTTYield_ETau[0.,10000];
+
+//Background Stack and yield definition for Yield Fit  with morphing
+YieldStack_ETau = SUM(
+ ZTTYield_ETau  * ZTTPdfMorph_ETau,
+ QCDNorm_ETau   * QCDPdf_ETau,
+ WNorm_ETau     * WPdfMorph_ETau,
+ ZEFTNorm_ETau  * ZEFTPdfMorph_ETau,
+ ZJFTNorm_ETau  * ZJFTPdfMorph_ETau,
+ TOPNorm_ETau   * TOPPdfMorph_ETau,
+ VVNorm_ETau    * VVPdfMorph_ETau
+);
+
+
+
+//Background Stack for Higgs fit
+BackgroundStack_ETau = SUM(
+ ZTTNorm_ETau  * ZTTPdfMorph_ETau,
+ QCDNorm_ETau   * QCDPdf_ETau,
+ WNorm_ETau     * WPdfMorph_ETau,
+ ZEFTNorm_ETau  * ZEFTPdfMorph_ETau,
+ ZJFTNorm_ETau  * ZJFTPdfMorph_ETau,
+ TOPNorm_ETau   * TOPPdfMorph_ETau,
+ VVNorm_ETau    * VVPdfMorph_ETau
+);
+
+
+//Signal+Background Stack and definition for MSSM Higgs limit
+
+//Same with morphing
+MSSMStack_ETau = SUM(
+ GGHYield_ETau  * GGH120PdfMorph_ETau,
+ BBHYield_ETau  * BBH120PdfMorph_ETau,
+ ZTTNorm_ETau   * ZTTPdfMorph_ETau,
+ QCDNorm_ETau   * QCDPdf_ETau,
+ WNorm_ETau     * WPdfMorph_ETau,
+ ZEFTNorm_ETau  * ZEFTPdfMorph_ETau,
+ ZJFTNorm_ETau  * ZJFTPdfMorph_ETau,
+ TOPNorm_ETau   * TOPPdfMorph_ETau,
+ VVNorm_ETau    * VVPdfMorph_ETau
+);
+
+SMStack_ETau = SUM(
+ SMYield_ETau  * SM120PdfMorph_ETau,
+ ZTTNorm_ETau   * ZTTPdfMorph_ETau,
+ QCDNorm_ETau   * QCDPdf_ETau,
+ WNorm_ETau     * WPdfMorph_ETau,
+ ZEFTNorm_ETau  * ZEFTPdfMorph_ETau,
+ ZJFTNorm_ETau  * ZJFTPdfMorph_ETau,
+ TOPNorm_ETau   * TOPPdfMorph_ETau,
+ VVNorm_ETau    * VVPdfMorph_ETau
+);
+
+
+//Constraint Pdf only mu+tau specific
+Constraints_ETau = PROD(QCDNormPdf_ETau,WNormPdf_ETau,ZEFTNormPdf_ETau,ZJFTNormPdf_ETau,TOPNormPdf_ETau,VVNormPdf_ETau);
+
+
+
+//////////////////STANDALONE MODELS///////////////////////////
+
+
+
+
+//Model to just fit a yield -   Morphing
+model_ETau_Yield = PROD(YieldStack_ETau,Constraints_ETau,TauMorphPdf,EleMorphPdf);
+model_ETau_Yield_nuisances = set( ZTTYield_ETau,QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,TauScale,EleScale );
+model_ETau_Yield_nuisancePdf = PROD(Constraints_ETau,TauMorphPdf,EleMorphPdf);
+
+
+
+//Model for debugging
+model_ETau_ZTT0 = PROD(BackgroundStack_ETau,Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,TauMorphPdf,EleMorphPdf);
+model_ETau_ZTT0_nuisancePdf = PROD(Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,TauMorphPdf,EleMorphPdf);
+model_ETau_ZTT0_nuisances = set( ZTTScale,QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,EffCorr_Electron,EffCorr_TauHLT,EffCorr_Tau,TauScale,EleScale); 
+
+
+//Model for MSSM Higgs Cross section upper  limit
+model_ETau_MSSM_s = PROD(MSSMStack_ETau,Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_ETau_MSSM_b = PROD(BackgroundStack_ETau,Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_ETau_MSSM_nuisancePdf = PROD(Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_ETau_MSSM_POI = set(r);
+model_ETau_MSSM_observables = set(mass);
+model_ETau_MSSM_nuisances = set( ZTTScale,QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,EffCorr_Electron,EffCorr_TauHLT,EffCorr_Tau,LumiScale,TauScale,EleScale); 
+
+model_ETau_SM_s = PROD(SMStack_ETau,Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_ETau_SM_b = PROD(BackgroundStack_ETau,Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_ETau_SM_nuisancePdf = PROD(Constraints_ETau,ZTTScalePdf,EffCorrPdf_Electron,EffCorrPdf_Tau,EffCorrPdf_TauHLT,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_ETau_SM_POI = set(r);
+model_ETau_SM_observables = set(mass);
+model_ETau_SM_nuisances = set( ZTTScale,QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,EffCorr_Electron,EffCorr_TauHLT,EffCorr_Tau,LumiScale,TauScale,EleScale); 
+
+
+//Data for Mu+Tau
+DATA_ETau = import(diTau.root, w, DATA_ETau);
+
+	
+
+
+
+
+
+
+
+
+
+
+

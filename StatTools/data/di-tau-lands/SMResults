@@ -1,0 +1,114 @@
+INCLUSIVE-------------------------------------
+Yield =2493.000000 Lo=2443.346436 Hi=2543.656250
+Yield =574.000000 Lo=550.177734 Hi=598.835693
+Yield =801.000000 Lo=772.857117 Hi=830.153137
+Yield =276.000000 Lo=259.485168 Hi=293.537445
+TTbar events in signal region = 23.323874 + 2.910618 
+TTbar events in sideband region = 53.665443 + 6.553723 
+Diboson events in signal region = 6.536680 + 2.619221 
+Diboson events in sideband region = 14.834485 + 21.500612 
+Z (l->tau) in signal region = 31.212183 + 7.840760 
+Z (j->tau) in signal region = 35.054287 + 4.277102 
+Z (l->tau) in SS region = 2.126627 + 0.806719 
+Z (j->tau) in SS region = 33.302975 + 4.091733 
+W extrapolation factor = 0.288452 +- 0.022181
+1. Subtract TTbar and diboson from sidebandOS W in sideband  =801.000000 -53.665443 -53.665443  = 693.669067 +- 36.413406 
+2. Extrapolate W in the low MT region
+OS W  in core  =693.669067 *0.288452  = 200.089935 +- 18.629663 
+3. Repeat for SS : first extrapolate W
+4. From all SS events subtract W and Z jet fakes tau to get QCD SS QCD in  core  =574.000000 -79.612640 -33.302975 -2.126627 = 458.957764 +- 25.901567 
+5. Extrapolate SS QCD -> OS QCD OS QCD in  core  =458.957764 *1.060000 = 486.495209 +- 28.949440 
+BACKGROUND=2427.459229 +-39.921474 
+LATEX ------------------------------------
+Total & 2493.00 & 801.00 & 574.00 & 276.00 \\ 
+Di-Boson & 6.54 $\pm$ 2.62 & 53.67 $\pm$ 21.50 & - & - \\ 
+$t\bar{t}$ & 23.32 $\pm$ 2.91 & 53.67 $\pm$ 6.55 & - & - \\ 
+$Z^{l+jet}$ & 35.05 $\pm$ 4.28 & - & 33.30 $\pm$ 4.09 & - \\ 
+$Z^{ll}$ & 31.21 $\pm$ 7.84 & - & 2.13 $\pm$ 0.81 & - \\ 
+$W+jets$ & 200.09 $\pm$ 18.63 & 693.67 $\pm$ 36.41 & 79.61 $\pm$ 7.85 & 276.00 $\pm$ 17.03  \\ 
+QCD & 486.50 $\pm$ 28.95 & - & 458.96 $\pm$ 25.90 & - \\ 
+$Z\rightarrow\tau\tau$ & 1644.75 $\pm$ 17.71 & - & - & - \\ 
+Total Background & 2427.46 $\pm$ 39.92 & - & - & - \\ 
+VBF0-------------------------------------
+Yield =1910.000000 Lo=1866.538818 Hi=1954.465210
+Yield =444.000000 Lo=423.049683 Hi=465.966583
+Yield =515.000000 Lo=492.435822 Hi=538.578735
+Yield =171.000000 Lo=158.004837 Hi=185.025894
+TTbar events in signal region = 0.292070 + 0.100744 
+TTbar events in sideband region = 1.064388 + 0.216206 
+Diboson events in signal region = 3.080236 + 1.237535 
+Diboson events in sideband region = 8.945327 + 0.460107 
+Z (l->tau) in signal region = 27.737143 + 7.010932 
+Z (j->tau) in signal region = 25.189781 + 3.251741 
+Z (l->tau) in SS region = 1.918384 + 0.747604 
+Z (j->tau) in SS region = 25.639912 + 3.308553 
+W extrapolation factor = 0.284810 +- 0.023438
+1. Subtract TTbar and diboson from sidebandOS W in sideband  =515.000000 -1.064388 -1.064388  = 512.871216 +- 23.077057 
+2. Extrapolate W in the low MT region
+OS W  in core  =512.871216 *0.284810  = 146.070923 +- 13.700325 
+3. Repeat for SS : first extrapolate W
+4. From all SS events subtract W and Z jet fakes tau to get QCD SS QCD in  core  =444.000000 -48.702530 -25.639912 -1.918384 = 367.739166 +- 22.424110 
+5. Extrapolate SS QCD -> OS QCD OS QCD in  core  =367.739166 *1.060000 = 389.803497 +- 24.881413 
+BACKGROUND=1961.207764 +-33.621273 
+LATEX ------------------------------------
+Total & 1910.00 & 515.00 & 444.00 & 171.00 \\ 
+Di-Boson & 3.08 $\pm$ 1.24 & 1.06 $\pm$ 0.46 & - & - \\ 
+$t\bar{t}$ & 0.29 $\pm$ 0.10 & 1.06 $\pm$ 0.22 & - & - \\ 
+$Z^{l+jet}$ & 25.19 $\pm$ 3.25 & - & 25.64 $\pm$ 3.31 & - \\ 
+$Z^{ll}$ & 27.74 $\pm$ 7.01 & - & 1.92 $\pm$ 0.75 & - \\ 
+$W+jets$ & 146.07 $\pm$ 13.70 & 512.87 $\pm$ 23.08 & 48.70 $\pm$ 5.56 & 171.00 $\pm$ 13.51  \\ 
+QCD & 389.80 $\pm$ 24.88 & - & 367.74 $\pm$ 22.42 & - \\ 
+$Z\rightarrow\tau\tau$ & 1369.03 $\pm$ 16.20 & - & - & - \\ 
+Total Background & 1961.21 $\pm$ 33.62 & - & - & - \\ 
+VBF1-------------------------------------
+Yield =119.000000 Lo=108.163353 Hi=130.874954
+Yield =11.000000 Lo=7.748949 Hi=15.393830
+Yield =162.000000 Lo=149.352036 Hi=175.679749
+Yield =62.000000 Lo=54.187164 Hi=70.868774
+TTbar events in signal region = 2.295280 + 0.375240 
+TTbar events in sideband region = 7.981763 + 1.068751 
+Diboson events in signal region = 0.943734 + 0.381709 
+Diboson events in sideband region = 4.177378 + 3.227722 
+Z (l->tau) in signal region = 0.313105 + 0.256277 
+Z (j->tau) in signal region = 0.478925 + 0.255839 
+Z (l->tau) in SS region = 0.000000 + 0.000000 
+Z (j->tau) in SS region = 1.022906 + 0.464813 
+W extrapolation factor = 0.093333 +- 0.017421
+1. Subtract TTbar and diboson from sidebandOS W in sideband  =162.000000 -7.981763 -7.981763  = 146.036469 +- 13.595865 
+2. Extrapolate W in the low MT region
+OS W  in core  =146.036469 *0.093333  = 13.630071 +- 2.842957 
+3. Repeat for SS : first extrapolate W
+4. From all SS events subtract W and Z jet fakes tau to get QCD SS QCD in  core  =11.000000 -5.786667 -1.022906 -0.000000 = 4.190428 +- 4.074273 
+5. Extrapolate SS QCD -> OS QCD OS QCD in  core  =4.190428 *1.060000 = 4.441853 +- 4.319542 
+BACKGROUND=110.917015 +-6.628315 
+LATEX ------------------------------------
+Total & 119.00 & 162.00 & 11.00 & 62.00 \\ 
+Di-Boson & 0.94 $\pm$ 0.38 & 7.98 $\pm$ 3.23 & - & - \\ 
+$t\bar{t}$ & 2.30 $\pm$ 0.38 & 7.98 $\pm$ 1.07 & - & - \\ 
+$Z^{l+jet}$ & 0.48 $\pm$ 0.26 & - & 1.02 $\pm$ 0.46 & - \\ 
+$Z^{ll}$ & 0.31 $\pm$ 0.26 & - & 0.00 $\pm$ 0.00 & - \\ 
+$W+jets$ & 13.63 $\pm$ 2.84 & 146.04 $\pm$ 13.60 & 5.79 $\pm$ 1.33 & 62.00 $\pm$ 8.34  \\ 
+QCD & 4.44 $\pm$ 4.32 & - & 4.19 $\pm$ 4.07 & - \\ 
+$Z\rightarrow\tau\tau$ & 88.81 $\pm$ 4.10 & - & - & - \\ 
+Total Background & 110.92 $\pm$ 6.63 & - & - & - \\ 
+VBF2-------------------------------------
+TTbar events in signal region = 0.033043 + 0.023550 
+TTbar events in SS region = 0.000000 + 0.000000 
+Yield =8.000000 Lo=5.243412 Hi=11.925056
+Yield =1.000000 Lo=0.174353 Hi=3.288524
+1. From SS events remove TTbar and Z+jets and W 
+5. Extrapolate SS QCD -> OS QCD OS QCD in  core  =0.858498 *1.060000 = 0.910008 +- 1.650653 
+BACKGROUND=3.342570 +-1.665167 
+LATEX ------------------------------------
+Total & 8.00 & 1.00 \\ 
+Di-Boson & 0.05 $\pm$ 0.02 & -  \\ 
+$t\bar{t}$ & 0.03 $\pm$ 0.02 & 0.00 $\pm$ 0.00  \\ 
+$Z^{l+jet}$ & 0.04 $\pm$ 0.01 &  0.04 $\pm$ 0.01  \\ 
+$Z^{ll}$ & 0.04 $\pm$ 0.01 &  0.00 $\pm$ 0.00  \\ 
+$W+jets$ & 0.25 $\pm$ 0.03 & 0.10 $\pm$ 0.01    \\ 
+QCD & 0.91 $\pm$ 1.65 &  0.86 $\pm$ 1.56  \\ 
+$Z\rightarrow\tau\tau$ & 2.02 $\pm$ 0.21 & - \\ 
+Total Background & 3.34 $\pm$ 1.67 & - \\ 
+Aligning  muTau_SM0_mH115.txt
+Aligning  muTau_SM1_mH115.txt
+Aligning  muTau_SM2_mH115.txt

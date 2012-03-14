@@ -1,0 +1,26 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat ET-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+#farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/DYToTauTau_M-20_CT10_TuneZ2_7TeV-powheg-pythia-tauola/Spring11-PU_S1_START311_V1G1-v2/AODSIM ZTT $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+#farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/DYToEE_M-20_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM  ZEE $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+#farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/WJetsToLNu_TuneZ2_7TeV-madgraph-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM W $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+#farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/G_Pt_80to120_TuneZ2_7TeV_pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM G80 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+#farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/G_Pt_50to80_TuneZ2_7TeV_pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM G50 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+#farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/G_Pt_30to50_TuneZ2_7TeV_pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM G30 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs --skip-existing-output $1 --input-files-per-job=1 --output-dir=.  --input-dbs-path=/TTJets_TuneD6T_7TeV-madgraph-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM TOP $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py
+farmoutAnalysisJobs --skip-existing-output $1 --input-files-per-job=5 --output-dir=.  --input-dbs-path=/ZZtoAnything_TuneZ2_7TeV-pythia6-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM ZZ $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py
+farmoutAnalysisJobs --skip-existing-output $1 --output-dir=. --input-files-per-job=1  --input-dbs-path=/WZtoAnything_TuneZ2_7TeV-pythia6-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM  WZ $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py
+farmoutAnalysisJobs --skip-existing-output $1 --output-dir=. --input-files-per-job=1  --input-dbs-path=/WWtoAnything_TuneZ2_7TeV-pythia6-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM  WW $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py
+
+
+farmoutAnalysisJobs --output-dir=. $1 --input-files-per-job=1 --input-dbs-path=/QCD_Pt-20to30_EMEnriched_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM  QCDEM20 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs --output-dir=. $1 --input-files-per-job=1 --input-dbs-path=/QCD_Pt-30to80_EMEnriched_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM  QCDEM30 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs --output-dir=. $1  --input-dbs-path=/QCD_Pt-80to170_EMEnriched_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM  QCDEM80 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs --output-dir=. $1  --input-dbs-path=/QCD_Pt-20to30_BCtoE_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM   QCDBC20 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs --output-dir=. $1  --input-dbs-path=/QCD_Pt-30to80_BCtoE_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM   QCDBC30 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs --output-dir=. $1 --input-dbs-path=/QCD_Pt-80to170_BCtoE_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM  QCDBC80 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+
+rm MC2.py

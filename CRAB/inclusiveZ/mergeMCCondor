@@ -1,0 +1,95 @@
+mkdir sandbox
+
+cd sandbox
+
+#find /scratch/$USER/incZ_ZTT-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTT.root
+find /scratch/$USER/incZ_DYMuMu-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZMM.root
+find /scratch/$USER/incZ_DYEE-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZEE.root
+
+#find /scratch/$USER/incZ_WW-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WW.root
+#find /scratch/$USER/incZ_WW2L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WW2L.root
+#find /scratch/$USER/incZ_WZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ.root
+find /scratch/$USER/incZ_WZ3L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ3L.root
+#find /scratch/$USER/incZ_ZZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ.root
+#find /scratch/$USER/incZ_ZZ4L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4L.root
+#find /scratch/$USER/incZ_ggH200-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH200.root
+find /scratch/$USER/incZ_TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TOP.root
+#find /scratch/$USER/incZ_ZCC0-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZCC0.root
+#find /scratch/$USER/incZ_ZCC1-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZCC1.root
+#find /scratch/$USER/incZ_ZCC2-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZCC2.root
+#find /scratch/$USER/incZ_ZCC3-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZCC3.root
+#find /scratch/$USER/incZ_ZBB0-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB0.root
+#find /scratch/$USER/incZ_ZBB1-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB1.root
+#find /scratch/$USER/incZ_ZBB2-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB2.root
+#find /scratch/$USER/incZ_ZBB3-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB3.root
+#find /scratch/$USER/incZ_Z2J_0_100-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z2J_0_100.root
+#find /scratch/$USER/incZ_Z2J_100_300-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z2J_100_300.root
+#find /scratch/$USER/incZ_Z3J_0_100-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z3J_0_100.root
+#find /scratch/$USER/incZ_Z3J_100_300-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z3J_100_300.root
+#find /scratch/$USER/incZ_DYJets-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd DYJets.root
+
+#find /scratch/$USER/QCDEM20-MC2/MC2-[12345]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM20_1.root
+#find /scratch/$USER/QCDEM20-MC2/MC2-[67890]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM20_2.root
+#hadd QCDEM20.root QCDEM20_1.root QCDEM20_2.root
+#rm QCDEM20_1.root; rm QCDEM20_2.root
+
+#find /scratch/$USER/QCDEM30-MC2/MC2-[01]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM30_1.root
+#find /scratch/$USER/QCDEM30-MC2/MC2-[23]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM30_2.root
+#find /scratch/$USER/QCDEM30-MC2/MC2-[45]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM30_3.root
+#find /scratch/$USER/QCDEM30-MC2/MC2-[67]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM30_4.root
+#find /scratch/$USER/QCDEM30-MC2/MC2-[89]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM30_5.root
+#hadd QCDEM30.root QCDEM30_1.root QCDEM30_2.root QCDEM30_3.root QCDEM30_4.root QCDEM30_5.root
+#rm QCDEM30_1.root; rm QCDEM30_2.root QCDEM30_3.root QCDEM30_4.root QCDEM30_5.root
+
+#find /scratch/$USER/QCDEM80-MC2/MC2-[12345]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM80_1.root
+#find /scratch/$USER/QCDEM80-MC2/MC2-[67890]*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM80_2.root
+#hadd QCDEM80.root QCDEM80_1.root QCDEM80_2.root
+#rm QCDEM80_1.root; rm QCDEM80_2.root
+
+#EventWeightsIterative outputFile='ZTT.root'        weight=1667   type=5 histoName='EE/results'
+EventWeightsIterative outputFile='ZMM.root'        weight=1667   type=3 histoName='EE/results' 
+EventWeightsIterative outputFile='ZEE.root'        weight=1667   type=4 histoName='EE/results' 
+#EventWeightsIterative outputFile='WW.root'          weight=42     type=8 histoName='EE/results' 
+#EventWeightsIterative outputFile='WW2L.root'        weight=4.5    type=8 histoName='EE/results' 
+#EventWeightsIterative outputFile='WZ.root'          weight=18.2   type=7 histoName='EE/results' 
+EventWeightsIterative outputFile='WZ3L.root'        weight=0.595    type=7 histoName='EE/results' 
+#EventWeightsIterative outputFile='ZZ.root'          weight=5.9    type=2  histoName='EE/results' 
+#EventWeightsIterative outputFile='ZZ4L.root'        weight=0.0899   type=2  histoName='EE/results' 
+#EventWeightsIterative outputFile='ggH200.root'      weight=0.0134 type=1  histoName='EE/results'
+EventWeightsIterative outputFile='TOP.root'         weight=165    type=6  histoName='EE/results'
+#EventWeightsIterative outputFile='ZCC0.root'        weight=2.91   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZCC1.root'        weight=1.62   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZCC2.root'        weight=0.63   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZCC3.root'        weight=0.27   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZBB0.root'        weight=2.91   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZBB1.root'        weight=1.64   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZBB2.root'        weight=0.63   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='ZBB3.root'        weight=0.27   type=9 histoName='EE/results'
+#EventWeightsIterative outputFile='Z2J_0_100.root'   weight=49.7   type=10 histoName='EE/results'
+#EventWeightsIterative outputFile='Z2J_100_300.root' weight=3.9   type=10 histoName='EE/results'
+#EventWeightsIterative outputFile='Z3J_0_100.root'   weight=11.5   type=10 histoName='EE/results'
+#EventWeightsIterative outputFile='Z3J_100_300.root' weight=2.1   type=10 histoName='EE/results'
+#EventWeightsIterative outputFile='DYJets.root' weight=3048  type=10 histoName='EE/results'
+#EventWeightsIterative outputFile='QCDEM20.root'    weight=2496000 type=8 histoName='EE/results' 	  
+#EventWeightsIterative outputFile='QCDEM30.root'    weight=3867500 type=8 histoName='EE/results' 	  
+#EventWeightsIterative outputFile='QCDEM80.root'    weight=139500  type=8 histoName='EE/results' 
+
+
+#hadd QCDEM.root QCDEM20.root QCDEM30.root  QCDEM80.root
+#hadd QCDEM.root QCDEM20.root QCDEM30.root
+#rm QCDEM20.root QCDEM30.root  QCDEM80.root
+
+#hadd Z.root ZTT.root ZMM.root ZEE.root
+#hadd VV.root WW.root WZ.root
+#hadd VVToL.root WW2L.root WZ3L.root
+#hadd ZpBorC.root ZCC0.root ZCC1.root ZCC2.root ZCC3.root ZBB0.root ZBB1.root ZBB2.root ZBB3.root
+#hadd Z2or3Jets.root Z2J_0_100.root Z2J_100_300.root Z3J_0_100.root Z3J_100_300.root
+
+
+
+
+
+
+
+
+

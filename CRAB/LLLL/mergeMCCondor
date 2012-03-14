@@ -1,0 +1,42 @@
+mkdir sandbox
+
+cd sandbox
+
+#find /scratch/$USER/WZ3L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ3L.root
+find /scratch/$USER/WZ3LM_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ3LM_stdIso.root
+#find /scratch/$USER/ZZ4L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4L.root
+#find /scratch/$USER/TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TTJets.root
+find /scratch/$USER/DYJets_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd DYJets_stdIso.root
+#find /scratch/$USER/Z2J-MC2/*/*.root | xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z2Jets.root
+#find /scratch/$USER/ZZ4M_dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4M_dR03_fall.root
+#find /scratch/$USER/ZZ4E-dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4E_dR03_fall.root
+#find /scratch/$USER/ZZ4T-dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4T_dR03_fall.root
+#find /scratch/$USER/ZZ2E2M-dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2M_dR03_fall.root
+#find /scratch/$USER/ZZ2E2T-dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2T_dR03_fall.root
+#find /scratch/$USER/ZZ2M2T-dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2M2T_dR03_fall.root
+#find /scratch/$USER/ZBB-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB.root
+find /scratch/$USER/TT2L2nu2B_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd TT2L2nu_stdIso.root
+find /scratch/$USER/ZZ4L_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ZZ4L_stdIso.root
+#find /scratch/$USER/ggZZ4L_dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ4L_dR03_fall.root
+#find /scratch/$USER/ggZZ2L2L_dR03_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ2L2L_dR03_fall.root
+
+
+EventWeightsIterative outputFile='TT2L2nu_stdIso.root' weight=17.3 type=6 histoName='MMEE/results' branch="__WEIGHT__"
+#EventWeightsIterative outputFile='WZ3L.root'        weight=0.595    type=7 histoName='MMEE/results'  branch="__WEIGHT__"
+EventWeightsIterative outputFile='WZ3LM_stdIso.root'        weight=0.868    type=7 histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ4L_stdIso.root'        weight=0.068   	type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='TTJets.root'         weight=165    	type=6  histoName='MMEE/results' branch="__WEIGHT__"
+EventWeightsIterative outputFile='DYJets_stdIso.root'      weight=3048  	type=10 histoName='MMEE/results' branch="__WEIGHT__"
+#EventWeightsIterative outputFile='Z2Jets.root'      weight=174.5  	type=10 histoName='MMEE/results' branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ4M_dR03_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ4E_dR03_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ4T_dR03_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ2E2M_dR03_fall.root'      weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ2E2T_dR03_fall.root'        weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZZ2M2T_dR03_fall.root'      weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#
+#EventWeightsIterative outputFile='ZBB.root'         weight=23.5   	type=3  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ZCC.root'         weight=18.74   	type=3  histoName='MMEE/results'  branch="__WEIGHT__"
+EventWeightsIterative outputFile='ZZ4L_stdIso.root'         weight=0.106   	type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ggZZ4L_dR03_fall.root'         weight=0.00174  	type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='ggZZ2L2L_dR03_fall.root'         weight=0.00348   	type=2  histoName='MMEE/results'  branch="__WEIGHT__"

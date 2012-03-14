@@ -1,0 +1,95 @@
+Enabling debug mode
++ '[' 1 = 1 ']'
++ '[' 0 = 1 ']'
++ '[' '' '!=' 1 ']'
++ '[' '' = 1 ']'
++ for exe in scramv1 condor_submit condor_submit_dag cmsRun.sh readlink voms-proxy-info
++ which scramv1
++ for exe in scramv1 condor_submit condor_submit_dag cmsRun.sh readlink voms-proxy-info
++ which condor_submit
++ for exe in scramv1 condor_submit condor_submit_dag cmsRun.sh readlink voms-proxy-info
++ which condor_submit_dag
++ for exe in scramv1 condor_submit condor_submit_dag cmsRun.sh readlink voms-proxy-info
++ which cmsRun.sh
++ for exe in scramv1 condor_submit condor_submit_dag cmsRun.sh readlink voms-proxy-info
++ which readlink
++ for exe in scramv1 condor_submit condor_submit_dag cmsRun.sh readlink voms-proxy-info
++ which voms-proxy-info
++ submitDagCommand='condor_submit_dag -notification never'
++ submitCommand=condor_submit
++ '[' -n '' ']'
++ nargs=3
++ '[' 0 -eq 1 ']'
++ '[' '' = 1 ']'
++ '[' -n '' ']'
++ '[' 3 -lt 3 ']'
++ jobName=EE_2011Bv1_BG
++ shift
++ '[' 0 -eq 0 ']'
+++ realpath /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5
+++ '[' -a /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5 ']'
+++ readlink -f /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5
++ CMSSW_HOME=/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5
++ shift
++ '[' '' = 1 ']'
+++ realpath /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py
+++ '[' -a /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py ']'
+++ readlink -f /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py
++ configTemplate=/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py
++ shift
++ EXTRA_CMSRUN_ARGS=
++ '[' '' '!=' '' ']'
++ '[' '' '!=' '' ']'
++ '[' /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py = '' ']'
++ CFG_EXTENSION=py
++ '[' '' '!=' 1 ']'
++ '[' py '!=' py ']'
++ macro='$outputFileName'
++ '[' 0 '!=' 1 ']'
++ grep -F -q '$outputFileName' /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py
++ for macro in '\$inputFileNames'
++ grep -F -q '$inputFileNames' /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py
+++ basename /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py .py
+++ path=/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/LLLL/MC2.py
+++ suffix=.py
+++ path=MC2.py
+++ '[' '!' -z .py ']'
+++ path=MC2
+++ echo MC2
++ runName=MC2
++ '[' root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_2011Bv1_skim/ = '' ']'
++ OUTPUT_DIR=.
++ INPUT_DIR=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_2011Bv1_skim/
++ SUBMIT_DIR=/data/iross/EE_2011Bv1_BG-MC2
++ LOCAL_INPUT_DIR=/store/user/iross/EE_2011Bv1_skim/
++ INPUT_BASE=root://cmsxrootd.hep.wisc.edu/
++ INPUT_BASE=root://cmsxrootd.hep.wisc.edu/
++ '[' '' '!=' '' ']'
++ '[' -d /hdfs/store/user/iross/EE_2011Bv1_skim/ ']'
++ LOCAL_INPUT_DIR=/hdfs/store/user/iross/EE_2011Bv1_skim/
++ '[' '' '!=' '' ']'
++ '[' '' '!=' '' ']'
++ '[' -d /hdfs/store/user/iross/EE_2011Bv1_skim/ ']'
++ '[' '' '!=' '' ']'
++ '[' '' '!=' '' ']'
++ '[' -d /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5 ']'
++ '[' -d /data/iross/EE_2011Bv1_BG-MC2 ']'
++ '[' '' '!=' 1 ']'
++ logerror
++ echo
+
++ logerror 'Error: Submit directory already exists: /data/iross/EE_2011Bv1_BG-MC2'
++ echo 'Error: Submit directory already exists: /data/iross/EE_2011Bv1_BG-MC2'
+Error: Submit directory already exists: /data/iross/EE_2011Bv1_BG-MC2
++ logerror
++ echo
+
++ logerror 'You must either remove it, or specify --skip-existing-jobs, or'
++ echo 'You must either remove it, or specify --skip-existing-jobs, or'
+You must either remove it, or specify --skip-existing-jobs, or
++ logerror 'specify a different job name or submission directory with --submit-dir'
++ echo 'specify a different job name or submission directory with --submit-dir'
+specify a different job name or submission directory with --submit-dir
++ die
++ '[' 0 -gt 0 ']'
++ exit 1

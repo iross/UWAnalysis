@@ -1,0 +1,17 @@
+# Compiled source
+*.com
+*.pyc
+*.o
+*.so
+
+#Bin
+*.root
+*.png
+*.pdf
+*.zip
+*.tgz
+*.txt
+
+*CVS*
+
+*.bk

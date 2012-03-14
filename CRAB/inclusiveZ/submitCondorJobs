@@ -1,0 +1,16 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat incZ_MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/TT_TuneZ2_7TeV-pythia6-tauola/Summer11-PU_S3_START42_V11-v2/AODSIM incZ_TOP $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WZTo3LNu_TuneZ2_7TeV_pythia6_tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  incZ_WZ3L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/DYJetsToLL_TuneZ2_M-50_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM incZ_DYJets $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/DYToEE_M-20_TuneZ2_7TeV-pythia6/Summer11-PU_S3_START42_V11-v2/AODSIM incZ_DYEE $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/DYToMuMu_M-20_TuneZ2_7TeV-pythia6/Summer11-PU_S3_START42_V11-v2/AODSIM incZ_DYMuMu $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt-20to30_EMEnriched_TuneZ2_7TeV-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM QCDEM20 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt-30to80_EMEnriched_TuneZ2_7TeV-pythia/Summer11-PU_S4_START42_V11-v1/AODSIM QCDEM30 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt-80to170_EMEnriched_TuneZ2_7TeV-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  QCDEM80 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/inclusiveZ/MC2.py
+
+rm MC2.py

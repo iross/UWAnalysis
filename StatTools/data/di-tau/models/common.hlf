@@ -1,0 +1,35 @@
+
+//parameter of interest (Higgs cross section)
+r[50.,0.,700.];
+
+//Observables
+mass    = import(diTau.root, w, mass);
+channel = import(DATA_MuTau.root, w, channel);
+observables = set(mass,channel);
+
+
+//Luminosity uncertainty
+LumiPdf = Lognormal(LumiScale[0.993,0.6,1.6], 0.993, 1.04);
+
+//Tau ID uncertainty
+EffCorrPdf_Tau = Lognormal(EffCorr_Tau[1.0,0.7,1.5],1.00,  1.24 );
+
+//Muon ID uncertainty
+EffCorrPdf_Muon   = Lognormal(EffCorr_Muon  [0.963, 0.93, 1.02], 0.963, 1.018);
+
+//Electron ID uncertainty
+EffCorrPdf_Electron   = Lognormal(EffCorr_Electron[0.968, 0.90, 1.02], 0.968, 1.036);
+
+
+//Energy scale uncertainty (in units of sigma)  
+TauScale = import(diTau.root, w, TauScale);  
+TauMorphPdf   = Gaussian(TauScale, 0.0, 1.0);
+
+
+//Z -> tautau scaling from Z->mumu cross section measurement(super latest)
+ZTTScalePdf = Lognormal(ZTTScale[1.003, 0.82, 1.12], 1.003, 1.021);
+//ZTTScalePdf = Lognormal(ZTTScale[0.96, 0.82, 1.12], 0.96, 1.04);
+
+
+
+ 

@@ -1,0 +1,30 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat EM-MC2.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+cat EM-MCZ.py >MCZ.py
+cat CONDOR.py >>MCZ.py
+
+cat EM-MCW.py >MCW.py
+cat CONDOR.py >>MCW.py
+
+
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZTT-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCZ.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZEE-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZMM-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZJETS-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCZ.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  W-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCW.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDMU-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+#farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDMULOW-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  TOP-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+#farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  WW-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+#farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  WZ-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+#farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZZ-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC2.py 
+
+
+rm MC2.py
+
+
+

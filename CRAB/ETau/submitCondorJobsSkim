@@ -1,0 +1,37 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat ET-MC2.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+cat ET-MCZ.py >MCZ.py
+cat CONDOR.py >>MCZ.py
+
+cat ET-MCW.py >MCW.py
+cat CONDOR.py >>MCW.py
+
+
+
+
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZTT-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MCZ.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZEE-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZEE-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MCZ.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZJETS-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MCZ.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  W-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MCW.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  G30-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  G50-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDBC20-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDBC30-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDBC80-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDEM20-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDEM30-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  QCDEM80-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  TOP-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  WW-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  WZ-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+#farmoutAnalysisJobs $1 --input-files-per-job=1 --output-dir=.  ZZ-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ETau/MC2.py 
+
+
+
+rm MC2.py

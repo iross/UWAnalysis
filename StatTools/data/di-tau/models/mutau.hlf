@@ -1,0 +1,270 @@
+
+//Luminosity
+Lumi_MuTau[36.];
+
+
+//MC normalization per pb-1
+ZTTMCNorm_MuTau    = import(diTau.root, w, ZTTMCNorm_MuTau);
+ZTTBMCNorm_MuTau    = import(diTau.root, w, ZTTBMCNorm_MuTau);
+ZTTNOBMCNorm_MuTau    = import(diTau.root, w, ZTTNOBMCNorm_MuTau);
+
+
+//Signal Shape PDFs
+//GGH120Pdf_MuTau   = import(diTau.root, w, GGH120Pdf_MuTau);
+//BBH120Pdf_MuTau   = import(diTau.root, w, BBH120Pdf_MuTau);
+
+//SignalShape PDFs with morphing
+GGH120PdfMorph_MuTau   = import(diTau.root, w, GGH120PdfMorph_MuTau);
+BBH120PdfMorph_MuTau   = import(diTau.root, w, BBH120PdfMorph_MuTau);
+
+
+
+//Efficiency from MC 
+	
+GGH120MCEff_MuTau = import(diTau.root,w,GGH120MCEff_MuTau);
+BBH120MCEff_MuTau = import(diTau.root,w,BBH120MCEff_MuTau);
+
+//Also for B tagged
+GGH120BMCEff_MuTau = import(diTau.root,w,GGH120BMCEff_MuTau);
+BBH120BMCEff_MuTau = import(diTau.root,w,BBH120BMCEff_MuTau);
+GGH120NOBMCEff_MuTau = import(diTau.root,w,GGH120NOBMCEff_MuTau);
+BBH120NOBMCEff_MuTau = import(diTau.root,w,BBH120NOBMCEff_MuTau);
+
+
+//signal yields
+GGHYield_MuTau = prod(r,GGH120MCEff_MuTau,GGH120_Fraction,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon,LumiScale);
+BBHYield_MuTau = prod(r,BBH120MCEff_MuTau,BBH120_Fraction,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon,LumiScale);
+
+GGHBYield_MuTau = prod(r,GGH120BMCEff_MuTau,GGH120_Fraction,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon,LumiScale);
+BBHBYield_MuTau = prod(r,BBH120BMCEff_MuTau,BBH120_Fraction,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon,LumiScale);
+
+GGHNOBYield_MuTau = prod(r,GGH120NOBMCEff_MuTau,GGH120_Fraction,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon,LumiScale);
+BBHNOBYield_MuTau = prod(r,BBH120NOBMCEff_MuTau,BBH120_Fraction,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon,LumiScale);
+
+//Background Shape Pdfs
+QCDPdf_MuTau   = import(diTau.root, w, QCDPdf_MuTau);
+ZMFTPdf_MuTau  = import(diTau.root, w, ZMFTPdf_MuTau);
+//ZTTPdf_MuTau   = import(diTau.root, w, ZTTPdf_MuTau);
+//WPdf_MuTau     = import(diTau.root, w, WPdf_MuTau);
+//ZJFTPdf_MuTau  = import(diTau.root, w, ZJFTPdf_MuTau);
+//TOPPdf_MuTau   = import(diTau.root, w, TOPPdf_MuTau);
+//VVPdf_MuTau    = import(diTau.root, w, VVPdf_MuTau);
+
+//Background Shape Pdfs with morphing (only MC!)
+ZTTPdfMorph_MuTau   = import(diTau.root, w, ZTTPdfMorph_MuTau);
+WPdfMorph_MuTau     = import(diTau.root, w, WPdfMorph_MuTau);
+ZJFTPdfMorph_MuTau  = import(diTau.root, w, ZJFTPdfMorph_MuTau);
+TOPPdfMorph_MuTau   = import(diTau.root, w, TOPPdfMorph_MuTau);
+VVPdfMorph_MuTau    = import(diTau.root, w, VVPdfMorph_MuTau);
+
+
+
+//Background Normalization PDFs
+QCDNormPdf_MuTau   = Gamma(QCDNorm_MuTau[131.6, 80, 180],    87.11, 1.51, 0); //  131.6 +/- 14.1;
+WNormPdf_MuTau     = Gamma(WNorm_MuTau[69, 49,  89],    190.44, 0.362, 0); //  69+-5;
+ZMFTNormPdf_MuTau  = Gamma(ZMFTNorm_MuTau[12.9,  0,  23],   13.58, 0.94, 0); //  12.9 +-3.5;
+ZJFTNormPdf_MuTau  = Gamma(ZJFTNorm_MuTau[6.4,  0,  16],    7.1, 0.90, 0); //  6.4 +/- 2.4;
+TOPNormPdf_MuTau   = Lognormal(TOPNorm_MuTau[    6, 1.2, 30.], 6.0, 1.5);  //r 6 +-30%;
+VVNormPdf_MuTau    = Lognormal(VVNorm_MuTau[1.6, 0.3, 8.1], 1.6, 1.5);     //1.6 +- 50%;
+
+
+//for Btagging as well 
+QCDNOBNormPdf_MuTau   = Gamma(QCDNOBNorm_MuTau[126., 90, 170],    93.94, 1.34, 0); //  126 +/- 13;
+WNOBNormPdf_MuTau     = Gamma(WNOBNorm_MuTau[61, 49,  89],    148.839, 0.409, 0); //  61+-5;
+ZMFTNOBNormPdf_MuTau  = Gamma(ZMFTNOBNorm_MuTau[13,  0,  23],   13.79, 0.94, 0); //  13 +-3.5;
+ZJFTNOBNormPdf_MuTau  = Gamma(ZJFTNOBNorm_MuTau[6.4,  0,  16],    7.417, 0.863, 0); //  6.4 +/- 2.35;
+TOPNOBNormPdf_MuTau   = Lognormal(TOPNOBNorm_MuTau[    6, 1.2, 30.], 6.0, 1.5);  //r 6 +-50%;
+VVNOBNormPdf_MuTau    = Lognormal(VVNOBNorm_MuTau[1.6, 0.3, 8.1], 1.6, 1.5);     //1.6 +- 50%;
+QCDBNormPdf_MuTau   = Gamma(QCDBNorm_MuTau[7.4, 0.0, 21],    7.511, 0.985, 0); //  7.4+-2.7;
+TOPBNormPdf_MuTau   = Lognormal(TOPBNorm_MuTau[    5, 1.2, 30.], 5.0, 1.3);  //r 6 +-30%;
+
+
+
+//Background Stack and yield definition for Yield Fit  
+ZTTYield_MuTau[0.,10000];
+BackgroundStack_MuTau_Yield = SUM(
+ ZTTYield_MuTau  * ZTTPdf_MuTau,
+ QCDNorm_MuTau   * QCDPdf_MuTau,
+ WNorm_MuTau     * WPdf_MuTau,
+ ZMFTNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNorm_MuTau  * ZJFTPdf_MuTau,
+ TOPNorm_MuTau   * TOPPdf_MuTau,
+ VVNorm_MuTau    * VVPdf_MuTau
+);
+
+//With Morphing
+BackgroundStack_MuTau_Yield_Morph = SUM(
+ ZTTYield_MuTau  * ZTTPdfMorph_MuTau,
+ QCDNorm_MuTau   * QCDPdf_MuTau,
+ WNorm_MuTau     * WPdfMorph_MuTau,
+ ZMFTNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNorm_MuTau  * ZJFTPdfMorph_MuTau,
+ TOPNorm_MuTau   * TOPPdfMorph_MuTau,
+ VVNorm_MuTau    * VVPdfMorph_MuTau
+);
+
+//END:Background Stack and yield definition for Yield Fit
+
+//Background Stack and definition for Higgs limit
+//The ZTT normalization comes from expected Z->tautau value
+//times luminosity times corr factors
+ZTTNorm_MuTau = prod(ZTTMCNorm_MuTau,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon);
+ZTTBNorm_MuTau = prod(1.25,ZTTBMCNorm_MuTau,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon);
+ZTTNOBNorm_MuTau = prod(0.976,ZTTNOBMCNorm_MuTau,Lumi_MuTau,EffCorr_Tau,EffCorr_Muon);
+
+
+BackgroundStack_MuTau = SUM(
+ ZTTNorm_MuTau  * ZTTPdf_MuTau,
+ QCDNorm_MuTau   * QCDPdf_MuTau,
+ WNorm_MuTau     * WPdf_MuTau,
+ ZMFTNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNorm_MuTau  * ZJFTPdf_MuTau,
+ TOPNorm_MuTau   * TOPPdf_MuTau,
+ VVNorm_MuTau    * VVPdf_MuTau
+);
+
+
+//With morphing
+BackgroundStack_MuTau_Morph = SUM(
+ ZTTNorm_MuTau  * ZTTPdfMorph_MuTau,
+ QCDNorm_MuTau   * QCDPdf_MuTau,
+ WNorm_MuTau     * WPdfMorph_MuTau,
+ ZMFTNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNorm_MuTau  * ZJFTPdfMorph_MuTau,
+ TOPNorm_MuTau   * TOPPdfMorph_MuTau,
+ VVNorm_MuTau    * VVPdfMorph_MuTau
+);
+
+
+BackgroundStack_MuTau_NOB_Morph = SUM(
+ ZTTNOBNorm_MuTau  * ZTTPdfMorph_MuTau,
+ QCDNOBNorm_MuTau   * QCDPdf_MuTau,
+ WNOBNorm_MuTau     * WPdfMorph_MuTau,
+ ZMFTNOBNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNOBNorm_MuTau  * ZJFTPdfMorph_MuTau,
+ TOPNOBNorm_MuTau   * TOPPdfMorph_MuTau,
+ VVNOBNorm_MuTau    * VVPdfMorph_MuTau
+);
+
+BackgroundStack_MuTau_B_Morph = SUM(
+ ZTTBNorm_MuTau  * ZTTPdfMorph_MuTau,
+ QCDBNorm_MuTau  * QCDPdf_MuTau,
+ TOPBNorm_MuTau  * TOPPdfMorph_MuTau
+);
+
+
+
+//Signal+Background Stack and definition for Higgs limit
+AllStack_MuTau = SUM(
+ GGHYield_MuTau  * GGH120Pdf_MuTau,
+ BBHYield_MuTau  * BBH120Pdf_MuTau,
+ ZTTNorm_MuTau   * ZTTPdf_MuTau,
+ QCDNorm_MuTau   * QCDPdf_MuTau,
+ WNorm_MuTau     * WPdf_MuTau,
+ ZMFTNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNorm_MuTau  * ZJFTPdf_MuTau,
+ TOPNorm_MuTau   * TOPPdf_MuTau,
+ VVNorm_MuTau    * VVPdf_MuTau
+);
+
+//Same with morphing
+AllStack_MuTau_Morph = SUM(
+ GGHYield_MuTau  * GGH120PdfMorph_MuTau,
+ BBHYield_MuTau  * BBH120PdfMorph_MuTau,
+ ZTTNorm_MuTau   * ZTTPdfMorph_MuTau,
+ QCDNorm_MuTau   * QCDPdf_MuTau,
+ WNorm_MuTau     * WPdfMorph_MuTau,
+ ZMFTNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNorm_MuTau  * ZJFTPdfMorph_MuTau,
+ TOPNorm_MuTau   * TOPPdfMorph_MuTau,
+ VVNorm_MuTau    * VVPdfMorph_MuTau
+);
+
+
+AllStack_MuTau_NOB_Morph = SUM(
+ GGHNOBYield_MuTau  * GGH120PdfMorph_MuTau,
+ BBHNOBYield_MuTau  * BBH120PdfMorph_MuTau,
+ ZTTNOBNorm_MuTau   * ZTTPdfMorph_MuTau,
+ QCDNOBNorm_MuTau   * QCDPdf_MuTau,
+ WNOBNorm_MuTau     * WPdfMorph_MuTau,
+ ZMFTNOBNorm_MuTau  * ZMFTPdf_MuTau,
+ ZJFTNOBNorm_MuTau  * ZJFTPdfMorph_MuTau,
+ TOPNOBNorm_MuTau   * TOPPdfMorph_MuTau,
+ VVNOBNorm_MuTau    * VVPdfMorph_MuTau
+);
+
+AllStack_MuTau_B_Morph = SUM(
+ GGHBYield_MuTau  * GGH120PdfMorph_MuTau,
+ BBHBYield_MuTau  * BBH120PdfMorph_MuTau,
+ ZTTBNorm_MuTau   * ZTTPdfMorph_MuTau,
+ QCDBNorm_MuTau   * QCDPdf_MuTau,
+ TOPBNorm_MuTau   * TOPPdfMorph_MuTau,
+
+);
+
+
+//Constraint Pdf only mu+tau specific
+Constraints_MuTau = PROD(QCDNormPdf_MuTau,WNormPdf_MuTau,ZMFTNormPdf_MuTau,ZJFTNormPdf_MuTau,TOPNormPdf_MuTau,VVNormPdf_MuTau);
+Constraints_MuTau_NOB = PROD(QCDNOBNormPdf_MuTau,WNOBNormPdf_MuTau,ZMFTNOBNormPdf_MuTau,ZJFTNOBNormPdf_MuTau,TOPNOBNormPdf_MuTau,VVNOBNormPdf_MuTau);
+Constraints_MuTau_B = PROD(QCDBNormPdf_MuTau,TOPBNormPdf_MuTau);
+
+
+//Model to just fit a yield -  no morphing
+model_MuTau_Yield = PROD(BackgroundStack_MuTau_Yield,QCDNormPdf_MuTau,WNormPdf_MuTau,ZMFTNormPdf_MuTau,ZJFTNormPdf_MuTau,TOPNormPdf_MuTau,VVNormPdf_MuTau);
+model_MuTau_Yield_nuisances = set( ZTTYield_MuTau,QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau );
+model_MuTau_Yield_nuisancePdf = PROD(QCDNormPdf_MuTau,WNormPdf_MuTau,ZMFTNormPdf_MuTau,ZJFTNormPdf_MuTau,TOPNormPdf_MuTau,VVNormPdf_MuTau);
+
+
+//Model to just fit a yield -   Morphing
+model_MuTau_Yield_Morph = PROD(BackgroundStack_MuTau_Yield_Morph,QCDNormPdf_MuTau,WNormPdf_MuTau,ZMFTNormPdf_MuTau,ZJFTNormPdf_MuTau,TOPNormPdf_MuTau,VVNormPdf_MuTau,TauMorphPdf);
+model_MuTau_Yield_Morph_nuisances = set( ZTTYield_MuTau,QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau,TauScale );
+model_MuTau_Yield_Morph_nuisancePdf = PROD(QCDNormPdf_MuTau,WNormPdf_MuTau,ZMFTNormPdf_MuTau,ZJFTNormPdf_MuTau,TOPNormPdf_MuTau,VVNormPdf_MuTau,TauMorphPdf);
+
+
+//Model for Cross section upper  limit- no morphing
+model_MuTau_s = PROD(AllStack_MuTau,Constraints_MuTau,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf);
+model_MuTau_b = PROD(BackgroundStack_MuTau,Constraints_MuTau,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf);
+model_MuTau_nuisancePdf = PROD(Constraints_MuTau,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf);
+model_MuTau_POI = set(r);
+model_MuTau_observables = set(mass);
+model_MuTau_nuisances = set( ZTTScale,QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau,EffCorr_Muon,EffCorr_Tau,LumiScale); 
+
+
+//Model for Cross section upper  limit-  morphing
+model_MuTau_Morph_s = PROD(AllStack_MuTau_Morph,Constraints_MuTau,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+model_MuTau_Morph_b = PROD(BackgroundStack_MuTau_Morph,Constraints_MuTau,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+model_MuTau_Morph_nuisancePdf = PROD(Constraints_MuTau,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+model_MuTau_Morph_POI = set(r);
+model_MuTau_Morph_observables = set(mass);
+model_MuTau_Morph_nuisances = set( ZTTScale,QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau,EffCorr_Muon,EffCorr_Tau,LumiScale,TauScale); 
+
+
+//Model for Cross section upper  limit-  morphing + btagging
+model_MuTau_NOB_Morph_s = PROD(AllStack_MuTau_NOB_Morph,Constraints_MuTau_NOB,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+model_MuTau_B_Morph_s = PROD(AllStack_MuTau_B_Morph,Constraints_MuTau_B,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+
+model_MuTau_NOB_Morph_b = PROD(BackgroundStack_MuTau_NOB_Morph,Constraints_MuTau_NOB,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+model_MuTau_B_Morph_b = PROD(BackgroundStack_MuTau_B_Morph,Constraints_MuTau_B,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+
+model_MuTau_BTagging_Morph_s = SIMUL(channel,MuTau_B=model_MuTau_B_Morph_s,MuTau_NOB=model_MuTau_NOB_Morph_s);
+model_MuTau_BTagging_Morph_b = SIMUL(channel,MuTau_B=model_MuTau_B_Morph_b,MuTau_NOB=model_MuTau_NOB_Morph_b);
+model_MuTau_BTagging_Morph_nuisancePdf = PROD(Constraints_MuTau_B,Constraints_MuTau_NOB,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,LumiPdf,TauMorphPdf);
+model_MuTau_BTagging_Morph_POI = set(r);
+model_MuTau_BTagging_Morph_observables = set(mass,channel);
+model_MuTau_BTagging_Morph_nuisances = set( ZTTScale,QCDNOBNorm_MuTau ,WNOBNorm_MuTau,ZMFTNOBNorm_MuTau,ZJFTNOBNorm_MuTau,TOPNOBNorm_MuTau,VVNOBNorm_MuTau,
+                                   QCDBNorm_MuTau,TOPBNorm_MuTau,EffCorr_Muon,EffCorr_Tau,LumiScale,TauScale); 
+//Data for Mu+Tau
+DATA_MuTau = import(DATA_MuTau.root, w, DATA_MuTau);
+
+	
+
+
+
+
+
+
+
+
+
+
+

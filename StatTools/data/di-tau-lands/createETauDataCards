@@ -1,0 +1,48 @@
+#!/bin/sh
+MakeDataCard channel='eleTau' shifts='Ele','Tau'   dataFile='../inputs/etau/DATA.root' zttFile='../inputs/etau/ZTT.root' zllFile='../inputs/etau/ZEE.root' wFile='../inputs/etau/W.root' vvFile='../inputs/etau/VV.root' topFile='../inputs/etau/TOP.root' preselection='HLT_Any&&vertices>0&&diLeptons==0&&lPfRelIsoDeltaBeta<0.1&&tauAbsIsoDeltaBeta<2.&&abs(dz)<0.2&&tauElectronVeto&&abs(eta1)<2.1&&(RUN<10||RUN>150000)'       oswselection='pZeta<-40&&charge==0'	       ossignalselection='pZeta>-20&&charge==0'         sswselection='pZeta<-40&&charge!=0'	      sssignalselection='pZeta>-20&&charge!=0' zlftSelection='genTaus==0&&genPt2>0' zjftSelection='genTaus==0&&genPt2<=0'  qcdselection='HLT_Any&&vertices>0&&diLeptons==0&&lPfRelIsoDeltaBeta<0.3&&tauAbsIsoDeltaBeta<2.&&abs(dz)<0.2&&pZeta>-20&&charge!=0&abs(eta1)<2.1&&tauElectronVeto&&(RUN<10||RUN>150000)' luminosity=189. luminosityErr=0.04 qcdfactor=1.06 qcdfactorErr=0.09 vvErr=0.3  zttScale=1.003 zttScaleErr=0.02    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.07   topErr=0.12 	muID=0.0 muIDErr=0.000 eleID=0.964 eleIDErr=0.02 tauID=1.0 tauIDErr=0.1 tauHLT=0.8166 tauHLTErr=0.003 outputFile='eleTau.root' dir='../inputs/etau/' bID=0.911  bIDErr=0.108  bMisID=1.21  bMisIDErr=0.17    bJecErr=0.02 bitmask=1,1,0
+
+
+
+cd datacards
+A=`ls eleTau_X*.txt`
+for file in $A
+do
+#echo 'Aligning ' $file 
+#combineCards.py eleTau_X=$file >test
+#mv test $file
+done
+
+A=`ls eleTau_NoB*.txt`
+for file in $A
+do
+#echo 'Aligning ' $file 
+#combineCards.py eleTau_NoB=$file >test
+#mv test $file
+done
+
+A=`ls eleTau_B*.txt`
+
+for file in $A
+do
+#echo 'Aligning ' $file 
+#combineCards.py eleTau_B=$file >test
+#mv test $file
+done
+
+A=`ls eleTau_VBF*.txt`
+
+for file in $A
+do
+#echo 'Aligning ' $file 
+#combineCards.py eleTau_VBF=$file >test
+#mv test $file
+done
+
+A=`ls eleTau_NoVBF*.txt`
+
+for file in $A
+do
+#echo 'Aligning ' $file 
+#combineCards.py eleTau_NoVBF=$file >test
+#mv test $file
+done

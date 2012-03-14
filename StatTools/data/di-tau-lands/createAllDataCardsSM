@@ -1,0 +1,4 @@
+#!/bin/sh
+bash createMuTauDataCardsSM
+bash createETauDataCardsSM
+bash createEMuDataCardsSM

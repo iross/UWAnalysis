@@ -1,0 +1,60 @@
+mkdir sandbox
+cd sandbox
+
+find /scratch/$USER/ZTT-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTT.root
+find /scratch/$USER/ZEE-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZEE.root
+find /scratch/$USER/W-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd W.root
+find /scratch/$USER/G30-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd G30.root
+find /scratch/$USER/G50-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd G50.root
+find /scratch/$USER/G80-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd G80.root
+find /scratch/$USER/QCDEM20-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM20.root
+find /scratch/$USER/QCDEM30-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM30.root
+find /scratch/$USER/QCDEM80-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDEM80.root
+find /scratch/$USER/QCDBC20-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDBC20.root
+find /scratch/$USER/QCDBC30-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDBC30.root
+find /scratch/$USER/QCDBC80-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCDBC80.root
+find /scratch/$USER/TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TOP.root
+find /scratch/$USER/WW-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WW.root
+find /scratch/$USER/WZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ.root
+find /scratch/$USER/ZZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ.root
+
+
+
+EventWeightsIterative outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results' 	  
+EventWeightsIterative outputFile='ZEE.root'        weight=1667   type=3 histoName='summary/results' 	  
+EventWeightsIterative outputFile='W.root'          weight=31314   type=4 histoName='summary/results' 	  
+EventWeightsIterative outputFile='TOP.root'        weight=158    type=6 histoName='summary/results' 	  
+EventWeightsIterative outputFile='G30.root'        weight=16690   type=7 histoName='summary/results'  	  
+EventWeightsIterative outputFile='G50.root'        weight=2722    type=7 histoName='summary/results'  	  
+EventWeightsIterative outputFile='G80.root'        weight=447     type=7 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCDEM20.root'    weight=2496000 type=8 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCDEM30.root'    weight=3867500 type=8 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCDEM80.root'    weight=139500  type=8 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCDBC20.root'    weight=134400 type=2 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCDBC30.root'    weight=136850 type=2 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCDBC80.root'    weight=9360  type=2 histoName='summary/results'  	  
+EventWeightsIterative outputFile='WW.root'         weight=4.4    type=7 histoName='summary/results' 
+EventWeightsIterative outputFile='WZ.root'         weight=11.8   type=7 histoName='summary/results' 
+EventWeightsIterative outputFile='ZZ.root'         weight=5.9   type=7  histoName='summary/results' 
+
+hadd VV.root WW.root WZ.root ZZ.root 
+rm WW.root WZ.root ZZ.root
+
+hadd QCDEM.root QCDEM20.root QCDEM30.root  QCDEM80.root
+rm QCDEM20.root QCDEM30.root  QCDEM80.root
+
+hadd QCDBC.root QCDBC20.root QCDBC30.root  QCDBC80.root
+rm QCDBC20.root QCDBC30.root  QCDBC80.root
+
+hadd QCD.root QCDEM.root QCDBC.root
+rm QCDEM.root QCDBC.root
+
+hadd G.root G80.root G30.root G50.root 
+rm G80.root G30.root G50.root
+
+
+
+
+
+
+

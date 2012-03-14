@@ -1,0 +1,47 @@
+import FWCore.ParameterSet.Config as cms
+import sys
+
+process = cms.Process("ANALYSIS")
+
+process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
+process.GlobalTag.globaltag = 'GR_R_311_V2::All'
+
+process.load('FWCore.MessageService.MessageLogger_cfi')
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
+
+process.maxEvents = cms.untracked.PSet(
+    input = cms.untracked.int32(-1)
+)
+
+process.source = cms.Source("PoolSource",
+                            fileNames = cms.untracked.vstring(
+    '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v4/000/167/098/7211E94D-7D9A-E011-A713-003048F1BF66.root'
+    )
+)
+
+process.load("PhysicsTools.PatAlgos.patSequences_cff")
+
+from UWAnalysis.Configuration.tools.analysisTools import *
+defaultReconstruction(process,'HLT',
+                      [
+						  "HLT_DoubleMu3",
+						  "HLT_DoubleMu7",
+						  "HLT_Mu13_Mu8",
+						  "HLT_Mu17_Mu8",
+						  "HLT_Ele10_LW_LR1",
+						  "HLT_Ele15_SW_LR1",
+						  "HLT_Ele15_SW_CaloEleID_L1R",
+						  "HLT_Ele17_SW_TightEleID_L1R",
+						  "HLT_Ele17_SW_TighterEleIdIsol_L1R",
+						  "HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL",
+						  "HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
+						  ])
+
+					  #EventSelection
+process.load("UWAnalysis.Configuration.incZ_cff")
+process.eventSelectionMM = cms.Path(process.zMuMuSelectionSequence) ##changing to multiples see below
+
+from UWAnalysis.Configuration.tools.ntupleTools import addMuMuEventTree
+addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
+
+addEventSummary(process,False,'MM','eventSelectionMM')

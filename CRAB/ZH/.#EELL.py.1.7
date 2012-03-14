@@ -1,0 +1,73 @@
+import FWCore.ParameterSet.Config as cms
+import sys
+
+
+process = cms.Process("ANALYSIS")
+
+process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
+process.GlobalTag.globaltag = 'GR_R_311_V2::All'
+
+process.maxEvents = cms.untracked.PSet(
+    input = cms.untracked.int32(1000)
+)
+
+process.source = cms.Source("PoolSource",
+    fileNames = cms.untracked.vstring(
+	'file:unofficialB.root'
+#        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/7609160B-EE57-E011-9149-001617E30D12.root',
+#        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/7284A8EE-0558-E011-9AC0-003048F1C424.root',
+#        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/70491EF9-F957-E011-9024-003048F11942.root'
+        )
+)
+
+process.load("PhysicsTools.PatAlgos.patSequences_cff")
+
+
+from UWAnalysis.Configuration.tools.analysisTools import *
+defaultReconstruction(process,'HLT',
+                      [
+									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v1",
+									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v2",
+									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v3",
+									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v4",
+									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v5",
+									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL_v6"
+                      ])
+
+#EventSelection
+process.load("UWAnalysis.Configuration.zzLLLLAnalysis_cff")
+process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
+process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
+process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
+process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
+process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
+process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
+
+
+from UWAnalysis.Configuration.tools.ntupleTools import addEleEleTauTauEventTree
+addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold')
+addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID')
+from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEleTauEventTree
+addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold')
+addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID')
+from UWAnalysis.Configuration.tools.ntupleTools import addEleEleMuTauEventTree
+addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold')
+addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID')
+from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEleMuEventTree
+addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold')
+addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID')
+from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEleEleEventTree
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCandsAboveThreshold')
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID','EEEEzzEleIDsecond')
+from UWAnalysis.Configuration.tools.ntupleTools import addEleEleMuMuEventTree
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold')
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMzzMuIDSecondPair')
+
+#Add event counter
+addEventSummary(process,False,'EEMT','eventSelectionEEMT')
+addEventSummary(process,False,'EEET','eventSelectionEEET')
+addEventSummary(process,False,'EETT','eventSelectionEETT')
+addEventSummary(process,False,'EEEM','eventSelectionEEEM')
+addEventSummary(process,False,'EEEE','eventSelectionEEEE')
+addEventSummary(process,False,'EEMM','eventSelectionEEMM')
+

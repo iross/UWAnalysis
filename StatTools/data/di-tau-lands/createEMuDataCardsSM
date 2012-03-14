@@ -1,0 +1,33 @@
+#!/bin/sh
+MakeDataCard channel='eleMu'  shifts='Ele' dataFile='../inputs/emu/DATA.root' zttFile='../inputs/emu/ZTT.root' zllFile='../inputs/emu/VJETS.root' wFile='../inputs/emu/W.root' vvFile='../inputs/emu/VV.root' topFile='../inputs/emu/TOP.root' preselection='HLT_Any&&vertices>0&&pZeta>-20&&pt1>15&&pt2>10&&abs(l1DB)<0.02&&abs(l2DXY)<0.02&&diLeptons1==0&&diLeptons2==0&&dz<0.2&&(RUN<10||RUN>150000)'     oswselection='pZeta<-40&&charge==0'	       ossignalselection='charge==0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2'         sswselection='pZeta<-40&&charge!=0'	      sssignalselection='pZeta>-20&&charge!=0' zlftSelection='genTaus==0&&genPt2>0' zjftSelection='genTaus==0&&genPt2<=0'  qcdselection='HLT_Any&&vertices>0&&pZeta>-20&&pt1>15&&pt2>10&&abs(l1DB)<0.02&&abs(l2DXY)<0.02&&diLeptons1==0&&diLeptons2==0&&dz<0.2&&charge!=0&&l1RelPfIsoDeltaBeta<0.3&&l2RelPFIsoDeltaBeta<0.3&&(RUN<10||RUN>150000)' luminosity=189. luminosityErr=0.04 qcdfactor=1.06 qcdfactorErr=0.02 vvErr=0.4  zttScale=1.003 zttScaleErr=0.02    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.12 	muID=0.9399 muIDErr=0.002 eleID=0.914 eleIDErr=0.02 tauID=1.0 tauIDErr=0.1 tauHLT=0.9444 tauHLTErr=0.003 outputFile='eleMuSM.root' dir='../inputs/emu/'  bID=0.911  bIDErr=0.108  bMisID=1.21  bMisIDErr=0.17    bJecErr=0.02   abcdCoeffs='charge==0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2','charge==0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2','charge!=0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2&&nJetsPt30<2&&nJetsBTag2Pt20==0','charge!=0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2&&nJetsPt30<2&&nJetsBTag2Pt20==0' bitmask=0,0,1
+
+
+cd datacards
+A=`ls eleMu_X*.txt`
+
+for file in $A
+do
+echo 'Aligning ' $file 
+#combineCards.py eleMu_X=$file >test
+#mv test $file
+done
+
+A=`ls eleMu_NoB*.txt`
+for file in $A
+do
+echo 'Aligning ' $file 
+#combineCards.py eleMu_NoB=$file >test
+#mv test $file
+done
+
+A=`ls eleMu_B*.txt`
+
+for file in $A
+do
+echo 'Aligning ' $file 
+#combineCards.py eleMu_B=$file >test
+#mv test $file
+done
+
+
+

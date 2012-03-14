@@ -1,0 +1,117 @@
+#!/bin/sh
+
+cp -R nominal/ele-mu* tauUp
+cp -R nominal/ele-mu* tauDown
+
+cp -R nominal/m090/ele-mu* tauUp/m090/
+cp -R nominal/m090/ele-mu* tauDown/m090/
+cp -R nominal/m100/ele-mu* tauUp/m100/
+cp -R nominal/m100/ele-mu* tauDown/m100/
+cp -R nominal/m120/ele-mu* tauUp/m120/
+cp -R nominal/m120/ele-mu* tauDown/m120/
+cp -R nominal/m130/ele-mu* tauUp/m130/
+cp -R nominal/m130/ele-mu* tauDown/m130/
+cp -R nominal/m140/ele-mu* tauUp/m140/
+cp -R nominal/m140/ele-mu* tauDown/m140/
+cp -R nominal/m160/ele-mu* tauUp/m160/
+cp -R nominal/m160/ele-mu* tauDown/m160/
+cp -R nominal/m180/ele-mu* tauUp/m180/
+cp -R nominal/m180/ele-mu* tauDown/m180/
+cp -R nominal/m200/ele-mu* tauUp/m200/
+cp -R nominal/m200/ele-mu* tauDown/m200/
+cp -R nominal/m250/ele-mu* tauUp/m250/
+cp -R nominal/m250/ele-mu* tauDown/m250/
+cp -R nominal/m300/ele-mu* tauUp/m300/
+cp -R nominal/m300/ele-mu* tauDown/m300/
+cp -R nominal/m350/ele-mu* tauUp/m350/
+cp -R nominal/m350/ele-mu* tauDown/m350/
+cp -R nominal/m400/ele-mu* tauUp/m400/
+cp -R nominal/m400/ele-mu* tauDown/m400/
+cp -R nominal/m450/ele-mu* tauUp/m450/
+cp -R nominal/m450/ele-mu* tauDown/m450/
+cp -R nominal/m500/ele-mu* tauUp/m500/
+cp -R nominal/m500/ele-mu* tauDown/m500/
+
+
+
+
+cp -R nominal/mu-tau* eleUp
+cp -R nominal/mu-tau* eleDown
+
+
+cp -R nominal/m090/mu-tau* eleUp/m090/
+cp -R nominal/m090/mu-tau* eleDown/m090/
+cp -R nominal/m100/mu-tau* eleUp/m100/
+cp -R nominal/m100/mu-tau* eleDown/m100/
+cp -R nominal/m120/mu-tau* eleUp/m120/
+cp -R nominal/m120/mu-tau* eleDown/m120/
+cp -R nominal/m130/mu-tau* eleUp/m130/
+cp -R nominal/m130/mu-tau* eleDown/m130/
+cp -R nominal/m140/mu-tau* eleUp/m140/
+cp -R nominal/m140/mu-tau* eleDown/m140/
+cp -R nominal/m160/mu-tau* eleUp/m160/
+cp -R nominal/m160/mu-tau* eleDown/m160/
+cp -R nominal/m180/mu-tau* eleUp/m180/
+cp -R nominal/m180/mu-tau* eleDown/m180/
+cp -R nominal/m200/mu-tau* eleUp/m200/
+cp -R nominal/m200/mu-tau* eleDown/m200/
+cp -R nominal/m250/mu-tau* eleUp/m250/
+cp -R nominal/m250/mu-tau* eleDown/m250/
+cp -R nominal/m300/mu-tau* eleUp/m300/
+cp -R nominal/m300/mu-tau* eleDown/m300/
+cp -R nominal/m350/mu-tau* eleUp/m350/
+cp -R nominal/m350/mu-tau* eleDown/m350/
+cp -R nominal/m400/mu-tau* eleUp/m400/
+cp -R nominal/m400/mu-tau* eleDown/m400/
+cp -R nominal/m450/mu-tau* eleUp/m450/
+cp -R nominal/m450/mu-tau* eleDown/m450/
+cp -R nominal/m500/mu-tau* eleUp/m500/
+cp -R nominal/m500/mu-tau* eleDown/m500/
+
+
+cp -R nominal/ele-tau* muUp
+cp -R nominal/ele-tau* muDown
+
+cp -R nominal/m090/ele-tau* muUp/m090/
+cp -R nominal/m090/ele-tau* muDown/m090/
+cp -R nominal/m100/ele-tau* muUp/m100/
+cp -R nominal/m100/ele-tau* muDown/m100/
+cp -R nominal/m120/ele-tau* muUp/m120/
+cp -R nominal/m120/ele-tau* muDown/m120/
+cp -R nominal/m130/ele-tau* muUp/m130/
+cp -R nominal/m130/ele-tau* muDown/m130/
+cp -R nominal/m140/ele-tau* muUp/m140/
+cp -R nominal/m140/ele-tau* muDown/m140/
+cp -R nominal/m160/ele-tau* muUp/m160/
+cp -R nominal/m160/ele-tau* muDown/m160/
+cp -R nominal/m180/ele-tau* muUp/m180/
+cp -R nominal/m180/ele-tau* muDown/m180/
+cp -R nominal/m200/ele-tau* muUp/m200/
+cp -R nominal/m200/ele-tau* muDown/m200/
+cp -R nominal/m250/ele-tau* muUp/m250/
+cp -R nominal/m250/ele-tau* muDown/m250/
+cp -R nominal/m300/ele-tau* muUp/m300/
+cp -R nominal/m300/ele-tau* muDown/m300/
+cp -R nominal/m350/ele-tau* muUp/m350/
+cp -R nominal/m350/ele-tau* muDown/m350/
+cp -R nominal/m400/ele-tau* muUp/m400/
+cp -R nominal/m400/ele-tau* muDown/m400/
+cp -R nominal/m450/ele-tau* muUp/m450/
+cp -R nominal/m450/ele-tau* muDown/m450/
+cp -R nominal/m500/ele-tau* muUp/m500/
+cp -R nominal/m500/ele-tau* muDown/m500/
+
+ 
+
+
+mv muUp mes+1
+mv muDown mes-1
+mv tauUp tes+1
+mv tauDown tes-1
+mv eleUp ees+1
+mv eleDown ees-1
+mv jetUp jes+1
+mv jetDown jes-1
+mv uncUp ues+1
+mv uncDown ues-1
+

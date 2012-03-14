@@ -1,0 +1,151 @@
+
+
+//Luminosity
+Lumi_EMu[223.];
+
+
+//SignalShape PDFs with morphing
+GGH120PdfMorph_EMu   = import(diTau.root, w, GGH120PdfMorph_EMu);
+BBH120PdfMorph_EMu   = import(diTau.root, w, BBH120PdfMorph_EMu);
+SM120PdfMorph_EMu   = import(diTau.root, w, SM120PdfMorph_EMu);
+
+//Efficiency from MC 
+GGH120MCEff_EMu = import(diTau.root,w,GGH120MCEff_EMu);
+BBH120MCEff_EMu = import(diTau.root,w,BBH120MCEff_EMu);
+SM120MCEff_EMu = import(diTau.root,w,SM120MCEff_EMu);
+
+//signal yields for inclusive
+GGHYield_EMu = prod(r,GGH120MCEff_EMu,GGH120_Fraction,Lumi_EMu,EffCorr_Electron,EffCorr_Muon,LumiScale);
+BBHYield_EMu = prod(r,BBH120MCEff_EMu,BBH120_Fraction,Lumi_EMu,EffCorr_Electron,EffCorr_Muon,LumiScale);
+SMYield_EMu = prod(r,SM120MCEff_EMu,SM120_Sigma,Lumi_EMu,EffCorr_Electron,EffCorr_Muon,LumiScale);
+
+//Background Shape Pdfs
+
+//Background Shape Pdfs with morphing (only MC!)
+ZTTPdfMorph_EMu   = import(diTau.root, w, ZTTPdfMorph_EMu);
+QCDPdf_EMu   = import(diTau.root, w, QCDPdf_EMu);
+TOPPdfMorph_EMu   = import(diTau.root, w, TOPPdfMorph_EMu);
+VVPdfMorph_EMu    = import(diTau.root, w, VVPdfMorph_EMu);
+VJETSPdfMorph_EMu = import(diTau.root, w, VJETSPdfMorph_EMu);
+
+
+//Background Normalization PDFs with PZETA CUT
+//Background normalizations
+
+ZTTMCNorm_EMu    = import(diTau.root, w, ZTTMCNorm_EMu);
+TOPMCNorm_EMu    = import(diTau.root, w, TOPMCNorm_EMu);
+VVMCNorm_EMu    = import(diTau.root, w, VVMCNorm_EMu);
+VJETSMCNorm_EMu    = import(diTau.root, w, VJETSMCNorm_EMu);
+
+
+TOPScalePdf_EMu       = Lognormal(TOPScale_EMu[    1.0 ,0.5, 1.5], 1.0, 1.12); 
+VVScalePdf_EMu        = Lognormal(VVScale_EMu[1.0, 0.5, 1.5], 1.0, 1.3);  
+VJETSScalePdf_EMu     = Lognormal(VJETSScale_EMu[1.0, 0.5, 1.5], 1.0, 1.3);  
+QCDNormPdf_EMu        = Gamma(QCDNorm_EMu[246., 100., 800.],  125.03., 1.967 , 0);
+
+ZTTNorm_EMu = prod(ZTTMCNorm_EMu,ZTTScale,Lumi_EMu,EffCorr_Electron,EffCorr_Muon);
+TOPNorm_EMu = prod(TOPMCNorm_EMu,TOPScale_EMu,Lumi_EMu,EffCorr_Electron,EffCorr_Muon);
+VVNorm_EMu = prod(VVMCNorm_EMu,VVScale_EMu,Lumi_EMu,EffCorr_Electron,EffCorr_Muon);
+VJETSNorm_EMu = prod(VJETSMCNorm_EMu,VJETSScale_EMu,Lumi_EMu,EffCorr_Electron,EffCorr_Muon);
+
+
+
+
+
+//Background Stack and yield definition for Yield Fit  
+ZTTYield_EMu[0.,10000];
+
+//Background Stack and yield definition for Yield Fit  with morphing
+YieldStack_EMu = SUM(
+ ZTTYield_EMu  * ZTTPdfMorph_EMu,
+ QCDNorm_EMu   * QCDPdf_EMu,
+ TOPNorm_EMu   * TOPPdfMorph_EMu,
+ VVNorm_EMu    * VVPdfMorph_EMu,
+ VJETSNorm_EMu * VJETSPdfMorph_EMu
+);
+
+
+//Background Stack for Higgs fit
+BackgroundStack_EMu = SUM(
+ ZTTNorm_EMu   * ZTTPdfMorph_EMu,
+ QCDNorm_EMu   * QCDPdf_EMu,
+ TOPNorm_EMu   * TOPPdfMorph_EMu,
+ VVNorm_EMu    * VVPdfMorph_EMu,
+ VJETSNorm_EMu * VJETSPdfMorph_EMu
+);
+
+
+//Signal+Background Stack and definition for MSSM Higgs limit
+
+//Same with morphing
+MSSMStack_EMu = SUM(
+ GGHYield_EMu  * GGH120PdfMorph_EMu,
+ BBHYield_EMu  * BBH120PdfMorph_EMu,
+ ZTTNorm_EMu   * ZTTPdfMorph_EMu,
+ QCDNorm_EMu   * QCDPdf_EMu,
+ TOPNorm_EMu   * TOPPdfMorph_EMu,
+ VVNorm_EMu    * VVPdfMorph_EMu,
+ VJETSNorm_EMu * VJETSPdfMorph_EMu
+);
+
+SMStack_EMu = SUM(
+ SMYield_EMu  * SM120PdfMorph_EMu,
+ ZTTNorm_EMu   * ZTTPdfMorph_EMu,
+ QCDNorm_EMu   * QCDPdf_EMu,
+ TOPNorm_EMu   * TOPPdfMorph_EMu,
+ VVNorm_EMu    * VVPdfMorph_EMu,
+ VJETSNorm_EMu * VJETSPdfMorph_EMu
+);
+
+
+//Constraint Pdf only mu+tau specific
+Constraints_EMu = PROD(VJETSScalePdf_EMu,TOPScalePdf_EMu,VVScalePdf_EMu,QCDNormPdf_EMu);
+
+
+//////////////////STANDALONE MODELS///////////////////////////
+
+
+
+
+//Model to just fit a yield -   Morphing
+model_EMu_Yield = PROD(YieldStack_EMu,Constraints_EMu,EleMorphPdf,EffCorrPdf_Muon,EffCorrPdf_Electron);
+model_EMu_Yield_nuisances = set(VJETSScale_EMu ,TOPScale_EMu,VVScale_EMu,QCDNorm_EMu,EleScale,EffCorr_Muon,EffCorr_Electron);
+model_EMu_Yield_nuisancePdf = PROD(Constraints_EMu,EleMorphPdf,EffCorrPdf_Muon,EffCorrPdf_Electron);
+
+
+
+//Model for debugging
+model_EMu_ZTT0 = PROD(BackgroundStack_EMu,Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,EleMorphPdf);
+model_EMu_ZTT0_nuisancePdf = PROD(Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,EleMorphPdf);
+model_EMu_ZTT0_nuisances = set( ZTTScale,VJETSScale_EMu ,QCDNorm_EMu,TOPScale_EMu,VVScale_EMu,EffCorr_Muon,EffCorr_Electron,EleScale); 
+
+//Model for MSSM Higgs Cross section upper  limit
+model_EMu_MSSM_s = PROD(MSSMStack_EMu,Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,LumiPdf,EleMorphPdf);
+model_EMu_MSSM_b = PROD(BackgroundStack_EMu,Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,LumiPdf,EleMorphPdf);
+model_EMu_MSSM_nuisancePdf = PROD(Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,LumiPdf,EleMorphPdf);
+model_EMu_MSSM_POI = set(r);
+model_EMu_MSSM_observables = set(mass);
+model_EMu_MSSM_nuisances = set( ZTTScale,VJETSScale_EMu ,QCDNorm_EMu,TOPScale_EMu,VVScale_EMu,EffCorr_Muon,EffCorr_Electron,LumiScale,EleScale); 
+
+model_EMu_SM_s = PROD(SMStack_EMu,Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,LumiPdf,EleMorphPdf);
+model_EMu_SM_b = PROD(BackgroundStack_EMu,Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,LumiPdf,EleMorphPdf);
+model_EMu_SM_nuisancePdf = PROD(Constraints_EMu,ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,LumiPdf,EleMorphPdf);
+model_EMu_SM_POI = set(r);
+model_EMu_SM_observables = set(mass);
+model_EMu_SM_nuisances = set( ZTTScale,VJETSScale_EMu ,QCDNorm_EMu,TOPScale_EMu,VVScale_EMu,EffCorr_Muon,EffCorr_Electron,LumiScale,EleScale); 
+
+//Data for Mu+Tau
+DATA_EMu = import(diTau.root, w, DATA_EMu);
+
+	
+
+
+
+
+
+
+
+
+
+
+

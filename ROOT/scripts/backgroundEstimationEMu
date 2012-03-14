@@ -1,0 +1,13 @@
+
+#!/bin/sh
+echo "----------INCLUSIVE------------"
+
+ABCDMethod preselection='HLT_Any&&vertices>0&&pZeta>-20&&pt1>15&&pt2>10&&abs(l1DB)<0.02&&abs(l2DXY)<0.02&&diLeptons1==0&&diLeptons2==0&&dz<0.2' A='charge==0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2' B='charge==0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2' C='charge!=0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2' D='charge!=0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2'   
+
+echo "----------EXCLUSIVE ------------"
+ABCDMethod preselection='HLT_Any&&vertices>0&&pZeta>-20&&pt1>15&&pt2>10&&abs(l1DB)<0.02&&abs(l2DXY)<0.02&&diLeptons1==0&&diLeptons2==0&&dz<0.2&&nJetsBTag3Pt20==0' A='charge==0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2' B='charge==0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2' C='charge!=0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2' D='charge!=0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2'   
+
+
+echo "----------B-TAGGED------------"
+ABCDMethod preselection='HLT_Any&&vertices>0&&pZeta>-20&&pt1>15&&pt2>10&&abs(l1DB)<0.02&&abs(l2DXY)<0.02&&diLeptons1==0&&diLeptons2==0&&dz<0.2' A='charge==0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2&&nJetsBTag3Pt20>0&&nJetsPt30<2' B='charge==0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2&&nJetsBTag3Pt20>0&&nJetsPt30<2' C='charge!=0&&l1RelPfIsoDeltaBeta<0.25&&l2RelPFIsoDeltaBeta<0.2&&nJetsPt30<2' D='charge!=0&&l1RelPfIsoDeltaBeta>0.25&&l2RelPFIsoDeltaBeta>0.2&&nJetsPt30<2'   
+

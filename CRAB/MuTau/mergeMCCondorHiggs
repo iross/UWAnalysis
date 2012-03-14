@@ -1,0 +1,119 @@
+cd sandbox
+
+
+
+find /scratch/$USER/bbA90-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA90.root
+find /scratch/$USER/bbA100-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA100.root
+find /scratch/$USER/bbA120-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA120.root
+find /scratch/$USER/bbA130-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA130.root
+find /scratch/$USER/bbA140-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA140.root
+find /scratch/$USER/bbA160-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA160.root
+find /scratch/$USER/bbA180-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA180.root
+find /scratch/$USER/bbA200-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA200.root
+find /scratch/$USER/bbA250-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA250.root
+find /scratch/$USER/bbA300-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA300.root
+find /scratch/$USER/bbA350-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA350.root
+find /scratch/$USER/bbA400-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA400.root
+find /scratch/$USER/bbA450-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA450.root
+find /scratch/$USER/bbA500-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd bbA500.root
+
+
+
+find /scratch/$USER/ggH90-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH90.root
+find /scratch/$USER/ggH100-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH100.root
+find /scratch/$USER/ggH120-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH120.root
+find /scratch/$USER/ggH130-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH130.root
+find /scratch/$USER/ggH140-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH140.root
+find /scratch/$USER/ggH160-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH160.root
+find /scratch/$USER/ggH180-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH180.root
+find /scratch/$USER/ggH200-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH200.root
+find /scratch/$USER/ggH250-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH250.root
+find /scratch/$USER/ggH300-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH300.root
+find /scratch/$USER/ggH350-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH350.root
+find /scratch/$USER/ggH400-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH400.root
+find /scratch/$USER/ggH450-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH450.root
+find /scratch/$USER/ggH500-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH500.root
+
+
+find /scratch/$USER/sm100-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm100.root
+find /scratch/$USER/sm105-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm105.root
+find /scratch/$USER/sm110-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm110.root
+find /scratch/$USER/sm115-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm115.root
+find /scratch/$USER/sm120-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm120.root
+find /scratch/$USER/sm125-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm125.root
+find /scratch/$USER/sm130-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm130.root
+find /scratch/$USER/sm135-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm135.root
+find /scratch/$USER/sm140-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm140.root
+find /scratch/$USER/sm145-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd sm145.root
+
+
+find /scratch/$USER/vbf100-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf100.root
+find /scratch/$USER/vbf105-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf105.root
+find /scratch/$USER/vbf110-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf110.root
+find /scratch/$USER/vbf115-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf115.root
+find /scratch/$USER/vbf120-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf120.root
+find /scratch/$USER/vbf125-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf125.root
+find /scratch/$USER/vbf130-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf130.root
+find /scratch/$USER/vbf135-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf135.root
+find /scratch/$USER/vbf140-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf140.root
+find /scratch/$USER/vbf145-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf145.root
+
+
+
+EventWeightsIterative outputFile='bbA90.root'        weight=1   type=1090 histoName='summary/results'
+EventWeightsIterative outputFile='bbA100.root'       weight=1   type=1100 histoName='summary/results'
+EventWeightsIterative outputFile='bbA120.root'       weight=1   type=1120 histoName='summary/results'
+EventWeightsIterative outputFile='bbA130.root'       weight=1   type=1130 histoName='summary/results'
+EventWeightsIterative outputFile='bbA140.root'       weight=1   type=1140 histoName='summary/results'
+EventWeightsIterative outputFile='bbA160.root'       weight=1   type=1160 histoName='summary/results'
+EventWeightsIterative outputFile='bbA180.root'       weight=1   type=1180 histoName='summary/results'
+EventWeightsIterative outputFile='bbA200.root'       weight=1   type=1200 histoName='summary/results'
+EventWeightsIterative outputFile='bbA250.root'       weight=1   type=1250 histoName='summary/results'
+EventWeightsIterative outputFile='bbA300.root'       weight=1   type=1300 histoName='summary/results'
+EventWeightsIterative outputFile='bbA350.root'       weight=1   type=1350 histoName='summary/results'
+EventWeightsIterative outputFile='bbA400.root'       weight=1   type=1400 histoName='summary/results'
+EventWeightsIterative outputFile='bbA450.root'       weight=1   type=1450 histoName='summary/results'
+EventWeightsIterative outputFile='bbA500.root'       weight=1   type=1050 histoName='summary/results'
+
+EventWeightsIterative outputFile='ggH90.root'        weight=1   type=1090 histoName='summary/results'
+EventWeightsIterative outputFile='ggH100.root'       weight=1   type=1100 histoName='summary/results'
+EventWeightsIterative outputFile='ggH120.root'       weight=1   type=1120 histoName='summary/results'
+EventWeightsIterative outputFile='ggH130.root'       weight=1   type=1130 histoName='summary/results'
+EventWeightsIterative outputFile='ggH140.root'       weight=1   type=1140 histoName='summary/results'
+EventWeightsIterative outputFile='ggH160.root'       weight=1   type=1160 histoName='summary/results'
+EventWeightsIterative outputFile='ggH180.root'       weight=1   type=1180 histoName='summary/results'
+EventWeightsIterative outputFile='ggH200.root'       weight=1   type=1200 histoName='summary/results'
+EventWeightsIterative outputFile='ggH250.root'       weight=1   type=1250 histoName='summary/results'
+EventWeightsIterative outputFile='ggH300.root'       weight=1   type=1300 histoName='summary/results'
+EventWeightsIterative outputFile='ggH350.root'       weight=1   type=1350 histoName='summary/results'
+EventWeightsIterative outputFile='ggH400.root'       weight=1   type=1400 histoName='summary/results'
+EventWeightsIterative outputFile='ggH450.root'       weight=1   type=1450 histoName='summary/results'
+EventWeightsIterative outputFile='ggH500.root'       weight=1   type=1050 histoName='summary/results'
+
+
+EventWeightsIterative outputFile='sm100.root'       weight=1   type=1100 histoName='summary/results'
+EventWeightsIterative outputFile='sm105.root'       weight=1   type=1105 histoName='summary/results'
+EventWeightsIterative outputFile='sm110.root'       weight=1   type=1110 histoName='summary/results'
+EventWeightsIterative outputFile='sm115.root'       weight=1   type=1115 histoName='summary/results'
+EventWeightsIterative outputFile='sm120.root'       weight=1   type=1120 histoName='summary/results'
+EventWeightsIterative outputFile='sm125.root'       weight=1   type=1120 histoName='summary/results'
+EventWeightsIterative outputFile='sm130.root'       weight=1   type=1130 histoName='summary/results'
+EventWeightsIterative outputFile='sm135.root'       weight=1   type=1130 histoName='summary/results'
+EventWeightsIterative outputFile='sm140.root'       weight=1   type=1130 histoName='summary/results'
+EventWeightsIterative outputFile='sm145.root'       weight=1   type=1130 histoName='summary/results'
+
+
+EventWeightsIterative outputFile='vbf100.root'       weight=1   type=1115 histoName='summary/results'
+EventWeightsIterative outputFile='vbf105.root'       weight=1   type=1115 histoName='summary/results'
+EventWeightsIterative outputFile='vbf110.root'       weight=1   type=1115 histoName='summary/results'
+EventWeightsIterative outputFile='vbf115.root'       weight=1   type=1115 histoName='summary/results'
+EventWeightsIterative outputFile='vbf120.root'       weight=1   type=1115 histoName='summary/results'
+EventWeightsIterative outputFile='vbf125.root'       weight=1   type=1125 histoName='summary/results'
+EventWeightsIterative outputFile='vbf130.root'       weight=1   type=1125 histoName='summary/results'
+EventWeightsIterative outputFile='vbf135.root'       weight=1   type=1135 histoName='summary/results'
+EventWeightsIterative outputFile='vbf140.root'       weight=1   type=1135 histoName='summary/results'
+EventWeightsIterative outputFile='vbf145.root'       weight=1   type=1135 histoName='summary/results'
+
+
+
+

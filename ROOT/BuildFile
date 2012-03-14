@@ -1,0 +1,11 @@
+<use name=rootcore>
+<use name=root>
+<use name=roofit>
+
+<export>
+  <use name=rootcore>
+	<use name=root>
+	<use name=roofit>
+  <lib name=UWAnalysisROOT>
+</export>
+

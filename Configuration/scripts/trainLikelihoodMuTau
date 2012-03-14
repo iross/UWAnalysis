@@ -1,0 +1,97 @@
+#!/bin/bash
+
+#first we need to create the PDFs from the trees
+
+CreateWorkspace outputFile='muTauMVA.root' 
+
+CUT='HLT_Any&&abs(dz)<0.2&&tauLooseIso'
+
+
+#Z->tautau
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZTT.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='ZTT_muTrackMass'         outputFile='muTauMVA.root'  max=1000  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+
+
+#QCD
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='QCD.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='QCD_muTrackMass'         outputFile='muTauMVA.root'   max=1000.  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+
+#W
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='W.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='W_muTrackMass'         outputFile='muTauMVA.root'  min=0.0 max=1000.0  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+#Z
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ZMM.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='Z_muTrackMass'         outputFile='muTauMVA.root'  min=0.0 max=1000.  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+#TTVV
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='TOPVV.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='TOPVV_muTrackMass'         outputFile='muTauMVA.root'  min=0.0 max=1000.  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+
+
+#Now create the higgs PDFs
+for higgsMass in 90 100 120 130 140 160 180 200 250 300 350 400 450 500 
+do
+echo 'Making PDF for Higgs Mass = '$higgsMass
+
+#GGH
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='ggH'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='GGH'$higgsMass'_muTrackMass'         outputFile='muTauMVA.root'  min=0.0 max=1000.  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+
+
+#BBA
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_met'          outputFile='muTauMVA.root'  max=1000.  variable='met'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_dPhi1MET'     outputFile='muTauMVA.root'  min=0.0 max=3.14  variable='dPhi1MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_dPhi2MET'     outputFile='muTauMVA.root'  min=0 max=3.14   variable='dPhi2MET'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_dca'          outputFile='muTauMVA.root'  min=0.0 max=10  variable='dca'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_mass'         outputFile='muTauMVA.root'  max=1000.  variable='mass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_xPointDist'         outputFile='muTauMVA.root'  min=0.0 max=5.0  variable='xPointDist'  rho=2.0    weight='__WEIGHT__'  normnames=''
+MakeKeysPDF inputFile='bbA'$higgsMass'.root'  inputTrees='muTauEventTree/eventTree'   cut=$CUT     pdfNames='BBH'$higgsMass'_muTrackMass'         outputFile='muTauMVA.root'  min=0.0 max=1000.0  variable='muTrackMass'  rho=2.0    weight='__WEIGHT__'  normnames=''
+
+
+
+done
+
+
+
+rm tmp.root

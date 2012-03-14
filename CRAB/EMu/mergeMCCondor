@@ -1,0 +1,26 @@
+mkdir sandbox
+cd sandbox
+
+
+
+find /scratch/$USER/STopS-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ST1.root
+find /scratch/$USER/STopT-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ST2.root
+find /scratch/$USER/STopTW-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ST3.root
+#find /scratch/$USER/WGamma-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WG.root
+
+
+EventWeightsIterative outputFile='ST1.root'        weight=4.21  type=1 histoName='summary/results' 	  
+EventWeightsIterative outputFile='ST2.root'        weight=64.6  type=3 histoName='summary/results' 	  
+EventWeightsIterative outputFile='ST3.root'        weight=10.6  type=3 histoName='summary/results' 	  
+#EventWeightsIterative outputFile='WG.root'         weight=5.9   type=7  histoName='summary/results' 
+
+hadd STop.root ST1.root ST2.root ST3.root
+rm ST1.root ST2.root ST3.root
+
+
+
+
+
+
+
+

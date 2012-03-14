@@ -1,0 +1,21 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat LLLL-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-150_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH150 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-145_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH145 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-140_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-135_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH135 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-130_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-125_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH125 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-120_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-115_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH115 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-110_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH110 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WH_ZH_TTH_HToTauTau_M-100_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM VH100 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+
+rm MC2.py
+
+
+

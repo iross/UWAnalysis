@@ -1,0 +1,14 @@
+ZlanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsMMMT',
+                                  pyModuleName = __name__,
+                                  pyNameSpace  = locals())
+#nSVfitTrackService = cms.Service("NSVfitTrackService")
+#Add smearing
+ZlanalysisConfigurator.addSmearing('patOverloadedTaus','patMuonsForAnalysis','convRejElectrons','selectedPatJets')
+#Create di muon OS pairs 
+ZlanalysisConfigurator.addDiCandidateModule('makeMM','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')
+ZlanalysisConfigurator.addSelector('SSandMass','PATMuPairSelector','charge==0&&leg1.isGlobalMuon()&&leg2.isGlobalMuon()&& mass>70 && mass<110 && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4&&leg1.isTrackerMuon()&&leg2.isTrackerMuon()','MMMTDiMuonCreation',1)
+ZlanalysisConfigurator.addSelector('MMiso','PATMuMuMuTauQuadSelector','((leg1.leg1.pt()>20&&(leg1.leg1.chargedHadronIso()+max(leg1.leg1.photonIso()+leg1.leg1.neutralHadronIso()-0.5*leg1.leg1.userIso(0),0.0))/leg1.leg1.pt()<0.35)||(leg1.leg1.pt()<20&&(leg1.leg1.chargedHadronIso()+max(leg1.leg1.photonIso()+leg1.leg1.neutralHadronIso()-0.5*leg1.leg1.userIso(0),0.0))<7))&&((leg1.leg2.pt()>20&&(leg1.leg2.chargedHadronIso()+max(leg1.leg2.photonIso()+leg1.leg2.neutralHadronIso()-0.5*leg1.leg2.userIso(0),0.0))/leg1.leg2.pt()<0.35)||(leg1.leg2.pt()<20&&(leg1.leg2.chargedHadronIso()+max(leg1.leg2.photonIso()+leg1.leg2.neutralHadronIso()-0.5*leg1.leg2.userIso(0),0.0))<7))','MMMTLeadingZMuIso')
+ZlanalysisConfigurator.addCandidateMETModule('mnu','PATMuonNuPairProducer', 'smearedMuons','smearedMET','smearedMET','smearedJets',1,genParticles='genDaughters')
+analysisConfigurator.addSelector('wCandsGoodMuon','PATMuonNuPairSelector','lepton.pt()>10&&abs(lepton.eta())<2.4','OneLeptonInAcceptance',1)
+ZlanalysisConfigurator.addDiCandidateModule('mmmnu','PATMuMuMuNuPairProducer', 'MMiso','ml','smearedMET','smearedJets',1,genParticles='genDaughters')
+ZlnuSeq = ZlanalysisConfigurator.returnSequence()

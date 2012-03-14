@@ -1,0 +1,15 @@
+<use name=DataFormats/Common>
+<use name=DataFormats/JetReco>
+<use name=DataFormats/METReco>
+<use name=DataFormats/TauReco>
+<use name=DataFormats/PatCandidates>
+<use name=rootrflx>
+<export>
+  <lib name=UWAnalysisDataFormats>
+  <use name=DataFormats/Common>
+  <use name=DataFormats/JetReco>
+  <use name=DataFormats/METReco>
+  <use name=DataFormats/TauReco>
+  <use name=DataFormats/PatCandidates>
+  <use name=rootrflx>
+</export>

@@ -1,0 +1,13 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/$USER/qqZZ4L_isoCheck-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4L_baseline.root
+find /scratch/$USER/qqZZ4L_isoCheckAbs-MC2_abs/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4L_abs.root
+find /scratch/$USER/ggH150_isoCheck-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH150_baseline.root
+find /scratch/$USER/ggH150_isoCheckAbs-MC2_abs/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH150_abs.root
+
+EventWeightsIterative outputFile='ZZ4L_baseline.root'        weight=0.068   	type=2  histoName='MMEE/results' 
+EventWeightsIterative outputFile='ZZ4L_abs.root'        weight=0.068   	type=2  histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH150_baseline.root'         	weight=0.0098    type=150 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH150_abs.root'         	weight=0.0098    type=150 histoName='MMEE/results' 

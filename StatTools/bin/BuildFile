@@ -1,0 +1,20 @@
+<use name=rootcore>
+<use name=root>
+<use name=roofit>
+<use name=PhysicsTools/FWLite>
+<use name=DataFormats/FWLite>
+<use name=HiggsAnalysis/CombinedLimit>
+
+
+<bin name="CreateWorkspace" file="CreateWorkspace.cc"></bin>
+<bin name="MakeKeysPDF" file="MakeKeysPDF.cc"></bin>
+<bin name="MakeInterpolatedMorphPDF" file="MakeInterpolatedMorphPDF.cc"></bin>
+<bin name="CombineWorkspaces" file="CombineWorkSpaces.cc"></bin>
+<bin name="MakeDataSet" file="MakeDataSet.cc"></bin>
+<bin name="MakeSimultaneousDataSet" file="MakeSimultaneousDataSet.cc"></bin>
+<bin name="PerformFit" file="PerformFit.cc"></bin>
+<bin name="MakePlot" file="MakePlot.cc"></bin>
+
+
+
+

@@ -1,0 +1,9 @@
+MakePlot  bins=25 min=0. max=500. pdf='pdf_binmuTau_bonly' parameter='x' resultsfile='higgsCombineTest.ProfileLikelihood.mH120.root'  fillcolors=632,807,400,10  linecolors=1,1,1,1 componentlabels='EWK/t|bar{t}','QCD','W+jets','Z |rightarrow |tau |tau'  components='shape_muTau_VV_morph|shape_muTau_TT_morph|shape_muTau_ZJ_morph|shape_muTau_ZL_morph','shape_QCD_muTauPdf','shape_muTau_W_morph','shape_muTau_ZTT_morph'  snapshot='' data='shape_data_obs_muTau' name=MuTau varunit='x20 GeV/c^{2}'
+
+
+
+MakePlot  bins=25 min=0. max=500. pdf='pdf_bineleTau_bonly' parameter='x' resultsfile='higgsCombineTest.ProfileLikelihood.mH120.root'  fillcolors=632,807,400,10  linecolors=1,1,1,1 componentlabels='EWK/t|bar{t}','QCD','Z+jets','Z |rightarrow |tau |tau'  components='shape_eleTau_VV_morph|shape_eleTau_TT_morph|shape_eleTau_ZJ_morph|shape_eleTau_W_morph','shape_QCD_eleTauPdf','shape_eleTau_ZL_morph','shape_eleTau_ZTT_morph'  snapshot='' data='shape_data_obs_eleTau' name=ETau varunit='x20 GeV/c^{2}'
+
+
+MakePlot  bins=25 min=0. max=500. pdf='pdf_bineleMu_bonly' parameter='x' resultsfile='higgsCombineTest.ProfileLikelihood.mH120.root'  fillcolors=632,807,400,10  linecolors=1,1,1,1 componentlabels='/t|bar{t}','QCD','EWK','Z |rightarrow |tau |tau'  components='shape_eleMu_TT_morph','shape_QCD_eleMuPdf','shape_eleMu_VV_morph|shape_eleMu_VJETS_morph','shape_eleMu_ZTT_morph'  snapshot='' data='shape_data_obs_eleMu' name=EMu varunit='x20 GeV/c^{2}'
+

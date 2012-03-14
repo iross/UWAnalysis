@@ -1,0 +1,15 @@
+#!/bin/sh
+cd datacards 
+
+for higgsMass in 115
+do
+combineCards.py SM0=muTau_SM0_mH$higgsMass.txt  SM1=muTau_SM1_mH$higgsMass.txt   SM2=muTau_SM2_mH$higgsMass.txt   > muTau_SM_mA$higgsMass.txt
+combineCards.py SM0=eleTau_SM0_mH$higgsMass.txt SM1=eleTau_SM1_mH$higgsMass.txt  SM2=eleTau_SM2_mH$higgsMass.txt  > eleTau_SM_mA$higgsMass.txt
+combineCards.py SM0=eleMu_SM0_mH$higgsMass.txt  SM1=eleMu_SM1_mH$higgsMass.txt   SM2=eleMu_SM2_mH$higgsMass.txt   > eleMu_SM_mA$higgsMass.txt
+combineCards.py eleTau=eleTau_SM_mA$higgsMass.txt muTau=muTau_SM_mA$higgsMass.txt eleMu=eleMu_SM_mA$higgsMass.txt > Comb_SM_mA$higgsMass.txt
+
+done
+
+
+
+

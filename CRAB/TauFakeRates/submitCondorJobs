@@ -1,0 +1,22 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat FR-MC.py >TAUID.py
+cat CONDOR.py >>TAUID.py
+
+
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/DYtoMuMu_M_20_TuneD6T_7TeV-pythia6/Fall10-E7TeV_ProbDist_2010Data_BX156_START38_V12-v1/AODSIM ZMM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WtoMuNu_TuneD6T_7TeV-pythia6/Fall10-E7TeV_ProbDist_2010Data_BX156_START38_V12-v1/AODSIM WMN $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/MC2.py
+#farmoutAnalysisJobs --job-count=25 --skip-existing-output --output-dir=.  --input-dbs-path=/DYtoTauTau_M_20_TuneD6T_7TeV-pythia6-tauola/Fall10-E7TeV_ProbDist_2010Data_BX156_START38_V12-v1/AODSIM   ZTT $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/TAUID.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt-20_MuEnrichedPt-15_TuneZ2_7TeV-pythia6/Fall10-E7TeV_ProbDist_2010Data_BX156_START38_V12-v1/AODSIM QCD-MU $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/MC2.py
+
+
+#farmoutAnalysisJobs --job-count=25 --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt-30to50_TuneD6T_7TeV-pythia6/Fall10-E7TeV_ProbDist_2010Data_BX156_START38_V12-v1/AODSIM QCD $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/TAUID.py
+
+farmoutAnalysisJobs --job-count=25 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToTauTau_M-20_CT10_TuneZ2_7TeV-powheg-pythia-tauola/Winter10-E7TeV_ProbDist_2011Flat_BX156_START39_V8-v1/AODSIM ZTTPU $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/TAUID.py
+
+#farmoutAnalysisJobs --job-count=25 --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt_15to3000_TuneZ2_Flat_7TeV_pythia6/Spring11-E7TeV_FlatDist10_2011EarlyData_50ns_START311_V1G1-v1/GEN-SIM-RECODEBUG QCDPU $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauFakeRates/TAUID.py
+
+rm TAUID.py
+
+

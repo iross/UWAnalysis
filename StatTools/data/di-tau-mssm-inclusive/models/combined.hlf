@@ -1,0 +1,57 @@
+#include models/common.hlf;
+#include models/theory.hlf;
+#include models/mutau.hlf;
+#include models/etau.hlf;
+#include models/emu.hlf;
+
+
+
+
+
+
+///Simultaneous Models
+
+//Model for debugging
+model_Comb_ZTT0 = SIMUL(channel,MuTau=model_MuTau_ZTT0,ETau=model_ETau_ZTT0,EMu=model_EMu_ZTT0);
+model_Comb_ZTT0_nuisancePdf = PROD(Constraints_MuTau,Constraints_ETau,Constraints_EMu,
+	                                  ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Electron,
+	                                  EffCorrPdf_Tau,EffCorrPdf_TauHLT,TauMorphPdf,EleMorphPdf);
+model_Comb_ZTT0_nuisances = set( ZTTScale,
+	QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau,
+	QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,
+	VJETSScale_EMu ,TOPScale_EMu,VVScale_EMu,QCDNorm_EMu,
+	EffCorr_Muon,EffCorr_TauHLT,EffCorr_Tau,EffCorr_Electron,TauScale,EleScale); 
+
+
+
+//Model for Cross section upper  limit-  morphing
+model_Comb_MSSM_s = SIMUL(channel,MuTau=model_MuTau_MSSM_s,ETau=model_ETau_MSSM_s,EMu=model_EMu_MSSM_s);
+model_Comb_MSSM_b = SIMUL(channel,MuTau=model_MuTau_MSSM_b,ETau=model_ETau_MSSM_b,EMu=model_EMu_MSSM_b);
+model_Comb_MSSM_nuisancePdf = PROD(Constraints_MuTau,Constraints_ETau,Constraints_EMu,
+	  	                     ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,EffCorrPdf_TauHLT,
+	                             EffCorrPdf_Electron,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_Comb_MSSM_POI = set(r);
+model_Comb_MSSM_observables = set(mass,channel);
+model_Comb_MSSM_nuisances = set( ZTTScale,QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau,
+	                          QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,
+	                          VJETSScale_EMu,QCDNorm_EMu,TOPScale_EMu,VVScale_EMu,
+	                          EffCorr_Muon,EffCorr_Electron,EffCorr_TauHLT,EffCorr_Tau,LumiScale,TauScale,EleScale); 
+
+
+model_Comb_SM_s = SIMUL(channel,MuTau=model_MuTau_SM_s,ETau=model_ETau_SM_s,EMu=model_EMu_SM_s);
+model_Comb_SM_b = SIMUL(channel,MuTau=model_MuTau_SM_b,ETau=model_ETau_SM_b,EMu=model_EMu_SM_b);
+model_Comb_SM_nuisancePdf = PROD(Constraints_MuTau,Constraints_ETau,Constraints_EMu,
+	  	                     ZTTScalePdf,EffCorrPdf_Muon,EffCorrPdf_Tau,EffCorrPdf_TauHLT,
+	                             EffCorrPdf_Electron,LumiPdf,TauMorphPdf,EleMorphPdf);
+model_Comb_SM_POI = set(r);
+model_Comb_SM_observables = set(mass,channel);
+model_Comb_SM_nuisances = set( ZTTScale,QCDNorm_MuTau ,WNorm_MuTau,ZMFTNorm_MuTau,ZJFTNorm_MuTau,TOPNorm_MuTau,VVNorm_MuTau,
+	                          QCDNorm_ETau ,WNorm_ETau,ZEFTNorm_ETau,ZJFTNorm_ETau,TOPNorm_ETau,VVNorm_ETau,
+	                          VJETSScale_EMu,QCDNorm_EMu,TOPScale_EMu,VVScale_EMu,
+	                          EffCorr_Muon,EffCorr_Electron,EffCorr_TauHLT,EffCorr_Tau,LumiScale,TauScale,EleScale); 
+
+////Simultaneous dataset
+data_obs = import(diTau.root, w, data_obs);
+
+
+

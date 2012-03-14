@@ -1,0 +1,19 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat LLLL_isoTest-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+cat LLLL_isoTest-MC_abs.py >MC2_abs.py
+cat CONDOR.py >>MC2_abs.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4mu_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  ZZ4M $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4e_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  ZZ4E $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2e2mu_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  ZZ2E2M $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToZZTo4L_7TeV-gg2zz-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggZZ4L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/ZZJetsTo4L_TuneZ2_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM qqZZ4L_isoCheck $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-150_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH150_isoCheck $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/ZZJetsTo4L_TuneZ2_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM qqZZ4L_isoCheckAbs $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2_abs.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-150_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH150_isoCheckAbs $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2_abs.py
+rm MC2.py
+rm MC2_abs.py

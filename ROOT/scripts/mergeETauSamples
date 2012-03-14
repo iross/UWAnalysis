@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+rm QCD.root
+hadd QCD.root QCDEM.root QCDBC.root G.root
+
+
+rm EWK.root
+hadd EWK.root TOP.root VV.root WEN.root WTN.root
+
+rm W.root
+hadd W.root WEN.root WTN.root
+
+
+rm NO_W.root
+hadd NO_W.root  TOP.root VV.root ZEE.root QCD.root ZTT.root
+
+rm NO_Z.root
+hadd NO_Z.root W.root TOP.root VV.root QCD.root ZTT.root
+
+rm NO_TOP.root
+hadd NO_TOP.root W.root  VV.root QCD.root ZTT.root ZEE.root
+
+
+
+
