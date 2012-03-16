@@ -9,12 +9,14 @@ process.GlobalTag.globaltag = 'GR_R_42_V19::All'
 
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50)
+    input = cms.untracked.int32(-1)
 )
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-		'file:pickevents.root'
+#		'file:pickevents.root'
+	'file:e140063742.root'
+#		'/store/data/Run2011B/DoubleElectron/AOD/PromptReco-v1/000/178/866/867CDBF8-B4FA-E011-A5FF-001D09F28F25.root'
 #		'/store/data/Run2011B/DoubleElectron/AOD/PromptReco-v1/000/180/252/CED88138-4305-E111-BE64-003048CF99BA.root'
         )
 )

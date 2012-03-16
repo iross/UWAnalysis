@@ -20,8 +20,7 @@ process.source = cms.Source("PoolSource",
 #		'file:e876658967.root',
 #		'file:e559839432.root',
 #		'file:e218903169.root',
-#		'file:e140063742.root'
-		'file:../Skims/skim.root'
+		'file:e140063742.root'
 #'/store/data/Run2011B/DoubleElectron/AOD/PromptReco-v1/000/175/835/9212E97C-CDDB-E011-8A58-001D09F25479.root'
 #        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v6/000/172/620/E0BE6B50-1BC0-E011-975B-003048F1183E.root'
 #		'/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/7609160B-EE57-E011-9149-001617E30D12.root',
@@ -93,3 +92,14 @@ addEventSummary(process,False,'EEEM','eventSelectionEEEM')
 addEventSummary(process,False,'EEEE','eventSelectionEEEE')
 addEventSummary(process,False,'EEMM','eventSelectionEEMM')
 
+process.source = cms.Source("PoolSource",
+                 fileNames = cms.untracked.vstring(
+                    $inputFileNames
+                                 )
+)
+
+process.maxEvents = cms.untracked.PSet(
+        input = cms.untracked.int32(-1)
+        )
+
+process.TFileService.fileName=cms.string("$outputFileName")

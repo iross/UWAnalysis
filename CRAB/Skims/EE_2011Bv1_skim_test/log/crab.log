@@ -1,0 +1,685 @@
+2012-03-15 05:46:15,127 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -USER.user_remote_dir=.//EE_2011Bv1_skim_test -create -USER.copy_data=1 -CMSSW.output_file=skim.root -USER.ui_working_dir=EE_2011Bv1_skim_test -USER.storage_element=T2_US_Wisconsin -CMSSW.datasetpath=/DoubleElectron/Run2011B-PromptReco-v1/AOD -USER.publish_data=0 -CMSSW.lumi_mask=dummy.json -USER.return_data=0 -CMSSW.total_number_of_lumis=-1 -CMSSW.lumis_per_job=60 -cfg=crab.cfg -CMSSW.pset=eeSkim.py
+
+2012-03-15 05:46:15,127 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:46:15 2012 CST (10:46:15 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (use_server)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:46:15,128 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:46:15,128 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x935bef0>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:15,129 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_crab/0_GET_allowed_releases.conf expired, refreshing cache
+2012-03-15 05:46:15,129 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/allowed_releases.conf
+	data: {}
+2012-03-15 05:46:16,345 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x95027e8>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:16,345 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x9502830>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:16,345 [DEBUG] 	Input whitelist: 
+2012-03-15 05:46:16,345 [DEBUG] 	Input blacklist: 
+2012-03-15 05:46:16,346 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:46:16,346 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:46:16,346 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:46:16,346 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x9502950>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:16,347 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_crab/0_GET_myproxy_server.conf expired, refreshing cache
+2012-03-15 05:46:16,347 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/myproxy_server.conf
+	data: {}
+2012-03-15 05:46:16,612 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:46:16,612 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x9502950>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:16,612 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_crab/0_GET_site_black_list.conf expired, refreshing cache
+2012-03-15 05:46:16,612 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/site_black_list.conf
+	data: {}
+2012-03-15 05:46:16,879 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0x95028c0> 
+2012-03-15 05:46:18,572 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x9502d88>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:18,572 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x95088c0>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:18,572 [DEBUG] 	Input whitelist: 
+2012-03-15 05:46:18,572 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:46:18,573 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_sitedbcache/-4166578487145698715_GET_cmsNametoCE_%T2_RU_JINR.json expired, refreshing cache
+2012-03-15 05:46:18,573 [DEBUG] 	getData: 
+	url: /sitedb/json/index/CMSNametoCE
+	data: {'name': '%T2_RU_JINR'}
+2012-03-15 05:46:19,831 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_sitedbcache/-4166578487145698715_GET_cmsNametoCE_%T2_ES_IFCA.json expired, refreshing cache
+2012-03-15 05:46:19,831 [DEBUG] 	getData: 
+	url: /sitedb/json/index/CMSNametoCE
+	data: {'name': '%T2_ES_IFCA'}
+2012-03-15 05:46:20,683 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_sitedbcache/-4166578487145698715_GET_cmsNametoCE_%T2_IT_Bari.json expired, refreshing cache
+2012-03-15 05:46:20,683 [DEBUG] 	getData: 
+	url: /sitedb/json/index/CMSNametoCE
+	data: {'name': '%T2_IT_Bari'}
+2012-03-15 05:46:21,556 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_sitedbcache/-4166578487145698715_GET_cmsNametoCE_%T2_US_Florida.json expired, refreshing cache
+2012-03-15 05:46:21,556 [DEBUG] 	getData: 
+	url: /sitedb/json/index/CMSNametoCE
+	data: {'name': '%T2_US_Florida'}
+2012-03-15 05:46:22,408 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:46:22,408 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:46:22,448 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x9508ea8>, 'cacheduration': 24}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2012-03-15 05:46:22,476 [DEBUG] 	Linux login06.hep.wisc.edu 2.6.18-274.el5 #1 SMP Thu Jul 21 12:13:11 EDT 2011 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Used properties:
+Linux login06.hep.wisc.edu 2.6.18-274.el5 #1 SMP Thu Jul 21 12:13:11 EDT 2011 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Used properties:
+   CMSSW.datasetpath : /DoubleElectron/Run2011B-PromptReco-v1/AOD
+   CMSSW.lumi_mask : dummy.json
+   CMSSW.lumis_per_job : 60
+   CMSSW.output_file : skim.root
+   CMSSW.pset : eeSkim.py
+   CMSSW.total_number_of_lumis : -1
+   CRAB.cfg : crab.cfg
+   CRAB.create : 
+   CRAB.jobtype : cmssw
+   CRAB.scheduler : glidein
+   CRAB.use_server : 1
+   GRID.ce_black_list : T2_RU_JINR,T2_ES_IFCA,T2_IT_Bari,T2_US_Florida
+   GRID.proxy_server : myproxy.cern.ch
+   GRID.rb : CERN
+   GRID.retry_count : 0
+   GRID.virtual_organization : cms
+   USER.copy_data : 1
+   USER.publish_data : 0
+   USER.return_data : 0
+   USER.storage_element : T2_US_Wisconsin
+   USER.ui_working_dir : EE_2011Bv1_skim_test
+   USER.user_remote_dir : .//EE_2011Bv1_skim_test
+End of used properties.
+
+2012-03-15 05:46:22,604 [DEBUG] 	CMSSW::__init__
+2012-03-15 05:46:22,605 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:46:22,605 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:46:22,605 [DEBUG] 	Downloading file [https://cmstags.cern.ch/tc/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/ReleasesXML].
+2012-03-15 05:46:22,606 [DEBUG] 	Service initialised ({'endpoint': 'https://cmstags.cern.ch/tc/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/tc/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'https://cmstags.cern.ch/tc/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmstags.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'type': 'txt/csv', 'conn': <httplib.HTTPSConnection instance at 0x96ced88>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmstags.cern.ch, basepath: /tc/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:22,606 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_crab/0_GET_ReleasesXML expired, refreshing cache
+2012-03-15 05:46:22,606 [DEBUG] 	getData: 
+	url: /tc/ReleasesXML
+	data: {}
+2012-03-15 05:46:23,990 [INFO] 	Contacting Data Discovery Services ...
+2012-03-15 05:46:23,990 [INFO] 	Accessing DBS at: http://cmsdbsprod.cern.ch/cms_dbs_prod_global/servlet/DBSServlet
+2012-03-15 05:46:23,992 [DEBUG] 	Set of input parameters used for DBS query: ['retrive_block', 'retrive_run', 'retrive_lumi']
+2012-03-15 05:46:40,383 [DEBUG] 	Datatype is data
+2012-03-15 05:46:40,614 [DEBUG] 	DLS interface: DLS_TYPE_PHEDEX Server https://cmsweb.cern.ch/phedex/datasvc/xml/prod/
+2012-03-15 05:46:49,661 [INFO] 	Requested (A)DS /DoubleElectron/Run2011B-PromptReco-v1/AOD has 259 block(s).
+2012-03-15 05:46:49,662 [DEBUG] 	Job splitting method: LumiBased
+2012-03-15 05:46:49,662 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xf561d40>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:49,663 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xf467e60>}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:46:49,663 [DEBUG] 	Input whitelist: 
+2012-03-15 05:46:49,663 [DEBUG] 	Input blacklist: 
+2012-03-15 05:46:49,663 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:46:49,663 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:46:49,663 [DEBUG] 	Splitting by Lumi
+2012-03-15 05:46:50,435 [DEBUG] 	Job 1 will run on 1 files and 1 lumis 
+2012-03-15 05:46:50,435 [INFO] 	1 jobs created to run on 1 lumis
+2012-03-15 05:46:50,479 [DEBUG] 	PsetManipulator::__init__: PSet file = eeSkim.py
+2012-03-15 05:46:59,496 [DEBUG] 	(test) edmOutputDict = {'skim.root': {'selectEvents': ['skimEE'], 'dataset': None}}
+2012-03-15 05:46:59,496 [DEBUG] 	(test) filter_dict for multi =  {'skim.root': None}
+2012-03-15 05:46:59,496 [DEBUG] 	(test) var_filter for multi =  {"skim.root": null}
+2012-03-15 05:46:59,515 [DEBUG] 	lib /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/lib to be tarred
+2012-03-15 05:47:11,045 [DEBUG] 	data HiggsAnalysis/CombinedLimit/data to be tarred
+2012-03-15 05:47:11,737 [DEBUG] 	data RecoTauTag/RecoTau/data to be tarred
+2012-03-15 05:47:11,764 [DEBUG] 	data UWAnalysis/StatTools/data to be tarred
+2012-03-15 05:47:12,138 [DEBUG] 	data UWAnalysis/Configuration/data to be tarred
+2012-03-15 05:47:14,094 [DEBUG] 	Creator: JobType CMSSW created
+2012-03-15 05:47:14,094 [DEBUG] 	Creator: total # of jobs = 1
+2012-03-15 05:47:14,094 [DEBUG] 	Creator constructor finished
+2012-03-15 05:47:15,444 [DEBUG] 	Creator::run() called
+2012-03-15 05:47:15,444 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:47:15,445 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:47:15,529 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x10d446c8>, 'cacheduration': 24}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2012-03-15 05:47:16,673 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x935b440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x10d440e0>, 'cacheduration': 24}, 'logger': <logging.Logger instance at 0x935b440>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2012-03-15 05:47:17,911 [INFO] 	Checking remote location
+2012-03-15 05:47:17,911 [DEBUG] 	protocol = srm-lcg
+endpoint = srm://cmssrm.hep.wisc.edu:8443/srm/v2/server?SFN=/hdfs/store/user/iross/.//EE_2011Bv1_skim_test/
+
+2012-03-15 05:47:18,963 [DEBUG] 	Command:	unset LD_LIBRARY_PATH; unset GLITE_ENV_SET; export PATH=/usr/bin:/bin; source /etc/profile; source /afs/hep.wisc.edu/cms/sw/glite3_2_5/external/etc/profile.d/grid-env.sh ; lcg-ls -d -b -D srmv2 srm://cmssrm.hep.wisc.edu:8443/srm/v2/server?SFN=/hdfs/store/user/iross/.//EE_2011Bv1_skim_test/
+2012-03-15 05:47:18,963 [DEBUG] 	ExitCode:	1
+2012-03-15 05:47:18,963 [DEBUG] 	Output:	/hdfs/store/user/iross/.//EE_2011Bv1_skim_test/: [SE][Ls][SRM_INVALID_PATH] No such file or directory.
+
+2012-03-15 05:47:18,996 [INFO] 	Creating 1 jobs, please wait...
+2012-03-15 05:47:18,996 [DEBUG] 	Creation Time: 3.5520401001
+2012-03-15 05:47:18,996 [INFO] 	Total of 1 jobs created.
+
+2012-03-15 05:47:25,423 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -USER.user_remote_dir=.//EE_2011Bv1_skim_test -submit -USER.copy_data=1 -c=EE_2011Bv1_skim_test -CMSSW.output_file=skim.root -USER.ui_working_dir=EE_2011Bv1_skim_test -USER.storage_element=T2_US_Wisconsin -CMSSW.datasetpath=/DoubleElectron/Run2011B-PromptReco-v1/AOD -USER.publish_data=0 -CMSSW.lumi_mask=dummy.json -USER.return_data=0 -CMSSW.total_number_of_lumis=-1 -CMSSW.lumis_per_job=60 -CMSSW.pset=eeSkim.py
+
+2012-03-15 05:47:25,423 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:47:25 2012 CST (10:47:25 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (default)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:47:25,424 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:47:25,424 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe1f97a0>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:25,526 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe3977a0>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:25,526 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe3977e8>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:25,527 [DEBUG] 	Input whitelist: 
+2012-03-15 05:47:25,527 [DEBUG] 	Input blacklist: 
+2012-03-15 05:47:25,527 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:47:25,527 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:47:25,527 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:47:25,527 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe397908>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:25,528 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:47:25,528 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe397908>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:25,528 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0xe397878> 
+2012-03-15 05:47:26,847 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe397bd8>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:26,847 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe3e5710>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:26,847 [DEBUG] 	Input whitelist: 
+2012-03-15 05:47:26,847 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:47:26,849 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:47:26,849 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:47:26,906 [DEBUG] 	parseRange_ None
+2012-03-15 05:47:27,231 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:47:27,231 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:47:27,232 [DEBUG] 	Calling ServerConfig default
+2012-03-15 05:47:27,233 [DEBUG] 	getting serverlist from web
+2012-03-15 05:47:27,233 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/AvailableServerList].
+2012-03-15 05:47:27,233 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe3ffd40>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:27,234 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_crab/0_GET_AvailableServerList expired, refreshing cache
+2012-03-15 05:47:27,234 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/AvailableServerList
+	data: {}
+2012-03-15 05:47:27,512 [DEBUG] 	All avaialble servers: [['cern_vocms21', '2.7.3-', 'glite'], ['cern_vocms22', '2.7.3-', 'glite'], ['cern_vocms83', '2.7.3-', 'glite'], ['desy', '2.7.3-', 'glite'], ['ucsd_glidein-2', '2.7.3-', 'glidein'], ['ucsd_submit-2', '2.7.3-', 'glidein']]
+2012-03-15 05:47:27,513 [DEBUG] 	All avaialble servers compatible with 2.8.0: ['ucsd_glidein-2', 'ucsd_submit-2']
+2012-03-15 05:47:27,513 [DEBUG] 	Avaialble servers: ['ucsd_glidein-2', 'ucsd_submit-2'] choosen: ucsd_glidein-2
+2012-03-15 05:47:27,513 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:47:27,513 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe3ffea8>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:27,513 [DEBUG] 	/afs/hep.wisc.edu/home/iross/.cms_crab/0_GET_server_ucsd_glidein-2.conf expired, refreshing cache
+2012-03-15 05:47:27,513 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/server_ucsd_glidein-2.conf
+	data: {}
+2012-03-15 05:47:27,808 [DEBUG] 	SubmitterServer::run() called
+2012-03-15 05:47:27,810 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe3ff998>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:27,810 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe3ffab8>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:27,810 [DEBUG] 	Input whitelist: 
+2012-03-15 05:47:27,810 [DEBUG] 	Input blacklist: 
+2012-03-15 05:47:27,810 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:47:27,810 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:47:27,810 [DEBUG] 	nsjobs -1
+2012-03-15 05:47:27,811 [DEBUG] 	Total jobs 1
+2012-03-15 05:47:27,812 [DEBUG] 	nj_list [1]
+2012-03-15 05:47:27,813 [INFO] 	Registering credential to the server : glidein-2.t2.ucsd.edu
+2012-03-15 05:47:27,813 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:47:27,813 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe404170>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:27,854 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0xe404170>, 'cacheduration': 24}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2012-03-15 05:47:28,901 [INFO] 	Your credential for the required server will expire in:
+	82 hours 17 minutes 02 seconds
+
+2012-03-15 05:47:28,902 [INFO] 	Please renew MyProxy delegated proxy:
+
+2012-03-15 05:47:35,441 [DEBUG] 	MyProxy delegation:
+myproxy-init -d -n -s myproxy.cern.ch -x -R '/DC=org/DC=doegrids/OU=Services/CN=glidein-2.t2.ucsd.edu' -Z '/DC=org/DC=doegrids/OU=Services/CN=glidein-2.t2.ucsd.edu' -k ab771271de34096b70a435a7805fdef141e2197d -t 168:00 
+2012-03-15 05:47:35,441 [INFO] 	Credential successfully delegated to the server.
+
+2012-03-15 05:47:35,444 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:47:35,444 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:47:35,445 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe404170>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:35,484 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:47:35,484 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:47:35,616 [DEBUG] 	Task name: iross_EE_2011Bv1_skim_test_s74o1n
+2012-03-15 05:47:35,617 [DEBUG] 	List of ISB files: ['/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share/default.tgz', '/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share//arguments.xml', '/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/job/CMSSW.sh']
+2012-03-15 05:47:35,617 [INFO] 	Starting sending the project to the storage glidein-2.t2.ucsd.edu...
+2012-03-15 05:47:35,617 [DEBUG] 	Sending:
+ /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share/default.tgz to /var/gftp_cache/CSstoragePath/iross_EE_2011Bv1_skim_test_s74o1n/default.tgz
+/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share/arguments.xml to /var/gftp_cache/CSstoragePath/iross_EE_2011Bv1_skim_test_s74o1n/arguments.xml
+/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/job/CMSSW.sh to /var/gftp_cache/CSstoragePath/iross_EE_2011Bv1_skim_test_s74o1n/CMSSW.sh
+
+2012-03-15 05:47:41,126 [DEBUG] 	Command:	 globus-url-copy -vb -cd -f /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/seapi_N2XBy4
+2012-03-15 05:47:41,126 [DEBUG] 	ExitCode:	0
+2012-03-15 05:47:41,126 [DEBUG] 	Output:	Source: file:///afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share/
+Dest:   gsiftp://glidein-2.t2.ucsd.edu/var/gftp_cache/CSstoragePath/iross_EE_2011Bv1_skim_test_s74o1n/
+  default.tgz
+      1048576 bytes         0.87 MB/sec avg         0.87 MB/sec inst
+Source: file:///afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share/
+Dest:   gsiftp://glidein-2.t2.ucsd.edu/var/gftp_cache/CSstoragePath/iross_EE_2011Bv1_skim_test_s74o1n/
+  arguments.xml
+          321 bytes         0.00 MB/sec avg         0.00 MB/sec inst
+Source: file:///afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/job/
+Dest:   gsiftp://glidein-2.t2.ucsd.edu/var/gftp_cache/CSstoragePath/iross_EE_2011Bv1_skim_test_s74o1n/
+  CMSSW.sh
+        22365 bytes         0.04 MB/sec avg         0.04 MB/sec inst
+
+2012-03-15 05:47:41,127 [DEBUG] 	Project iross_EE_2011Bv1_skim_test_s74o1n files successfully submitted to the supporting storage element.
+
+2012-03-15 05:47:41,127 [DEBUG] 	Updating [[1]] state SubRequested
+2012-03-15 05:47:41,140 [DEBUG] 	<?xml version="1.0" ?>
+<Task>
+	<TaskAttributes cfgName="/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/job//CMSSW.py" dataset="/DoubleElectron/Run2011B-PromptReco-v1/AOD" globalSandbox="/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share/default.tgz,/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/share//arguments.xml,/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/job/CMSSW.sh" jobType="Member(&quot;VO-cms-CMSSW_4_2_5&quot;, other.GlueHostApplicationSoftwareRunTimeEnvironment) &amp;&amp; Member(&quot;VO-cms-slc5_amd64_gcc434&quot;, other.GlueHostApplicationSoftwareRunTimeEnvironment) &amp;&amp; (other.GlueHostNetworkAdapterOutboundIP)" name="iross_EE_2011Bv1_skim_test_s74o1n" outfileBasename="['skim.root']" outputDirectory="/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/res/" serverName="ucsd_glidein-2" startDirectory="/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/"/>
+	<TaskJobs>
+		<Job arguments="1 0" closed="N" dlsDestination="cmsdcache.pi.infn.it,dc2-grid-64.brunel.ac.uk,srm.ciemat.es,storm-se-01.ba.infn.it,cmssrm.hep.wisc.edu,t3se01.psi.ch,f-dpm001.grid.sinica.edu.tw,bsrm-1.t2.ucsd.edu,sbgse1.in2p3.fr,gfe02.grid.hep.ph.ic.ac.uk,se.polgrid.pl,mars.phys.ntu.edu.tw,heplnx204.pp.rl.ac.uk,t2-srm-02.lnl.infn.it,srm.unl.edu,hepse01.colorado.edu,dcache-se-cms.desy.de,srm.minnesota.edu,ganymede.hep.kbfi.ee" executable="CMSSW.sh" jobId="1" name="iross_EE_2011Bv1_skim_test_s74o1n_job1" outputFiles="out_files_1.tgz,crab_fjr_1.xml" standardError="CMSSW_1.stderr" standardOutput="CMSSW_1.stdout" submissionNumber="1" taskId="1">
+			<RunningJob closed="N" jobId="1" processStatus="created" state="SubRequested" status="C" statusScheduler="Created" submission="1" taskId="1"/>
+		</Job>
+	</TaskJobs>
+</Task>
+
+2012-03-15 05:47:41,140 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:47:41,141 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe4068c0>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:41,141 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0xe406878> 
+2012-03-15 05:47:41,141 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:47:41,141 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0xe1f9440>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe406908>}, 'logger': <logging.Logger instance at 0xe1f9440>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:47:41,340 [INFO] 	Task EE_2011Bv1_skim_test successfully submitted to server glidein-2.t2.ucsd.edu
+
+2012-03-15 05:47:41,341 [DEBUG] 	Submission Time: 13.5321838856
+2012-03-15 05:47:41,341 [INFO] 	Total of 1 jobs submitted
+2012-03-15 05:48:26,717 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -status -c EE_2011Bv1_skim_test
+
+2012-03-15 05:48:26,717 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:48:26 2012 CST (10:48:26 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (default)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:48:26,718 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:48:26,718 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x55c8680>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:26,838 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x5766680>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:26,839 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x57666c8>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:26,839 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:26,839 [DEBUG] 	Input blacklist: 
+2012-03-15 05:48:26,839 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:26,839 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:48:26,840 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:48:26,840 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57667e8>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:26,840 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:48:26,841 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57667e8>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:26,841 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0x5766758> 
+2012-03-15 05:48:28,302 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x5766ab8>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:28,302 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x57b45f0>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:28,302 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:28,303 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:48:28,306 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:28,306 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:48:28,358 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:48:28,358 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:48:28,359 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57c9fc8>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:28,369 [DEBUG] 	Status::run() called
+2012-03-15 05:48:28,372 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:48:28,372 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:48:28,372 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c8320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57cd440>}, 'logger': <logging.Logger instance at 0x55c8320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:28,409 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:48:28,410 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:48:28,547 [DEBUG] 	Updating DB status for job: 1 @: Created
+2012-03-15 05:48:28,577 [INFO] 	
+ID    END STATUS            ACTION       ExeExitCode JobExitCode E_HOST
+----- --- ----------------- ------------  ---------- ----------- ---------
+1     N   Created                                                
+
+2012-03-15 05:48:28,581 [INFO] 	ExitCodes Summary
+ >>>>>>>>> 1 Jobs with Wrapper Exit Code :  
+	 List of jobs: 1 
+	See https://twiki.cern.ch/twiki/bin/view/CMS/JobExitCodes for Exit Code meaning
+
+2012-03-15 05:48:28,581 [INFO] 	 1 Total Jobs 
+
+2012-03-15 05:48:28,582 [INFO] 	You can also follow the status of this task on :
+	CMS Dashboard: http://dashb-cms-job-task.cern.ch/taskmon.html#task=iross_EE_2011Bv1_skim_test_s74o1n
+	Server page: http://glidein-2.t2.ucsd.edu:8888/logginfo
+	Your task name is: iross_EE_2011Bv1_skim_test_s74o1n 
+
+2012-03-15 05:48:28,582 [DEBUG] 	Status Time: 0.212702989578
+2012-03-15 05:48:35,977 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -status -c EE_2011Bv1_skim_test
+
+2012-03-15 05:48:35,977 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:48:35 2012 CST (10:48:35 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (default)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:48:35,977 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:48:35,977 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x13b44680>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:36,076 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x13ce2680>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:36,076 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x13ce26c8>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:36,076 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:36,076 [DEBUG] 	Input blacklist: 
+2012-03-15 05:48:36,077 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:36,077 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:48:36,077 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:48:36,077 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x13ce27e8>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:36,077 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:48:36,078 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x13ce27e8>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:36,078 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0x13ce2758> 
+2012-03-15 05:48:37,254 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x13ce2ab8>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:37,254 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x13d305f0>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:37,255 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:37,255 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:48:37,257 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:37,257 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:48:37,303 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:48:37,303 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:48:37,303 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x13d45fc8>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:37,314 [DEBUG] 	Status::run() called
+2012-03-15 05:48:37,316 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:48:37,316 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:48:37,316 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x13b44320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x13d49440>}, 'logger': <logging.Logger instance at 0x13b44320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:37,353 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:48:37,354 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:48:37,490 [DEBUG] 	Updating DB status for job: 1 @: Created
+2012-03-15 05:48:37,520 [INFO] 	
+ID    END STATUS            ACTION       ExeExitCode JobExitCode E_HOST
+----- --- ----------------- ------------  ---------- ----------- ---------
+1     N   Created                                                
+
+2012-03-15 05:48:37,523 [INFO] 	ExitCodes Summary
+ >>>>>>>>> 1 Jobs with Wrapper Exit Code :  
+	 List of jobs: 1 
+	See https://twiki.cern.ch/twiki/bin/view/CMS/JobExitCodes for Exit Code meaning
+
+2012-03-15 05:48:37,524 [INFO] 	 1 Total Jobs 
+
+2012-03-15 05:48:37,525 [INFO] 	You can also follow the status of this task on :
+	CMS Dashboard: http://dashb-cms-job-task.cern.ch/taskmon.html#task=iross_EE_2011Bv1_skim_test_s74o1n
+	Server page: http://glidein-2.t2.ucsd.edu:8888/logginfo
+	Your task name is: iross_EE_2011Bv1_skim_test_s74o1n 
+
+2012-03-15 05:48:37,525 [DEBUG] 	Status Time: 0.210906028748
+2012-03-15 05:48:48,257 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -submit -c EE_2011Bv1_skim_test
+
+2012-03-15 05:48:48,258 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:48:48 2012 CST (10:48:48 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (default)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:48:48,258 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:48:48,258 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x55c7680>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:48,356 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x5765680>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:48,357 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x57656c8>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:48,357 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:48,357 [DEBUG] 	Input blacklist: 
+2012-03-15 05:48:48,358 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:48,358 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:48:48,358 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:48:48,358 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57657e8>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:48,358 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:48:48,359 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57657e8>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:48,359 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0x5765758> 
+2012-03-15 05:48:49,536 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x5765ab8>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:49,537 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x57b35f0>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:49,537 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:49,537 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:48:49,540 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:49,540 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:48:49,579 [DEBUG] 	parseRange_ None
+2012-03-15 05:48:49,649 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:48:49,650 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:48:49,651 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:48:49,651 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:48:49,652 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x57cdc20>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:49,662 [DEBUG] 	SubmitterServer::run() called
+2012-03-15 05:48:49,664 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x57cd878>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:49,664 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x55c7320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x57cd998>}, 'logger': <logging.Logger instance at 0x55c7320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:48:49,664 [DEBUG] 	Input whitelist: 
+2012-03-15 05:48:49,664 [DEBUG] 	Input blacklist: 
+2012-03-15 05:48:49,664 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:48:49,664 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:48:49,665 [DEBUG] 	nsjobs -1
+2012-03-15 05:48:49,665 [DEBUG] 	Total jobs 1
+2012-03-15 05:48:49,666 [DEBUG] 	nj_list []
+2012-03-15 05:48:49,667 [INFO] 	No jobs to be submitted: first create them
+2012-03-15 05:49:32,940 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -status -c EE_2011Bv1_skim_test
+
+2012-03-15 05:49:32,940 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:49:32 2012 CST (10:49:32 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (default)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:49:32,940 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:49:32,941 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x1ccc680>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:33,040 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x1e6a680>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:33,041 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x1e6a6c8>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:33,041 [DEBUG] 	Input whitelist: 
+2012-03-15 05:49:33,041 [DEBUG] 	Input blacklist: 
+2012-03-15 05:49:33,041 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:49:33,041 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:49:33,041 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:49:33,042 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x1e6a7e8>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:33,042 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:49:33,042 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x1e6a7e8>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:33,042 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0x1e6a758> 
+2012-03-15 05:49:34,977 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x1e6aab8>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:34,977 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x1eb85f0>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:34,977 [DEBUG] 	Input whitelist: 
+2012-03-15 05:49:34,978 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:49:34,980 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:49:34,980 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:49:35,026 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:49:35,026 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:49:35,027 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x1ecdfc8>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:35,037 [DEBUG] 	Status::run() called
+2012-03-15 05:49:35,039 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:49:35,039 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:49:35,040 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x1ccc320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x1ed1440>}, 'logger': <logging.Logger instance at 0x1ccc320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:49:35,076 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:49:35,076 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:49:35,213 [DEBUG] 	Updating DB status for job: 1 @: Created
+2012-03-15 05:49:35,242 [INFO] 	
+ID    END STATUS            ACTION       ExeExitCode JobExitCode E_HOST
+----- --- ----------------- ------------  ---------- ----------- ---------
+1     N   Created                                                
+
+2012-03-15 05:49:35,246 [INFO] 	ExitCodes Summary
+ >>>>>>>>> 1 Jobs with Wrapper Exit Code :  
+	 List of jobs: 1 
+	See https://twiki.cern.ch/twiki/bin/view/CMS/JobExitCodes for Exit Code meaning
+
+2012-03-15 05:49:35,246 [INFO] 	 1 Total Jobs 
+
+2012-03-15 05:49:35,247 [INFO] 	You can also follow the status of this task on :
+	CMS Dashboard: http://dashb-cms-job-task.cern.ch/taskmon.html#task=iross_EE_2011Bv1_skim_test_s74o1n
+	Server page: http://glidein-2.t2.ucsd.edu:8888/logginfo
+	Your task name is: iross_EE_2011Bv1_skim_test_s74o1n 
+
+2012-03-15 05:49:35,247 [DEBUG] 	Status Time: 0.210135936737
+2012-03-15 05:52:03,861 [DEBUG] 	/cms/sw/CRAB_2_8_0/python/crab.py -status -c EE_2011Bv1_skim_test
+
+2012-03-15 05:52:03,861 [INFO] 	Version 2.8.0 running on Thu Mar 15 05:52:03 2012 CST (10:52:03 UTC)
+
+crab. Working options:
+	scheduler           glidein
+	job type            CMSSW
+	server              ON (default)
+	working directory   /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5/src/UWAnalysis/CRAB/Skims/EE_2011Bv1_skim_test/
+
+2012-03-15 05:52:03,862 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/allowed_releases.conf].
+2012-03-15 05:52:03,862 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x146eb680>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:03,961 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x14889680>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:03,962 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x148896c8>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:03,962 [DEBUG] 	Input whitelist: 
+2012-03-15 05:52:03,962 [DEBUG] 	Input blacklist: 
+2012-03-15 05:52:03,962 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:52:03,962 [DEBUG] 	Converted blacklist: 
+2012-03-15 05:52:03,963 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/myproxy_server.conf].
+2012-03-15 05:52:03,963 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x148897e8>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:03,963 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/site_black_list.conf].
+2012-03-15 05:52:03,963 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x148897e8>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:03,964 [DEBUG] 	Enforced black list: <Downloader.Downloader instance at 0x14889758> 
+2012-03-15 05:52:05,612 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x14889ab8>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:05,613 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'basepath': '/sitedb/json/index/', 'method': None, 'timeout': 30, 'requests': {'host': 'cmsweb.cern.ch', 'endpoint': 'https://cmsweb.cern.ch/sitedb/json/index/', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_sitedbcache', 'conn': <httplib.HTTPSConnection instance at 0x148d75f0>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/json/index/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:05,613 [DEBUG] 	Input whitelist: 
+2012-03-15 05:52:05,613 [DEBUG] 	Input blacklist: T2_RU_JINR, T2_ES_IFCA, T2_IT_Bari, T2_US_Florida
+2012-03-15 05:52:05,615 [DEBUG] 	Converted whitelist: 
+2012-03-15 05:52:05,615 [DEBUG] 	Converted blacklist: grid-ce-01.ba.infn.it, lcgce11.jinr.ru, cream-ce-2.ba.infn.it, cream-ce-1.ba.infn.it, pg.ihepa.ufl.edu, lcgce21.jinr.ru, gridce01.ifca.es, osg.hpc.ufl.edu, lcgce12.jinr.ru
+2012-03-15 05:52:05,663 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:52:05,663 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:52:05,663 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x148ecfc8>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:05,673 [DEBUG] 	Status::run() called
+2012-03-15 05:52:05,675 [DEBUG] 	Calling ServerConfig ucsd_glidein-2
+2012-03-15 05:52:05,676 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/afs/hep.wisc.edu/home/iross/.cms_crab/server_ucsd_glidein-2.conf].
+2012-03-15 05:52:05,676 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/afs/hep.wisc.edu/home/iross/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger instance at 0x146eb320>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x148f0440>}, 'logger': <logging.Logger instance at 0x146eb320>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /afs/hep.wisc.edu/home/iross/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2012-03-15 05:52:05,712 [DEBUG] 	Scram::Scram() version is 2
+2012-03-15 05:52:05,712 [DEBUG] 	Scram::Scram() arch is slc5_amd64_gcc434
+2012-03-15 05:52:05,848 [DEBUG] 	Updating DB status for job: 1 @: Submitted
+2012-03-15 05:52:05,876 [INFO] 	
+ID    END STATUS            ACTION       ExeExitCode JobExitCode E_HOST
+----- --- ----------------- ------------  ---------- ----------- ---------
+1     N   Submitted         SubSuccess                           Unknown
+
+2012-03-15 05:52:05,886 [INFO] 	 1 Total Jobs 
+ >>>>>>>>> 1 Jobs Submitted 
+	List of jobs Submitted: 1 
+
+2012-03-15 05:52:05,888 [INFO] 	You can also follow the status of this task on :
+	CMS Dashboard: http://dashb-cms-job-task.cern.ch/taskmon.html#task=iross_EE_2011Bv1_skim_test_s74o1n
+	Server page: http://glidein-2.t2.ucsd.edu:8888/logginfo
+	Your task name is: iross_EE_2011Bv1_skim_test_s74o1n 
+
+2012-03-15 05:52:05,888 [DEBUG] 	Status Time: 0.214596986771

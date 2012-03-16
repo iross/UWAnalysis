@@ -1,0 +1,4 @@
+<arguments>
+  <Job Lumis="178866:83"  SkipEvents="0"  JobID="1"  MaxEvents="-1"  InputBlocks="/DoubleElectron/Run2011B-PromptReco-v1/AOD#dcc6face-fab5-11e0-8cb0-003048caaace"  InputFiles="/store/data/Run2011B/DoubleElectron/AOD/PromptReco-v1/000/178/866/867CDBF8-B4FA-E011-A5FF-001D09F28F25.root" >
+  </Job>
+</arguments>

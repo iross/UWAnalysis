@@ -197,7 +197,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
         self.sequence=counter
 
 
-    def addDiCandidateModule(self,moduleName,moduleType, src1,src2,met,jets,min = 1,max=9999,text = '',leadingObjectsOnly = False,dR = 0.5,recoMode = "",genParticles = 'genTaus'):
+    def addDiCandidateModule(self,moduleName,moduleType, src1,src2,met,jets,min = 1,max=9999,text = '',leadingObjectsOnly = False,dR = 0.3,recoMode = "",genParticles = 'genTaus'):
                dicand  = cms.EDProducer(moduleType)
                dicand.useLeadingTausOnly = cms.bool(False)
                dicand.srcLeg1 = cms.InputTag(src1)
