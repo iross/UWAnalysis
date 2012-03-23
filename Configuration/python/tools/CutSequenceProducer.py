@@ -658,7 +658,6 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                selector.src = cms.InputTag(self.input)
                selector.cut = cms.string(cut)
                selector.filter = cms.bool(False)
-               print moduleName,cut
 
                pyModule = sys.modules[self.pyModuleName[0]]
                if pyModule is None:
