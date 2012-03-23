@@ -653,7 +653,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                self.input=moduleName
 
 
-    def addSelector(self,moduleName,moduleType,cut,summaryText = None,minFilter = 1, maxFilter  = 9999):
+    def addSelector(self,moduleName,moduleType,cut,summaryText = None,minFilter = 1, maxFilter  = 99):
                selector  = cms.EDFilter(moduleType)
                selector.src = cms.InputTag(self.input)
                selector.cut = cms.string(cut)

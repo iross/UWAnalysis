@@ -380,7 +380,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM):
 			# pass candidate collection so we can cross-clean
 			# dR
 			tag        = cms.string("nElectrons"),
-			method     = cms.string("1"),
+			method     = cms.string("pt()>10&&(electronID('cicTight')==1 || electronID('cicTight')==3 || electronID('cicTight')==5 || electronID('cicTight')==7 || electronID('cicTight')==9 || electronID('cicTight')==11 || electronID('cicTight')==13 || electronID('cicTight')==15)&&(chargedHadronIso+max(photonIso+neutralHadronIso-0.5*userIso(0),0.0))/pt<0.25"),
 		),
 		cms.PSet(
 			pluginType = cms.string("MuonCountFiller"),
@@ -1483,4 +1483,46 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 	setattr(process, name+'Path', p)
 
 
+
+def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold'):
+	process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
+	eventTree = cms.EDAnalyzer('EventTreeMaker',
+			coreCollections = cms.VInputTag(
+			cms.InputTag(src)
+		),
+		zzShared = zzCommon(src,'PATMuMuMuTriFiller'),
+     	trigger = cms.PSet(
+			pluginType = cms.string("TriggerFiller"),
+			src        = cms.InputTag("patTrigger"),
+			paths      = cms.vstring(TriggerPaths)
+		),
+#		refitVertex = cms.PSet(
+#			pluginType = cms.string("MuMuTauTauVertexFiller"),
+#			src        = cms.InputTag(src),
+#			tag        = cms.string("refitVertex"),
+#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
+#		),
+		PVs = cms.PSet(
+			pluginType = cms.string("VertexSizeFiller"),
+			src        = cms.InputTag("primaryVertexFilter"),
+			tag        = cms.string("vertices")
+		),
+#		truth = cms.PSet(
+#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+#			src        = cms.InputTag(src),
+#			gensrc        = cms.InputTag("genParticles"),
+#			tag        = cms.string("refitVertex"),
+#			method     = cms.string('1')
+#		),
+		#Candidate size quantities
+		counters = countCommon(src,'PATMuMuTauTau',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+		z1l1 = muCommon(src,'z1l1','leg1.leg1.','PATMuMuMuTriFiller'),
+		z1l2 = muCommon(src,'z1l2','leg1.leg2.','PATMuMuMuTriFiller'),
+		z2l1 = muCommon(src,'z2l1','leg2.','PATMuMuMuTriFiller'),
+		#		tautauShared = tauTauCommon(src,'PATMuMuMuTriFiller'),
+#		genShared = genCommon(src,'PATMuMuMuTriFiller'),
+	)
+	setattr(process, name, eventTree)
+	p = cms.Path(getattr(process,name))
+	setattr(process, name+'Path', p)
 

@@ -15,7 +15,7 @@ process.maxEvents = cms.untracked.PSet(
 
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-    '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v4/000/167/098/7211E94D-7D9A-E011-A713-003048F1BF66.root'
+	'/store/user/iross/MM_2011Bv1_skim/skim_283_1_54n.root'
     )
 )
 
@@ -41,7 +41,9 @@ defaultReconstruction(process,'HLT',
 process.load("UWAnalysis.Configuration.incZ_cff")
 process.eventSelectionMM = cms.Path(process.zMuMuSelectionSequence) ##changing to multiples see below
 
-from UWAnalysis.Configuration.tools.ntupleTools import addMuMuEventTree
-addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
+#addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+addMuMuMuEventTree(process,'muMuMuEventTree','MMMtriForce')
 
 addEventSummary(process,False,'MM','eventSelectionMM')

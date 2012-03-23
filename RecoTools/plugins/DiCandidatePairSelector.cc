@@ -26,7 +26,14 @@ DEFINE_FWK_MODULE(PATEleEleEleEleQuadSelector);
 DEFINE_FWK_MODULE(PATEleEleMuTauQuadSelector);
 DEFINE_FWK_MODULE(PATEleEleEleMuQuadSelector);
 DEFINE_FWK_MODULE(PATEleEleMuMuQuadSelector);
+//WZ
 DEFINE_FWK_MODULE(PATMuMuMuNuQuadSelector);
 DEFINE_FWK_MODULE(PATMuMuEleNuQuadSelector);
 DEFINE_FWK_MODULE(PATEleEleMuNuQuadSelector);
 DEFINE_FWK_MODULE(PATEleEleEleNuQuadSelector);
+//Z+lepton
+DEFINE_FWK_MODULE(PATEleEleEleTriSelector);
+DEFINE_FWK_MODULE(PATEleEleMuTriSelector);
+DEFINE_FWK_MODULE(PATMuMuEleTriSelector);
+DEFINE_FWK_MODULE(PATMuMuMuTriSelector);
+

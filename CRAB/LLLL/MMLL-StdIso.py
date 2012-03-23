@@ -16,11 +16,12 @@ process.maxEvents = cms.untracked.PSet(
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-		'file:e862270386.root',
-		'file:e876658967.root',
-		'file:e559839432.root',
-		'file:e218903169.root',
-		'file:e140063742.root'
+		'file:pickevents.root'
+#		'file:e862270386.root',
+#		'file:e876658967.root',
+#		'file:e559839432.root',
+#		'file:e218903169.root',
+#		'file:e140063742.root'
 #    '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v4/000/167/098/7211E94D-7D9A-E011-A713-003048F1BF66.root'
 #		'/store/data/Run2011A/DoubleMu/AOD/PromptReco-v1/000/161/312/82DF8BDA-E957-E011-8BB6-001617C3B79A.root',
 #        '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v1/000/161/312/76829660-F457-E011-AB0D-003048F118C6.root',

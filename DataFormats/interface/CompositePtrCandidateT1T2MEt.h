@@ -444,7 +444,11 @@ typedef CompositePtrCandidateT1T2MEt<PATElecPair,PATElecPair> PATEleEleEleEleQua
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATMuTauPair> PATEleEleMuTauQuad;
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATElecMuPair> PATEleEleEleMuQuad;
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> PATEleEleMuMuQuad;
-typedef CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> PATEleEleEle;
+//Z+1 lepton
+typedef CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> PATEleEleEleTri;
+typedef CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> PATEleEleMuTri;
+typedef CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> PATMuMuEleTri;
+typedef CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> PATMuMuMuTri;
 //For WZ
 typedef CompositePtrCandidateT1T2MEt<PATMuPair,PATMuonNuPair> PATMuMuMuNuQuad;
 typedef CompositePtrCandidateT1T2MEt<PATMuPair,PATElectronNuPair> PATMuMuEleNuQuad;

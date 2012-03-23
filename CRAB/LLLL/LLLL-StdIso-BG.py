@@ -17,7 +17,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
 		#'file:pickevents.root'
-		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
+		'/store/user/iross/EE_2011Bv1_skim/skim_166_1_ooP.root'
+#		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
 #		'/store/user/iross/EE_2011Bv1_skim/skim_137_1_8y9.root',
 #	'/store/user/iross/MM_2011Bv1_skim/skim_137_1_HEN.root',
 #		'/store/user/iross/EE_2011Bv1_skim/skim_121_2_8ag.root'

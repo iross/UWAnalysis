@@ -2488,20 +2488,20 @@ def addMuMuEventTree(process,name,src = 'zMuMuCandidatesID'):
                                     method     = cms.string("leg2.pt"),
                                     leadingOnly=cms.untracked.bool(True)
                               ),
-                              muMuJJ = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("mJJ"),
-                                  method     = cms.string("mJJ"),
-                                  leadingOnly=cms.untracked.bool(True)
-                              ),
-                              muMuJJPt = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("ptJJ"),
-                                  method     = cms.string("ptJJ"),
-                                  leadingOnly=cms.untracked.bool(True)
-                              ),
+#                              muMuJJ = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("mJJ"),
+#                                  method     = cms.string("mJJ"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                              ),
+#                              muMuJJPt = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("ptJJ"),
+#                                  method     = cms.string("ptJJ"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                              ),
 
                               mumuPt = cms.PSet(
                                     pluginType = cms.string("PATMuPairFiller"),
@@ -2834,48 +2834,48 @@ def addMuMuEventTree(process,name,src = 'zMuMuCandidatesID'):
                                   method     = cms.string("vbfMass"),
                                   leadingOnly=cms.untracked.bool(True)
                                ),
-                              muMuVBFJets20 = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfNJetsGap20"),
-                                  method     = cms.string("vbfNJetsGap20"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
-                              muMuVBFJets30 = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfNJetsGap30"),
-                                  method     = cms.string("vbfNJetsGap30"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
-                              muMuVBFPt1 = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfPt1"),
-                                  method     = cms.string("vbfPt1"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
-                              muMuVBFPt2 = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfPt2"),
-                                  method     = cms.string("vbfPt2"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
-                              muMuVBFEta1 = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfEta1"),
-                                  method     = cms.string("vbfEta1"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
-                              muMuVBFEta2 = cms.PSet(
-                                  pluginType = cms.string("PATMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfEta2"),
-                                  method     = cms.string("vbfEta2"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
+#                              muMuVBFJets20 = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfNJetsGap20"),
+#                                  method     = cms.string("vbfNJetsGap20"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
+#                              muMuVBFJets30 = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfNJetsGap30"),
+#                                  method     = cms.string("vbfNJetsGap30"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
+#                              muMuVBFPt1 = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfPt1"),
+#                                  method     = cms.string("vbfPt1"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
+#                              muMuVBFPt2 = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfPt2"),
+#                                  method     = cms.string("vbfPt2"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
+#                              muMuVBFEta1 = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfEta1"),
+#                                  method     = cms.string("vbfEta1"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
+#                              muMuVBFEta2 = cms.PSet(
+#                                  pluginType = cms.string("PATMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfEta2"),
+#                                  method     = cms.string("vbfEta2"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
                               muMuRecoilPx = cms.PSet(
                                   pluginType = cms.string("PATMuPairFiller"),
                                   src        = cms.InputTag(src),
@@ -3446,20 +3446,20 @@ def addEleMuEventTree(process,name,src='eleMuonsSorted'):
                                   leadingOnly=cms.untracked.bool(True)
                               ),
 
-                              eleMuVBFJets20 = cms.PSet(
-                                  pluginType = cms.string("PATEleMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfNJetsGap20"),
-                                  method     = cms.string("vbfNJetsGap20"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
-                              eleMuVBFJets30 = cms.PSet(
-                                  pluginType = cms.string("PATEleMuPairFiller"),
-                                  src        = cms.InputTag(src),
-                                  tag        = cms.string("vbfNJetsGap30"),
-                                  method     = cms.string("vbfNJetsGap30"),
-                                  leadingOnly=cms.untracked.bool(True)
-                               ),
+#                              eleMuVBFJets20 = cms.PSet(
+#                                  pluginType = cms.string("PATEleMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfNJetsGap20"),
+#                                  method     = cms.string("vbfNJetsGap20"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
+#                              eleMuVBFJets30 = cms.PSet(
+#                                  pluginType = cms.string("PATEleMuPairFiller"),
+#                                  src        = cms.InputTag(src),
+#                                  tag        = cms.string("vbfNJetsGap30"),
+#                                  method     = cms.string("vbfNJetsGap30"),
+#                                  leadingOnly=cms.untracked.bool(True)
+#                               ),
                               eleMuGenPt1 = cms.PSet(
                                   pluginType = cms.string("PATEleMuPairFiller"),
                                   src        = cms.InputTag(src),

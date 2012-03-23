@@ -38,7 +38,10 @@ typedef std::vector<PATMuMuMuNuQuad> PATMuMuMuNuQuadCollection;
 typedef std::vector<PATMuMuEleNuQuad> PATMuMuEleNuQuadCollection;
 typedef std::vector<PATEleEleMuNuQuad> PATEleEleMuNuQuadCollection;
 typedef std::vector<PATEleEleEleNuQuad> PATEleEleEleNuQuadCollection;
-typedef std::vector<PATEleEleEle> PATEleEleEleCollection;
+typedef std::vector<PATEleEleEleTri> PATEleEleEleTriCollection;
+typedef std::vector<PATEleEleMuTri> PATEleEleMuTriCollection;
+typedef std::vector<PATMuMuEleTri> PATMuMuEleTriCollection;
+typedef std::vector<PATMuMuMuTri> PATMuMuMuTriCollection;
 
 /// persistent reference to a CompositeRefCandidateT1T2MEt object
 typedef edm::Ref<DiCandidatePairCollection> DiCandidatePairRef;
@@ -68,7 +71,10 @@ typedef edm::Ref<PATMuMuMuNuQuadCollection> PATMuMuMuNuQuadRef;
 typedef edm::Ref<PATMuMuEleNuQuadCollection> PATMuMuEleNuQuadRef;
 typedef edm::Ref<PATEleEleMuNuQuadCollection> PATEleEleMuNuQuadRef;
 typedef edm::Ref<PATEleEleEleNuQuadCollection> PATEleEleEleNuQuadRef;
-typedef edm::Ref<PATEleEleEleCollection> PATEleEleEleRef;
+typedef edm::Ref<PATEleEleEleTriCollection> PATEleEleEleTriRef;
+typedef edm::Ref<PATEleEleMuTriCollection> PATEleEleMuTriRef;
+typedef edm::Ref<PATMuMuEleTriCollection> PATMuMuEleTriRef;
+typedef edm::Ref<PATMuMuMuTriCollection> PATMuMuMuTriRef;
 
 /// references to CompositeRefCandidateT1T2MEt collection
 typedef edm::RefProd<DiCandidatePairCollection> DiCandidatePairRefProd;
@@ -98,7 +104,10 @@ typedef edm::RefProd<PATMuMuMuNuQuadCollection> PATMuMuMuNuQuadRefProd;
 typedef edm::RefProd<PATMuMuEleNuQuadCollection> PATMuMuEleNuQuadRefProd;
 typedef edm::RefProd<PATEleEleMuNuQuadCollection> PATEleEleMuNuQuadRefProd;
 typedef edm::RefProd<PATEleEleEleNuQuadCollection> PATEleEleEleNuQuadRefProd;
-typedef edm::RefProd<PATEleEleEleCollection> PATEleEleEleRefProd;
+typedef edm::RefProd<PATEleEleEleTriCollection> PATEleEleEleTriRefProd;
+typedef edm::RefProd<PATEleEleMuTriCollection> PATEleEleMuTriRefProd;
+typedef edm::RefProd<PATMuMuEleTriCollection> PATMuMuEleTriRefProd;
+typedef edm::RefProd<PATMuMuMuTriCollection> PATMuMuMuTriRefProd;
 
 /// vector of references to CompositeRefCandidateT1T2MEt objects all in the same collection
 typedef edm::RefVector<DiCandidatePairCollection> DiCandidatePairRefVector;
@@ -128,5 +137,8 @@ typedef edm::RefVector<PATMuMuMuNuQuadCollection> PATMuMuMuNuQuadRefVector;
 typedef edm::RefVector<PATMuMuEleNuQuadCollection> PATMuMuEleNuQuadRefVector;
 typedef edm::RefVector<PATEleEleMuNuQuadCollection> PATEleEleMuNuQuadRefVector;
 typedef edm::RefVector<PATEleEleEleNuQuadCollection> PATEleEleEleNuQuadRefVector;
-typedef edm::RefVector<PATEleEleEleCollection> PATEleEleEleRefVector;
+typedef edm::RefVector<PATEleEleEleTriCollection> PATEleEleEleTriRefVector;
+typedef edm::RefVector<PATEleEleMuTriCollection> PATEleEleMuTriRefVector;
+typedef edm::RefVector<PATMuMuEleTriCollection> PATMuMuEleTriRefVector;
+typedef edm::RefVector<PATMuMuMuTriCollection> PATMuMuMuTriRefVector;
 #endif

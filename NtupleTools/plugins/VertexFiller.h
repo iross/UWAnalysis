@@ -216,3 +216,7 @@ typedef VertexFiller<PATEleEleMuTauQuad> EleEleMuTauVertexFiller;
 typedef VertexFiller<PATEleEleEleTauQuad> EleEleEleTauVertexFiller;
 typedef VertexFiller<PATEleEleTauTauQuad> EleEleTauTauVertexFiller;
 typedef VertexFiller<PATEleEleEleMuQuad> EleEleEleMuVertexFiller;
+//typedef VertexFiller<PATEleEleEleTri> EleEleEleVertexFiller;
+//typedef VertexFiller<PATEleEleMuTri> EleEleMuVertexFiller;
+//typedef VertexFiller<PATMuMuEleTri> MuMuEleVertexFiller;
+//typedef VertexFiller<PATMuMuMuTri> MuMuMuVertexFiller;

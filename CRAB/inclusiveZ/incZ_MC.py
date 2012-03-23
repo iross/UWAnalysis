@@ -50,8 +50,8 @@ createGeneratedParticles(process,
 
 
 
-from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEventTree
-addEleEleEventTree(process,'eleEleEventTree','EEaboveThresh')
+#from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEventTree
+#addEleEleEventTree(process,'eleEleEventTree','EEaboveThresh')
 from UWAnalysis.Configuration.tools.ntupleTools import addMuMuEventTree
 addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
 

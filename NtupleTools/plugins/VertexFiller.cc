@@ -13,3 +13,7 @@ DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleEleTauVertexFiller, "EleEleEleTauVe
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleMuTauVertexFiller, "EleEleMuTauVertexFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleTauTauVertexFiller, "EleEleTauTauVertexFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleEleMuVertexFiller, "EleEleEleMuVertexFiller");
+//DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleEleVertexFiller, "EleEleEleVertexFiller");
+//DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleMuVertexFiller, "EleEleMuVertexFiller");
+//DEFINE_EDM_PLUGIN(NtupleFillerFactory, MuMuEleVertexFiller, "MuMuEleVertexFiller");
+//DEFINE_EDM_PLUGIN(NtupleFillerFactory, MuMuMuVertexFiller, "MuMuMuVertexFiller");
