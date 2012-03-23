@@ -1,0 +1,1875 @@
+diff --git a/.gitignore b/.gitignore
+index 3cbb20e..af3b19b 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,15 +1,16 @@
++# Compiled source
+ *.com
+ *.pyc
+ *.o
+ *.so
+ 
++#Bin
+ *.root
+ *.png
+ *.pdf
+ *.zip
+ *.tgz
+ *.txt
+-*.pkl
+ 
+ *CVS*
+ 
+diff --git a/CRAB/LLLL/LLLL-MC.py b/CRAB/LLLL/LLLL-MC.py
+index 85b6de2..8d89018 100644
+--- a/CRAB/LLLL/LLLL-MC.py
++++ b/CRAB/LLLL/LLLL-MC.py
+@@ -22,8 +22,7 @@ process.source = cms.Source("PoolSource",
+ #		'/store/mc/Summer11/ZZTo4L_TuneZ2_7TeV_pythia6_tauola/AODSIM/PU_S4_START42_V11-v3/0000/EEBA75B2-F3EE-E011-AC0D-001A92810AB8.root'
+ #'file:segfault.root'
+ #'/store/mc/Fall11/ZZTo4mu_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/6CD72132-C4F8-E011-A32E-485B39800C0C.root'
+-#'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
+-'/store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p060_0p000/Fall11-GEN-SIM-RAW-START42_V14B-v2_0p060_0p000-SIM/c01be3e665056dec2b94a318246dab78/SIM_SIM_DIGI_L1_DIGI2RAW_HLT_PU_997_1_w2L.root'
++'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
+ #		'/store/mc/Summer11/ZZJetsTo4L_TuneZ2_7TeV-madgraph-tauola/AODSIM/PU_S4_START42_V11-v1/0000/E23A3C95-74BA-E011-8A75-00237DA435CA.root'
+ #		'/store/mc/Summer11/ZZJetsTo4L_TuneZ2_7TeV-madgraph-tauola/AODSIM/PU_S4_START42_V11-v1/0000/FEE3ABB5-79BA-E011-B754-78E7D1E4B4C6.root'
+ 		#	    '/store/mc/Summer11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S4_START42_V11-v1/0000/8C877260-B298-E011-887C-00215E21EB7E.root'
+diff --git a/CRAB/LLLL/LLLL-StdIso-BG.py b/CRAB/LLLL/LLLL-StdIso-BG.py
+index 1483528..df908aa 100644
+--- a/CRAB/LLLL/LLLL-StdIso-BG.py
++++ b/CRAB/LLLL/LLLL-StdIso-BG.py
+@@ -17,8 +17,7 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
+ process.source = cms.Source("PoolSource",
+     fileNames = cms.untracked.vstring(
+ 		#'file:pickevents.root'
+-		'/store/user/iross/EE_2011Bv1_skim/skim_166_1_ooP.root'
+-#		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
++		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
+ #		'/store/user/iross/EE_2011Bv1_skim/skim_137_1_8y9.root',
+ #	'/store/user/iross/MM_2011Bv1_skim/skim_137_1_HEN.root',
+ #		'/store/user/iross/EE_2011Bv1_skim/skim_121_2_8ag.root'
+diff --git a/CRAB/LLLL/MMLL-StdIso.py b/CRAB/LLLL/MMLL-StdIso.py
+index 8a115bb..61581a9 100644
+--- a/CRAB/LLLL/MMLL-StdIso.py
++++ b/CRAB/LLLL/MMLL-StdIso.py
+@@ -16,12 +16,11 @@ process.maxEvents = cms.untracked.PSet(
+ 
+ process.source = cms.Source("PoolSource",
+     fileNames = cms.untracked.vstring(
+-		'file:pickevents.root'
+-#		'file:e862270386.root',
+-#		'file:e876658967.root',
+-#		'file:e559839432.root',
+-#		'file:e218903169.root',
+-#		'file:e140063742.root'
++		'file:e862270386.root',
++		'file:e876658967.root',
++		'file:e559839432.root',
++		'file:e218903169.root',
++		'file:e140063742.root'
+ #    '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v4/000/167/098/7211E94D-7D9A-E011-A713-003048F1BF66.root'
+ #		'/store/data/Run2011A/DoubleMu/AOD/PromptReco-v1/000/161/312/82DF8BDA-E957-E011-8BB6-001617C3B79A.root',
+ #        '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v1/000/161/312/76829660-F457-E011-AB0D-003048F118C6.root',
+diff --git a/CRAB/LLLL/fakeRates b/CRAB/LLLL/fakeRates
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/CRAB/LLLL/submitCondorJobsBG_StdIso b/CRAB/LLLL/submitCondorJobsBG_StdIso
+index dd9dd08..e5ac6db 100755
+--- a/CRAB/LLLL/submitCondorJobsBG_StdIso
++++ b/CRAB/LLLL/submitCondorJobsBG_StdIso
+@@ -6,13 +6,13 @@ cat CONDOR.py >>BGStdIso.py
+ 
+ mkdir -p /scratch/$USER/DAGs/$1/
+ 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Oct03_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Oct03_BGStdIso.dag MM_Oct03_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Jul05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Jul05_BGStdIso.dag MM_Jul05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Aug05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Aug05_BGStdIso.dag MM_Aug05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_2011Bv1_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_2011Bv1_BGStdIso.dag MM_2011Bv1_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Oct03_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Oct03_BGStdIsoOSG.dag EE_Oct03_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Jul05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Jul05_BGStdIsoOSG.dag EE_Jul05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Aug05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Aug05_BGStdIsoOSG.dag EE_Aug05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+-farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_2011Bv1_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_2011Bv1_BGStdIsoOSG.dag EE_2011Bv1_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Oct03_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Oct03_BGStdIso.dag MM_Oct03_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Jul05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Jul05_BGStdIso.dag MM_Jul05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Aug05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Aug05_BGStdIso.dag MM_Aug05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_2011Bv1_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_2011Bv1_BGStdIso.dag MM_2011Bv1_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Oct03_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Oct03_BGStdIsoOSG.dag EE_Oct03_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Jul05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Jul05_BGStdIsoOSG.dag EE_Jul05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Aug05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Aug05_BGStdIsoOSG.dag EE_Aug05_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
++farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_2011Bv1_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_2011Bv1_BGStdIsoOSG.dag EE_2011Bv1_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py
+ 
+ rm BGStdIso.py
+diff --git a/CRAB/inclusiveZ/MM_Data.py b/CRAB/inclusiveZ/MM_Data.py
+index cc7cf6d..fdb8297 100644
+--- a/CRAB/inclusiveZ/MM_Data.py
++++ b/CRAB/inclusiveZ/MM_Data.py
+@@ -15,7 +15,7 @@ process.maxEvents = cms.untracked.PSet(
+ 
+ process.source = cms.Source("PoolSource",
+                             fileNames = cms.untracked.vstring(
+-	'/store/user/iross/MM_2011Bv1_skim/skim_283_1_54n.root'
++    '/store/data/Run2011A/DoubleMu/AOD/PromptReco-v4/000/167/098/7211E94D-7D9A-E011-A713-003048F1BF66.root'
+     )
+ )
+ 
+@@ -41,9 +41,7 @@ defaultReconstruction(process,'HLT',
+ process.load("UWAnalysis.Configuration.incZ_cff")
+ process.eventSelectionMM = cms.Path(process.zMuMuSelectionSequence) ##changing to multiples see below
+ 
+-#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
+-#addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
+-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+-addMuMuMuEventTree(process,'muMuMuEventTree','MMMtriForce')
++from UWAnalysis.Configuration.tools.ntupleTools import addMuMuEventTree
++addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
+ 
+ addEventSummary(process,False,'MM','eventSelectionMM')
+diff --git a/CRAB/inclusiveZ/incZ_MC.py b/CRAB/inclusiveZ/incZ_MC.py
+index 5255916..226c475 100644
+--- a/CRAB/inclusiveZ/incZ_MC.py
++++ b/CRAB/inclusiveZ/incZ_MC.py
+@@ -50,8 +50,8 @@ createGeneratedParticles(process,
+ 
+ 
+ 
+-#from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEventTree
+-#addEleEleEventTree(process,'eleEleEventTree','EEaboveThresh')
++from UWAnalysis.Configuration.tools.ntupleTools import addEleEleEventTree
++addEleEleEventTree(process,'eleEleEventTree','EEaboveThresh')
+ from UWAnalysis.Configuration.tools.ntupleTools import addMuMuEventTree
+ addMuMuEventTree(process,'muMuEventTree','MMaboveThresh')
+ 
+diff --git a/Configuration/python/incZ_cff.py b/Configuration/python/incZ_cff.py
+index 45b43a6..1ff5205 100644
+--- a/Configuration/python/incZ_cff.py
++++ b/Configuration/python/incZ_cff.py
+@@ -19,10 +19,9 @@ EEanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsEE'
+ EEanalysisConfigurator.addSmearing('patOverloadedTaus','patMuonsForAnalysis','convRejElectrons','selectedPatJets','EE')
+ EEanalysisConfigurator.addDiCandidateModule('EEdiElectrons','PATElePairProducer', 'smearedElectronsEE','smearedElectronsEE','smearedMETEE','smearedJetsEE',1,genParticles='genDaughters')
+ EEanalysisConfigurator.addSorter('zEleEleCandidatesSorted','PATElePairSorter')
+-EEanalysisConfigurator.addSelector('EEosDiElectrons','PATElePairSelector','leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&(leg1.electronID("cicTight")==1||leg1.electronID("cicTight")==3||leg1.electronID("cicTight")==5||leg1.electronID("cicTight")==7||leg1.electronID("cicTight")==9||leg1.electronID("cicTight")==11||leg1.electronID("cicTight")==13||leg1.electronID("cicTight")==15)&&(leg2.electronID("cicTight")==1||leg2.electronID("cicTight")==3||leg2.electronID("cicTight")==5||leg2.electronID("cicTight")==7||leg2.electronID("cicTight")==9||leg2.electronID("cicTight")==11||leg2.electronID("cicTight")==13||leg2.electronID("cicTight")==15)&&charge==0&&abs(leg1.eta())<2.5&&abs(leg2.eta())<2.5&&mass>40 && leg1.userFloat("SIP3D")<4 && leg2.userFloat("SIP3D")<4','EEDiEleCreation',1)
++EEanalysisConfigurator.addSelector('EEosDiElectrons','PATElePairSelector','leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&(leg1.electronID("cicTight")==1||leg1.electronID("cicTight")==3||leg1.electronID("cicTight")==5||leg1.electronID("cicTight")==7||leg1.electronID("cicTight")==9||leg1.electronID("cicTight")==11||leg1.electronID("cicTight")==13||leg1.electronID("cicTight")==15)&&(leg2.electronID("cicTight")==1||leg2.electronID("cicTight")==3||leg2.electronID("cicTight")==5||leg2.electronID("cicTight")==7||leg2.electronID("cicTight")==9||leg2.electronID("cicTight")==11||leg2.electronID("cicTight")==13||leg2.electronID("cicTight")==15)&&charge==0&&abs(leg1.eta())<2.5&&abs(leg2.eta())<2.5&&mass>40','EEDiEleCreation',1)
+ EEanalysisConfigurator.addSelector('EEeleIso','PATElePairSelector',llLeadingIso,'EELeadingZEleIso')
+ EEanalysisConfigurator.addSelector('EEaboveThresh','PATElePairSelector','leg1.pt()>20 && leg2.pt()>10','EEAtLeastOneZZCandOverThresholds')
+-EEanalysisConfigurator.addDiCandidateModule('EEEtriForce','PATEleEleEleTriProducer','EEaboveThresh','smearedElectronsEE','smearedMETEE','smearedJetsEE',1,genParticles='genDaughters')
+ 
+ zEleEleSelectionSequence =EEanalysisConfigurator.returnSequence()
+ 
+@@ -32,12 +31,13 @@ MManalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsMM'
+ #Add smearing
+ MManalysisConfigurator.addSmearing('patOverloadedTaus','patMuonsForAnalysis','convRejElectrons','selectedPatJets')
+ #Create di muon OS pairs
+-MManalysisConfigurator.addDiCandidateModule('MMdiMuons','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')
++MManalysisConfigurator.addDiCandidateModule('MMdiMuons','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughter\
++s')
+ MManalysisConfigurator.addSorter('zMuMuCandidatesSorted','PATMuPairSorter')
+-MManalysisConfigurator.addSelector('MMzzMuID','PATMuPairSelector','leg1.isGlobalMuon()&&leg2.isGlobalMuon()&&leg1.isTrackerMuon()&&leg2.isTrackerMuon()','MMLeadingZMuID')
+-MManalysisConfigurator.addSelector('MMzzMuIso','PATMuPairSelector','((leg1.chargedHadronIso()+max(leg1.photonIso()+leg1.neutralHadronIso()-0.5*leg1.userIso(0),0.0))/leg1.pt()<0.25) && ((leg2.chargedHadronIso()+max(leg2.photonIso()+leg2.neutralHadronIso()-0.5*leg2.userIso(0),0.0))/leg2.pt()<0.25)','MMLeadingZMuIso')
+-MManalysisConfigurator.addSelector('MMaboveThresh','PATMuPairSelector','leg1.pt()>20 && leg2.pt()>10 && leg1.userFloat("SIP3D")<4 && leg2.userFloat("SIP3D")<4','MMAtLeastOneZZCandOverThresholds')
+-MManalysisConfigurator.addDiCandidateModule('MMMtriForce','PATMuMuMuTriProducer','MMaboveThresh','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')
++MManalysisConfigurator.addSelector('MMzzMuID','PATMuPairSelector',mumuLeading,'MMLeadingZMuID')
++MManalysisConfigurator.addSelector('MMzzMuIso','PATMuPairSelector',llLeadingIso,'MMLeadingZMuIso')
++MManalysisConfigurator.addSelector('MMaboveThresh','PATMuPairSelector','leg1.pt()>20 && leg2.pt()>10','MMAtLeastOneZZCandOverThresholds')
++
+ 
+ #create the sequence
+ zMuMuSelectionSequence =MManalysisConfigurator.returnSequence()
+diff --git a/Configuration/python/tools/CutSequenceProducer.py b/Configuration/python/tools/CutSequenceProducer.py
+index fb0bd22..e82d97b 100644
+--- a/Configuration/python/tools/CutSequenceProducer.py
++++ b/Configuration/python/tools/CutSequenceProducer.py
+@@ -653,11 +653,12 @@ class CutSequenceProducer(cms._ParameterTypeBase):
+                self.input=moduleName
+ 
+ 
+-    def addSelector(self,moduleName,moduleType,cut,summaryText = None,minFilter = 1, maxFilter  = 99):
++    def addSelector(self,moduleName,moduleType,cut,summaryText = None,minFilter = 1, maxFilter  = 9999):
+                selector  = cms.EDFilter(moduleType)
+                selector.src = cms.InputTag(self.input)
+                selector.cut = cms.string(cut)
+                selector.filter = cms.bool(False)
++               print moduleName,cut
+ 
+                pyModule = sys.modules[self.pyModuleName[0]]
+                if pyModule is None:
+diff --git a/Configuration/python/tools/ntupleTools.py b/Configuration/python/tools/ntupleTools.py
+index b7e9621..454e928 100644
+--- a/Configuration/python/tools/ntupleTools.py
++++ b/Configuration/python/tools/ntupleTools.py
+@@ -2488,20 +2488,20 @@ def addMuMuEventTree(process,name,src = 'zMuMuCandidatesID'):
+                                     method     = cms.string("leg2.pt"),
+                                     leadingOnly=cms.untracked.bool(True)
+                               ),
+-#                              muMuJJ = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("mJJ"),
+-#                                  method     = cms.string("mJJ"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                              ),
+-#                              muMuJJPt = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("ptJJ"),
+-#                                  method     = cms.string("ptJJ"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                              ),
++                              muMuJJ = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("mJJ"),
++                                  method     = cms.string("mJJ"),
++                                  leadingOnly=cms.untracked.bool(True)
++                              ),
++                              muMuJJPt = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("ptJJ"),
++                                  method     = cms.string("ptJJ"),
++                                  leadingOnly=cms.untracked.bool(True)
++                              ),
+ 
+                               mumuPt = cms.PSet(
+                                     pluginType = cms.string("PATMuPairFiller"),
+@@ -2834,48 +2834,48 @@ def addMuMuEventTree(process,name,src = 'zMuMuCandidatesID'):
+                                   method     = cms.string("vbfMass"),
+                                   leadingOnly=cms.untracked.bool(True)
+                                ),
+-#                              muMuVBFJets20 = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfNJetsGap20"),
+-#                                  method     = cms.string("vbfNJetsGap20"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
+-#                              muMuVBFJets30 = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfNJetsGap30"),
+-#                                  method     = cms.string("vbfNJetsGap30"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
+-#                              muMuVBFPt1 = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfPt1"),
+-#                                  method     = cms.string("vbfPt1"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
+-#                              muMuVBFPt2 = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfPt2"),
+-#                                  method     = cms.string("vbfPt2"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
+-#                              muMuVBFEta1 = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfEta1"),
+-#                                  method     = cms.string("vbfEta1"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
+-#                              muMuVBFEta2 = cms.PSet(
+-#                                  pluginType = cms.string("PATMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfEta2"),
+-#                                  method     = cms.string("vbfEta2"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
++                              muMuVBFJets20 = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfNJetsGap20"),
++                                  method     = cms.string("vbfNJetsGap20"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
++                              muMuVBFJets30 = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfNJetsGap30"),
++                                  method     = cms.string("vbfNJetsGap30"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
++                              muMuVBFPt1 = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfPt1"),
++                                  method     = cms.string("vbfPt1"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
++                              muMuVBFPt2 = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfPt2"),
++                                  method     = cms.string("vbfPt2"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
++                              muMuVBFEta1 = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfEta1"),
++                                  method     = cms.string("vbfEta1"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
++                              muMuVBFEta2 = cms.PSet(
++                                  pluginType = cms.string("PATMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfEta2"),
++                                  method     = cms.string("vbfEta2"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
+                               muMuRecoilPx = cms.PSet(
+                                   pluginType = cms.string("PATMuPairFiller"),
+                                   src        = cms.InputTag(src),
+@@ -3446,20 +3446,20 @@ def addEleMuEventTree(process,name,src='eleMuonsSorted'):
+                                   leadingOnly=cms.untracked.bool(True)
+                               ),
+ 
+-#                              eleMuVBFJets20 = cms.PSet(
+-#                                  pluginType = cms.string("PATEleMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfNJetsGap20"),
+-#                                  method     = cms.string("vbfNJetsGap20"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
+-#                              eleMuVBFJets30 = cms.PSet(
+-#                                  pluginType = cms.string("PATEleMuPairFiller"),
+-#                                  src        = cms.InputTag(src),
+-#                                  tag        = cms.string("vbfNJetsGap30"),
+-#                                  method     = cms.string("vbfNJetsGap30"),
+-#                                  leadingOnly=cms.untracked.bool(True)
+-#                               ),
++                              eleMuVBFJets20 = cms.PSet(
++                                  pluginType = cms.string("PATEleMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfNJetsGap20"),
++                                  method     = cms.string("vbfNJetsGap20"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
++                              eleMuVBFJets30 = cms.PSet(
++                                  pluginType = cms.string("PATEleMuPairFiller"),
++                                  src        = cms.InputTag(src),
++                                  tag        = cms.string("vbfNJetsGap30"),
++                                  method     = cms.string("vbfNJetsGap30"),
++                                  leadingOnly=cms.untracked.bool(True)
++                               ),
+                               eleMuGenPt1 = cms.PSet(
+                                   pluginType = cms.string("PATEleMuPairFiller"),
+                                   src        = cms.InputTag(src),
+diff --git a/Configuration/python/tools/zzNtupleTools.py b/Configuration/python/tools/zzNtupleTools.py
+index 4792120..4f198f4 100644
+--- a/Configuration/python/tools/zzNtupleTools.py
++++ b/Configuration/python/tools/zzNtupleTools.py
+@@ -380,7 +380,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM):
+ 			# pass candidate collection so we can cross-clean
+ 			# dR
+ 			tag        = cms.string("nElectrons"),
+-			method     = cms.string("pt()>10&&(electronID('cicTight')==1 || electronID('cicTight')==3 || electronID('cicTight')==5 || electronID('cicTight')==7 || electronID('cicTight')==9 || electronID('cicTight')==11 || electronID('cicTight')==13 || electronID('cicTight')==15)&&(chargedHadronIso+max(photonIso+neutralHadronIso-0.5*userIso(0),0.0))/pt<0.25"),
++			method     = cms.string("1"),
+ 		),
+ 		cms.PSet(
+ 			pluginType = cms.string("MuonCountFiller"),
+@@ -1484,45 +1484,3 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
+ 
+ 
+ 
+-def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold'):
+-	process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
+-	eventTree = cms.EDAnalyzer('EventTreeMaker',
+-			coreCollections = cms.VInputTag(
+-			cms.InputTag(src)
+-		),
+-		zzShared = zzCommon(src,'PATMuMuMuTriFiller'),
+-     	trigger = cms.PSet(
+-			pluginType = cms.string("TriggerFiller"),
+-			src        = cms.InputTag("patTrigger"),
+-			paths      = cms.vstring(TriggerPaths)
+-		),
+-#		refitVertex = cms.PSet(
+-#			pluginType = cms.string("MuMuTauTauVertexFiller"),
+-#			src        = cms.InputTag(src),
+-#			tag        = cms.string("refitVertex"),
+-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
+-#		),
+-		PVs = cms.PSet(
+-			pluginType = cms.string("VertexSizeFiller"),
+-			src        = cms.InputTag("primaryVertexFilter"),
+-			tag        = cms.string("vertices")
+-		),
+-#		truth = cms.PSet(
+-#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+-#			src        = cms.InputTag(src),
+-#			gensrc        = cms.InputTag("genParticles"),
+-#			tag        = cms.string("refitVertex"),
+-#			method     = cms.string('1')
+-#		),
+-		#Candidate size quantities
+-		counters = countCommon(src,'PATMuMuTauTau',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+-		z1l1 = muCommon(src,'z1l1','leg1.leg1.','PATMuMuMuTriFiller'),
+-		z1l2 = muCommon(src,'z1l2','leg1.leg2.','PATMuMuMuTriFiller'),
+-		z2l1 = muCommon(src,'z2l1','leg2.','PATMuMuMuTriFiller'),
+-		#		tautauShared = tauTauCommon(src,'PATMuMuMuTriFiller'),
+-#		genShared = genCommon(src,'PATMuMuMuTriFiller'),
+-	)
+-	setattr(process, name, eventTree)
+-	p = cms.Path(getattr(process,name))
+-	setattr(process, name+'Path', p)
+-
+diff --git a/DataFormats/interface/CompositePtrCandidateT1T2MEt.h b/DataFormats/interface/CompositePtrCandidateT1T2MEt.h
+index 6805eea..bdf01aa 100644
+--- a/DataFormats/interface/CompositePtrCandidateT1T2MEt.h
++++ b/DataFormats/interface/CompositePtrCandidateT1T2MEt.h
+@@ -444,11 +444,7 @@ typedef CompositePtrCandidateT1T2MEt<PATElecPair,PATElecPair> PATEleEleEleEleQua
+ typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATMuTauPair> PATEleEleMuTauQuad;
+ typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATElecMuPair> PATEleEleEleMuQuad;
+ typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> PATEleEleMuMuQuad;
+-//Z+1 lepton
+-typedef CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> PATEleEleEleTri;
+-typedef CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> PATEleEleMuTri;
+-typedef CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> PATMuMuEleTri;
+-typedef CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> PATMuMuMuTri;
++typedef CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> PATEleEleEle;
+ //For WZ
+ typedef CompositePtrCandidateT1T2MEt<PATMuPair,PATMuonNuPair> PATMuMuMuNuQuad;
+ typedef CompositePtrCandidateT1T2MEt<PATMuPair,PATElectronNuPair> PATMuMuEleNuQuad;
+diff --git a/DataFormats/interface/CompositePtrCandidateT1T2MEtFwd.h b/DataFormats/interface/CompositePtrCandidateT1T2MEtFwd.h
+index f9e2527..b8e5669 100644
+--- a/DataFormats/interface/CompositePtrCandidateT1T2MEtFwd.h
++++ b/DataFormats/interface/CompositePtrCandidateT1T2MEtFwd.h
+@@ -38,10 +38,7 @@ typedef std::vector<PATMuMuMuNuQuad> PATMuMuMuNuQuadCollection;
+ typedef std::vector<PATMuMuEleNuQuad> PATMuMuEleNuQuadCollection;
+ typedef std::vector<PATEleEleMuNuQuad> PATEleEleMuNuQuadCollection;
+ typedef std::vector<PATEleEleEleNuQuad> PATEleEleEleNuQuadCollection;
+-typedef std::vector<PATEleEleEleTri> PATEleEleEleTriCollection;
+-typedef std::vector<PATEleEleMuTri> PATEleEleMuTriCollection;
+-typedef std::vector<PATMuMuEleTri> PATMuMuEleTriCollection;
+-typedef std::vector<PATMuMuMuTri> PATMuMuMuTriCollection;
++typedef std::vector<PATEleEleEle> PATEleEleEleCollection;
+ 
+ /// persistent reference to a CompositeRefCandidateT1T2MEt object
+ typedef edm::Ref<DiCandidatePairCollection> DiCandidatePairRef;
+@@ -71,10 +68,7 @@ typedef edm::Ref<PATMuMuMuNuQuadCollection> PATMuMuMuNuQuadRef;
+ typedef edm::Ref<PATMuMuEleNuQuadCollection> PATMuMuEleNuQuadRef;
+ typedef edm::Ref<PATEleEleMuNuQuadCollection> PATEleEleMuNuQuadRef;
+ typedef edm::Ref<PATEleEleEleNuQuadCollection> PATEleEleEleNuQuadRef;
+-typedef edm::Ref<PATEleEleEleTriCollection> PATEleEleEleTriRef;
+-typedef edm::Ref<PATEleEleMuTriCollection> PATEleEleMuTriRef;
+-typedef edm::Ref<PATMuMuEleTriCollection> PATMuMuEleTriRef;
+-typedef edm::Ref<PATMuMuMuTriCollection> PATMuMuMuTriRef;
++typedef edm::Ref<PATEleEleEleCollection> PATEleEleEleRef;
+ 
+ /// references to CompositeRefCandidateT1T2MEt collection
+ typedef edm::RefProd<DiCandidatePairCollection> DiCandidatePairRefProd;
+@@ -104,10 +98,7 @@ typedef edm::RefProd<PATMuMuMuNuQuadCollection> PATMuMuMuNuQuadRefProd;
+ typedef edm::RefProd<PATMuMuEleNuQuadCollection> PATMuMuEleNuQuadRefProd;
+ typedef edm::RefProd<PATEleEleMuNuQuadCollection> PATEleEleMuNuQuadRefProd;
+ typedef edm::RefProd<PATEleEleEleNuQuadCollection> PATEleEleEleNuQuadRefProd;
+-typedef edm::RefProd<PATEleEleEleTriCollection> PATEleEleEleTriRefProd;
+-typedef edm::RefProd<PATEleEleMuTriCollection> PATEleEleMuTriRefProd;
+-typedef edm::RefProd<PATMuMuEleTriCollection> PATMuMuEleTriRefProd;
+-typedef edm::RefProd<PATMuMuMuTriCollection> PATMuMuMuTriRefProd;
++typedef edm::RefProd<PATEleEleEleCollection> PATEleEleEleRefProd;
+ 
+ /// vector of references to CompositeRefCandidateT1T2MEt objects all in the same collection
+ typedef edm::RefVector<DiCandidatePairCollection> DiCandidatePairRefVector;
+@@ -137,8 +128,5 @@ typedef edm::RefVector<PATMuMuMuNuQuadCollection> PATMuMuMuNuQuadRefVector;
+ typedef edm::RefVector<PATMuMuEleNuQuadCollection> PATMuMuEleNuQuadRefVector;
+ typedef edm::RefVector<PATEleEleMuNuQuadCollection> PATEleEleMuNuQuadRefVector;
+ typedef edm::RefVector<PATEleEleEleNuQuadCollection> PATEleEleEleNuQuadRefVector;
+-typedef edm::RefVector<PATEleEleEleTriCollection> PATEleEleEleTriRefVector;
+-typedef edm::RefVector<PATEleEleMuTriCollection> PATEleEleMuTriRefVector;
+-typedef edm::RefVector<PATMuMuEleTriCollection> PATMuMuEleTriRefVector;
+-typedef edm::RefVector<PATMuMuMuTriCollection> PATMuMuMuTriRefVector;
++typedef edm::RefVector<PATEleEleEleCollection> PATEleEleEleRefVector;
+ #endif
+diff --git a/DataFormats/src/classes.h b/DataFormats/src/classes.h
+index 1c56b40..aab2a60 100644
+--- a/DataFormats/src/classes.h
++++ b/DataFormats/src/classes.h
+@@ -12,387 +12,356 @@
+ #include "UWAnalysis/DataFormats/interface/SVfitLegSolution.h"
+ 
+ namespace {
+-	struct UWanalysis_DataFormats_dictionary {
+-		/// create dictionaries for DiCandidatePair objects
+-		DiCandidatePair dummyDiCandidatePair;
+-		edm::Wrapper<DiCandidatePair> dummyDiCandidatePairWrapper;
+-		DiCandidatePairCollection dummyDiCandidatePairCollection;
+-		edm::Wrapper<DiCandidatePairCollection> dummyDiCandidatePairCollectionWrapper;
+-
+-		/// create dictionaries for 
+-		///  o edm::Ptr<pat::Electron> 
+-		///  o edm::Ptr<pat::Muon> 
+-		///  o edm::Ptr<pat::Tau>
+-		///  o edm::Ptr<pat::Jet>
+-		/// as these dictionaries are not yet created in DataFormats/PatCandidates/src/classes.h
+-		//    edm::Ptr<pat::Electron> dummyPATElectronPtr;
+-		//  edm::Ptr<pat::Muon> dummyPATMuonPtr;
+-		//    edm::Ptr<pat::Tau> dummyPATTauPtr;
+-		//  edm::Ptr<pat::Jet> dummyPATJetPtr;
+-		// edm::Ptr<pat::MET> dummyPATMETPtr;
+-		edm::Ptr<reco::RecoChargedCandidate> dummyRecoChargeCandPtr;
+-		edm::Ptr<reco::RecoEcalCandidate> dummyRecoEcalCandPtr;
+-		std::vector<edm::Ptr<pat::Jet> > dummyPATJetPtrVector;
+-
+-
+-
+-
+-		/// create dictionaries for 
+-		///  o edm::Ptr<reco::CaloJet>
+-		///  o edm::Ptr<reco::PFJet>
+-		/// as these dictionaries are not yet created in DataFormats/JetReco/src/classes.h
+-		edm::Ptr<reco::CaloJet> dummyCaloJetPtr;
+-		edm::Ptr<reco::PFJet> dummyPFJetPtr;
+-
+-		/// create dictionaries for
+-		///  o edm::Ptr<reco::GenParticle>
+-		/// as these dictionaries are not yet created in DataFormats/HepMCCandidate/src/classes.h
+-		edm::Ptr<reco::GenParticle> dummyGenParticlePtr;
+-
+-		/// create dictionaries for
+-		///  o edm::Ptr<reco::Track>
+-		///  o edm::Ptr<reco::GsfTrack>
+-		/// as these dictionaries are not yet created in DataFormats/TrackReco/src/classes.h (DataFormats/GsfTrackReco/src/classes.h)
+-		edm::Ptr<reco::Track> dummyTrackPtr;
+-		edm::Ptr<reco::GsfTrack> dummyGsfTrackPtr;
+-
+-		/// create dictionaries for PATElecPair objects
+-		PATElecPair dummyPATElecPair;
+-		edm::Wrapper<PATElecPair> dummyPATElecPairWrapper;
+-		PATElecPairCollection dummyPATElecPairCollection;
+-		edm::Wrapper<PATElecPairCollection> dummyPATElecPairCollectionWrapper;
+-		edm::Ptr<PATElecPair> dummyPATElecPairPtr;
+-
+-
+-
+-		/// create dictionaries for PATMuPair objects
+-		PATMuPair dummyPATMuPair;
+-		edm::Wrapper<PATMuPair> dummyPATMuPairWrapper;
+-		PATMuPairCollection dummyPATMuPairCollection;
+-		edm::Wrapper<PATMuPairCollection> dummyPATMuPairCollectionWrapper;
+-		edm::Ptr<PATMuPair> dummyPATMuPairPtr;
+-
+-
+-		/// create dictionaries for PATElecTauPair objects
+-		PATElecTauPair dummyPATElecTauPair;
+-		edm::Wrapper<PATElecTauPair> dummyPATElecTauPairWrapper;
+-		PATElecTauPairCollection dummyPATElecTauPairCollection;
+-		edm::Wrapper<PATElecTauPairCollection> dummyPATElecTauPairCollectionWrapper;
+-		edm::Ref<PATElecTauPairCollection> dummyPATElecTauPairRef;
+-		edm::RefVector<PATElecTauPairCollection> dummyPATElecTauPairRefVector;
+-		edm::RefProd<PATElecTauPairCollection> dummyPATElecTauPairRefProd;
+-		edm::Ptr<PATElecTauPair> dummyPATElecTauPairPtr;
+-
+-
+-		/// create dictionaries for PATElecSCPair objects
+-		PATElecSCPair dummyPATElecSCPair;
+-		edm::Wrapper<PATElecSCPair> dummyPATElecSCPairWrapper;
+-		PATElecSCPairCollection dummyPATElecSCPairCollection;
+-		edm::Wrapper<PATElecSCPairCollection> dummyPATElecSCPairCollectionWrapper;
+-		edm::Ref<PATElecSCPairCollection> dummyPATElecSCPairRef;
+-		edm::RefVector<PATElecSCPairCollection> dummyPATElecSCPairRefVector;
+-		edm::RefProd<PATElecSCPairCollection> dummyPATElecSCPairRefProd;
+-		edm::Ptr<PATElecSCPair> dummyPATElecSCPairPtr;
+-
+-
+-
+-		/// create dictionaries for PATMuTauPair objects
+-		PATMuTauPair dummyPATMuTauPair;
+-		edm::Wrapper<PATMuTauPair> dummyPATMuTauPairWrapper;
+-		PATMuTauPairCollection dummyPATMuTauPairCollection;
+-		edm::Wrapper<PATMuTauPairCollection> dummyPATMuTauPairCollectionWrapper;
+-		edm::Ref<PATMuTauPairCollection> dummyPATMuTauPairRef;
+-		edm::RefVector<PATMuTauPairCollection> dummyPATMuTauPairRefVector;
+-		edm::RefProd<PATMuTauPairCollection> dummyPATMuTauPairRefProd;
+-		edm::Ptr<PATMuTauPair> dummyPATMuTauPairPtr;
+-
+-
+-		/// create dictionaries for PATMuTauPair objects
+-		PATMuTrackPair dummyPATMuTrackPair;
+-		edm::Wrapper<PATMuTrackPair> dummyPATMuTrackPairWrapper;
+-		PATMuTrackPairCollection dummyPATMuTrackPairCollection;
+-		edm::Wrapper<PATMuTrackPairCollection> dummyPATMuTrackPairCollectionWrapper;
+-		edm::Ref<PATMuTrackPairCollection> dummyPATMuTrackPairRef;
+-		edm::RefVector<PATMuTrackPairCollection> dummyPATMuTrackPairRefVector;
+-		edm::RefProd<PATMuTrackPairCollection> dummyPATMuTrackPairRefProd;
+-		edm::Ptr<PATMuTrackPair> dummyPATMuTrackPairPtr;
+-
+-
+-		/// create dictionaries for PATEleTrackPair objects
+-		PATEleTrackPair dummyPATEleTrackPair;
+-		edm::Wrapper<PATEleTrackPair> dummyPATEleTrackPairWrapper;
+-		PATEleTrackPairCollection dummyPATEleTrackPairCollection;
+-		edm::Wrapper<PATEleTrackPairCollection> dummyPATEleTrackPairCollectionWrapper;
+-		edm::Ref<PATEleTrackPairCollection> dummyPATEleTrackPairRef;
+-		edm::RefVector<PATEleTrackPairCollection> dummyPATEleTrackPairRefVector;
+-		edm::RefProd<PATEleTrackPairCollection> dummyPATEleTrackPairRefProd;
+-		edm::Ptr<PATEleTrackPair> dummyPATEleTrackPairPtr;
+-
+-		/// create dictionaries for PATEleTrackPair objects
+-		PATTrackTrackPair dummyPATrackTrackPair;
+-		edm::Wrapper<PATTrackTrackPair> dummyPATTrackTrackPairWrapper;
+-		PATTrackTrackPairCollection dummyPATTrackTrackPairCollection;
+-		edm::Wrapper<PATTrackTrackPairCollection> dummyPATTrackTrackPairCollectionWrapper;
+-		edm::Ref<PATTrackTrackPairCollection> dummyPATTrackTrackPairRef;
+-		edm::RefVector<PATTrackTrackPairCollection> dummyPATTrackTrackPairRefVector;
+-		edm::RefProd<PATTrackTrackPairCollection> dummyPATTrackTrackPairRefProd;
+-		edm::Ptr<PATTrackTrackPair> dummyPATTrackTrackPairPtr;
+-
+-		/// create dictionaries for PATDiTauPair objects
+-		PATDiTauPair dummyPATDiTauPair;
+-		edm::Wrapper<PATDiTauPair> dummyPATDiTauPairWrapper;
+-		PATDiTauPairCollection dummyPATDiTauPairCollection;
+-		edm::Wrapper<PATDiTauPairCollection> dummyPATDiTauPairCollectionWrapper;
+-		edm::Ref<PATDiTauPairCollection> dummyPATDiTauPairRef;
+-		edm::RefVector<PATDiTauPairCollection> dummyPATDiTauPairRefVector;
+-		edm::RefProd<PATDiTauPairCollection> dummyPATDiTauPairRefProd;
+-		edm::Ptr<PATDiTauPair> dummyPATDiTauPairPtr;
+-
+-
+-		/// create dictionaries for PATElecMuPair objects
+-		PATElecMuPair dummyPATElecMuPair;
+-		edm::Wrapper<PATElecMuPair> dummyPATElecMuPairWrapper;
+-		PATElecMuPairCollection dummyPATElecMuPairCollection;
+-		edm::Wrapper<PATElecMuPairCollection> dummyPATElecMuPairCollectionWrapper;
+-		edm::Ref<PATElecMuPairCollection> dummyPATElecMuPairRef;
+-		edm::RefVector<PATElecMuPairCollection> dummyPATElecMuPairRefVector;
+-		edm::RefProd<PATElecMuPairCollection> dummyPATElecMuPairRefProd;
+-		edm::Ptr<PATElecMuPair> dummyPATElecMuPairPtr;
+-
+-
+-		/// create dictionaries for PATTauNuPair objects
+-		PATTauNuPair dummyPATTauNuPair;
+-		edm::Wrapper<PATTauNuPair> dummyPATTauNuPairWrapper;
+-		PATTauNuPairCollection dummyPATTauNuPairCollection;
+-		edm::Wrapper<PATTauNuPairCollection> dummyPATTauNuPairCollectionWrapper;
+-		edm::Ptr<PATTauNuPair> dummyPATTauNuPairPtr;
+-
+-		/// create dictionaries for PATMuonNuPair objects
+-		PATMuonNuPair dummyPATMuonNuPair;
+-		edm::Wrapper<PATMuonNuPair> dummyPATMuonNuPairWrapper;
+-		PATMuonNuPairCollection dummyPATMuonNuPairCollection;
+-		edm::Wrapper<PATMuonNuPairCollection> dummyPATMuonNuPairCollectionWrapper;
+-		edm::Ptr<PATMuonNuPair> dummyPATMuonNuPairPtr;
+-
+-		/// create dictionaries for PATMuonNuPair objects
+-		PATElectronNuPair dummyPATElectronNuPair;
+-		edm::Wrapper<PATElectronNuPair> dummyPATElectronNuPairWrapper;
+-		PATElectronNuPairCollection dummyPATElectronNuPairCollection;
+-		edm::Wrapper<PATElectronNuPairCollection> dummyPATElectronNuPairCollectionWrapper;
+-		edm::Ptr<PATElectronNuPair> dummyPATElectronNuPairPtr;
+-
+-		/// create dictionaries for PATMuonNuPair objects
+-		PATCandNuPair dummyPATCandNuPair;
+-		edm::Wrapper<PATCandNuPair> dummyPATCandNuPairWrapper;
+-		PATCandNuPairCollection dummyPATCandNuPairCollection;
+-		edm::Wrapper<PATCandNuPairCollection> dummyPATCandNuPairCollectionWrapper;
+-
+-		//Di-boson candidate dictionaries
+-
+-		/// create dictionaries for PATMuMuMuTauQuad objects
+-		PATMuMuMuTauQuad dummyPATMuMuMuTauQuad;
+-		edm::Wrapper<PATMuMuMuTauQuad> dummyPATMuMuMuTauTauQuadWrapper;
+-		PATMuMuMuTauQuadCollection dummyPATMuMuMuTauQuadCollection;
+-		edm::Wrapper<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadCollectionWrapper;
+-		edm::Ref<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRef;
+-		edm::RefVector<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefVector;
+-		edm::RefProd<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefProd;
+-		edm::Ptr<PATMuMuMuTauQuad> dummyPATMuMuMuTauQuadPtr;
+-
+-		/// create dictionaries for PATMuMuTauTauQuad objects
+-		PATMuMuTauTauQuad dummyPATMuMuTauTauQuad;
+-		edm::Wrapper<PATMuMuTauTauQuad> dummyPATMuMuTauTauTauQuadWrapper;
+-		PATMuMuTauTauQuadCollection dummyPATMuMuTauTauQuadCollection;
+-		edm::Wrapper<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadCollectionWrapper;
+-		edm::Ref<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRef;
+-		edm::RefVector<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefVector;
+-		edm::RefProd<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefProd;
+-		edm::Ptr<PATMuMuTauTauQuad> dummyPATMuMuTauTauQuadPtr;
+-
+-		/// create dictionaries for PATMuMuEleTauQuad objects
+-		PATMuMuEleTauQuad dummyPATMuMuEleTauQuad;
+-		edm::Wrapper<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadWrapper;
+-		PATMuMuEleTauQuadCollection dummyPATMuMuEleTauQuadCollection;
+-		edm::Wrapper<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadCollectionWrapper;
+-		edm::Ref<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRef;
+-		edm::RefVector<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefVector;
+-		edm::RefProd<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefProd;
+-		edm::Ptr<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadPtr;
+-
+-		/// create dictionaries for PATMuMuEleEleQuad objects
+-		PATMuMuEleEleQuad dummyPATMuMuEleEleQuad;
+-		edm::Wrapper<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadWrapper;
+-		PATMuMuEleEleQuadCollection dummyPATMuMuEleEleQuadCollection;
+-		edm::Wrapper<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadCollectionWrapper;
+-		edm::Ref<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRef;
+-		edm::RefVector<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefVector;
+-		edm::RefProd<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefProd;
+-		edm::Ptr<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadPtr;
+-
+-		/// create dictionaries for PATMuMuEleMuQuad objects
+-		PATMuMuEleMuQuad dummyPATMuMuEleMuQuad;
+-		edm::Wrapper<PATMuMuEleMuQuad> dummyPATMuMuEleMuTauQuadWrapper;
+-		PATMuMuEleMuQuadCollection dummyPATMuMuEleMuQuadCollection;
+-		edm::Wrapper<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadCollectionWrapper;
+-		edm::Ref<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRef;
+-		edm::RefVector<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefVector;
+-		edm::RefProd<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefProd;
+-		edm::Ptr<PATMuMuEleMuQuad> dummyPATMuMuEleMuQuadPtr;
+-
+-		/// create dictionaries for PATMuMuMuMuQuad objects
+-		PATMuMuMuMuQuad dummyPATMuMuMuMuQuad;
+-		edm::Wrapper<PATMuMuMuMuQuad> dummyPATMuMuMuMuTauQuadWrapper;
+-		PATMuMuMuMuQuadCollection dummyPATMuMuMuMuQuadCollection;
+-		edm::Wrapper<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadCollectionWrapper;
+-		edm::Ref<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRef;
+-		edm::RefVector<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefVector;
+-		edm::RefProd<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefProd;
+-		edm::Ptr<PATMuMuMuMuQuad> dummyPATMuMuMuMuQuadPtr;
+-
+-
+-		/// create dictionaries for PATEleEleEleTauQuad objects
+-		PATEleEleEleTauQuad dummyPATEleEleEleTauQuad;
+-		edm::Wrapper<PATEleEleEleTauQuad> dummyPATEleEleEleTauTauQuadWrapper;
+-		PATEleEleEleTauQuadCollection dummyPATEleEleEleTauQuadCollection;
+-		edm::Wrapper<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadCollectionWrapper;
+-		edm::Ref<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRef;
+-		edm::RefVector<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefVector;
+-		edm::RefProd<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefProd;
+-		edm::Ptr<PATEleEleEleTauQuad> dummyPATEleEleEleTauQuadPtr;
+-
+-		/// create dictionaries for PATEleEleTauTauQuad objects
+-		PATEleEleTauTauQuad dummyPATEleEleTauTauQuad;
+-		edm::Wrapper<PATEleEleTauTauQuad> dummyPATEleEleTauTauTauQuadWrapper;
+-		PATEleEleTauTauQuadCollection dummyPATEleEleTauTauQuadCollection;
+-		edm::Wrapper<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadCollectionWrapper;
+-		edm::Ref<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRef;
+-		edm::RefVector<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefVector;
+-		edm::RefProd<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefProd;
+-		edm::Ptr<PATEleEleTauTauQuad> dummyPATEleEleTauTauQuadPtr;
+-
+-		/// create dictionaries for PATEleEleEleEleQuad objects
+-		PATEleEleEleEleQuad dummyPATEleEleEleEleQuad;
+-		edm::Wrapper<PATEleEleEleEleQuad> dummyPATEleEleEleEleTauQuadWrapper;
+-		PATEleEleEleEleQuadCollection dummyPATEleEleEleEleQuadCollection;
+-		edm::Wrapper<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadCollectionWrapper;
+-		edm::Ref<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRef;
+-		edm::RefVector<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefVector;
+-		edm::RefProd<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefProd;
+-		edm::Ptr<PATEleEleEleEleQuad> dummyPATEleEleEleEleQuadPtr;
+-
+-		/// create dictionaries for PATEleEleMuTauQuad objects
+-		PATEleEleMuTauQuad dummyPATEleEleMuTauQuad;
+-		edm::Wrapper<PATEleEleMuTauQuad> dummyPATEleEleMuTauTauQuadWrapper;
+-		PATEleEleMuTauQuadCollection dummyPATEleEleMuTauQuadCollection;
+-		edm::Wrapper<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadCollectionWrapper;
+-		edm::Ref<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRef;
+-		edm::RefVector<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefVector;
+-		edm::RefProd<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefProd;
+-		edm::Ptr<PATEleEleMuTauQuad> dummyPATEleEleMuTauQuadPtr;
+-
+-		/// create dictionaries for PATEleEleEleMuQuad objects
+-		PATEleEleEleMuQuad dummyPATEleEleEleMuQuad;
+-		edm::Wrapper<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadWrapper;
+-		PATEleEleEleMuQuadCollection dummyPATEleEleEleMuQuadCollection;
+-		edm::Wrapper<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadCollectionWrapper;
+-		edm::Ref<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRef;
+-		edm::RefVector<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefVector;
+-		edm::RefProd<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefProd;
+-		edm::Ptr<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadPtr;
+-
+-		/// create dictionaries for PATEleEleMuMuQuad objects
+-		edm::Wrapper<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadWrapper;
+-		PATEleEleMuMuQuadCollection dummyPATEleEleMuMuQuadCollection;
+-		edm::Wrapper<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadCollectionWrapper;
+-		edm::Ref<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRef;
+-		edm::RefVector<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefVector;
+-		edm::RefProd<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefProd;
+-		edm::Ptr<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadPtr;
+-
+-		/// create dictionaries for PATMuMuMuNuQuad objects
+-		edm::Wrapper<PATMuMuMuNuQuad> dummyPATMuMuMuNuQuadWrapper;
+-		PATMuMuMuNuQuadCollection dummyPATMuMuMuNuQuadCollection;
+-		edm::Wrapper<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadCollectionWrapper;
+-		edm::Ref<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadRef;
+-		edm::RefVector<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadRefVector;
+-		edm::RefProd<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadRefProd;
+-		edm::Ptr<PATMuMuMuNuQuad> dummyPATMuMuMuNuQuadPtr;
+-		/// create dictionaries for PATEleEleMuNuQuad objects
+-		edm::Wrapper<PATEleEleMuNuQuad> dummyPATEleEleMuNuQuadWrapper;
+-		PATEleEleMuNuQuadCollection dummyPATEleEleMuNuQuadCollection;
+-		edm::Wrapper<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadCollectionWrapper;
+-		edm::Ref<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadRef;
+-		edm::RefVector<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadRefVector;
+-		edm::RefProd<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadRefProd;
+-		edm::Ptr<PATEleEleMuNuQuad> dummyPATEleEleMuNuQuadPtr;
+-		/// create dictionaries for PATMuMuEleNuQuad objects
+-		edm::Wrapper<PATMuMuEleNuQuad> dummyPATMuMuEleNuQuadWrapper;
+-		PATMuMuEleNuQuadCollection dummyPATMuMuEleNuQuadCollection;
+-		edm::Wrapper<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadCollectionWrapper;
+-		edm::Ref<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadRef;
+-		edm::RefVector<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadRefVector;
+-		edm::RefProd<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadRefProd;
+-		edm::Ptr<PATMuMuEleNuQuad> dummyPATMuMuEleNuQuadPtr;
+-		/// create dictionaries for PATEleEleEleNuQuad objects
+-		edm::Wrapper<PATEleEleEleNuQuad> dummyPATEleEleEleNuQuadWrapper;
+-		PATEleEleEleNuQuadCollection dummyPATEleEleEleNuQuadCollection;
+-		edm::Wrapper<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadCollectionWrapper;
+-		edm::Ref<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadRef;
+-		edm::RefVector<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadRefVector;
+-		edm::RefProd<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadRefProd;
+-		edm::Ptr<PATEleEleEleNuQuad> dummyPATEleEleEleNuQuadPtr;
+-
+-
+-		/// create dictionaries for PATEleEleEleTri objects                                                                                                                                               
+-		PATEleEleEleTri dummyPATEleEleEleTri;
+-		edm::Wrapper<PATEleEleEleTri> dummyPATEleEleEleTriWrapper;
+-		PATEleEleEleTriCollection dummyPATEleEleEleTriCollection;
+-		edm::Wrapper<PATEleEleEleTriCollection> dummyPATEleEleEleTriCollectionWrapper;
+-		edm::Ref<PATEleEleEleTriCollection> dummyPATEleEleEleTriRef;
+-		edm::RefVector<PATEleEleEleTriCollection> dummyPATEleEleEleTriRefVector;
+-		edm::RefProd<PATEleEleEleTriCollection> dummyPATEleEleEleTriRefProd;
+-		edm::Ptr<PATEleEleEleTri> dummyPATEleEleEleTriPtr;
+-
+-		// create dictionaries for PATEleEleMuTri objects                                                                                                                                               
+-		PATEleEleMuTri dummyPATEleEleMuTri;
+-		edm::Wrapper<PATEleEleMuTri> dummyPATEleEleMuTriWrapper;
+-		PATEleEleMuTriCollection dummyPATEleEleMuTriCollection;
+-		edm::Wrapper<PATEleEleMuTriCollection> dummyPATEleEleMuTriCollectionWrapper;
+-		edm::Ref<PATEleEleMuTriCollection> dummyPATEleEleMuTriRef;
+-		edm::RefVector<PATEleEleMuTriCollection> dummyPATEleEleMuTriRefVector;
+-		edm::RefProd<PATEleEleMuTriCollection> dummyPATEleEleMuTriRefProd;
+-		edm::Ptr<PATEleEleMuTri> dummyPATEleEleMuTriPtr;
+-
+-		// create dictionaries for PATMuMuEleTri objects                                                                                                                                               
+-		PATMuMuEleTri dummyPATMuMuEleTri;
+-		edm::Wrapper<PATMuMuEleTri> dummyPATMuMuEleTriWrapper;
+-		PATMuMuEleTriCollection dummyPATMuMuEleTriCollection;
+-		edm::Wrapper<PATMuMuEleTriCollection> dummyPATMuMuEleTriCollectionWrapper;
+-		edm::Ref<PATMuMuEleTriCollection> dummyPATMuMuEleTriRef;
+-		edm::RefVector<PATMuMuEleTriCollection> dummyPATMuMuEleTriRefVector;
+-		edm::RefProd<PATMuMuEleTriCollection> dummyPATMuMuEleTriRefProd;
+-		edm::Ptr<PATMuMuEleTri> dummyPATMuMuEleTriPtr;
+-
+-		// create dictionaries for PATMuMuMuTri objects                                                                                                                                               
+-		PATMuMuMuTri dummyPATMuMuMuTri;
+-		edm::Wrapper<PATMuMuMuTri> dummyPATMuMuMuTriWrapper;
+-		PATMuMuMuTriCollection dummyPATMuMuMuTriCollection;
+-		edm::Wrapper<PATMuMuMuTriCollection> dummyPATMuMuMuTriCollectionWrapper;
+-		edm::Ref<PATMuMuMuTriCollection> dummyPATMuMuMuTriRef;
+-		edm::RefVector<PATMuMuMuTriCollection> dummyPATMuMuMuTriRefVector;
+-		edm::RefProd<PATMuMuMuTriCollection> dummyPATMuMuMuTriRefProd;
+-		edm::Ptr<PATMuMuMuTri> dummyPATMuMuMuTriPtr;
+-
+-		//create dictionaries for SVFit
+-		SVfitDiTauSolution dummySVfitDiTauSolution;
+-		std::vector<SVfitDiTauSolution> dummySVfitDiTauSolutionCollection;
+-		std::vector<SVfitLegSolution> dummySVfitLegSolutionCollection;
+-		std::map<std::string, double> dummySVfitDiTauSolutionLogLikeMap;
+-		std::map<std::string, std::map<std::string, double> > dummySVfitDiTauSolutionLogLikeMapMap;
+-		std::map<std::string, SVfitDiTauSolution> dummySVfitDiTauSolutionMap;
+-		std::map<std::string, std::map<std::string, SVfitDiTauSolution> > dummySVfitDiTauSolutionMapMap;
+-
+-
+-
+-	};
++  struct UWanalysis_DataFormats_dictionary {
++    /// create dictionaries for DiCandidatePair objects
++    DiCandidatePair dummyDiCandidatePair;
++    edm::Wrapper<DiCandidatePair> dummyDiCandidatePairWrapper;
++    DiCandidatePairCollection dummyDiCandidatePairCollection;
++    edm::Wrapper<DiCandidatePairCollection> dummyDiCandidatePairCollectionWrapper;
++
++    /// create dictionaries for 
++    ///  o edm::Ptr<pat::Electron> 
++    ///  o edm::Ptr<pat::Muon> 
++    ///  o edm::Ptr<pat::Tau>
++    ///  o edm::Ptr<pat::Jet>
++    /// as these dictionaries are not yet created in DataFormats/PatCandidates/src/classes.h
++    //    edm::Ptr<pat::Electron> dummyPATElectronPtr;
++    //  edm::Ptr<pat::Muon> dummyPATMuonPtr;
++    //    edm::Ptr<pat::Tau> dummyPATTauPtr;
++    //  edm::Ptr<pat::Jet> dummyPATJetPtr;
++    // edm::Ptr<pat::MET> dummyPATMETPtr;
++    edm::Ptr<reco::RecoChargedCandidate> dummyRecoChargeCandPtr;
++    edm::Ptr<reco::RecoEcalCandidate> dummyRecoEcalCandPtr;
++    std::vector<edm::Ptr<pat::Jet> > dummyPATJetPtrVector;
++
++
++
++
++    /// create dictionaries for 
++    ///  o edm::Ptr<reco::CaloJet>
++    ///  o edm::Ptr<reco::PFJet>
++    /// as these dictionaries are not yet created in DataFormats/JetReco/src/classes.h
++    edm::Ptr<reco::CaloJet> dummyCaloJetPtr;
++    edm::Ptr<reco::PFJet> dummyPFJetPtr;
++
++    /// create dictionaries for
++    ///  o edm::Ptr<reco::GenParticle>
++    /// as these dictionaries are not yet created in DataFormats/HepMCCandidate/src/classes.h
++    edm::Ptr<reco::GenParticle> dummyGenParticlePtr;
++
++    /// create dictionaries for
++    ///  o edm::Ptr<reco::Track>
++    ///  o edm::Ptr<reco::GsfTrack>
++    /// as these dictionaries are not yet created in DataFormats/TrackReco/src/classes.h (DataFormats/GsfTrackReco/src/classes.h)
++    edm::Ptr<reco::Track> dummyTrackPtr;
++    edm::Ptr<reco::GsfTrack> dummyGsfTrackPtr;
++
++    /// create dictionaries for PATElecPair objects
++    PATElecPair dummyPATElecPair;
++    edm::Wrapper<PATElecPair> dummyPATElecPairWrapper;
++    PATElecPairCollection dummyPATElecPairCollection;
++    edm::Wrapper<PATElecPairCollection> dummyPATElecPairCollectionWrapper;
++    edm::Ptr<PATElecPair> dummyPATElecPairPtr;
++
++
++
++    /// create dictionaries for PATMuPair objects
++    PATMuPair dummyPATMuPair;
++    edm::Wrapper<PATMuPair> dummyPATMuPairWrapper;
++    PATMuPairCollection dummyPATMuPairCollection;
++    edm::Wrapper<PATMuPairCollection> dummyPATMuPairCollectionWrapper;
++    edm::Ptr<PATMuPair> dummyPATMuPairPtr;
++
++
++    /// create dictionaries for PATElecTauPair objects
++    PATElecTauPair dummyPATElecTauPair;
++    edm::Wrapper<PATElecTauPair> dummyPATElecTauPairWrapper;
++    PATElecTauPairCollection dummyPATElecTauPairCollection;
++    edm::Wrapper<PATElecTauPairCollection> dummyPATElecTauPairCollectionWrapper;
++    edm::Ref<PATElecTauPairCollection> dummyPATElecTauPairRef;
++    edm::RefVector<PATElecTauPairCollection> dummyPATElecTauPairRefVector;
++    edm::RefProd<PATElecTauPairCollection> dummyPATElecTauPairRefProd;
++    edm::Ptr<PATElecTauPair> dummyPATElecTauPairPtr;
++
++
++    /// create dictionaries for PATElecSCPair objects
++    PATElecSCPair dummyPATElecSCPair;
++    edm::Wrapper<PATElecSCPair> dummyPATElecSCPairWrapper;
++    PATElecSCPairCollection dummyPATElecSCPairCollection;
++    edm::Wrapper<PATElecSCPairCollection> dummyPATElecSCPairCollectionWrapper;
++    edm::Ref<PATElecSCPairCollection> dummyPATElecSCPairRef;
++    edm::RefVector<PATElecSCPairCollection> dummyPATElecSCPairRefVector;
++    edm::RefProd<PATElecSCPairCollection> dummyPATElecSCPairRefProd;
++    edm::Ptr<PATElecSCPair> dummyPATElecSCPairPtr;
++
++
++
++    /// create dictionaries for PATMuTauPair objects
++    PATMuTauPair dummyPATMuTauPair;
++    edm::Wrapper<PATMuTauPair> dummyPATMuTauPairWrapper;
++    PATMuTauPairCollection dummyPATMuTauPairCollection;
++    edm::Wrapper<PATMuTauPairCollection> dummyPATMuTauPairCollectionWrapper;
++    edm::Ref<PATMuTauPairCollection> dummyPATMuTauPairRef;
++    edm::RefVector<PATMuTauPairCollection> dummyPATMuTauPairRefVector;
++    edm::RefProd<PATMuTauPairCollection> dummyPATMuTauPairRefProd;
++    edm::Ptr<PATMuTauPair> dummyPATMuTauPairPtr;
++
++
++    /// create dictionaries for PATMuTauPair objects
++    PATMuTrackPair dummyPATMuTrackPair;
++    edm::Wrapper<PATMuTrackPair> dummyPATMuTrackPairWrapper;
++    PATMuTrackPairCollection dummyPATMuTrackPairCollection;
++    edm::Wrapper<PATMuTrackPairCollection> dummyPATMuTrackPairCollectionWrapper;
++    edm::Ref<PATMuTrackPairCollection> dummyPATMuTrackPairRef;
++    edm::RefVector<PATMuTrackPairCollection> dummyPATMuTrackPairRefVector;
++    edm::RefProd<PATMuTrackPairCollection> dummyPATMuTrackPairRefProd;
++    edm::Ptr<PATMuTrackPair> dummyPATMuTrackPairPtr;
++
++
++    /// create dictionaries for PATEleTrackPair objects
++    PATEleTrackPair dummyPATEleTrackPair;
++    edm::Wrapper<PATEleTrackPair> dummyPATEleTrackPairWrapper;
++    PATEleTrackPairCollection dummyPATEleTrackPairCollection;
++    edm::Wrapper<PATEleTrackPairCollection> dummyPATEleTrackPairCollectionWrapper;
++    edm::Ref<PATEleTrackPairCollection> dummyPATEleTrackPairRef;
++    edm::RefVector<PATEleTrackPairCollection> dummyPATEleTrackPairRefVector;
++    edm::RefProd<PATEleTrackPairCollection> dummyPATEleTrackPairRefProd;
++    edm::Ptr<PATEleTrackPair> dummyPATEleTrackPairPtr;
++
++/// create dictionaries for PATEleTrackPair objects
++    PATTrackTrackPair dummyPATrackTrackPair;
++    edm::Wrapper<PATTrackTrackPair> dummyPATTrackTrackPairWrapper;
++    PATTrackTrackPairCollection dummyPATTrackTrackPairCollection;
++    edm::Wrapper<PATTrackTrackPairCollection> dummyPATTrackTrackPairCollectionWrapper;
++    edm::Ref<PATTrackTrackPairCollection> dummyPATTrackTrackPairRef;
++    edm::RefVector<PATTrackTrackPairCollection> dummyPATTrackTrackPairRefVector;
++    edm::RefProd<PATTrackTrackPairCollection> dummyPATTrackTrackPairRefProd;
++    edm::Ptr<PATTrackTrackPair> dummyPATTrackTrackPairPtr;
++
++    /// create dictionaries for PATDiTauPair objects
++    PATDiTauPair dummyPATDiTauPair;
++    edm::Wrapper<PATDiTauPair> dummyPATDiTauPairWrapper;
++    PATDiTauPairCollection dummyPATDiTauPairCollection;
++    edm::Wrapper<PATDiTauPairCollection> dummyPATDiTauPairCollectionWrapper;
++    edm::Ref<PATDiTauPairCollection> dummyPATDiTauPairRef;
++    edm::RefVector<PATDiTauPairCollection> dummyPATDiTauPairRefVector;
++    edm::RefProd<PATDiTauPairCollection> dummyPATDiTauPairRefProd;
++    edm::Ptr<PATDiTauPair> dummyPATDiTauPairPtr;
++    
++
++    /// create dictionaries for PATElecMuPair objects
++    PATElecMuPair dummyPATElecMuPair;
++    edm::Wrapper<PATElecMuPair> dummyPATElecMuPairWrapper;
++    PATElecMuPairCollection dummyPATElecMuPairCollection;
++    edm::Wrapper<PATElecMuPairCollection> dummyPATElecMuPairCollectionWrapper;
++    edm::Ref<PATElecMuPairCollection> dummyPATElecMuPairRef;
++    edm::RefVector<PATElecMuPairCollection> dummyPATElecMuPairRefVector;
++    edm::RefProd<PATElecMuPairCollection> dummyPATElecMuPairRefProd;
++    edm::Ptr<PATElecMuPair> dummyPATElecMuPairPtr;
++
++
++    /// create dictionaries for PATTauNuPair objects
++    PATTauNuPair dummyPATTauNuPair;
++    edm::Wrapper<PATTauNuPair> dummyPATTauNuPairWrapper;
++    PATTauNuPairCollection dummyPATTauNuPairCollection;
++    edm::Wrapper<PATTauNuPairCollection> dummyPATTauNuPairCollectionWrapper;
++    edm::Ptr<PATTauNuPair> dummyPATTauNuPairPtr;
++
++    /// create dictionaries for PATMuonNuPair objects
++    PATMuonNuPair dummyPATMuonNuPair;
++    edm::Wrapper<PATMuonNuPair> dummyPATMuonNuPairWrapper;
++    PATMuonNuPairCollection dummyPATMuonNuPairCollection;
++    edm::Wrapper<PATMuonNuPairCollection> dummyPATMuonNuPairCollectionWrapper;
++    edm::Ptr<PATMuonNuPair> dummyPATMuonNuPairPtr;
++
++    /// create dictionaries for PATMuonNuPair objects
++    PATElectronNuPair dummyPATElectronNuPair;
++    edm::Wrapper<PATElectronNuPair> dummyPATElectronNuPairWrapper;
++    PATElectronNuPairCollection dummyPATElectronNuPairCollection;
++    edm::Wrapper<PATElectronNuPairCollection> dummyPATElectronNuPairCollectionWrapper;
++    edm::Ptr<PATElectronNuPair> dummyPATElectronNuPairPtr;
++
++    /// create dictionaries for PATMuonNuPair objects
++    PATCandNuPair dummyPATCandNuPair;
++    edm::Wrapper<PATCandNuPair> dummyPATCandNuPairWrapper;
++    PATCandNuPairCollection dummyPATCandNuPairCollection;
++    edm::Wrapper<PATCandNuPairCollection> dummyPATCandNuPairCollectionWrapper;
++
++	//Di-boson candidate dictionaries
++	
++    /// create dictionaries for PATMuMuMuTauQuad objects
++    PATMuMuMuTauQuad dummyPATMuMuMuTauQuad;
++    edm::Wrapper<PATMuMuMuTauQuad> dummyPATMuMuMuTauTauQuadWrapper;
++    PATMuMuMuTauQuadCollection dummyPATMuMuMuTauQuadCollection;
++    edm::Wrapper<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadCollectionWrapper;
++    edm::Ref<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRef;
++    edm::RefVector<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefVector;
++    edm::RefProd<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefProd;
++    edm::Ptr<PATMuMuMuTauQuad> dummyPATMuMuMuTauQuadPtr;
++
++    /// create dictionaries for PATMuMuTauTauQuad objects
++    PATMuMuTauTauQuad dummyPATMuMuTauTauQuad;
++    edm::Wrapper<PATMuMuTauTauQuad> dummyPATMuMuTauTauTauQuadWrapper;
++    PATMuMuTauTauQuadCollection dummyPATMuMuTauTauQuadCollection;
++    edm::Wrapper<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadCollectionWrapper;
++    edm::Ref<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRef;
++    edm::RefVector<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefVector;
++    edm::RefProd<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefProd;
++    edm::Ptr<PATMuMuTauTauQuad> dummyPATMuMuTauTauQuadPtr;
++
++    /// create dictionaries for PATMuMuEleTauQuad objects
++    PATMuMuEleTauQuad dummyPATMuMuEleTauQuad;
++    edm::Wrapper<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadWrapper;
++    PATMuMuEleTauQuadCollection dummyPATMuMuEleTauQuadCollection;
++    edm::Wrapper<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadCollectionWrapper;
++    edm::Ref<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRef;
++    edm::RefVector<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefVector;
++    edm::RefProd<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefProd;
++    edm::Ptr<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadPtr;
++
++    /// create dictionaries for PATMuMuEleEleQuad objects
++    PATMuMuEleEleQuad dummyPATMuMuEleEleQuad;
++    edm::Wrapper<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadWrapper;
++    PATMuMuEleEleQuadCollection dummyPATMuMuEleEleQuadCollection;
++    edm::Wrapper<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadCollectionWrapper;
++    edm::Ref<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRef;
++    edm::RefVector<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefVector;
++    edm::RefProd<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefProd;
++    edm::Ptr<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadPtr;
++
++    /// create dictionaries for PATMuMuEleMuQuad objects
++    PATMuMuEleMuQuad dummyPATMuMuEleMuQuad;
++    edm::Wrapper<PATMuMuEleMuQuad> dummyPATMuMuEleMuTauQuadWrapper;
++    PATMuMuEleMuQuadCollection dummyPATMuMuEleMuQuadCollection;
++    edm::Wrapper<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadCollectionWrapper;
++    edm::Ref<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRef;
++    edm::RefVector<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefVector;
++    edm::RefProd<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefProd;
++    edm::Ptr<PATMuMuEleMuQuad> dummyPATMuMuEleMuQuadPtr;
++
++    /// create dictionaries for PATMuMuMuMuQuad objects
++    PATMuMuMuMuQuad dummyPATMuMuMuMuQuad;
++    edm::Wrapper<PATMuMuMuMuQuad> dummyPATMuMuMuMuTauQuadWrapper;
++    PATMuMuMuMuQuadCollection dummyPATMuMuMuMuQuadCollection;
++    edm::Wrapper<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadCollectionWrapper;
++    edm::Ref<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRef;
++    edm::RefVector<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefVector;
++    edm::RefProd<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefProd;
++    edm::Ptr<PATMuMuMuMuQuad> dummyPATMuMuMuMuQuadPtr;
++
++
++    /// create dictionaries for PATEleEleEleTauQuad objects
++    PATEleEleEleTauQuad dummyPATEleEleEleTauQuad;
++    edm::Wrapper<PATEleEleEleTauQuad> dummyPATEleEleEleTauTauQuadWrapper;
++    PATEleEleEleTauQuadCollection dummyPATEleEleEleTauQuadCollection;
++    edm::Wrapper<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadCollectionWrapper;
++    edm::Ref<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRef;
++    edm::RefVector<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefVector;
++    edm::RefProd<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefProd;
++    edm::Ptr<PATEleEleEleTauQuad> dummyPATEleEleEleTauQuadPtr;
++
++    /// create dictionaries for PATEleEleTauTauQuad objects
++    PATEleEleTauTauQuad dummyPATEleEleTauTauQuad;
++    edm::Wrapper<PATEleEleTauTauQuad> dummyPATEleEleTauTauTauQuadWrapper;
++    PATEleEleTauTauQuadCollection dummyPATEleEleTauTauQuadCollection;
++    edm::Wrapper<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadCollectionWrapper;
++    edm::Ref<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRef;
++    edm::RefVector<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefVector;
++    edm::RefProd<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefProd;
++    edm::Ptr<PATEleEleTauTauQuad> dummyPATEleEleTauTauQuadPtr;
++
++    /// create dictionaries for PATEleEleEleEleQuad objects
++    PATEleEleEleEleQuad dummyPATEleEleEleEleQuad;
++    edm::Wrapper<PATEleEleEleEleQuad> dummyPATEleEleEleEleTauQuadWrapper;
++    PATEleEleEleEleQuadCollection dummyPATEleEleEleEleQuadCollection;
++    edm::Wrapper<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadCollectionWrapper;
++    edm::Ref<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRef;
++    edm::RefVector<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefVector;
++    edm::RefProd<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefProd;
++    edm::Ptr<PATEleEleEleEleQuad> dummyPATEleEleEleEleQuadPtr;
++
++    /// create dictionaries for PATEleEleMuTauQuad objects
++    PATEleEleMuTauQuad dummyPATEleEleMuTauQuad;
++    edm::Wrapper<PATEleEleMuTauQuad> dummyPATEleEleMuTauTauQuadWrapper;
++    PATEleEleMuTauQuadCollection dummyPATEleEleMuTauQuadCollection;
++    edm::Wrapper<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadCollectionWrapper;
++    edm::Ref<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRef;
++    edm::RefVector<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefVector;
++    edm::RefProd<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefProd;
++    edm::Ptr<PATEleEleMuTauQuad> dummyPATEleEleMuTauQuadPtr;
++
++    /// create dictionaries for PATEleEleEleMuQuad objects
++    PATEleEleEleMuQuad dummyPATEleEleEleMuQuad;
++    edm::Wrapper<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadWrapper;
++    PATEleEleEleMuQuadCollection dummyPATEleEleEleMuQuadCollection;
++    edm::Wrapper<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadCollectionWrapper;
++    edm::Ref<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRef;
++    edm::RefVector<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefVector;
++    edm::RefProd<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefProd;
++    edm::Ptr<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadPtr;
++
++    /// create dictionaries for PATEleEleMuMuQuad objects
++    edm::Wrapper<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadWrapper;
++    PATEleEleMuMuQuadCollection dummyPATEleEleMuMuQuadCollection;
++    edm::Wrapper<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadCollectionWrapper;
++    edm::Ref<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRef;
++    edm::RefVector<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefVector;
++    edm::RefProd<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefProd;
++    edm::Ptr<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadPtr;
++	
++    /// create dictionaries for PATMuMuMuNuQuad objects
++    edm::Wrapper<PATMuMuMuNuQuad> dummyPATMuMuMuNuQuadWrapper;
++    PATMuMuMuNuQuadCollection dummyPATMuMuMuNuQuadCollection;
++    edm::Wrapper<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadCollectionWrapper;
++    edm::Ref<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadRef;
++    edm::RefVector<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadRefVector;
++    edm::RefProd<PATMuMuMuNuQuadCollection> dummyPATMuMuMuNuQuadRefProd;
++    edm::Ptr<PATMuMuMuNuQuad> dummyPATMuMuMuNuQuadPtr;
++    /// create dictionaries for PATEleEleMuNuQuad objects
++    edm::Wrapper<PATEleEleMuNuQuad> dummyPATEleEleMuNuQuadWrapper;
++    PATEleEleMuNuQuadCollection dummyPATEleEleMuNuQuadCollection;
++    edm::Wrapper<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadCollectionWrapper;
++    edm::Ref<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadRef;
++    edm::RefVector<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadRefVector;
++    edm::RefProd<PATEleEleMuNuQuadCollection> dummyPATEleEleMuNuQuadRefProd;
++    edm::Ptr<PATEleEleMuNuQuad> dummyPATEleEleMuNuQuadPtr;
++    /// create dictionaries for PATMuMuEleNuQuad objects
++    edm::Wrapper<PATMuMuEleNuQuad> dummyPATMuMuEleNuQuadWrapper;
++    PATMuMuEleNuQuadCollection dummyPATMuMuEleNuQuadCollection;
++    edm::Wrapper<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadCollectionWrapper;
++    edm::Ref<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadRef;
++    edm::RefVector<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadRefVector;
++    edm::RefProd<PATMuMuEleNuQuadCollection> dummyPATMuMuEleNuQuadRefProd;
++    edm::Ptr<PATMuMuEleNuQuad> dummyPATMuMuEleNuQuadPtr;
++    /// create dictionaries for PATEleEleEleNuQuad objects
++    edm::Wrapper<PATEleEleEleNuQuad> dummyPATEleEleEleNuQuadWrapper;
++    PATEleEleEleNuQuadCollection dummyPATEleEleEleNuQuadCollection;
++    edm::Wrapper<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadCollectionWrapper;
++    edm::Ref<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadRef;
++    edm::RefVector<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadRefVector;
++    edm::RefProd<PATEleEleEleNuQuadCollection> dummyPATEleEleEleNuQuadRefProd;
++    edm::Ptr<PATEleEleEleNuQuad> dummyPATEleEleEleNuQuadPtr;
++
++
++    /// create dictionaries for PATEleEleEleQuad objects                                                                                                                                               
++    PATEleEleEle dummyPATEleEleEle;
++    edm::Wrapper<PATEleEleEle> dummyPATEleEleEleWrapper;
++    PATEleEleEleCollection dummyPATEleEleEleCollection;
++    edm::Wrapper<PATEleEleEleCollection> dummyPATEleEleEleCollectionWrapper;
++    edm::Ref<PATEleEleEleCollection> dummyPATEleEleEleRef;
++    edm::RefVector<PATEleEleEleCollection> dummyPATEleEleEleRefVector;
++    edm::RefProd<PATEleEleEleCollection> dummyPATEleEleEleRefProd;
++    edm::Ptr<PATEleEleEle> dummyPATEleEleElePtr;
++    //create dictionaries for SVFit
++    SVfitDiTauSolution dummySVfitDiTauSolution;
++    std::vector<SVfitDiTauSolution> dummySVfitDiTauSolutionCollection;
++    std::vector<SVfitLegSolution> dummySVfitLegSolutionCollection;
++    std::map<std::string, double> dummySVfitDiTauSolutionLogLikeMap;
++    std::map<std::string, std::map<std::string, double> > dummySVfitDiTauSolutionLogLikeMapMap;
++    std::map<std::string, SVfitDiTauSolution> dummySVfitDiTauSolutionMap;
++    std::map<std::string, std::map<std::string, SVfitDiTauSolution> > dummySVfitDiTauSolutionMapMap;
++
++
++
++  };
+ }
+diff --git a/DataFormats/src/classes_def.xml b/DataFormats/src/classes_def.xml
+index 5e9ea1a..0fbb457 100644
+--- a/DataFormats/src/classes_def.xml
++++ b/DataFormats/src/classes_def.xml
+@@ -251,46 +251,16 @@
+   <class name="edm::RefProd<PATEleEleMuMuQuadCollection>"/>
+   <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> >"/>
+ 
+-   <!-- create dictionaries for PATEleEleEleTri objects -->
++   <!-- create dictionaries for PATEleEleEleQuad objects -->
+   <class name="CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron>"/>
+   <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> >"/>
+   <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> >"/>
+   <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> > >"/>
+-  <class name="edm::Ref<PATEleEleEleTriCollection,PATEleEleEleTri,edm::refhelper::FindUsingAdvance<PATEleEleEleTriCollection,PATEleEleEleTri> >"/>
+-  <class name="edm::RefVector<PATEleEleEleTriCollection,PATEleEleEleTri,edm::refhelper::FindUsingAdvance<PATEleEleEleTriCollection,PATEleEleEleTri> >"/>
+-  <class name="edm::RefProd<PATEleEleEleTriCollection>"/>
++  <class name="edm::Ref<PATEleEleEleCollection,PATEleEleEle,edm::refhelper::FindUsingAdvance<PATEleEleEleCollection,PATEleEleEle> >"/>
++  <class name="edm::RefVector<PATEleEleEleCollection,PATEleEleEle,edm::refhelper::FindUsingAdvance<PATEleEleEleCollection,PATEleEleEle> >"/>
++  <class name="edm::RefProd<PATEleEleEleCollection>"/>
+   <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> >"/>
+ 
+-   <!-- create dictionaries for PATEleEleMuTri objects -->
+-  <class name="CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon>"/>
+-  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> >"/>
+-  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> >"/>
+-  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> > >"/>
+-  <class name="edm::Ref<PATEleEleMuTriCollection,PATEleEleMuTri,edm::refhelper::FindUsingAdvance<PATEleEleMuTriCollection,PATEleEleMuTri> >"/>
+-  <class name="edm::RefVector<PATEleEleMuTriCollection,PATEleEleMuTri,edm::refhelper::FindUsingAdvance<PATEleEleMuTriCollection,PATEleEleMuTri> >"/>
+-  <class name="edm::RefProd<PATEleEleMuTriCollection>"/>
+-  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> >"/>
+-		 
+-  <!-- create dictionaries for PATMuMuEleTri objects -->
+-  <class name="CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron>"/>
+-  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> >"/>
+-  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> >"/>
+-  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> > >"/>
+-  <class name="edm::Ref<PATMuMuEleTriCollection,PATMuMuEleTri,edm::refhelper::FindUsingAdvance<PATMuMuEleTriCollection,PATMuMuEleTri> >"/>
+-  <class name="edm::RefVector<PATMuMuEleTriCollection,PATMuMuEleTri,edm::refhelper::FindUsingAdvance<PATMuMuEleTriCollection,PATMuMuEleTri> >"/>
+-  <class name="edm::RefProd<PATMuMuEleTriCollection>"/>
+-  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> >"/>
+-
+-   <!-- create dictionaries for PATMuMuMuTri objects -->
+-  <class name="CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon>"/>
+-  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> >"/>
+-  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> >"/>
+-  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> > >"/>
+-  <class name="edm::Ref<PATMuMuMuTriCollection,PATMuMuMuTri,edm::refhelper::FindUsingAdvance<PATMuMuMuTriCollection,PATMuMuMuTri> >"/>
+-  <class name="edm::RefVector<PATMuMuMuTriCollection,PATMuMuMuTri,edm::refhelper::FindUsingAdvance<PATMuMuMuTriCollection,PATMuMuMuTri> >"/>
+-  <class name="edm::RefProd<PATMuMuMuTriCollection>"/>
+-  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> >"/>
+-
+   <!-- create dictionaries for PATTauNuPair objects -->
+   <class name="CompositePtrCandidateTMEt<pat::Tau>"/>
+   <class name="std::vector<CompositePtrCandidateTMEt<pat::Tau> >"/>
+diff --git a/NtupleTools/plugins/StringBasedNtupleFiller.cc b/NtupleTools/plugins/StringBasedNtupleFiller.cc
+index e333dc0..e53f69d 100644
+--- a/NtupleTools/plugins/StringBasedNtupleFiller.cc
++++ b/NtupleTools/plugins/StringBasedNtupleFiller.cc
+@@ -31,8 +31,3 @@ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuNuQuadFiller, "PATEleEleMuNuQu
+ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleNuQuadFiller, "PATEleEleEleNuQuadFiller");
+ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuNuQuadFiller, "PATMuMuMuNuQuadFiller");
+ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleNuQuadFiller, "PATMuMuEleNuQuadFiller");
+-DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleTriFiller, "PATEleEleEleTriFiller");
+-DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTriFiller, "PATEleEleMuTriFiller");
+-DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTriFiller, "PATMuMuEleTriFiller");
+-DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriFiller, "PATMuMuMuTriFiller");
+-
+diff --git a/NtupleTools/plugins/StringBasedNtupleFiller.h b/NtupleTools/plugins/StringBasedNtupleFiller.h
+index 81394a8..1339849 100644
+--- a/NtupleTools/plugins/StringBasedNtupleFiller.h
++++ b/NtupleTools/plugins/StringBasedNtupleFiller.h
+@@ -122,8 +122,4 @@ typedef StringBasedNtupleFiller<PATEleEleMuNuQuad> PATEleEleMuNuQuadFiller;
+ typedef StringBasedNtupleFiller<PATEleEleEleNuQuad> PATEleEleEleNuQuadFiller;
+ typedef StringBasedNtupleFiller<PATMuMuMuNuQuad> PATMuMuMuNuQuadFiller;
+ typedef StringBasedNtupleFiller<PATMuMuEleNuQuad> PATMuMuEleNuQuadFiller;
+-typedef StringBasedNtupleFiller<PATEleEleEleTri> PATEleEleEleTriFiller;
+-typedef StringBasedNtupleFiller<PATEleEleMuTri> PATEleEleMuTriFiller;
+-typedef StringBasedNtupleFiller<PATMuMuEleTri> PATMuMuEleTriFiller;
+-typedef StringBasedNtupleFiller<PATMuMuMuTri> PATMuMuMuTriFiller;
+ 
+diff --git a/NtupleTools/plugins/VertexFiller.cc b/NtupleTools/plugins/VertexFiller.cc
+index 32323e2..8ef0818 100644
+--- a/NtupleTools/plugins/VertexFiller.cc
++++ b/NtupleTools/plugins/VertexFiller.cc
+@@ -13,7 +13,3 @@ DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleEleTauVertexFiller, "EleEleEleTauVe
+ DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleMuTauVertexFiller, "EleEleMuTauVertexFiller");
+ DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleTauTauVertexFiller, "EleEleTauTauVertexFiller");
+ DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleEleMuVertexFiller, "EleEleEleMuVertexFiller");
+-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleEleVertexFiller, "EleEleEleVertexFiller");
+-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, EleEleMuVertexFiller, "EleEleMuVertexFiller");
+-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, MuMuEleVertexFiller, "MuMuEleVertexFiller");
+-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, MuMuMuVertexFiller, "MuMuMuVertexFiller");
+diff --git a/NtupleTools/plugins/VertexFiller.h b/NtupleTools/plugins/VertexFiller.h
+index e1629d0..9dc3ea9 100644
+--- a/NtupleTools/plugins/VertexFiller.h
++++ b/NtupleTools/plugins/VertexFiller.h
+@@ -216,7 +216,3 @@ typedef VertexFiller<PATEleEleMuTauQuad> EleEleMuTauVertexFiller;
+ typedef VertexFiller<PATEleEleEleTauQuad> EleEleEleTauVertexFiller;
+ typedef VertexFiller<PATEleEleTauTauQuad> EleEleTauTauVertexFiller;
+ typedef VertexFiller<PATEleEleEleMuQuad> EleEleEleMuVertexFiller;
+-//typedef VertexFiller<PATEleEleEleTri> EleEleEleVertexFiller;
+-//typedef VertexFiller<PATEleEleMuTri> EleEleMuVertexFiller;
+-//typedef VertexFiller<PATMuMuEleTri> MuMuEleVertexFiller;
+-//typedef VertexFiller<PATMuMuMuTri> MuMuMuVertexFiller;
+diff --git a/ROOT/macros/ZZLimitsAndYields/helpers.h b/ROOT/macros/ZZLimitsAndYields/helpers.h
+index 6b18fae..af57524 100644
+--- a/ROOT/macros/ZZLimitsAndYields/helpers.h
++++ b/ROOT/macros/ZZLimitsAndYields/helpers.h
+@@ -18,231 +18,229 @@
+ 
+ //public:
+ 
+-TString stdIso(std::string leg, double cutd=100.7, std::string type,bool wcut=true){
++TString stdIso(std::string leg, double cutd=100.7){
++	double areaEcal_e[2] = {0.101, 0.046};
++	double areaHcal_e[2] = {0.021, 0.040};
++	double areaEcal_m[2] = {0.074, 0.045};
++	double areaHcal_m[2] = {0.022, 0.030};
+ 	std::stringstream s;
+ 	s << cutd;
+ 	std::string cut=s.str();
+ 	std::string temp;
+-	if (type=="ele") { 
+-		temp="("+leg+"StdIsoEcal-rho*(0.078*(abs("+leg+"Eta)<1.479)+0.046*(abs("+leg+"Eta)>1.479))";
+-		temp+="+"+leg+"StdIsoHcal-rho*(0.026*(abs("+leg+"Eta)<1.479)+0.072*(abs("+leg+"Eta)>1.479))";
+-		temp+="+"+leg+"StdIsoTk)/"+leg+"Pt";
+-	} else if (type=="mu"){
+-		temp="("+leg+"StdIsoEcal-rho*(0.087*(abs("+leg+"Eta)<1.479)+0.049*(abs("+leg+"Eta)>1.479))";
+-		temp+="+"+leg+"StdIsoHcal-rho*(0.042*(abs("+leg+"Eta)<1.479)+0.059*(abs("+leg+"Eta)>1.479))";
+-		temp+="+"+leg+"StdIsoTk)/"+leg+"Pt";
+-	}
+-	if (!wcut) {
+-		return temp;
+-	} else if (wcut) {
+-		temp+="<"+cut;
+-		return temp;
+-	}
++	std::stringstream se;
++	bool tempb = abs(leg+"Eta")<1.479;
++	se << areaEcal_e[tempb];
++	std::stringstream sh;
++	sh << areaHcal_e[tempb];
++	temp="("+leg+"StdIsoEcal-rho*"+se.str();
++	temp+="+"+leg+"StdIsoHcal-rho*"+sh.str();
++	temp+="+"+leg+"StdIsoTk)/"+leg+"Pt<"+cut;
++	return temp;
+ }
+ 
+-std::string returnEEEECuts(std::string cutType="selection"){
+-	if (cutType=="selection") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120";
+-	} else if (cutType=="sip"){
+-		return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120";
+-	} else if (cutType=="selectionStdIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.275,"ele")+"&&"+stdIso("z2l2",0.275,"ele");
+-	} else if (cutType=="selectionEWK") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionAbs") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionLoose4") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&z2l2CiCLoose&1==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionLoose4Abs"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1CiCTight&1)==1&&z2l2CiCLoose&1==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionLoose4") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&z2l2CiCLoose&1==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionFake") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	}
+-	else {
+-		return returnEEEECuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
++	std::string returnEEEECuts(std::string cutType="selection"){
++		if (cutType=="selection") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120";
++		} else if (cutType=="sip"){
++			return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120";
++		} else if (cutType=="selectionStdIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.275)+"&&"+stdIso("z2l2",0.275);
++		} else if (cutType=="selectionEWK") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionAbs") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionLoose4") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&z2l2CiCLoose&1==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionLoose4Abs"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1CiCTight&1)==1&&z2l2CiCLoose&1==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionLoose4") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&z2l2CiCLoose&1==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionFake") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		}
++		else {
++			return returnEEEECuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-}
+ 
+-std::string returnEEMMCuts(std::string cutType="selection"){
+-	if (cutType=="selection") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z2l1ValidHits>10&&z2l2ValidHits>10";
+-	} else if (cutType=="sip"){
+-		return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z2l1ValidHits>10&&z2l2ValidHits>10";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo: add std. iso
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Mass>60&&z2Mass<120&&z2l1ValidHits>10&&z2l2ValidHits>10&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.275,"mu")+"&&"+stdIso("z2l2",0.275,"mu");
+-	} else if (cutType=="selectionEWK") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionAbs"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	}
+-	else{
+-		return returnEEMMCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
++	std::string returnEEMMCuts(std::string cutType="selection"){
++		if (cutType=="selection") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z2l1ValidHits>10&&z2l2ValidHits>10";
++		} else if (cutType=="sip"){
++			return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z2l1ValidHits>10&&z2l2ValidHits>10";
++		} else if (cutType=="selectionStdIso"){
++			//todo: add std. iso
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Mass>60&&z2Mass<120&&z2l1ValidHits>10&&z2l2ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.275)+"&&"+stdIso("z2l2",0.275);
++		} else if (cutType=="selectionEWK") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionAbs"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		}
++		else{
++			return returnEEMMCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-}
+ 
+-std::string returnMMEECuts(std::string cutType="selection"){
+-	if (cutType=="selection") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10";
+-	} else if (cutType=="sip"){		
+-		return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo:add std. iso	
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&"+stdIso("z1l1",0.275,"mu")+"&&"+stdIso("z1l2",0.275,"mu")+"&&"+stdIso("z2l1",0.275,"ele")+stdIso("z2l2",0.275,"ele");
+-	} else if (cutType=="selectionEWK") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionAbs"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	}
+-	else{
+-		return returnMMEECuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
++	std::string returnMMEECuts(std::string cutType="selection"){
++		if (cutType=="selection") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10";
++		} else if (cutType=="sip"){		
++			return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10";
++		} else if (cutType=="selectionStdIso"){
++			//todo:add std. iso	
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.275)+stdIso("z2l2",0.275);
++		} else if (cutType=="selectionEWK") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionAbs"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		}
++		else{
++			return returnMMEECuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-}
+ 
+-std::string returnMMMMCuts(std::string cutType="selection"){
+-	if (cutType=="selection"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l2ValidHits>10&&z2l1ValidHits>10";
+-	}else if (cutType=="sip"){
+-		return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l2ValidHits>10&&z2l1ValidHits>10";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo: add std iso
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l2ValidHits>10&&z2l1ValidHits>10&&"+stdIso("z1l1",0.275,"mu")+"&&"+stdIso("z1l2",0.275,"mu")+"&&"+stdIso("z2l1",0.275,"mu")+"&&"+stdIso("z2l2",0.275,"mu");
+-	} else if (cutType=="selectionEWK"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
+-	} else if (cutType=="selectionAbs"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB>0.25&&z2l1RelPFIsoDB>0.25";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
+-	} else{
+-		return returnMMMMCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
++	std::string returnMMMMCuts(std::string cutType="selection"){
++		if (cutType=="selection"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l2ValidHits>10&&z2l1ValidHits>10";
++		}else if (cutType=="sip"){
++			return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l2ValidHits>10&&z2l1ValidHits>10";
++		} else if (cutType=="selectionStdIso"){
++			//todo: add std iso
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Mass>60&&z2Mass<120&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l2ValidHits>10&&z2l1ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.275)+"&&"+stdIso("z2l2",0.275);
++		} else if (cutType=="selectionEWK"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
++		} else if (cutType=="selectionAbs"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&((z1l1Pt>20&&z1l1RelPFIsoDB<0.25)||(z1l1Pt<20&&z1l1AbsPFIsoDB<5))&&((z1l2Pt>20&&z1l2RelPFIsoDB<0.25)||(z1l2Pt<20&&z1l2AbsPFIsoDB<5))&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&((z2l2Pt>20&&z2l2RelPFIsoDB<0.25)||(z2l2Pt<20&&z2l2AbsPFIsoDB<5))&&((z2l1Pt>20&&z2l1RelPFIsoDB<0.25)||(z2l1Pt<20&&z2l1AbsPFIsoDB<5))&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB>0.25&&z2l1RelPFIsoDB>0.25";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>12";
++		} else{
++			return returnMMMMCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-}
+ 
+-std::string returnEEETCuts(std::string cutType="selection"){
+-	if (cutType=="selection"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&EVENT!=344708580";
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l1CiCSuperTight&1==1&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo: add std. iso
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.081,"ele")+"&&EVENT!=344708580";
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&!z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>15&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Charge!=0";
+-	}
+-	else {
+-		return returnEEETCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
++	std::string returnEEETCuts(std::string cutType="selection"){
++		if (cutType=="selection"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l1CiCSuperTight&1==1&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionStdIso"){
++			//todo: add std. iso
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.2);
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&!z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>15&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Charge!=0";
++		}
++		else {
++			return returnEEETCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-}
+ 
+-std::string returnEEEMCuts(std::string cutType="selection"){
+-	if (cutType=="selection"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&z2l2RelPFIsoDB<0.25&&z2Mass<90&&z2l2ValidHits>10";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo: add std. iso
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass<90&&z2l2ValidHits>10&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.2,"ele")+"&&"+stdIso("z2l2",0.2,"mu");
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass>30&&z2Mass<80"; 
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l1MissHits<2&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&z2Mass<90"; 
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Charge!=0&&z2l1RelPFIsoDB<0.25&&z2l2RelPFIsoDB<0.25&&z2Mass<90";
++	std::string returnEEEMCuts(std::string cutType="selection"){
++		if (cutType=="selection"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&z2l2RelPFIsoDB<0.25&&z2Mass<90&&z2l2ValidHits>10";
++		} else if (cutType=="selectionStdIso"){
++			//todo: add std. iso
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass<90&&z2l2ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.275)+"&&"+stdIso("z2l2",0.275);
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass>30&&z2Mass<80"; 
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l1MissHits<2&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&z2Mass<90"; 
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Charge!=0&&z2l1RelPFIsoDB<0.25&&z2l2RelPFIsoDB<0.25&&z2Mass<90";
++		}
++		else{
++			return returnEEEMCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-	else{
+-		return returnEEEMCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
+-	}
+-}
+ 
+-std::string returnEEMTCuts(std::string cutType="selection"){
+-	if (cutType=="selection"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z2l1ValidHits>10";
+-	} else if (cutType=="selectionStdIso"){
+-		// todo: add std. iso
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z2l1ValidHits>10&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.10,"mu");
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2MuVetoTight&&z2l2Pt>20&&z2l1Pt>10";
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&!z2l2LooseIsoCombDB&&z2l2MuVetoTight&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVetoTight&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Charge!=0&&z2Mass>30&&z2Mass<80";
++	std::string returnEEMTCuts(std::string cutType="selection"){
++		if (cutType=="selection"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z2l1ValidHits>10";
++		} else if (cutType=="selectionStdIso"){
++			// todo: add std. iso
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z2l1ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.2);
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2MuVetoTight&&z2l2Pt>20&&z2l1Pt>10";
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&!z2l2LooseIsoCombDB&&z2l2MuVetoTight&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVetoTight&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Charge!=0&&z2Mass>30&&z2Mass<80";
++		}
++		else{
++			return returnEEMTCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-	else{
+-		return returnEEMTCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
+-	}
+-}
+ 
+-std::string returnEETTCuts(std::string cutType="selection"){
+-	if (cutType=="selection") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo: add std. iso.
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele");
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&!z2l1MediumIsoCombDB&&!z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionFake2"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>15&&z2l2Pt>15&&z2l1EleVeto&&z2l2EleVeto&&z2l1LooseIsoCombDB&&z2l2LooseIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Charge!=0";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>15&&z2l2Pt>15&&z2l1EleVeto&&z2l2EleVeto&&z2l1LooseIsoCombDB&&z2l2LooseIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Charge!=0";
+-	}
+-	else {
+-		return returnEETTCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
++	std::string returnEETTCuts(std::string cutType="selection"){
++		if (cutType=="selection") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionStdIso"){
++			//todo: add std. iso.
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275);
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&!z2l1MediumIsoCombDB&&!z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionFake2"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>15&&z2l2Pt>15&&z2l1EleVeto&&z2l2EleVeto&&z2l1LooseIsoCombDB&&z2l2LooseIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Charge!=0";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>15&&z2l2Pt>15&&z2l1EleVeto&&z2l2EleVeto&&z2l1LooseIsoCombDB&&z2l2LooseIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Charge!=0";
++		}
++		else {
++			return returnEETTCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-}
+ 
+-std::string returnMMETCuts(std::string cutType="selection"){
+-	if (cutType=="selection") {
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&EVENT!=286336207&&z1l1ValidHits>10&&z1l2ValidHits>10";
+-	} else if (cutType=="selectionStdIso"){
+-		//todo: add std. iso.
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&EVENT!=286336207&&z1l1ValidHits>10&&z1l2ValidHits>10&&"+stdIso("z1l1",0.275,"mu")+"&&"+stdIso("z1l2",0.275,"mu")+"&&"+stdIso("z2l1",0.081,"ele");
+-	} else if (cutType=="selectionNoIso"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l1CiCSuperTight&1==1&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionFake"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&!z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
+-	} else if (cutType=="selectionSS"){
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Charge!=0&&&EVENT!=286336207";
++	std::string returnMMETCuts(std::string cutType="selection"){
++		if (cutType=="selection") {
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&EVENT!=286336207&&z1l1ValidHits>10&&z1l2ValidHits>10";
++		} else if (cutType=="selectionStdIso"){
++			//todo: add std. iso.
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&EVENT!=286336207&&z1l1ValidHits>10&&z1l2ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275);
++		} else if (cutType=="selectionNoIso"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l1CiCSuperTight&1==1&&z2l2Pt>20&&z2l1Pt>10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionFake"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&!z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.10&&z2l1MissHits==0&&z2l2MuVeto&&z2Mass>30&&z2Mass<80";
++		} else if (cutType=="selectionSS"){
++			return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&(z2l1CiCTight&1)==1&&z2l2LooseIsoCombDB&&z2l2Pt>20&&z2l1Pt>10&&z2l1RelPFIsoDB<0.1&&z2l1MissHits==0&&z2l2MuVeto&&z2Charge!=0&&&EVENT!=286336207";
++		}
++		else{
++			return returnMMETCuts();
++			std::cout << "Not a valid cut type!" << std::endl;
++		}
+ 	}
+-	else{
+-		return returnMMETCuts();
+-		std::cout << "Not a valid cut type!" << std::endl;
+-	}
+-}
+ 
+-std::string returnMMEMCuts(std::string cutType="selection"){
++	std::string returnMMEMCuts(std::string cutType="selection"){
+ 	if (cutType=="selection") {
+ 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&z2l2RelPFIsoDB<0.25&&z2Mass<90&&z1l1ValidHits>10&&z1l2ValidHits&&z2l2ValidHits>10";
+ 	} else if (cutType=="selectionStdIso"){
+ 		//todo: add std. iso
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass<90&&z1l1ValidHits>10&&z1l2ValidHits&&z2l2ValidHits>10&&"+stdIso("z1l1",0.275,"mu")+"&&"+stdIso("z1l2",0.275,"mu",true)+"&&"+stdIso("z2l1",0.2,"ele",true)+"&&"+stdIso("z2l2",0.2,"mu",true);
++		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass<90&&z1l1ValidHits>10&&z1l2ValidHits&&z2l2ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.275)+"&&"+stdIso("z2l2",0.275);
+ 	} else if (cutType=="selectionNoIso"){
+ 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&(z2l1CiCTight&1)==1&&z2l1MissHits<2&&z2Mass>30&&z2Mass<80";
+ 	} else if (cutType=="selectionFake"){
+@@ -261,7 +259,7 @@ std::string returnMMMTCuts(std::string cutType="selection"){
+ 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l1ValidHits>10";
+ 	} else if (cutType=="selectionStdIso"){
+ 		//todo: add std. iso.
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l1ValidHits>10&&"+stdIso("z1l1",0.275,"mu")+"&&"+stdIso("z1l2",0.275,"mu")+"&&"+stdIso("z2l1",0.10,"mu");
++		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2LooseIsoCombDB&&z2l2MuVeto&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80&&z1l1ValidHits>10&&z1l2ValidHits>10&&z2l1ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275)+"&&"+stdIso("z2l1",0.2);
+ 	} else if (cutType=="selectionNoIso"){
+ 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l2EleVeto&&z2l2MuVetoTight&&z2l2Pt>20&&z2l1Pt>10&&z2Mass>30&&z2Mass<80";
+ 	} else if (cutType=="selectionFake"){
+@@ -280,7 +278,7 @@ std::string returnMMTTCuts(std::string cutType="selection"){
+ 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&z1l1ValidHits>10&&z1l2ValidHits>10";
+ 	} else if (cutType=="selectionStdIso"){
+ 		//todo: add std. iso.
+-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&z1l1ValidHits>10&&z1l2ValidHits>10&&"+stdIso("z1l1",0.275,"mu")+"&&"+stdIso("z1l2",0.275,"mu");
++		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MediumIsoCombDB&&z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80&&z1l1ValidHits>10&&z1l2ValidHits>10&&"+stdIso("z1l1",0.275)+"&&"+stdIso("z1l2",0.275);
+ 	} else if (cutType=="selectionNoIso"){
+ 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&z2l1MuVeto&&z2l2MuVeto&&z2Mass>30&&z2Mass<80"; 
+ 	} else if (cutType=="selectionFake"){
+diff --git a/RecoTools/plugins/DiCandidatePairCrossCleaner.cc b/RecoTools/plugins/DiCandidatePairCrossCleaner.cc
+index 77f6e64..8f337eb 100644
+--- a/RecoTools/plugins/DiCandidatePairCrossCleaner.cc
++++ b/RecoTools/plugins/DiCandidatePairCrossCleaner.cc
+@@ -15,7 +15,6 @@ typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATMuTauPair> PATE
+ typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATElecMuPair> PATEleEleEleMuQuadCrossCleaner;
+ typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATMuPair> PATEleEleMuMuQuadCrossCleaner;
+ 
+-
+ #include "FWCore/Framework/interface/MakerMacros.h"
+ 
+ DEFINE_FWK_MODULE(PATMuMuMuTauQuadCrossCleaner);
+@@ -30,4 +29,3 @@ DEFINE_FWK_MODULE(PATEleEleEleEleQuadCrossCleaner);
+ DEFINE_FWK_MODULE(PATEleEleMuTauQuadCrossCleaner);
+ DEFINE_FWK_MODULE(PATEleEleEleMuQuadCrossCleaner);
+ DEFINE_FWK_MODULE(PATEleEleMuMuQuadCrossCleaner);
+-
+diff --git a/RecoTools/plugins/DiCandidatePairProducer.cc b/RecoTools/plugins/DiCandidatePairProducer.cc
+index 23072f4..bc50053 100644
+--- a/RecoTools/plugins/DiCandidatePairProducer.cc
++++ b/RecoTools/plugins/DiCandidatePairProducer.cc
+@@ -31,12 +31,6 @@ typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATElectronNuPair> PATE
+ typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATMuonNuPair> PATEleEleMuNuQuadProducer;
+ typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,PATMuonNuPair> PATMuMuMuNuQuadProducer;
+ typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,PATElectronNuPair> PATMuMuEleNuQuadProducer;
+-typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,pat::Electron> PATEleEleEleTriProducer;
+-typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,pat::Muon> PATEleEleMuTriProducer;
+-typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,pat::Electron> PATMuMuEleTriProducer;
+-typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,pat::Muon> PATMuMuMuTriProducer;
+-
+-
+ 
+ #include "FWCore/Framework/interface/MakerMacros.h"
+ 
+@@ -67,7 +61,3 @@ DEFINE_FWK_MODULE(PATEleEleMuNuQuadProducer);
+ DEFINE_FWK_MODULE(PATEleEleEleNuQuadProducer);
+ DEFINE_FWK_MODULE(PATMuMuMuNuQuadProducer);
+ DEFINE_FWK_MODULE(PATMuMuEleNuQuadProducer);
+-DEFINE_FWK_MODULE(PATEleEleEleTriProducer);
+-DEFINE_FWK_MODULE(PATEleEleMuTriProducer);
+-DEFINE_FWK_MODULE(PATMuMuEleTriProducer);
+-DEFINE_FWK_MODULE(PATMuMuMuTriProducer);
+diff --git a/RecoTools/plugins/DiCandidatePairSelector.cc b/RecoTools/plugins/DiCandidatePairSelector.cc
+index e39ddbd..2512f68 100644
+--- a/RecoTools/plugins/DiCandidatePairSelector.cc
++++ b/RecoTools/plugins/DiCandidatePairSelector.cc
+@@ -26,14 +26,7 @@ DEFINE_FWK_MODULE(PATEleEleEleEleQuadSelector);
+ DEFINE_FWK_MODULE(PATEleEleMuTauQuadSelector);
+ DEFINE_FWK_MODULE(PATEleEleEleMuQuadSelector);
+ DEFINE_FWK_MODULE(PATEleEleMuMuQuadSelector);
+-//WZ
+ DEFINE_FWK_MODULE(PATMuMuMuNuQuadSelector);
+ DEFINE_FWK_MODULE(PATMuMuEleNuQuadSelector);
+ DEFINE_FWK_MODULE(PATEleEleMuNuQuadSelector);
+ DEFINE_FWK_MODULE(PATEleEleEleNuQuadSelector);
+-//Z+lepton
+-DEFINE_FWK_MODULE(PATEleEleEleTriSelector);
+-DEFINE_FWK_MODULE(PATEleEleMuTriSelector);
+-DEFINE_FWK_MODULE(PATMuMuEleTriSelector);
+-DEFINE_FWK_MODULE(PATMuMuMuTriSelector);
+-
+diff --git a/RecoTools/plugins/DiCandidatePairSelector.h b/RecoTools/plugins/DiCandidatePairSelector.h
+index 6c66a1a..6bdd8d9 100644
+--- a/RecoTools/plugins/DiCandidatePairSelector.h
++++ b/RecoTools/plugins/DiCandidatePairSelector.h
+@@ -162,23 +162,8 @@ typedef SingleObjectSelector<
+         > PATMuMuMuNuQuadSelector;
+ 
+ typedef SingleObjectSelector<
+-            std::vector<PATEleEleEleTri>,
+-            StringCutObjectSelector<PATEleEleEleTri>
+-        > PATEleEleEleTriSelector;
+-
+-typedef SingleObjectSelector<
+-            std::vector<PATEleEleMuTri>,
+-            StringCutObjectSelector<PATEleEleMuTri>
+-        > PATEleEleMuTriSelector;
+-
+-typedef SingleObjectSelector<
+-            std::vector<PATMuMuEleTri>,
+-            StringCutObjectSelector<PATMuMuEleTri>
+-        > PATMuMuEleTriSelector;
+-
+-typedef SingleObjectSelector<
+-            std::vector<PATMuMuMuTri>,
+-            StringCutObjectSelector<PATMuMuMuTri>
+-        > PATMuMuMuTriSelector;
++            std::vector<PATEleEleEle>,
++            StringCutObjectSelector<PATEleEleEle>
++        > PATEleEleEleSelector;
+ 
+ #endif
