@@ -24,18 +24,18 @@ TString stdIso(std::string leg, double cutd=100.7, std::string type,bool wcut=tr
 	std::string cut=s.str();
 	std::string temp;
 	if (type=="ele") { 
-		temp="("+leg+"StdIsoEcal-rho*(0.078*(abs("+leg+"Eta)<1.479)+0.046*(abs("+leg+"Eta)>1.479))";
+		temp="(("+leg+"StdIsoEcal-rho*(0.078*(abs("+leg+"Eta)<1.479)+0.046*(abs("+leg+"Eta)>1.479))";
 		temp+="+"+leg+"StdIsoHcal-rho*(0.026*(abs("+leg+"Eta)<1.479)+0.072*(abs("+leg+"Eta)>1.479))";
 		temp+="+"+leg+"StdIsoTk)/"+leg+"Pt";
 	} else if (type=="mu"){
-		temp="("+leg+"StdIsoEcal-rho*(0.087*(abs("+leg+"Eta)<1.479)+0.049*(abs("+leg+"Eta)>1.479))";
+		temp="(("+leg+"StdIsoEcal-rho*(0.087*(abs("+leg+"Eta)<1.479)+0.049*(abs("+leg+"Eta)>1.479))";
 		temp+="+"+leg+"StdIsoHcal-rho*(0.042*(abs("+leg+"Eta)<1.479)+0.059*(abs("+leg+"Eta)>1.479))";
 		temp+="+"+leg+"StdIsoTk)/"+leg+"Pt";
 	}
 	if (!wcut) {
-		return temp;
+		return temp+")";
 	} else if (wcut) {
-		temp+="<"+cut;
+		temp+="<"+cut+")";
 		return temp;
 	}
 }
@@ -46,7 +46,7 @@ std::string returnEEEECuts(std::string cutType="selection"){
 	} else if (cutType=="sip"){
 		return "z1l1SIP<4&&z1l2SIP<4&&z2l1SIP<4&&z2l2SIP<4&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120";
 	} else if (cutType=="selectionStdIso"){
-		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.275,"ele")+"&&"+stdIso("z2l2",0.275,"ele");
+		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>7&&z2l2Pt>7&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&z2Mass>60&&z2Mass<120&&"+stdIso("z1l1",0.275,"ele")+"&&"+stdIso("z1l2",0.275,"ele")+"&&"+stdIso("z2l1",0.275,"ele")+"&&"+stdIso("z2l2",0.275,"ele");
 	} else if (cutType=="selectionEWK") {
 		return "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>50&&z1Mass<120&&(z1l1CiCTight&1)==1&&(z1l2CiCTight&1)==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>10&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1CiCTight&1)==1&&(z2l2CiCTight&1)==1&&z2l1MissHits<2&&z2l2MissHits<2&&(z2l1Pt+z2l2Pt)>20&&z2Mass>60&&z2Mass<120";
 	} else if (cutType=="selectionNoIso"){
