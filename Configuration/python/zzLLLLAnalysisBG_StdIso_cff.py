@@ -449,7 +449,7 @@ MMMMnoIsoSS.addSelector('noIsoSSMMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.ch
 MMMMnoIsoSS.addSorter('noIsoSSMMMMsorted','PATMuMuMuMuQuadSorterByZMass')
 MMMMnoIsoSS.addSelector('noIsoSSMMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMMMSIP')
 MMMMnoIsoSS.addSelector('MMMMnoIsoSSF','PATMuMuMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()&&leg2.leg1.isTrackerMuon()&&leg2.leg2.isTrackerMuon()','noIsoSSMMMMsecondPairID')
-MMMMnoIsoSS.addSelector('MMMMnoIsoSScheckF','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&eg2.leg2.pt()>10','noIsoSSMMMMsecondPairID')
+MMMMnoIsoSS.addSelector('MMMMnoIsoSScheckF','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>10','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSSSeq =MMMMnoIsoSS.returnSequence()
 
 MMMMantiIso2 = CutSequenceProducer(initialCounter  = 'initialEventsMMMM2',
