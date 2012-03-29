@@ -18,7 +18,7 @@
 
 //public:
 
-TString stdIso(std::string leg, double cutd=100.7, std::string type,bool wcut=true){
+std::string stdIso(std::string leg, double cutd=100.7, std::string type="ele",bool wcut=true){
 	std::stringstream s;
 	s << cutd;
 	std::string cut=s.str();
