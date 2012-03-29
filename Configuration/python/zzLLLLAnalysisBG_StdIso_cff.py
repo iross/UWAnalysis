@@ -391,7 +391,7 @@ MMEEantiIso2.addSelector('antiIso2MMEEPt','PATMuMuEleEleQuadSelector','leg1.leg1
 MMEEantiIso2.addSelector('antiIso2MMEEz2Charge','PATMuMuEleEleQuadSelector','leg2.charge()==0','antiIso2MMEEZEleIso')
 MMEEantiIso2.addSorter('antiIso2MMEEsorted','PATMuMuEleEleQuadSorterByZMass')
 MMEEantiIso2.addSelector('antiIso2MMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMEESIP')
-MMEEantiIso2.addSelector('MMEEantiIso2F','PATMuMuEleEleQuadSelector','((leg2.leg2.userIso(1)-leg2.leg2.userFloat("rho")*(0.101)+leg2.leg2.userIso(2)-leg2.leg2.userFloat("rho")*(0.072) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.20)','antiIso2MMEEZEleIso')
+MMEEantiIso2.addSelector('MMEEantiIso2F','PATMuMuEleEleQuadSelector','((leg2.leg1.userIso(1)-leg2.leg1.userFloat("rho")*(0.101)+leg2.leg1.userIso(2)-leg2.leg1.userFloat("rho")*(0.072) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.20)','antiIso2MMEEZEleIso')
 MMEEantiIso2Seq =MMEEantiIso2.returnSequence()
 
 MMEEantiIsoBoth = CutSequenceProducer(initialCounter  = 'initialEventsMMEEBoth',
@@ -467,7 +467,7 @@ MMMMantiIso2.addSelector('antiIso2MMMMpt','PATMuMuMuMuQuadSelector','leg1.leg1.p
 MMMMantiIso2.addSelector('antiIso2MMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.charge()==0','antiIso2MMMMsecondPairID')
 MMMMantiIso2.addSorter('antiIso2MMMMsorted','PATMuMuMuMuQuadSorterByZMass')
 MMMMantiIso2.addSelector('antiIso2MMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMMMSIP')
-MMMMantiIso2.addSelector('MMMMantiIso2F','PATMuMuMuMuQuadSelector','((leg2.leg2.userIso(1)-leg2.leg2.userFloat("rho")*(0.087)+leg2.leg2.userIso(2)-leg2.leg2.userFloat("rho")*(0.059) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.20)','antiIsoMMMMSecondZMuIso')
+MMMMantiIso2.addSelector('MMMMantiIso2F','PATMuMuMuMuQuadSelector','((leg2.leg1.userIso(1)-leg2.leg1.userFloat("rho")*(0.087)+leg2.leg1.userIso(2)-leg2.leg1.userFloat("rho")*(0.059) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.20)','antiIsoMMMMSecondZMuIso')
 MMMMantiIso2Seq =MMMMantiIso2.returnSequence()
 
 MMMMantiIsoBoth = CutSequenceProducer(initialCounter  = 'initialEventsMMMMBoth',
