@@ -5,7 +5,7 @@
 
 	EventYield *EEEEyields = new EventYield();
 
-	EEEEyields->addFile("eleEleEleEleEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.18);  
+	EEEEyields->addFile("eleEleEleEleEventTreeID/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets","__WEIGHT__",0,0.18);  
 	EEEEyields->addFile("eleEleEleEleEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,2.63);
 	EEEEyields->addFile("eleEleEleEleEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
 

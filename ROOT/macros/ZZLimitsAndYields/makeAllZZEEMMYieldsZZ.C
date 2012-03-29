@@ -1,6 +1,6 @@
 {
 
-	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/ZZLimitsAndYields/loadEleEleMuMuYielder.C");
+	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/ZZLimitsAndYields/loadEleEleMuMuYielderZZ.C");
 	gROOT->ProcessLine(".L UWAnalysis/ROOT/macros/ZZLimitsAndYields/helpers.h");
 	std::string lumi="4000";
 
@@ -23,6 +23,6 @@
 	//new cuts
 	//	selection="mumuCharge==0&&eleeleMass>60&&eleeleMass<120&&eleeleCiCLoose1&1==1&&eleeleCiCLoose2&1==1&&eleeleMissHits1<2&&eleeleMissHits2<2&&eleeleRelPFIso1<0.2&&eleeleRelPFIso2<0.2";
 
-	EEMMyields->eventYield("mass",selection,selectionNoIso,lumi,30,0,8000,"eemm",massWindow,true);
+	EEMMyields->eventYield("mass",selection,selectionNoIso,lumi,30,0,8000,"EEMM",massWindow,true);
 
 }

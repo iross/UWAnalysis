@@ -76,8 +76,7 @@ class EventYield {
 			TString selectionBase=selection;
 			TString selectionBaseNoIso=selectionNoIso;
 
-			fakeRatesHack();
-//			fakeRates();
+			fakeRates();
 			//fakeRatesLP();
 			zzBG();
 			makeHists(selection,selectionNoIso,lumi,"hzz2l2t");
@@ -228,8 +227,7 @@ class EventYield {
 				hh->Delete();
 			}
 
-			//std::cout << process << " cuts: " << selection << endl;
-			ofile.open(channel+"/"+process+"_"+hMass+".txt");
+			ofile.open(channel+"/"+process+"_ZZ.txt");
 			ofile << "imax 1  number of channels\n";
 			ofile << "jmax *  number of backgrounds\n";
 			ofile << "kmax *  number of nuisance parameters (sources of systematical uncertainties)\n";
@@ -239,51 +237,29 @@ class EventYield {
 			ofile << "observation\t"<<itos(observed)<<"\n";
 			ofile << "------------" << endl;
 
-			// std::cout << "******" << labels_[i] << "****** : " << contrib_[i] << " in [" << winLow_[i] << ", " << winHigh_[i] << "]" << std::endl;
 			ofile << "# now we list the expected events for signal and all backgrounds in that bin\n";
 			ofile << "# the second 'process' line must have a positive number for backgrounds, and 0 for signal\n";
 			ofile << "# then we list the independent sources of uncertainties, and give their effect (syst. error)\n";
 			ofile << "# on each process and bin\n";
 			ofile << "------------" << endl;
 			ofile << "bin \t";
-			ofile << process << "\t" << process << "\t" << process << "\t" << process << "\t" << "\t";
+			ofile << process << "\t" << process << "\t";
 			ofile << endl;
-			ofile << "process \t ggH" << hMass << " \t vbf" << hMass << " \t Zjets \t ZZ";
-			// for (unsigned int bk=0; bk<backgrounds_.at(i).size(); bk++) ofile << backgroundLabels_.at(i).at(bk) << "\t";
+			ofile << "process \t Zjets \t ZZ";
 			ofile << endl;
-			ofile << "process \t -1 \t 0 \t 1 \t 2";
+			ofile << "process \t  1 \t 0";
 			ofile << endl;
-			ofile << "rate \t" << gg << "\t" << vbf << "\t" << zjets << "\t" << zz; //signal rate
+			ofile << "rate \t" << zjets << "\t" << zz; //signal rate
 			ofile << endl;
 			ofile << "------------" << endl;
 
 			//Lumi
 			//signal 
-			ofile << "lumi \t lnN \t 1.045 \t 1.045 \t - \t -";
+			ofile << "lumi \t lnN  \t - \t -";
 			ofile << "\t #A 4.5% lumi uncertainty, affects signal and MC-driven background";
-			ofile << endl;
-			ofile << "theoryUncXS_HighMH \t lnN \t " << 1+1.50*pow(hMassn/1000,3) << "\t" << 1+1.50*pow(hMassn/1000,3) << "\t - \t -";
-			ofile << endl;
-			ofile << "BRhiggs_ZZ4l \t lnN \t 1.02 \t 1.02 \t - \t -";
 			ofile << endl;
 			//ggH cross-section uncertainty
 			//signal
-			ofile << "QCDscale_ggH \t lnN \t 1.1 \t - \t - \t -";
-			ofile << endl;
-			ofile << "QCDscale_qqH \t lnN \t - \t 1.01 \t - \t -";
-			ofile << endl;
-			ofile << "pdf_gg \t lnN \t  1.08 \t - \t - \t -";
-			ofile << endl;
-			ofile << "pdf_qqbar \t lnN \t - \t 1.05 \t - \t -";
-			ofile << endl;
-			//ofile << "pdf_gg \t lnN \t 1.05 \t - \t - \t -" << endl;
-			//QCD scale for VV
-			//signal
-			ofile << "QCDscale_ggVV \t lnN \t - \t -";
-			for (unsigned int bk=0; bk<2; bk++) {
-				if (labels_[bk]=="ZZ") ofile << "\t1.3";
-				else ofile << "\t-";
-			}
 			ofile << endl;
 			//ofile << "pdf_qqbar \t lnN \t - \t 1.05 \t - \t -" << endl;
 
@@ -291,7 +267,7 @@ class EventYield {
 			// ofile << "CMS_hzz2l2tau_ZjetBkg \t lnN \t - \t - \t 1.3 \t -" << endl;
 			double temp=0;
 
-			ofile << "CMS_hzz2l2tau_ZjetBkg"+process+" \t gmN " << itos(bgnMap[(std::string)process]) << " \t - \t - \t " << dtos(bgMap[(std::string)process]/bgnMap[(std::string)process]) << " \t -" << endl;
+			ofile << "CMS_hzz2l2tau_ZjetBkg"+process+" \t gmN " << itos(bgnMap[(std::string)process]) << " \t " << dtos(bgMap[(std::string)process]/bgnMap[(std::string)process]) << " \t -" << endl;
 			//			if (process=="MMTT") {
 			//				ofile << "CMS_hzz2l2tau_ZjetBkg"+process+" \t gmN " << itos(bgnMap[(std::string)process]) << " \t - \t - \t " << dtos(bgMap[(std::string)process]/bgnMap[(std::string)process]) << " \t -" << endl;
 			//			} else if (process=="EETT"){
@@ -306,15 +282,15 @@ class EventYield {
 			//				ofile << "CMS_hzz2l2tau_ZjetBkg"+process+" \t gmN 3 \t - \t - \t 0.02333 \t -" << endl;
 			//			}
 			//
-			ofile << "CMS_hzz2l2tau_ZjetBkg_extrap \t lnN \t - \t - \t 1.3 \t -" << endl;		
-			ofile << "CMS_hzz2l2tau_ZZBkg_extrap \t lnN \t - \t - \t - \t 1.1" << endl;
+			ofile << "CMS_hzz2l2tau_ZjetBkg_extrap \t lnN  \t 1.3 \t -" << endl;		
+			ofile << "CMS_hzz2l2tau_ZZBkg_extrap \t lnN \t - \t 1.1" << endl;
 
 			int numMuons=process.CountChar('M');
 			int numEles=process.CountChar('E');
 
 			//triggers
-			if (numMuons>=2) ofile << "CMS_trigger_m \t lnN \t 1.01 \t 1.01 \t 1.01 \t 1.01" << endl;
-			else if (numEles>=2) ofile << "CMS_trigger_e \t lnN \t 1.01 \t 1.01 \t 1.01 \t 1.01" << endl;
+			if (numMuons>=2) ofile << "CMS_trigger_m \t lnN  \t 1.01 \t 1.01" << endl;
+			else if (numEles>=2) ofile << "CMS_trigger_e \t lnN \t 1.01 \t 1.01" << endl;
 
 			//-------final state dependent-------
 			//Muon eff systematic
@@ -324,16 +300,16 @@ class EventYield {
 			// 	for (unsigned int bk=0; bk<4; bk++) ofile << "\t" << dtos(1+sqrt(numMuons*pow(0.02,2)));
 			// else
 			// 	for (unsigned int bk=0; bk<4; bk++) ofile << "\t-";
-			if (process=="MMTT") ofile << "1.01 \t 1.01 \t 1.01 \t 1.01" << endl;
-			else if (process=="MMMT") ofile << "1.02 \t 1.02 \t 1.02 \t 1.02" << endl;
-			else if (process=="MMET") ofile << "1.01 \t 1.01 \t 1.01 \t 1.01" << endl;
-			else if (process=="MMEM") ofile << "1.02 \t 1.02 \t 1.02 \t 1.02" << endl;
-			else if (process=="EEMT") ofile << "1.01 \t 1.01 \t 1.01 \t 1.01" << endl;
-			else if (process=="EEEM") ofile << "1.02 \t 1.02 \t 1.02 \t 1.02" << endl;
-			else if (process=="EEMM") ofile << "1.03 \t 1.03 \t 1.03 \t 1.03" << endl;
-			else if (process=="MMMM") ofile << "1.04 \t 1.04 \t 1.04 \t 1.04" << endl;
-			else if (process=="MMEE") ofile << "1.01 \t 1.01 \t 1.01 \t 1.01" << endl;
-			else ofile << "- \t - \t - \t -" << endl;
+			if (process=="MMTT") ofile << "1.01 \t 1.01" << endl;
+			else if (process=="MMMT") ofile << "1.02 \t 1.02" << endl;
+			else if (process=="MMET") ofile << "1.01 \t 1.01" << endl;
+			else if (process=="MMEM") ofile << "1.02 \t 1.02" << endl;
+			else if (process=="EEMT") ofile << "1.01 \t 1.01" << endl;
+			else if (process=="EEEM") ofile << "1.02 \t 1.02" << endl;
+			else if (process=="EEMM") ofile << "1.03 \t 1.03" << endl;
+			else if (process=="MMMM") ofile << "1.04 \t 1.04" << endl;
+			else if (process=="MMEE") ofile << "1.01 \t 1.01" << endl;
+			else ofile << "\t - \t -" << endl;
 
 			//Electron eff systematic
 			//signal
@@ -343,15 +319,15 @@ class EventYield {
 			// else
 			// 	for (unsigned int bk=0; bk<4; bk++) ofile << "\t-";
 			// ofile << endl;
-			if (process=="MMET") ofile << "1.06 \t 1.06 \t 1.06 \t 1.06" << endl;
-			else if (process=="MMEM") ofile << "1.03 \t 1.03 \t 1.03 \t 1.03" << endl;
-			else if (process=="EETT") ofile << "1.02 \t 1.02 \t 1.02 \t 1.02" << endl;
-			else if (process=="EEMT") ofile << "1.02 \t 1.02 \t 1.02 \t 1.02" << endl;
-			else if (process=="EEET") ofile << "1.06 \t 1.06 \t 1.06 \t 1.06" << endl;
-			else if (process=="EEEM") ofile << "1.04 \t 1.04 \t 1.04 \t 1.04" << endl;
-			else if (process=="EEMM") ofile << "1.02 \t 1.02 \t 1.02 \t 1.02" << endl;
-			else if (process=="MMEE") ofile << "1.05 \t 1.05 \t 1.05 \t 1.05" << endl;
-			else if (process=="EEEE") ofile << "1.06 \t 1.06 \t 1.06 \t 1.06" << endl;
+			if (process=="MMET") ofile << "1.06 \t 1.06" << endl;
+			else if (process=="MMEM") ofile << "1.03 \t 1.03" << endl;
+			else if (process=="EETT") ofile << "1.02 \t 1.02" << endl;
+			else if (process=="EEMT") ofile << "1.02 \t 1.02" << endl;
+			else if (process=="EEET") ofile << "1.06 \t 1.06" << endl;
+			else if (process=="EEEM") ofile << "1.04 \t 1.04" << endl;
+			else if (process=="EEMM") ofile << "1.02 \t 1.02" << endl;
+			else if (process=="MMEE") ofile << "1.05 \t 1.05" << endl;
+			else if (process=="EEEE") ofile << "1.06 \t 1.06" << endl;
 			else ofile << "- \t - \t - \t -" << endl;
 
 
@@ -360,28 +336,28 @@ class EventYield {
 			ofile << "CMS_eff_t \t lnN";
 			int numTaus=process.CountChar('T');
 			if (numTaus==1) //et or mt -- loose has 6% uncertainty
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t" << dtos(1+sqrt(pow(0.06,2)*numTaus));
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t" << dtos(1+sqrt(pow(0.06,2)*numTaus));
 			else if (numTaus==2) //tt -- med has 6.8% uncertainty
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t" << dtos(1+sqrt(pow(0.068,2)*numTaus));
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t" << dtos(1+sqrt(pow(0.068,2)*numTaus));
 			else
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t-";
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t-";
 			ofile << endl;
 
 			//Muon scale systematic
 			ofile << "CMS_scale_m \t lnN";
 			numMuons=process.CountChar('M');
 			if (numMuons>0)
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t" << dtos(1.01);
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t" << dtos(1.01);
 			else
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t-";
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t-";
 			ofile << "\t # systematic from muon momentum scale" << endl;
 			//Electron scale systematic
 			ofile << "CMS_scale_e \t lnN";
 			numEles=process.CountChar('E');
 			if (numEles>0)
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t" << dtos(1.02);
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t" << dtos(1.02);
 			else
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t-";
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t-";
 			ofile << "\t # systematic from electron energy scale" << endl;
 			//Tau ES systematic
 			//temp
@@ -389,10 +365,10 @@ class EventYield {
 			//ofile << "CMS_scale_t \t lnN";
 			numTaus=process.CountChar('T');
 			if (numTaus>0) {
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t" << dtos(1);
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t" << dtos(1);
 				//ofile << "\t 1.03 \t 1.03 \t - \t -";
 			} else
-				for (unsigned int bk=0; bk<4; bk++) ofile << "\t-";
+				for (unsigned int bk=0; bk<2; bk++) ofile << "\t-";
 			ofile << "\t # systematic from tau energy scale" << endl;
 
 			ofile << endl;
@@ -532,8 +508,8 @@ class EventYield {
 		void setvbfH(){	
 		}
 		void fakeRates(){
-			TFile *e = new TFile("sandbox/zz-latest/DATA.root");
-			TFile *m = new TFile("sandbox/zz-latest/DATA.root");
+			TFile *e = new TFile("sandbox/zz-latest/DATA_dR03.root");
+			TFile *m = new TFile("sandbox/zz-latest/DATA_dR03.root");
 
 			TString LEleZ = "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1CiCTight&1==1&&z1l2CiCTight&1==1&&z1l1MissHits<2&&z1l2MissHits<2&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10";
 			TString LMuZ = "dZ12<0.10&&dZ13<0.10&&dZ14<0.10&&HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10";
@@ -545,16 +521,16 @@ class EventYield {
 			TString STTZt1d  = "&&z2l1Pt>10&&z2l2Pt>10&&z2l1EleVeto&&z2l2EleVeto&&z2l1MuVeto&&z2l2MuVeto&&z2Charge!=0";
 			TString STTZt2d  = "&&z2l1Pt>10&&z2l2Pt>10&&z2l1EleVeto&&z2l2EleVeto&&z2l1MuVeto&&z2l2MuVeto&&z2Charge!=0";
 
-			TString SEEZ2n = "&&z2l2Pt>10&&z2Charge!=0&&z2l2CiCTight&1==1&&z2l2MissHits<2&&z2l2RelPFIsoDB<0.25&&met<20";
-			TString SEEZ1n = "&&z2l1Pt>10&&z2Charge!=0&&z2l1CiCTight&1==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&met<20";
-			TString SMMZ2n = "&&z2l2Pt>10&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&met<20";
-			TString SMMZ1n = "&&z2l1Pt>10&&z2Charge!=0&&z2l1RelPFIsoDB<0.25&&met<20";
+			TString SEEZ2n = "&&z2l2Pt>7&&z2Charge!=0&&z2l2CiCTight&1==1&&z2l2MissHits<2&&z2l2RelPFIsoDB<0.25&&met<20";
+			TString SEEZ1n = "&&z2l1Pt>7&&z2Charge!=0&&z2l1CiCTight&1==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&met<20";
+			TString SMMZ2n = "&&z2l2Pt>5&&z2Charge!=0&&z2l2RelPFIsoDB<0.25&&met<20";
+			TString SMMZ1n = "&&z2l1Pt>5&&z2Charge!=0&&z2l1RelPFIsoDB<0.25&&met<20";
 			TString SEMZMn = "&&z2l2Pt>10&&z2l2RelPFIsoDB<0.25&&z2Charge!=0&&met<20";
-			TString SEMZEn = "&&z2l1Pt>10&&z2l1CiCMedium&1==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&z2Charge!=0&&met<20";
-			TString SEEZt1d  = "&&z2l1Pt>10&&z2Charge!=0&&met<20";
-			TString SEEZt2d  = "&&z2l2Pt>10&&z2Charge!=0&&met<20";
-			TString SMMZt1d  = "&&z2l1Pt>10&&z2Charge!=0&&met<20";
-			TString SMMZt2d  = "&&z2l2Pt>10&&z2Charge!=0&&met<20";
+			TString SEMZEn = "&&z2l1Pt>10&&z2l1CiCTight&1==1&&z2l1MissHits<2&&z2l1RelPFIsoDB<0.25&&z2Charge!=0&&met<20";
+			TString SEEZt1d  = "&&z2l1Pt>7&&z2Charge!=0&&met<20";
+			TString SEEZt2d  = "&&z2l2Pt>7&&z2Charge!=0&&met<20";
+			TString SMMZt1d  = "&&z2l1Pt>5&&z2Charge!=0&&met<20";
+			TString SMMZt2d  = "&&z2l2Pt>5&&z2Charge!=0&&met<20";
 			TString SEMZtEd  = "&&z2l1Pt>10&&z2Charge!=0&&met<20";
 			TString SEMZtMd  = "&&z2l2Pt>10&&z2Charge!=0&&met<20";
 			TString SMTZn = "&&z2l1RelPFIsoDB<0.25&&z2l1Pt>10&&z2Charge!=0&&met<20";
@@ -562,8 +538,8 @@ class EventYield {
 			TString SMTZd = "&&z2l1Pt>10&&z2Charge!=0&&met<20";
 			TString SETZd = "&&z2l1Pt>10&&z2Charge!=0&&met<20";
 
-			TString SEEZcuts = "&&z2l1Pt>10&&z2l2Pt>10&&z2Charge==0&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25"; //why no CiC?
-			TString SMMZcuts = "&&z2l1Pt>10&&z2l2Pt>10&&z2Charge==0&&z2l2RelPFIsoDB>0.25&&z2l1RelPFIsoDB>0.25";
+			TString SEEZcuts = "&&z2l1Pt>7&&z2l2Pt>7&&z2Charge==0&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&z2Mass>60&&z2Mass<120"; 
+			TString SMMZcuts = "&&z2l1Pt>5&&z2l2Pt>5&&z2Charge==0&&z2l2RelPFIsoDB>0.25&&z2l1RelPFIsoDB>0.25&&z2Mass>60&&z2Mass<120";
 			TString SEMZcuts = "&&z2l1Pt>10&&z2l2Pt>10&&z2l1MissHits<2&&z2Charge==0&&z2l1RelPFIsoDB>0.25&&z2l2RelPFIsoDB>0.25&&z2Mass<90";
 			TString STTZcuts = "&&z2l1Pt>20&&z2l2Pt>20&&z2l1EleVeto&&z2l2EleVeto&&!z2l1MediumIsoCombDB&&!z2l2MediumIsoCombDB&&z2l1MuVeto&&z2l2MuVeto&&z2Charge==0&&z2Mass>30&&z2Mass<80";
 			TString SMTZcuts = "&&z2l2EleVeto&&!z2l2LooseIsoCombDB&&z2l2MuVetoTight&&z2l1RelPFIsoDB<0.15&&z2l2Pt>20&&z2l1Pt>10&&z2Charge==0&&z2Mass>30&&z2Mass<80";
@@ -582,10 +558,12 @@ class EventYield {
 			TGraphAsymmErrors *mm = new TGraphAsymmErrors();
 			double DE,NE,DM,NM,NET,NMT,DET,DMT;
 			TCanvas *C = new TCanvas();
-			TH1F *nm = new TH1F("nm", "nm", 10, 0,100);
-			TH1F *dm = new TH1F("dm", "dm", 10, 0,100);
-			TH1F *ne = new TH1F("ne", "ne", 20, 0,100);
-			TH1F *de = new TH1F("de", "de", 20, 0,100);
+			const int nBins=12;
+			float xBins[nBins] = {0,5,10,15,17,19,20,30,40,50,70,100};
+			TH1F *nm = new TH1F("nm", "nm", nBins-1,xBins);
+			TH1F *dm = new TH1F("dm", "dm", nBins-1,xBins);
+			TH1F *ne = new TH1F("ne", "ne", nBins-1,xBins);
+			TH1F *de = new TH1F("de", "de", nBins-1,xBins);
 			eeemTree->Draw("z2l1Pt>>ne",LEleZ+SEMZEn);
 			eeemTree->Draw("z2l2Pt>>nm",LEleZ+SEMZMn);
 			eeemTree->Draw("z2l1Pt>>de",LEleZ+SEMZtEd);
@@ -598,14 +576,12 @@ class EventYield {
 			//			m->cd();
 			//			muMuEleMuEventTreeID->cd();
 			TTree *mmemTree =(TTree*) m->Get("muMuEleMuEventTreeID/eventTree");
-			TH1F *nm1 = new TH1F("nm1", "nm1", 10, 0,100);
-			TH1F *dm1 = new TH1F("dm1", "dm1", 10, 0,100);
-			TH1F *ne1 = new TH1F("ne1", "ne1", 20, 0,100);
-			TH1F *de1 = new TH1F("de1", "de1", 20, 0,100);
-			TH1F *nm2 = new TH1F("nm2", "nm2", 10, 0,100);
-			TH1F *dm2 = new TH1F("dm2", "dm2", 10, 0,100);
-			TH1F *ne2 = new TH1F("ne2", "ne2", 20, 0,100);
-			TH1F *de2 = new TH1F("de2", "de2", 20, 0,100);
+			TH1F *nm1 = new TH1F("nm1", "nm1", nBins-1,xBins);
+			TH1F *dm1 = new TH1F("dm1", "dm1", nBins-1,xBins);
+			TH1F *ne1 = new TH1F("ne1", "ne1", nBins-1,xBins);
+			TH1F *de1 = new TH1F("de1", "de1", nBins-1,xBins);
+			TH1F *ne2 = new TH1F("ne2", "ne2", nBins-1,xBins);
+			TH1F *de2 = new TH1F("de2", "de2", nBins-1,xBins);
 			mmemTree->Draw("z2l1Pt>>ne1",LMuZ+SEMZEn);
 			mmemTree->Draw("z2l2Pt>>nm",LMuZ+SEMZMn);
 			mmemTree->Draw("z2l1Pt>>de1",LMuZ+SEMZtEd);
@@ -621,6 +597,10 @@ class EventYield {
 			//			m->cd();
 			//			muMuMuMuEventTreeID->cd();
 			TTree *mmmmTree = (TTree*)m->Get("muMuMuMuEventTreeID/eventTree");
+			//TH1F *nm1 = new TH1F("nm1", "nm1", nBins-1,xBins);
+			//TH1F *dm1 = new TH1F("dm1", "dm1", nBins-1,xBins);
+			TH1F *nm2 = new TH1F("nm2", "nm2", nBins-1,xBins);
+			TH1F *dm2 = new TH1F("dm2", "dm2", nBins-1,xBins);
 			mmmmTree->Draw("z2l1Pt>>nm1",LMuZ+SMMZ1n);
 			mmmmTree->Draw("z2l2Pt>>nm2",LMuZ+SMMZ2n);
 			mmmmTree->Draw("z2l1Pt>>dm1",LMuZ+SMMZt1d);
@@ -1090,6 +1070,7 @@ class EventYield {
 			double mmmmErr = sqrt(MMMM*IFRMu*IFRMu*IFRMu*IFRMu+4*IFRMuErr*IFRMuErr*IFRMu*IFRMu*MMMM*MMMM);
 			cout << "Background Est. for MMMM = " << mmmm << " +- " << mmmmErr << endl;
 			bgMap["MMMM"] = mmmm;
+			bgnMap["MMMM"] = mmmmTree->GetEntries(LMuZ+SMMZcuts);
 			//			//cout << "Events In Control Region " << MMMM << endl;
 			//
 			mm->BayesDivide(nm,dm);
@@ -1651,6 +1632,7 @@ class EventYield {
 			double mmmmErr = sqrt(MMMM*IFRMu*IFRMu*IFRMu*IFRMu+4*IFRMuErr*IFRMuErr*IFRMu*IFRMu*MMMM*MMMM);
 			cout << "Background Est. for MMMM = " << mmmm << " +- " << mmmmErr << endl;
 			bgMap["MMMM"] = mmmm;
+			bgnMap["MMMM"] = mmmmTree->GetEntries(LMuZ+SMMZcuts);
 			//			//cout << "Events In Control Region " << MMMM << endl;
 			//
 			mm->BayesDivide(nm,dm);
@@ -1664,44 +1646,26 @@ class EventYield {
 			for (std::map<std::string, double>::const_iterator iter = bgMap.begin(); iter != bgMap.end(); ++iter){
 				std::cout << iter->first << ": " << iter->second << std::endl;
 			}
+			std::cout << bgMap.size() << " map" << std::endl;
+			std::cout << bgnMap.size() << " n map" << std::endl;
 			for (std::map<std::string, int>::const_iterator iter = bgnMap.begin(); iter != bgnMap.end(); ++iter){
 				std::cout << iter->first << ": " << iter->second << " events" << std::endl;
 			}
 		}
-		void fakeRatesHack(){
-			bgMap["MMET"] = 0.309;
-			bgnMap["MMET"] = 12;
-			bgMap["EEET"] = 0.99;
-			bgnMap["EEET"] = 32;
-			bgMap["MMMT"] = 0.800;
-			bgnMap["MMMT"] = 13;
-			bgMap["EEMT"] = 0.406;
-			bgnMap["EEMT"] = 15;
-			bgMap["MMEM"] = 0.122;
-			bgnMap["MMEM"] = 2;
-			bgMap["EEEM"] = 0.657;
-			bgnMap["EEEM"] = 2;
-			bgMap["MMTT"] = 0.731;
-			bgnMap["MMTT"] = 41;
-			bgMap["EETT"] = 0.731;
-			bgnMap["EETT"] = 42;
-		}
-		void applyFakeRates(){
-			//apply the measure fake rates. 2+3-1?	
-		}
+				
 		void zzBG(){
 			// ....
 			// hard coded for now
-			zzBgMap["EEEE"] = 10000;
+			zzBgMap["EEEE"] = 10.39*1.044;
 			zzBgMap["EEEM"] = 0.49*1.044; 
 			zzBgMap["EEET"] = 1.07*1.044; 
-			zzBgMap["EEMM"] = 10000;
+			zzBgMap["EEMM"] = 5.69*1.044;
 			zzBgMap["EEMT"] = 0.90*1.044;
 			zzBgMap["EETT"] = 0.75*1.044;
-			zzBgMap["MMEE"] = 10000;
+			zzBgMap["MMEE"] = 19.84*1.053;
 			zzBgMap["MMEM"] = 0.55*1.053;
 			zzBgMap["MMET"] = 1.14*1.053;
-			zzBgMap["MMMM"] = 10000;
+			zzBgMap["MMMM"] = 14.37*1.053;
 			zzBgMap["MMMT"] = 1.03*1.053;
 			zzBgMap["MMTT"] = 0.75*1.053;
 		}
@@ -1716,7 +1680,6 @@ class EventYield {
 			return ss.str();
 		}
 
-		
 	void eventYields(){
 		fakeRates();
 	}

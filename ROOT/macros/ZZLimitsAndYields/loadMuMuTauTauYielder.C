@@ -6,14 +6,14 @@
 	EventYield *MMTTyields = new EventYield();
 
 	MMTTyields->addFile("muMuTauTauEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.066);  
-	MMTTyields->addFile("muMuTauTauEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,0.142);
-	MMTTyields->addFile("muMuTauTauEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
+	MMTTyields->addFile("muMuTauTauEventTree/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ","__WEIGHT__",0,0.142);
+	MMTTyields->addFile("muMuTauTauEventTree/eventTree","sandbox/zz-latest/DATA_extra.root","DATA","1",1,137);
 	
 	MMTTyields->addFile("muMuTauTauEventTreeTauUp/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.066);  
-	MMTTyields->addFile("muMuTauTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.142);
+	MMTTyields->addFile("muMuTauTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.142);
 	
 	MMTTyields->addFile("muMuTauTauEventTreeTauDown/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.066);  
-	MMTTyields->addFile("muMuTauTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.142);
+	MMTTyields->addFile("muMuTauTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.142);
 
 	MMTTyields->addFile("muMuTauTauEventTree/eventTree","sandbox/higgs-latest/ggH180.root","ggH180","__WEIGHT__",-1,137,"1.0*130","1.0*180");
 	MMTTyields->addFile("muMuTauTauEventTree/eventTree","sandbox/higgs-latest/ggH190.root","ggH190","__WEIGHT__",-1,137,"1.0*130","1.0*180");

@@ -5,7 +5,7 @@
 
 	EventYield *MMEEyields = new EventYield();
 
-	MMEEyields->addFile("muMuEleEleEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.03);  
+	MMEEyields->addFile("muMuEleEleEventTreeID/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets","__WEIGHT__",0,0.03);  
 	MMEEyields->addFile("muMuEleEleEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,5.33);
 	MMEEyields->addFile("muMuEleEleEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
 

@@ -5,15 +5,15 @@
 
 	EventYield *MMETyields = new EventYield();
 
-	MMETyields->addFile("muMuEleTauEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.12);  
-	MMETyields->addFile("muMuEleTauEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,0.318);
-	MMETyields->addFile("muMuEleTauEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
+	MMETyields->addFile("muMuEleTauEventTreeID/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets","__WEIGHT__",0,0.12);  
+	MMETyields->addFile("muMuEleTauEventTree/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ","__WEIGHT__",0,0.318);
+	MMETyields->addFile("muMuEleTauEventTree/eventTree","sandbox/zz-latest/DATA_extra.root","DATA","1",1,137);
 	
-	MMETyields->addFile("muMuEleTauEventTreeIDTauUp/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.12);  
-	MMETyields->addFile("muMuEleTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.318);
+	MMETyields->addFile("muMuEleTauEventTreeTauUp/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.12);  
+	MMETyields->addFile("muMuEleTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.318);
 	
-	MMETyields->addFile("muMuEleTauEventTreeIDTauDown/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.12);  
-	MMETyields->addFile("muMuEleTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.318);
+	MMETyields->addFile("muMuEleTauEventTreeTauDown/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.12);  
+	MMETyields->addFile("muMuEleTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.318);
 
 	MMETyields->addFile("muMuEleTauEventTree/eventTree","sandbox/higgs-latest/ggH180.root","ggH180","__WEIGHT__",-1,137,"1.0*110","1.0*170");
 	MMETyields->addFile("muMuEleTauEventTree/eventTree","sandbox/higgs-latest/ggH190.root","ggH190","__WEIGHT__",-1,137,"1.0*120","1.0*190");

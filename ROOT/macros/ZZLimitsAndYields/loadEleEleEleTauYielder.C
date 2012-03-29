@@ -5,15 +5,15 @@
 
 	EventYield *EEETyields = new EventYield();
 
-	EEETyields->addFile("eleEleEleTauEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.24);
-	EEETyields->addFile("eleEleEleTauEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,0.318);
-	EEETyields->addFile("eleEleEleTauEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
+	EEETyields->addFile("eleEleEleTauEventTreeID/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets","__WEIGHT__",0,0.24);
+	EEETyields->addFile("eleEleEleTauEventTree/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ","__WEIGHT__",0,0.318);
+	EEETyields->addFile("eleEleEleTauEventTree/eventTree","sandbox/zz-latest/DATA_extra.root","DATA","1",1,137);
 	
-	EEETyields->addFile("eleEleEleTauEventTreeIDTauUp/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.24);
-	EEETyields->addFile("eleEleEleTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.318);
+	EEETyields->addFile("eleEleEleTauEventTreeTauUp/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.24);
+	EEETyields->addFile("eleEleEleTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.318);
 
-	EEETyields->addFile("eleEleEleTauEventTreeIDTauDown/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.24);
-	EEETyields->addFile("eleEleEleTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.318);
+	EEETyields->addFile("eleEleEleTauEventTreeTauDown/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.24);
+	EEETyields->addFile("eleEleEleTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.318);
 
 	EEETyields->addFile("eleEleEleTauEventTree/eventTree","sandbox/higgs-latest/ggH180.root","ggH180","__WEIGHT__",-1,137,"1.0*110","1.0*170");
 	EEETyields->addFile("eleEleEleTauEventTree/eventTree","sandbox/higgs-latest/ggH190.root","ggH190","__WEIGHT__",-1,137,"1.0*120","1.0*190");

@@ -1,6 +1,6 @@
 {
 
-	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/ZZLimitsAndYields/loadMuMuMuMuYielder.C");
+	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/ZZLimitsAndYields/loadMuMuMuMuYielderZZ.C");
 	gROOT->ProcessLine(".L UWAnalysis/ROOT/macros/ZZLimitsAndYields/helpers.h");
 	std::string lumi="4000";
 
@@ -23,11 +23,11 @@
 	selection="HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Charge==0&&z2l2RelPFIsoDB<0.25&&z2l1RelPFIsoDB<0.25&&(z2l1Pt+z2l2Pt)>20&&z2Mass>20";
 	selectionNoIso="HLT_Any&&z1Mass>60&&z1Mass<120&&z1l1RelPFIsoDB<0.25&&z1l2RelPFIsoDB<0.25&&z1l1Pt>20&&z1l2Pt>10&&z2l1Pt>5&&z2l2Pt>5&&z2Charge==0&&(z2l1Pt+z2l2Pt)>20&&z2Mass>20";
 	gROOT->ProcessLine(".!mkdir -p hzz2l2t/");
-
+	selection=returnMMMMCuts();
 	//new selection
 	// selection = "mumu1Mass>60&&mumu1Mass<120&&mumu2Charge==0";
 
-	MMMMyields->eventYield("mass",selection,selectionNoIso,lumi,30,0,8000,"mmmm",massWindow,true);
+	MMMMyields->eventYield("mass",selection,selectionNoIso,lumi,30,0,8000,"MMMM",massWindow,true);
 
 }
 

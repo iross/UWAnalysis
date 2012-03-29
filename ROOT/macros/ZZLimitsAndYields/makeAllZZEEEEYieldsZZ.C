@@ -1,6 +1,6 @@
 {
 
-	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/ZZLimitsAndYields/loadEleEleEleEleYielder.C");
+	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/ZZLimitsAndYields/loadEleEleEleEleYielderZZ.C");
 	gROOT->ProcessLine(".L UWAnalysis/ROOT/macros/ZZLimitsAndYields/helpers.h");
 
 	std::string lumi="4000";

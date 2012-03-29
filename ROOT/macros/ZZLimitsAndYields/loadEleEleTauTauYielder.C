@@ -5,15 +5,15 @@
 
 	EventYield *EETTyields = new EventYield();
 
-	EETTyields->addFile("eleEleTauTauEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.084);  
-	EETTyields->addFile("eleEleTauTauEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,0.123);
-	EETTyields->addFile("eleEleTauTauEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
+	EETTyields->addFile("eleEleTauTauEventTreeID/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets","__WEIGHT__",0,0.084);  
+	EETTyields->addFile("eleEleTauTauEventTree/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ","__WEIGHT__",0,0.123);
+	EETTyields->addFile("eleEleTauTauEventTree/eventTree","sandbox/zz-latest/DATA_extra.root","DATA","1",1,137);
 	
-	EETTyields->addFile("eleEleTauTauEventTreeIDTauUp/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.084);  
-	EETTyields->addFile("eleEleTauTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.123);
+	EETTyields->addFile("eleEleTauTauEventTreeTauUp/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets_CMS_scale_tUp","__WEIGHT__",10,0.084);  
+	EETTyields->addFile("eleEleTauTauEventTreeTauUp/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tUp","__WEIGHT__",10,0.123);
 	
-	EETTyields->addFile("eleEleTauTauEventTreeIDTauDown/eventTree","sandbox/zz-latest/DYJets.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.084);  
-	EETTyields->addFile("eleEleTauTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.123);
+	EETTyields->addFile("eleEleTauTauEventTreeTauDown/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets_CMS_scale_tDown","__WEIGHT__",10,0.084);  
+	EETTyields->addFile("eleEleTauTauEventTreeTauDown/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ_CMS_scale_tDown","__WEIGHT__",10,0.123);
 	
 	// EETTyields->addFile("eleEleTauTauEventTree/eventTree","sandbox/zz-latest/ggH120_presFix.root","H120","__WEIGHT__",-1,137,"0.6*80","0.6*120");
 	// EETTyields->addFile("eleEleTauTauEventTree/eventTree","sandbox/zz-latest/ggH130_presFix.root","H130","__WEIGHT__",-1,137,"0.6*90","0.6*130");

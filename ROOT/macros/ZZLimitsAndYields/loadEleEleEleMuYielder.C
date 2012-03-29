@@ -5,9 +5,9 @@
 
 	EventYield *EEEMyields = new EventYield();
 
-	EEEMyields->addFile("eleEleEleMuEventTreeID/eventTree","sandbox/zz-latest/DYJets.root","Zjets","__WEIGHT__",0,0.06);  
-	EEEMyields->addFile("eleEleEleMuEventTree/eventTree","sandbox/zz-latest/ZZ4L.root","ZZ","__WEIGHT__",0,0.16);
-	EEEMyields->addFile("eleEleEleMuEventTree/eventTree","sandbox/zz-latest/DATA.root","DATA","1",1,137);
+	EEEMyields->addFile("eleEleEleMuEventTreeID/eventTree","sandbox/zz-latest/DYJetsTemp.root","Zjets","__WEIGHT__",0,0.06);  
+	EEEMyields->addFile("eleEleEleMuEventTree/eventTree","sandbox/zz-latest/ZZ4L_pythia.root","ZZ","__WEIGHT__",0,0.16);
+	EEEMyields->addFile("eleEleEleMuEventTree/eventTree","sandbox/zz-latest/DATA_extra.root","DATA","1",1,137);
 
 	// EEEMyields->addFile("eleEleEleMuEventTree/eventTree","sandbox/zz-latest/ggH120_presFix.root","H120","__WEIGHT__",-1,137,"1.0*80","0.6*120");
 	// EEEMyields->addFile("eleEleEleMuEventTree/eventTree","sandbox/zz-latest/ggH130_presFix.root","H130","__WEIGHT__",-1,137,"1.0*90","0.6*130");
