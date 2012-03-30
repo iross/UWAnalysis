@@ -2,6 +2,7 @@
 *.pyc
 *.o
 *.so
+*.d
 
 *.root
 *.png
@@ -13,5 +14,9 @@
 
 *CVS*
 
+*temp*
+
 *.bk
 *.swp
+
+*__afs*
