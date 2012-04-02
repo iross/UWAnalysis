@@ -531,6 +531,9 @@ class EventYield {
 		}
 		void setvbfH(){	
 		}
+		void applyFakeRates(){
+
+		}
 		void fakeRates(){
 			TFile *e = new TFile("sandbox/zz-latest/DATA.root");
 			TFile *m = new TFile("sandbox/zz-latest/DATA.root");
