@@ -17,7 +17,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
 		#'file:pickevents.root'
-		'/store/user/iross/EE_2011Bv1_skim/skim_166_1_ooP.root'
+#		'/store/user/iross/EE_2011Bv1_skim/skim_166_1_ooP.root'
+		'/store/mc/Fall11/Z2Jets_TuneZ2_7TeV-madgraph-tauola/AODSIM/PU_S6_START42_V14B-v1/0000/FAA0243C-92FD-E011-8DB4-00215E22214E.root'
 #		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
 #		'/store/user/iross/EE_2011Bv1_skim/skim_137_1_8y9.root',
 #	'/store/user/iross/MM_2011Bv1_skim/skim_137_1_HEN.root',
@@ -110,6 +111,11 @@ process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
 process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
+process.eventSelectionMMM = cms.Path(process.MMMSeq)
+process.eventSelectionMME = cms.Path(process.MMESeq)
+process.eventSelectionEEM = cms.Path(process.EEMSeq)
+process.eventSelectionEEE = cms.Path(process.EEESeq)
+
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuTauEventTree
 addMuMuMuTauEventTree(process,'muMuMuTauEventTree_noIsoOS','MMMTnoIsoOSF','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
@@ -195,6 +201,14 @@ addEleEleMuMuEventTree(process,'eleEleMuMuEventTree_noIsoSScheck','EEMMnoIsoSSch
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTree_antiIso','EEMMantiIsoBothF','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTree_antiIso1','EEMMantiIso1F','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTree_antiIso2','EEMMantiIso2F','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
+addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
+addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
+addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID')
 
 #Add event counter
 addEventSummary(process,False,'MMMT','eventSelectionMMMTnoIsoSS')

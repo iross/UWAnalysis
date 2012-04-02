@@ -343,7 +343,7 @@ namespace {
 		edm::Ptr<PATEleEleEleNuQuad> dummyPATEleEleEleNuQuadPtr;
 
 
-		/// create dictionaries for PATEleEleEleTri objects                                                                                                                                               
+		/// create dictionaries for PATEleEleEleTri objects                                                                                                                              
 		PATEleEleEleTri dummyPATEleEleEleTri;
 		edm::Wrapper<PATEleEleEleTri> dummyPATEleEleEleTriWrapper;
 		PATEleEleEleTriCollection dummyPATEleEleEleTriCollection;

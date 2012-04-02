@@ -3,6 +3,63 @@ import FWCore.ParameterSet.Config as cms
 #Import tool that creates the cut sequence
 from UWAnalysis.Configuration.tools.CutSequenceProducer import *
 
+#todo: add Zmm and Zee+(third lepton) states for fake rate measurement cross-checks
+
+
+#MMM tri
+MMMtri = CutSequenceProducer(initialCounter  = 'initialEventsMMM',
+                                  pyModuleName = __name__,
+                                  pyNameSpace  = locals())
+#MMMtri.addSmearing('patOverloadedTaus','patMuonsForAnalysis','convRejElectrons','selectedPatJets')
+MMMtri.addDiCandidateModule('triMMMdiMuons','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')
+MMMtri.addSelector('triMMMosDiMuons','PATMuPairSelector','charge==0&&leg1.isGlobalMuon()&&leg2.isGlobalMuon()&& mass>60 && mass < 120 && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4&&leg1.pt()>20&&leg2.pt()>10','MMMDiMuonCreation',1)
+MMMtri.addDiCandidateModule('triMMMzzCands','PATMuMuMuTriProducer','triMMMosDiMuons','smearedMuons','smearedMET','smearedJets',1,9999,text='MMMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.5,recoMode ="",genParticles='genDaughters')
+MMMtri.addCrossCleanerModule('triMMMzzCleanedCands','PATMuMuMuTriCrossCleaner',1,9999,text='MMMAtLeastOneZZCleanedCandidate',dR = 0.1)
+MMMtri.addSelector('triMMMzzMuID','PATMuMuMuTriSelector','leg1.leg1.isGlobalMuon()&&leg1.leg1.isTrackerMuon()&&leg1.leg2.isTrackerMuon()&&leg1.leg2.isTrackerMuon()','MMMLeadingZMuID')
+MMMtri.addSelector('triMMMzzMuIso','PATMuMuMuTriSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','MMMLeadingZMuIso')
+MMMtri.addSelector('triMMMthirdMuID','PATMuMuMuTriSelector','leg2.pt()>5&&(leg2.isTrackerMuon()||leg2.isGlobalMuon())','MMMthirdMuID')
+
+MMMSeq = MMMtri.returnSequence()
+
+#MME tri
+MMEtri = CutSequenceProducer(initialCounter  = 'initialEventsMME',
+                                  pyModuleName = __name__,
+                                  pyNameSpace  = locals())
+#MMEtri.addSmearing('patOverloadedTaus','patMuonsForAnalysis','convRejElectrons','selectedPatJets')
+MMEtri.addDiCandidateModule('triMMEdiMuons','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')
+MMEtri.addSelector('triMMEosDiMuons','PATMuPairSelector','charge==0&&leg1.isGlobalMuon()&&leg2.isGlobalMuon()&& mass>60 && mass < 120 && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4&&leg1.pt()>20&&leg2.pt()>10','MMEDiMuonCreation',1)
+MMEtri.addDiCandidateModule('triMMEzzCands','PATMuMuEleTriProducer','triMMEosDiMuons','smearedElectrons','smearedMET','smearedJets',1,9999,text='MMEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.5,recoMode ="",genParticles='genDaughters')
+MMEtri.addCrossCleanerModule('triMMEzzCleanedCands','PATMuMuEleTriCrossCleaner',1,9999,text='MMEAtLeastOneZZCleanedCandidate',dR = 0.1)
+MMEtri.addSelector('triMMEzzMuID','PATMuMuEleTriSelector','leg1.leg1.isGlobalMuon()&&leg1.leg1.isTrackerMuon()&&leg1.leg2.isTrackerMuon()&&leg1.leg2.isTrackerMuon()','MMELeadingZMuID')
+MMEtri.addSelector('triMMEzzMuIso','PATMuMuEleTriSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','MMELeadingZMuIso')
+MMEtri.addSelector('triMMEthirdEleID','PATMuMuEleTriSelector','leg2.pt()>7','MMEthirdEleID')
+MMESeq = MMEtri.returnSequence()
+
+#EEM tri
+EEMtri = CutSequenceProducer(initialCounter  = 'initialEventsEEM',
+                                  pyModuleName = __name__,
+                                  pyNameSpace  = locals())
+EEMtri.addDiCandidateModule('triEEMdiElectrons','PATElePairProducer', 'smearedElectrons','smearedElectrons','smearedMET','smearedJets',1,genParticles='genDaughters')
+EEMtri.addSelector('triEEMosDiElectrons','PATElePairSelector','leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&(leg1.electronID("cicTight")==1||leg1.electronID("cicTight")==3||leg1.electronID("cicTight")==5||leg1.electronID("cicTight")==7||leg1.electronID("cicTight")==9||leg1.electronID("cicTight")==11||leg1.electronID("cicTight")==13||leg1.electronID("cicTight")==15)&&(leg2.electronID("cicTight")==1||leg2.electronID("cicTight")==3||leg2.electronID("cicTight")==5||leg2.electronID("cicTight")==7||leg2.electronID("cicTight")==9||leg2.electronID("cicTight")==11||leg2.electronID("cicTight")==13||leg2.electronID("cicTight")==15)&&charge==0&&mass>60&&mass<120&&abs(leg1.eta())<2.5&&abs(leg2.eta())<2.5&&leg1.pt()>20&&leg2.pt()>10','triEEMDiEleCreation',1)
+EEMtri.addDiCandidateModule('triEEMzzCands','PATEleEleMuTriProducer','triEEMosDiElectrons','smearedMuons','smearedMET','smearedJets',1,9999,text='EEMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.5,recoMode ="",genParticles='genDaughters')
+EEMtri.addCrossCleanerModule('triEEMzzCleanedCands','PATEleEleMuTriCrossCleaner',1,9999,text='EEMAtLeastOneZZCleanedCandidate',dR = 0.1)
+EEMtri.addSelector('triEEMzzEleIso','PATEleEleMuTriSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','triEEMLeadingZEleIso')
+EEMtri.addSelector('triEEMthirdMuID','PATEleEleMuTriSelector','leg2.pt()>5&&(leg2.isTrackerMuon()||leg2.isGlobalMuon())','EEMthirdMuID')
+EEMSeq = EEMtri.returnSequence()
+
+#EEE tri
+EEEtri = CutSequenceProducer(initialCounter  = 'initialEventsEEE',
+                                  pyModuleName = __name__,
+                                  pyNameSpace  = locals())
+EEEtri.addDiCandidateModule('triEEEdiElectrons','PATElePairProducer', 'smearedElectrons','smearedElectrons','smearedMET','smearedJets',1,genParticles='genDaughters')
+EEEtri.addSelector('triEEEosDiElectrons','PATElePairSelector','leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&(leg1.electronID("cicTight")==1||leg1.electronID("cicTight")==3||leg1.electronID("cicTight")==5||leg1.electronID("cicTight")==7||leg1.electronID("cicTight")==9||leg1.electronID("cicTight")==11||leg1.electronID("cicTight")==13||leg1.electronID("cicTight")==15)&&(leg2.electronID("cicTight")==1||leg2.electronID("cicTight")==3||leg2.electronID("cicTight")==5||leg2.electronID("cicTight")==7||leg2.electronID("cicTight")==9||leg2.electronID("cicTight")==11||leg2.electronID("cicTight")==13||leg2.electronID("cicTight")==15)&&charge==0&&mass>60&&mass<120&&abs(leg1.eta())<2.5&&abs(leg2.eta())<2.5&&leg1.pt()>20&&leg2.pt()>10','triEEEDiEleCreation',1)
+EEEtri.addDiCandidateModule('triEEEzzCands','PATEleEleEleTriProducer','triEEEosDiElectrons','smearedElectrons','smearedMET','smearedJets',1,9999,text='EEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.5,recoMode ="",genParticles='genDaughters')
+EEEtri.addCrossCleanerModule('triEEEzzCleanedCands','PATEleEleEleTriCrossCleaner',1,9999,text='EEEAtLeastOneZZCleanedCandidate',dR = 0.1)
+EEEtri.addSelector('triEEEzzEleIso','PATEleEleEleTriSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','triEEELeadingZEleIso')
+EEEtri.addSelector('triEEEthirdEleID','PATEleEleEleTriSelector','leg2.pt()>7','EEEthirdEleID')
+EEESeq = EEEtri.returnSequence()
+
+
 ######################__________________________________MMMT_____________________________________##############################
 
 #for use with mu anti-isolated
@@ -17,7 +74,7 @@ MMMTantiIso1.addDiCandidateModule('antiIso1MMMTzzCands','PATMuMuMuTauQuadProduce
 MMMTantiIso1.addCrossCleanerModule('antiIso1MMMTzzCleanedCands','PATMuMuMuTauQuadCrossCleaner',1,9999,text='MMMTAtLeastOneZZCleanedCandidate',dR = 0.1)
 MMMTantiIso1.addSelector('antiIso1MMMTzzMuID','PATMuMuMuTauQuadSelector','leg1.leg1.isGlobalMuon()&&leg1.leg1.isTrackerMuon()&&leg1.leg2.isTrackerMuon()&&leg1.leg2.isTrackerMuon()','MMMTLeadingZMuID')
 MMMTantiIso1.addSelector('antiIso1MMMTzzMuIso','PATMuMuMuTauQuadSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','MMMTLeadingZMuIso')
-MMMTantiIso1.addSelector('antiIso1MMMTzzMuID2','PATMuMuMuTauQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg1.isTrackerMuon()','MMMTSecondZMuID')
+MMMTantiIso1.addSelector('antiIso1MMMTzzMuID2','PATMuMuMuTauQuadSelector','leg2.leg1.isGlobalMuon()','MMMTSecondZMuID')
 MMMTantiIso1.addSelector('antiIso1MMMTz2Charge','PATMuMuMuTauQuadSelector','leg2.charge()==0','MMMTTauLeptonDiscrimantor')
 MMMTantiIso1.addSelector('antiIso1MMMTzzTauDiscr','PATMuMuMuTauQuadSelector','leg2.leg2.tauID("againstElectronLoose")&&leg2.leg2.tauID("againstMuonTight")','MMMTTauLeptonDiscrimantor')
 MMMTantiIso1.addSelector('antiIso1MMMTpT','PATMuMuMuTauQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>20','MMMTTauLeptonDiscrimantor')
@@ -41,7 +98,7 @@ MMMTnoIsoSS.addSelector('noIsoSSMMMTzzMuID2','PATMuMuMuTauQuadSelector','leg2.le
 MMMTnoIsoSS.addSelector('noIsoSSMMMTz2Charge','PATMuMuMuTauQuadSelector','leg2.charge()!=0','MMMTTauLeptonDiscrimantor')
 MMMTnoIsoSS.addSelector('noIsoSSMMMTz2pt','PATMuMuMuTauQuadSelector','leg2.leg1.pt()>5','MMMTTauLeptonDiscrimantor')
 MMMTnoIsoSS.addSorter('noIsoSSMMMTzzCleanedCandsSortedByZMass','PATMuMuMuTauQuadSorterByZMass')
-MMMTnoIsoSS.addSelector('noIsoSSMMMTzzSIP','PATMuMuMuTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMMTSIP')
+MMMTnoIsoSS.addSelector('noIsoSSMMMTzzSIP','PATMuMuMuTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','MMMTSIP')
 MMMTnoIsoSS.addSelector('MMMTnoIsoSSF','PATMuMuMuTauQuadSelector','leg2.leg2.tauID("decayModeFinding")','MMMTTauDecayModeFinding')
 MMMTnoIsoSS.addSelector('MMMTnoIsoSScheckF','PATMuMuMuTauQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>20','MMMTTauDecayModeFinding')
 MMMTnoIsoSSSeq =MMMTnoIsoSS.returnSequence()
@@ -203,11 +260,11 @@ MMETnoIsoSS.addDiCandidateModule('noIsoSSMMETzzCands','PATMuMuEleTauQuadProducer
 MMETnoIsoSS.addCrossCleanerModule('noIsoSSMMETzzCleanedCands2','PATMuMuEleTauQuadCrossCleaner',1,9999,text='noIsoSSMMETAtLeastOneZZCleanedCandidate',dR = 0.1)
 MMETnoIsoSS.addSelector('noIsoSSMMETzzCleanedMuID','PATMuMuEleTauQuadSelector','leg1.leg1.isGlobalMuon()&&leg1.leg1.isTrackerMuon()&&leg1.leg2.isTrackerMuon()&&leg1.leg2.isTrackerMuon()','noIsoSSMMETLeadingZMuID')
 MMETnoIsoSS.addSelector('noIsoSSMMETzzMuIso','PATMuMuEleTauQuadSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSMMETLeadingZMuIso')
-MMETnoIsoSS.addSelector('noIsoSSMMETzzCleanedEleID','PATMuMuEleTauQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','noIsoSSMMETEleCiCTight')
+#MMETnoIsoSS.addSelector('noIsoSSMMETzzCleanedEleID','PATMuMuEleTauQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','noIsoSSMMETEleCiCTight')
 MMETnoIsoSS.addSelector('noIsoSSMMETz2Charge','PATMuMuEleTauQuadSelector','leg2.charge()!=0','MMETz2Charge')
 MMETnoIsoSS.addSelector('noIsoSSMMETz2Pt','PATMuMuEleTauQuadSelector','leg2.leg1.pt()>7','MMETz2Charge')
 MMETnoIsoSS.addSorter('noIsoSSMMETzzCleanedCandsSortedByZMass','PATMuMuEleTauQuadSorterByZMass')
-MMETnoIsoSS.addSelector('noIsoSSMMETzzSIP','PATMuMuEleTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMETSIP')
+MMETnoIsoSS.addSelector('noIsoSSMMETzzSIP','PATMuMuEleTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','MMETSIP')
 MMETnoIsoSS.addSelector('MMETnoIsoSSF','PATMuMuEleTauQuadSelector','leg2.leg2.tauID("decayModeFinding")','noIsoSSMMETDecayModeFinding')
 MMETnoIsoSS.addSelector('MMETnoIsoSScheckF','PATMuMuEleTauQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>20','noIsoSSMMETDecayModeFinding')
 MMETnoIsoSSSeq =MMETnoIsoSS.returnSequence()
@@ -291,7 +348,8 @@ MMEMnoIsoSS.addSelector('noIsoSSMMEMzzCleanedThirdMuID','PATMuMuEleMuQuadSelecto
 MMEMnoIsoSS.addSelector('noIsoSSMMEMz2Charge','PATMuMuEleMuQuadSelector','leg2.charge()!=0','MMEMEleIso')
 MMEMnoIsoSS.addSorter('noIsoSSMMEMSorted','PATMuMuEleMuQuadSorterByZMass')
 MMEMnoIsoSS.addSelector('noIsoSSMMEMzzSIP','PATMuMuEleMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMEMSIP')
-MMEMnoIsoSS.addSelector('MMEMnoIsoSSF','PATMuMuEleMuQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','MMEMEleCiCLoose') 
+#MMEMnoIsoSS.addSelector('MMEMnoIsoSSF','PATMuMuEleMuQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','MMEMEleCiCLoose') 
+MMEMnoIsoSS.addSelector('MMEMnoIsoSSF','PATMuMuEleMuQuadSelector','leg2.leg1.userFloat("SIP3D")<4','MMEMEleCiCLoose') 
 MMEMnoIsoSS.addSelector('MMEMnoIsoSScheckF','PATMuMuEleMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>5','MMEMEleCiCLoose') 
 MMEMnoIsoSSSeq =MMEMnoIsoSS.returnSequence()
 
@@ -371,7 +429,8 @@ MMEEnoIsoSS.addSelector('noIsoSSMMEEzzMuIso','PATMuMuEleEleQuadSelector','((leg1
 MMEEnoIsoSS.addSelector('noIsoSSMMEEz2Charge','PATMuMuEleEleQuadSelector','leg2.charge()!=0','noIsoSSMMEEZEleIso')
 MMEEnoIsoSS.addSorter('noIsoSSMMEEsorted','PATMuMuEleEleQuadSorterByZMass')
 MMEEnoIsoSS.addSelector('noIsoSSMMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMEESIP')
-MMEEnoIsoSS.addSelector('MMEEnoIsoSSF','PATMuMuEleEleQuadSelector','((leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)&&(leg2.leg2.electronID("cicTight")==1||leg2.leg2.electronID("cicTight")==3||leg2.leg2.electronID("cicTight")==5||leg2.leg2.electronID("cicTight")==7||leg2.leg2.electronID("cicTight")==9||leg2.leg2.electronID("cicTight")==11||leg2.leg2.electronID("cicTight")==13||leg2.leg2.electronID("cicTight")==15))','noIsoSSMMEEEleCiCTight') 
+#MMEEnoIsoSS.addSelector('MMEEnoIsoSSF','PATMuMuEleEleQuadSelector','((leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)&&(leg2.leg2.electronID("cicTight")==1||leg2.leg2.electronID("cicTight")==3||leg2.leg2.electronID("cicTight")==5||leg2.leg2.electronID("cicTight")==7||leg2.leg2.electronID("cicTight")==9||leg2.leg2.electronID("cicTight")==11||leg2.leg2.electronID("cicTight")==13||leg2.leg2.electronID("cicTight")==15))','noIsoSSMMEEEleCiCTight') 
+MMEEnoIsoSS.addSelector('MMEEnoIsoSSF','PATMuMuEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','noIsoSSMMEEEleCiCTight') 
 MMEEnoIsoSS.addSelector('MMEEnoIsoSScheckF','PATMuMuEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','noIsoSSMMEEEleCiCTight') 
 MMEEnoIsoSSSeq =MMEEnoIsoSS.returnSequence()
 
@@ -447,7 +506,7 @@ MMMMnoIsoSS.addSelector('noIsoSSMMMMzzCleanedMuID','PATMuMuMuMuQuadSelector','le
 MMMMnoIsoSS.addSelector('noIsoSSMMMMzzMuIso','PATMuMuMuMuQuadSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSMMMMLeadingZMuIso')
 MMMMnoIsoSS.addSelector('noIsoSSMMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.charge()!=0','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSS.addSorter('noIsoSSMMMMsorted','PATMuMuMuMuQuadSorterByZMass')
-MMMMnoIsoSS.addSelector('noIsoSSMMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMMMSIP')
+MMMMnoIsoSS.addSelector('noIsoSSMMMMzzSIP','PATMuMuMuMuQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMMMSIP')
 MMMMnoIsoSS.addSelector('MMMMnoIsoSSF','PATMuMuMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()&&leg2.leg1.isTrackerMuon()&&leg2.leg2.isTrackerMuon()','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSS.addSelector('MMMMnoIsoSScheckF','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>10','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSSSeq =MMMMnoIsoSS.returnSequence()
@@ -523,7 +582,7 @@ EEMTnoIsoSS.addSelector('noIsoSSEEMTzzCleanedmuID','PATEleEleMuTauQuadSelector',
 EEMTnoIsoSS.addSelector('noIsoSSEEMTz2Charge','PATEleEleMuTauQuadSelector','leg2.charge()!=0','noIsoSSEEMTMuID')
 EEMTnoIsoSS.addSelector('noIsoSSEEMTz2pt','PATEleEleMuTauQuadSelector','leg2.leg1.pt()>5','noIsoSSEEMTMuID')
 EEMTnoIsoSS.addSorter('noIsoSSEEMTsorted','PATEleEleMuTauQuadSorterByZMass')
-EEMTnoIsoSS.addSelector('noIsoSSEEMTzzSIP','PATEleEleMuTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEMTSIP')
+EEMTnoIsoSS.addSelector('noIsoSSEEMTzzSIP','PATEleEleMuTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','EEMTSIP')
 EEMTnoIsoSS.addSelector('EEMTnoIsoSSF','PATEleEleMuTauQuadSelector','leg2.leg2.tauID("decayModeFinding")','noIsoSSEEMTDecayModeFinding')
 EEMTnoIsoSS.addSelector('EEMTnoIsoSScheckF','PATEleEleMuTauQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>20','noIsoSSEEMTDecayModeFinding')
 EEMTnoIsoSSSeq =EEMTnoIsoSS.returnSequence()
@@ -598,11 +657,11 @@ EEETnoIsoSS.addDiCandidateModule('noIsoSSEEETeleTau','PATEleTauPairProducer', 's
 EEETnoIsoSS.addDiCandidateModule('noIsoSSEEETzzCands','PATEleEleEleTauQuadProducer','noIsoSSEEETosDiElectrons','noIsoSSEEETeleTau','smearedMET','smearedJets',1,9999,text='noIsoSSEEETAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.5,recoMode ="",genParticles='genDaughters')
 EEETnoIsoSS.addCrossCleanerModule('noIsoSSEEETzzCleanedCands','PATEleEleEleTauQuadCrossCleaner',1,9999,text='noIsoSSEEETAtLeastOneZZCleanedCandidate',dR = 0.1)
 EEETnoIsoSS.addSelector('noIsoSSEEETzzEleIso','PATEleEleEleTauQuadSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSEEETLeadingZEleIso')
-EEETnoIsoSS.addSelector('noIsoSSEEETzzCleanedThirdeleID','PATEleEleEleTauQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','noIsoSSEEETTightThirdEleCiCTight')
+#EEETnoIsoSS.addSelector('noIsoSSEEETzzCleanedThirdeleID','PATEleEleEleTauQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','noIsoSSEEETTightThirdEleCiCTight')
 EEETnoIsoSS.addSelector('noIsoSSEEETz2Charge','PATEleEleEleTauQuadSelector','leg2.charge()!=0','noIsoSSEEETDecayModeFinding')
 EEETnoIsoSS.addSelector('noIsoSSEEETz2pt','PATEleEleEleTauQuadSelector','leg2.leg1.pt()>7','noIsoSSEEETDecayModeFinding')
 EEETnoIsoSS.addSorter('noIsoSSEEETsorted','PATEleEleEleTauQuadSorterByZMass')
-EEETnoIsoSS.addSelector('noIsoSSEEETzzSIP','PATEleEleEleTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEETSIP')
+EEETnoIsoSS.addSelector('noIsoSSEEETzzSIP','PATEleEleEleTauQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','EEETSIP')
 EEETnoIsoSS.addSelector('EEETnoIsoSSF','PATEleEleEleTauQuadSelector','leg2.leg2.tauID("decayModeFinding")','noIsoSSEEETDecayModeFinding')
 EEETnoIsoSS.addSelector('EEETnoIsoSScheckF','PATEleEleEleTauQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>20','noIsoSSEEETDecayModeFinding')
 EEETnoIsoSSSeq =EEETnoIsoSS.returnSequence()
@@ -751,10 +810,10 @@ EEEMnoIsoSS.addDiCandidateModule('noIsoSSEEEMeleMu','PATEleMuPairProducer', 'sme
 EEEMnoIsoSS.addDiCandidateModule('noIsoSSEEEMzzCands','PATEleEleEleMuQuadProducer','noIsoSSEEEMosDiElectrons','noIsoSSEEEMeleMu','smearedMET','smearedJets',1,9999,text='noIsoSSEEEMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.5,recoMode ="",genParticles='genDaughters')
 EEEMnoIsoSS.addCrossCleanerModule('noIsoSSEEEMzzCleanedCands','PATEleEleEleMuQuadCrossCleaner',1,9999,text='noIsoSSEEEMAtLeastOneZZCleanedCandidate',dR = 0.1)
 EEEMnoIsoSS.addSelector('noIsoSSEEEMzzEleIso','PATEleEleEleMuQuadSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSEEEMLeadingZEleIso')
-EEEMnoIsoSS.addSelector('noIsoSSEEEMzzCleanedThirdeleID','PATEleEleEleMuQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','noIsoSSEEEMTightThirdEleCiCTight')
+#EEEMnoIsoSS.addSelector('noIsoSSEEEMzzCleanedThirdeleID','PATEleEleEleMuQuadSelector','(leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)','noIsoSSEEEMTightThirdEleCiCTight')
 EEEMnoIsoSS.addSelector('noIsoSSEEEMz2Charge','PATEleEleEleMuQuadSelector','leg2.charge()!=0','noIsoSSEEEMMuID')
 EEEMnoIsoSS.addSorter('noIsoSSEEEMsorted','PATEleEleEleMuQuadSorterByZMass')
-EEEMnoIsoSS.addSelector('noIsoSSEEEMzzSIP','PATEleEleEleMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEEMSIP')
+EEEMnoIsoSS.addSelector('noIsoSSEEEMzzSIP','PATEleEleEleMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','EEEMSIP')
 EEEMnoIsoSS.addSelector('EEEMnoIsoSSF','PATEleEleEleMuQuadSelector','leg2.leg2.isGlobalMuon()&&leg2.leg2.isTrackerMuon()','noIsoSSEEEMMuID')
 EEEMnoIsoSS.addSelector('EEEMnoIsoSScheckF','PATEleEleEleMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>5','noIsoSSEEEMMuID')
 EEEMnoIsoSSSeq =EEEMnoIsoSS.returnSequence()
@@ -826,7 +885,8 @@ EEEEnoIsoSS.addSelector('noIsoSSEEEEzzEleIso','PATEleEleEleEleQuadSelector','((l
 EEEEnoIsoSS.addSelector('noIsoSSEEEEz2Charge','PATEleEleEleEleQuadSelector','leg2.charge()!=0','noIsoSSEEEEsecondLegEleCiCTight')
 EEEEnoIsoSS.addSorter('noIsoSSEEEEsorted','PATEleEleEleEleQuadSorterByZMass')
 EEEEnoIsoSS.addSelector('noIsoSSEEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEEESIP')
-EEEEnoIsoSS.addSelector('EEEEnoIsoSSF','PATEleEleEleEleQuadSelector','((leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)&&(leg2.leg2.electronID("cicTight")==1||leg2.leg2.electronID("cicTight")==3||leg2.leg2.electronID("cicTight")==5||leg2.leg2.electronID("cicTight")==7||leg2.leg2.electronID("cicTight")==9||leg2.leg2.electronID("cicTight")==11||leg2.leg2.electronID("cicTight")==13||leg2.leg2.electronID("cicTight")==15))','noIsoSSEEEEsecondLegEleCiCTight')
+#EEEEnoIsoSS.addSelector('EEEEnoIsoSSF','PATEleEleEleEleQuadSelector','((leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)&&(leg2.leg2.electronID("cicTight")==1||leg2.leg2.electronID("cicTight")==3||leg2.leg2.electronID("cicTight")==5||leg2.leg2.electronID("cicTight")==7||leg2.leg2.electronID("cicTight")==9||leg2.leg2.electronID("cicTight")==11||leg2.leg2.electronID("cicTight")==13||leg2.leg2.electronID("cicTight")==15))','noIsoSSEEEEsecondLegEleCiCTight')
+EEEEnoIsoSS.addSelector('EEEEnoIsoSSF','PATEleEleEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','noIsoSSEEEEsecondLegEleCiCTight')
 EEEEnoIsoSS.addSelector('EEEEnoIsoSScheckF','PATEleEleEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','noIsoSSEEEEsecondLegEleCiCTight')
 EEEEnoIsoSSSeq =EEEEnoIsoSS.returnSequence()
 
@@ -892,7 +952,7 @@ EEMMnoIsoSS.addCrossCleanerModule('noIsoSSEEMMzzCleanedCands','PATEleEleMuMuQuad
 EEMMnoIsoSS.addSelector('noIsoSSEEMMzzEleIso','PATEleEleMuMuQuadSelector','((leg1.leg1.userIso(1)-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.userIso(2)-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.userIso(1)-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.userIso(2)-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSEEMMLeadingZEleIso')
 EEMMnoIsoSS.addSelector('noIsoSSEEMMz2Charge','PATEleEleMuMuQuadSelector','leg2.charge()!=0','noIsoSSEEMMsecondPairID')
 EEMMnoIsoSS.addSorter('noIsoSSEEMMsorted','PATEleEleMuMuQuadSorterByZMass')
-EEMMnoIsoSS.addSelector('noIsoSSEEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEMMSIP')
+EEMMnoIsoSS.addSelector('noIsoSSEEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','EEMMSIP')
 EEMMnoIsoSS.addSelector('EEMMnoIsoSSF','PATEleEleMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()&&leg2.leg1.isTrackerMuon()&&leg2.leg2.isTrackerMuon()','noIsoSSEEMMsecondPairID')
 EEMMnoIsoSS.addSelector('EEMMnoIsoSScheckF','PATEleEleMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSSEEMMsecondPairID')
 EEMMnoIsoSSSeq =EEMMnoIsoSS.returnSequence()
