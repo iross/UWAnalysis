@@ -88,24 +88,24 @@ def zzCommon(src,pluginType):
 				leadingOnly=cms.untracked.bool(True)
 				),
 			cms.PSet(
-					pluginType = cms.string(pluginType),
-					src        = cms.InputTag(src),
-					tag		 = cms.string("rho"),
-					method     = cms.string('leg1.leg1.userFloat("rho")'),
-					leadingOnly= cms.untracked.bool(True)
-					),	
-			)
-	return sharedV
-
-def metCommon(src,pluginType):
-	sharedV = cms.VPSet(
-			cms.PSet(
 				pluginType = cms.string(pluginType),
 				src        = cms.InputTag(src),
 				tag        = cms.string("met"),
 				method     = cms.string("met.pt()"),
 				leadingOnly=cms.untracked.bool(True)
 				),
+			cms.PSet(
+				pluginType = cms.string(pluginType),
+				src        = cms.InputTag(src),
+				tag		 = cms.string("rho"),
+				method     = cms.string('leg1.leg1.userFloat("rho")'),
+				leadingOnly= cms.untracked.bool(True)
+				),	
+			)
+	return sharedV
+
+def metCommon(src,pluginType):
+	sharedV = cms.VPSet(
 			cms.PSet(
 				pluginType = cms.string(pluginType),
 				src        = cms.InputTag(src),
@@ -389,7 +389,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM):
 		),
 		cms.PSet(
 			pluginType = cms.string("MuonCountFiller"),
-			src        = cms.InputTag('patPFMuonMatch'),
+			src        = cms.InputTag('patMuonsForAnalysis'),
 			# pass candidate collection so we can cross-clean
 			# dR
 			tag        = cms.string("nMuons"),
@@ -453,6 +453,20 @@ def muCommon(src,legName,legMethod,pluginType):
 		cms.PSet(
 			pluginType = cms.string(pluginType),
 			src        = cms.InputTag(src),
+			tag        = cms.string(legName+"isGlobal"),
+			method     = cms.string(legMethod+"isGlobalMuon()"),
+			leadingOnly=cms.untracked.bool(True)
+		),
+		cms.PSet(
+			pluginType = cms.string(pluginType),
+			src        = cms.InputTag(src),
+			tag        = cms.string(legName+"isTracker"),
+			method     = cms.string(legMethod+"isTrackerMuon()"),
+			leadingOnly=cms.untracked.bool(True)
+		),
+		cms.PSet(
+			pluginType = cms.string(pluginType),
+			src        = cms.InputTag(src),
 			tag        = cms.string(legName+"NormChiSq"),
 			method     = cms.string(legMethod+"normChi2()"),
 			leadingOnly=cms.untracked.bool(True)
@@ -511,6 +525,13 @@ def muCommon(src,legName,legMethod,pluginType):
 		  	src        = cms.InputTag(src),
 		  	tag        = cms.string(legName+"rho"),
 		  	method     = cms.string(legMethod+"userFloat('rho')"),
+		  	leadingOnly=cms.untracked.bool(True)
+	  	),
+	  	cms.PSet(
+		  	pluginType = cms.string(pluginType),
+		  	src        = cms.InputTag(src),
+		  	tag        = cms.string(legName+"SIP"),
+		  	method     = cms.string(legMethod+"userFloat('SIP3D')"),
 		  	leadingOnly=cms.untracked.bool(True)
 	  	),
 	  	cms.PSet(
@@ -855,6 +876,13 @@ def eleCommon(src,legName,legMethod,pluginType):
 	  	cms.PSet(
 		  	pluginType = cms.string(pluginType),
 		  	src        = cms.InputTag(src),
+		  	tag        = cms.string(legName+"SIP"),
+		  	method     = cms.string(legMethod+"userFloat('SIP3D')"),
+		  	leadingOnly=cms.untracked.bool(True)
+	  	),
+	  	cms.PSet(
+		  	pluginType = cms.string(pluginType),
+		  	src        = cms.InputTag(src),
 		  	tag        = cms.string(legName+"dB"),
 		  	method     = cms.string(legMethod+"userIso(0)"),
 		  	leadingOnly=cms.untracked.bool(True)
@@ -1054,6 +1082,7 @@ def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 #			method     = cms.string('1')
 ##		),
 		zzShared = zzCommon(src,'PATMuMuEleTauQuadFiller'),
+		metShared = metCommon(src,'PATMuMuEleTauQuadFiller'),
 		genShared = genCommon(src,'PATMuMuEleTauQuadFiller'),
 		#ZZ quantities
 		counters = countCommon(src,'PATMuMuEleTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
@@ -1109,7 +1138,7 @@ def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 #		),
 		#ZZ quantities
 		zzShared = zzCommon(src,'PATMuMuEleMuQuadFiller'),
-		metShared = zzCommon(src,'PATMuMuEleMuQuadFiller'),
+		metShared = metCommon(src,'PATMuMuEleMuQuadFiller'),
 		genShared = genCommon(src,'PATMuMuEleMuQuadFiller'),
 		counters = countCommon(src,'PATMuMuEleMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		#mumu quantities
@@ -1163,7 +1192,7 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 #		),
 		#ZZ quantities
 		zzShared = zzCommon(src,'PATMuMuEleEleQuadFiller'),
-		metShared = zzCommon(src,'PATMuMuEleEleQuadFiller'),
+		metShared = metCommon(src,'PATMuMuEleEleQuadFiller'),
 		genShared = genCommon(src,'PATMuMuEleEleQuadFiller'),
 		counters = countCommon(src,'PATMuMuEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		#mumu quantities
@@ -1220,7 +1249,7 @@ def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 		counters = countCommon(src,'PATEleEleTauTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		#ele ele quantities
 		zzShared = zzCommon(src,'PATEleEleTauTauQuadFiller'),
-		metShared = zzCommon(src,'PATEleEleTauTauQuadFiller'),
+		metShared = metCommon(src,'PATEleEleTauTauQuadFiller'),
 		genShared = genCommon(src,'PATEleEleTauTauQuadFiller'),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleTauTauQuadFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleTauTauQuadFiller'),
@@ -1272,7 +1301,7 @@ def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleEleTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleEleTauQuadFiller'),
-		metShared = zzCommon(src,'PATEleEleEleTauQuadFiller'),
+		metShared = metCommon(src,'PATEleEleEleTauQuadFiller'),
 		genShared = genCommon(src,'PATEleEleEleTauQuadFiller'),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleTauQuadFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleEleTauQuadFiller'),
@@ -1324,7 +1353,7 @@ def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleMuTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleMuTauQuadFiller'),
-		metShared = zzCommon(src,'PATEleEleMuTauQuadFiller'),
+		metShared = metCommon(src,'PATEleEleMuTauQuadFiller'),
 		genShared = genCommon(src,'PATEleEleMuTauQuadFiller'),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleMuTauQuadFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleMuTauQuadFiller'),
@@ -1377,7 +1406,7 @@ def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleEleMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleEleMuQuadFiller'),
-		metShared = zzCommon(src,'PATEleEleEleMuQuadFiller'),
+		metShared = metCommon(src,'PATEleEleEleMuQuadFiller'),
 		genShared = genCommon(src,'PATEleEleEleMuQuadFiller'),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleMuQuadFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleEleMuQuadFiller'),
@@ -1430,7 +1459,7 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleEleEleQuadFiller'),
-		metShared = zzCommon(src,'PATEleEleEleEleQuadFiller'),
+		metShared = metCommon(src,'PATEleEleEleEleQuadFiller'),
 		genShared = genCommon(src,'PATEleEleEleEleQuadFiller'),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleEleQuadFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleEleEleQuadFiller'),
@@ -1487,7 +1516,7 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleMuMuQuadFiller'),
-		metShared = zzCommon(src,'PATEleEleMuMuQuadFiller'),
+		metShared = metCommon(src,'PATEleEleMuMuQuadFiller'),
 		genShared = genCommon(src,'PATEleEleMuMuQuadFiller'),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleMuMuQuadFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleMuMuQuadFiller'),
@@ -1539,6 +1568,8 @@ def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
 #		genShared = genCommon(src,'PATMuMuMuTriFiller'),
 	)
 	setattr(process, name, eventTree)
+	p = cms.Path(getattr(process,name))
+	setattr(process, name+'Path', p)
 
 def addMuMuEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold'):
 	process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
@@ -1613,7 +1644,7 @@ def addEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 #			method     = cms.string('1')
 #		),
 		#Candidate size quantities
-#		counters = countCommon(src,'PATEleEleMuTri',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+		counters = countCommon(src,'PATEleEleMuTri',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleMuTriFiller'),
 		z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleMuTriFiller'),
 		z2l1 = muCommon(src,'z2l1','leg2.','PATEleEleMuTriFiller'),
