@@ -1,0 +1,11 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Oct03_BG-BGStdIso/ MM_Oct03_BGm $CMSSW_BASE
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Jul05_BG-BGStdIso/ MM_Jul05_BGm $CMSSW_BASE
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Aug05_BG-BGStdIso/ MM_Aug05_BGm $CMSSW_BASE
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_2011Bv1_BG-BGStdIso/ MM_2011Bv1_BGm $CMSSW_BASE
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Oct03_BG-BGStdIso/ EE_Oct03_BGm $CMSSW_BASE 
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Jul05_BG-BGStdIso/ EE_Jul05_BGm $CMSSW_BASE
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Aug05_BG-BGStdIso/ EE_Aug05_BGm $CMSSW_BASE
+farmoutAnalysisJobs --output-dir=. --use-hadd --input-files-per-job=20000 --merge --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_2011Bv1_BG-BGStdIso/ EE_2011Bv1_BGm $CMSSW_BASE
