@@ -55,7 +55,7 @@ def zzCommon(src,pluginType):
 			cms.PSet(
 				pluginType = cms.string(pluginType),
 				src        = cms.InputTag(src),
-				tag        = cms.string("z2Mass"),
+				tag        = cms.string("z2Pt"),
 				method     = cms.string("leg2.pt()"),
 				leadingOnly=cms.untracked.bool(True)
 				),
