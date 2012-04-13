@@ -262,10 +262,10 @@ class TruthFiller : public NtupleFillerBase {
 						zInd[1]=i;	zmatched[1]=true;
 					}
 				}
-				std::cout << "best indices:" << lInd[0] << "(" <<  tempdR0 << ")" << lPt[lInd[0]]<<std::endl;
-				std::cout << "best indices:" << lInd[1] << "(" <<  tempdR1 << ")" <<  lPt[lInd[1]] << std::endl;
-				std::cout << "best indices:" << lInd[2] << "(" <<  tempdR2 << ")" << lPt[lInd[2]]<< std::endl;
-				std::cout << "best indices:" << lInd[3] << "(" <<  tempdR3 << ")" << lPt[lInd[3]]<< std::endl;
+//				std::cout << "best indices:" << lInd[0] << "(" <<  tempdR0 << ")" << lPt[lInd[0]]<<std::endl;
+//				std::cout << "best indices:" << lInd[1] << "(" <<  tempdR1 << ")" <<  lPt[lInd[1]] << std::endl;
+//				std::cout << "best indices:" << lInd[2] << "(" <<  tempdR2 << ")" << lPt[lInd[2]]<< std::endl;
+//				std::cout << "best indices:" << lInd[3] << "(" <<  tempdR3 << ")" << lPt[lInd[3]]<< std::endl;
 				z1l1Pt=lPt[lInd[0]]; z1l1Eta=lEta[lInd[0]]; z1l1Phi=lPhi[lInd[0]]; z1l1PdgId=lPdgId[lInd[0]];
 				z1l2Pt=lPt[lInd[1]]; z1l2Eta=lEta[lInd[1]]; z1l2Phi=lPhi[lInd[1]]; z1l2PdgId=lPdgId[lInd[1]];
 				z2l1Pt=lPt[lInd[2]]; z2l1Eta=lEta[lInd[2]]; z2l1Phi=lPhi[lInd[2]]; z2l1PdgId=lPdgId[lInd[2]];
