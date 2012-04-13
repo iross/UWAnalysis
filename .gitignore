@@ -20,3 +20,6 @@
 *.swp
 
 *__afs*
+
+aTGCRooStats/run_*
+aTGCRooStats/root_*
