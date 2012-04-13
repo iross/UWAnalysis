@@ -1,0 +1,23 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/$USER/0p000_0p000-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd 0p000_0p000.root
+find /scratch/$USER/0p000_0p060-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd 0p000_0p060.root
+find /scratch/$USER/0p000_m0p060-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd 0p000_m0p060.root
+find /scratch/$USER/0p060_0p000-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd 0p060_0p000.root
+find /scratch/$USER/0p060_0p060-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd 0p060_0p060.root
+find /scratch/$USER/0p060_m0p060-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd 0p060_m0p060.root
+find /scratch/$USER/m0p060_0p000-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd m0p060_0p000.root
+find /scratch/$USER/m0p060_0p060-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd m0p060_0p060.root
+find /scratch/$USER/m0p060_m0p060-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd m0p060_m0p060.root
+
+EventWeightsIterative outputFile='0p000_0p000.root'         weight=0.046   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='0p000_0p060.root'         weight=0.070   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='0p000_m0p060.root'         weight=0.070   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='0p060_0p000.root'         weight=0.071   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='0p060_0p060.root'         weight=0.094   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='0p060_m0p060.root'         weight=0.097   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='m0p060_0p000.root'         weight=0.073   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='m0p060_0p060.root'         weight=0.096   	type=2  histoName='MMEE/results'  branch="weight"
+EventWeightsIterative outputFile='m0p060_m0p060.root'         weight=0.097   	type=2  histoName='MMEE/results'  branch="weight"

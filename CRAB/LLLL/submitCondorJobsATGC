@@ -1,0 +1,19 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat LLLL-ATGC-MC.py >MC.py
+cat CONDOR.py >>MC.py
+
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p000_0p000/Fall11-AODSIM-START42_V14B-v1_0p000_0p000-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/0p000_0p000.dag 0p000_0p000 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p000_0p060/Fall11-AODSIM-START42_V14B-v1_0p000_0p060-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/0p000_0p060.dag 0p000_0p060 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p000_m0p060/Fall11-AODSIM-START42_V14B-v1_0p000_m0p060-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/0p000_m0p060.dag 0p000_m0p060 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p060_0p000/Fall11-AODSIM-START42_V14B-v1_0p060_0p000-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/0p060_0p000.dag 0p060_0p000 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p060_0p060/Fall11-AODSIM-START42_V14B-v1_0p060_0p060-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/0p060_0p060.dag 0p060_0p060 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p060_m0p060/Fall11-AODSIM-START42_V14B-v1_0p060_m0p060-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/0p060_m0p060.dag 0p060_m0p060 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_m0p060_0p000/Fall11-AODSIM-START42_V14B-v1_m0p0600_0p000-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/m0p060_0p000.dag m0p060_0p000 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_m0p060_0p060/Fall11-AODSIM-START42_V14B-v1_m0p060_0p060-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/m0p060_0p060.dag m0p060_0p060 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+farmoutAnalysisJobs --lumi-mask=dummy.json --input-files-per-job=2 --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/ZZ4L_Sherpa_aTGC_fZ_m0p060_m0p060/Fall11-AODSIM-START42_V14B-v1_m0p060_m0p060-SIM/01715716b3165466edf30580d661ec8b/ --output-dir=.  --output-dag-file=/scratch/iross/DAGs/m0p060_m0p060.dag m0p060_m0p060 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py 
+
+rm MC.py
