@@ -13,6 +13,13 @@ def zzCommon(src,pluginType):
 			cms.PSet(
 				pluginType = cms.string(pluginType),
 				src        = cms.InputTag(src),
+				tag        = cms.string("pt"),
+				method     = cms.string("pt()"),
+				leadingOnly=cms.untracked.bool(True)
+				),
+			cms.PSet(
+				pluginType = cms.string(pluginType),
+				src        = cms.InputTag(src),
 				tag        = cms.string("charge"),
 				method     = cms.string("charge()"),
 				leadingOnly=cms.untracked.bool(True)
@@ -915,13 +922,13 @@ def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#Candidate size quantities
 		counters = countCommon(src,'PATMuMuTauTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		z1l1 = muCommon(src,'z1l1','leg1.leg1.','PATMuMuTauTauQuadFiller'),
@@ -967,13 +974,13 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuMuMuTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuMuMuTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		zzShared = zzCommon(src,'PATMuMuMuMuQuadFiller'),
 		metShared = metCommon(src,'PATMuMuMuMuQuadFiller'),
@@ -1016,13 +1023,13 @@ def addMuMuMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 			tag        = cms.string("refitVertex"),
 			vertexTag  = cms.InputTag("offlinePrimaryVertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuMuTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuMuTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1074,13 +1081,13 @@ def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuEleTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-##		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuEleTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		zzShared = zzCommon(src,'PATMuMuEleTauQuadFiller'),
 		metShared = metCommon(src,'PATMuMuEleTauQuadFiller'),
 		genShared = genCommon(src,'PATMuMuEleTauQuadFiller'),
@@ -1129,13 +1136,13 @@ def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuEleMuTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuEleMuTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		zzShared = zzCommon(src,'PATMuMuEleMuQuadFiller'),
 		metShared = metCommon(src,'PATMuMuEleMuQuadFiller'),
@@ -1183,13 +1190,13 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuEleEleTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuEleEleTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		zzShared = zzCommon(src,'PATMuMuEleEleQuadFiller'),
 		metShared = metCommon(src,'PATMuMuEleEleQuadFiller'),
@@ -1238,13 +1245,13 @@ def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATEleEleTauTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATEleEleTauTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleTauTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		#ele ele quantities
@@ -1291,13 +1298,13 @@ def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATEleEleEleTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATEleEleEleTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleEleTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleEleTauQuadFiller'),
@@ -1343,13 +1350,13 @@ def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATEleEleMuTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATEleEleMuTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleMuTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleMuTauQuadFiller'),
@@ -1396,13 +1403,13 @@ def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATEleEleEleMuTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATEleEleEleMuTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleEleMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleEleMuQuadFiller'),
@@ -1449,13 +1456,13 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATEleEleEleEleTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATEleEleEleEleTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleEleEleQuadFiller'),
@@ -1506,13 +1513,13 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             src        = cms.InputTag("kt6PFJets","rho"),
             tag        = cms.string("rho")
         ),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATEleEleMuMuTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATEleEleMuMuTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleMuMuQuadFiller'),
@@ -1552,13 +1559,13 @@ def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#Candidate size quantities
 		counters = countCommon(src,'PATMuMuMuTri',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		z1l1 = muCommon(src,'z1l1','leg1.leg1.','PATMuMuMuTriFiller'),
@@ -1594,13 +1601,13 @@ def addMuMuEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEE
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#Candidate size quantities
 		counters = countCommon(src,'PATMuMuEleTri',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		z1l1 = muCommon(src,'z1l1','leg1.leg1.','PATMuMuEleTriFiller'),
@@ -1636,13 +1643,13 @@ def addEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#Candidate size quantities
 		counters = countCommon(src,'PATEleEleMuTri',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleMuTriFiller'),
@@ -1678,13 +1685,13 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-#		truth = cms.PSet(
-#			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
-#			src        = cms.InputTag(src),
-#			gensrc        = cms.InputTag("genParticles"),
-#			tag        = cms.string("refitVertex"),
-#			method     = cms.string('1')
-#		),
+		truth = cms.PSet(
+			pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+			src        = cms.InputTag(src),
+			gensrc        = cms.InputTag("genParticles"),
+			tag        = cms.string("refitVertex"),
+			method     = cms.string('1')
+		),
 		#Candidate size quantities
 		counters = countCommon(src,'PATEleEleEleTri',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleTriFiller'),
