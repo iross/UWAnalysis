@@ -19,8 +19,9 @@ process.source = cms.Source("PoolSource",
 #		'file:segfaultmaybe.root'
 		#'file:pickevents.root'
 #		'/store/mc/Fall11/DYJetsToLL_M-10To50_TuneZ2_7TeV-madgraph/AODSIM/PU_S6_START42_V14B-v1/0000/0025D389-E73A-E111-B3FB-0030486790B0.root'
-		'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
+#		'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
 #	'/store/mc/Summer11/ZZTo2e2mu_7TeV-powheg-pythia6/AODSIM/PU_S4_START42_V11-v1/0000/0AC98E6F-DFAD-E011-91A1-90E6BA442EFE.root'
+'/store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p060_0p060/Fall11-AODSIM-START42_V14B-v1_0p060_0p060-SIM/01715716b3165466edf30580d661ec8b/REDIGI_RAW2DIGI_L1Reco_RECO_8_1_7JF.root'
 )
     )
 
@@ -30,8 +31,17 @@ process.load("PhysicsTools.PatAlgos.patSequences_cff")
 from UWAnalysis.Configuration.tools.analysisTools import *
 defaultReconstructionMC(process,'HLT',
                         [
-                         "HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL",
-                         "HLT_DoubleMu7"
+								"HLT_DoubleMu3",
+								"HLT_DoubleMu7",
+								"HLT_Mu13_Mu8",
+								"HLT_Mu17_Mu8",
+								"HLT_Ele10_LW_LR1",
+								"HLT_Ele15_SW_LR1",
+								"HLT_Ele15_SW_CaloEleID_L1R",
+								"HLT_Ele17_SW_TightEleID_L1R",
+								"HLT_Ele17_SW_TighterEleIdIsol_L1R",
+								"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL",
+								"HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
                          ]
                         )
 
