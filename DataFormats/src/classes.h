@@ -191,7 +191,7 @@ namespace {
 
 		/// create dictionaries for PATMuMuMuTauQuad objects
 		PATMuMuMuTauQuad dummyPATMuMuMuTauQuad;
-		edm::Wrapper<PATMuMuMuTauQuad> dummyPATMuMuMuTauTauQuadWrapper;
+		edm::Wrapper<PATMuMuMuTauQuad> dummyPATMuMuMuTauQuadWrapper;
 		PATMuMuMuTauQuadCollection dummyPATMuMuMuTauQuadCollection;
 		edm::Wrapper<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadCollectionWrapper;
 		edm::Ref<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRef;
@@ -308,6 +308,24 @@ namespace {
 		edm::RefVector<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefVector;
 		edm::RefProd<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefProd;
 		edm::Ptr<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadPtr;
+		
+		/// create dictionaries for PATEleEleMuMuQuad objects
+		edm::Wrapper<PATEleEleEleSCQuad> dummyPATEleEleEleSCQuadWrapper;
+		PATEleEleEleSCQuadCollection dummyPATEleEleEleSCQuadCollection;
+		edm::Wrapper<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadCollectionWrapper;
+		edm::Ref<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRef;
+		edm::RefVector<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRefVector;
+		edm::RefProd<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRefProd;
+		edm::Ptr<PATEleEleEleSCQuad> dummyPATEleEleEleSCQuadPtr;
+	
+		/// create dictionaries for PATMuMuMuMuQuad objects
+		edm::Wrapper<PATMuMuEleSCQuad> dummyPATMuMuEleSCQuadWrapper;
+		PATMuMuEleSCQuadCollection dummyPATMuMuEleSCQuadCollection;
+		edm::Wrapper<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadCollectionWrapper;
+		edm::Ref<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadRef;
+		edm::RefVector<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadRefVector;
+		edm::RefProd<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadRefProd;
+		edm::Ptr<PATMuMuEleSCQuad> dummyPATMuMuEleSCQuadPtr;
 
 		/// create dictionaries for PATMuMuMuNuQuad objects
 		edm::Wrapper<PATMuMuMuNuQuad> dummyPATMuMuMuNuQuadWrapper;
