@@ -20,6 +20,6 @@
 *.swp
 *nohup.out
 *__afs*
-
+*callgrind*
 aTGCRooStats/run_*
 aTGCRooStats/root_*
