@@ -7,18 +7,19 @@ cd sandbox
 #find /scratch/$USER/ZZ4L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4L.root
 #find /scratch/$USER/TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TTJets.root
 #find /scratch/$USER/DYJets_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd DYJets_stdIso.root
-find /scratch/$USER/Z2J_BG-BGStdIso/*/*.root | xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z2Jets_BG.root
-find /scratch/$USER/ZZ4M-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4M_fall.root
-find /scratch/$USER/ZZ4E-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4E_fall.root
-find /scratch/$USER/ZZ4T-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4T_fall.root
-find /scratch/$USER/ZZ2E2T-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2M_fall.root
-find /scratch/$USER/ZZ2E2T-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2T_fall.root
-find /scratch/$USER/ZZ2M-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2M2T_fall.root
+#find /scratch/$USER/Z2J_BG-BGStdIso/*/*.root | xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z2Jets_BG.root
+find /scratch/$USER/ZZ4M-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4M_fall.root
+find /scratch/$USER/ZZ4E-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4E_fall.root
+find /scratch/$USER/ZZ4T-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4T_fall.root
+find /scratch/$USER/ZZ2E2M-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2M_fall.root
+find /scratch/$USER/ZZ2E2T-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2T_fall.root
+find /scratch/$USER/ZZ2M2T-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2M2T_fall.root
+find /scratch/$USER/ggZZ4L-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ4L_fall.root
+find /scratch/$USER/ggZZ2L2L-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ2L2L_fall.root
+
 #find /scratch/$USER/ZBB-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB.root
 #find /scratch/$USER/TT2L2nu2B_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd TT2L2nu_stdIso.root
 #find /scratch/$USER/ZZ4L_stdIso-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ZZ4L_stdIso.root
-#find /scratch/$USER/ggZZ4L_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ4L_fall.root
-#find /scratch/$USER/ggZZ2L2L_fall-MC2/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ2L2L_fall.root
 
 
 #EventWeightsIterative outputFile='TT2L2nu_stdIso.root' weight=17.3 type=6 histoName='MMEE/results' branch="__WEIGHT__"
@@ -27,16 +28,16 @@ find /scratch/$USER/ZZ2M-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9
 #EventWeightsIterative outputFile='ZZ4L_stdIso.root'        weight=0.068   	type=2  histoName='MMEE/results'  branch="__WEIGHT__"
 #EventWeightsIterative outputFile='TTJets.root'         weight=165    	type=6  histoName='MMEE/results' branch="__WEIGHT__"
 #EventWeightsIterative outputFile='DYJets_stdIso.root'      weight=3048  	type=10 histoName='MMEE/results' branch="__WEIGHT__"
-EventWeightsIterative outputFile='Z2Jets_BG.root'      weight=141.7  	type=10 histoName='MMEE/results' branch="__WEIGHT__"
-EventWeightsIterative outputFile='ZZ4M_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-EventWeightsIterative outputFile='ZZ4E_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-EventWeightsIterative outputFile='ZZ4T_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-EventWeightsIterative outputFile='ZZ2E2M_fall.root'      weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-EventWeightsIterative outputFile='ZZ2E2T_fall.root'        weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-EventWeightsIterative outputFile='ZZ2M2T_fall.root'      weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__"
+#EventWeightsIterative outputFile='Z2Jets_BG.root'      weight=141.7  	type=10 histoName='MMEE/results' branch="__WEIGHT__"
+EventWeightsIterative outputFile='ZZ4M_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1
+EventWeightsIterative outputFile='ZZ4E_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1
+EventWeightsIterative outputFile='ZZ4T_fall.root'        weight=0.0129   type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1
+EventWeightsIterative outputFile='ZZ2E2M_fall.root'      weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1   
+EventWeightsIterative outputFile='ZZ2E2T_fall.root'        weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1
+EventWeightsIterative outputFile='ZZ2M2T_fall.root'      weight=0.02442   type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1 
+EventWeightsIterative outputFile='ggZZ4L_fall.root'         weight=0.00174  	type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1
+EventWeightsIterative outputFile='ggZZ2L2L_fall.root'         weight=0.00348   	type=2  histoName='MMEE/results'  branch="__WEIGHT__" doOneD=1
 #
 #EventWeightsIterative outputFile='ZBB.root'         weight=23.5   	type=3  histoName='MMEE/results'  branch="__WEIGHT__"
 #EventWeightsIterative outputFile='ZCC.root'         weight=18.74   	type=3  histoName='MMEE/results'  branch="__WEIGHT__"
 #EventWeightsIterative outputFile='ZZ4L_stdIso.root'         weight=0.106   	type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-#EventWeightsIterative outputFile='ggZZ4L_fall.root'         weight=0.00174  	type=2  histoName='MMEE/results'  branch="__WEIGHT__"
-#EventWeightsIterative outputFile='ggZZ2L2L_fall.root'         weight=0.00348   	type=2  histoName='MMEE/results'  branch="__WEIGHT__"

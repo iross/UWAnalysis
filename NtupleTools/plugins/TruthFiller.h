@@ -127,19 +127,12 @@ class TruthFiller : public NtupleFillerBase {
 		t->Branch("z2l1Matched",&matched[2],"z2l1Matched/B");
 		t->Branch("z2l2Matched",&matched[3],"z2l2Matched/B");
 
-		value = new std::vector<double>();
-		singleValue=0.;
-		function = new StringObjectFunction<T>(var_);
-		if(!leadingOnly_)
-			vbranch = t->Branch(tag_.c_str(),"std::vector<double>",&value);
-		else
-			vbranch = t->Branch(tag_.c_str(),&singleValue,(tag_+"/F").c_str());
 	}
 
 
 		~TruthFiller()
 		{ 
-			if(function!=0) delete function;
+//			if(function!=0) delete function;
 		}
 
 
@@ -154,6 +147,7 @@ class TruthFiller : public NtupleFillerBase {
 			zzPhi=0;
 			zzPt=0;
 			for (int i = 0; i < 5; i++) {
+				std::cout << "resetting vars" << std::endl;
 				zPt[i]=0;
 				zMass[i]=0;
 				zEta[i]=0;
@@ -177,6 +171,7 @@ class TruthFiller : public NtupleFillerBase {
 			iEvent.getByLabel(gensrc_, genCandidates);
 			int zn=0;
 			int ln=0;
+			std::cout << "starting loop over genCandidates" << std::endl;
 			for ( reco::GenParticleCollection::const_iterator candIt=genCandidates->begin(); candIt!=genCandidates->end(); ++candIt ) {
 				// higgs pt
 				if ( candIt->pdgId()==25 ){
@@ -200,10 +195,7 @@ class TruthFiller : public NtupleFillerBase {
 					if (ln<9) ln++;
 				}
 			} 
-
-			if(value->size()>0)
-				value->clear();
-
+			std::cout << "looped over genCandidates" << std::endl;
 			edm::Handle<std::vector<T> > handle;
 			if(iEvent.getByLabel(src_,handle)) {
 				//look at everything and try to match...
@@ -288,11 +280,10 @@ class TruthFiller : public NtupleFillerBase {
 		std::string var_;
 		std::string tag_;
 		bool leadingOnly_;
-		std::vector<double>* value;
 		float singleValue;
 
-		StringObjectFunction<T>*function;
-		TBranch *vbranch;
+//		StringObjectFunction<T>*function;
+//		TBranch *vbranch;
 		float hPt, hMass, hEta, hPhi;
 		float zPt[5], zMass[5], zEta[5], zPhi[5];
 		float lPt[10], lEta[10], lPhi[10];

@@ -8,8 +8,10 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'GR_R_42_V10::All'
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(500)
+    input = cms.untracked.int32(5000)
 )
+
+SimpleMemoryCheck = cms.Service("SimpleMemoryCheck",ignoreTotal = cms.untracked.int32(1) )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
@@ -19,7 +21,8 @@ process.source = cms.Source("PoolSource",
 #		'file:segfaultmaybe.root'
 		#'file:pickevents.root'
 #		'/store/mc/Fall11/DYJetsToLL_M-10To50_TuneZ2_7TeV-madgraph/AODSIM/PU_S6_START42_V14B-v1/0000/0025D389-E73A-E111-B3FB-0030486790B0.root'
-		'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
+#		'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
+		'/store/mc/Fall11/ZZTo4mu_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/CA89312D-9AF8-E011-BF08-BCAEC53F6D32.root'
 #	'/store/mc/Summer11/ZZTo2e2mu_7TeV-powheg-pythia6/AODSIM/PU_S4_START42_V11-v1/0000/0AC98E6F-DFAD-E011-91A1-90E6BA442EFE.root'
 #'/store/user/iross/ZZ4L_Sherpa_aTGC_fZ_0p060_0p060/Fall11-AODSIM-START42_V14B-v1_0p060_0p060-SIM/01715716b3165466edf30580d661ec8b/REDIGI_RAW2DIGI_L1Reco_RECO_8_1_7JF.root'
 )

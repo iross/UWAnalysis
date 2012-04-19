@@ -18,8 +18,8 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
 		#'file:pickevents.root'
 #		'/store/user/iross/EE_2011Bv1_skim/skim_166_1_ooP.root'
-		'/store/mc/Fall11/Z2Jets_TuneZ2_7TeV-madgraph-tauola/AODSIM/PU_S6_START42_V14B-v1/0000/FAA0243C-92FD-E011-8DB4-00215E22214E.root'
-#		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
+#		'/store/mc/Fall11/Z2Jets_TuneZ2_7TeV-madgraph-tauola/AODSIM/PU_S6_START42_V14B-v1/0000/FAA0243C-92FD-E011-8DB4-00215E22214E.root'
+		'/store/user/iross/MM_2011Bv1_skim/skim_117_1_PjN.root',
 #		'/store/user/iross/EE_2011Bv1_skim/skim_137_1_8y9.root',
 #	'/store/user/iross/MM_2011Bv1_skim/skim_137_1_HEN.root',
 #		'/store/user/iross/EE_2011Bv1_skim/skim_121_2_8ag.root'
