@@ -18,14 +18,14 @@ fi
 #farmoutAnalysisJobs --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$1/ZZ2M2T.dag --input-dbs-path=/ZZTo2mu2tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ2M2T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
 #farmoutAnalysisJobs --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$1/ggZZ4L.dag --input-dbs-path=/GluGluToZZTo4L_7TeV-gg2zz-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM ggZZ4L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
 #farmoutAnalysisJobs --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$1/ggZZ2L2L.dag --input-dbs-path=/GluGluToZZTo2L2L_7TeV-gg2zz-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM ggZZ2L2L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4mu_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ4M$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4e_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ4E$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ4T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2e2mu_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ2E2M$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2e2tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ2E2T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2mu2tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM  ZZ2M2T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToZZTo4L_7TeV-gg2zz-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM ggZZ4L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
-farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToZZTo2L2L_7TeV-gg2zz-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM ggZZ2L2L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4mu_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v2/AODSIM  ZZ4M$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4e_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v2/AODSIM  ZZ4E$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo4tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v2/AODSIM  ZZ4T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2e2mu_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v2/AODSIM  ZZ2E2M$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2e2tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v2/AODSIM  ZZ2E2T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/ZZTo2mu2tau_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v2/AODSIM  ZZ2M2T$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+#farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToZZTo4L_7TeV-gg2zz-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM ggZZ4L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+#farmoutAnalysisJobs --vsize-limit=30000 --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToZZTo2L2L_7TeV-gg2zz-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM ggZZ2L2L $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
 
 
 
