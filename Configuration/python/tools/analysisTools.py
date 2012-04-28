@@ -197,23 +197,22 @@ def runRECO(process):
 
   process.recoPAT = cms.Path(process.PFTau+process.patElectronId+process.patDefaultSequence)
 
-
-
 def runRho(process):
-
-
   #Run the rho correction only for neutrals
-  process.load('JetMETCorrections.Configuration.DefaultJEC_cff')
+#  process.load('JetMETCorrections.Configuration.DefaultJEC_cff')
   process.load('RecoJets.Configuration.RecoPFJets_cff')
+  import RecoJets.JetProducers.kt4PFJets_cfi
+  process.kt6corPFJets=RecoJets.JetProducers.kt4PFJets_cfi.kt4PFJets.clone()
+  process.kt6corPFJets.rParam = cms.double(0.6)
+  process.kt6corPFJets.doRhoFastjet = cms.bool(True) 
+  process.kt6corPFJets.Rho_EtaMax = cms.double(2.5)
+  process.kt6corPFJets.Ghost_EtaMax = cms.double(2.5)
   process.kt6PFJets.doRhoFastjet = True
   process.ak5PFJets.doAreaFastjet = True
 
-  process.rhoSeq = cms.Sequence(process.kt6PFJets+process.ak5PFJets)
+  process.rhoSeq = cms.Sequence(process.kt6PFJets+process.ak5PFJets+process.kt6corPFJets)
   process.patJSeq = process.patDefaultSequence
   process.patDefaultSequence = cms.Sequence(process.rhoSeq+process.patJSeq)
-
-
-
 
 def addCustomJEC(process):
   process.load("CondCore.DBCommon.CondDBCommon_cfi")
@@ -374,7 +373,7 @@ def tauOverloading(process,src):
 
   process.patRhoTau = cms.EDProducer("TauRhoOverloader", 
                                           src = cms.InputTag(src),
-                                          srcRho = cms.InputTag("kt6PFJets","rho")
+                                          srcRho = cms.InputTag("kt6corPFJets","rho")
   )
   process.patOverloadedTaus = cms.EDProducer('PATTauOverloader',
                                         src = cms.InputTag("patRhoTau")
@@ -457,7 +456,7 @@ def electronOverloading(process,isdata,src):
 
   process.patRhoElectron = cms.EDProducer("ElectronRhoOverloader", 
                                           src = cms.InputTag("electronsWP95"),
-                                          srcRho = cms.InputTag("kt6PFJets","rho")
+                                          srcRho = cms.InputTag("kt6corPFJets","rho")
   )
 
 
@@ -524,7 +523,7 @@ def muonOverloading(process,src):
 
   process.patMuonsForAnalysis = cms.EDProducer("MuonRhoOverloader", 
                                           src = cms.InputTag("patWWMuonMatch"),
-                                          srcRho = cms.InputTag("kt6PFJets","rho")
+                                          srcRho = cms.InputTag("kt6corPFJets","rho")
   )
   
   process.patDefaultSequence = cms.Sequence(process.patDefaultSequence*process.patPFMuonMatch*process.patZZMuonMatch*process.patVBTFMuonMatch*process.patWWMuonMatch*process.patMuonsForAnalysis)
@@ -714,11 +713,11 @@ def switchToMuPFIsolation(process,muons):
 
   process.vetoMuons =  cms.EDFilter("MuonRefSelector",
           src = cms.InputTag("muons"),
-          cut = cms.string("isGlobalMuon && isTrackerMuon && pt>5")
+          cut = cms.string("isGlobalMuon && pt>5")
           )
   process.vetoElectrons =  cms.EDFilter("GsfElectronRefSelector",
           src = cms.InputTag("gsfElectrons"),
-          cut = cms.string("pt>7 && gsfTrack().trackerExpectedHitsInner().numberOfHits<2")
+          cut = cms.string("pt>5 ")
           )
 
   process.muIsoFromDepsTkOptimized = cms.EDProducer("CandIsolatorFromDeposits",
@@ -738,12 +737,13 @@ def switchToMuPFIsolation(process,muons):
   process.muIsoFromDepsEcalOptimized = cms.EDProducer("CandIsolatorFromDeposits",
           deposits = cms.VPSet(cms.PSet(
               mode = cms.string('sum'),
-              src = cms.InputTag("muIsoDepositCalByAssociatorTowersNew","ecal"),
+              src = cms.InputTag("muIsoDepositCalByAssociatorTowers","ecal"),
               weight = cms.string('1'),
               deltaR = cms.double(0.3),
               vetos = cms.vstring('vetoMuons:0.015',
                   'vetoElectrons:0.015',
-                  'Threshold(1.0)'),
+#                  'Threshold(1.0)'),
+				),
               skipDefaultVeto = cms.bool(True)
               ))
           )
@@ -756,7 +756,8 @@ def switchToMuPFIsolation(process,muons):
               deltaR = cms.double(0.3),
               vetos = cms.vstring('vetoMuons:0.015',
                   'vetoElectrons:0.015',
-                  'Threshold(1.0)'),
+#                  'Threshold(1.0)'),
+				),
               skipDefaultVeto = cms.bool(True)
               ))
           )
@@ -950,11 +951,11 @@ def switchToElePFIsolation(process,electrons):
 
   process.vetoMuons =  cms.EDFilter("MuonRefSelector",
           src = cms.InputTag("muons"),
-          cut = cms.string("isGlobalMuon && isTrackerMuon && pt>5")
+          cut = cms.string("isGlobalMuon && pt>5")
           )
   process.vetoElectrons =  cms.EDFilter("GsfElectronRefSelector",
           src = cms.InputTag("gsfElectrons"),
-          cut = cms.string("pt>7 && gsfTrack().trackerExpectedHitsInner().numberOfHits<2")
+          cut = cms.string("pt>5 ")
           )
 
   process.eleIsoFromDepsTkOptimized = cms.EDProducer("CandIsolatorFromDeposits",

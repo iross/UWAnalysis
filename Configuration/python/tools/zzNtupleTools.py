@@ -10,11 +10,11 @@ def zzCommon(src,pluginType):
 				method     = cms.string("mass()"),
 				leadingOnly=cms.untracked.bool(True)
 				),
-#			cms.PSet(
-#				pluginType = cms.string("PUFiller"),
-#				src        = cms.InputTag("addPileupInfo"),
-#				tag        = cms.string("pu"),
-#				),
+			cms.PSet(
+				pluginType = cms.string("PUFiller"),
+				src        = cms.InputTag("addPileupInfo"),
+				tag        = cms.string("pu"),
+				),
 			cms.PSet(
 				pluginType = cms.string(pluginType),
 				src        = cms.InputTag(src),
@@ -113,14 +113,14 @@ def zzCommon(src,pluginType):
 				method     = cms.string('leg1.leg1.userFloat("rho")'),
 				leadingOnly= cms.untracked.bool(True)
 				),	
-#			cms.PSet(
-#				#todo: this won't work for the tri-fillers. Should pass the generic type, then add Quad- or TruthFiller
-#				pluginType = cms.string(pluginType.split("Quad")[0]+"TruthFiller"),
-#				src        = cms.InputTag(src),
-#				gensrc        = cms.InputTag("genParticles"),
-#				tag        = cms.string("refitVertex"),
-#				method     = cms.string('1')
-#				),
+			cms.PSet(
+				#todo: this won't work for the tri-fillers. Should pass the generic type, then add Quad- or TruthFiller
+				pluginType = cms.string(pluginType.split("Quad")[0]+"TruthFiller"),
+				src        = cms.InputTag(src),
+				gensrc        = cms.InputTag("genParticles"),
+				tag        = cms.string("refitVertex"),
+				method     = cms.string('1')
+				),
 			)
 	return sharedV
 
@@ -1444,11 +1444,6 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-		Rho = cms.PSet(
-            pluginType = cms.string("EventWeightFiller"),
-            src        = cms.InputTag("kt6PFJets","rho"),
-            tag        = cms.string("rho")
-        ),
 		#ZZ quantities
 		counters = countCommon(src,'PATEleEleMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
 		zzShared = zzCommon(src,'PATEleEleMuMuQuadFiller'),
