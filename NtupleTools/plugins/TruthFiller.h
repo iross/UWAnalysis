@@ -56,6 +56,7 @@ class TruthFiller : public NtupleFillerBase {
 			lEta[9-i]=0;
 			lPhi[9-i]=0;
 			lInd[i]=9;
+			zInd[i]=1;
 			//			lp4[i]=(0,0,0,0);
 			//			lp4[9-i]=(0,0,0,0);
 		}
@@ -147,7 +148,6 @@ class TruthFiller : public NtupleFillerBase {
 			zzPhi=0;
 			zzPt=0;
 			for (int i = 0; i < 5; i++) {
-				std::cout << "resetting vars" << std::endl;
 				zPt[i]=0;
 				zMass[i]=0;
 				zEta[i]=0;
@@ -171,13 +171,12 @@ class TruthFiller : public NtupleFillerBase {
 			iEvent.getByLabel(gensrc_, genCandidates);
 			int zn=0;
 			int ln=0;
-			std::cout << "starting loop over genCandidates" << std::endl;
 			for ( reco::GenParticleCollection::const_iterator candIt=genCandidates->begin(); candIt!=genCandidates->end(); ++candIt ) {
 				// higgs pt
 				if ( candIt->pdgId()==25 ){
 					//					std::cout << "Found Higgs with mass= " << candIt->mass() << " and PT= " << candIt->pt() << " and status " << candIt->status() << std::endl;	    
 					hPt=candIt->pt(); hMass=candIt->mass(); hEta=candIt->eta(); hPhi=candIt->phi();
-				} else if (candIt->pdgId()==23 && (candIt->status()==3||candIt->status()==2) ){
+				} else if (candIt->pdgId()==23 ){
 					//					std::cout << "Z with mass: " << candIt->mass() << std::endl;
 					zPt[zn]=candIt->pt();
 					zMass[zn]=candIt->mass();
@@ -195,7 +194,6 @@ class TruthFiller : public NtupleFillerBase {
 					if (ln<9) ln++;
 				}
 			} 
-			std::cout << "looped over genCandidates" << std::endl;
 			edm::Handle<std::vector<T> > handle;
 			if(iEvent.getByLabel(src_,handle)) {
 				//look at everything and try to match...
@@ -249,7 +247,7 @@ class TruthFiller : public NtupleFillerBase {
 					}
 				}
 				for (int i=0; i<5; ++i){
-					if (reco::deltaR(handle->at(0).leg2()->leg2()->p4(),zp4[i])<tempzdR1){
+					if (reco::deltaR(handle->at(0).leg2()->p4(),zp4[i])<tempzdR1){
 						tempzdR1=reco::deltaR(handle->at(0).leg2()->p4(),zp4[i]);
 						zInd[1]=i;	zmatched[1]=true;
 					}
@@ -258,6 +256,8 @@ class TruthFiller : public NtupleFillerBase {
 //				std::cout << "best indices:" << lInd[1] << "(" <<  tempdR1 << ")" <<  lPt[lInd[1]] << std::endl;
 //				std::cout << "best indices:" << lInd[2] << "(" <<  tempdR2 << ")" << lPt[lInd[2]]<< std::endl;
 //				std::cout << "best indices:" << lInd[3] << "(" <<  tempdR3 << ")" << lPt[lInd[3]]<< std::endl;
+//				std::cout << "best indices (z):" << zInd[0]  << " matched: " << zmatched[0]<< std::endl;
+//				std::cout << "best indices (z):" << zInd[1] << " matched: " << zmatched[1] << std::endl;
 				z1l1Pt=lPt[lInd[0]]; z1l1Eta=lEta[lInd[0]]; z1l1Phi=lPhi[lInd[0]]; z1l1PdgId=lPdgId[lInd[0]];
 				z1l2Pt=lPt[lInd[1]]; z1l2Eta=lEta[lInd[1]]; z1l2Phi=lPhi[lInd[1]]; z1l2PdgId=lPdgId[lInd[1]];
 				z2l1Pt=lPt[lInd[2]]; z2l1Eta=lEta[lInd[2]]; z2l1Phi=lPhi[lInd[2]]; z2l1PdgId=lPdgId[lInd[2]];
