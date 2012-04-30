@@ -113,14 +113,14 @@ def zzCommon(src,pluginType):
 				method     = cms.string('leg1.leg1.userFloat("rho")'),
 				leadingOnly= cms.untracked.bool(True)
 				),	
-			cms.PSet(
-				#todo: this won't work for the tri-fillers. Should pass the generic type, then add Quad- or TruthFiller
-				pluginType = cms.string(pluginType.split("Quad")[0]+"TruthFiller"),
-				src        = cms.InputTag(src),
-				gensrc        = cms.InputTag("genParticles"),
-				tag        = cms.string("refitVertex"),
-				method     = cms.string('1')
-				),
+#			cms.PSet(
+#				#todo: this won't work for the tri-fillers. Should pass the generic type, then add Quad- or TruthFiller
+#				pluginType = cms.string(pluginType.split("Quad")[0]+"TruthFiller"),
+#				src        = cms.InputTag(src),
+#				gensrc        = cms.InputTag("genParticles"),
+#				tag        = cms.string("refitVertex"),
+#				method     = cms.string('1')
+#				),
 			)
 	return sharedV
 

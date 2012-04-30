@@ -984,9 +984,9 @@ def switchToElePFIsolation(process,electrons):
                   'EcalEndcaps:NumCrystalEtaPhiVeto(1.5,9999.0)',
                   'EcalBarrel:AbsThresholdFromTransverse(0.08)',
                   'EcalEndcaps:AbsThreshold(0.20)',
-                  'muons:0.05',
-                  electrons+':NumCrystalVeto(3.0)',
-                  electrons+':NumCrystalEtaPhiVeto(1.5,15.0)'),
+                  'vetoMuons:0.05',
+                  'vetoElectrons:NumCrystalVeto(3.0)',
+                  'vetoElectrons:NumCrystalEtaPhiVeto(1.5,15.0)'),
               skipDefaultVeto = cms.bool(True)
               ))
           )
@@ -996,7 +996,7 @@ def switchToElePFIsolation(process,electrons):
               src = cms.InputTag("eleIsoDepositHcalFromTowers"),
               deltaR = cms.double(0.3),
               weight = cms.string('1'),
-              vetos = cms.vstring('0.15', 'muons:0.05'),
+              vetos = cms.vstring('0.15', 'vetoMuons:0.05'),
               skipDefaultVeto = cms.bool(True),
               mode = cms.string('sum')
               ))

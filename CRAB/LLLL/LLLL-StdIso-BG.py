@@ -58,7 +58,7 @@ defaultReconstruction(process,'HLT',
 									"HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
                       ])
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLLAnalysisBG_StdIso_cff")
+process.load("UWAnalysis.Configuration.zzLLLLAnalysisBG_aTGC_cff")
 process.eventSelectionMMMTantiIso1 = cms.Path(process.MMMTantiIso1Seq)
 process.eventSelectionMMMTnoIsoSS = cms.Path(process.MMMTnoIsoSSSeq)
 process.eventSelectionMMMTantiIso2 = cms.Path(process.MMMTantiIso2Seq)
