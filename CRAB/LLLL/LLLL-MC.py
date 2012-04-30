@@ -95,57 +95,57 @@ addMuMuTauTauEventTree(process,'muMuTauTauEventTreeFinal','MMTTFinalSel','EEEEFi
 addMuMuTauTauEventTree(process,'muMuTauTauEventTreeID','MMTTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addMuMuTauTauEventTree(process,'muMuTauTauEventTreeTauUp','MMTTzzTauIDTauUp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addMuMuTauTauEventTree(process,'muMuTauTauEventTreeTauDown','MMTTzzTauIDTauDown','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuTauEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addMuMuMuTauEventTree
 addMuMuMuTauEventTree(process,'muMuMuTauEventTree','MMMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuMuTauEventTree(process,'muMuMuTauEventTreeFinal','MMMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuMuTauEventTree(process,'muMuMuTauEventTreeID','MMMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addMuMuMuTauEventTree(process,'muMuMuTauEventTreeTauUp','MMMTzzTauIDTauUp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addMuMuMuTauEventTree(process,'muMuMuTauEventTreeTauDown','MMMTzzTauIDTauDown','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleTauEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addMuMuEleTauEventTree
 addMuMuEleTauEventTree(process,'muMuEleTauEventTree','MMETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleTauEventTree(process,'muMuEleTauEventTreeFinal','MMETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleTauEventTree(process,'muMuEleTauEventTreeID','MMETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addMuMuEleTauEventTree(process,'muMuEleTauEventTreeTauUp','MMETzzTauIDTauUp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addMuMuEleTauEventTree(process,'muMuEleTauEventTreeTauDown','MMETzzTauIDTauDown','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleMuEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addMuMuEleMuEventTree
 addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addMuMuEleEleEventTree
 addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleEleEventTree(process,'muMuEleEleEventTreeID','MMEEzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addMuMuMuMuEventTree
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzMuIDSecondPair','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addEleEleTauTauEventTree
 addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeFinal','EETTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeTauUp','EETTzzTauIDTauUp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeTauDown','EETTzzTauIDTauDown','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleTauEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addEleEleEleTauEventTree
 addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeFinal','EEETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeTauUp','EEETzzTauIDTauUp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeTauDown','EEETzzTauIDTauDown','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuTauEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addEleEleMuTauEventTree
 addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeFinal','EEMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeTauUp','EEMTzzTauIDTauUp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 #addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeTauDown','EEMTzzTauIDTauDown','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addEleEleEleMuEventTree
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addEleEleEleEleEventTree
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID','EEEEzzEleIDSecond','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
+from UWAnalysis.Configuration.tools.zzNtupleToolsMC import addEleEleMuMuEventTree
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMzzMuIDSecondPair','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
