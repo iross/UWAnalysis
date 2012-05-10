@@ -5,7 +5,7 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'GR_R_311_V2::All'
+process.GlobalTag.globaltag = 'GR_R_42_V25::All'
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(3000)
@@ -56,7 +56,9 @@ defaultReconstruction(process,'HLT',
 									"HLT_Ele17_SW_TighterEleIdIsol_L1R",
 									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL",
 									"HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
-                      ])
+                      ],
+					  True
+					  )
 #EventSelection
 process.load("UWAnalysis.Configuration.zzLLLLAnalysisBG_aTGC_cff")
 process.eventSelectionMMMTantiIso1 = cms.Path(process.MMMTantiIso1Seq)
@@ -150,6 +152,7 @@ addMuMuEleEleEventTree(process,'muMuEleEleEventTree_antiIso2','MMEEantiIso2F','E
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree_noIsoOS','MMMMnoIsoOSF','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree_noIsoSS','MMMMnoIsoSSF','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
+addMuMuMuMuEventTree(process,'muMuMuMuEventTree_noIsoSS2','MMMMnoIsoSS2F','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree_antiIso','MMMMantiIsoBothF','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree_antiIso1','MMMMantiIso1F','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree_antiIso2','MMMMantiIso2F','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMMMFinalSel')
@@ -205,7 +208,6 @@ addEventSummary(process,False,'MMET','eventSelectionMMETnoIsoSS')
 addEventSummary(process,False,'MMEM','eventSelectionMMEMnoIsoSS')
 addEventSummary(process,False,'MMEE','eventSelectionMMEEnoIsoSS')
 addEventSummary(process,False,'MMMM','eventSelectionMMMMnoIsoSS')
-addEventSummary(process,False,'MMMM_antiIso','eventSelectionMMMMantiIsoBoth')
 addEventSummary(process,False,'EETT','eventSelectionEETTnoIsoSS')
 addEventSummary(process,False,'EEET','eventSelectionEEETnoIsoSS')
 addEventSummary(process,False,'EEMT','eventSelectionEEMTnoIsoSS')

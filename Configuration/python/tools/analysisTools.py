@@ -56,11 +56,12 @@ def defaultReconstructionSKIM(process):
 
 
 
-def defaultReconstruction(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2']):
+def defaultReconstruction(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],corr=False,corrIn="ReReco",corrIsMC=False):
   #Make PAT
-  runRECO(process)
+  runRECO(process,corr,corrIn,corrIsMC)
   global TriggerPaths
   TriggerPaths= triggerPaths
+
 
   #Use PF Jets
   switchJetCollection(process,cms.InputTag('ak5PFJets'),True,True,('AK5PF',['L1FastJet','L2Relative','L3Absolute','L2L3Residual']),False,cms.InputTag("ak5GenJets"),True,"ak5","","")
@@ -109,10 +110,9 @@ def defaultReconstruction(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu
   process.patJetCorrFactors.useRho = True
 
   
-def defaultReconstructionMC(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'],calibrateMET = False,calibrationScheme = "BothLegs"):
+def defaultReconstructionMC(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'],corr=False,corrIn="Fall11",corrIsMC=True,calibrateMET = False,calibrationScheme = "BothLegs"):
   #Make PAT
-  runRECO(process)
-
+  runRECO(process,corr,corrIn,corrIsMC)
 
   global TriggerPaths
   TriggerPaths= triggerPaths
@@ -129,7 +129,7 @@ def defaultReconstructionMC(process,triggerProcess = 'HLT',triggerPaths = ['HLT_
   addPfMET(process,'')
 
   #apply particle based isolation
-  switchToElePFIsolation(process,'gsfElectrons')
+  switchToElePFIsolation(process,'gsfElectrons') #use std. iso. from the electron object anyway... does it matter what I pass here?
   switchToMuPFIsolation(process,'muons')
 #  zzStdIsoMu(process,'muons')
 #  zzStdIsoEle(process,'gsfElectrons')
@@ -183,7 +183,7 @@ def applyDefaultSelections(process):
 
 
 
-def runRECO(process):
+def runRECO(process,corr=True,corrIn="ReReco",corrIsMC=False):
   process.load("UWAnalysis.Configuration.startUpSequence_cff")
   process.load("Configuration.StandardSequences.Geometry_cff")
   process.load("Configuration.StandardSequences.MagneticField_cff")
@@ -194,8 +194,24 @@ def runRECO(process):
   process.load("DQMServices.Components.DQMEnvironment_cfi")
   process.load("RecoTauTag.Configuration.RecoPFTauTag_cff")
 
+  if corr:
+	  process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
+			  gsfElectrons = cms.PSet(
+				  initialSeed = cms.untracked.uint32(1),
+				  engineName = cms.untracked.string('TRandom3')
+				  ),
+			  )
+	  process.load("EgammaCalibratedGsfElectrons.CalibratedElectronProducers.calibratedGsfElectrons_cfi")
+	  process.gsfElectrons = process.calibratedGsfElectrons.clone()
+	  process.gsfElectrons.inputDataset = cms.string("ReReco")
+	  process.gsfElectrons.isMC = cms.bool(False)
+	  process.gsfElectrons.isAOD = cms.bool(True)
+	  process.gsfElectrons.updateEnergyError = cms.bool(True)
+	  process.gsfElectrons.debug = cms.bool(False)
 
-  process.recoPAT = cms.Path(process.PFTau+process.patElectronId+process.patDefaultSequence)
+	  process.recoPAT = cms.Path(process.PFTau+process.gsfElectrons+process.patElectronId+process.patDefaultSequence)
+  else: 
+	  process.recoPAT = cms.Path(process.PFTau+process.patElectronId+process.patDefaultSequence)
 
 def runRho(process):
   #Run the rho correction only for neutrals

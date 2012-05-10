@@ -24,6 +24,7 @@ MMEEanalysisConfigurator.addSelector('MMEEzzSIP','PATMuMuEleEleQuadSelector','le
 MMEEanalysisConfigurator.addSelector('MMEEzzCleanedCandsAboveThreshold','PATMuMuEleEleQuadSelector','leg1().leg1().pt()>20 && leg1().leg2().pt()>10 && leg2().leg1().pt()>7 &&leg2().leg2().pt()>7 && abs(leg2.leg1.eta())<2.5 && abs(leg2.leg2.eta())<2.5','MMEEAtLeastOneZZCandOverThresholds')
 MMEEanalysisConfigurator.addSelector('MMEEzzCleanedCandsEleEleQ','PATMuMuEleEleQuadSelector','leg2.charge()==0','EleEleCharge')
 MMEEanalysisConfigurator.addSelector('MMEEzzCleanedCandsMMMass','PATMuMuEleEleQuadSelector','leg1.mass()>60&&leg1.mass()<120','MMEEMMMass')
+MMEEanalysisConfigurator.addSelector('MMEEzzCleanedCandsEEMass','PATMuMuEleEleQuadSelector','leg2.mass()>60&&leg2.mass()<120','MMEEEEMass')
 MMEEanalysisConfigurator.addSorter('MMEEFinalSel','PATMuMuEleEleQuadSorterByZMass')
 MMEEselectionSequence =MMEEanalysisConfigurator.returnSequence()
 
@@ -48,6 +49,7 @@ MMMManalysisConfigurator.addSelector('MMMMzzSIP','PATMuMuMuMuQuadSelector','leg1
 MMMManalysisConfigurator.addSelector('MMMMzzCleanedCandsAboveThreshold','PATMuMuMuMuQuadSelector','leg1().leg1().pt()>20 && leg1().leg2().pt()>10 && leg2().leg1().pt()>5 &&leg2().leg2().pt()>5 && abs(leg2.leg1.eta())<2.4 && abs(leg2.leg2.eta())<2.4','MMMMAtLeastOneZZCandOverThresholds')
 MMMManalysisConfigurator.addSelector('MMMMzzCleanedCandsMuMuQ','PATMuMuMuMuQuadSelector','leg2.charge()==0','MMMMSecondZCharge')
 MMMManalysisConfigurator.addSelector('MMMMzzCleanedCandsMMMass','PATMuMuMuMuQuadSelector','leg1.mass()>60&&leg1.mass()<120','MMMMMMMass')
+MMMManalysisConfigurator.addSelector('MMMMzzCleanedCandsMMMass2','PATMuMuMuMuQuadSelector','leg2.mass()>60&&leg2.mass()<120','MMMMMMMass2')
 MMMManalysisConfigurator.addSorter('MMMMFinalSel','PATMuMuMuMuQuadSorterByZMass')
 MMMMselectionSequence =MMMManalysisConfigurator.returnSequence()
 
@@ -69,6 +71,7 @@ EEEEanalysisConfigurator.addSelector('EEEEzzSIP','PATEleEleEleEleQuadSelector','
 EEEEanalysisConfigurator.addSelector('EEEEzzCleanedCandsAboveThreshold','PATEleEleEleEleQuadSelector','leg1().leg1().pt()>20 && leg1().leg2().pt()>10 && leg2().leg1().pt()>7 &&leg2().leg2().pt()>7 && abs(leg2.leg2.eta())<2.5 && abs(leg2.leg2.eta())<2.5','EEEEAtLeastOneZZCandOverThresholds')
 EEEEanalysisConfigurator.addSelector('EEEEzzCleanedCandsEleEleQ','PATEleEleEleEleQuadSelector','leg2.charge()==0','EEEESecondZCharge')
 EEEEanalysisConfigurator.addSelector('EEEEzzCleanedCandsEEMass','PATEleEleEleEleQuadSelector','leg1.mass()>60&&leg1.mass()<120','EEEEEEMass')
+EEEEanalysisConfigurator.addSelector('EEEEzzCleanedCandsEEMass2','PATEleEleEleEleQuadSelector','leg2.mass()>60&&leg2.mass()<120','EEEEEEMass2')
 EEEEanalysisConfigurator.addSorter('EEEEFinalSel','PATEleEleEleEleQuadSorterByZMass')
 
 EEEEselectionSequence =EEEEanalysisConfigurator.returnSequence()
@@ -92,7 +95,8 @@ EEMManalysisConfigurator.addSelector('EEMMzzSIP','PATEleEleMuMuQuadSelector','le
 EEMManalysisConfigurator.addSelector('EEMMzzCleanedCandsAboveThreshold','PATEleEleMuMuQuadSelector','leg1().leg1().pt()>20 && leg1().leg2().pt()>10 && leg2().leg1().pt()>5 &&leg2().leg2().pt()>5 && abs(leg2.leg2.eta())<2.5 && abs(leg2.leg2.eta())<2.5','EEMMAtLeastOneZZCandOverThresholds')
 EEMManalysisConfigurator.addSelector('EEMMzzCleanedCandsMuMuQ','PATEleEleMuMuQuadSelector','leg2.charge()==0','EEMMSecondZCharge')
 EEMManalysisConfigurator.addSorter('EEMMFinalSel','PATEleEleMuMuQuadSorterByZMass')
-EEMManalysisConfigurator.addSelector('EEMMzzCleanedCandsMMMass','PATEleEleMuMuQuadSelector','leg1.mass()>60&&leg1.mass()<120','EEMMMMMass')
+EEMManalysisConfigurator.addSelector('EEMMzzCleanedCandsEEMass','PATEleEleMuMuQuadSelector','leg1.mass()>60&&leg1.mass()<120','EEMMEEMass')
+EEMManalysisConfigurator.addSelector('EEMMzzCleanedCandsMMMass','PATEleEleMuMuQuadSelector','leg2.mass()>60&&leg2.mass()<120','EEMMMMMass')
 EEMMselectionSequence =EEMManalysisConfigurator.returnSequence()
 
 ######################__________________________________MMMT_____________________________________##############################
@@ -100,7 +104,6 @@ EEMMselectionSequence =EEMManalysisConfigurator.returnSequence()
 MMMTanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsMMMT',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
-#nSVfitTrackService = cms.Service("NSVfitTrackService")
 #Add smearing
 MMMTanalysisConfigurator.addSmearing('patOverloadedTaus','patMuonsForAnalysis','convRejElectrons','selectedPatJets')
 MMMTanalysisConfigurator.addDiCandidateModule('MMMTdiMuons','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')

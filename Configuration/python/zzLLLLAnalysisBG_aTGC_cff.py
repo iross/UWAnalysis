@@ -76,7 +76,7 @@ MMEEantiIso1.addSelector('antiIso1MMEEz2Charge','PATMuMuEleEleQuadSelector','leg
 MMEEantiIso1.addSelector('antiIso1MMEEPt','PATMuMuEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','antiIso1MMEEZEleIso')
 MMEEantiIso1.addSorter('antiIso1MMEEsorted','PATMuMuEleEleQuadSorterByZMass')
 MMEEantiIso1.addSelector('antiIso1MMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMEESIP')
-MMEEantiIso1.addSelector('MMEEnoIsoOSF','PATMuMuEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','antiIso1MMEEEleCiCTight') 
+MMEEantiIso1.addSelector('MMEEnoIsoOSF','PATMuMuEleEleQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','antiIso1MMEEEleCiCTight') 
 MMEEantiIso1.addSelector('MMEEantiIso1F','PATMuMuEleEleQuadSelector','((leg2.leg2.dr03EcalRecHitSumEt-leg2.leg2.userFloat("rho")*(0.101)+leg2.leg2.dr03HcalTowerSumEt-leg2.leg2.userFloat("rho")*(0.072) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.30)','antiIso1MMEEZEleIso')
 MMEEantiIso1Seq =MMEEantiIso1.returnSequence()
 
@@ -95,7 +95,8 @@ MMEEnoIsoSS.addSelector('noIsoSSMMEEz2Charge','PATMuMuEleEleQuadSelector','leg2.
 MMEEnoIsoSS.addSorter('noIsoSSMMEEsorted','PATMuMuEleEleQuadSorterByZMass')
 MMEEnoIsoSS.addSelector('noIsoSSMMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','MMEESIP')
 MMEEnoIsoSS.addSelector('MMEEnoIsoSScheckF','PATMuMuEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','noIsoSSMMEEEleCiCTight') 
-MMEEnoIsoSS.addSelector('MMEEnoIsoSSF','PATMuMuEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','noIsoSSMMEEEleCiCTight') 
+# temp -- add z2Mass req for a check
+MMEEnoIsoSS.addSelector('MMEEnoIsoSSF','PATMuMuEleEleQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100&&leg2.mass>60&&leg2.mass<120','noIsoSSMMEEEleCiCTight') 
 MMEEnoIsoSSSeq =MMEEnoIsoSS.returnSequence()
 
 MMEEantiIso2 = CutSequenceProducer(initialCounter  = 'initialEventsMMEE2',
@@ -112,7 +113,7 @@ MMEEantiIso2.addSelector('antiIso2MMEEzzMuIso','PATMuMuEleEleQuadSelector','((le
 MMEEantiIso2.addSelector('antiIso2MMEEPt','PATMuMuEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','antiIso2MMEEZEleIso')
 MMEEantiIso2.addSelector('antiIso2MMEEz2Charge','PATMuMuEleEleQuadSelector','leg2.charge()==0','antiIso2MMEEZEleIso')
 MMEEantiIso2.addSorter('antiIso2MMEEsorted','PATMuMuEleEleQuadSorterByZMass')
-MMEEantiIso2.addSelector('antiIso2MMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMEESIP')
+MMEEantiIso2.addSelector('antiIso2MMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMEESIP')
 MMEEantiIso2.addSelector('MMEEantiIso2F','PATMuMuEleEleQuadSelector','((leg2.leg1.dr03EcalRecHitSumEt-leg2.leg1.userFloat("rho")*(0.101)+leg2.leg1.dr03HcalTowerSumEt-leg2.leg1.userFloat("rho")*(0.072) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.30)','antiIso2MMEEZEleIso')
 MMEEantiIso2Seq =MMEEantiIso2.returnSequence()
 
@@ -129,7 +130,7 @@ MMEEantiIsoBoth.addSelector('antiIsoBothMMEEzzCleanedMuID','PATMuMuEleEleQuadSel
 MMEEantiIsoBoth.addSelector('antiIsoBothMMEEzzMuIso','PATMuMuEleEleQuadSelector','((leg1.leg1.isolationR03.emEt-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.isolationR03.hadEt-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.isolationR03.emEt-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.isolationR03.hadEt-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','antiIsoBothMMEELeadingZMuIso')
 MMEEantiIsoBoth.addSelector('antiIsoBothMMEEPt','PATMuMuEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','antiIsoBothMMEEZEleIso')
 MMEEantiIsoBoth.addSorter('antiIsoBothMMEEsorted','PATMuMuEleEleQuadSorterByZMass')
-MMEEantiIsoBoth.addSelector('antiIsoBothMMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMEESIP')
+MMEEantiIsoBoth.addSelector('antiIsoBothMMEEzzSIP','PATMuMuEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMEESIP')
 MMEEantiIsoBoth.addSelector('MMEEantiIsoBothF','PATMuMuEleEleQuadSelector','leg2.charge()==0','antiIsoBothMMEEZEleIso')
 MMEEantiIsoBothSeq =MMEEantiIsoBoth.returnSequence()
 
@@ -149,7 +150,7 @@ MMMMantiIso1.addSelector('antiIso1MMMMzzMuIso','PATMuMuMuMuQuadSelector','((leg1
 MMMMantiIso1.addSelector('antiIso1MMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.charge()==0','antiIso1MMMMsecondPairID')
 MMMMantiIso1.addSelector('antiIso1MMMMpt','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','antiIso1MMMMsecondPairID')
 MMMMantiIso1.addSorter('antiIso1MMMMsorted','PATMuMuMuMuQuadSorterByZMass')
-MMMMantiIso1.addSelector('antiIso1MMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMMMSIP')
+MMMMantiIso1.addSelector('antiIso1MMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMMMSIP')
 MMMMantiIso1.addSelector('MMMMnoIsoOSF','PATMuMuMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()','antiIso1MMMMsecondPairID')
 MMMMantiIso1.addSelector('MMMMantiIso1F','PATMuMuMuMuQuadSelector','((leg2.leg2.isolationR03.emEt-leg2.leg2.userFloat("rho")*(0.087)+leg2.leg2.isolationR03.hadEt-leg2.leg2.userFloat("rho")*(0.059) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.30)','antiIso1MMMMSecondZMuIso')
 MMMMantiIso1Seq =MMMMantiIso1.returnSequence()
@@ -167,11 +168,32 @@ MMMMnoIsoSS.addSelector('noIsoSSMMMMzzCleanedMuID','PATMuMuMuMuQuadSelector','le
 MMMMnoIsoSS.addSelector('noIsoSSMMMMzzMuIso','PATMuMuMuMuQuadSelector','((leg1.leg1.isolationR03.emEt-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.isolationR03.hadEt-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.isolationR03.emEt-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.isolationR03.hadEt-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSMMMMLeadingZMuIso')
 MMMMnoIsoSS.addSelector('noIsoSSMMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.charge()!=0','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSS.addSorter('noIsoSSMMMMsorted','PATMuMuMuMuQuadSorterByZMass')
-MMMMnoIsoSS.addSelector('noIsoSSMMMMzzSIP','PATMuMuMuMuQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMMMSIP')
+MMMMnoIsoSS.addSelector('noIsoSSMMMMzzSIP','PATMuMuMuMuQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMMMSIP')
 MMMMnoIsoSS.addSelector('MMMMnoIsoSSpt','PATMuMuMuMuQuadSelector','leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSSMMMMsecondZpts')
-MMMMnoIsoSS.addSelector('MMMMnoIsoSSF','PATMuMuMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()','noIsoSSMMMMsecondPairID')
+#temp testing
+MMMMnoIsoSS.addSelector('MMMMnoIsoSSF','PATMuMuMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()&&leg2.mass()>60&&leg2.mass()<120','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSS.addSelector('MMMMnoIsoSScheckF','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSSMMMMsecondPairID')
 MMMMnoIsoSSSeq =MMMMnoIsoSS.returnSequence()
+
+MMMMnoIsoSS2 = CutSequenceProducer(initialCounter  = 'initialEventsMMMMSS2',
+                                  pyModuleName = __name__,
+                                  pyNameSpace  = locals())
+
+MMMMnoIsoSS2.addDiCandidateModule('noIsoSS2MMMMdiMuons','PATMuPairProducer', 'smearedMuons','smearedMuons','smearedMET','smearedJets',1,genParticles='genDaughters')
+MMMMnoIsoSS2.addSelector('noIsoSS2MMMMosDiMuons','PATMuPairSelector','charge==0&&leg1.isGlobalMuon()&&leg2.isGlobalMuon()&& mass>50&&mass<120 && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4&&leg1.pt()>20&&leg2.pt()>10','noIsoSS2MMMM DiMuonCreation',1)
+MMMMnoIsoSS2.addDiCandidateModule('noIsoSS2MMMMzzCands','PATMuMuMuMuQuadProducer','noIsoSS2MMMMosDiMuons','noIsoSS2MMMMdiMuons','smearedMET','smearedJets',1,9999,text='noIsoSS2MMMMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.005,recoMode ="",genParticles='genDaughters')
+MMMMnoIsoSS2.addSelector('noIsoSS2MMMMz1Charge','PATMuMuMuMuQuadSelector','leg1.charge()==0','noIsoSS2MMMMz1Charge')
+MMMMnoIsoSS2.addCrossCleanerModule('noIsoSS2MMMMzzCleanedCands','PATMuMuMuMuQuadCrossCleaner',1,9999,text='noIsoSS2MMMMAtLeastOneZZCleanedCandidate',dR = 0.1)
+MMMMnoIsoSS2.addSelector('noIsoSS2MMMMzzCleanedMuID','PATMuMuMuMuQuadSelector','leg1.leg1.isGlobalMuon()&&leg1.leg1.isTrackerMuon()&&leg1.leg2.isTrackerMuon()&&leg1.leg2.isTrackerMuon()','noIsoSS2MMMMLeadingZMuID')
+MMMMnoIsoSS2.addSelector('noIsoSS2MMMMzzMuIso','PATMuMuMuMuQuadSelector','((leg1.leg1.isolationR03.emEt-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.isolationR03.hadEt-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.isolationR03.emEt-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.isolationR03.hadEt-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSS2MMMMLeadingZMuIso')
+MMMMnoIsoSS2.addSelector('noIsoSS2MMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.charge()!=0','noIsoSS2MMMMsecondPairID')
+MMMMnoIsoSS2.addSorter('noIsoSS2MMMMsorted','PATMuMuMuMuQuadSorterByZMass')
+MMMMnoIsoSS2.addSelector('noIsoSS2MMMMzzSIP','PATMuMuMuMuQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMMMSIP')
+MMMMnoIsoSS2.addSelector('MMMMnoIsoSS2pt','PATMuMuMuMuQuadSelector','leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSS2MMMMsecondZpts')
+#temp testing
+MMMMnoIsoSS2.addSelector('MMMMnoIsoSS2F','PATMuMuMuMuQuadSelector','leg2.mass()>60&&leg2.mass()<120','noIsoSS2MMMMsecondPairID')
+MMMMnoIsoSS2.addSelector('MMMMnoIsoSS2checkF','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSS2MMMMsecondPairID')
+MMMMnoIsoSS2Seq =MMMMnoIsoSS2.returnSequence()
 
 MMMMantiIso2 = CutSequenceProducer(initialCounter  = 'initialEventsMMMM2',
                                   pyModuleName = __name__,
@@ -187,7 +209,7 @@ MMMMantiIso2.addSelector('antiIso2MMMMnoIsoF','PATMuMuMuMuQuadSelector','leg2.le
 MMMMantiIso2.addSelector('antiIso2MMMMpt','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','antiIso2MMMMsecondPairID')
 MMMMantiIso2.addSelector('antiIso2MMMMz2Charge','PATMuMuMuMuQuadSelector','leg2.charge()==0','antiIso2MMMMsecondPairID')
 MMMMantiIso2.addSorter('antiIso2MMMMsorted','PATMuMuMuMuQuadSorterByZMass')
-MMMMantiIso2.addSelector('antiIso2MMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMMMSIP')
+MMMMantiIso2.addSelector('antiIso2MMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMMMSIP')
 MMMMantiIso2.addSelector('MMMMantiIso2F','PATMuMuMuMuQuadSelector','((leg2.leg1.isolationR03.emEt-leg2.leg1.userFloat("rho")*(0.087)+leg2.leg1.isolationR03.hadEt-leg2.leg1.userFloat("rho")*(0.059) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.30)','antiIsoMMMMSecondZMuIso')
 MMMMantiIso2Seq =MMMMantiIso2.returnSequence()
 
@@ -203,7 +225,7 @@ MMMMantiIsoBoth.addSelector('antiIsoBothMMMMzzCleanedMuID','PATMuMuMuMuQuadSelec
 MMMMantiIsoBoth.addSelector('antiIsoBothMMMMzzMuIso','PATMuMuMuMuQuadSelector','((leg1.leg1.isolationR03.emEt-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.isolationR03.hadEt-leg1.leg1.userFloat("rho")*(0.059) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.isolationR03.emEt-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.isolationR03.hadEt-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','antiIsoBothMMMMLeadingZMuIso')
 MMMMantiIsoBoth.addSelector('antiIsoBothMMMMnoIsoF','PATMuMuMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()','antiIsoBothMMMMsecondPairID')
 MMMMantiIsoBoth.addSelector('antiIsoBothMMMMpt','PATMuMuMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','antiIsoBothMMMMsecondPairID')
-MMMMantiIsoBoth.addSelector('antiIsoBothMMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMMMSIP')
+MMMMantiIsoBoth.addSelector('antiIsoBothMMMMzzSIP','PATMuMuMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMMMSIP')
 MMMMantiIsoBoth.addSorter('antiIsoBothMMMMsorted','PATMuMuMuMuQuadSorterByZMass')
 MMMMantiIsoBoth.addSelector('MMMMantiIsoBothF','PATMuMuMuMuQuadSelector','leg2.charge()==0','antiIsoBothMMMMsecondPairID')
 MMMMantiIsoBothSeq =MMMMantiIsoBoth.returnSequence()
@@ -221,7 +243,7 @@ EEEEantiIso1.addSelector('antiIso1EEEEzzEleIso','PATEleEleEleEleQuadSelector','(
 EEEEantiIso1.addSelector('antiIso1EEEEz2Charge','PATEleEleEleEleQuadSelector','leg2.charge()==0','antiIso1EEEEsecondLegEleCiCTight')
 EEEEantiIso1.addSelector('antiIso1EEEEpt','PATEleEleEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg1.leg2.pt()>10&&leg2.leg2.pt()>5','antiIso1EEEEsecondLegEleCiCTight')
 EEEEantiIso1.addSelector('antiIso1EEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEEESIP')
-EEEEantiIso1.addSelector('EEEEnoIsoOSF','PATEleEleEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','antiIso1EEEEsecondLegEleCiCTight') 
+EEEEantiIso1.addSelector('EEEEnoIsoOSF','PATEleEleEleEleQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','antiIso1EEEEsecondLegEleCiCTight') 
 EEEEantiIso1.addSorter('antiIso1EEEEsorted','PATEleEleEleEleQuadSorterByZMass')
 EEEEantiIso1.addSelector('EEEEantiIso1F','PATEleEleEleEleQuadSelector','((leg2.leg2.dr03EcalRecHitSumEt-leg2.leg2.userFloat("rho")*(0.101)+leg2.leg2.dr03HcalTowerSumEt-leg2.leg2.userFloat("rho")*(0.072) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.30)','antiIso1EEEESecondZEleIso')
 EEEEantiIso1Seq =EEEEantiIso1.returnSequence()
@@ -238,7 +260,7 @@ EEEEnoIsoSS.addSelector('noIsoSSEEEEzzEleIso','PATEleEleEleEleQuadSelector','((l
 EEEEnoIsoSS.addSelector('noIsoSSEEEEz2Charge','PATEleEleEleEleQuadSelector','leg2.charge()!=0','noIsoSSEEEEsecondLegEleCiCTight')
 EEEEnoIsoSS.addSorter('noIsoSSEEEEsorted','PATEleEleEleEleQuadSorterByZMass')
 EEEEnoIsoSS.addSelector('noIsoSSEEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4','EEEESIP')
-EEEEnoIsoSS.addSelector('EEEEnoIsoSSF','PATEleEleEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','noIsoSSEEEEsecondLegEleCiCTight')
+EEEEnoIsoSS.addSelector('EEEEnoIsoSSF','PATEleEleEleEleQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg1.userFloat("SIP3D"))<100&&leg2.mass()>60&&leg2.mass()<120','noIsoSSEEEEsecondLegEleCiCTight')
 EEEEnoIsoSS.addSelector('EEEEnoIsoSScheckF','PATEleEleEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','noIsoSSEEEEsecondLegEleCiCTight')
 EEEEnoIsoSSSeq =EEEEnoIsoSS.returnSequence()
 
@@ -250,11 +272,11 @@ EEEEantiIso2.addSelector('antiIso2EEEEosDiElectrons','PATElePairSelector','leg1.
 EEEEantiIso2.addDiCandidateModule('antiIso2EEEEzzCands','PATEleEleEleEleQuadProducer','antiIso2EEEEosDiElectrons','antiIso2EEEEdiElectrons','smearedMET','smearedJets',1,9999,text='antiIso2EEEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.005,recoMode ="",genParticles='genDaughters')
 EEEEantiIso2.addCrossCleanerModule('antiIso2EEEEzzCleanedCands','PATEleEleEleEleQuadCrossCleaner',1,9999,text='antiIso2EEEEAtLeastOneZZCleanedCandidate',dR = 0.1)
 EEEEantiIso2.addSelector('antiIso2EEEEzzEleIso','PATEleEleEleEleQuadSelector','((leg1.leg1.dr03EcalRecHitSumEt-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.dr03HcalTowerSumEt-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.dr03EcalRecHitSumEt-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.dr03HcalTowerSumEt-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','antiIso2EEEELeadingZEleIso')
-EEEEantiIso2.addSelector('antiIso2EEEEzzEleIDSecond','PATEleEleEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','antiIso2EEEEsecondLegEleCiCTight')
+EEEEantiIso2.addSelector('antiIso2EEEEzzEleIDSecond','PATEleEleEleEleQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','antiIso2EEEEsecondLegEleCiCTight')
 EEEEantiIso2.addSelector('antiIso2EEEEpt','PATEleEleEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','antiIso2EEEEsecondLegEleCiCTight')
 EEEEantiIso2.addSelector('antiIso2EEEEz2Charge','PATEleEleEleEleQuadSelector','leg2.charge()==0','antiIso2EEEEsecondLegEleCiCTight')
 EEEEantiIso2.addSorter('antiIso2EEEEsorted','PATEleEleEleEleQuadSorterByZMass')
-EEEEantiIso2.addSelector('antiIso2EEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','EEEESIP')
+EEEEantiIso2.addSelector('antiIso2EEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','EEEESIP')
 EEEEantiIso2.addSelector('EEEEantiIso2F','PATEleEleEleEleQuadSelector','((leg2.leg1.dr03EcalRecHitSumEt-leg2.leg1.userFloat("rho")*(0.101)+leg2.leg1.dr03HcalTowerSumEt-leg2.leg1.userFloat("rho")*(0.072) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.30)','antiIsoEEEESecondZEleIso')
 EEEEantiIso2Seq =EEEEantiIso2.returnSequence()
 
@@ -268,7 +290,7 @@ EEEEantiIsoBoth.addCrossCleanerModule('antiIsoBothEEEEzzCleanedCands','PATEleEle
 EEEEantiIsoBoth.addSelector('antiIsoBothEEEEzzEleIso','PATEleEleEleEleQuadSelector','((leg1.leg1.dr03EcalRecHitSumEt-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.dr03HcalTowerSumEt-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.dr03EcalRecHitSumEt-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.dr03HcalTowerSumEt-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','antiIsoBothEEEELeadingZEleIso')
 EEEEantiIsoBoth.addSelector('antiIsoBothEEEEpt','PATEleEleEleEleQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>7&&leg2.leg2.pt()>7','antiIsoBothEEEEsecondLegEleCiCTight')
 EEEEantiIsoBoth.addSorter('antiIsoBothEEEEsorted','PATEleEleEleEleQuadSorterByZMass')
-EEEEantiIsoBoth.addSelector('antiIsoBothEEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','EEEESIP')
+EEEEantiIsoBoth.addSelector('antiIsoBothEEEEzzSIP','PATEleEleEleEleQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','EEEESIP')
 EEEEantiIsoBoth.addSelector('EEEEantiIsoBothF','PATEleEleEleEleQuadSelector','leg2.charge()==0','antiIsoBothEEEEsecondLegEleCiCTight')
 EEEEantiIsoBothSeq =EEEEantiIsoBoth.returnSequence()
 
@@ -286,9 +308,9 @@ EEMMantiIso1.addSelector('antiIso1EEMMzzEleIso','PATEleEleMuMuQuadSelector','((l
 EEMMantiIso1.addSelector('antiIso1EEMMz2Charge','PATEleEleMuMuQuadSelector','leg2.charge()==0','antiIso1EEMMsecondPairID')
 EEMMantiIso1.addSelector('antiIso1EEMMpt','PATEleEleMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','antiIso1EEMMsecondPairID')
 EEMMantiIso1.addSorter('antiIso1EEMMsorted','PATEleEleMuMuQuadSorterByZMass')
-EEMMantiIso1.addSelector('antiIso1EEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','EEMMSIP')
+EEMMantiIso1.addSelector('antiIso1EEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','EEMMSIP')
 EEMMantiIso1.addSelector('EEMMnoIsoOSF','PATEleEleMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()','antiIso1EEMMsecondPairID')
-EEMMantiIso1.addSelector('EEMMantiIso1F','PATEleEleMuMuQuadSelector','((leg2.leg2.isolationR03.emEt-leg2.leg2.userFloat("rho")*(0.087)+leg2.leg2.dr03HcalTowerSumEt-leg2.leg2.userFloat("rho")*(0.059) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.30)','antiIso1EEMMLeadingZMuIso')
+EEMMantiIso1.addSelector('EEMMantiIso1F','PATEleEleMuMuQuadSelector','((leg2.leg2.isolationR03.emEt-leg2.leg2.userFloat("rho")*(0.087)+leg2.leg2.isolationR03.hadEt-leg2.leg2.userFloat("rho")*(0.059) + leg2.leg2.userIso(3))/leg2.leg2.pt()<0.30)','antiIso1EEMMLeadingZMuIso')
 EEMMantiIso1Seq =EEMMantiIso1.returnSequence()
 
 EEMMnoIsoSS = CutSequenceProducer(initialCounter  = 'initialEventsEEMMSS',
@@ -302,9 +324,9 @@ EEMMnoIsoSS.addCrossCleanerModule('noIsoSSEEMMzzCleanedCands','PATEleEleMuMuQuad
 EEMMnoIsoSS.addSelector('noIsoSSEEMMzzEleIso','PATEleEleMuMuQuadSelector','((leg1.leg1.dr03EcalRecHitSumEt-leg1.leg1.userFloat("rho")*(0.101)+leg1.leg1.dr03HcalTowerSumEt-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.dr03EcalRecHitSumEt-leg1.leg2.userFloat("rho")*(0.101)+leg1.leg2.dr03HcalTowerSumEt-leg1.leg2.userFloat("rho")*(0.072) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','noIsoSSEEMMLeadingZEleIso')
 EEMMnoIsoSS.addSelector('noIsoSSEEMMz2Charge','PATEleEleMuMuQuadSelector','leg2.charge()!=0','noIsoSSEEMMsecondPairID')
 EEMMnoIsoSS.addSorter('noIsoSSEEMMsorted','PATEleEleMuMuQuadSorterByZMass')
-EEMMnoIsoSS.addSelector('noIsoSSEEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4','EEMMSIP')
+EEMMnoIsoSS.addSelector('noIsoSSEEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg1.userFloat("SIP3D"))<100','EEMMSIP')
 EEMMnoIsoSS.addSelector('EEMMnoIsoSSpt','PATEleEleMuMuQuadSelector','leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSSEEMMsecondZpts')
-EEMMnoIsoSS.addSelector('EEMMnoIsoSSF','PATEleEleMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()','noIsoSSEEMMsecondPairID')
+EEMMnoIsoSS.addSelector('EEMMnoIsoSSF','PATEleEleMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()&&leg2.mass()>60&&leg2.mass()<120','noIsoSSEEMMsecondPairID')
 EEMMnoIsoSS.addSelector('EEMMnoIsoSScheckF','PATEleEleMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','noIsoSSEEMMsecondPairID')
 EEMMnoIsoSSSeq =EEMMnoIsoSS.returnSequence()
 
@@ -321,7 +343,7 @@ EEMMantiIso2.addSelector('antiIso2EEMMzzMuIDSecondPair','PATEleEleMuMuQuadSelect
 EEMMantiIso2.addSelector('antiIso2EEMMpt','PATEleEleMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','antiIso2EEMMsecondPairID')
 EEMMantiIso2.addSelector('antiIso2EEMMz2Charge','PATEleEleMuMuQuadSelector','leg2.charge()==0','antiIso2EEMMsecondPairID')
 EEMMantiIso2.addSorter('antiIso2EEMMsorted','PATEleEleMuMuQuadSorterByZMass')
-EEMMantiIso2.addSelector('antiIso2EEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','EEMMSIP')
+EEMMantiIso2.addSelector('antiIso2EEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','EEMMSIP')
 EEMMantiIso2.addSelector('EEMMantiIso2F','PATEleEleMuMuQuadSelector','((leg2.leg1.isolationR03.emEt-leg2.leg1.userFloat("rho")*(0.087)+leg2.leg1.isolationR03.hadEt-leg2.leg1.userFloat("rho")*(0.059) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.30)','antiIsoEEMMLeadingZMuIso')
 EEMMantiIso2Seq =EEMMantiIso2.returnSequence()
 
@@ -337,7 +359,7 @@ EEMMantiIsoBoth.addSelector('antiIsoBothEEMMzzEleIso','PATEleEleMuMuQuadSelector
 EEMMantiIsoBoth.addSelector('antiIsoBothEEMMzzMuIDSecondPair','PATEleEleMuMuQuadSelector','leg2.leg1.isGlobalMuon()&&leg2.leg2.isGlobalMuon()','antiIsoBothEEMMsecondPairID')
 EEMMantiIsoBoth.addSelector('antiIsoBothEEMMpt','PATEleEleMuMuQuadSelector','leg1.leg1.pt()>20&&leg1.leg2.pt()>10&&leg2.leg1.pt()>5&&leg2.leg2.pt()>5','antiIsoBothEEMMsecondPairID')
 EEMMantiIsoBoth.addSorter('antiIsoBothEEMMsorted','PATEleEleMuMuQuadSorterByZMass')
-EEMMantiIsoBoth.addSelector('antiIsoBothEEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','EEMMSIP')
+EEMMantiIsoBoth.addSelector('antiIsoBothEEMMzzSIP','PATEleEleMuMuQuadSelector','leg1.leg1.userFloat("SIP3D")<4&&leg1.leg2.userFloat("SIP3D")<4&&abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','EEMMSIP')
 EEMMantiIsoBoth.addSelector('EEMMantiIsoBothF','PATEleEleMuMuQuadSelector','leg2.charge()==0','antiIsoBothEEMMsecondPairID')
 EEMMantiIsoBothSeq =EEMMantiIsoBoth.returnSequence()
 
@@ -356,7 +378,7 @@ MMEEanalysisConfigurator.addCrossCleanerModule('MMEEzzCleanedCands','PATMuMuEleE
 MMEEanalysisConfigurator.addSelector('MMEEzzCleanedMuID','PATMuMuEleEleQuadSelector','leg1.leg1.isGlobalMuon()&&leg1.leg1.isTrackerMuon()&&leg1.leg2.isTrackerMuon()&&leg1.leg2.isTrackerMuon()','MMEELeadingZMuID')
 MMEEanalysisConfigurator.addSelector('MMEEzzMuIso','PATMuMuEleEleQuadSelector','((leg1.leg1.isolationR03.emEt-leg1.leg1.userFloat("rho")*(0.087)+leg1.leg1.isolationR03.hadEt-leg1.leg1.userFloat("rho")*(0.072) + leg1.leg1.userIso(3))/leg1.leg1.pt()<0.30)&&((leg1.leg2.isolationR03.emEt-leg1.leg2.userFloat("rho")*(0.087)+leg1.leg2.isolationR03.hadEt-leg1.leg2.userFloat("rho")*(0.059) + leg1.leg2.userIso(3))/leg1.leg2.pt()<0.30)','MMEELeadingZMuIso')
 MMEEanalysisConfigurator.addSelector('MMEEzzEleId','PATMuMuEleEleQuadSelector','((leg2.leg1.electronID("cicTight")==1||leg2.leg1.electronID("cicTight")==3||leg2.leg1.electronID("cicTight")==5||leg2.leg1.electronID("cicTight")==7||leg2.leg1.electronID("cicTight")==9||leg2.leg1.electronID("cicTight")==11||leg2.leg1.electronID("cicTight")==13||leg2.leg1.electronID("cicTight")==15)&&(leg2.leg2.electronID("cicTight")==1||leg2.leg2.electronID("cicTight")==3||leg2.leg2.electronID("cicTight")==5||leg2.leg2.electronID("cicTight")==7||leg2.leg2.electronID("cicTight")==9||leg2.leg2.electronID("cicTight")==11||leg2.leg2.electronID("cicTight")==13||leg2.leg2.electronID("cicTight")==15))','MMEEEleCiCTight') 
-MMEEanalysisConfigurator.addSelector('MMEEzzEleSip','PATMuMuEleEleQuadSelector','leg2.leg1.userFloat("SIP3D")<4&&leg2.leg2.userFloat("SIP3D")<4','MMEEEleSip') 
+MMEEanalysisConfigurator.addSelector('MMEEzzEleSip','PATMuMuEleEleQuadSelector','abs(leg2.leg1.userFloat("SIP3D"))<100&&abs(leg2.leg2.userFloat("SIP3D"))<100','MMEEEleSip') 
 MMEEanalysisConfigurator.addSelector('MMEEzzEleIso','PATMuMuEleEleQuadSelector','((leg2.leg1.dr03EcalRecHitSumEt-leg2.leg1.userFloat("rho")*(0.101)+leg2.leg1.dr03HcalTowerSumEt-leg2.leg1.userFloat("rho")*(0.072) + leg2.leg1.userIso(3))/leg2.leg1.pt()<0.20)','MMEEZEleIso')
 MMEEanalysisConfigurator.addSorter('MMEEzzCleanedCandsSortedByZMass','PATMuMuEleEleQuadSorterByZMass')
 MMEEanalysisConfigurator.addSelector('MMEEzzCleanedCandsAboveThreshold','PATMuMuEleEleQuadSelector','leg1().leg1().pt()>20 && leg1().leg2().pt()>10 && leg2().leg1().pt()>7 &&leg2().leg2().pt()>7 && abs(leg2.leg1.eta())<2.5 && abs(leg2.leg2.eta())<2.5','MMEEAtLeastOneZZCandOverThresholds')
