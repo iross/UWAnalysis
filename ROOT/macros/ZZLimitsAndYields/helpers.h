@@ -28,8 +28,8 @@ std::string stdIso(std::string leg, double cutd=100.7, std::string type="ele",bo
 		temp+="+"+leg+"StdIsoHcal-rho*(0.026*(abs("+leg+"Eta)<1.479)+0.072*(abs("+leg+"Eta)>1.479))";
 		temp+="+"+leg+"StdIsoTk)/"+leg+"Pt";
 	} else if (type=="mu"){
-		temp="(("+leg+"StdIsoEcal-rho*(0.087*(abs("+leg+"Eta)<1.479)+0.049*(abs("+leg+"Eta)>1.479))";
-		temp+="+"+leg+"StdIsoHcal-rho*(0.042*(abs("+leg+"Eta)<1.479)+0.059*(abs("+leg+"Eta)>1.479))";
+		temp="(("+leg+"StdIsoEcaldR03-rho*(0.087*(abs("+leg+"Eta)<1.479)+0.049*(abs("+leg+"Eta)>1.479))";
+		temp+="+"+leg+"StdIsoHcaldR03-rho*(0.042*(abs("+leg+"Eta)<1.479)+0.059*(abs("+leg+"Eta)>1.479))";
 		temp+="+"+leg+"StdIsoTk)/"+leg+"Pt";
 	}
 	if (!wcut) {
