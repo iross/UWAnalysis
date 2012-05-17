@@ -5,7 +5,7 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'GR_R_311_V2::All'
+process.GlobalTag.globaltag = 'GR_R_42_V25::All'
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 10
@@ -46,10 +46,12 @@ defaultReconstruction(process,'HLT',
 									"HLT_Ele17_SW_TighterEleIdIsol_L1R",
 									"HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL",
 									"HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
-                      ])
+                      ],
+					  True
+					  )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLLAnalysisStdIso_cff")
+process.load("UWAnalysis.Configuration.zzLLLLATGC_cff")
 process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence) ##changing to multiples see below
 process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
 process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
@@ -60,27 +62,27 @@ process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
 addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addMuMuTauTauEventTree(process,'muMuTauTauEventTree2','MMTTzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addMuMuTauTauEventTree(process,'muMuTauTauEventTreeFinal','MMTTzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuTauTauEventTree(process,'muMuTauTauEventTreeID','MMTTzzTauID','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuTauEventTree
-addMuMuMuTauEventTree(process,'muMuMuTauEventTree2','MMMTzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addMuMuMuTauEventTree(process,'muMuMuTauEventTreeFinal','MMMTzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuMuTauEventTree(process,'muMuMuTauEventTree','MMMTzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuMuTauEventTree(process,'muMuMuTauEventTreeID','MMMTzzTauID','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleTauEventTree
 addMuMuEleTauEventTree(process,'muMuEleTauEventTree','MMETzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addMuMuEleTauEventTree(process,'muMuEleTauEventTree2','MMETzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addMuMuEleTauEventTree(process,'muMuEleTauEventTreeFinal','MMETzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuEleTauEventTree(process,'muMuEleTauEventTreeID','MMETzzTauID','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleMuEventTree
 addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addMuMuEleMuEventTree(process,'muMuEleMuEventTree2','MMEMzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMzzCleanedCandsMMMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
 addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addMuMuEleEleEventTree(process,'muMuEleEleEventTree2','MMEEzzCleanedCandsEleEleQ','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEzzCleanedCandsEleEleQ','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuEleEleEventTree(process,'muMuEleEleEventTreeID','MMEEzzEleId','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addMuMuMuMuEventTree(process,'muMuMuMuEventTree2','MMMMzzCleanedCandsMuMuQ','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMzzCleanedCandsMuMuQ','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzMuIDSecondPair','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 
 
