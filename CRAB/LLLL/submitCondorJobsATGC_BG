@@ -1,0 +1,24 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat LLLL-StdIso-BG.py >BGStdIso.py
+cat CONDOR.py >>BGStdIso.py
+
+mkdir -p /scratch/$USER/DAGs/$1/
+
+if [[ $1 != "" ]]; then
+	postfix="_"$1
+fi
+
+#farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --output-dir=. --skip-existing-output --input-dbs-path=/Z2Jets_TuneZ2_7TeV-madgraph-tauola/Fall11-PU_S6_START42_V14B-v1/AODSIM --output-dag-file=/scratch/iross/DAGs/$1/Z2J.dag Z2J_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+#farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-jobs --output-dir=. --skip-existing-output --input-dbs-path=/TTTo2L2Nu2B_7TeV-powheg-pythia6/Fall11-PU_S6_START42_V14B-v1/AODSIM --output-dag-file=/scratch/iross/DAGs/$1/TT.dag TT_BG $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Oct03_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Oct03_BGStdIso.dag MM_Oct03$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Jul05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Jul05_BGStdIso.dag MM_Jul05$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_Aug05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_Aug05_BGStdIso.dag MM_Aug05$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/MM_2011Bv1_skim/ --output-dag-file=/scratch/iross/DAGs/$1/MM_2011Bv1_BGStdIso.dag MM_2011Bv1$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Oct03_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Oct03_BGStdIso.dag EE_Oct03$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Jul05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Jul05_BGStdIso.dag EE_Jul05$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_Aug05_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_Aug05_BGStdIso.dag EE_Aug05$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py 
+farmoutAnalysisJobs --output-dir=. --input-files-per-job=2 --skip-existing-jobs  --skip-existing-output --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/iross/EE_2011Bv1_skim/ --output-dag-file=/scratch/iross/DAGs/$1/EE_2011Bv1_BGStdIso.dag EE_2011Bv1$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/BGStdIso.py
+
+rm BGStdIso.py
