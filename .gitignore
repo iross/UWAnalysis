@@ -6,6 +6,7 @@
 
 *.root
 *.png
+*.eps
 *.pdf
 *.zip
 *.tgz
@@ -16,6 +17,7 @@
 .#*
 *temp*
 
+*.history
 *.bk
 *.swp
 *nohup.out
@@ -23,3 +25,4 @@
 *callgrind*
 aTGCRooStats/run_*
 aTGCRooStats/root_*
+multicrab_*
