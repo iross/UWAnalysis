@@ -90,6 +90,8 @@ class fitter {
     delete result;
   }
 
+
+
   void saveSnapshot(const char* name) {
     w_->saveSnapshot(name,w_->allVars());
   }
