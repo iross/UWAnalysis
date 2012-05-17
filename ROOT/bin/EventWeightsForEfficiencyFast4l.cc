@@ -33,77 +33,77 @@ float weightCalculator(float pt1,float eta1,float pt2,float eta2,float pt3,float
 	{
 		weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2) ;
 		weight = weight*weightMuISOZ1(pt1,eta1)*weightMuISOZ1(pt2,eta2) ;
-		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
+//		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("muMuEleMuEventTree")!=std::string::npos)
 	{
 		weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2)*weightEleID(pt3,eta3)*weightMuID(pt4,eta4) ;
 		weight = weight*weightMuISOZ1(pt1,eta1)*weightMuISOZ1(pt2,eta2)*weightEleISOZ1(pt3,eta3)*weightMuISOZ1(pt4,eta4) ;
-		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
+//		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("muMuEleTauEventTree")!=std::string::npos)
 	{
 		weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2)*weightEleID(pt3,eta3) ;
 		weight = weight*weightMuISOZ1(pt1,eta1)*weightMuISOZ1(pt2,eta2)*weightEleISOZ2(pt3,eta3);
-		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
+//		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("muMuMuTauEventTree")!=std::string::npos)
 	{
 		weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2)*weightMuID(pt3,eta3) ;
 		weight = weight*weightMuISOZ1(pt1,eta1)*weightMuISOZ1(pt2,eta2)*weightMuISOZ2(pt3,eta3);
-		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
+//		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
 	}
 	if(std::string(TreeToUse).find("eleEleTauTauEventTree")!= std::string::npos)
 	{
 		weight = weight*weightEleID(pt1,eta1)*weightEleID(pt2,eta2) ;
 		weight = weight*weightEleISOZ1(pt1,eta1)*weightEleISOZ1(pt2,eta2) ;
-		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
+//		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("eleEleEleMuEventTree")!=std::string::npos)
 	{
 		weight = weight*weightEleID(pt1,eta1)*weightEleID(pt2,eta2)*weightEleID(pt3,eta3)*weightMuID(pt4,eta4) ;
 		weight = weight*weightEleISOZ1(pt1,eta1)*weightEleISOZ1(pt2,eta2)*weightEleISOZ1(pt3,eta3)*weightMuISOZ1(pt4,eta4) ;
-		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
+//		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("eleEleEleTauEventTree")!=std::string::npos)
 	{
 		weight = weight*weightEleID(pt1,eta1)*weightEleID(pt2,eta2)*weightEleID(pt3,eta3) ;
 		weight = weight*weightEleISOZ1(pt1,eta1)*weightEleISOZ1(pt2,eta2)*weightEleISOZ2(pt3,eta3);
-		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
+//		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("eleEleMuTauEventTree")!=std::string::npos)
 	{
 		weight = weight*weightEleID(pt1,eta1)*weightEleID(pt2,eta2)*weightMuID(pt3,eta3) ;
 		weight = weight*weightEleISOZ1(pt1,eta1)*weightEleISOZ1(pt2,eta2)*weightMuISOZ2(pt3,eta3);
-		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
+//		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2) ;
 	}
 	else if(std::string(TreeToUse).find("eleEleEleEleEventTree")!=std::string::npos)
 	{
 		weight = weight*weightEleID(pt1,eta1)*weightEleID(pt2,eta2)*weightEleID(pt3,eta3)*weightEleID(pt4,eta4);
 		weight = weight*weightEleSIP(pt1,eta1)*weightEleSIP(pt2,eta2)*weightEleSIP(pt3,eta3)*weightEleSIP(pt4,eta4);
 		weight = weight*weightEleISOZ(pt1,eta1)*weightEleISOZ(pt2,eta2)*weightEleISOZ(pt3,eta3)*weightEleISOZ(pt4,eta4);
-		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2);
+//		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2);
 	}
 	else if(std::string(TreeToUse).find("eleEleMuMuEventTree")!=std::string::npos)
 	{
 		weight = weight*weightEleID(pt1,eta1)*weightEleID(pt2,eta2)*weightMuID(pt3,eta3)*weightMuID(pt4,eta4);
 		weight = weight*weightEleSIP(pt1,eta1)*weightEleSIP(pt2,eta2)*weightMuSIP(pt3,eta3)*weightMuSIP(pt4,eta4);
 		weight = weight*weightEleISOZ(pt1,eta1)*weightEleISOZ(pt2,eta2)*weightMuISOZ(pt3,eta3)*weightMuISOZ(pt4,eta4);
-		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2);
+//		weight = weight*weightEleHLT17(pt1,eta1)*weightEleHLT8(pt2,eta2);
 	}
 	else if(std::string(TreeToUse).find("muMuEleEleEventTree")!=std::string::npos)
 	{
 		weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2)*weightEleID(pt3,eta3)*weightEleID(pt4,eta4);
 		weight = weight*weightMuSIP(pt1,eta1)*weightMuSIP(pt2,eta2)*weightEleSIP(pt3,eta3)*weightEleSIP(pt4,eta4);
 		weight = weight*weightMuISOZ(pt1,eta1)*weightMuISOZ(pt2,eta2)*weightEleISOZ(pt3,eta3)*weightEleISOZ(pt4,eta4);
-		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2);
+//		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2);
 	}
 	else if(std::string(TreeToUse).find("muMuMuMuEventTree")!=std::string::npos)
 	{
 		weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2)*weightMuID(pt3,eta3)*weightMuID(pt4,eta4);
 		weight = weight*weightMuSIP(pt1,eta1)*weightMuSIP(pt2,eta2)*weightMuSIP(pt3,eta3)*weightMuSIP(pt4,eta4);
 		weight = weight*weightMuISOZ(pt1,eta1)*weightMuISOZ(pt2,eta2)*weightMuISOZ(pt3,eta3)*weightMuISOZ(pt4,eta4);
-		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2);
+//		weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2);
 	}
 
 	return weight;
@@ -195,7 +195,7 @@ float weightMuID(float leptonPt, float leptonEta){
 		else if (abs(leptonEta) < 1.20) weight=0.984;
 		else if (abs(leptonEta) < 1.6) weight=0.989;
 		else if (abs(leptonEta) < 2.1) weight=0.987;
-		else weight=0.965;
+		else weight=0.985;
 	} else if (leptonPt>20&&leptonPt<30){
 		if (abs(leptonEta) < 0.90) weight=0.997;
 		else if (abs(leptonEta) < 1.20) weight=1.000;
