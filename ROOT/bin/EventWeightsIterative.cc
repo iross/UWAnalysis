@@ -353,8 +353,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
 					weight*=w;
 				}
 				else if(doPU==3) {
-					//temp. commented todo: revert when bx info is in ntuples.
-					//weight*=LumiWeightsOld->weight(bx);
+					weight*=LumiWeightsOld->weight(bx);
 				}
 				if(doRho) {
 					weight*=rhoWeight->GetBinContent(rhoWeight->FindBin(rho));
