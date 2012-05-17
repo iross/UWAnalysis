@@ -5,7 +5,7 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'GR_R_42_V10::All'
+process.GlobalTag.globaltag = 'GR_R_42_V25::All'
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(100)
@@ -24,21 +24,20 @@ process.source = cms.Source("PoolSource",
 		#'/store/mc/Summer11/ZZJetsTo4L_TuneZ2_7TeV-madgraph-tauola/AODSIM/PU_S4_START42_V11-v1/0000/FEE3ABB5-79BA-E011-B754-78E7D1E4B4C6.root'
 				'/store/mc/Fall11/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/16F0F32D-3EF3-E011-BEF7-00215E21D4D4.root'
 #				'file:/afs/hep.wisc.edu/cms/iross/EWKZZ/CMSSW_4_2_8_patch7/src/ZZ/Gen/test/Sherpa_RECO.root'
-#	    '/store/mc/Summer11/GluGluToZZTo4L_7TeV-gg2zz-pythia6/AODSIM/PU_S4_START42_V11-v1/0000/C4E48AAF-AB9D-E011-952F-00215E21D5C4.root'
-#	'/store/mc/Summer11/DYJetsToLL_TuneZ2_M-50_7TeV-madgraph-tauola/AODSIM/PU_S4_START42_V11-v1/0000/0E4D251E-B59C-E011-B922-90E6BA442F1E.root'
-#	'/store/mc/Summer11/ZZTo2e2mu_7TeV-powheg-pythia6/AODSIM/PU_S4_START42_V11-v1/0000/0AC98E6F-DFAD-E011-91A1-90E6BA442EFE.root'
 )
     )
 
 process.load("PhysicsTools.PatAlgos.patSequences_cff")
 
 from UWAnalysis.Configuration.tools.analysisTools import *
+
 defaultReconstructionMC(process,'HLT',
                         [
                          "HLT_Ele17_CaloIdL_CaloIsoVL_Ele8_CaloIdL_CaloIsoVL",
                          "HLT_DoubleMu7"
                          ]
                         )
+
 #EventSelection
 process.load("UWAnalysis.Configuration.zzLLLLAnalysisStdIso_cff")
 #process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence)
@@ -65,6 +64,8 @@ process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
 #process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
 #process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
 #process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
+
+print process.eventSelectionMMMT.moduleNames()
 
 createGeneratedParticles(process,
                          'genDaughters',
@@ -141,6 +142,7 @@ addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedCandsAboveThresho
 #ddEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold')
 #addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel')
 #ddEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMzzMuIDSecondPair')
+
 
 #Add event counter
 addEventSummary(process,False,'MMMT','eventSelectionMMMT')
