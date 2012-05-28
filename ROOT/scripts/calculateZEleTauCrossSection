@@ -1,0 +1,8 @@
+echo PYTHIA D6T
+CrossSectionCalculation n=205 dn=24  l=36 dl=3.96 t=1 dt=0.23 e=0.005131,0.966,0.986,0.998,1.019,1.00 de=0.00374,0.032,0.005,0.006,0.006,0.02
+
+echo POWHEG Z2
+CrossSectionCalculation n=205 dn=24  l=36 dl=3.96 t=1 dt=0.23 e=0.006300,0.966,0.986,0.998,1.019 de=0.00429,0.032,0.005,0.006,0.006
+
+echo POWHEG D6T
+CrossSectionCalculation n=205 dn=24  l=36 dl=3.96 t=1 dt=0.23 e=0.005696,0.966,0.986,0.998,1.019 de=0.00429,0.032,0.005,0.006,0.006

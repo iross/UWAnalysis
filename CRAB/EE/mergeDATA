@@ -1,0 +1,4 @@
+mkdir sandbox
+
+hadd sandbox/EEDATA2011A.root EE_2011Av1/res/*.root EE_2011Av2/res/*.root
+

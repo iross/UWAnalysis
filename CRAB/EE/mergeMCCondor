@@ -1,0 +1,36 @@
+mkdir sandbox
+cd sandbox
+
+
+
+find /scratch/$USER/zee_ZTT-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTT.root
+find /scratch/$USER/zee_ZEE-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZEE.root
+find /scratch/$USER/zee_ZMM-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZMM.root
+find /scratch/$USER/zee_W-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd W.root
+find /scratch/$USER/zee_QCDMU-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCD.root
+find /scratch/$USER/zee_TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TOP.root
+find /scratch/$USER/zee_WW-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WW.root
+find /scratch/$USER/zee_WZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ.root
+find /scratch/$USER/zee_ZZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ.root
+
+
+EventWeightsIterative outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results' 	  
+EventWeightsIterative outputFile='ZEE.root'        weight=1667   type=3 histoName='summary/results' 	  
+#EventWeightsIterative outputFile='ZMM.root'        weight=1667   type=3 histoName='summary/results' 	  
+EventWeightsIterative outputFile='QCD.root'        weight=84679   type=2 histoName='summary/results' 	  
+EventWeightsIterative outputFile='W.root'          weight=31314   type=4 histoName='summary/results' 	  
+EventWeightsIterative outputFile='TOP.root'        weight=158    type=6 histoName='summary/results' 	  
+EventWeightsIterative outputFile='WW.root'         weight=4.4    type=7 histoName='summary/results' 
+EventWeightsIterative outputFile='WZ.root'         weight=11.8   type=7 histoName='summary/results' 
+EventWeightsIterative outputFile='ZZ.root'         weight=5.9   type=7  histoName='summary/results' 
+
+hadd VV.root WW.root WZ.root ZZ.root 
+rm WW.root WZ.root ZZ.root
+
+
+
+
+
+
+
+

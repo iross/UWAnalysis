@@ -1,0 +1,17 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat TP-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+#PYTHIA
+#farmoutAnalysisJobs  --input-files-per-job=3 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToTauTau_M-20_CT10_TuneZ2_7TeV-powheg-pythia-tauola/Spring11-PU_S1_START311_V1G1-v2/AODSIM  EE-TP-ZTT $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZEETagAndProbe/MC2.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToEE_M-20_TuneZ2_7TeV-pythia6/Summer11-PU_S3_START42_V11-v1/AODSIM  EE-TP-ZEE $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZEETagAndProbe/MC2.py
+#farmoutAnalysisJobs --input-files-per-job=3 --skip-existing-output --output-dir=.  --input-dbs-path=/WJetsToLNu_TuneZ2_7TeV-madgraph-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM  EE-TP-W $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZEETagAndProbe/MC2.py
+
+
+
+rm MC2.py
+
+
+

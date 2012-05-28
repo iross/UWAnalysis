@@ -1,0 +1,23 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat ZEE-FULL-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+#PYTHIA
+
+
+farmoutAnalysisJobs  --input-files-per-job=1 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToTauTau_M-20_CT10_TuneZ2_7TeV-powheg-pythia-tauola/Spring11-PU_S1_START311_V1G1-v2/AODSIM  zee_ZTT $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+#farmoutAnalysisJobs --input-files-per-job=5 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToMuMu_M-20_TuneZ2_7TeV-pythia6/Spring11-PU_S2_START311_V2-v2/AODSIM  Z1 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+farmoutAnalysisJobs --output-dir=.  --input-dbs-path=/DYToEE_M-20_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM  zee_ZEE $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py 
+farmoutAnalysisJobs --input-files-per-job=5 --skip-existing-output --output-dir=.  --input-dbs-path=/WJetsToLNu_TuneZ2_7TeV-madgraph-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM  zee_W $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --input-files-per-job=1 --output-dir=.  --input-dbs-path=/QCD_Pt-20_MuEnrichedPt-15_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM QCD $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+farmoutAnalysisJobs --skip-existing-output --input-files-per-job=1 --output-dir=.  --input-dbs-path=/TTJets_TuneD6T_7TeV-madgraph-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM zee_TOP $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+farmoutAnalysisJobs --skip-existing-output --input-files-per-job=1 --output-dir=.  --input-dbs-path=/ZZtoAnything_TuneZ2_7TeV-pythia6-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM zee_ZZ $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=. --input-files-per-job=1  --input-dbs-path=/WZtoAnything_TuneZ2_7TeV-pythia6-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM zee_WZ $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=. --input-files-per-job=1  --input-dbs-path=/WWtoAnything_TuneZ2_7TeV-pythia6-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM  zee_WW $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EE/MC2.py
+
+rm MC2.py
+
+
+

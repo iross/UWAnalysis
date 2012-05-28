@@ -1,0 +1,31 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/$USER/VH150-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH150.root
+find /scratch/$USER/VH145-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH145.root
+find /scratch/$USER/VH140-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH140.root
+find /scratch/$USER/VH135-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH135.root
+find /scratch/$USER/VH130-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH130.root
+find /scratch/$USER/VH125-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH125.root
+find /scratch/$USER/VH120-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH120.root
+find /scratch/$USER/VH115-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH115.root
+find /scratch/$USER/VH110-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH110.root
+find /scratch/$USER/VH100-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd VH100.root
+
+EventWeightsIterative outputFile='VH150.root'       	weight=0.00926   type=150 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH145.root'       	weight=0.0153   type=145 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH140.root'       	weight=0.0235   type=140 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH135.root'       	weight=0.0340   type=135 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH130.root'       	weight=0.0469   type=130 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH125.root'       	weight=0.0621   type=125 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH120.root'       	weight=0.0791   type=120 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH115.root'       	weight=0.0976   type=115 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH110.root'       	weight=0.118   type=110 histoName='MMEE/results' 
+EventWeightsIterative outputFile='VH100.root'       	weight=0.166   type=100 histoName='MMEE/results' 
+
+
+
+
+
+

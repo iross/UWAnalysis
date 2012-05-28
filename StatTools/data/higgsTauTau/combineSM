@@ -1,0 +1,14 @@
+#!/bin/sh
+cd datacards
+
+for mass in 110 115 120 125 130 135 140 145 
+do
+combineCards.py muTau_SM0_mH$mass.txt muTau_SM1_mH$mass.txt muTau_SM2_mH$mass.txt muTau_SM3_mH$mass.txt>muTau_SM_mH$mass.txt
+combineCards.py eleTau_SM0_mH$mass.txt eleTau_SM1_mH$mass.txt eleTau_SM2_mH$mass.txt eleTau_SM3_mH$mass.txt >eleTau_SM_mH$mass.txt
+combineCards.py eleMu_SM0_mH$mass.txt eleMu_SM1_mH$mass.txt eleMu_SM2_mH$mass.txt eleMu_SM3_mH$mass.txt>eleMu_SM_mH$mass.txt
+combineCards.py eleTau_SM_mH$mass.txt muTau_SM_mH$mass.txt  eleMu_SM_mH$mass.txt>Comb_SM_mH$mass.txt
+#combineCards.py eleTau_SM_mH$mass.txt muTau_SM_mH$mass.txt >Comb_SM_mH$mass.txt
+
+done
+
+

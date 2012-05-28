@@ -1,0 +1,32 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/$USER/Z-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd Z.root
+find /scratch/$USER/W-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd W.root
+find /scratch/$USER/TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TOP.root
+find /scratch/$USER/WW-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WW.root
+find /scratch/$USER/WZ-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ.root
+
+
+
+EventWeightsIterative outputFile='Z.root'        weight=1667   type=1 histoName='summary/results'
+EventWeightsIterative outputFile='W.root'          weight=31314   type=4 histoName='summary/results'
+EventWeightsIterative outputFile='TOP.root'        weight=158    type=6 histoName='summary/results'
+EventWeightsIterative outputFile='WW.root'         weight=43    type=7 histoName='summary/results' 
+EventWeightsIterative outputFile='WZ.root'         weight=18.2   type=7 histoName='summary/results' 
+
+
+hadd VV.root WW.root WZ.root 
+rm WW.root WZ.root ZZ.root
+
+ 
+
+
+
+
+
+
+
+
+

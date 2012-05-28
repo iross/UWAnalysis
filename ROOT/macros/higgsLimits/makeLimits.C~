@@ -1,0 +1,581 @@
+TFile * makeBandFromText(TString input,TString name) {
+  TFile *f = new TFile(name+"Bands.root","RECREATE");
+  TTree *t = new TTree("t","t");
+  t->ReadFile(input,"mass:obs:low95:low68:median:high68:high95");
+
+
+  float mass=0.0;
+  float obs=0.0;
+  float median=0.0;
+  float low68=0.0;
+  float high68=0.0;
+  float low95=0.0;
+  float high95=0.0;
+
+  t->SetBranchAddress("mass",&mass);
+  t->SetBranchAddress("obs",&obs);
+  t->SetBranchAddress("median",&median);
+  t->SetBranchAddress("low68",&low68);
+  t->SetBranchAddress("low95",&low95);
+  t->SetBranchAddress("high68",&high68);
+  t->SetBranchAddress("high95",&high95);
+
+
+  TGraphAsymmErrors * o = new TGraphAsymmErrors();
+  TGraphAsymmErrors * m = new TGraphAsymmErrors();
+  TGraphAsymmErrors * m95 = new TGraphAsymmErrors();
+
+  for(int i=0;i<t->GetEntries();++i) {
+    t->GetEntry(i);
+    o->SetPoint(i,mass,obs);
+    m->SetPoint(i,mass,median);
+    m->SetPointError(i,0.0,0.0,low68,high68);
+    m95->SetPoint(i,mass,median);
+    m95->SetPointError(i,0.0,0.0,low95,high95);
+  }
+
+  o->SetPoint(t->GetEntries(),90.,100);
+  
+
+  f->cd();
+  t->Write();
+  o->Write(name+"_obs");
+  m->Write(name+"_median");
+  m95->Write(name+"_median_95");
+  return f;
+
+}
+
+
+TGraphAsymmErrors * convertToTanBeta(TGraphAsymmErrors* g) {
+  //load the histogram
+  TFile *hf = TFile::Open("sandbox/limits/sum.root");
+  TH2F *sigmabr = (TH2F*)hf->Get("sigmabr");
+
+  
+
+  TGraphAsymmErrors *g2 = new TGraphAsymmErrors;
+  g2->SetName(TString::Format("%s_tanBeta",g->GetName()));
+  Double_t mA,sigma,sigmaUp,sigmaDown;
+
+
+  for(Int_t i =0;i<g->GetN();++i) {
+    g->GetPoint(i,mA,sigma);
+    sigmaUp = sigma+g->GetErrorYhigh(i);
+    sigmaDown = sigma-g->GetErrorYlow(i);
+
+    //find the mA
+    int binx = sigmabr->GetXaxis()->FindBin(mA);
+    //now make a projection of this slice 
+    TH1D * proj = sigmabr->ProjectionY("proj",binx,binx);
+
+    int binY=0;
+    proj->GetBinWithContent(sigma,binY,0,0,10000*sigma);
+    float tanB = proj->GetXaxis()->GetBinCenter(binY);
+    g2->SetPoint(i,mA,proj->GetXaxis()->GetBinCenter(binY));
+    binY=0;
+    proj->GetBinWithContent(sigmaUp,binY,0,0,10000*sigmaUp);
+    float tanBUp = proj->GetXaxis()->GetBinCenter(binY);
+    binY=0;
+    proj->GetBinWithContent(sigmaDown,binY,0,0,10000*sigmaDown);
+    float tanBDown = proj->GetXaxis()->GetBinCenter(binY);
+
+    g2->SetPoint(i,mA,tanB);
+    g2->SetPointError(i,0.,0.,fabs(tanB-tanBDown),fabs(tanBUp-tanB));
+    
+    delete proj;
+
+  } 
+
+  hf->Close();
+  return g2;
+}
+
+
+
+
+void formatGraph68(TGraphAsymmErrors * b68) {
+  b68->SetTitle("");
+  b68->SetFillColor(kGreen);
+  b68->SetLineWidth(3);
+  b68->SetMarkerSize(1.5);
+}
+
+void formatGraph95(TGraphAsymmErrors * b95) {
+  b95->SetTitle("");
+  b95->SetFillColor(kYellow);
+  b95->SetLineWidth(3);
+  b95->SetMarkerSize(1.5);
+}
+
+void formatLine(TGraphAsymmErrors * obs,Color_t color) {
+  obs->SetTitle("");
+  obs->SetLineColor(color);
+  obs->SetMarkerColor(color);
+  obs->SetMarkerSize(1.5);
+  obs->SetLineWidth(4);
+}
+
+TLegend *addLegend (TCanvas *c,float x1 = 0.5, float y1 = 0.77, float x2 = 0.9, float y2 = 0.9) {
+  TLegend * l = new TLegend(x1,y1,x2,y2);
+  l->SetBorderSize(0);
+  l->SetFillColor(kWhite);
+  l->SetFillStyle(0);
+  return l;
+}
+
+
+void addBand(TCanvas *c ,TDirectory *f , TString name,TLegend* legend) {
+  c->cd();
+  TGraphAsymmErrors *b95 = (TGraphAsymmErrors*)f->Get(name+"_median_95");
+  formatGraph95(b95);
+  b95->Draw("3");
+  TGraphAsymmErrors  *b68 = (TGraphAsymmErrors*)f->Get(name+"_median");
+  formatGraph68(b68);
+  b68->Draw("3same");
+  b68->Draw("PLXsame");
+  b95->GetYaxis()->Draw("same");
+  if(legend!=0) {
+    legend->AddEntry(b95,"Expected","lpf");
+  }
+} 
+
+void addBandTB(TCanvas *c ,TDirectory *f , TString name,TLegend* legend) {
+  c->cd();
+  TGraphAsymmErrors *b = (TGraphAsymmErrors*)f->Get(name+"_median_95");
+  TGraphAsymmErrors *b95 = convertToTanBeta(b);
+  TGraphAsymmErrors  *bb = (TGraphAsymmErrors*)f->Get(name+"_median");
+  TGraphAsymmErrors *b68 = convertToTanBeta(bb);
+  formatGraph95(b95);
+  b95->Draw("3");
+  formatGraph68(b68);
+  b68->Draw("3same");
+  b68->Draw("PLXsame");
+
+  if(legend!=0) {
+    legend->AddEntry(b95,"Expected","lpf");
+  }
+} 
+
+
+
+void addLine(TCanvas *c ,TDirectory *f , TString name,Color_t color,TLegend* legend,TString text = "Observed",bool point = false) {
+  c->cd();
+  TGraphAsymmErrors *obs = (TGraphAsymmErrors*)f->Get(name);
+  formatLine(obs,color);
+  if(point)
+    obs->Draw("LPXsame");
+  else
+    obs->Draw("LXsame");
+  if(legend!=0) {
+    legend->AddEntry(obs,text,"l");
+  }
+  obs->GetYaxis()->Draw("same");
+} 
+
+
+void addLine(TCanvas *c ,TString name,TString band,Color_t color,TLegend* legend,TString text = "Observed",bool point = true) {
+  TFile * bands = new TFile("bands"+name+".root");
+  addLine(c,bands,name+"_"+band,color,legend,text,point);
+  bands->Close();
+} 
+
+
+void addLineTB(TCanvas *c ,TDirectory *f , TString name,Color_t color,TLegend* legend,TString text = "Observed",bool point = false) {
+  c->cd();
+  TGraphAsymmErrors *o = (TGraphAsymmErrors*)f->Get(name);
+  TGraphAsymmErrors *obs =convertToTanBeta(o);
+  formatLine(obs,color);
+  if(point)
+    obs->Draw("LPXsame");
+  else
+    obs->Draw("LXsame");
+  if(legend!=0) {
+    legend->AddEntry(obs,text,"l");
+  }
+} 
+
+
+
+TCanvas * makeExpectedVsObserved(TDirectory *f, TString name,bool log = true) {
+
+  TCanvas *c = new TCanvas("c_"+name+"ExpVsObj","c_"+name+"ExpVsObj",600,600);
+  c->cd();
+  TH1F *frame = c->DrawFrame(90.,0.1,500.,1000.);
+  frame->GetXaxis()->SetTitle("m_{A} [GeV]");
+  frame->GetYaxis()->SetTitle(" #sigma x BR(#Phi #rightarrow #tau #tau) 95% CLs");
+  frame->Draw();
+   TLegend *l = addLegend(c);
+
+  addBand(c ,f ,name,l) ;
+  addLine(c ,f ,name+"_obs",kBlue,l,"Observed");
+  l->Draw();
+  if(log)
+    c->SetLogy();
+
+  c->SetGrid(1);
+  c->Update();
+
+
+  frame->GetYaxis()->Draw("SAME");
+  
+  return c;
+}  
+
+
+
+
+TCanvas * makeExpectedVsObservedComp(TDirectory *f1,TDirectory* f2, TString name,bool log = true) {
+
+  TCanvas *c = new TCanvas("c_"+name+"ExpVsObj","c_"+name+"ExpVsObj",600,600);
+  c->cd();
+  TH1F *frame = c->DrawFrame(110.,0.1,145.,100.);
+  frame->GetXaxis()->SetTitle("m_{H} [GeV]");
+  frame->GetYaxis()->SetTitle(" #sigma 95% CL /#sigma SM ");
+  frame->Draw();
+   TLegend *l = addLegend(c);
+
+  addBand(c ,f1 ,name,l) ;
+  addLine(c ,f2 ,name+"_obs",kBlue,l,"Observed CLs");
+  addLine(c ,f2 ,name,kRed,l,"Expected Bayes");
+  addLine(c ,f2 ,name+"_obs",kOrange,l,"Observed Bayes");
+  l->Draw();
+  if(log)
+    c->SetLogy();
+
+  c->SetGrid(1);
+  c->Update();
+
+
+  frame->GetYaxis()->Draw("SAME");
+  
+  return c;
+}  
+
+
+
+TCanvas * makeExpectedVsObservedSM(TDirectory *f, TString name,bool log = false) {
+
+  TCanvas *c = new TCanvas("c_"+name+"ExpVsObj","c_"+name+"ExpVsObj",600,600);
+  c->cd();
+  TH1F *frame = c->DrawFrame(110.,0.1,145.,30.);
+  frame->GetXaxis()->SetTitle("m_{H} [GeV]");
+  frame->GetYaxis()->SetTitle("#sigma_{95% CLs} /#sigma_{SM}");
+  frame->Draw();
+  TLine* line = new TLine(110.,1.,145.,1.);
+  line->SetLineWidth(3);
+  TLegend *l = addLegend(c);
+  addBand(c ,f ,name,l) ;
+  addLine(c ,f ,name+"_obs",kBlue,l,"Observed");
+  l->Draw();
+  if(log)
+    c->SetLogy();
+  c->RedrawAxis();
+  line->Draw();
+  
+  c->Update();
+
+
+  return c;
+}  
+
+
+TCanvas * makeExpectedVsObservedTB(TDirectory *f, TString name) {
+
+  TCanvas *c = new TCanvas("c_"+name+"ExpVsObjTB","c_"+name+"ExpVsObj(TanBeta)",600,600);
+  c->cd();
+  TH1F *frame = c->DrawFrame(90.,0.0,500.,60.);
+  frame->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+  frame->GetYaxis()->SetTitle(" Upper Limit on  tan #beta");
+  frame->Draw();
+  TLegend *l = addLegend(c,0.5,0.25,0.9,0.4);
+
+  addBandTB(c ,f ,name,l) ;
+  addLineTB(c ,f ,name+"_obs",kBlue,l,"Observed");
+  l->Draw();
+  frame->Draw("SAME");
+  c->Update();
+
+}  
+
+
+
+
+void makeLimits(TString file,TString which)
+{
+  gStyle->SetOptTitle(0);
+  gROOT->ProcessLine(".x UWAnalysis/ROOT/interactive/loadRooInteractiveLOCAL.C");
+  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/bandUtils.cxx+");
+  TFile * bands = TFile::Open("bands"+which+".root","RECREATE");
+
+  //make all bands
+  makeBands(bands,which,file,0);
+  printBand(bands, which, which+".txt",false);
+    TCanvas * muTauExpVsObs = makeExpectedVsObserved(bands, which);   
+    TCanvas * muTauExpVsObsTB = makeExpectedVsObservedTB(bands, which);   
+
+   muTauExpVsObs->SaveAs(which+".pdf");
+   muTauExpVsObs->SaveAs(which+".png");
+   muTauExpVsObs->SaveAs(which+".root");
+
+  bands->Close();
+}
+
+
+
+
+
+void makeMSSMSet(TString folder,TString postfix) {
+  makeLimits(folder+"/muTau_"+postfix+".root","muTau_"+postfix);
+  makeLimits(folder+"/eleTau_"+postfix+".root","eleTau_"+postfix);
+  makeLimits(folder+"/eleMu_"+postfix+".root","eleMu_"+postfix);
+  makeLimits(folder+"/muMu_"+postfix+".root","muMu_"+postfix);
+  makeLimits(folder+"/Comb_"+postfix+".root","Comb_"+postfix);
+
+  //Expected comparison
+   TCanvas *c = new TCanvas("c_expComparison","c_expComparison",600,600);
+   c->cd();
+   TH1F *frame = c->DrawFrame(90.,.1,500.,1000.);
+   frame->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+   frame->GetYaxis()->SetTitle(" Upper Limit on  #sigma x BR(#Phi #rightarrow #tau #tau)");
+   TLegend *l1 = addLegend(c,0.6,0.6,0.9,0.9);
+   addLine(c ,"muTau_"+postfix,"median",kBlue,l1,"#mu+#tau");
+   addLine(c ,"eleTau_"+postfix,"median",kRed,l1,"e+#tau");
+   addLine(c ,"eleMu_"+postfix,"median",kMagenta,l1,"e+#mu");
+   addLine(c ,"muMu_"+postfix,"median",kGreen,l1,"#mu+#mu");
+   addLine(c ,"Comb_"+postfix,"median",kBlack,l1,"Combined");
+   
+   l1->Draw();
+   c->SetGrid(1);
+   c->SetLogy();
+   c->Update();
+   
+   c->SaveAs("ExpectedComparison_"+postfix+".png");
+   c->SaveAs("ExpectedComparison_"+postfix+".pdf");
+   c->SaveAs("ExpectedComparison_"+postfix+".root");
+
+
+  //Expected comparison
+   TCanvas *cc = new TCanvas("c_obsComparison","c_obsComparison",600,600);
+   cc->cd();
+   TH1F *frame2 = cc->DrawFrame(90.,.1,500.,1000.);
+   frame2->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+   frame2->GetYaxis()->SetTitle(" Upper Limit on  #sigma x BR(#Phi #rightarrow #tau #tau)");
+   TLegend *l2 = addLegend(cc,0.6,0.6,0.9,0.9);
+   addLine(cc ,"muTau_"+postfix,"obs",kBlue,l2,"#mu+#tau");
+   addLine(cc ,"eleTau_"+postfix,"obs",kRed,l2,"e+#tau");
+   addLine(cc ,"eleMu_"+postfix,"obs",kMagenta,l2,"e+#mu");
+   addLine(cc ,"muMu_"+postfix,"obs",kGreen,l2,"#mu+#mu");
+   addLine(cc ,"Comb_"+postfix,"obs",kBlack,l2,"Combined");
+   
+   l2->Draw();
+   cc->SetGrid(1);
+   cc->SetLogy();
+   cc->Update();
+
+   cc->SaveAs("ObservedComparison_"+postfix+".png");
+   cc->SaveAs("ObservedComparison_"+postfix+".pdf");
+   cc->SaveAs("ObservedComparison_"+postfix+".root");
+
+
+
+}
+
+
+
+void makeSMSet(TString folder,TString postfix) {
+  makeLimitsSM(folder+"/muTau_"+postfix+".root","muTau_"+postfix);
+  makeLimitsSM(folder+"/eleTau_"+postfix+".root","eleTau_"+postfix);
+  makeLimitsSM(folder+"/eleMu_"+postfix+".root","eleMu_"+postfix);
+  makeLimitsSM(folder+"/muMu_"+postfix+".root","muMu_"+postfix);
+  makeLimitsSM(folder+"/Comb_"+postfix+".root","Comb_"+postfix);
+
+  //Expected comparison
+   TCanvas *c = new TCanvas("c_expComparison","c_expComparison",600,600);
+   c->cd();
+   TH1F *frame = c->DrawFrame(110.,0.1,140.,80.);
+   frame->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+   frame->GetYaxis()->SetTitle(" Upper Limit on  #sigma x BR(#Phi #rightarrow #tau #tau)/#sigmax BR(H->#tau#tau)_{SM}");
+   TLegend *l1 = addLegend(c,0.6,0.6,0.9,0.9);
+   addLine(c ,"muTau_"+postfix,"median",kBlue,l1,"#mu+#tau");
+   addLine(c ,"eleTau_"+postfix,"median",kRed,l1,"e+#tau");
+   addLine(c ,"eleMu_"+postfix,"median",kMagenta,l1,"e+#mu");
+   addLine(c ,"muMu_"+postfix,"median",kGreen,l1,"#mu+#mu");
+   addLine(c ,"Comb_"+postfix,"median",kBlack,l1,"Combined");
+   
+   l1->Draw();
+   c->SetGrid(1);
+   //   c->SetLogy();
+   c->Update();
+   
+   c->SaveAs("ExpectedComparison_"+postfix+".png");
+   c->SaveAs("ExpectedComparison_"+postfix+".pdf");
+   c->SaveAs("ExpectedComparison_"+postfix+".root");
+
+
+  //Expected comparison
+   TCanvas *cc = new TCanvas("c_obsComparison","c_obsComparison",600,600);
+   cc->cd();
+   TH1F *frame2 = cc->DrawFrame(110.,0.1,145.,80.);
+   frame2->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+   frame2->GetYaxis()->SetTitle(" Upper Limit on  #sigma x BR(#Phi #rightarrow #tau #tau)");
+   TLegend *l2 = addLegend(cc,0.6,0.6,0.9,0.9);
+   addLine(cc ,"muTau_"+postfix,"obs",kBlue,l2,"#mu+#tau");
+   addLine(cc ,"eleTau_"+postfix,"obs",kRed,l2,"e+#tau");
+   addLine(cc ,"eleMu_"+postfix,"obs",kMagenta,l2,"e+#mu");
+   addLine(cc ,"muMu_"+postfix,"obs",kGreen,l2,"#mu+#mu");
+   addLine(cc ,"Comb_"+postfix,"obs",kBlack,l2,"Combined");
+   
+   l2->Draw();
+   cc->SetGrid(1);
+   //   cc->SetLogy();
+   cc->Update();
+
+   cc->SaveAs("ObservedComparison_"+postfix+".png");
+   cc->SaveAs("ObservedComparison_"+postfix+".pdf");
+   cc->SaveAs("ObservedComparison_"+postfix+".root");
+
+
+
+}
+
+
+
+
+void makeTanB(TString input) {
+  TFile *f  = makeBandFromText(input,"tanb");
+
+  //Expected comparison
+   TCanvas *c = new TCanvas("exclusion","exclusion",600,450);
+   c->cd();
+   TH1F *frame = c->DrawFrame(90.,.0,500.,60.);
+   TLegend *l1 = addLegend(c,0.6,0.2,0.9,0.3);
+
+   addLine(c ,f ,"tanb_obs",kRed,l1,"Observed ") ;
+   addLine(c ,f ,"tanb_median",kBlue,l1,"Expected") ;
+   
+   l1->Draw();
+   //   c->SetGrid(1);
+   ///   c->SetLogy();
+   c->Update();
+   
+   c->SaveAs("MSSMExclusion.png");
+   c->SaveAs("MSSMExclusion.pdf");
+   c->SaveAs("MSSMExclusion.root");
+
+}
+
+
+
+
+void makeLimitsSM(TString file,TString which)
+{
+  gStyle->SetOptTitle(0);
+  gROOT->ProcessLine(".x UWAnalysis/ROOT/interactive/loadRooInteractiveLOCAL.C");
+  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/bandUtils.cxx+");
+  TFile * bands = TFile::Open("bands"+which+".root","RECREATE");
+
+  //make all bands
+  makeBands(bands,which,file,0);
+  printBand(bands, which, which+".txt",false);
+  TCanvas * muTauExpVsObs = makeExpectedVsObservedSM(bands, which);   
+  muTauExpVsObs->SaveAs(which+".pdf");
+  muTauExpVsObs->SaveAs(which+".png");
+  muTauExpVsObs->SaveAs(which+".root");
+
+
+}
+
+
+
+
+
+void makeLimitComparisonTB(TString file1,TString file2, TString name1,TString name2,TString label1,TString label2)
+{
+  gStyle->SetOptTitle(0);
+  gROOT->ProcessLine(".x UWAnalysis/ROOT/interactive/loadRooInteractiveLOCAL.C");
+  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/bandUtils.cxx+");
+  TFile * bands1 = TFile::Open("bands1.root","RECREATE");
+  TFile * bands2 = TFile::Open("bands2.root","RECREATE");
+  //  TFile * bands2 = TFile::Open("bands.root");
+
+
+  //make all bands
+  makeBands(bands1,name1,file1,0);
+  makeBands(bands2,name2,file2,0);
+
+  TCanvas *c1 = new TCanvas("c_compExpected","ExpectedComparison",600,600);
+  c1->cd();
+  TH1F *frame = c1->DrawFrame(90.,0.0,300.,60.);
+  frame->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+  frame->GetYaxis()->SetTitle(" Upper Limit on  tan #beta");
+  frame->Draw();
+  TLegend *l = addLegend(c1,0.5,0.25,0.9,0.4);
+
+  addLineTB(c1 ,bands1 ,name1+"_median",kBlue,l,label1);
+  addLineTB(c1 ,bands2 ,name2+"_median",kRed,l,label2);
+  l->Draw();
+  c1->Update();
+
+  TCanvas *c2 = new TCanvas("c_compObserved","ObservedComparison",600,600);
+  c2->cd();
+  TH1F *frame2 = c2->DrawFrame(90.,0.0,300.,60.);
+  frame2->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+  frame2->GetYaxis()->SetTitle(" Upper Limit on  tan #beta");
+  frame2->Draw();
+  TLegend *ll = addLegend(c2,0.5,0.25,0.9,0.4);
+
+  addLineTB(c2 ,bands1 ,name1+"_obs",kBlue,ll,label1);
+  addLineTB(c2 ,bands2 ,name2+"_obs",kRed,ll,label2);
+  ll->Draw();
+  c2->Update();
+
+
+}
+
+
+void makeLimitComparison(TString file1,TString file2, TString name1,TString name2,TString label1,TString label2)
+{
+  gStyle->SetOptTitle(0);
+  gROOT->ProcessLine(".x UWAnalysis/ROOT/interactive/loadRooInteractiveLOCAL.C");
+  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/bandUtils.cxx+");
+  TFile * bands1 = TFile::Open("bands1.root","RECREATE");
+  TFile * bands2 = TFile::Open("bands2.root","RECREATE");
+  //  TFile * bands2 = TFile::Open("bands.root");
+
+
+  //make all bands
+  makeBands(bands1,name1,file1,0);
+  makeBands(bands2,name2,file2,0);
+
+  TCanvas *c1 = new TCanvas("c_compExpected","ExpectedComparison",600,600);
+  c1->cd();
+  TH1F *frame = c1->DrawFrame(90.,0.9,500.,1000.);
+  frame->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+  frame->GetYaxis()->SetTitle(" Upper Limit on  #sigma x BR(#Phi #rightarrow #tau#tau)");
+
+
+  frame->Draw();
+  TLegend *l = addLegend(c1,0.5,0.25,0.9,0.4);
+
+  addLine(c1 ,bands1 ,name1+"_median",kBlue,l,label1);
+  addLine(c1 ,bands2 ,name2+"_median",kRed,l,label2);
+  l->Draw();
+  c1->Update();
+
+  TCanvas *c2 = new TCanvas("c_compObserved","ObservedComparison",600,600);
+  c2->cd();
+  TH1F *frame2 = c2->DrawFrame(90.,0.9,500.,1000.);
+  frame2->GetXaxis()->SetTitle("m A (GeV/c^{2})");
+  frame2->GetYaxis()->SetTitle(" Upper Limit on  #sigma x BR(#Phi #rightarrow #tau#tau)");
+  frame2->Draw();
+  TLegend *ll = addLegend(c2,0.5,0.25,0.9,0.4);
+
+  addLine(c2 ,bands1 ,name1+"_obs",kBlue,ll,label1);
+  addLine(c2 ,bands2 ,name2+"_obs",kRed,ll,label2);
+  ll->Draw();
+  c2->Update();
+
+
+}
+

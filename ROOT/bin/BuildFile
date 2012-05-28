@@ -1,0 +1,87 @@
+<use name=root>
+<use name=rootcore>
+<use name=PhysicsTools/FWLite>
+<use name=DataFormats/FWLite>
+<use name=roofit>
+<use name=roostats>
+<use name=tmva>
+
+<bin name="MVATrainer" file="MVATrainer.cc">
+</bin>
+
+<bin name="ZZEventYields" file="ZZEventYields.cc">
+</bin>
+
+
+<bin name="GetErrors" file="GetErrors.cc">
+</bin>
+
+<bin name="MakeSelTableETau" file="MakeSelTableETau.cc">
+</bin>
+
+<bin name="MakeSelTableMuTau" file="MakeSelTableMuTau.cc">
+</bin>
+
+<bin name="PrintSelectionTable" file="PrintSelectionTable.cc">
+</bin>
+
+<bin name="PrintSelectionTableFromTree" file="PrintSelectionTableFromTree.cc">
+</bin>
+
+<bin name="EventWeights" file="EventWeights.cc">
+</bin>
+
+<bin name="EventWeightsIterative" file="EventWeightsIterative.cc">
+</bin>
+
+<bin name="EventWeightsCombined" file="EventWeightsCombined.cc">
+</bin>
+
+
+<bin name="EventWeightsFromHisto" file="EventWeightsFromHisto.cc">
+</bin>
+
+<bin name="OSLSMTMethodLikelihood" file="OSLSMTMethodLikelihood.cc">
+</bin>
+
+
+<bin name="OSLSMTMethodLikelihoodShapes" file="OSLSMTMethodLikelihoodShapes.cc">
+</bin>
+
+
+<bin name="OptimizeCuts" file="OptimizeCuts.cc">
+<use name=UWAnalysis/ROOT>
+</bin>
+
+<bin name="CrossSectionCalculation" file="CrossSectionCalculation.cc">
+</bin>
+
+<bin name="OSLSMTMethodAll" file="OSLSMTMethodAll.cc">
+</bin>
+
+
+<bin name="OSLSMTMethodAllElectrons" file="OSLSMTMethodAllElectrons.cc">
+</bin>
+
+<bin name="OSLSMTMethodAllElectronsZ" file="OSLSMTMethodAllElectronsZ.cc">
+</bin>
+
+
+<bin name="MatrixMethod" file="MatrixMethod.cc">
+</bin>
+
+<bin name="TagAndProbePlotsUnbinned" file="TagAndProbePlotsUnbinned.cc">
+</bin>
+
+<bin name="DiTauEnergyScale" file="DiTauEnergyScale.cc">
+</bin>
+
+<bin name="GetExperimentalSystematics" file="GetExperimentalSystematics.cc">
+</bin>
+
+
+
+
+
+
+	

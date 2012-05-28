@@ -1,0 +1,45 @@
+void makeBandFromText(TString input,TString output) {
+  TFile *f = new TFile(output,"RECREATE");
+  TTree *t = new TTree("t","t");
+  t->ReadFile(input,"mass:obs:low95:low68:median:high68:high95");
+
+
+  float mass=0.0;
+  float obs=0.0;
+  float median=0.0;
+  float low68=0.0;
+  float high68=0.0;
+  float low95=0.0;
+  float high95=0.0;
+
+  t->SetBranchAddress("mass",&mass);
+  t->SetBranchAddress("obs",&obs);
+  t->SetBranchAddress("median",&median);
+  t->SetBranchAddress("low68",&low68);
+  t->SetBranchAddress("low95",&low95);
+  t->SetBranchAddress("high68",&high68);
+  t->SetBranchAddress("high95",&high95);
+
+
+  TGraphAsymmErrors * o = new TGraphAsymmErrors();
+  TGraphAsymmErrors * m = new TGraphAsymmErrors();
+  TGraphAsymmErrors * m95 = new TGraphAsymmErrors();
+
+  for(int i=0;i<t->GetEntries();++i) {
+    t->GetEntry(i);
+    o->SetPoint(i,mass,obs);
+    m->SetPoint(i,mass,median);
+    m->SetPointError(i,0.0,0.0,low68,high68);
+    m95->SetPoint(i,mass,median);
+    m95->SetPointError(i,0.0,0.0,low95,high95);
+  }
+
+
+  f->cd();
+  t->Write();
+  o->Write("obs");
+  m->Write("median");
+  m95->Write("median_95");
+  f->Close();
+
+}

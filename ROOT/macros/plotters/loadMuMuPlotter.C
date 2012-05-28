@@ -1,0 +1,22 @@
+{
+  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/SimplePlotter.C+");
+  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/tdrstyle.C");
+  setTDRStyle();
+  
+  SimplePlotter *plotter = new SimplePlotter();
+
+  plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/QCD.root","QCD","__WEIGHT__",0,kViolet-5,1);
+  plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/TOP.root","TOP","__WEIGHT__",0,kYellow-2,1);
+  plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/W.root","W","__WEIGHT__",0,kBlue-2,1);
+   plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/ZMM.root","Z #rightarrow #mu #mu","__WEIGHT__",-1,kOrange-4,kBlack);
+
+      // plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/ggH120.root","#Phi(120) #rightarrow #tau #tau","39.73*__WEIGHT__",-1,kGreen+2,kGreen+2,1001);
+      // plotter->addFile("muMuEventTree/eventTree","sandbox/ztt-latest/bbA120.root","","64.93*__WEIGHT__",-1,kGreen+2,kGreen+2,1001); 
+      // plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/ggH130.root","","2.96*__WEIGHT__",-1,kGreen+2,kGreen+2);
+      // plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/bbA130.root","","1.04*__WEIGHT__",-1,kGreen+2,kGreen+2);
+
+   plotter->addFile("muMuEventTree/eventTree","sandbox/zmm-latest/DATA.root","DATA","1",1,kBlack,0);
+
+
+
+}

@@ -1,0 +1,21 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat MM-MC.py >MMMC.py
+cat CONDOR.py >>MMMC.py
+
+#PYTHIA
+#farmoutAnalysisJobs  $1 --input-files-per-job=5 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToTauTau_M-20_TuneZ2_7TeV-pythia6-tauola/Summer11-PU_S3_START42_V11-v2/AODSIM  ZTT $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuMu/MMMC.py
+#farmoutAnalysisJobs $1  --input-files-per-job=1 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToMuMu_M-20_TuneZ2_7TeV-pythia6/Summer11-PU_S3_START42_V11-v1/AODSIM  ZMM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuMu/MMMC.py
+farmoutAnalysisJobs $1  --skip-existing-output --input-files-per-job=1 --output-dir=.  --input-dbs-path=/DYJetsToLL_TuneZ2_M-50_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ZJETS $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuMu/MMMC.py
+
+farmoutAnalysisJobs $1  --input-files-per-job=5 --skip-existing-output --output-dir=.  --input-dbs-path=/WJetsToLNu_TuneZ2_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  W $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuMu/MMMC.py
+farmoutAnalysisJobs $1  --skip-existing-output --input-files-per-job=5 --output-dir=.  --input-dbs-path=/QCD_Pt-20_MuEnrichedPt-15_TuneZ2_7TeV-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM   QCD $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuMu/MMMC.py
+farmoutAnalysisJobs $1  --skip-existing-output --input-files-per-job=3 --output-dir=.  --input-dbs-path=/TTJets_TuneZ2_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM TOP $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuMu/MMMC.py
+
+
+
+rm MMMC.py
+
+
+

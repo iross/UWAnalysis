@@ -1,0 +1,65 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat TT-MCH.py >MC.py
+cat CONDOR.py >>MC.py
+
+ 
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-90_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH90 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-100_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH100 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-120_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-130_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-140_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-160_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH160 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-180_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH180 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-200_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH200 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-250_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH250 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-300_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH300 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-350_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH350 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-400_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH400 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-450_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH450 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-500_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH500 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-90_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM bbA90 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-100_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA100 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-120_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-130_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-140_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-160_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA160 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-180_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA180 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-200_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA200 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-250_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA250 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-300_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA300 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-350_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA350 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-400_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA400 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-450_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA450 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYBBHToTauTau_M-500_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  bbA500 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-100_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf100 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-105_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf105 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-110_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf110 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-115_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf115 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-120_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-125_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf125 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-130_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-135_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf135 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-140_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_HToTauTau_M-145_7TeV-powheg-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  vbf145 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-100_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm100 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-105_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm105 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-110_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm110 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-115_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm115 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-120_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-125_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm125 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-130_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-135_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm135 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-140_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToTauTau_M-145_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  sm145 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/TauTau/MC.py
+
+
+
+
+rm MC.py
+
+

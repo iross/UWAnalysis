@@ -1,0 +1,15 @@
+#!/bin/sh
+echo MuTauSM
+bash createMuTauDataCardsSM
+echo MuTauMSSM
+bash createMuTauDataCardsMSSM
+
+
+echo ETauSM
+bash createETauDataCardsSM
+echo ETauMSSM
+bash createETauDataCardsMSSM
+
+echo EMu
+bash createEMuDataCardsAll
+cp eleMuSM.root eleMu.root

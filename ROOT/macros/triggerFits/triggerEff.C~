@@ -1,0 +1,98 @@
+
+double efficiency(double m, double m0, double sigma, double alpha, double n, double norm) const 
+ { 
+   const double sqrtPiOver2 = 1.2533141373;
+   const double sqrt2 = 1.4142135624;
+
+   double sig = fabs((double) sigma);
+   
+   double t = (m - m0)/sig ;
+   
+   if (alpha < 0)
+     t = -t;
+
+   double absAlpha = fabs(alpha / sig);
+   double a = TMath::Power(n/absAlpha,n)*exp(-0.5*absAlpha*absAlpha);
+   double b = absAlpha - n/absAlpha;
+
+   //   if (a>=std::numeric_limits<double>::max()) return -1. ;
+
+   double ApproxErf ;
+   double arg = absAlpha / sqrt2 ;
+   if (arg > 5.) ApproxErf = 1 ;
+   else if (arg < -5.) ApproxErf = -1 ;
+   else ApproxErf = TMath::Erf(arg) ;
+
+   double leftArea = (1 + ApproxErf) * sqrtPiOver2 ;
+   double rightArea = ( a * 1/TMath::Power(absAlpha - b,n-1)) / (n - 1);
+   double area = leftArea + rightArea;
+
+   if ( t <= absAlpha ){
+     arg = t / sqrt2 ;
+     if (arg > 5.) ApproxErf = 1 ;
+     else if (arg < -5.) ApproxErf = -1 ;
+     else ApproxErf = TMath::Erf(arg) ;
+     return norm * (1 + ApproxErf) * sqrtPiOver2 / area ;
+   }
+   else{
+     return norm * (leftArea +  a * (1/TMath::Power(t-b,n-1) - 1/TMath::Power(absAlpha - b,n-1)) / (1 - n)) / area ;
+   }
+  
+ }
+
+Double_t eff(Double_t *x, Double_t *par) {
+  Double_t xx = x[0];
+  Double_t m0 = par[0];
+  Double_t sigma = par[1];
+  Double_t alpha = par[2];
+  Double_t n = par[3];
+  Double_t norm = par[4];
+ 
+  return efficiency(xx,m0,sigma,alpha,n,norm);
+}
+
+void fit(TString file1,TString file2,TString data ,TString mc) {
+  TFile *f1 = new TFile(file1); 
+  TFile *f2 = new TFile(file2); 
+  gStyle->SetOptFit(0);
+
+  TF1 *fit1 = new TF1("fit1",eff,-100.,100.,5);
+  TF1 *fit2 = new TF1("fit2",eff,-100.,100.,5);
+
+  fit1->SetLineWidth(2);
+  fit2->SetLineWidth(2);
+
+  fit1->SetParameters(15.1,0.6,0.8,1.6,0.7);
+  fit2->SetParameters(15.1,0.6,0.8,1.6,0.7);
+
+
+  
+  TGraphAsymmErrors* g1 =(TGraphAsymmErrors*) f1->Get(data);
+  TCanvas *c1 = new TCanvas("c","DATA");
+  c1->cd();
+  g1->Draw("AP");
+    for(unsigned int i=0;i<5;++i) {
+      g1->Fit(fit1);
+    }
+
+  TGraphAsymmErrors* g2 =(TGraphAsymmErrors*) f2->Get(mc);
+  TCanvas *c2 = new TCanvas("cc","MC");
+  c2->cd()
+  g2->Draw("AP");
+  for(unsigned int i=0;i<5;++i) {
+    g2->Fit(fit2);
+   }
+
+  c1->Update();
+  c2->Update();
+  cout << "Fits completed in "<<data << " and " <<mc << endl;
+  printf("Results in DATA-------------\n");
+  fit1->Print();
+
+  printf("Results in MC-------------\n");
+  fit2->Print();
+
+
+} 
+
+

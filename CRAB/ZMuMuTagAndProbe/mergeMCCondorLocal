@@ -1,0 +1,39 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/bachtis/ZTT-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTT.root
+find /scratch/bachtis/ZTTPOWHEG-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTTPOWHEG.root
+find /scratch/bachtis/QCD-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCD.root
+find /scratch/bachtis/ZMM-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZMM.root
+find /scratch/bachtis/ZMMPOWHEG-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZMMPOWHEG.root
+find /scratch/bachtis/WMN-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WMN.root
+
+
+EventWeights outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results' dirName='tagAndProbeMuonIDRel' treename='tagAndProbeTree' 
+EventWeights outputFile='ZTTPOWHEG.root'  weight=1667   type=1 histoName='summary/results' dirName='tagAndProbeMuonIDRel' treename='tagAndProbeTree' 
+EventWeights outputFile='QCD.root'        weight=84679  type=2 histoName='summary/results' dirName='tagAndProbeMuonIDRel' treename='tagAndProbeTree'
+EventWeights outputFile='ZMM.root'        weight=1667   type=3 histoName='summary/results' dirName='tagAndProbeMuonIDRel' treename='tagAndProbeTree' 
+EventWeights outputFile='ZMMPOWHEG.root'  weight=1667   type=3 histoName='summary/results' dirName='tagAndProbeMuonIDRel' treename='tagAndProbeTree' 
+EventWeights outputFile='WMN.root'        weight=7696   type=4 histoName='summary/results' dirName='tagAndProbeMuonIDRel' treename='tagAndProbeTree'
+
+EventWeights outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results' dirName='tagAndProbeTauMisID' treename='tagAndProbeTree' 
+EventWeights outputFile='ZTTPOWHEG.root'  weight=1667   type=1 histoName='summary/results' dirName='tagAndProbeTauMisID' treename='tagAndProbeTree' 
+EventWeights outputFile='QCD.root'        weight=84679  type=2 histoName='summary/results' dirName='tagAndProbeTauMisID' treename='tagAndProbeTree'
+EventWeights outputFile='ZMM.root'        weight=1667   type=3 histoName='summary/results' dirName='tagAndProbeTauMisID' treename='tagAndProbeTree' 
+EventWeights outputFile='ZMMPOWHEG.root'  weight=1667   type=3 histoName='summary/results' dirName='tagAndProbeTauMisID' treename='tagAndProbeTree' 
+EventWeights outputFile='WMN.root'        weight=7696   type=4 histoName='summary/results' dirName='tagAndProbeTauMisID' treename='tagAndProbeTree'
+
+EventWeights outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results' dirName='tagAndProbeZMuMuEstimation' treename='tagAndProbeTree' 
+EventWeights outputFile='ZTTPOWHEG.root'  weight=1667   type=1 histoName='summary/results' dirName='tagAndProbeZMuMuEstimation' treename='tagAndProbeTree' 
+EventWeights outputFile='QCD.root'        weight=84679  type=2 histoName='summary/results' dirName='tagAndProbeZMuMuEstimation' treename='tagAndProbeTree'
+EventWeights outputFile='ZMM.root'        weight=1667   type=3 histoName='summary/results' dirName='tagAndProbeZMuMuEstimation' treename='tagAndProbeTree' 
+EventWeights outputFile='ZMMPOWHEG.root'  weight=1667   type=3 histoName='summary/results' dirName='tagAndProbeZMuMuEstimation' treename='tagAndProbeTree' 
+EventWeights outputFile='WMN.root'        weight=7696   type=4 histoName='summary/results' dirName='tagAndProbeZMuMuEstimation' treename='tagAndProbeTree'
+
+
+
+
+
+
+
