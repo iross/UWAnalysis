@@ -15,7 +15,7 @@ from ROOT import RooWorkspace, TFile, TH1, TChain, RooDataHist, \
 #pretty plots stuff from Irakli
 from beautify import beautify
 from initCMSStyle import initCMSStyle
-import logging,Colorer
+import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 #logging.debug('This is a log message.')
 #ROOT.RooMsgService.instance().addStream(RooFit.DEBUG,RooFit.Topic(RooFit.Tracing))
@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 
 #where the magic happens
 def main(options,args):
-
+    ROOT.gROOT.SetBatch(True)
     cfg = options.config
     workspaceName = cfg.get('Global','workspace')        
     
@@ -92,9 +92,14 @@ def main(options,args):
                           7.15725806451612989e-01,9.13135593220338992e-01)
     legend.SetNColumns(2)
     thePlot.addObject(legend)
+    
+    parBestFits={}
+    parBestFits['%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))]= ws.var('%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))).getVal()
+    parBestFits['%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))]= ws.var('%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))).getVal()
 
     # 1-D Limits
     
+    print '\n\n\n\n\n\nNOW 1D STUFF\n\n\n'
     level_95 = ROOT.TMath.ChisquareQuantile(.95,1)/2.0 # delta NLL for -log(LR) with 1 dof
     print '95% CL Delta-NLL 1 DOF=',level_95
     minuit.setErrorLevel(level_95)
@@ -159,6 +164,11 @@ def main(options,args):
             parm2.setVal(parm2.getMin() + (j+.5)*(parm2.getMax()-parm2.getMin())/200)
             scanHist.SetBinContent(i+1,j+1,theNLL.getVal())
 
+    print '--------------------'
+    print parm1.getMin()
+    print parm2.getMin()
+    print '--------------------'
+
     profNLL_par1 = theNLL.createProfile(RooArgSet(parm1))
     profNLL_par1_plot = parm1.frame()
     profNLL_par1.plotOn(profNLL_par1_plot)
@@ -205,7 +215,8 @@ def main(options,args):
         print "Creating cards for Higgs Combined Limit calculator!"
         makeHCLCards(ws,cfg)
 
-    return 0
+    print parBestFits
+    return parBestFits
     #really, that's all I had to do??
     
 
@@ -239,6 +250,7 @@ def setupWorkspace(ws,options):
 
     #first pass: process the backgrounds, signal and data into
     # simultaneous counting pdfs over the bins
+    print fit_sections
     for section in fit_sections:
         #create the basic observable, this is used behind the scenes
         #in the background and signal models
@@ -1104,6 +1116,25 @@ def getBackgroundsInCfg(section,cfg):
 
     return bkgs
 
+def makePseudoData(datafile,tree,file,outfile,ind):
+    """Adds a pseudo-data tree with name tree_[ind]"""
+    """Fills with n_data events chosen from the aTGC file/tree"""
+    ftemp=TFile(datafile)
+    ttemp=ftemp.Get(tree)
+    print "Getting entries in",tree,"from file",datafile
+    ndevts=ttemp.GetEntries()
+    print "Making",tree,"in",outfile,"filling with",ndevts,"'data' events"
+    ftemp.Close()
+    fin=TFile(file)
+    tin=fin.Get(tree)
+    
+    #clone ndevts events into new tree    
+    outfile.cd()
+    tout=tin.CopyTree("1","",ndevts,ind*ndevts)
+    tout.SetName(tout.GetName()+"_"+str(ind))
+    print tout.GetEntries()
+    tout.Write()
+
 if __name__ == "__main__":
     parser = OptionParser(description="%prog : A RooStats Implementation of Anomalous Triple Gauge Coupling Analysis.",
                           usage="aTGCRooStats --config=example_config.cfg")
@@ -1113,6 +1144,7 @@ if __name__ == "__main__":
     #optional things
     parser.add_option("--MCbackground",dest="MCbackground",help="Is background from MC?",action="store_true",default=False)
     parser.add_option("--pseudodata",dest="pseudodata",help="Run in pseudodata mode.",action="store_true",default=False)
+    parser.add_option("--pseudomother",dest="pseudomother",help="Mother dataset for pseudodata mode.")
     parser.add_option("--inputDataIsSignalOnly",dest="inputDataIsSignalOnly",
                       help="Flag input data as signal only, for use with --pseudodata",
                       action="store_true",default=False)
@@ -1144,12 +1176,56 @@ if __name__ == "__main__":
         print 'You must define at least one channel in the config file to do the fit in!'
         exit(1)
     
-    if options.coverageTest and options.pseudodata:
-        wstemp = options.workspaceName
+    print options.config
+
+    if options.pseudodata:
+        if not options.pseudomother:
+            print "Please specify the file from which I get pseudodata! (--pseudomother=moms.root)"
+            exit(1)
+        wstemp = options.config.get('Global','workspace')
+        results={}
+        sections = options.config.sections()
+        sections.remove('Global')
+        outfile="testPseudoData.root"
+        if os.path.exists(outfile):
+            os.remove(outfile)
+        tempDatafile={}
+        tempTree={}
         for i in range(500):
+            fout=TFile(outfile,"UPDATE")
+            for section in sections:
+                datafile=options.config.get(section,'input_data').split(":")[0]
+                tempDatafile[section]=datafile
+                tree=options.config.get(section,'input_data').split(":")[1]
+                tempTree[section]=tree
+                makePseudoData(datafile,tree,options.pseudomother,fout,i)
+                print 'Data was:',options.config.get(section,'input_data')
+                options.config.set(section,'input_data',outfile+":"+tree+"_"+str(i))
+                print '"Data" is now:',options.config.get(section,'input_data')
+            #embed new FakeDatas in the config
             options.workspaceName = wstemp+'_'+str(i)
-            main(options,args)
-        options.workspaceName = wstemp
+            fout.Close()
+            results[i]=main(options,args)
+            #return to initial input_data values
+            for section in sections:
+                datafile=tempDatafile[section]
+                tree=tempTree[section]
+                options.config.set(section,'input_data',datafile+":"+tree)
+        #dump the results into a root file
+        f=TFile("pseudoData_fitResults.root","RECREATE")
+        resTree = TTree("pseudoData_fitResults","results")
+        import numpy as N
+        n={}
+        for type in results[0]:
+            n[type]=N.zeros(1,dtype=float)
+            resTree.Branch(type,n[type],type+'/d')
+        for i in results:
+            for type in results[i]:
+                n[type][0]=results[i][type]
+            resTree.Fill()
+        resTree.Write()
+        f.Close()
+        options.config.set('Global','workspace',wstemp)    
     else:
         main(options,args)
 
