@@ -11,7 +11,7 @@ def main(options,args):
     ROOT.gROOT.ProcessLine('struct TreeContents { Float_t '+
                            options.obsVar+'; Float_t '+
                            options.par1Name+'_grid; Float_t '+
-                           options.par2Name+'_grid; Float_t weight;}')
+                           options.par2Name+'_grid; Float_t weightnoPU;}')
 
     treecontents = ROOT.TreeContents()
 
@@ -27,7 +27,7 @@ def main(options,args):
     outTree.Branch(options.par2Name+'_grid',
                    ROOT.AddressOf(treecontents,options.par2Name+'_grid'),
                    options.par2Name+'_grid/F')
-    outTree.Branch('weight',ROOT.AddressOf(treecontents,'weight'),'weight/F')
+    outTree.Branch('weightnoPU',ROOT.AddressOf(treecontents,'weightnoPU'),'weightnoPU/F')
 
     for f in args:
         coup1= f.split(".root")[0].split(options.par1Name+'_')[-1].split('_')[0]
@@ -39,7 +39,7 @@ def main(options,args):
         contentString = 'struct InTreeContents { '+currentTree.GetLeaf(options.obsVar).GetTypeName()+' '+options.obsVar+'; Float_t '+options.par1Name+'_grid; Float_t '+options.par2Name+'_grid; '
 
         if options.weightAsBranch:
-            contentString += currentTree.GetLeaf('weight').GetTypeName()+' weight;}'
+            contentString += currentTree.GetLeaf('weightnoPU').GetTypeName()+' weightnoPU;}'
         else:
             contentString += '}'
 
@@ -52,7 +52,7 @@ def main(options,args):
         setattr(treecontents,options.par1Name+'_grid',float(coup1))
         setattr(treecontents,options.par2Name+'_grid',float(coup2))
         if options.weightAsBranch:
-            currentTree.SetBranchAddress('weight',ROOT.AddressOf(inTreeContents,'weight'))            
+            currentTree.SetBranchAddress('weightnoPU',ROOT.AddressOf(inTreeContents,'weightnoPU'))            
         else:
             treecontents.weight = currentTree.GetWeight()*float(options.intLumi)/float(options.inputLumi)
 
@@ -60,7 +60,7 @@ def main(options,args):
             currentTree.GetEntry(i)
             
             if(options.weightAsBranch):                
-                treecontents.weight = inTreeContents.weight*float(options.intLumi)/float(options.inputLumi)
+                treecontents.weightnoPU = inTreeContents.weightnoPU*float(options.intLumi)/float(options.inputLumi)
                                 
             setattr(treecontents,options.obsVar,getattr(inTreeContents,options.obsVar))
             outTree.Fill()
