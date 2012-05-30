@@ -170,6 +170,7 @@ limconts['+2s'].GetYaxis().SetRangeUser(-1.25*limconts['+2s'].GetYaxis().GetXmax
 limconts['+2s'].SetTitle()
 limconts['+2s'].GetXaxis().SetTitle(par1Latex)
 limconts['+2s'].GetXaxis().SetTitleFont(132)
+limconts['+2s'].GetXaxis().SetNdivisions(505)
 limconts['+2s'].GetYaxis().SetTitle(par2Latex)
 limconts['+2s'].GetYaxis().SetTitleFont(132)
 limconts['+2s'].GetYaxis().SetTitleOffset(1.20)
@@ -203,7 +204,7 @@ text = TPaveText(0.516,0.720,0.915,0.951,"NDC")
 text.SetFillStyle(0)
 text.SetBorderSize(0)
 text.AddText("95% CLs Limit on "+"#bf{%s} and #bf{%s}"%(par1Latex,par2Latex))
-text.AddText(0,0.35,"#intL dt= 4.7 fb^{-1}, #sqrt{s} = 7 TeV")
+text.AddText(0,0.35,"#intL dt= 5.0 fb^{-1}, #sqrt{s} = 7 TeV")
 text.Draw()
 
 text2 = TPaveText(0.155,0.199,0.974,0.244,"NDC")
@@ -226,6 +227,8 @@ finalPlot.Draw()
 finalPlot.Print("%s_%s_2dlimit.pdf"%(options.par1,options.par2))
 finalPlot.Print("%s_%s_2dlimit.eps"%(options.par1,options.par2))
 finalPlot.Print("%s_%s_2dlimit.png"%(options.par1,options.par2))
+finalPlot.Print("%s_%s_2dlimit.root"%(options.par1,options.par2))
+finalPlot.Print("%s_%s_2dlimit.C"%(options.par1,options.par2))
 
 def make1DLimit(limits2d, par, parlatex, parmin, parmax, samples, boundScale, isX):
     limitplot = TCanvas("%slimit"%par,"%s limit"%par,500,500)
@@ -318,6 +321,7 @@ def make1DLimit(limits2d, par, parlatex, parmin, parmax, samples, boundScale, is
     limits1d['2s'][0].GetYaxis().SetTitle("95% CL limit on #sigma/#sigma_{aTGC}")
     limits1d['2s'][0].GetYaxis().SetTitleFont(132)
     limits1d['2s'][0].GetXaxis().SetTitle(parlatex)
+    limits1d['2s'][0].GetXaxis().SetNdivisions(505)
     limits1d['2s'][0].GetXaxis().SetTitleFont(132)
     
     limits1d['2s'][0].GetYaxis().SetRangeUser(limits1d['2s'][0].GetYaxis().GetXmin()*0.75,
@@ -334,7 +338,7 @@ def make1DLimit(limits2d, par, parlatex, parmin, parmax, samples, boundScale, is
     text1d.SetFillStyle(0)
     text1d.SetBorderSize(0)
     text1d.AddText("95% CLs Limit on "+"#bf{%s}"%(parlatex))
-    text1d.AddText(0,0.35,"#intL dt= 4.7 fb^{-1}, #sqrt{s} = 7 TeV")
+    text1d.AddText(0,0.35,"#intL dt= 5.0 fb^{-1}, #sqrt{s} = 7 TeV")
     text1d.Draw()
     
     text3.SetX1NDC(0.357)
@@ -349,16 +353,16 @@ def make1DLimit(limits2d, par, parlatex, parmin, parmax, samples, boundScale, is
     textlim.AddText("%.2g < %s  < %.2g"%(lowerLimit,parlatex,upperLimit))
     textlim.Draw()
     
-    lowLimitLine = TLine(lowerLimit,limits1d['2s'][0].GetYaxis().GetXmin()*0.75,
-                         lowerLimit,1)
-    lowLimitLine.SetLineColor(14)
-    lowLimitLine.SetLineWidth(2)
-    lowLimitLine.Draw()
-    upLimitLine = TLine(upperLimit,limits1d['2s'][0].GetYaxis().GetXmin()*0.75,
-                        upperLimit,1)
-    upLimitLine.SetLineColor(14)
-    upLimitLine.SetLineWidth(2)
-    upLimitLine.Draw()
+    #lowLimitLine = TLine(lowerLimit,limits1d['2s'][0].GetYaxis().GetXmin()*0.75,
+    #                     lowerLimit,1)
+    #lowLimitLine.SetLineColor(14)
+    #lowLimitLine.SetLineWidth(2)
+    #lowLimitLine.Draw()
+    #upLimitLine = TLine(upperLimit,limits1d['2s'][0].GetYaxis().GetXmin()*0.75,
+    #                    upperLimit,1)
+    #upLimitLine.SetLineColor(14)
+    #upLimitLine.SetLineWidth(2)
+    #upLimitLine.Draw()
 
     oneLine = TLine(parmin*0.985,1,parmax*0.96,1)
     oneLine.SetLineStyle(9)
@@ -382,9 +386,13 @@ par1Plot.Draw()
 par1Plot.Print("%s_1dlimit.pdf"%par1)
 par1Plot.Print("%s_1dlimit.eps"%par1)
 par1Plot.Print("%s_1dlimit.png"%par1)
+par1Plot.Print("%s_1dlimit.root"%par1)
+par1Plot.Print("%s_1dlimit.C"%par1)
 
-par2Plot = make1DLimit(limits, par2, par2Latex, par2Min, par2Max, samples, 0.25, False)
+par2Plot = make1DLimit(limits, par2, par2Latex, par2Min, par2Max, samples, 0.26, False)
 par2Plot.Draw()
-par1Plot.Print("%s_1dlimit.pdf"%par2)
-par1Plot.Print("%s_1dlimit.eps"%par2)
-par1Plot.Print("%s_1dlimit.png"%par2)
+par2Plot.Print("%s_1dlimit.pdf"%par2)
+par2Plot.Print("%s_1dlimit.eps"%par2)
+par2Plot.Print("%s_1dlimit.png"%par2)
+par2Plot.Print("%s_1dlimit.root"%par2)
+par2Plot.Print("%s_1dlimit.C"%par2)
