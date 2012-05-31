@@ -1072,12 +1072,6 @@ def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			src        = cms.InputTag("patTrigger"),
 			paths      = cms.vstring(TriggerPaths)
 		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("MuMuTauTauVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1125,12 +1119,6 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 			leadingOnly=cms.untracked.bool(True)
 		),
 		#temp?
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuMuMuVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1179,12 +1167,6 @@ def addMuMuMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuMuTauVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		truth = cms.PSet(
 			pluginType = cms.string("PATMuMuMuTauTruthFiller"),
 			src        = cms.InputTag(src),
@@ -1231,12 +1213,6 @@ def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			tag        = cms.string("jetsPt20"),
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
-		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("MuMuEleTauVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
 		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
@@ -1287,12 +1263,6 @@ def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("MuMuEleMuVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1341,12 +1311,6 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuEleEleVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1396,12 +1360,6 @@ def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("EleEleTauTauVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1449,12 +1407,6 @@ def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("EleEleEleTauVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1500,12 +1452,6 @@ def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 			tag        = cms.string("jetsPt20"),
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
-		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("EleEleMuTauVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
 		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
@@ -1554,12 +1500,6 @@ def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("EleEleEleMuVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1607,12 +1547,6 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("EleEleEleEleVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1659,12 +1593,6 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			method     = cms.string('pt()>20'),
 			leadingOnly=cms.untracked.bool(True)
 		),
-		refitVertex = cms.PSet(
-			pluginType = cms.string("EleEleMuMuVertexFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("refitVertex"),
-			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1710,12 +1638,6 @@ def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
 			src        = cms.InputTag("patTrigger"),
 			paths      = cms.vstring(TriggerPaths)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuTauTauVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1752,12 +1674,6 @@ def addMuMuEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEE
 			src        = cms.InputTag("patTrigger"),
 			paths      = cms.vstring(TriggerPaths)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuTauTauVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1794,12 +1710,6 @@ def addEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 			src        = cms.InputTag("patTrigger"),
 			paths      = cms.vstring(TriggerPaths)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuTauTauVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
@@ -1836,12 +1746,6 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 			src        = cms.InputTag("patTrigger"),
 			paths      = cms.vstring(TriggerPaths)
 		),
-#		refitVertex = cms.PSet(
-#			pluginType = cms.string("MuMuTauTauVertexFiller"),
-#			src        = cms.InputTag(src),
-#			tag        = cms.string("refitVertex"),
-#			vertexTag  = cms.InputTag("offlinePrimaryVertices")
-#		),
 		PVs = cms.PSet(
 			pluginType = cms.string("VertexSizeFiller"),
 			src        = cms.InputTag("primaryVertexFilter"),
