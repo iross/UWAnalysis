@@ -1,0 +1,14 @@
+#!/bin/sh
+
+rm EWK.root
+hadd EWK.root WW.root WZ.root ZZ.root 
+
+rm FAKES.root
+hadd FAKES.root ZEE.root ZMM.root WMN.root WEN.root WTN.root ZEE.root 
+#QCD.root
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+mkdir sandbox
+
+hadd sandbox/MMDATA2010B.root MM_2010B/res/*.root
+hadd sandbox/MMDATA2011A.root MM_2011Av1/res/*.root MM_2011Av1ES/res/*.root MM_2011Av2/res/*.root
+hadd sandbox/EEDATA2010B.root EE_2010B/res/*.root
+hadd sandbox/EEDATA2011A.root EE_2011Av1/res/*.root EE_2011Av1ES/res/*.root EE_2011Av2/res/*.root
+
+hadd sandbox/MMDATA.root sandbox/MMDATA2010B.root sandbox/MMDATA2011A.root
+hadd sandbox/EEDATA.root sandbox/EEDATA2010B.root sandbox/EEDATA2011A.root

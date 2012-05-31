@@ -1,0 +1,29 @@
+mkdir sandbox
+
+cd sandbox
+
+
+find /scratch/$USER/QCD-MMMC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCD.root
+find /scratch/$USER/ZJETS-MMMC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZMM.root
+find /scratch/$USER/W-MMMC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd W.root
+find /scratch/$USER/TOP-MMMC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TOP.root
+
+
+
+EventWeightsIterative outputFile='QCD.root'        weight=84679  type=2 histoName='summary/results'
+EventWeightsIterative outputFile='ZMM.root'        weight=3048   type=3 histoName='summary/results' 
+EventWeightsIterative outputFile='W.root'          weight=31314  type=4 histoName='summary/results'
+EventWeightsIterative outputFile='TOP.root'        weight=158    type=5 histoName='summary/results'
+
+
+
+ 
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+{
+  NtuplePlotter *hlt = new NtuplePlotter("muTauEVentTree/eventTree");
+  hlt->registerFile("sandbox/tau-hlt/DATA.root");
+
+
+}

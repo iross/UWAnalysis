@@ -1,0 +1,3 @@
+#!/bin/sh
+OSLSMTMethodFull preselection='HLT_Any&&vertices>0&&diLeptons==0&&lPfRelIsoDeltaBeta<0.1&&tauAbsIsoRho<2.&&abs(dz)<0.2'       oshighselection='pZeta<-40&&charge==0'	       oslowselection='pZeta>-20&&charge==0'         sshighselection='pZeta<-40&&charge!=0'	      sslowselection='pZeta>-20&&charge!=0'   	qcdfactor=1.06 qcdfactorErr=0.02 vvErr=0.4    wFactor=0.541 wFactorErr=0.02    zjfterr=0.1  zlfterr=0.24   topErr=0.12 	weight='223*0.9399*0.9444*__WEIGHT__'
+

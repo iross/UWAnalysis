@@ -1,0 +1,17 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat TP-MC.py >MMTP.py
+cat CONDOR.py >>MMTP.py
+
+#PYTHIA
+#farmoutAnalysisJobs  --input-files-per-job=1 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToTauTau_M-20_CT10_TuneZ2_7TeV-powheg-pythia-tauola/Spring11-PU_S1_START311_V1G1-v2/AODSIM  MMTP-ZTT $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZMuMuTagAndProbe/MC2.py
+farmoutAnalysisJobs $1 --input-files-per-job=1 --skip-existing-output --output-dir=.  --input-dbs-path=/DYToMuMu_M-20_TuneZ2_7TeV-pythia6/Summer11-PU_S3_START42_V11-v1/AODSIM  ZMM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZMuMuTagAndProbe/MMTP.py
+#farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=.  --input-dbs-path=/WJetsToLNu_TuneZ2_7TeV-madgraph-tauola/Spring11-PU_S1_START311_V1G1-v1/AODSIM  MMTP-W $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZMuMuTagAndProbe/MC2.py
+#farmoutAnalysisJobs --skip-existing-output --input-files-per-job=2 --output-dir=.  --input-dbs-path=/QCD_Pt-20_MuEnrichedPt-15_TuneZ2_7TeV-pythia6/Spring11-PU_S1_START311_V1G1-v1/AODSIM MMTP-QCD $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/ZMuMuTagAndProbe/MC2.py
+
+
+rm MMTP.py
+
+
+

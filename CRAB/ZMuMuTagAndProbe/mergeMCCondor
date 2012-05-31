@@ -1,0 +1,21 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/bachtis/ZMM-MMTP/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZLL.root
+#find /scratch/bachtis/MMTP-ZTT-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTT.root
+#find /scratch/bachtis/MMTP-W-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd W.root
+#find /scratch/bachtis/MMTP-QCD-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd QCD.root
+
+#EventWeightsIterative outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results'
+#EventWeightsIterative outputFile='QCD.root'        weight=84679  type=2  histoName='summary/results' 
+EventWeightsIterative outputFile='ZLL.root'        weight=1667   type=3 histoName='summary/results' 
+#EventWeightsIterative outputFile='W.root'          weight=31314  type=4 histoName='summary/results'
+
+
+
+
+
+
+
+

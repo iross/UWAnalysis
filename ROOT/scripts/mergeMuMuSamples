@@ -1,0 +1,10 @@
+#!/bin/sh
+
+rm EWK.root
+hadd EWK.root TOP.root  WMN.root WTN.root ZTTPOWHEG3.root
+
+
+
+
+
+

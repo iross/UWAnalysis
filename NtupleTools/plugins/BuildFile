@@ -1,0 +1,25 @@
+<export></export>
+<library name=UWAnalysisNtupleTools_plugins file=*.cc>
+  <use name=FWCore/Framework>
+  <use name=FWCore/MessageLogger>
+  <use name=FWCore/PluginManager>
+  <use name=FWCore/ParameterSet>
+  <use name=FWCore/Utilities>
+  <use name=DataFormats/Candidate>
+  <use name=DataFormats/Common>
+  <use name=DataFormats/MuonReco>
+  <use name=DataFormats/PatCandidates>
+  <use name=DataFormats/Luminosity>
+  <use name=PhysicsTools/IsolationAlgos>
+  <use name=PhysicsTools/PatUtils>
+  <use name=PhysicsTools/UtilAlgos>
+  <use name=PhysicsTools/Utilities>
+  <use name=SimGeneral/HepPDTRecord>
+  <use name=RecoTauTag/RecoTau>
+  <use name=RecoTauTag/TauTagTools>
+  <use name=DataFormats/HepMCCandidate>	 
+  <use name=UWAnalysis/NtupleTools>	
+  <use name=UWAnalysis/DataFormats>
+  <use name=CommonTools/UtilAlgos>
+  <use name=root>
+</library>

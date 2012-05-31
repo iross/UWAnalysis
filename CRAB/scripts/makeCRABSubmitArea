@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+mkdir $2 
+cd $2
+cp $CMSSW_BASE/src/UWAnalysis/CRAB/$1/* .
+cp $CMSSW_BASE/src/UWAnalysis/CRAB/common/* .
+

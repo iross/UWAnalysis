@@ -1,0 +1,109 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+
+cat EM-MCSKIM.py >MC.py
+cat $CMSSW_BASE/src/UWAnalysis/CRAB/common/CONDOR.py >>MC.py
+
+cat EM-MCZ.py >MCZ.py
+cat $CMSSW_BASE/src/UWAnalysis/CRAB/common/CONDOR.py >>MCZ.py
+
+cat EM-MCW.py >MCW.py
+cat $CMSSW_BASE/src/UWAnalysis/CRAB/common/CONDOR.py >>MCW.py
+
+cat EM-MCH.py >MCH.py
+cat $CMSSW_BASE/src/UWAnalysis/CRAB/common/CONDOR.py >>MCH.py
+
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  Z11-SKIM        $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCZ.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  W11-SKIM        $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCW.py
+#farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  W11_3J-SKIM     $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCW.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  TOP11-SKIM      $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  WW11-SKIM       $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  WZ11_3L-SKIM    $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  WZ11_LLQQ-SKIM  $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1  --output-dir=.  ZZ11_4L-SKIM    $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=. T11_S-SKIM      $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=. T11_T-SKIM      $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=. T11_TW-SKIM     $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MC.py 
+
+#################HIGGS######################################################################################################################
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA90-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA100-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA120-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA130-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA140-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA160-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA180-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA200-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA250-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA300-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA350-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA400-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA450-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA500-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA600-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA700-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA800-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA900-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  bbA1000-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+
+############################################################################################################################################
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH90-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH100-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH120-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH130-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH140-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH160-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH180-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH200-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH250-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH300-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH350-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH400-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH450-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH500-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH600-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH700-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH800-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH900-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  ggH1000-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MCH.py 
+
+############################################################################################################################################
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm100-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm105-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm110-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm115-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm120-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm125-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm130-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm135-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm140-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  sm145-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+############################################################################################################################################
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf100-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf105-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf110-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf115-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf120-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf125-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf130-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf135-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf140-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vbf145-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+############################################################################################################################################
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh100-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh105-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh110-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh115-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh120-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh125-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh130-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh135-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh140-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+farmoutAnalysisJobs  $1 --input-files-per-job=1   --output-dir=.  vh145-SKIM $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/EMu/MCH.py 
+###########################################################################################################################################
+
+rm MC.py MCZ.py MCW.py MCH.py
+
+
+

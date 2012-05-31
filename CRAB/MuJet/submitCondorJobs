@@ -1,0 +1,20 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat MJ-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+cat MJ-MCW.py >MCW.py
+cat CONDOR.py >>MCW.py
+
+#PYTHIA
+
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/WJetsToLNu_TuneZ2_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  W $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuJet/MCW.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/DYJetsToLL_TuneZ2_M-50_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  Z $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuJet/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/QCD_Pt-20_MuEnrichedPt-15_TuneZ2_7TeV-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM  QCD $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuJet/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/TTJets_TuneZ2_7TeV-madgraph-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM  TOP $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuJet/MC2.py
+
+rm MC2.py MCW.py
+
+
+

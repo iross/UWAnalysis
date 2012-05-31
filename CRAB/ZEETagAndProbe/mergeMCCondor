@@ -1,0 +1,14 @@
+mkdir sandbox
+cd sandbox
+ 
+find /scratch/bachtis/EE-TP-ZEE-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZLL.root
+find /scratch/bachtis/EE-TP-ZTT-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZTT.root
+find /scratch/bachtis/EE-TP-W-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd W.root
+
+EventWeightsIterative outputFile='ZTT.root'        weight=1667   type=1 histoName='summary/results'
+EventWeightsIterative outputFile='ZLL.root'        weight=1667   type=3 histoName='summary/results' 
+EventWeightsIterative outputFile='W.root'          weight=31314  type=4 histoName='summary/results'
+
+
+
+

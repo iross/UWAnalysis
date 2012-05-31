@@ -1,0 +1,36 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/$USER/WZ3L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ3L.root
+find /scratch/$USER/WZ3LM-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd WZ3LM.root
+find /scratch/$USER/qqZZ4L-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4L.root
+find /scratch/$USER/TOP-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd TOP.root
+find /scratch/$USER/DYJets-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd DYJets.root
+#find /scratch/$USER/ZZ4M-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4M.root
+#find /scratch/$USER/ZZ4E-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4E.root
+#find /scratch/$USER/ZZ2E2M-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2M.root
+find /scratch/$USER/ZBB-MC2/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZBB.root
+
+
+EventWeightsIterative outputFile='WZ3L.root'        weight=0.595    type=7 histoName='MMEE/results' 
+EventWeightsIterative outputFile='WZ3LM.root'        weight=0.7192    type=7 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ZZ4L.root'        weight=0.068   	type=2  histoName='MMEE/results' 
+EventWeightsIterative outputFile='TOP.root'         weight=165    	type=6  histoName='MMEE/results'
+EventWeightsIterative outputFile='DYJets.root'      weight=3048  	type=10 histoName='MMEE/results'
+#EventWeightsIterative outputFile='ZZ4M.root'        weight=0.0118   type=2  histoName='MMEE/results' 
+#EventWeightsIterative outputFile='ZZ4E.root'        weight=0.0118   type=2  histoName='MMEE/results' 
+#EventWeightsIterative outputFile='ZZ2E2M.root'      weight=0.0236   type=2  histoName='MMEE/results' 
+EventWeightsIterative outputFile='ZBB.root'         weight=13.75   	type=3  histoName='MMEE/results' 
+#EventWeightsIterative outputFile='ZCC.root'         weight=18.74   	type=3  histoName='MMEE/results' 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat MT-MCH.py >MC.py
+cat CONDOR.py >>MC.py
+
+ 
+farmoutAnalysisJobs --express-queue --skip-existing-output --output-dir=.  --input-dbs-path=/SUSYGluGluToHToTauTau_M-90_7TeV-pythia6-tauola/Summer11-PU_S4_START42_V11-v1/AODSIM ggH90 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/MuTau/MC.py
+
+
+
+rm MC.py
+
+

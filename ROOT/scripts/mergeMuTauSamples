@@ -1,0 +1,12 @@
+#!/bin/sh
+
+rm TOPVV.root
+hadd TOPVV.root TOP.root VV.root
+
+rm W.root
+hadd W.root WMN.root WTN.root
+
+
+
+
+

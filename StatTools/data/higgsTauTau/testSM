@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+SUFFIX='-M Asymptotic --rMax=30'
+PFIX='Asymptotic'
+if [ $2 = "sig" ]; then
+SUFFIX=' --signif --pvalue ' 
+PFIX='ProfileLikelihood'
+
+fi
+
+
+for mass in 110 115 120 125 130 135 140 145 
+do
+combine datacards/$1_mH$mass.txt  -m $mass  $SUFFIX
+done
+find higgsCombineTest.$PFIX.mH* |xargs hadd $1-results.root
+

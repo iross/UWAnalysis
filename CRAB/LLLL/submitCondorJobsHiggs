@@ -1,0 +1,68 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+
+cat LLLL-MC.py >MC2.py
+cat CONDOR.py >>MC2.py
+
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-115_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH115 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-120_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-130_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-140_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-150_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH150 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-160_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH160 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-170_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH170 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-180_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH180 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-190_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH190 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-200_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH200 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-210_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH210 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-220_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH220 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-230_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH230 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-250_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH250 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-275_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH275 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-300_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH300 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-325_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH325 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-350_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH350 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-375_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH375 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-400_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH400 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-425_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH425 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-450_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH450 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-475_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH475 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-500_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH500 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-525_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH525 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-550_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH550 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-575_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH575 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/GluGluToHToZZTo4L_M-600_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM ggH600 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-115_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf115 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-120_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf120 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-130_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf130 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-140_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf140 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-150_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf150 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-160_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf160 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-170_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf170 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-180_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf180 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-190_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf190 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-200_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf200 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-210_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf210 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-220_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf220 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-230_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf230 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-250_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf250 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-275_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf275 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-300_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf300 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-325_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf325 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-350_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf350 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-375_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf375 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-400_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf400 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-425_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf425 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-450_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf450 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-475_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf475 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-500_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf500 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-525_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf525 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-550_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf550 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-575_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf575 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+farmoutAnalysisJobs --skip-existing-output --output-dir=.  --input-dbs-path=/VBF_ToHToZZTo4L_M-600_7TeV-powheg-pythia6/Summer11-PU_S4_START42_V11-v1/AODSIM vbf600 $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC2.py
+
+rm MC2.py
+
+
+
