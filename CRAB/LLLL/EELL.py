@@ -5,7 +5,7 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'GR_R_311_V2::All'
+process.GlobalTag.globaltag = 'GR_R_52_V8::All'
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 10
@@ -20,15 +20,18 @@ process.source = cms.Source("PoolSource",
 #        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/7609160B-EE57-E011-9149-001617E30D12.root',
 #        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/7284A8EE-0558-E011-9AC0-003048F1C424.root',
 #        '/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v1/000/161/312/70491EF9-F957-E011-9024-003048F11942.root'
-'/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v6/000/172/620/E0BE6B50-1BC0-E011-975B-003048F1183E.root'
-        )
+#'/store/data/Run2011A/DoubleElectron/AOD/PromptReco-v6/000/172/620/E0BE6B50-1BC0-E011-975B-003048F1183E.root'
+'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-05-29-8TeV-PatTuple-67c1f94/a7f10efca7dd683ad59c7e946715fa59/output_49_0_TNg.root',
+        ),
+        inputCommands=cms.untracked.vstring(
+            'keep *',
+            'drop *_finalState*_*_*',
+            'drop *_patFinalStateEvent*_*_*'
+            )
 )
 
-process.load("PhysicsTools.PatAlgos.patSequences_cff")
-
-
 from UWAnalysis.Configuration.tools.analysisTools import *
-defaultReconstruction(process,'HLT',
+defaultAnalysisPath(process,'HLT',
                       [
 									"HLT_DoubleMu3",
 						  			"HLT_DoubleMu7",
@@ -43,39 +46,40 @@ defaultReconstruction(process,'HLT',
                       ])
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLLAnalysis_cff")
-process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
-process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
-process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
-process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
+#process.load("UWAnalysis.Configuration.zzLLLLAnalysis_cff")
+process.load("UWAnalysis.Configuration.zzLLLLATGC_testSync2_cff")
+#process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
+#process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
+#process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
+#process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
 process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
-process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
+#process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
 
 
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
-addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold')
-addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleTauEventTree
-addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold')
-addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuTauEventTree
-addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold')
-addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
-addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold')
-addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID')
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold')
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID')
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleTauEventTree
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold')
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID')
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuTauEventTree
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold')
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID')
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold')
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCandsAboveThreshold')
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID','EEEEzzEleIDSecond')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold')
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMzzMuIDSecondPair')
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
+#addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold')
+#addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMzzMuIDSecondPair')
 
 #Add event counter
-addEventSummary(process,False,'EEMT','eventSelectionEEMT')
-addEventSummary(process,False,'EEET','eventSelectionEEET')
-addEventSummary(process,False,'EETT','eventSelectionEETT')
-addEventSummary(process,False,'EEEM','eventSelectionEEEM')
+#addEventSummary(process,False,'EEMT','eventSelectionEEMT')
+#addEventSummary(process,False,'EEET','eventSelectionEEET')
+#addEventSummary(process,False,'EETT','eventSelectionEETT')
+#addEventSummary(process,False,'EEEM','eventSelectionEEEM')
 addEventSummary(process,False,'EEEE','eventSelectionEEEE')
-addEventSummary(process,False,'EEMM','eventSelectionEEMM')
+#addEventSummary(process,False,'EEMM','eventSelectionEEMM')
 
