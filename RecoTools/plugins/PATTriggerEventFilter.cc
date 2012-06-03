@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  TriggerEventFilter.cc
+ *       Filename:  PATTriggerEventFilter.cc
  *
  *    Description:  Filter events by string cut on a PAT Trigger event
  *
@@ -23,10 +23,10 @@
 
 #include <boost/regex.hpp>
 
-class TriggerEventFilter : public edm::EDFilter {
+class PATTriggerEventFilter : public edm::EDFilter {
 	public:
-		TriggerEventFilter(const edm::ParameterSet& pset);
-		virtual ~TriggerEventFilter(){}
+		PATTriggerEventFilter(const edm::ParameterSet& pset);
+		virtual ~PATTriggerEventFilter(){}
 		bool filter(edm::Event& evt, const edm::EventSetup& es);
 	private:
 		edm::InputTag src_;
@@ -34,12 +34,12 @@ class TriggerEventFilter : public edm::EDFilter {
 		StringCutObjectSelector<pat::TriggerEvent> cut_;
 };
 
-TriggerEventFilter::TriggerEventFilter(const edm::ParameterSet& pset):
+PATTriggerEventFilter::PATTriggerEventFilter(const edm::ParameterSet& pset):
 	src_ (pset.getParameter<edm::InputTag>("src")),
 	paths_ (pset.getParameter<std::vector<std::string> >("paths")),
 	cut_ (pset.getParameter<std::string>("cut"), true) { }
 
-	bool TriggerEventFilter::filter(edm::Event& evt, const edm::EventSetup& es) {
+	bool PATTriggerEventFilter::filter(edm::Event& evt, const edm::EventSetup& es) {
 		edm::Handle<pat::TriggerEvent> trgevt;
 		//		std::cout << trgEvent << std::endl;
 		evt.getByLabel(src_, trgevt);
@@ -63,4 +63,4 @@ TriggerEventFilter::TriggerEventFilter(const edm::ParameterSet& pset):
 	}
 
 #include "FWCore/Framework/interface/MakerMacros.h"
-DEFINE_FWK_MODULE(TriggerEventFilter);
+DEFINE_FWK_MODULE(PATTriggerEventFilter);
