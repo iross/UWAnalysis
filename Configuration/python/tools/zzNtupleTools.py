@@ -326,13 +326,13 @@ def genCommon(src,pluginType):
 
 def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM):
 	sharedV = cms.VPSet(
-		cms.PSet(
-			pluginType = cms.string(pluginType+"JetCountFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("jetsPt20"),
-			method     = cms.string('pt()>20'),
-			leadingOnly=cms.untracked.bool(True)
-		),
+#		cms.PSet(
+#			pluginType = cms.string(pluginType+"JetCountFiller"),
+#			src        = cms.InputTag(src),
+#			tag        = cms.string("jetsPt20"),
+#			method     = cms.string('pt()>20'),
+#			leadingOnly=cms.untracked.bool(True)
+#		),
 #		cms.PSet(
 #			pluginType = cms.string(pluginType+"JetCountFillerOL"),
 #			src        = cms.InputTag(src),
@@ -347,20 +347,20 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM):
 #			method     = cms.string('pt()>20&&bDiscriminator("")>3.3&&abs(eta)<2.4'),
 #			leadingOnly=cms.untracked.bool(True)
 #		),
-		cms.PSet(
-			pluginType = cms.string(pluginType+"JetCountFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("jetsPt20bLoose"),
-			method     = cms.string('pt()>20&&bDiscriminator("")>1.7&&abs(eta)<2.4'),
-			leadingOnly=cms.untracked.bool(True)
-		),
-		cms.PSet(
-			pluginType = cms.string(pluginType+"JetCountFiller"),
-			src        = cms.InputTag(src),
-			tag        = cms.string("jetsPt20bMed"),
-			method     = cms.string('pt()>20&&bDiscriminator("")>3.3&&abs(eta)<2.4'),
-			leadingOnly=cms.untracked.bool(True)
-		),
+#		cms.PSet(
+#			pluginType = cms.string(pluginType+"JetCountFiller"),
+#			src        = cms.InputTag(src),
+#			tag        = cms.string("jetsPt20bLoose"),
+#			method     = cms.string('pt()>20&&bDiscriminator("")>1.7&&abs(eta)<2.4'),
+#			leadingOnly=cms.untracked.bool(True)
+#		),
+#		cms.PSet(
+#			pluginType = cms.string(pluginType+"JetCountFiller"),
+#			src        = cms.InputTag(src),
+#			tag        = cms.string("jetsPt20bMed"),
+#			method     = cms.string('pt()>20&&bDiscriminator("")>3.3&&abs(eta)<2.4'),
+#			leadingOnly=cms.untracked.bool(True)
+#		),
 		cms.PSet(
 			pluginType = cms.string("CollectionSizeFiller"),
 			src        = cms.InputTag(src),
@@ -388,27 +388,52 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM):
 		),
 		cms.PSet(
 			pluginType = cms.string("ElectronCountFiller"),
-			src        = cms.InputTag('convRejElectrons'),
+			src        = cms.InputTag('mvaedElectrons'),
 			# pass candidate collection so we can cross-clean
 			# dR
 			tag        = cms.string("nElectrons"),
-			method     = cms.string("pt()>7&&userFloat('ip3DS')<4"),
+			method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.4"),
 		),
 		cms.PSet(
 			pluginType = cms.string("MuonCountFiller"),
-			src        = cms.InputTag('patMuonsForAnalysis'),
+			src        = cms.InputTag('cleanPatMuons'),
 			# pass candidate collection so we can cross-clean
 			# dR
 			tag        = cms.string("nMuons"),
-			method     = cms.string("pt()>5&&userFloat('ip3DS')<4&&(isGlobalMuon()||isTrackerMuon())&&pfCandidateRef().isNonnull()"),
+			method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
 		),
 		cms.PSet(
 			pluginType = cms.string("TauCountFiller"),
-			src        = cms.InputTag('patOverloadedTaus'),
+			src        = cms.InputTag('cleanPatTaus'),
 			# pass candidate collection so we can cross-clean
 			# dR
 			tag        = cms.string("nTaus"),
-			method     = cms.string("1"),
+			method     = cms.string("pt>20 && tauID('againstMuonLoose') && tauID('againstElectronLoose') && tauID('byLooseIsolationMVA')"),
+		),
+		cms.PSet(
+			pluginType = cms.string(pluginType+"EleExtraCountFiller"),
+			src        = cms.InputTag('mvaedElectrons'),
+			candSrc        = cms.InputTag(src),
+            mindR = cms.double(0.3),
+			tag        = cms.string("nExtraElectrons"),
+
+			method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+		),
+		cms.PSet(
+			pluginType = cms.string(pluginType+"MuExtraCountFiller"),
+			src        = cms.InputTag('cleanPatMuons'),
+			candSrc        = cms.InputTag(src),
+            mindR = cms.double(0.3),
+			tag        = cms.string("nExtraMuons"),
+			method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+		),
+		cms.PSet(
+			pluginType = cms.string(pluginType+"TauExtraCountFiller"),
+			src        = cms.InputTag('cleanPatTaus'),
+			candSrc        = cms.InputTag(src),
+            mindR = cms.double(0.3),
+			tag        = cms.string("nExtraTaus"),
+			method     = cms.string("pt>20 && tauID('againstMuonLoose') && tauID('againstElectronLoose') && tauID('byLooseIsolationMVA')"),
 		),
 		)
 	return sharedV
@@ -645,13 +670,13 @@ def tauCommon(src,legName,legMethod,pluginType):
 				method     = cms.string(legMethod+"pt"),
 				leadingOnly=cms.untracked.bool(True)
 				),
-		cms.PSet(
-				pluginType = cms.string(pluginType),
-				src        = cms.InputTag(src),
-				tag        = cms.string(legName+"JetPt"),
-				method     = cms.string(legMethod+"pfJetRef.pt"),
-				leadingOnly=cms.untracked.bool(True)
-				),
+#		cms.PSet(
+#				pluginType = cms.string(pluginType),
+#				src        = cms.InputTag(src),
+#				tag        = cms.string(legName+"JetPt"),
+#				method     = cms.string(legMethod+"pfJetRef.pt"),
+#				leadingOnly=cms.untracked.bool(True)
+#				),
 		cms.PSet(
 			pluginType = cms.string(pluginType),
 			src        = cms.InputTag(src),
@@ -793,6 +818,13 @@ def eleCommon(src,legName,legMethod,pluginType):
 		cms.PSet(
 		   pluginType = cms.string(pluginType),
 		   src        = cms.InputTag(src),
+		   tag        = cms.string(legName+"SCEta"),
+		   method     = cms.string(legMethod+"superCluster().eta()"),
+		   leadingOnly=cms.untracked.bool(True)
+		),
+		cms.PSet(
+		   pluginType = cms.string(pluginType),
+		   src        = cms.InputTag(src),
 		   tag        = cms.string(legName+"Phi"),
 		   method     = cms.string(legMethod+"phi"),
 		   leadingOnly=cms.untracked.bool(True)
@@ -870,29 +902,8 @@ def eleCommon(src,legName,legMethod,pluginType):
 		cms.PSet(
 			pluginType = cms.string(pluginType),
 			src        = cms.InputTag(src),
-			tag        = cms.string(legName+"CiCMedium"),
-			method     = cms.string(legMethod+'electronID("cicMedium")'),
-			leadingOnly=cms.untracked.bool(True)
-		),
-		cms.PSet(
-			pluginType = cms.string(pluginType),
-			src        = cms.InputTag(src),
 			tag        = cms.string(legName+"CiCTight"),
 			method     = cms.string(legMethod+'electronID("cicTight")'),
-			leadingOnly=cms.untracked.bool(True)
-		),
-		cms.PSet(
-			pluginType = cms.string(pluginType),
-			src        = cms.InputTag(src),
-			tag        = cms.string(legName+"CiCSuperTight"),
-			method     = cms.string(legMethod+'electronID("cicSuperTight")'),
-			leadingOnly=cms.untracked.bool(True)
-		),
-		cms.PSet(
-			pluginType = cms.string(pluginType),
-			src        = cms.InputTag(src),
-			tag        = cms.string(legName+"CiCHyperTight1"),
-			method     = cms.string(legMethod+'electronID("cicHyperTight1")'),
 			leadingOnly=cms.untracked.bool(True)
 		),
 	  	cms.PSet(
@@ -1598,11 +1609,11 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 			src        = cms.InputTag("primaryVertexFilter"),
 			tag        = cms.string("vertices")
 		),
-		Rho = cms.PSet(
-            pluginType = cms.string("EventWeightFiller"),
-            src        = cms.InputTag("kt6PFJets","rho"),
-            tag        = cms.string("rho")
-        ),
+#		Rho = cms.PSet(
+#            pluginType = cms.string("EventWeightFiller"),
+#            src        = cms.InputTag("kt6PFJets","rho"),
+#            tag        = cms.string("rho")
+#        ),
 		truth = cms.PSet(
 			pluginType = cms.string("PATEleEleMuMuTruthFiller"),
 			src        = cms.InputTag(src),
