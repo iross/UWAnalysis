@@ -1133,8 +1133,7 @@ def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
                 gensrc        = cms.InputTag("genParticles"),
                 tag        = cms.string("refitVertex"),
                 method     = cms.string('1')
-                ),
-        )
+                )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1182,7 +1181,7 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1230,7 +1229,7 @@ def addMuMuMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1280,7 +1279,7 @@ def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
 
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
@@ -1330,7 +1329,7 @@ def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
                gensrc        = cms.InputTag("genParticles"),
                tag        = cms.string("refitVertex"),
                method     = cms.string('1')
-               ),
+               )
    setattr(process, name, eventTree)
    p = cms.Path(getattr(process,name))
    setattr(process, name+'Path', p) 
@@ -1379,7 +1378,7 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1428,7 +1427,7 @@ def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1475,7 +1474,7 @@ def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1522,7 +1521,7 @@ def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1570,7 +1569,7 @@ def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1618,7 +1617,7 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1670,7 +1669,7 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1709,7 +1708,7 @@ def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1746,7 +1745,7 @@ def addMuMuEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEE
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1783,7 +1782,7 @@ def addEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
@@ -1820,7 +1819,7 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
             gensrc        = cms.InputTag("genParticles"),
             tag        = cms.string("refitVertex"),
             method     = cms.string('1')
-        ),
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
