@@ -43,6 +43,49 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
 #  electronTriggerMatch(process,triggerProcess)
 #  tauTriggerMatch(process,triggerProcess)
 
+  process.mvaedElectrons=cms.EDProducer("PATMVAIDEmbedder",
+         src=cms.InputTag("cleanPatElectrons"),
+         id=cms.string("mvaNonTrigV0")
+         )
+
+  #remove electrons within 0.3 of a muon
+  process.llttElectrons = cms.EDProducer("PATElectronCleaner",
+          src = cms.InputTag("mvaedElectrons"),
+          preselection = cms.string(""),
+          checkOverlaps = cms.PSet(
+              muons = cms.PSet(
+                  src=cms.InputTag("cleanPatMuons"),
+                  algorithm=cms.string("byDeltaR"),
+                  preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                  deltaR=cms.double(0.3),
+                  checkRecoComponents = cms.bool(False),
+                  pairCut=cms.string(""),
+                  requireNoOverlaps=cms.bool(True)
+                  )
+              ),
+          finalCut = cms.string("")
+          )
+
+  #remove taus within 0.3 of a electron
+  process.llttTaus = cms.EDProducer("PATTauCleaner",
+          src = cms.InputTag("cleanPatTaus"),
+          preselection = cms.string(""),
+          checkOverlaps = cms.PSet(
+              muons = cms.PSet(
+                  src=cms.InputTag("mvaedElectrons"),
+                  algorithm=cms.string("byDeltaR"),
+                  preselection=cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                  deltaR=cms.double(0.3),
+                  checkRecoComponents = cms.bool(False),
+                  pairCut=cms.string(""),
+                  requireNoOverlaps=cms.bool(True)
+                  )
+              ),
+          finalCut = cms.string("")
+          )
+
+  process.analysisSequence*=process.mvaedElectrons+process.llttElectrons+process.llttTaus
+
   process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
 def defaultReconstructionSKIM(process):
