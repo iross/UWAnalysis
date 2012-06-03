@@ -608,6 +608,20 @@ def muCommon(src,legName,legMethod,pluginType):
 	  	cms.PSet(
 		  	pluginType = cms.string(pluginType),
 		  	src        = cms.InputTag(src),
+		  	tag        = cms.string(legName+"pfCombIso2012"),
+		  	method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+		  	leadingOnly=cms.untracked.bool(True)
+	  	),
+	  	cms.PSet(
+		  	pluginType = cms.string(pluginType),
+		  	src        = cms.InputTag(src),
+		  	tag        = cms.string(legName+"pfCombIso"),
+		  	method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
+		  	leadingOnly=cms.untracked.bool(True)
+	  	),
+	  	cms.PSet(
+		  	pluginType = cms.string(pluginType),
+		  	src        = cms.InputTag(src),
 		  	tag        = cms.string(legName+"idMVA"),
 		  	method     = cms.string(legMethod+"userFloat('idmva')"),
 		  	leadingOnly=cms.untracked.bool(True)
@@ -998,6 +1012,20 @@ def eleCommon(src,legName,legMethod,pluginType):
 		  	src        = cms.InputTag(src),
 		  	tag        = cms.string(legName+"EAGammaNeuHadron04"),
 		  	method     = cms.string(legMethod+"userFloat('EAGammaNeuHadron04')"),
+		  	leadingOnly=cms.untracked.bool(True)
+	  	),
+	  	cms.PSet(
+		  	pluginType = cms.string(pluginType),
+		  	src        = cms.InputTag(src),
+		  	tag        = cms.string(legName+"pfCombIso2012"),
+		  	method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+		  	leadingOnly=cms.untracked.bool(True)
+	  	),
+	  	cms.PSet(
+		  	pluginType = cms.string(pluginType),
+		  	src        = cms.InputTag(src),
+		  	tag        = cms.string(legName+"pfCombIso"),
+		  	method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
 		  	leadingOnly=cms.untracked.bool(True)
 	  	),
 	  	cms.PSet(
