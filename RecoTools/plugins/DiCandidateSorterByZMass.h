@@ -80,7 +80,6 @@ class DiCandidateSorterByZMass : public edm::EDProducer {
 				}
 				//std::cout << "First Z mass: " << toBeSorted.at(i).leg1()->mass() << ", second Z mass: " << toBeSorted.at(i).leg2()->mass() << ", pt sum: " << tempSum << std::endl;
 			}
-			std::cout << "Best index: " << bestIndex << std::endl;
 			out->push_back(toBeSorted.at(bestIndex));
 			iEvent.put(out);
 		} 

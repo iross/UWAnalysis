@@ -68,12 +68,6 @@ process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
 process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
 #process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
 #process.load("UWAnalysis.Configuration.PDWG_HZZSkim_cff")
-process.eventSelectionMMEEabs = cms.Path(process.absMMEEselectionSequence)
-process.eventSelectionMMMMabs = cms.Path(process.absMMMMselectionSequence)
-process.eventSelectionEEEEabs = cms.Path(process.absEEEEselectionSequence)
-#for path in [process.HZZ4ePath, process.HZZ2e2mPath, process.HZZ2m2ePath, process.HZZ4mPath, process.HZZem2ePath, process.HZZem2mPath]:
-#	path+=process.MMMMselectionSequence
-
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
 #addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
@@ -152,7 +146,4 @@ addEventSummary(process,False,'MMMM','eventSelectionMMMM')
 #addEventSummary(process,False,'EEEM','eventSelectionEEEM')
 addEventSummary(process,False,'EEEE','eventSelectionEEEE')
 #addEventSummary(process,False,'EEMM','eventSelectionEEMM')
-addEventSummary(process,False,'absMMEE','eventSelectionMMEEabs')
-addEventSummary(process,False,'absMMMM','eventSelectionMMMMabs')
-addEventSummary(process,False,'absEEEE','eventSelectionEEEEabs')
 

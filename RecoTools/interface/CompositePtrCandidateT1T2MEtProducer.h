@@ -96,7 +96,7 @@ class CompositePtrCandidateT1T2MEtProducer : public edm::EDProducer
   void produce(edm::Event& evt, const edm::EventSetup& es)
   {
     //Instantiate the vertex Algorithm
-    CompositePtrCandidateT1T2MEtVertexAlgorithm<T1,T2> vAlgo(evt,es);
+//    CompositePtrCandidateT1T2MEtVertexAlgorithm<T1,T2> vAlgo(evt,es);
 
 //--- print-out an error message and add an empty collection to the event 
 //    in case of erroneous configuration parameters
@@ -228,7 +228,7 @@ class CompositePtrCandidateT1T2MEtProducer : public edm::EDProducer
 	  CompositePtrCandidateT1T2MEt<T1,T2> compositePtrCandidate = 
 	    algorithm_.buildCompositePtrCandidate(leg1Ptr, leg2Ptr, pfJets,metPtr, genParticles);
 
-	  vAlgo.calculateVertexVariables(compositePtrCandidate);
+//	  vAlgo.calculateVertexVariables(compositePtrCandidate);
 	  compositePtrCandidateCollection->push_back(compositePtrCandidate);
 	}
       }

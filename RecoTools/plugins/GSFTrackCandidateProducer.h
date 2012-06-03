@@ -13,7 +13,7 @@
 //
 // Original Author:  Michail Bachtis
 //         Created:  Sun Jan 31 15:04:57 CST 2010
-// $Id: GSFTrackCandidateProducerTemp.h,v 1.1 2011/01/23 22:00:02 bachtis Exp $
+// $Id: GSFTrackCandidateProducer.h,v 1.1 2011/01/23 22:00:02 bachtis Exp $
 //
 //
 
@@ -41,19 +41,19 @@
 
 
 
-class GSFTrackCandidateProducerTemp : public edm::EDProducer {
+class GSFTrackCandidateProducer : public edm::EDProducer {
    public:
 
   
 
-  explicit GSFTrackCandidateProducerTemp(const edm::ParameterSet& iConfig):
+  explicit GSFTrackCandidateProducer(const edm::ParameterSet& iConfig):
     src_(iConfig.getParameter<edm::InputTag>("src")),
     threshold_(iConfig.getParameter<double>("threshold"))
   {
     produces<reco::RecoChargedCandidateCollection>();
   }
   
-  ~GSFTrackCandidateProducerTemp() {}
+  ~GSFTrackCandidateProducer() {}
    private:
 
 

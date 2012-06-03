@@ -785,39 +785,10 @@ class CutSequenceProducer(cms._ParameterTypeBase):
 
 
     def addSmearing(self,taus,muons,electrons,jets,mpost=''):
+        #todo: move this all to analysisTools, since it's super unnecessary to run it here.
         #first add the MVA bizzness to the electrons
-          mvaIDedElectrons=cms.EDProducer("PATMVAIDEmbedder",
-                  src=cms.InputTag(electrons),
-                  id=cms.string("mvaNonTrigV0")
-                  )
-          pyModule = sys.modules[self.pyModuleName[0]]
-          if pyModule is None:
-              raise ValueError("'pyModuleName' Parameter invalid")
-          setattr(pyModule,'mvaIDedElectrons'+mpost,mvaIDedElectrons)
-          self.sequence*=mvaIDedElectrons
-
-          mvaedElectrons=cms.EDProducer("PATElectronMVAIsoEmbedder",
-                  src=cms.InputTag('mvaIDedElectrons'+mpost),
-                  id=cms.string("isomva")
-                  )
-          pyModule = sys.modules[self.pyModuleName[0]]
-          if pyModule is None:
-              raise ValueError("'pyModuleName' Parameter invalid")
-          setattr(pyModule,'mvaedElectrons'+mpost,mvaedElectrons)
-          self.sequence*=mvaedElectrons
-
-#          tempMuons = cms.EDFilter("CandViewSelector",
-#                  src=cms.InputTag("cleanPatMuons"),
-#                  cut = cms.string("pfCandidateRef.isNonnull()")
-#                  )
-#          pyModule = sys.modules[self.pyModuleName[0]]
-#          if pyModule is None:
-#              raise ValueError("'pyModuleName' Parameter invalid")
-#          setattr(pyModule,'tempMuons'+mpost,tempMuons)
-#          self.sequence*=tempMuons
-
           tempElectrons = cms.EDProducer("PATElectronCleaner",
-                  src = cms.InputTag("mvaedElectrons"+mpost),
+                  src = cms.InputTag("mvaedElectrons"),
                   preselection = cms.string(""),
                   checkOverlaps = cms.PSet(
                       muons = cms.PSet(
@@ -838,16 +809,6 @@ class CutSequenceProducer(cms._ParameterTypeBase):
           setattr(pyModule,'tempElectrons'+mpost,tempElectrons)
           self.sequence*=tempElectrons
 
-#          tempElectrons = cms.EDProducer("CandViewCleaner",
-#                  srcObject = cms.InputTag("mvaedElectrons"+mpost),
-#                  srcObjectsToRemove = cms.VInputTag(cms.InputTag("tempMuons"+mpost)),
-#                  deltaRMin = cms.double(0.05)
-#                  )
-#          pyModule = sys.modules[self.pyModuleName[0]]
-#          if pyModule is None:
-#              raise ValueError("'pyModuleName' Parameter invalid")
-#          setattr(pyModule,'tempElectrons'+mpost,tempElectrons)
-#          self.sequence*=tempElectrons
 
           smearedTaus = cms.EDProducer("SmearedTauProducer",
                                        src = cms.InputTag(taus),
@@ -1030,8 +991,8 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,'hltSkimmerCounter',counter)
                    self.sequence*=counter
 
-    def addHLTTest(self,moduleName,paths,summaryText = ''):
-        hltSkimmer = cms.EDFilter("TriggerEventFilter",
+    def addHLTFilter(self,moduleName,paths,summaryText = ''):
+        hltSkimmer = cms.EDFilter("PATTriggerEventFilter",
                 src= cms.InputTag("patTriggerEvent"),
                 paths=cms.vstring(paths),
                 cut = cms.string("")
