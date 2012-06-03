@@ -785,8 +785,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
 
 
     def addSmearing(self,taus,muons,electrons,jets,mpost=''):
-        #todo: move this all to analysisTools, since it's super unnecessary to run it here.
-        #first add the MVA bizzness to the electrons
+          #remove electrons within 0.05 of a muon
           tempElectrons = cms.EDProducer("PATElectronCleaner",
                   src = cms.InputTag("mvaedElectrons"),
                   preselection = cms.string(""),
