@@ -1,0 +1,26 @@
+#!/bin/sh
+voms-proxy-init --voms cms --valid 100:00
+mkdir -p /scratch/$USER/DAGs/$1/
+
+TAG=$1
+if [[ $TAG != "" ]]; then
+    postfix="_"$TAG
+fi
+
+cat LLLL-MC.py >MC.py
+cat CONDOR.py >>MC.py
+
+cat LLLL.py > DATA.py
+cat CONDOR.py >> DATA.py
+
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ZZ2M2T_7TeV --input-dbs-path=/ZZTo2mu2tau_7TeV-powheg-pythia6/iross-ZZTo2mu2tau_powheg_v2_2012-05-29-7TeV-PatTuple-v2-67c1f94-e0dd06ee56c1f7e58ee9681561265904/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ZZ2M2T_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ZZ2E2M_7TeV --input-dbs-path=/ZZTo2e2mu_7TeV-powheg-pythia6/iross-ZZTo2e2mu_powheg_v2_2012-05-29-7TeV-PatTuple-v2-67c1f94-e0dd06ee56c1f7e58ee9681561265904/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ZZ2E2M_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ZZ2E2T_7TeV --input-dbs-path=/ZZTo2e2tau_7TeV-powheg-pythia6/iross-ZZTo2e2tau_powheg_v2_2012-05-29-7TeV-PatTuple-v2-67c1f94-e0dd06ee56c1f7e58ee9681561265904/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ZZ2E2T_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ZZ4E_7TeV --input-dbs-path=/ZZTo4e_7TeV-powheg-pythia6/iross-ZZTo4e_powheg_v2_2012-05-29-7TeV-PatTuple-v2-67c1f94-37fbe59dab9a7313bfc2342346bc9e10/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ZZ4E_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ZZ4M_7TeV --input-dbs-path=/ZZTo4mu_7TeV-powheg-pythia6/iross-ZZTo4mu_powheg_v2_2012-05-29-7TeV-PatTuple-v2-67c1f94-37fbe59dab9a7313bfc2342346bc9e10/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ZZ4M_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ZZ4T_7TeV --input-dbs-path=/ZZTo4tau_7TeV-powheg-pythia6/iross-ZZTo4tau_powheg_v2_2012-05-29-7TeV-PatTuple-v2-67c1f94-37fbe59dab9a7313bfc2342346bc9e10/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ZZ4T_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ggZ2L2L_7TeV --input-dbs-path=/GluGluToZZTo2L2L_7TeV-gg2zz-pythia6/iross-GluGluToZZTo2L2L_2012-05-29-7TeV-PatTuple-v2-67c1f94-176e583a8e67baccd947cdb137187516/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ggZ2L2L_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+farmoutAnalysisJobs --input-files-per-job=2 --skip-existing-output --output-dir=. --output-dag-file=/scratch/iross/DAGs/$TAG/ggZZ4L_7TeV --input-dbs-path=/GluGluToZZTo4L_7TeV-gg2zz-pythia6/iross-GluGluToZZTo4L_2012-05-29-7TeV-PatTuple-v2-67c1f94-778ca2b9e63c75342d90929988a4f6ee/USER --dbs-service-url=http://cmsdbsprod.cern.ch/cms_dbs_ph_analysis_01/servlet/DBSServlet ggZZ4L_7TeV$postfix $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+rm MC2.py
