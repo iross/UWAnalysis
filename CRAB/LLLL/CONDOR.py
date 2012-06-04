@@ -1,7 +1,12 @@
 process.source = cms.Source("PoolSource",
                  fileNames = cms.untracked.vstring(
                     $inputFileNames
-                                 )
+                                 ),
+        inputCommands=cms.untracked.vstring(
+            'keep *',
+            'drop *_finalState*_*_*',
+            'drop *_patFinalStateEvent*_*_*'
+            )
 )
 
 process.maxEvents = cms.untracked.PSet(
