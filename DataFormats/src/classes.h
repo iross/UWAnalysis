@@ -11,305 +11,345 @@
 
 
 namespace {
-  struct UWanalysis_DataFormats_dictionary {
-    /// create dictionaries for DiCandidatePair objects
-    DiCandidatePair dummyDiCandidatePair;
-    edm::Wrapper<DiCandidatePair> dummyDiCandidatePairWrapper;
-    DiCandidatePairCollection dummyDiCandidatePairCollection;
-    edm::Wrapper<DiCandidatePairCollection> dummyDiCandidatePairCollectionWrapper;
+    struct UWanalysis_DataFormats_dictionary {
+        /// create dictionaries for DiCandidatePair objects
+        DiCandidatePair dummyDiCandidatePair;
+        edm::Wrapper<DiCandidatePair> dummyDiCandidatePairWrapper;
+        DiCandidatePairCollection dummyDiCandidatePairCollection;
+        edm::Wrapper<DiCandidatePairCollection> dummyDiCandidatePairCollectionWrapper;
 
-    /// create dictionaries for 
-    ///  o edm::Ptr<pat::Electron> 
-    ///  o edm::Ptr<pat::Muon> 
-    ///  o edm::Ptr<pat::Tau>
-    ///  o edm::Ptr<pat::Jet>
-    /// as these dictionaries are not yet created in DataFormats/PatCandidates/src/classes.h
-    //    edm::Ptr<pat::Electron> dummyPATElectronPtr;
-    //  edm::Ptr<pat::Muon> dummyPATMuonPtr;
-    //    edm::Ptr<pat::Tau> dummyPATTauPtr;
-    //  edm::Ptr<pat::Jet> dummyPATJetPtr;
-    // edm::Ptr<pat::MET> dummyPATMETPtr;
-    edm::Ptr<reco::RecoChargedCandidate> dummyRecoChargeCandPtr;
-    edm::Ptr<reco::RecoEcalCandidate> dummyRecoEcalCandPtr;
-    std::vector<edm::Ptr<pat::Jet> > dummyPATJetPtrVector;
-
-
-
-
-    /// create dictionaries for 
-    ///  o edm::Ptr<reco::CaloJet>
-    ///  o edm::Ptr<reco::PFJet>
-    /// as these dictionaries are not yet created in DataFormats/JetReco/src/classes.h
-    edm::Ptr<reco::CaloJet> dummyCaloJetPtr;
-    edm::Ptr<reco::PFJet> dummyPFJetPtr;
-
-    /// create dictionaries for
-    ///  o edm::Ptr<reco::GenParticle>
-    /// as these dictionaries are not yet created in DataFormats/HepMCCandidate/src/classes.h
-    edm::Ptr<reco::GenParticle> dummyGenParticlePtr;
-
-    /// create dictionaries for
-    ///  o edm::Ptr<reco::Track>
-    ///  o edm::Ptr<reco::GsfTrack>
-    /// as these dictionaries are not yet created in DataFormats/TrackReco/src/classes.h (DataFormats/GsfTrackReco/src/classes.h)
-    edm::Ptr<reco::Track> dummyTrackPtr;
-    edm::Ptr<reco::GsfTrack> dummyGsfTrackPtr;
-
-    /// create dictionaries for PATElecPair objects
-    PATElecPair dummyPATElecPair;
-    edm::Wrapper<PATElecPair> dummyPATElecPairWrapper;
-    PATElecPairCollection dummyPATElecPairCollection;
-    edm::Wrapper<PATElecPairCollection> dummyPATElecPairCollectionWrapper;
-    edm::Ptr<PATElecPair> dummyPATElecPairPtr;
+        /// create dictionaries for 
+        ///  o edm::Ptr<pat::Electron> 
+        ///  o edm::Ptr<pat::Muon> 
+        ///  o edm::Ptr<pat::Tau>
+        ///  o edm::Ptr<pat::Jet>
+        /// as these dictionaries are not yet created in DataFormats/PatCandidates/src/classes.h
+        //    edm::Ptr<pat::Electron> dummyPATElectronPtr;
+        //  edm::Ptr<pat::Muon> dummyPATMuonPtr;
+        //    edm::Ptr<pat::Tau> dummyPATTauPtr;
+        //  edm::Ptr<pat::Jet> dummyPATJetPtr;
+        // edm::Ptr<pat::MET> dummyPATMETPtr;
+        edm::Ptr<reco::RecoChargedCandidate> dummyRecoChargeCandPtr;
+        edm::Ptr<reco::RecoEcalCandidate> dummyRecoEcalCandPtr;
+        std::vector<edm::Ptr<pat::Jet> > dummyPATJetPtrVector;
 
 
 
-    /// create dictionaries for PATMuPair objects
-    PATMuPair dummyPATMuPair;
-    edm::Wrapper<PATMuPair> dummyPATMuPairWrapper;
-    PATMuPairCollection dummyPATMuPairCollection;
-    edm::Wrapper<PATMuPairCollection> dummyPATMuPairCollectionWrapper;
-    edm::Ptr<PATMuPair> dummyPATMuPairPtr;
 
+        /// create dictionaries for 
+        ///  o edm::Ptr<reco::CaloJet>
+        ///  o edm::Ptr<reco::PFJet>
+        /// as these dictionaries are not yet created in DataFormats/JetReco/src/classes.h
+        edm::Ptr<reco::CaloJet> dummyCaloJetPtr;
+        edm::Ptr<reco::PFJet> dummyPFJetPtr;
 
-    /// create dictionaries for PATElecTauPair objects
-    PATElecTauPair dummyPATElecTauPair;
-    edm::Wrapper<PATElecTauPair> dummyPATElecTauPairWrapper;
-    PATElecTauPairCollection dummyPATElecTauPairCollection;
-    edm::Wrapper<PATElecTauPairCollection> dummyPATElecTauPairCollectionWrapper;
-    edm::Ref<PATElecTauPairCollection> dummyPATElecTauPairRef;
-    edm::RefVector<PATElecTauPairCollection> dummyPATElecTauPairRefVector;
-    edm::RefProd<PATElecTauPairCollection> dummyPATElecTauPairRefProd;
-    edm::Ptr<PATElecTauPair> dummyPATElecTauPairPtr;
+        /// create dictionaries for
+        ///  o edm::Ptr<reco::GenParticle>
+        /// as these dictionaries are not yet created in DataFormats/HepMCCandidate/src/classes.h
+        edm::Ptr<reco::GenParticle> dummyGenParticlePtr;
 
+        /// create dictionaries for
+        ///  o edm::Ptr<reco::Track>
+        ///  o edm::Ptr<reco::GsfTrack>
+        /// as these dictionaries are not yet created in DataFormats/TrackReco/src/classes.h (DataFormats/GsfTrackReco/src/classes.h)
+        edm::Ptr<reco::Track> dummyTrackPtr;
+        edm::Ptr<reco::GsfTrack> dummyGsfTrackPtr;
 
-    /// create dictionaries for PATElecSCPair objects
-    PATElecSCPair dummyPATElecSCPair;
-    edm::Wrapper<PATElecSCPair> dummyPATElecSCPairWrapper;
-    PATElecSCPairCollection dummyPATElecSCPairCollection;
-    edm::Wrapper<PATElecSCPairCollection> dummyPATElecSCPairCollectionWrapper;
-    edm::Ref<PATElecSCPairCollection> dummyPATElecSCPairRef;
-    edm::RefVector<PATElecSCPairCollection> dummyPATElecSCPairRefVector;
-    edm::RefProd<PATElecSCPairCollection> dummyPATElecSCPairRefProd;
-    edm::Ptr<PATElecSCPair> dummyPATElecSCPairPtr;
+        /// create dictionaries for PATElecPair objects
+        PATElecPair dummyPATElecPair;
+        edm::Wrapper<PATElecPair> dummyPATElecPairWrapper;
+        PATElecPairCollection dummyPATElecPairCollection;
+        edm::Wrapper<PATElecPairCollection> dummyPATElecPairCollectionWrapper;
+        edm::Ptr<PATElecPair> dummyPATElecPairPtr;
 
 
 
-    /// create dictionaries for PATMuTauPair objects
-    PATMuTauPair dummyPATMuTauPair;
-    edm::Wrapper<PATMuTauPair> dummyPATMuTauPairWrapper;
-    PATMuTauPairCollection dummyPATMuTauPairCollection;
-    edm::Wrapper<PATMuTauPairCollection> dummyPATMuTauPairCollectionWrapper;
-    edm::Ref<PATMuTauPairCollection> dummyPATMuTauPairRef;
-    edm::RefVector<PATMuTauPairCollection> dummyPATMuTauPairRefVector;
-    edm::RefProd<PATMuTauPairCollection> dummyPATMuTauPairRefProd;
-    edm::Ptr<PATMuTauPair> dummyPATMuTauPairPtr;
+        /// create dictionaries for PATMuPair objects
+        PATMuPair dummyPATMuPair;
+        edm::Wrapper<PATMuPair> dummyPATMuPairWrapper;
+        PATMuPairCollection dummyPATMuPairCollection;
+        edm::Wrapper<PATMuPairCollection> dummyPATMuPairCollectionWrapper;
+        edm::Ptr<PATMuPair> dummyPATMuPairPtr;
 
 
-    /// create dictionaries for PATMuJetPair objects
-    PATMuTauPair dummyPATMuJetPair;
-    edm::Wrapper<PATMuJetPair> dummyPATMuJetPairWrapper;
-    PATMuJetPairCollection dummyPATMuJetPairCollection;
-    edm::Wrapper<PATMuJetPairCollection> dummyPATMuJetPairCollectionWrapper;
-    edm::Ref<PATMuJetPairCollection> dummyPATMuJetPairRef;
-    edm::RefVector<PATMuJetPairCollection> dummyPATMuJetPairRefVector;
-    edm::RefProd<PATMuJetPairCollection> dummyPATMuJetPairRefProd;
-    edm::Ptr<PATMuJetPair> dummyPATMuJetPairPtr;
+        /// create dictionaries for PATElecTauPair objects
+        PATElecTauPair dummyPATElecTauPair;
+        edm::Wrapper<PATElecTauPair> dummyPATElecTauPairWrapper;
+        PATElecTauPairCollection dummyPATElecTauPairCollection;
+        edm::Wrapper<PATElecTauPairCollection> dummyPATElecTauPairCollectionWrapper;
+        edm::Ref<PATElecTauPairCollection> dummyPATElecTauPairRef;
+        edm::RefVector<PATElecTauPairCollection> dummyPATElecTauPairRefVector;
+        edm::RefProd<PATElecTauPairCollection> dummyPATElecTauPairRefProd;
+        edm::Ptr<PATElecTauPair> dummyPATElecTauPairPtr;
 
 
-    /// create dictionaries for PATMuTauPair objects
-    PATMuTrackPair dummyPATMuTrackPair;
-    edm::Wrapper<PATMuTrackPair> dummyPATMuTrackPairWrapper;
-    PATMuTrackPairCollection dummyPATMuTrackPairCollection;
-    edm::Wrapper<PATMuTrackPairCollection> dummyPATMuTrackPairCollectionWrapper;
-    edm::Ref<PATMuTrackPairCollection> dummyPATMuTrackPairRef;
-    edm::RefVector<PATMuTrackPairCollection> dummyPATMuTrackPairRefVector;
-    edm::RefProd<PATMuTrackPairCollection> dummyPATMuTrackPairRefProd;
-    edm::Ptr<PATMuTrackPair> dummyPATMuTrackPairPtr;
+        /// create dictionaries for PATElecSCPair objects
+        PATElecSCPair dummyPATElecSCPair;
+        edm::Wrapper<PATElecSCPair> dummyPATElecSCPairWrapper;
+        PATElecSCPairCollection dummyPATElecSCPairCollection;
+        edm::Wrapper<PATElecSCPairCollection> dummyPATElecSCPairCollectionWrapper;
+        edm::Ref<PATElecSCPairCollection> dummyPATElecSCPairRef;
+        edm::RefVector<PATElecSCPairCollection> dummyPATElecSCPairRefVector;
+        edm::RefProd<PATElecSCPairCollection> dummyPATElecSCPairRefProd;
+        edm::Ptr<PATElecSCPair> dummyPATElecSCPairPtr;
 
 
-    /// create dictionaries for PATEleTrackPair objects
-    PATEleTrackPair dummyPATEleTrackPair;
-    edm::Wrapper<PATEleTrackPair> dummyPATEleTrackPairWrapper;
-    PATEleTrackPairCollection dummyPATEleTrackPairCollection;
-    edm::Wrapper<PATEleTrackPairCollection> dummyPATEleTrackPairCollectionWrapper;
-    edm::Ref<PATEleTrackPairCollection> dummyPATEleTrackPairRef;
-    edm::RefVector<PATEleTrackPairCollection> dummyPATEleTrackPairRefVector;
-    edm::RefProd<PATEleTrackPairCollection> dummyPATEleTrackPairRefProd;
-    edm::Ptr<PATEleTrackPair> dummyPATEleTrackPairPtr;
+
+        /// create dictionaries for PATMuTauPair objects
+        PATMuTauPair dummyPATMuTauPair;
+        edm::Wrapper<PATMuTauPair> dummyPATMuTauPairWrapper;
+        PATMuTauPairCollection dummyPATMuTauPairCollection;
+        edm::Wrapper<PATMuTauPairCollection> dummyPATMuTauPairCollectionWrapper;
+        edm::Ref<PATMuTauPairCollection> dummyPATMuTauPairRef;
+        edm::RefVector<PATMuTauPairCollection> dummyPATMuTauPairRefVector;
+        edm::RefProd<PATMuTauPairCollection> dummyPATMuTauPairRefProd;
+        edm::Ptr<PATMuTauPair> dummyPATMuTauPairPtr;
 
 
-    /// create dictionaries for PATDiTauPair objects
-    PATDiTauPair dummyPATDiTauPair;
-    edm::Wrapper<PATDiTauPair> dummyPATDiTauPairWrapper;
-    PATDiTauPairCollection dummyPATDiTauPairCollection;
-    edm::Wrapper<PATDiTauPairCollection> dummyPATDiTauPairCollectionWrapper;
-    edm::Ref<PATDiTauPairCollection> dummyPATDiTauPairRef;
-    edm::RefVector<PATDiTauPairCollection> dummyPATDiTauPairRefVector;
-    edm::RefProd<PATDiTauPairCollection> dummyPATDiTauPairRefProd;
-    edm::Ptr<PATDiTauPair> dummyPATDiTauPairPtr;
-    
-
-    /// create dictionaries for PATElecMuPair objects
-    PATElecMuPair dummyPATElecMuPair;
-    edm::Wrapper<PATElecMuPair> dummyPATElecMuPairWrapper;
-    PATElecMuPairCollection dummyPATElecMuPairCollection;
-    edm::Wrapper<PATElecMuPairCollection> dummyPATElecMuPairCollectionWrapper;
-    edm::Ref<PATElecMuPairCollection> dummyPATElecMuPairRef;
-    edm::RefVector<PATElecMuPairCollection> dummyPATElecMuPairRefVector;
-    edm::RefProd<PATElecMuPairCollection> dummyPATElecMuPairRefProd;
-    edm::Ptr<PATElecMuPair> dummyPATElecMuPairPtr;
+        /// create dictionaries for PATMuJetPair objects
+        PATMuTauPair dummyPATMuJetPair;
+        edm::Wrapper<PATMuJetPair> dummyPATMuJetPairWrapper;
+        PATMuJetPairCollection dummyPATMuJetPairCollection;
+        edm::Wrapper<PATMuJetPairCollection> dummyPATMuJetPairCollectionWrapper;
+        edm::Ref<PATMuJetPairCollection> dummyPATMuJetPairRef;
+        edm::RefVector<PATMuJetPairCollection> dummyPATMuJetPairRefVector;
+        edm::RefProd<PATMuJetPairCollection> dummyPATMuJetPairRefProd;
+        edm::Ptr<PATMuJetPair> dummyPATMuJetPairPtr;
 
 
-    /// create dictionaries for PATTauNuPair objects
-    PATTauNuPair dummyPATTauNuPair;
-    edm::Wrapper<PATTauNuPair> dummyPATTauNuPairWrapper;
-    PATTauNuPairCollection dummyPATTauNuPairCollection;
-    edm::Wrapper<PATTauNuPairCollection> dummyPATTauNuPairCollectionWrapper;
-    edm::Ptr<PATTauNuPair> dummyPATTauNuPairPtr;
-
-    /// create dictionaries for PATMuonNuPair objects
-    PATMuonNuPair dummyPATMuonNuPair;
-    edm::Wrapper<PATMuonNuPair> dummyPATMuonNuPairWrapper;
-    PATMuonNuPairCollection dummyPATMuonNuPairCollection;
-    edm::Wrapper<PATMuonNuPairCollection> dummyPATMuonNuPairCollectionWrapper;
-    edm::Ptr<PATMuonNuPair> dummyPATMuonNuPairPtr;
-
-    /// create dictionaries for PATMuonNuPair objects
-    PATElectronNuPair dummyPATElectronNuPair;
-    edm::Wrapper<PATElectronNuPair> dummyPATElectronNuPairWrapper;
-    PATElectronNuPairCollection dummyPATElectronNuPairCollection;
-    edm::Wrapper<PATElectronNuPairCollection> dummyPATElectronNuPairCollectionWrapper;
-    edm::Ptr<PATElectronNuPair> dummyPATElectronNuPairPtr;
-
-    /// create dictionaries for PATMuonNuPair objects
-    PATCandNuPair dummyPATCandNuPair;
-    edm::Wrapper<PATCandNuPair> dummyPATCandNuPairWrapper;
-    PATCandNuPairCollection dummyPATCandNuPairCollection;
-    edm::Wrapper<PATCandNuPairCollection> dummyPATCandNuPairCollectionWrapper;
-
-	//Di-boson candidate dictionaries
-	
-    /// create dictionaries for PATMuMuMuTauQuad objects
-    PATMuMuMuTauQuad dummyPATMuMuMuTauQuad;
-    edm::Wrapper<PATMuMuMuTauQuad> dummyPATMuMuMuTauTauQuadWrapper;
-    PATMuMuMuTauQuadCollection dummyPATMuMuMuTauQuadCollection;
-    edm::Wrapper<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadCollectionWrapper;
-    edm::Ref<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRef;
-    edm::RefVector<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefVector;
-    edm::RefProd<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefProd;
-    edm::Ptr<PATMuMuMuTauQuad> dummyPATMuMuMuTauQuadPtr;
-
-    /// create dictionaries for PATMuMuTauTauQuad objects
-    PATMuMuTauTauQuad dummyPATMuMuTauTauQuad;
-    edm::Wrapper<PATMuMuTauTauQuad> dummyPATMuMuTauTauTauQuadWrapper;
-    PATMuMuTauTauQuadCollection dummyPATMuMuTauTauQuadCollection;
-    edm::Wrapper<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadCollectionWrapper;
-    edm::Ref<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRef;
-    edm::RefVector<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefVector;
-    edm::RefProd<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefProd;
-    edm::Ptr<PATMuMuTauTauQuad> dummyPATMuMuTauTauQuadPtr;
-
-    /// create dictionaries for PATMuMuEleTauQuad objects
-    PATMuMuEleTauQuad dummyPATMuMuEleTauQuad;
-    edm::Wrapper<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadWrapper;
-    PATMuMuEleTauQuadCollection dummyPATMuMuEleTauQuadCollection;
-    edm::Wrapper<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadCollectionWrapper;
-    edm::Ref<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRef;
-    edm::RefVector<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefVector;
-    edm::RefProd<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefProd;
-    edm::Ptr<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadPtr;
-
-    /// create dictionaries for PATMuMuEleEleQuad objects
-    PATMuMuEleEleQuad dummyPATMuMuEleEleQuad;
-    edm::Wrapper<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadWrapper;
-    PATMuMuEleEleQuadCollection dummyPATMuMuEleEleQuadCollection;
-    edm::Wrapper<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadCollectionWrapper;
-    edm::Ref<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRef;
-    edm::RefVector<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefVector;
-    edm::RefProd<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefProd;
-    edm::Ptr<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadPtr;
-
-    /// create dictionaries for PATMuMuEleMuQuad objects
-    PATMuMuEleMuQuad dummyPATMuMuEleMuQuad;
-    edm::Wrapper<PATMuMuEleMuQuad> dummyPATMuMuEleMuTauQuadWrapper;
-    PATMuMuEleMuQuadCollection dummyPATMuMuEleMuQuadCollection;
-    edm::Wrapper<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadCollectionWrapper;
-    edm::Ref<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRef;
-    edm::RefVector<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefVector;
-    edm::RefProd<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefProd;
-    edm::Ptr<PATMuMuEleMuQuad> dummyPATMuMuEleMuQuadPtr;
-
-    /// create dictionaries for PATMuMuMuMuQuad objects
-    PATMuMuMuMuQuad dummyPATMuMuMuMuQuad;
-    edm::Wrapper<PATMuMuMuMuQuad> dummyPATMuMuMuMuTauQuadWrapper;
-    PATMuMuMuMuQuadCollection dummyPATMuMuMuMuQuadCollection;
-    edm::Wrapper<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadCollectionWrapper;
-    edm::Ref<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRef;
-    edm::RefVector<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefVector;
-    edm::RefProd<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefProd;
-    edm::Ptr<PATMuMuMuMuQuad> dummyPATMuMuMuMuQuadPtr;
+        /// create dictionaries for PATMuTauPair objects
+        PATMuTrackPair dummyPATMuTrackPair;
+        edm::Wrapper<PATMuTrackPair> dummyPATMuTrackPairWrapper;
+        PATMuTrackPairCollection dummyPATMuTrackPairCollection;
+        edm::Wrapper<PATMuTrackPairCollection> dummyPATMuTrackPairCollectionWrapper;
+        edm::Ref<PATMuTrackPairCollection> dummyPATMuTrackPairRef;
+        edm::RefVector<PATMuTrackPairCollection> dummyPATMuTrackPairRefVector;
+        edm::RefProd<PATMuTrackPairCollection> dummyPATMuTrackPairRefProd;
+        edm::Ptr<PATMuTrackPair> dummyPATMuTrackPairPtr;
 
 
-    /// create dictionaries for PATEleEleEleTauQuad objects
-    PATEleEleEleTauQuad dummyPATEleEleEleTauQuad;
-    edm::Wrapper<PATEleEleEleTauQuad> dummyPATEleEleEleTauTauQuadWrapper;
-    PATEleEleEleTauQuadCollection dummyPATEleEleEleTauQuadCollection;
-    edm::Wrapper<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadCollectionWrapper;
-    edm::Ref<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRef;
-    edm::RefVector<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefVector;
-    edm::RefProd<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefProd;
-    edm::Ptr<PATEleEleEleTauQuad> dummyPATEleEleEleTauQuadPtr;
+        /// create dictionaries for PATEleTrackPair objects
+        PATEleTrackPair dummyPATEleTrackPair;
+        edm::Wrapper<PATEleTrackPair> dummyPATEleTrackPairWrapper;
+        PATEleTrackPairCollection dummyPATEleTrackPairCollection;
+        edm::Wrapper<PATEleTrackPairCollection> dummyPATEleTrackPairCollectionWrapper;
+        edm::Ref<PATEleTrackPairCollection> dummyPATEleTrackPairRef;
+        edm::RefVector<PATEleTrackPairCollection> dummyPATEleTrackPairRefVector;
+        edm::RefProd<PATEleTrackPairCollection> dummyPATEleTrackPairRefProd;
+        edm::Ptr<PATEleTrackPair> dummyPATEleTrackPairPtr;
 
-    /// create dictionaries for PATEleEleTauTauQuad objects
-    PATEleEleTauTauQuad dummyPATEleEleTauTauQuad;
-    edm::Wrapper<PATEleEleTauTauQuad> dummyPATEleEleTauTauTauQuadWrapper;
-    PATEleEleTauTauQuadCollection dummyPATEleEleTauTauQuadCollection;
-    edm::Wrapper<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadCollectionWrapper;
-    edm::Ref<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRef;
-    edm::RefVector<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefVector;
-    edm::RefProd<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefProd;
-    edm::Ptr<PATEleEleTauTauQuad> dummyPATEleEleTauTauQuadPtr;
 
-    /// create dictionaries for PATEleEleEleEleQuad objects
-    PATEleEleEleEleQuad dummyPATEleEleEleEleQuad;
-    edm::Wrapper<PATEleEleEleEleQuad> dummyPATEleEleEleEleTauQuadWrapper;
-    PATEleEleEleEleQuadCollection dummyPATEleEleEleEleQuadCollection;
-    edm::Wrapper<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadCollectionWrapper;
-    edm::Ref<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRef;
-    edm::RefVector<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefVector;
-    edm::RefProd<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefProd;
-    edm::Ptr<PATEleEleEleEleQuad> dummyPATEleEleEleEleQuadPtr;
+        /// create dictionaries for PATDiTauPair objects
+        PATDiTauPair dummyPATDiTauPair;
+        edm::Wrapper<PATDiTauPair> dummyPATDiTauPairWrapper;
+        PATDiTauPairCollection dummyPATDiTauPairCollection;
+        edm::Wrapper<PATDiTauPairCollection> dummyPATDiTauPairCollectionWrapper;
+        edm::Ref<PATDiTauPairCollection> dummyPATDiTauPairRef;
+        edm::RefVector<PATDiTauPairCollection> dummyPATDiTauPairRefVector;
+        edm::RefProd<PATDiTauPairCollection> dummyPATDiTauPairRefProd;
+        edm::Ptr<PATDiTauPair> dummyPATDiTauPairPtr;
 
-    /// create dictionaries for PATEleEleMuTauQuad objects
-    PATEleEleMuTauQuad dummyPATEleEleMuTauQuad;
-    edm::Wrapper<PATEleEleMuTauQuad> dummyPATEleEleMuTauTauQuadWrapper;
-    PATEleEleMuTauQuadCollection dummyPATEleEleMuTauQuadCollection;
-    edm::Wrapper<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadCollectionWrapper;
-    edm::Ref<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRef;
-    edm::RefVector<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefVector;
-    edm::RefProd<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefProd;
-    edm::Ptr<PATEleEleMuTauQuad> dummyPATEleEleMuTauQuadPtr;
 
-    /// create dictionaries for PATEleEleEleMuQuad objects
-    PATEleEleEleMuQuad dummyPATEleEleEleMuQuad;
-    edm::Wrapper<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadWrapper;
-    PATEleEleEleMuQuadCollection dummyPATEleEleEleMuQuadCollection;
-    edm::Wrapper<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadCollectionWrapper;
-    edm::Ref<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRef;
-    edm::RefVector<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefVector;
-    edm::RefProd<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefProd;
-    edm::Ptr<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadPtr;
+        /// create dictionaries for PATElecMuPair objects
+        PATElecMuPair dummyPATElecMuPair;
+        edm::Wrapper<PATElecMuPair> dummyPATElecMuPairWrapper;
+        PATElecMuPairCollection dummyPATElecMuPairCollection;
+        edm::Wrapper<PATElecMuPairCollection> dummyPATElecMuPairCollectionWrapper;
+        edm::Ref<PATElecMuPairCollection> dummyPATElecMuPairRef;
+        edm::RefVector<PATElecMuPairCollection> dummyPATElecMuPairRefVector;
+        edm::RefProd<PATElecMuPairCollection> dummyPATElecMuPairRefProd;
+        edm::Ptr<PATElecMuPair> dummyPATElecMuPairPtr;
 
-    /// create dictionaries for PATEleEleMuMuQuad objects                                                                                                                                               
-    PATEleEleMuMuQuad dummyPATEleEleMuMuQuad;
-    edm::Wrapper<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadWrapper;
-    PATEleEleMuMuQuadCollection dummyPATEleEleMuMuQuadCollection;
-    edm::Wrapper<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadCollectionWrapper;
-    edm::Ref<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRef;
-    edm::RefVector<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefVector;
-    edm::RefProd<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefProd;
-    edm::Ptr<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadPtr;
 
-  };
+        /// create dictionaries for PATTauNuPair objects
+        PATTauNuPair dummyPATTauNuPair;
+        edm::Wrapper<PATTauNuPair> dummyPATTauNuPairWrapper;
+        PATTauNuPairCollection dummyPATTauNuPairCollection;
+        edm::Wrapper<PATTauNuPairCollection> dummyPATTauNuPairCollectionWrapper;
+        edm::Ptr<PATTauNuPair> dummyPATTauNuPairPtr;
+
+        /// create dictionaries for PATMuonNuPair objects
+        PATMuonNuPair dummyPATMuonNuPair;
+        edm::Wrapper<PATMuonNuPair> dummyPATMuonNuPairWrapper;
+        PATMuonNuPairCollection dummyPATMuonNuPairCollection;
+        edm::Wrapper<PATMuonNuPairCollection> dummyPATMuonNuPairCollectionWrapper;
+        edm::Ptr<PATMuonNuPair> dummyPATMuonNuPairPtr;
+
+        /// create dictionaries for PATMuonNuPair objects
+        PATElectronNuPair dummyPATElectronNuPair;
+        edm::Wrapper<PATElectronNuPair> dummyPATElectronNuPairWrapper;
+        PATElectronNuPairCollection dummyPATElectronNuPairCollection;
+        edm::Wrapper<PATElectronNuPairCollection> dummyPATElectronNuPairCollectionWrapper;
+        edm::Ptr<PATElectronNuPair> dummyPATElectronNuPairPtr;
+
+        /// create dictionaries for PATMuonNuPair objects
+        PATCandNuPair dummyPATCandNuPair;
+        edm::Wrapper<PATCandNuPair> dummyPATCandNuPairWrapper;
+        PATCandNuPairCollection dummyPATCandNuPairCollection;
+        edm::Wrapper<PATCandNuPairCollection> dummyPATCandNuPairCollectionWrapper;
+
+        //Di-boson candidate dictionaries
+
+        /// create dictionaries for PATMuMuMuTauQuad objects
+        PATMuMuMuTauQuad dummyPATMuMuMuTauQuad;
+        edm::Wrapper<PATMuMuMuTauQuad> dummyPATMuMuMuTauTauQuadWrapper;
+        PATMuMuMuTauQuadCollection dummyPATMuMuMuTauQuadCollection;
+        edm::Wrapper<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadCollectionWrapper;
+        edm::Ref<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRef;
+        edm::RefVector<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefVector;
+        edm::RefProd<PATMuMuMuTauQuadCollection> dummyPATMuMuMuTauQuadRefProd;
+        edm::Ptr<PATMuMuMuTauQuad> dummyPATMuMuMuTauQuadPtr;
+
+        /// create dictionaries for PATMuMuTauTauQuad objects
+        PATMuMuTauTauQuad dummyPATMuMuTauTauQuad;
+        edm::Wrapper<PATMuMuTauTauQuad> dummyPATMuMuTauTauTauQuadWrapper;
+        PATMuMuTauTauQuadCollection dummyPATMuMuTauTauQuadCollection;
+        edm::Wrapper<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadCollectionWrapper;
+        edm::Ref<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRef;
+        edm::RefVector<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefVector;
+        edm::RefProd<PATMuMuTauTauQuadCollection> dummyPATMuMuTauTauQuadRefProd;
+        edm::Ptr<PATMuMuTauTauQuad> dummyPATMuMuTauTauQuadPtr;
+
+        /// create dictionaries for PATMuMuEleTauQuad objects
+        PATMuMuEleTauQuad dummyPATMuMuEleTauQuad;
+        edm::Wrapper<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadWrapper;
+        PATMuMuEleTauQuadCollection dummyPATMuMuEleTauQuadCollection;
+        edm::Wrapper<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadCollectionWrapper;
+        edm::Ref<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRef;
+        edm::RefVector<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefVector;
+        edm::RefProd<PATMuMuEleTauQuadCollection> dummyPATMuMuEleTauQuadRefProd;
+        edm::Ptr<PATMuMuEleTauQuad> dummyPATMuMuEleTauQuadPtr;
+
+        /// create dictionaries for PATMuMuEleEleQuad objects
+        PATMuMuEleEleQuad dummyPATMuMuEleEleQuad;
+        edm::Wrapper<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadWrapper;
+        PATMuMuEleEleQuadCollection dummyPATMuMuEleEleQuadCollection;
+        edm::Wrapper<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadCollectionWrapper;
+        edm::Ref<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRef;
+        edm::RefVector<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefVector;
+        edm::RefProd<PATMuMuEleEleQuadCollection> dummyPATMuMuEleEleQuadRefProd;
+        edm::Ptr<PATMuMuEleEleQuad> dummyPATMuMuEleEleQuadPtr;
+
+        /// create dictionaries for PATMuMuEleMuQuad objects
+        PATMuMuEleMuQuad dummyPATMuMuEleMuQuad;
+        edm::Wrapper<PATMuMuEleMuQuad> dummyPATMuMuEleMuTauQuadWrapper;
+        PATMuMuEleMuQuadCollection dummyPATMuMuEleMuQuadCollection;
+        edm::Wrapper<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadCollectionWrapper;
+        edm::Ref<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRef;
+        edm::RefVector<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefVector;
+        edm::RefProd<PATMuMuEleMuQuadCollection> dummyPATMuMuEleMuQuadRefProd;
+        edm::Ptr<PATMuMuEleMuQuad> dummyPATMuMuEleMuQuadPtr;
+
+        /// create dictionaries for PATMuMuMuMuQuad objects
+        PATMuMuMuMuQuad dummyPATMuMuMuMuQuad;
+        edm::Wrapper<PATMuMuMuMuQuad> dummyPATMuMuMuMuTauQuadWrapper;
+        PATMuMuMuMuQuadCollection dummyPATMuMuMuMuQuadCollection;
+        edm::Wrapper<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadCollectionWrapper;
+        edm::Ref<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRef;
+        edm::RefVector<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefVector;
+        edm::RefProd<PATMuMuMuMuQuadCollection> dummyPATMuMuMuMuQuadRefProd;
+        edm::Ptr<PATMuMuMuMuQuad> dummyPATMuMuMuMuQuadPtr;
+
+
+        /// create dictionaries for PATEleEleEleTauQuad objects
+        PATEleEleEleTauQuad dummyPATEleEleEleTauQuad;
+        edm::Wrapper<PATEleEleEleTauQuad> dummyPATEleEleEleTauTauQuadWrapper;
+        PATEleEleEleTauQuadCollection dummyPATEleEleEleTauQuadCollection;
+        edm::Wrapper<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadCollectionWrapper;
+        edm::Ref<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRef;
+        edm::RefVector<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefVector;
+        edm::RefProd<PATEleEleEleTauQuadCollection> dummyPATEleEleEleTauQuadRefProd;
+        edm::Ptr<PATEleEleEleTauQuad> dummyPATEleEleEleTauQuadPtr;
+
+        /// create dictionaries for PATEleEleTauTauQuad objects
+        PATEleEleTauTauQuad dummyPATEleEleTauTauQuad;
+        edm::Wrapper<PATEleEleTauTauQuad> dummyPATEleEleTauTauTauQuadWrapper;
+        PATEleEleTauTauQuadCollection dummyPATEleEleTauTauQuadCollection;
+        edm::Wrapper<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadCollectionWrapper;
+        edm::Ref<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRef;
+        edm::RefVector<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefVector;
+        edm::RefProd<PATEleEleTauTauQuadCollection> dummyPATEleEleTauTauQuadRefProd;
+        edm::Ptr<PATEleEleTauTauQuad> dummyPATEleEleTauTauQuadPtr;
+
+        /// create dictionaries for PATEleEleEleEleQuad objects
+        PATEleEleEleEleQuad dummyPATEleEleEleEleQuad;
+        edm::Wrapper<PATEleEleEleEleQuad> dummyPATEleEleEleEleTauQuadWrapper;
+        PATEleEleEleEleQuadCollection dummyPATEleEleEleEleQuadCollection;
+        edm::Wrapper<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadCollectionWrapper;
+        edm::Ref<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRef;
+        edm::RefVector<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefVector;
+        edm::RefProd<PATEleEleEleEleQuadCollection> dummyPATEleEleEleEleQuadRefProd;
+        edm::Ptr<PATEleEleEleEleQuad> dummyPATEleEleEleEleQuadPtr;
+
+        /// create dictionaries for PATEleEleMuTauQuad objects
+        PATEleEleMuTauQuad dummyPATEleEleMuTauQuad;
+        edm::Wrapper<PATEleEleMuTauQuad> dummyPATEleEleMuTauTauQuadWrapper;
+        PATEleEleMuTauQuadCollection dummyPATEleEleMuTauQuadCollection;
+        edm::Wrapper<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadCollectionWrapper;
+        edm::Ref<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRef;
+        edm::RefVector<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefVector;
+        edm::RefProd<PATEleEleMuTauQuadCollection> dummyPATEleEleMuTauQuadRefProd;
+        edm::Ptr<PATEleEleMuTauQuad> dummyPATEleEleMuTauQuadPtr;
+
+        /// create dictionaries for PATEleEleEleMuQuad objects
+        PATEleEleEleMuQuad dummyPATEleEleEleMuQuad;
+        edm::Wrapper<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadWrapper;
+        PATEleEleEleMuQuadCollection dummyPATEleEleEleMuQuadCollection;
+        edm::Wrapper<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadCollectionWrapper;
+        edm::Ref<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRef;
+        edm::RefVector<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefVector;
+        edm::RefProd<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefProd;
+        edm::Ptr<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadPtr;
+
+        /// create dictionaries for PATEleEleMuMuQuad objects                                                                                                                                               
+        PATEleEleMuMuQuad dummyPATEleEleMuMuQuad;
+        edm::Wrapper<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadWrapper;
+        PATEleEleMuMuQuadCollection dummyPATEleEleMuMuQuadCollection;
+        edm::Wrapper<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadCollectionWrapper;
+        edm::Ref<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRef;
+        edm::RefVector<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefVector;
+        edm::RefProd<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefProd;
+        edm::Ptr<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadPtr;
+
+        /// create dictionaries for PATEleEleEleTri objects                                                                                                                              
+        PATEleEleEleTri dummyPATEleEleEleTri;
+        edm::Wrapper<PATEleEleEleTri> dummyPATEleEleEleTriWrapper;
+        PATEleEleEleTriCollection dummyPATEleEleEleTriCollection;
+        edm::Wrapper<PATEleEleEleTriCollection> dummyPATEleEleEleTriCollectionWrapper;
+        edm::Ref<PATEleEleEleTriCollection> dummyPATEleEleEleTriRef;
+        edm::RefVector<PATEleEleEleTriCollection> dummyPATEleEleEleTriRefVector;
+        edm::RefProd<PATEleEleEleTriCollection> dummyPATEleEleEleTriRefProd;
+        edm::Ptr<PATEleEleEleTri> dummyPATEleEleEleTriPtr;
+
+        // create dictionaries for PATEleEleMuTri objects                                                                                                                                               
+        PATEleEleMuTri dummyPATEleEleMuTri;
+        edm::Wrapper<PATEleEleMuTri> dummyPATEleEleMuTriWrapper;
+        PATEleEleMuTriCollection dummyPATEleEleMuTriCollection;
+        edm::Wrapper<PATEleEleMuTriCollection> dummyPATEleEleMuTriCollectionWrapper;
+        edm::Ref<PATEleEleMuTriCollection> dummyPATEleEleMuTriRef;
+        edm::RefVector<PATEleEleMuTriCollection> dummyPATEleEleMuTriRefVector;
+        edm::RefProd<PATEleEleMuTriCollection> dummyPATEleEleMuTriRefProd;
+        edm::Ptr<PATEleEleMuTri> dummyPATEleEleMuTriPtr;
+
+        // create dictionaries for PATMuMuEleTri objects                                                                                                                                               
+        PATMuMuEleTri dummyPATMuMuEleTri;
+        edm::Wrapper<PATMuMuEleTri> dummyPATMuMuEleTriWrapper;
+        PATMuMuEleTriCollection dummyPATMuMuEleTriCollection;
+        edm::Wrapper<PATMuMuEleTriCollection> dummyPATMuMuEleTriCollectionWrapper;
+        edm::Ref<PATMuMuEleTriCollection> dummyPATMuMuEleTriRef;
+        edm::RefVector<PATMuMuEleTriCollection> dummyPATMuMuEleTriRefVector;
+        edm::RefProd<PATMuMuEleTriCollection> dummyPATMuMuEleTriRefProd;
+        edm::Ptr<PATMuMuEleTri> dummyPATMuMuEleTriPtr;
+
+        // create dictionaries for PATMuMuMuTri objects                                                                                                                                               
+        PATMuMuMuTri dummyPATMuMuMuTri;
+        edm::Wrapper<PATMuMuMuTri> dummyPATMuMuMuTriWrapper;
+        PATMuMuMuTriCollection dummyPATMuMuMuTriCollection;
+        edm::Wrapper<PATMuMuMuTriCollection> dummyPATMuMuMuTriCollectionWrapper;
+        edm::Ref<PATMuMuMuTriCollection> dummyPATMuMuMuTriRef;
+        edm::RefVector<PATMuMuMuTriCollection> dummyPATMuMuMuTriRefVector;
+        edm::RefProd<PATMuMuMuTriCollection> dummyPATMuMuMuTriRefProd;
+        edm::Ptr<PATMuMuMuTri> dummyPATMuMuMuTriPtr;
+
+    };
 }

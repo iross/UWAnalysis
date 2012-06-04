@@ -27,7 +27,10 @@ typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATElecPair> PATEleEleE
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATMuTauPair> PATEleEleMuTauQuadProducer;
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATElecMuPair> PATEleEleEleMuQuadProducer;
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATMuPair> PATEleEleMuMuQuadProducer;
-
+typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,pat::Electron> PATEleEleEleTriProducer;
+typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,pat::Muon> PATEleEleMuTriProducer;
+typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,pat::Electron> PATMuMuEleTriProducer;
+typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,pat::Muon> PATMuMuMuTriProducer;
 
 #include "FWCore/Framework/interface/MakerMacros.h"
 
@@ -54,4 +57,8 @@ DEFINE_FWK_MODULE(PATEleEleEleEleQuadProducer);
 DEFINE_FWK_MODULE(PATEleEleMuTauQuadProducer);
 DEFINE_FWK_MODULE(PATEleEleEleMuQuadProducer);
 DEFINE_FWK_MODULE(PATEleEleMuMuQuadProducer);
+DEFINE_FWK_MODULE(PATEleEleEleTriProducer);
+DEFINE_FWK_MODULE(PATEleEleMuTriProducer);
+DEFINE_FWK_MODULE(PATMuMuEleTriProducer);
+DEFINE_FWK_MODULE(PATMuMuMuTriProducer);
 

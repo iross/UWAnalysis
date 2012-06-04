@@ -34,6 +34,10 @@ typedef std::vector<PATEleEleEleEleQuad> PATEleEleEleEleQuadCollection;
 typedef std::vector<PATEleEleMuTauQuad> PATEleEleMuTauQuadCollection;
 typedef std::vector<PATEleEleEleMuQuad> PATEleEleEleMuQuadCollection;
 typedef std::vector<PATEleEleMuMuQuad> PATEleEleMuMuQuadCollection;
+typedef std::vector<PATEleEleEleTri> PATEleEleEleTriCollection;
+typedef std::vector<PATEleEleMuTri> PATEleEleMuTriCollection;
+typedef std::vector<PATMuMuEleTri> PATMuMuEleTriCollection;
+typedef std::vector<PATMuMuMuTri> PATMuMuMuTriCollection;
 
 
 /// persistent reference to a CompositeRefCandidateT1T2MEt object
@@ -60,6 +64,10 @@ typedef edm::Ref<PATEleEleEleEleQuadCollection> PATEleEleEleEleQuadRef;
 typedef edm::Ref<PATEleEleMuTauQuadCollection> PATEleEleMuTauQuadRef;
 typedef edm::Ref<PATEleEleEleMuQuadCollection> PATEleEleEleMuQuadRef;
 typedef edm::Ref<PATEleEleMuMuQuadCollection> PATEleEleMuMuQuadRef;
+typedef edm::Ref<PATEleEleEleTriCollection> PATEleEleEleTriRef;
+typedef edm::Ref<PATEleEleMuTriCollection> PATEleEleMuTriRef;
+typedef edm::Ref<PATMuMuEleTriCollection> PATMuMuEleTriRef;
+typedef edm::Ref<PATMuMuMuTriCollection> PATMuMuMuTriRef;
 
 
 /// references to CompositeRefCandidateT1T2MEt collection
@@ -86,6 +94,10 @@ typedef edm::RefProd<PATEleEleEleEleQuadCollection> PATEleEleEleEleQuadRefProd;
 typedef edm::RefProd<PATEleEleMuTauQuadCollection> PATEleEleMuTauQuadRefProd;
 typedef edm::RefProd<PATEleEleEleMuQuadCollection> PATEleEleEleMuQuadRefProd;
 typedef edm::RefProd<PATEleEleMuMuQuadCollection> PATEleEleMuMuQuadRefProd;
+typedef edm::RefProd<PATEleEleEleTriCollection> PATEleEleEleTriRefProd;
+typedef edm::RefProd<PATEleEleMuTriCollection> PATEleEleMuTriRefProd;
+typedef edm::RefProd<PATMuMuEleTriCollection> PATMuMuEleTriRefProd;
+typedef edm::RefProd<PATMuMuMuTriCollection> PATMuMuMuTriRefProd;
 
 /// vector of references to CompositeRefCandidateT1T2MEt objects all in the same collection
 typedef edm::RefVector<DiCandidatePairCollection> DiCandidatePairRefVector;
@@ -111,5 +123,9 @@ typedef edm::RefVector<PATEleEleEleEleQuadCollection> PATEleEleEleEleQuadRefVect
 typedef edm::RefVector<PATEleEleMuTauQuadCollection> PATEleEleMuTauQuadRefVector;
 typedef edm::RefVector<PATEleEleEleMuQuadCollection> PATEleEleEleMuQuadRefVector;
 typedef edm::RefVector<PATEleEleMuMuQuadCollection> PATEleEleMuMuQuadRefVector;
+typedef edm::RefVector<PATEleEleEleTriCollection> PATEleEleEleTriRefVector;
+typedef edm::RefVector<PATEleEleMuTriCollection> PATEleEleMuTriRefVector;
+typedef edm::RefVector<PATMuMuEleTriCollection> PATMuMuEleTriRefVector;
+typedef edm::RefVector<PATMuMuMuTriCollection> PATMuMuMuTriRefVector;
 
 #endif

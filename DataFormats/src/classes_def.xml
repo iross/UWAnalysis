@@ -282,7 +282,44 @@
   <class name="edm::Wrapper<CompositePtrCandidateTMEt<reco::Candidate> >"/>
   <class name="edm::Wrapper<std::vector<CompositePtrCandidateTMEt<reco::Candidate> > >"/>
 
+   <!-- create dictionaries for PATEleEleEleTri objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> > >"/>
+  <class name="edm::Ref<PATEleEleEleTriCollection,PATEleEleEleTri,edm::refhelper::FindUsingAdvance<PATEleEleEleTriCollection,PATEleEleEleTri> >"/>
+  <class name="edm::RefVector<PATEleEleEleTriCollection,PATEleEleEleTri,edm::refhelper::FindUsingAdvance<PATEleEleEleTriCollection,PATEleEleEleTri> >"/>
+  <class name="edm::RefProd<PATEleEleEleTriCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Electron> >"/>
 
+   <!-- create dictionaries for PATEleEleMuTri objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> > >"/>
+  <class name="edm::Ref<PATEleEleMuTriCollection,PATEleEleMuTri,edm::refhelper::FindUsingAdvance<PATEleEleMuTriCollection,PATEleEleMuTri> >"/>
+  <class name="edm::RefVector<PATEleEleMuTriCollection,PATEleEleMuTri,edm::refhelper::FindUsingAdvance<PATEleEleMuTriCollection,PATEleEleMuTri> >"/>
+  <class name="edm::RefProd<PATEleEleMuTriCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, pat::Muon> >"/>
 
+  <!-- create dictionaries for PATMuMuEleTri objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> > >"/>
+  <class name="edm::Ref<PATMuMuEleTriCollection,PATMuMuEleTri,edm::refhelper::FindUsingAdvance<PATMuMuEleTriCollection,PATMuMuEleTri> >"/>
+  <class name="edm::RefVector<PATMuMuEleTriCollection,PATMuMuEleTri,edm::refhelper::FindUsingAdvance<PATMuMuEleTriCollection,PATMuMuEleTri> >"/>
+  <class name="edm::RefProd<PATMuMuEleTriCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Electron> >"/>
+
+   <!-- create dictionaries for PATMuMuMuTri objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> > >"/>
+  <class name="edm::Ref<PATMuMuMuTriCollection,PATMuMuMuTri,edm::refhelper::FindUsingAdvance<PATMuMuMuTriCollection,PATMuMuMuTri> >"/>
+  <class name="edm::RefVector<PATMuMuMuTriCollection,PATMuMuMuTri,edm::refhelper::FindUsingAdvance<PATMuMuMuTriCollection,PATMuMuMuTri> >"/>
+  <class name="edm::RefProd<PATMuMuMuTriCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATMuPair, pat::Muon> >"/>
 
 </lcgdict>

@@ -119,6 +119,9 @@ typedef JetCountFiller<PATEleEleMuTauQuad> PATEleEleMuTauQuadJetCountFiller;
 typedef JetCountFiller<PATEleEleEleMuQuad> PATEleEleEleMuQuadJetCountFiller;
 typedef JetCountFiller<PATEleEleEleEleQuad> PATEleEleEleEleQuadJetCountFiller;
 typedef JetCountFiller<PATEleEleMuMuQuad> PATEleEleMuMuQuadJetCountFiller;
-
+typedef JetCountFiller<PATMuMuMuTri> PATMuMuMuTriJetCountFiller;
+typedef JetCountFiller<PATMuMuEleTri> PATMuMuEleTriJetCountFiller;
+typedef JetCountFiller<PATEleEleMuTri> PATEleEleMuTriJetCountFiller;
+typedef JetCountFiller<PATEleEleEleTri> PATEleEleEleTriJetCountFiller;
 
 

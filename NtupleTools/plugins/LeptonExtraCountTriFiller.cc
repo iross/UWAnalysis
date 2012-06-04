@@ -1,0 +1,17 @@
+#include "FWCore/Framework/interface/MakerMacros.h"
+#include "UWAnalysis/NtupleTools/plugins/LeptonExtraCountTriFiller.h"
+
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriTauExtraCountFiller, "PATMuMuMuTriTauExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTriTauExtraCountFiller, "PATMuMuEleTriTauExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTriTauExtraCountFiller, "PATEleEleMuTriTauExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleTriTauExtraCountFiller, "PATEleEleEleTriTauExtraCountFiller");
+
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriMuExtraCountFiller, "PATMuMuMuTriMuExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTriMuExtraCountFiller, "PATMuMuEleTriMuExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTriMuExtraCountFiller, "PATEleEleMuTriMuExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleTriMuExtraCountFiller, "PATEleEleEleTriMuExtraCountFiller");
+
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriEleExtraCountFiller, "PATMuMuMuTriEleExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTriEleExtraCountFiller, "PATMuMuEleTriEleExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTriEleExtraCountFiller, "PATEleEleMuTriEleExtraCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleTriEleExtraCountFiller, "PATEleEleEleTriEleExtraCountFiller");
