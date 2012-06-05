@@ -54,6 +54,7 @@ class BestSelector : public edm::EDProducer
 		std::auto_ptr<CompositePtrCandidateCollection> compositePtrCandidateCollection(new CompositePtrCandidateCollection());
 
 		typedef edm::View<T1> T1View;
+        std::vector<T1> temp;
 		edm::Handle<T1View> collection;
 		pf::fetchCollection(collection, src_, evt);
 
@@ -61,6 +62,7 @@ class BestSelector : public edm::EDProducer
 		edm::Handle<T2View> collection2;
 		pf::fetchCollection(collection2, src2_, evt);
 		double z0=91.1876;
+        int bestIndex=0;
 		for(unsigned int i=0;i<collection->size();++i) {
 			bool keep=true;
 			for(unsigned int j=0;j<collection2->size();++j) {
@@ -69,9 +71,17 @@ class BestSelector : public edm::EDProducer
 				}
 			}
 			if (keep==true){
-				compositePtrCandidateCollection->push_back(collection->at(i));
+				temp.push_back(collection->at(i));
 			}
+            for (unsigned int i = 0;  i < temp.size(); i++) {
+				if (abs(temp.at(i).mass()-z0) < abs(temp.at(bestIndex).mass()-z0)){
+                    bestIndex=i;
+                }
+            }
 		}
+        if (temp.size()>0){
+            compositePtrCandidateCollection->push_back(temp.at(bestIndex));
+        }
 		evt.put(compositePtrCandidateCollection);
 	}
 
