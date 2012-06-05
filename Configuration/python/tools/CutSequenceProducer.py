@@ -326,7 +326,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,counterName,counter)
                    self.sequence*=counter
 
-    def addBestSelector(self,moduleName,moduleType,src,src2,text='',min = 1,max=9999):
+    def addBestSelector(self,moduleName,moduleType,src,src2,text='',min = 1,max=1):
                best  = cms.EDProducer(moduleType)
                best.src  = cms.InputTag(src)
                best.src2  = cms.InputTag(src2)
@@ -793,7 +793,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                       muons = cms.PSet(
                           src=cms.InputTag("cleanPatMuons"),
                           algorithm=cms.string("byDeltaR"),
-                          preselection=cms.string("(pfCandidateRef().isNonnull() || isGlobalMuon()) && pt>5 && userFloat('iPDXY') < 0.2 && userFloat('dz')<0.5"),
+                          preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() || isGlobalMuon()) && pt>5 && abs(userFloat('iPDXY')) < 0.5 && abs(userFloat('dz'))<1.0 && abs(eta)<2.4"),
                           deltaR=cms.double(0.05),
                           checkRecoComponents = cms.bool(False),
                           pairCut=cms.string(""),
