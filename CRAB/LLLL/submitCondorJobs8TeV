@@ -14,7 +14,7 @@ while [ "$1" != "" ]; do
     shift
 done
 
-mkdir -p /scratch/$USER/DAGs/$1/
+mkdir -p /scratch/$USER/DAGs/$TAG/
 
 if [[ $TAG != "" ]]; then
     postfix="_"$TAG
