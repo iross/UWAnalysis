@@ -570,6 +570,20 @@ def muCommon(src,legName,legMethod,pluginType):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"dXY"),
+            method     = cms.string(legMethod+"userFloat('ipDXY')"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"dz"),
+            method     = cms.string(legMethod+"userFloat('dz')"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"dB"),
             method     = cms.string(legMethod+"userIso(0)"),
             leadingOnly=cms.untracked.bool(True)
@@ -649,6 +663,13 @@ def muCommon(src,legName,legMethod,pluginType):
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"idMVA"),
             method     = cms.string(legMethod+"userFloat('idmva')"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"isPF"),
+            method=cms.string(legMethod+"pfCandidateRef.isNonnull()"),
             leadingOnly=cms.untracked.bool(True)
         ),
         cms.PSet(
@@ -1086,6 +1107,27 @@ def eleCommon(src,legName,legMethod,pluginType):
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"isomva"),
             method     = cms.string(legMethod+"userFloat('isomva')"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"userIso0"),
+            method     = cms.string(legMethod+"userIso(0)"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"userIso1"),
+            method     = cms.string(legMethod+"userIso(1)"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"userIso2"),
+            method     = cms.string(legMethod+"userIso(2)"),
             leadingOnly=cms.untracked.bool(True)
         ),
         cms.PSet(
