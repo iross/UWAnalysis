@@ -74,13 +74,15 @@ class DiCandidateSorterByZMass : public edm::EDProducer {
 			double tempSum=0;
 			unsigned int bestIndex=0;
 			for(unsigned int i=0;i<toBeSorted.size();++i){
-				if (toBeSorted.at(i).leg1()->mass()==toBeSorted.at(0).leg1()->mass() && toBeSorted.at(i).leg2()->leg1()->pt()+toBeSorted.at(i).leg2()->leg2()->pt() > tempSum){;
-					tempSum=toBeSorted.at(i).leg2()->leg1()->pt()+toBeSorted.at(i).leg2()->leg2()->pt();
-					bestIndex=i;
-				}
+//				if (toBeSorted.at(i).leg1()->mass()==toBeSorted.at(0).leg1()->mass() && toBeSorted.at(i).leg2()->leg1()->pt()+toBeSorted.at(i).leg2()->leg2()->pt() > tempSum){;
+//					tempSum=toBeSorted.at(i).leg2()->leg1()->pt()+toBeSorted.at(i).leg2()->leg2()->pt();
+//					bestIndex=i;
+//				}
 				//std::cout << "First Z mass: " << toBeSorted.at(i).leg1()->mass() << ", second Z mass: " << toBeSorted.at(i).leg2()->mass() << ", pt sum: " << tempSum << std::endl;
+                out->push_back(toBeSorted.at(i));
+//                std::cout << "Mass: " << toBeSorted.at(i).leg1()->mass() << std::endl;
 			}
-			out->push_back(toBeSorted.at(bestIndex));
+//			out->push_back(toBeSorted.at(bestIndex));
 			iEvent.put(out);
 		} 
 
@@ -93,6 +95,7 @@ class DiCandidateSorterByZMass : public edm::EDProducer {
 				{}
 				bool operator()(T t1,T t2)
 				{
+//					return (abs(t1.leg1()->mass()-91.2) < abs(t2.leg1()->mass()-91.2) && (t1.leg1()->leg1->pt()+t1.leg1->leg2->pt() > t2.leg1()->leg1->pt()+t2.leg1->leg2->pt()));
 					return (abs(t1.leg1()->mass()-91.2) < abs(t2.leg1()->mass()-91.2));
 				} 
 		};
