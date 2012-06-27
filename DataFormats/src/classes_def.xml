@@ -13,7 +13,7 @@
 
   <class name="edm::Ptr<reco::RecoChargedCandidate>"/>
   <class name="edm::Ptr<reco::RecoEcalCandidate>"/>
-
+  <class name="edm::Ptr<pat::Photon>"/>
 
 
   <class name="std::vector<edm::Ptr<pat::Jet> >"/>
@@ -57,14 +57,14 @@
   <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<pat::Electron, pat::Tau> >"/>
 
   <!-- create dictionaries for PATElecSCPair objects -->
-  <class name="CompositePtrCandidateT1T2MEt<pat::Electron, reco::RecoEcalCandidate>"/>
-  <class name="std::vector<CompositePtrCandidateT1T2MEt<pat::Electron, reco::RecoEcalCandidate> >"/>
-  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<pat::Electron, reco::RecoEcalCandidate> >"/>
-  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<pat::Electron, reco::RecoEcalCandidate> > >"/>
+  <class name="CompositePtrCandidateT1T2MEt<pat::Electron, pat::Photon>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<pat::Electron, pat::Photon> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<pat::Electron, pat::Photon> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<pat::Electron, pat::Photon> > >"/>
   <class name="edm::Ref<PATElecSCPairCollection,PATElecSCPair,edm::refhelper::FindUsingAdvance<PATElecSCPairCollection,PATElecSCPair> >"/>
   <class name="edm::RefVector<PATElecSCPairCollection,PATElecSCPair,edm::refhelper::FindUsingAdvance<PATElecSCPairCollection,PATElecSCPair> >"/>
   <class name="edm::RefProd<PATElecSCPairCollection>"/>
-  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<pat::Electron, reco::RecoEcalCandidate> >"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<pat::Electron, pat::Photon> >"/>
 
 
   <!-- create dictionaries for PATMuTauPair objects -->
@@ -243,7 +243,7 @@
   <class name="edm::RefProd<PATEleEleEleMuQuadCollection>"/>
   <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, PATElecMuPair> >"/>
 
-   <!-- create dictionaries for PATEleEleMuMuQuad objects -->
+  <!-- create dictionaries for PATEleEleMuMuQuad objects -->
   <class name="CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair>"/>
   <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> >"/>
   <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> >"/>
@@ -252,6 +252,17 @@
   <class name="edm::RefVector<PATEleEleMuMuQuadCollection,PATEleEleMuMuQuad,edm::refhelper::FindUsingAdvance<PATEleEleMuMuQuadCollection,PATEleEleMuMuQuad> >"/>
   <class name="edm::RefProd<PATEleEleMuMuQuadCollection>"/>
   <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> >"/>
+       
+  <!-- create dictionaries for PATEleEleEleSCQuad objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair> > >"/>
+  <class name="edm::Ref<PATEleEleEleSCQuadCollection,PATEleEleEleSCQuad,edm::refhelper::FindUsingAdvance<PATEleEleEleSCQuadCollection,PATEleEleEleSCQuad> >"/>
+  <class name="edm::RefVector<PATEleEleEleSCQuadCollection,PATEleEleEleSCQuad,edm::refhelper::FindUsingAdvance<PATEleEleEleSCQuadCollection,PATEleEleEleSCQuad> >"/>
+  <class name="edm::RefProd<PATEleEleEleSCQuadCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair> >"/>
+
 
   <!-- create dictionaries for PATTauNuPair objects -->
   <class name="CompositePtrCandidateTMEt<pat::Tau>"/>
