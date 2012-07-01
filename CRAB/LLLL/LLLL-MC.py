@@ -130,6 +130,12 @@ addEleEleEleSCEventTree(process,'eleEleEleSCEventTree','EEESzzCleanedCands','EEE
 addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinal','EEESFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinalTest','EEESFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addGenLevel
+#addGenLevel(process,'GenLevelCandidates','genParticles',MC=True)
+
+process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
+process.genParticles = cms.Path( process.genlevel )
+
 
 #Add event counter
 addEventSummary(process,False,'MMMT','eventSelectionMMMT')
