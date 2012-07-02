@@ -93,6 +93,7 @@ def main(options,args):
     legend.SetNColumns(2)
     thePlot.addObject(legend)
     
+    # store best fit results, return them later
     parBestFits={}
     parBestFits['%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))]= ws.var('%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))).getVal()
     parBestFits['%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))]= ws.var('%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))).getVal()
@@ -112,6 +113,7 @@ def main(options,args):
     parm1 = ws.var('%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType')))
 
     print  'parameter 1 value: '+str(parm1.getVal())
+    parBestFits["par1_1D"]=parm1.getVal()
 
     if not (0 < parm1.getVal()+parm1.getErrorHi() and 0 > parm1.getVal()+parm1.getErrorLo()):
         print '95% CL does not cover SM for parameter 1'
@@ -134,6 +136,7 @@ def main(options,args):
     parm2 = ws.var('%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType')))
 
     print  'parameter 2 value: '+str(parm2.getVal())
+    parBestFits["par2_1D"]=parm2.getVal()
 
     if not (0 < parm2.getVal()+parm2.getErrorHi() and 0 > parm2.getVal()+parm2.getErrorLo()):
         print '95% CL does not cover SM for parameter 2'
@@ -164,18 +167,22 @@ def main(options,args):
             parm2.setVal(parm2.getMin() + (j+.5)*(parm2.getMax()-parm2.getMin())/200)
             scanHist.SetBinContent(i+1,j+1,theNLL.getVal())
 
-    print '--------------------'
-    print parm1.getMin()
-    print parm2.getMin()
-    print '--------------------'
 
-    profNLL_par1 = theNLL.createProfile(RooArgSet(parm1))
-    profNLL_par1_plot = parm1.frame()
-    profNLL_par1.plotOn(profNLL_par1_plot)
+    #temp--get 1D likelihood scans with other fixed IAR 21.Jun.2012
+    ws.var('%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))).setConstant(False)
+    ws.var('%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))).setVal(0.0)
+    ws.var('%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))).setConstant(True)
+    profNLL_par1_plot = theNLL.createHistogram("par1scan",parm1)
+#    profNLL_par1.Draw()
+#    profNLL_par1_plot = parm1.frame()
+#    profNLL_par1.plotOn(profNLL_par1_plot)
 
-    profNLL_par2 = theNLL.createProfile(RooArgSet(parm2))
-    profNLL_par2_plot = parm2.frame()
-    profNLL_par2.plotOn(profNLL_par2_plot)
+    ws.var('%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))).setVal(0.0)
+    ws.var('%s_%s'%(cfg.get('Global','par1Name'),cfg.get('Global','couplingType'))).setConstant(True)
+    ws.var('%s_%s'%(cfg.get('Global','par2Name'),cfg.get('Global','couplingType'))).setConstant(False)
+    profNLL_par2_plot = theNLL.createHistogram("par2scan",parm2)
+#    profNLL_par2_plot = parm2.frame()
+#    profNLL_par2.plotOn(profNLL_par2_plot)
 
     initCMSStyle()
     
@@ -326,6 +333,7 @@ def fitATGCExpectedYields(ws,cfg,section):
 
     bins = [float(i) for i in cfg.get(section,'obsBins').split(',')]
 
+
     nObsBins = len(bins)-1
     weightvar = cfg.get(section,'signal_weight_var')
     par1Name = cfg.get('Global','par1Name')
@@ -348,6 +356,7 @@ def fitATGCExpectedYields(ws,cfg,section):
     obs_mc = ws.var('%s_%s'%(cfg.get(section,'obsVar'),section))    
     weight = RooRealVar(weightvar,'the weight of the data',0,1000)
 
+
     hc = TH1F('hc_'+section,'const term',nObsBins,array('d',bins))
     hp0 = TH1F('hp_'+section+'_0','h3 linear term',nObsBins,array('d',bins))
     hp1 = TH1F('hp_'+section+'_1','h4 linear term',nObsBins,array('d',bins))
@@ -367,17 +376,27 @@ def fitATGCExpectedYields(ws,cfg,section):
             binMax = bins[i]
             print obs_mc.GetName(),' > ',str(binMin),' && ',obs_mc.GetName(),' < ',str(binMax)
             print obs_mc.GetName(),' > ', str(binMin),' && ', cfg.get(section,'obsVar'),' < ', str(binMax),')'
+            #temp -- remove by hand the k-factor IAR 20.Jun.2012
             sigObj.Draw(par2Name+'_grid:'+par1Name+'_grid >> theBaseData_'+section+'_'+str(i),
-                        weight.GetName()+'*('+cfg.get(section,'obsVar') + #
+                        weight.GetName()+'*'+options.weightf+'*('+cfg.get(section,'obsVar') + #
                         ' > ' + str(binMin) +
                         ' && ' + cfg.get(section,'obsVar') +
                         ' < ' + str(binMax)+')','goff')
+#            sigObj.Draw(par2Name+'_grid:'+par1Name+'_grid >> theBaseData_'+section+'_'+str(i),
+#                        weight.GetName()+'*('+cfg.get(section,'obsVar') + #
+#                        ' > ' + str(binMin) +
+#                        ' && ' + cfg.get(section,'obsVar') +
+#                        ' < ' + str(binMax)+')','goff')
         else:
             print obs_mc.GetName(),' > ',str(bins[len(bins)-2])
 #            print obs_mc.GetName(),' > ',str(binMin)
+            #temp -- remove by hand the k-factor IAR 20.Jun.2012
             sigObj.Draw(par2Name+'_grid:'+par1Name+'_grid >> theBaseData_'+section+'_'+str(i),
-                        weight.GetName()+'*('+cfg.get(section,'obsVar')+#
+                        weight.GetName()+'*'+options.weightf+'*('+cfg.get(section,'obsVar')+#
                         ' > ' + str(bins[len(bins)-2])+')','goff')
+#            sigObj.Draw(par2Name+'_grid:'+par1Name+'_grid >> theBaseData_'+section+'_'+str(i),
+#                        weight.GetName()+'*('+cfg.get(section,'obsVar')+#
+#                        ' > ' + str(bins[len(bins)-2])+')','goff')
 
         for k in range(1,nGridParBins+1):
             for l in range(1,nGridParBins+1):
@@ -386,7 +405,7 @@ def fitATGCExpectedYields(ws,cfg,section):
         func = TF2('fittingFunction_'+section+'_'+str(i),'[0] + [1]*x + [2]*y + [3]*x*y + [4]*x*x + [5]*y*y',
                    par1GridMin,par1GridMax,
                    par2GridMin,par2GridMax)
-    
+
         theBaseData.Fit(func,'R0','')
     
         getattr(ws,'import')(theBaseData)
@@ -700,6 +719,9 @@ def prettyContour(c,cfg):
     histo.GetYaxis().SetTitleFont(132)
     histo.GetYaxis().SetTitleOffset(1.35)
     
+    if not histo == None:
+        print "Can't get the histogram :("
+        return
     histo.GetXaxis().SetNdivisions(505)
     cont95 = c.FindObject("contour_nll_TopLevelPdf_allcountingdata_with_constr_n2.447747")
     histo.GetYaxis().SetRangeUser(-1.5*cont95.GetYaxis().GetXmax(),
@@ -822,7 +844,7 @@ def prettyObsPlots(ws,cfg):
         legend.AddEntry(bestFit,"Best Fit","l")
         legend.AddEntry(gridPoint,
                         "Anomalous Coupling %s = %.3f"%(cfg.get('Global','par2Name'),
-                                                        cfg.getfloat(section,'par1GridMax')),
+                                                        cfg.getfloat(section,'par2GridMax')),
                         "l")
 
         legend.Draw()
@@ -1116,21 +1138,28 @@ def getBackgroundsInCfg(section,cfg):
 
     return bkgs
 
-def makePseudoData(datafile,tree,file,outfile,ind):
+def makePseudoData(datafile,tree,file,outfile,ind,weightf=1):
     """Adds a pseudo-data tree with name tree_[ind]"""
     """Fills with n_data events chosen from the aTGC file/tree"""
     ftemp=TFile(datafile)
     ttemp=ftemp.Get(tree)
     print "Getting entries in",tree,"from file",datafile
-    ndevts=ttemp.GetEntries()
-    print "Making",tree,"in",outfile,"filling with",ndevts,"'data' events"
+    ndevts=int(ttemp.GetEntries()*float(weightf))
     ftemp.Close()
     fin=TFile(file)
     tin=fin.Get(tree)
+
+    #HACK -- instead of grabbing data_obs events, grab data_expected from the injected sample.
+    h2 = TH1F("h2","h2",2,0,2)
+    tin.Draw("1>>h2","(1)*weightnoPU*5020")
+    # temp IAR 21.Jun.2012
+    ndevts=int(h2.Integral()*float(weightf))
     
     #clone ndevts events into new tree    
+    print "Making",tree,"in",outfile,"filling with",ndevts,"'data' events"
     outfile.cd()
-    tout=tin.CopyTree("1","",ndevts,ind*ndevts)
+    maxInd=int(ind*ndevts)
+    tout=tin.CopyTree("1","",ndevts,maxInd)
     tout.SetName(tout.GetName()+"_"+str(ind))
     print tout.GetEntries()
     tout.Write()
@@ -1145,6 +1174,8 @@ if __name__ == "__main__":
     parser.add_option("--MCbackground",dest="MCbackground",help="Is background from MC?",action="store_true",default=False)
     parser.add_option("--pseudodata",dest="pseudodata",help="Run in pseudodata mode.",action="store_true",default=False)
     parser.add_option("--pseudomother",dest="pseudomother",help="Mother dataset for pseudodata mode.")
+    parser.add_option("--pseudotoys",dest="pseudotoys",help="Number of pseudo experiments")
+    parser.add_option("--weightf",dest="weightf",help="Extra weight factor",default="1.0")
     parser.add_option("--inputDataIsSignalOnly",dest="inputDataIsSignalOnly",
                       help="Flag input data as signal only, for use with --pseudodata",
                       action="store_true",default=False)
@@ -1191,14 +1222,14 @@ if __name__ == "__main__":
             os.remove(outfile)
         tempDatafile={}
         tempTree={}
-        for i in range(500):
+        for i in range(int(options.pseudotoys)):
             fout=TFile(outfile,"UPDATE")
             for section in sections:
                 datafile=options.config.get(section,'input_data').split(":")[0]
                 tempDatafile[section]=datafile
                 tree=options.config.get(section,'input_data').split(":")[1]
                 tempTree[section]=tree
-                makePseudoData(datafile,tree,options.pseudomother,fout,i)
+                makePseudoData(datafile,tree,options.pseudomother,fout,i,options.weightf)
                 print 'Data was:',options.config.get(section,'input_data')
                 options.config.set(section,'input_data',outfile+":"+tree+"_"+str(i))
                 print '"Data" is now:',options.config.get(section,'input_data')
