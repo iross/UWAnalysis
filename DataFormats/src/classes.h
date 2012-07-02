@@ -8,6 +8,7 @@
 #include "DataFormats/PatCandidates/interface/Muon.h"
 #include "DataFormats/PatCandidates/interface/Tau.h"
 #include "DataFormats/PatCandidates/interface/Jet.h"
+#include "DataFormats/PatCandidates/interface/Photon.h"
 
 
 namespace {
@@ -42,6 +43,7 @@ namespace {
         /// as these dictionaries are not yet created in DataFormats/JetReco/src/classes.h
         edm::Ptr<reco::CaloJet> dummyCaloJetPtr;
         edm::Ptr<reco::PFJet> dummyPFJetPtr;
+        edm::Ptr<pat::Photon> dummyPhotonPtr;
 
         /// create dictionaries for
         ///  o edm::Ptr<reco::GenParticle>
@@ -301,7 +303,7 @@ namespace {
         edm::RefProd<PATEleEleEleMuQuadCollection> dummyPATEleEleEleMuQuadRefProd;
         edm::Ptr<PATEleEleEleMuQuad> dummyPATEleEleEleMuQuadPtr;
 
-        /// create dictionaries for PATEleEleMuMuQuad objects                                                                                                                                               
+        /// create dictionaries for PATEleEleMuMuQuad objects
         PATEleEleMuMuQuad dummyPATEleEleMuMuQuad;
         edm::Wrapper<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadWrapper;
         PATEleEleMuMuQuadCollection dummyPATEleEleMuMuQuadCollection;
@@ -310,6 +312,16 @@ namespace {
         edm::RefVector<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefVector;
         edm::RefProd<PATEleEleMuMuQuadCollection> dummyPATEleEleMuMuQuadRefProd;
         edm::Ptr<PATEleEleMuMuQuad> dummyPATEleEleMuMuQuadPtr;
+
+        /// create dictionaries for PATEleEleEleSCQuad objects
+        PATEleEleEleSCQuad dummyPATEleEleEleSCQuad;
+        edm::Wrapper<PATEleEleEleSCQuad> dummyPATEleEleEleSCQuadWrapper;
+        PATEleEleEleSCQuadCollection dummyPATEleEleEleSCQuadCollection;
+        edm::Wrapper<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadCollectionWrapper;
+        edm::Ref<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRef;
+        edm::RefVector<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRefVector;
+        edm::RefProd<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRefProd;
+        edm::Ptr<PATEleEleEleSCQuad> dummyPATEleEleEleSCQuadPtr;
 
         /// create dictionaries for PATEleEleEleTri objects                                                                                                                              
         PATEleEleEleTri dummyPATEleEleEleTri;

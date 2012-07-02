@@ -7,7 +7,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'START52_V9::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(-1)
+        input = cms.untracked.int32(100)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -80,6 +80,7 @@ process.eventSelectionMMM = cms.Path(process.MMMSeq)
 process.eventSelectionMME = cms.Path(process.MMESeq)
 process.eventSelectionEEM = cms.Path(process.EEMSeq)
 process.eventSelectionEEE = cms.Path(process.EEESeq)
+process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
 addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
@@ -142,6 +143,18 @@ addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
 addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID')
 
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleSCEventTree
+addEleEleEleSCEventTree(process,'eleEleEleSCEventTree','EEESzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinal','EEESFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinalTest','EEESFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addGenLevel
+#addGenLevel(process,'GenLevelCandidates','genParticles',MC=True)
+
+process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
+process.genParticles = cms.Path( process.genlevel )
+
+
 #Add event counter
 addEventSummary(process,True,'MMMT','eventSelectionMMMT')
 addEventSummary(process,True,'MMTT','eventSelectionMMTT')
@@ -155,4 +168,4 @@ addEventSummary(process,True,'EETT','eventSelectionEETT')
 addEventSummary(process,True,'EEEM','eventSelectionEEEM')
 addEventSummary(process,True,'EEEE','eventSelectionEEEE')
 addEventSummary(process,True,'EEMM','eventSelectionEEMM')
-
+addEventSummary(process,False,'EEES','eventSelectionEEES')

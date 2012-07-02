@@ -34,7 +34,7 @@ class LeptonExtraCountFiller : public NtupleFillerBase {
 
         ~LeptonExtraCountFiller()
         { 
-            if(function!=0) delete function;
+            if(function != 0) delete function;
         }
 
 
@@ -42,7 +42,7 @@ class LeptonExtraCountFiller : public NtupleFillerBase {
         {
             edm::Handle<edm::View<pat::Tau> > handle;
             edm::Handle<std::vector<T> > candHandle;
-            value=0;
+            value = 0;
             if(iEvent.getByLabel(src_,handle)) {
                 if(iEvent.getByLabel(candSrc_,candHandle)){
                     //loop over handle, sum those passing the requirements
@@ -85,6 +85,7 @@ typedef LeptonExtraCountFiller<PATEleEleMuTauQuad, pat::Tau> PATEleEleMuTauQuadT
 typedef LeptonExtraCountFiller<PATEleEleEleMuQuad, pat::Tau> PATEleEleEleMuQuadTauExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleEleEleQuad, pat::Tau> PATEleEleEleEleQuadTauExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleMuMuQuad, pat::Tau> PATEleEleMuMuQuadTauExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleEleEleSCQuad, pat::Tau> PATEleEleEleSCQuadTauExtraCountFiller;
 
 typedef LeptonExtraCountFiller<PATMuMuMuTauQuad, pat::Muon> PATMuMuMuTauQuadMuExtraCountFiller;
 typedef LeptonExtraCountFiller<PATMuMuTauTauQuad, pat::Muon> PATMuMuTauTauQuadMuExtraCountFiller;
@@ -98,6 +99,7 @@ typedef LeptonExtraCountFiller<PATEleEleMuTauQuad, pat::Muon> PATEleEleMuTauQuad
 typedef LeptonExtraCountFiller<PATEleEleEleMuQuad, pat::Muon> PATEleEleEleMuQuadMuExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleEleEleQuad, pat::Muon> PATEleEleEleEleQuadMuExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleMuMuQuad, pat::Muon> PATEleEleMuMuQuadMuExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleEleEleSCQuad, pat::Muon> PATEleEleEleSCQuadMuExtraCountFiller;
 
 typedef LeptonExtraCountFiller<PATMuMuMuTauQuad, pat::Electron> PATMuMuMuTauQuadEleExtraCountFiller;
 typedef LeptonExtraCountFiller<PATMuMuTauTauQuad, pat::Electron> PATMuMuTauTauQuadEleExtraCountFiller;
@@ -111,4 +113,4 @@ typedef LeptonExtraCountFiller<PATEleEleMuTauQuad, pat::Electron> PATEleEleMuTau
 typedef LeptonExtraCountFiller<PATEleEleEleMuQuad, pat::Electron> PATEleEleEleMuQuadEleExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleEleEleQuad, pat::Electron> PATEleEleEleEleQuadEleExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleMuMuQuad, pat::Electron> PATEleEleMuMuQuadEleExtraCountFiller;
-
+typedef LeptonExtraCountFiller<PATEleEleEleSCQuad, pat::Electron> PATEleEleEleSCQuadEleExtraCountFiller;

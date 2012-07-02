@@ -26,80 +26,80 @@ template<typename T>
 
 class CompositePtrCandidateTMEt : public reco::LeafCandidate 
 {
-  typedef edm::Ptr<T> TPtr;
-  typedef edm::Ptr<reco::Candidate> METPtr;
-  typedef edm::Ptr<pat::Jet> JetPtr;
-  typedef std::vector<edm::Ptr<pat::Jet> > JetPtrVector;
+    typedef edm::Ptr<T> TPtr;
+    typedef edm::Ptr<reco::Candidate> METPtr;
+    typedef edm::Ptr<pat::Jet> JetPtr;
+    typedef std::vector<edm::Ptr<pat::Jet> > JetPtrVector;
 
- public:
+    public:
 
-  /// default constructor
-  CompositePtrCandidateTMEt() {}
+    /// default constructor
+    CompositePtrCandidateTMEt() {}
 
-  /// constructor with MEt
-  CompositePtrCandidateTMEt(const TPtr visDecayProducts, const METPtr met)
-    : visDecayProducts_(visDecayProducts), met_(met) {recoilDPhi_=0;}
+    /// constructor with MEt
+    CompositePtrCandidateTMEt(const TPtr visDecayProducts, const METPtr met)
+        : visDecayProducts_(visDecayProducts), met_(met) {recoilDPhi_=0;}
 
-  /// destructor
-  ~CompositePtrCandidateTMEt() {}
+    /// destructor
+    ~CompositePtrCandidateTMEt() {}
 
-  /// access to daughter particles
-  const TPtr lepton() const { return visDecayProducts_; }
- 
-  /// access to missing transverse momentum
-  const METPtr met() const { return met_; }
+    /// access to daughter particles
+    const TPtr lepton() const { return visDecayProducts_; }
 
-  /// get transverse mass of visible decay products + missing transverse momentum
-  double mt() const { return mt_; }
+    /// access to missing transverse momentum
+    const METPtr met() const { return met_; }
 
-  /// get acoplanarity angle (angle in transverse plane) between visible decay products 
-  /// and missing transverse momentum 
-  double dPhi() const { return dPhi_; } 
-  const reco::Candidate::LorentzVector recoil() const {return recoil_;}
-  double recoilDPhi() const {return recoilDPhi_;}
+    /// get transverse mass of visible decay products + missing transverse momentum
+    double mt() const { return mt_; }
 
-  ///Jet variables
-  const JetPtrVector jets() const {return jets_;}
-  int nJets() const {return jets_.size();}
-  double ht() const {return ht_;}
-  const JetPtr jet(int i) const {return jets_.at(i);}
+    /// get acoplanarity angle (angle in transverse plane) between visible decay products 
+    /// and missing transverse momentum 
+    double dPhi() const { return dPhi_; } 
+    const reco::Candidate::LorentzVector recoil() const {return recoil_;}
+    double recoilDPhi() const {return recoilDPhi_;}
 
-  /// clone  object
-  CompositePtrCandidateTMEt<T>* clone() const { return new CompositePtrCandidateTMEt<T>(*this); }
+    ///Jet variables
+    const JetPtrVector jets() const {return jets_;}
+    int nJets() const {return jets_.size();}
+    double ht() const {return ht_;}
+    const JetPtr jet(int i) const {return jets_.at(i);}
 
- private:
-  
-  void setJetValues(const JetPtrVector& jets,double ht) {
-    jets_ = jets;
-    ht_   = ht;
-  }
+    /// clone  object
+    CompositePtrCandidateTMEt<T>* clone() const { return new CompositePtrCandidateTMEt<T>(*this); }
 
-  /// allow only CompositePtrCandidateTMEtAlgorithm to change values of data-members
-  template<typename T_type> friend class CompositePtrCandidateTMEtAlgorithm; 
+    private:
 
-  /// set transverse mass of visible decay products + missing transverse momentum
-  void setMt(double mt) { mt_ = mt; }
-  /// set acoplanarity angle (angle in transverse plane) between visible decay products 
-  /// and missing transverse momentum
-  void setDPhi(double dPhi) { dPhi_ = dPhi; }
-  
-  void setRecoil(const reco::Candidate::LorentzVector& recoil) {recoil_ = recoil; }
-  void setRecoilDPhi(double dPhi) {recoilDPhi_ = dPhi;}
+    void setJetValues(const JetPtrVector& jets,double ht) {
+        jets_ = jets;
+        ht_   = ht;
+    }
 
-  /// references/pointers to decay products and missing transverse momentum
-  reco::Candidate::LorentzVector recoil_;
-  double recoilDPhi_;
+    /// allow only CompositePtrCandidateTMEtAlgorithm to change values of data-members
+    template<typename T_type> friend class CompositePtrCandidateTMEtAlgorithm; 
 
-  TPtr visDecayProducts_;
-  METPtr met_;
-  /// transverse mass of visible decay products + missing transverse momentum
-  double mt_;
-  /// acoplanarity angle (angle in transverse plane) between visible decay products
-  /// and missing transverse momentum
-  double dPhi_;
+    /// set transverse mass of visible decay products + missing transverse momentum
+    void setMt(double mt) { mt_ = mt; }
+    /// set acoplanarity angle (angle in transverse plane) between visible decay products 
+    /// and missing transverse momentum
+    void setDPhi(double dPhi) { dPhi_ = dPhi; }
 
-  JetPtrVector jets_;
-  double ht_;
+    void setRecoil(const reco::Candidate::LorentzVector& recoil) {recoil_ = recoil; }
+    void setRecoilDPhi(double dPhi) {recoilDPhi_ = dPhi;}
+
+    /// references/pointers to decay products and missing transverse momentum
+    reco::Candidate::LorentzVector recoil_;
+    double recoilDPhi_;
+
+    TPtr visDecayProducts_;
+    METPtr met_;
+    /// transverse mass of visible decay products + missing transverse momentum
+    double mt_;
+    /// acoplanarity angle (angle in transverse plane) between visible decay products
+    /// and missing transverse momentum
+    double dPhi_;
+
+    JetPtrVector jets_;
+    double ht_;
 
 
 };
