@@ -1,0 +1,70 @@
+Test Release based on: CMSSW_4_2_5
+Base Release in: /afs/hep.wisc.edu/osg/app/cmssoft/cms/slc5_amd64_gcc434/cms/cmssw/CMSSW_4_2_5
+Your Test release in: /afs/hep.wisc.edu/cms/iross/HZZ2l2tau/CMSSW_4_2_5
+--- Tag ---    -------- Package --------                        
+bMinimalSVfit-08-03-11 AnalysisDataFormats/TauAnalysis                  
+NoCVS          DataDrivenCards/MMEE                             
+NoTag          EgammaCalibratedGsfElectrons/CalibratedElectronAlgos 
+NoTag          EgammaCalibratedGsfElectrons/CalibratedElectronProducers 
+V01-13-02      HiggsAnalysis/CombinedLimit                      
+V08-06-33      PhysicsTools/PatAlgos                            
+V08-03-12      PhysicsTools/Utilities                           
+V00-03-32      RecoEgamma/ElectronIdentification                
+V03-05-05      RecoLuminosity/LumiDB                            
+V01-02-03      RecoTauTag/Configuration                         
+V01-02-07      RecoTauTag/RecoTau                               
+V01-02-00      RecoTauTag/TauTagTools                           
+bMinimalSVfit-08-03-11 TauAnalysis/CandidateTools                       
+LP-V02         UWAnalysis/CRAB                                  
+LP-V02         UWAnalysis/Configuration                         
+NoTag          UWAnalysis/DataFormats                           
+NoTag          UWAnalysis/NtupleTools                           
+LP-V02         UWAnalysis/ROOT                                  
+LP-V02         UWAnalysis/RecoTools                             
+NoTag          UWAnalysis/StatTools                             
+NoTag          UWAnalysis/aTGCRooStats                          
+NoCVS          hzz2l2t/test                                     
+NoCVS          zz-latest/2012-05-29-7TeV-PatTuple               
+NoCVS          zz-latest/2012-05-29-7TeV-PatTuple-a             
+NoCVS          zz-latest/2012-05-29-7TeV-PatTuple-data-v2       
+NoCVS          zz-latest/2012-05-29-7TeV-PatTuple-data-v2_1     
+NoCVS          zz-latest/2012-05-29-7TeV-PatTuple-data-v3       
+NoCVS          zz-latest/2012-05-29-7TeV-PatTuple-v2            
+NoCVS          zz-latest/2012-05-29-8TeV-PatTuple               
+NoCVS          zz-latest/2012-05-29-8TeV-PatTuple-a             
+NoCVS          zz-latest/2012-05-29-8TeV-PatTuple-v2            
+NoCVS          zz-latest/2012-06-05-8TeV-PatTuple               
+NoCVS          zz-latest/2012-06-08-8TeV-PatTuple               
+NoCVS          zz-latest/2012-06-08-8TeV-PatTuple-data          
+NoCVS          zz-latest/2012-06-14-PatTuple-8TeV-Higgs         
+NoCVS          zz-latest/2012-06-15-PatTuple-2011data           
+NoCVS          zz-latest/2012-06-18-8TeV-PatTuple-data          
+NoCVS          zz-latest/2012-06-19-8TeV-PatTuple-May23ReReco   
+NoCVS          zz-latest/DAGs                                   
+NoCVS          zz-latest/EE_2011Bv1-EEDATA                      
+NoCVS          zz-latest/EE_2011Bv1_17May-BGStdIso              
+NoCVS          zz-latest/EE_Aug05-EEDATA                        
+NoCVS          zz-latest/EE_Aug05_17May-BGStdIso                
+NoCVS          zz-latest/EE_Jul05-EEDATA                        
+NoCVS          zz-latest/EE_Jul05_17May-BGStdIso                
+NoCVS          zz-latest/EE_Oct03-EEDATA                        
+NoCVS          zz-latest/EE_Oct03_17May-BGStdIso                
+NoCVS          zz-latest/FitPlots                               
+NoCVS          zz-latest/HZZ                                    
+NoCVS          zz-latest/MM_2011Bv1-MMDATA                      
+NoCVS          zz-latest/MM_2011Bv1_17May-BGStdIso              
+NoCVS          zz-latest/MM_Aug05-MMDATA                        
+NoCVS          zz-latest/MM_Aug05_17May-BGStdIso                
+NoCVS          zz-latest/MM_Jul05-MMDATA                        
+NoCVS          zz-latest/MM_Jul05_17May-BGStdIso                
+NoCVS          zz-latest/MM_Oct03-MMDATA                        
+NoCVS          zz-latest/MM_Oct03_17May-BGStdIso                
+NoCVS          zz-latest/ZZ2E2T_v1_check-MC                     
+NoCVS          zz-latest/ZZ2M2T_v1_check-MC                     
+NoCVS          zz-latest/ZZ4E_v1_check-MC                       
+NoCVS          zz-latest/ZZ4L_pythia-MC                         
+NoCVS          zz-latest/ZZ4M_v1_check-MC                       
+NoCVS          zz-latest/ZZ4T_v1_check-MC                       
+NoCVS          zz-latest/ggH125_17Jun-MC                        
+---------------------------------------
+total packages: 64 (64 displayed)
