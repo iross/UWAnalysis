@@ -86,7 +86,50 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
 
   process.analysisSequence*=process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
+  process.fsrPhotons = cms.EDProducer("FSRPhotonProducer",
+          src = cms.InputTag("particleFlow")
+          )
+  #remove photons close to an electron 
+
+  from CommonTools.ParticleFlow.Isolation.pfPhotonIsolation_cff import *
+  phPFIsoDepositCharged.src    = cms.InputTag("fsrPhotons")
+  phPFIsoDepositChargedAll.src = cms.InputTag("fsrPhotons")
+  phPFIsoDepositNeutral.src    = cms.InputTag("fsrPhotons")
+  phPFIsoDepositGamma.src      = cms.InputTag("fsrPhotons")
+  phPFIsoDepositPU.src         = cms.InputTag("fsrPhotons")
+
+  phPFIsoValueCharged03PFId.vetos = cms.vstring('Threshold(0.2)')
+  phPFIsoValueNeutral03PFId.vetos = cms.vstring('Threshold(0.5)')
+  phPFIsoValueGamma03PFId.vetos = cms.vstring('Threshold(0.5)')
+  phPFIsoValuePU03PFId.vetos = cms.vstring('Threshold(0.2)')
+
+  process.photonIsoSeq = cms.Sequence(
+          phPFIsoDepositCharged+
+          phPFIsoDepositChargedAll+
+          phPFIsoDepositNeutral+
+          phPFIsoDepositGamma+
+          phPFIsoDepositPU+
+          phPFIsoValuePU03PFId+
+          phPFIsoValueNeutral03PFId+
+          phPFIsoValueGamma03PFId+
+          phPFIsoValuePU03PFId
+          )
+  process.pfPileUp = cms.EDProducer(
+          "PFPileUp",
+          PFCandidates = cms.InputTag("particleFlow"),
+          Vertices = cms.InputTag("offlinePrimaryVertices"),
+          # pile-up identification now enabled by default. To be studied for jets
+          Enable = cms.bool(True),
+          verbose = cms.untracked.bool(False),
+          checkClosestZVertex = cms.bool(True)
+          )
+#  process.analysisSequence*=process.pfPileUp
+  process.analysisSequence*=process.fsrPhotons
+
+#  process.analysisSequence*=process.fsrPhotons*process.photonIsoSeq
+
   process.runAnalysisSequence = cms.Path(process.analysisSequence)
+
 
 def defaultReconstructionSKIM(process):
   process.load("UWAnalysis.Configuration.startUpSequence_cff")
@@ -469,27 +512,27 @@ def electronOverloading(process,isdata,src):
   process.load("RecoEgamma.ElectronIdentification.cutsInCategoriesElectronIdentificationV06_DataTuning_cfi")
 
   process.CICID = cms.Sequence(
-	process.eidVeryLoose+
-	process.eidLoose+
-	process.eidMedium+
-	process.eidTight+
-	process.eidSuperTight+
-	process.eidHyperTight1+
-	process.eidHyperTight2+
-	process.eidHyperTight3+
-	process.eidHyperTight4
+    process.eidVeryLoose+
+    process.eidLoose+
+    process.eidMedium+
+    process.eidTight+
+    process.eidSuperTight+
+    process.eidHyperTight1+
+    process.eidHyperTight2+
+    process.eidHyperTight3+
+    process.eidHyperTight4
   )
 
   process.patElectrons.electronIDSources = cms.PSet(
-	cicVeryLoose = cms.InputTag("eidVeryLoose"),
-	cicLoose = cms.InputTag("eidLoose"),
-	cicMedium = cms.InputTag("eidMedium"),
-	cicTight = cms.InputTag("eidTight"),
-	cicSuperTight = cms.InputTag("eidSuperTight"),
-	cicHyperTight1 = cms.InputTag("eidHyperTight1"),
-	cicHyperTight2 = cms.InputTag("eidHyperTight2"),
-	cicHyperTight3 = cms.InputTag("eidHyperTight3"),
-	cicHyperTight4 = cms.InputTag("eidHyperTight4")
+    cicVeryLoose = cms.InputTag("eidVeryLoose"),
+    cicLoose = cms.InputTag("eidLoose"),
+    cicMedium = cms.InputTag("eidMedium"),
+    cicTight = cms.InputTag("eidTight"),
+    cicSuperTight = cms.InputTag("eidSuperTight"),
+    cicHyperTight1 = cms.InputTag("eidHyperTight1"),
+    cicHyperTight2 = cms.InputTag("eidHyperTight2"),
+    cicHyperTight3 = cms.InputTag("eidHyperTight3"),
+    cicHyperTight4 = cms.InputTag("eidHyperTight4")
   )
 
 

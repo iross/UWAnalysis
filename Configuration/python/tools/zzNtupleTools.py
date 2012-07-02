@@ -1117,6 +1117,13 @@ def eleCommon(src,legName,legMethod,pluginType):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"r9"),
+            method     = cms.string(legMethod+"r9()"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"userIso0"),
             method     = cms.string(legMethod+"userIso(0)"),
             leadingOnly=cms.untracked.bool(True)

@@ -19,7 +19,6 @@ process.source = cms.Source("PoolSource",
 #'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-06-08-8TeV-PatTuple-4495432/0651de2bb07022ffcd3866fd2307fdf9/output_94_1_CC6.root',
 'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-06-08-8TeV-PatTuple-4495432/0651de2bb07022ffcd3866fd2307fdf9/output_64_1_uXI.root'
 #'file:/scratch/iross/zz4l_sync_summer12_vetoChargedOnlyEndcap.root'
-#'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-05-29-8TeV-PatTuple-67c1f94/a7f10efca7dd683ad59c7e946715fa59/output_49_0_TNg.root',
 #		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
 #			'file:/scratch/iross/zz4l_sync_fall11_take2.root'
 #            'file:/scratch/iross/zz4l_sync_2.root'
