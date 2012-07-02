@@ -79,9 +79,8 @@ addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMzzCleanedCandsE
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEzzCleanedCandsEleEleQ','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEzzCleanedCandsEEMass','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID','EEEEzzEleIDSecond','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
-addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID2','EEEEzzEleIso','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMzzCleanedCandsMuMuQ','EEEEzzCleanedCandsAboveThreshold','EEMMzzCleanedCandsAboveThreshold','MMEEzzCleanedCandsAboveThreshold','MMMMzzCleanedCandsAboveThreshold')
