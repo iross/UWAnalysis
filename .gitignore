@@ -10,12 +10,18 @@
 *.pdf
 *.zip
 *.tgz
+
+# ignore histories/logs/dumps/etc
 *.txt
+*.log
+*.history
+*temp*
+
 *.pkl
+
 *AutoDict*
 *CVS*
 .#*
-*temp*
 
 *.history
 *.bk
@@ -23,6 +29,8 @@
 *nohup.out
 *__afs*
 *callgrind*
+
 aTGCRooStats/run_*
 aTGCRooStats/root_*
-multicrab_*/*
+multicrab_*/
+sandbox/
