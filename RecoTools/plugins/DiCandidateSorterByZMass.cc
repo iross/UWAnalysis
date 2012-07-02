@@ -17,6 +17,7 @@ typedef DiCandidateSorterByZMass<PATEleEleEleEleQuad> PATEleEleEleEleQuadSorterB
 typedef DiCandidateSorterByZMass<PATEleEleMuTauQuad> PATEleEleMuTauQuadSorterByZMass;
 typedef DiCandidateSorterByZMass<PATEleEleEleMuQuad> PATEleEleEleMuQuadSorterByZMass;
 typedef DiCandidateSorterByZMass<PATEleEleMuMuQuad> PATEleEleMuMuQuadSorterByZMass;
+typedef DiCandidateSorterByZMass<PATEleEleEleSCQuad> PATEleEleEleSCQuadSorterByZMass;
 
 
 DEFINE_FWK_MODULE(PATMuMuMuTauQuadSorterByZMass);
@@ -31,3 +32,4 @@ DEFINE_FWK_MODULE(PATEleEleEleEleQuadSorterByZMass);
 DEFINE_FWK_MODULE(PATEleEleMuTauQuadSorterByZMass);
 DEFINE_FWK_MODULE(PATEleEleEleMuQuadSorterByZMass);
 DEFINE_FWK_MODULE(PATEleEleMuMuQuadSorterByZMass);
+DEFINE_FWK_MODULE(PATEleEleEleSCQuadSorterByZMass);

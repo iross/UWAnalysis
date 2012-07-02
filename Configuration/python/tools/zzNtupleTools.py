@@ -1145,6 +1145,116 @@ def eleCommon(src,legName,legMethod,pluginType):
         )
     return sharedV
 
+def SCCommon(src,legName,legMethod,pluginType):
+    sharedV = cms.VPSet(
+        cms.PSet(
+           pluginType = cms.string(pluginType),
+           src        = cms.InputTag(src),
+           tag        = cms.string(legName+"Pt"),
+           method     = cms.string(legMethod+"pt"),
+           leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+           pluginType = cms.string(pluginType),
+           src        = cms.InputTag(src),
+           tag        = cms.string(legName+"Et"),
+           method     = cms.string(legMethod+"et"),
+           leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+           pluginType = cms.string(pluginType),
+           src        = cms.InputTag(src),
+           tag        = cms.string(legName+"Eta"),
+           method     = cms.string(legMethod+"eta"),
+           leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+           pluginType = cms.string(pluginType),
+           src        = cms.InputTag(src),
+           tag        = cms.string(legName+"Phi"),
+           method     = cms.string(legMethod+"phi"),
+           leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "isEE"),
+            method      = cms.string(legMethod + "isEE"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "isEB"),
+            method      = cms.string(legMethod + "isEB"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "sigmaEtaEta"),
+            method      = cms.string(legMethod + "sigmaEtaEta"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "sigmaIetaIeta"),
+            method      = cms.string(legMethod + "sigmaIetaIeta"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "e1x5"),
+            method      = cms.string(legMethod + "e1x5"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "e2x5"),
+            method      = cms.string(legMethod + "e2x5"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "e3x3"),
+            method      = cms.string(legMethod + "e3x3"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "e5x5"),
+            method      = cms.string(legMethod + "e5x5"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "maxEnergyXtal"),
+            method      = cms.string(legMethod + "maxEnergyXtal"),
+            leadingOnly = cms.untracked.bool(True)
+        )
+        #cms.PSet(
+        #    pluginType  = cms.string(pluginType),
+        #    src         = cms.InputTag(src),
+        #    tag         = cms.string(legName + "hcalDepth1OverEcal"),
+        #    method      = cms.string(legMethod + "hcalDepth2OverEcal"),
+        #    leadingOnly = cms.untracked.bool(True)
+        #),
+        #cms.PSet(
+        #    pluginType  = cms.string(pluginType),
+        #    src         = cms.InputTag(src),
+        #    tag         = cms.string(legName + "hcalDepth1OverEcalBc"),
+        #    method      = cms.string(legMethod + "hcalDepth2OverEcalBc"),
+        #    leadingOnly = cms.untracked.bool(True)
+        #)
+        )
+    return sharedV
+
 def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold',MC=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
     eventTree = cms.EDAnalyzer('EventTreeMaker',
@@ -1720,6 +1830,49 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
+
+
+def addEleEleEleSCEventTree(process, name,
+        src     = 'zzCleanedCandsAboveThreshold',
+        srcEEEE = 'zzCleanedCandsAboveThreshold',
+        srcEEMM = 'zzCleanedCandsAboveThreshold',
+        srcMMEE = 'zzCleanedCandsAboveThreshold',
+        srcMMMM = 'zzCleanedCandsAboveThreshold',
+        MC      = False):
+
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
+    
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag( cms.InputTag(src) ),
+
+            trigger = cms.PSet(
+                pluginType  = cms.string("TriggerFiller"),
+                src         = cms.InputTag("patTrigger"),
+                paths       = cms.vstring(TriggerPaths)
+                ),
+            PVs = cms.PSet(
+                pluginType  = cms.string("VertexSizeFiller"),
+                src         = cms.InputTag("primaryVertexFilter"),
+                tag         = cms.string("vertices")
+                ),
+            Rho = cms.PSet(
+                pluginType  = cms.string("EventWeightFiller"),
+                src         = cms.InputTag("kt6PFJets","rho"),
+                tag         = cms.string("rho")
+                ),
+            # ZZ Quantities
+            counters = countCommon(src,'PATEleEleEleSCQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+            zzShared = zzCommon(src,'PATEleEleEleSCQuadFiller'),
+            metShared = metCommon(src,'PATEleEleEleSCQuadFiller'),
+
+            z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleSCQuadFiller'),
+            z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleEleSCQuadFiller'),
+            z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATEleEleEleSCQuadFiller'),
+            z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATEleEleEleSCQuadFiller')
+            )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process, name + 'Path', p)
 
 
 

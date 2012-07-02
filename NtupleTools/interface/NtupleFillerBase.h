@@ -12,13 +12,13 @@
 
 class NtupleFillerBase {
 
- public:
-  NtupleFillerBase() {}
-  NtupleFillerBase(const edm::ParameterSet&,TTree*) {}
+    public:
+        NtupleFillerBase() {}
+        NtupleFillerBase(const edm::ParameterSet&,TTree*) {}
 
-  ~NtupleFillerBase(){}
+        ~NtupleFillerBase(){}
 
-  virtual void fill(const edm::Event& iEvent, const edm::EventSetup& iSetup)=0;
+        virtual void fill(const edm::Event& iEvent, const edm::EventSetup& iSetup)=0;
 };
 
 #include "FWCore/PluginManager/interface/PluginFactory.h"
