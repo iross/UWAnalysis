@@ -461,100 +461,6 @@ def jetOverloading(process,src = "selectedPatJets"):
 
 def electronOverloading(process,isdata,src):
 
-<<<<<<< HEAD
-  process.patElectrons.addElectronID     = cms.bool( True )
-  
-  ##Add CIC Electron ID
-  process.load("RecoEgamma.ElectronIdentification.cutsInCategoriesElectronIdentificationV06_DataTuning_cfi")
-
-  process.CICID = cms.Sequence(
-    process.eidVeryLoose+
-    process.eidLoose+
-    process.eidMedium+
-    process.eidTight+
-    process.eidSuperTight+
-    process.eidHyperTight1+
-    process.eidHyperTight2+
-    process.eidHyperTight3+
-    process.eidHyperTight4
-  )
-
-  process.patElectrons.electronIDSources = cms.PSet(
-    cicVeryLoose = cms.InputTag("eidVeryLoose"),
-    cicLoose = cms.InputTag("eidLoose"),
-    cicMedium = cms.InputTag("eidMedium"),
-    cicTight = cms.InputTag("eidTight"),
-    cicSuperTight = cms.InputTag("eidSuperTight"),
-    cicHyperTight1 = cms.InputTag("eidHyperTight1"),
-    cicHyperTight2 = cms.InputTag("eidHyperTight2"),
-    cicHyperTight3 = cms.InputTag("eidHyperTight3"),
-    cicHyperTight4 = cms.InputTag("eidHyperTight4")
-  )
-
-
-  process.electronsWP80 = cms.EDProducer('PATVBTFElectronEmbedder',
-                                             src             = cms.InputTag(src),
-                                             sigmaEtaEta     = cms.vdouble(0.01,0.03),
-                                             deltaEta        = cms.vdouble(0.004,0.007),
-                                             deltaPhi        = cms.vdouble(0.06,0.03),
-                                             hoE             = cms.vdouble(0.04,0.025),
-                                             id              = cms.string("wp80")
-
-  )                                             
-
-  process.electronsWP90 = cms.EDProducer('PATVBTFElectronEmbedder',
-                                             src             = cms.InputTag("electronsWP80"),
-                                             sigmaEtaEta     = cms.vdouble(0.01,0.03),
-                                             deltaEta        = cms.vdouble(0.007,0.009),
-                                             deltaPhi        = cms.vdouble(0.8,0.7),
-                                             hoE             = cms.vdouble(0.12,0.05),
-                                             id              = cms.string("wp90")
-  )   
-  
-  process.electronsWP95 = cms.EDProducer('PATVBTFElectronEmbedder',
-                                             src             = cms.InputTag("electronsWP90"),
-                                             sigmaEtaEta     = cms.vdouble(0.01,0.03),
-                                             deltaEta        = cms.vdouble(0.007,0.01),
-                                             deltaPhi        = cms.vdouble(0.8,0.7),
-                                             hoE             = cms.vdouble(0.15,0.07),
-                                             id              = cms.string("wp95")
-  )                                             
-
-
-  process.patRhoElectron = cms.EDProducer("ElectronRhoOverloader", 
-                                          src = cms.InputTag("electronsWP95"),
-                                          srcRho = cms.InputTag("kt6PFJets","rho")
-  )
-
-
-  process.mvaElectrons = cms.EDProducer('PATWWMVAElectronEmbedder',
-                                             src             = cms.InputTag("patRhoElectron"),
-                                             srcVertices     = cms.InputTag("primaryVertexFilter"),
-                                             ebHits          = cms.InputTag("reducedEcalRecHitsEB"),
-                                             eeHits          = cms.InputTag("reducedEcalRecHitsEE"),
-                                             id              = cms.string("WWMVAID"),
-                                             d0              = cms.double(0.045),
-                                             dz              = cms.double(0.2),
-                                             )        
-  process.convRejElectrons = cms.EDProducer('PATWWElectronEmbedder',
-                                             src             = cms.InputTag("mvaElectrons"),
-                                             srcVertices     = cms.InputTag("primaryVertexFilter"),
-                                             sigmaEtaEta     = cms.vdouble(0.01,0.03,0.01,0.03),
-                                             deltaEta        = cms.vdouble(0.004,0.005,0.004,0.007),
-                                             deltaPhi        = cms.vdouble(0.03,0.02,0.06,0.03),
-                                             hoE             = cms.vdouble(0.025,0.025,0.04,0.025),
-                                             id              = cms.string("WWID"),
-                                             fbrem           = cms.double(0.15),
-                                             EOP             = cms.double(0.95),
-                                             d0              = cms.double(0.045),
-                                             dz              = cms.double(0.2),
-                                             )        
-
-
-  process.electronOverloading=cms.Sequence(process.electronsWP80+process.electronsWP90+process.electronsWP95+process.patRhoElectron+process.mvaElectrons+process.convRejElectrons)
-  process.postElectronSequence=process.patDefaultSequence
-  process.patDefaultSequence = cms.Sequence(process.CICID*process.postElectronSequence*process.electronOverloading)
-=======
     process.patElectrons.addElectronID     = cms.bool( True )
 
     ##Add CIC Electron ID
@@ -647,8 +553,6 @@ def electronOverloading(process,isdata,src):
     process.electronOverloading=cms.Sequence(process.electronsWP80+process.electronsWP90+process.electronsWP95+process.patRhoElectron+process.mvaElectrons+process.convRejElectrons)
     process.postElectronSequence=process.patDefaultSequence
     process.patDefaultSequence = cms.Sequence(process.CICID*process.postElectronSequence*process.electronOverloading)
->>>>>>> origin/52x
-
 
 def muonOverloading(process,src):
     process.patPFMuonMatch = cms.EDProducer("PATPFMuonEmbedder", #Saves the case where muon is matched to a PF Muon
