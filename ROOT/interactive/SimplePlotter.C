@@ -247,6 +247,164 @@ public:
     return c;
   }
 
+  TCanvas* makeStackedPlotMC(TString var,TString selection,TString lumi, int bins, float min, float max,TString labelX,TString units,double xLabel,double yLabel,double yLabel2,double xLegend,double yLegend,bool log,double ymin,double ymax,TString postFix = "",bool ofl = false )
+  {
+	  THStack *hs = new THStack("hs","CMS Preliminary 2010");
+	  TLegend *l = new TLegend(xLegend, yLegend, xLegend + 0.2, yLegend + 0.2);
+
+	  float S		= 0.0;
+	  float B 		= 0.0;
+	  float MCErr	= 0.0;
+	  Double_t err	= 0.0;
+
+	  TH1F * signal = new TH1F("signal", "", bins, min, max);
+	  signal->Sumw2();
+
+	  std::vector<TH1F*> histos;
+
+	  for( unsigned int i = 0; i < trees_.size(); ++i)
+	  {
+		  TH1F *hh = new TH1F("hh","",bins,min,max);
+		  hh->Sumw2();
+
+		  if( types_[i] <= 0)
+		  {//MC
+			  trees_[i]->Draw(var + ">> hh", lumi + "*1000*" + preselection_[i] + "*("+selection+")", "goff");
+
+			  hh->SetLineWidth(2);
+			  hh->SetFillColor(colors_[i]);
+			  hh->SetFillStyle(styles_[i]);
+
+			  hh->SetLineColor(lcolors_[i]);
+			  hh->SetName("hh"+var);
+
+			  if( types_[i] == -1)
+			  {
+				  S 	+= hh->IntegralAndError(1,hh->GetNbinsX(),err);
+				  MCErr += err*err;
+
+				  signal->Add(hh);
+				  signal->SetLineWidth(2);
+				  signal->SetFillColor(colors_[i]);
+				  signal->SetFillStyle(styles_[i]);
+				  signal->SetLineColor(lcolors_[i]);
+
+				  if(units=="")
+					  signal->GetXaxis()->SetTitle(labelX);
+				  else
+					  signal->GetXaxis()->SetTitle(labelX+"["+units+"]");
+
+				  TString s("Events / ");
+				  char binW[200];
+				  sprintf(binW,"%1.1f",signal->GetBinWidth(1));
+
+				  s+=binW;
+				  s+=" "+units;
+				  signal->GetYaxis()->SetTitle(s);
+				  signal->GetYaxis()->SetRangeUser(ymin,ymax);
+
+			  }
+			  else if( types_[i] == 0)
+			  {
+				  B += hh->IntegralAndError(1,hh->GetNbinsX(),err);
+				  MCErr += err*err;
+			  }
+
+			  histos.push_back(hh);
+
+			  printf(" %s = %f\n",labels_[i].Data(),hh->Integral());
+		  }
+	  }
+	  for (unsigned int i = 0; i < histos.size(); ++i)
+	  {
+		  if (ofl)
+		  {
+			  histos[i]->SetBinContent( bins, histos[i]->GetBinContent(bins) + histos[i]->GetBinContent(bins+1) );
+			  histos[i]->SetBinContent( bins + 1, 0.0 );
+		  }
+		  signal->SetBinContent(bins,signal->GetBinContent(bins) + signal->GetBinContent(bins + 1) );
+		  signal->SetBinContent( bins + 1, 0.0);
+
+
+		  if (types_[i] == 0)
+			  hs->Add(histos[i]);
+
+		  //make the legend here 
+		  if (labels_[types_.size()-1-i] != "")
+		  {
+			  if (types_[types_.size()-1-i] <= 0)
+				  l->AddEntry(histos[labels_.size()-1-i],labels_[labels_.size()-1-i],"f");
+			  else
+				  l->AddEntry(histos[labels_.size()-1-i],labels_[labels_.size()-1-i],"p");
+		  }						
+	  }
+
+	  l->SetFillColor(kWhite);
+	  l->SetBorderSize(0);
+
+	  TCanvas *c;
+
+	  if(log)
+		  c = new TCanvas(var + "LOG" + postFix, var + "LOG" + postFix, 600, 600);
+	  else
+		  c = new TCanvas(var + postFix, var + postFix, 600, 600);
+
+	  c->cd();
+	  if (log)
+		  c->SetLogy();
+
+	  for(unsigned int i = 0; i < trees_.size(); ++i)
+		  if(types_[i] == -1)//DATA
+		  {
+			  if(units=="")
+				  histos[i]->GetXaxis()->SetTitle(labelX);
+			  else
+				  histos[i]->GetXaxis()->SetTitle(labelX+"["+units+"]");
+
+			  TString s("Events / ");
+			  char binW[200];
+			  sprintf(binW,"%1.1f",histos[i]->GetBinWidth(1));
+
+			  s+=binW;
+			  s+=" "+units;
+              histos[i]->SetMarkerColor(0);
+			  histos[i]->GetYaxis()->SetTitle(s);
+			  histos[i]->Draw();
+			  histos[i]->GetYaxis()->SetRangeUser(ymin,ymax);
+		  }
+
+
+	  printf("C\n");  
+
+	  hs->Add(signal);
+	  hs->Draw("A,HIST,SAME");
+
+	  //hs->Draw("A,HIST");
+
+
+	  //TLatex *l1 = new TLatex(xLabel,yLabel,"CMS Preliminary 2011");
+	  //l1->SetTextSize(0.04);
+	  //l1->Draw();
+
+	  TLatex *l2 = new TLatex(xLabel,yLabel2,"L_{int} = "+lumi+" fb^{-1}, #sqrt{s} = 8 TeV");
+	  l2->SetTextSize(0.04);
+	  l2->Draw();
+
+	  l->Draw();
+
+	  printf("S = %f \n",S);
+	  printf("B = %f \n",B);
+	  printf("MC = %f +-%f\n",S+B,sqrt(MCErr));
+	  printf("Purity = S/(S+B) = %f\n",S/(S+B));
+	  printf("Significance1 = S/SQRT(S+B) = %f\n",S/sqrt(S+B));
+	  printf("Significance2 = S/SQRT(B) = %f\n",S/sqrt(B));
+
+	  c->RedrawAxis();
+
+	  return c;
+  }
+
+
 
   void   extractPU(TString selection, int bins, float min, float max)
   {
