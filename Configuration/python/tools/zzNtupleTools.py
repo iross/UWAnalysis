@@ -1876,6 +1876,49 @@ def addEleEleEleSCEventTree(process, name,
 
 
 
+def addMuMuEleSCEventTree(process, name,
+        src     = 'zzCleanedCandsAboveThreshold',
+        srcEEEE = 'zzCleanedCandsAboveThreshold',
+        srcEEMM = 'zzCleanedCandsAboveThreshold',
+        srcMMEE = 'zzCleanedCandsAboveThreshold',
+        srcMMMM = 'zzCleanedCandsAboveThreshold',
+        MC      = False):
+    
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
+
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag( cms.InputTag(src) ),
+
+            trigger = cms.PSet(
+                pluginType  = cms.string("TriggerFiller"),
+                src         = cms.InputTag("patTrigger"),
+                paths       = cms.vstring(TriggerPaths)
+                ),
+            PVs = cms.PSet(
+                pluginType  = cms.string("VertexSizeFiller"),
+                src         = cms.InputTag("primaryVertexFilter"),
+                tag         = cms.string("vertices")
+                ),
+            Rho = cms.PSet(
+                pluginType  = cms.string("EventWeightFiller"),
+                src         = cms.InputTag("kt6PFJets","rho"),
+                tag         = cms.string("rho")
+                ),
+            # ZZ Quantities
+            counters = countCommon(src,'PATMuMuEleSCQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+            zzShared = zzCommon(src,'PATMuMuEleSCQuadFiller'),
+            metShared = metCommon(src,'PATMuMuEleSCQuadFiller'),
+
+            z1l1 =  muCommon(src,'z1l1','leg1.leg1.','PATMuMuEleSCQuadFiller'),
+            z1l2 =  muCommon(src,'z1l2','leg1.leg2.','PATMuMuEleSCQuadFiller'),
+            z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATMuMuEleSCQuadFiller'),
+            z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATMuMuEleSCQuadFiller')
+            )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process,name + 'Path',p)
+
+
 def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
     eventTree = cms.EDAnalyzer('EventTreeMaker',
@@ -2023,4 +2066,3 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
-

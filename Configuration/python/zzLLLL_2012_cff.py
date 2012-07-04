@@ -382,17 +382,17 @@ EEESanalysisConfigurator = CutSequenceProducer(
 EEESanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','EEES')
 EEESanalysisConfigurator.addDiCandidateModule('EEESdiElectrons','PATElePairProducer', 'smearedElectronsEEES','smearedElectronsEEES','smearedMETEEES','smearedJetsEEES',1,genParticles='genDaughters')
 EEESanalysisConfigurator.addSelector('EEESosDiElectrons','PATElePairSelector','charge == 0 && mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && leg2.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.4 && abs(leg2.eta()) < 2.4','EEESDiEleCreation',1)
-#EEESanalysisConfigurator.addSelector('EEEMosDiMuonsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.25 ','EEEMDiEleIso',1)
 
 EEESanalysisConfigurator.addDiCandidateModule('EEESeleSC','PATEleSCPairProducer','smearedElectronsEEES','selectedPatPhotons','smearedMETEEES','smearedJetsEEES',1,9999,text = 'EEESAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
 
 EEESanalysisConfigurator.addDiCandidateModule('EEESzzCands','PATEleEleEleSCQuadProducer','EEESosDiElectrons','EEESeleSC','smearedMETEEES','smearedJetsEEES',1,9999,text='EEESAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
 EEESanalysisConfigurator.addCrossCleanerModule('EEESzzCleanedCands','PATEleEleEleSCQuadCrossCleaner',1,9999,text='EEESAtLeastOneZZCleanedCandidate',dR = 0.1)
 
-EEESanalysisConfigurator.addSelector('EEESzzEleIso','PATEleEleEleSCQuadSelector','(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1.photonIso()-leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt<0.25','EEESEleIso')
+EEESanalysisConfigurator.addSelector('EEESzzEleIso','PATEleEleEleSCQuadSelector','(leg2.leg1.chargedHadronIso() + max(0.0,leg2.leg1.neutralHadronIso() + leg2.leg1.photonIso() - leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt < 0.25','EEESEleIso')
 
 EEESanalysisConfigurator.addSorter('EEESzzCleanedCandsSortedByZMass','PATEleEleEleSCQuadSorterByZMass')
 
+EEESanalysisConfigurator.addSelector('EEESzzCleanedCandsAboveThreshold','PATEleEleEleSCQuadSelector','leg1().leg1().pt() > 20 && leg1().leg2().pt() > 10 && leg2().leg1().pt() > 10 && leg2().leg2().pt() > 10 && abs(leg2.leg1.eta())<2.5 && leg2.leg2.isEE()','EEESAtLeastOneZZCandOverThresholds')
 #EEEManalysisConfigurator.addDiCandidateModule('EEEMeleMu','PATEleMuPairProducer', 'smearedElectronsEEEM','smearedMuonsEEEM','smearedMETEEEM','smearedJetsEEEM',1,9999,text = 'EEEMAtLeastOneMuTau',leadingObjectsOnly = False,dR = 0.5,recoMode = "",genParticles='genDaughters')
 #EEEManalysisConfigurator.addDiCandidateModule('EEEMzzCands','PATEleEleEleMuQuadProducer','EEEMosDiElectrons','EEEMeleMu','smearedMETEEEM','smearedJetsEEEM',1,9999,text='EEEMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.005,recoMode ="",genParticles='genDaughters')
 #EEEManalysisConfigurator.addCrossCleanerModule('EEEMzzCleanedCands','PATEleEleEleMuQuadCrossCleaner',1,9999,text='EEEMAtLeastOneZZCleanedCandidate',dR = 0.1)
@@ -413,5 +413,31 @@ EEESanalysisConfigurator.addSorter('EEESzzCleanedCandsSortedByZMass','PATEleEleE
 EEESselectionSequence = EEESanalysisConfigurator.returnSequence()
 
 
+
+######################__________________________________MMES_____________________________________##############################
+
+MMESanalysisConfigurator = CutSequenceProducer(
+        initialCounter  = 'initialEventsMMES',
+        pyModuleName = __name__,
+        pyNameSpace  = locals()
+        )
+MMESanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','MMES')
+
+MMESanalysisConfigurator.addDiCandidateModule('MMESdiMuons','PATMuPairProducer', 'smearedMuonsMMES','smearedMuonsMMES','smearedMETMMES','smearedJetsMMES',1,genParticles='genDaughters')
+MMESanalysisConfigurator.addSelector('MMESosDiMuons','PATMuPairSelector','mass>40 && charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMESDiMuonCreation',1)
+MMESanalysisConfigurator.addSelector('MMESosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.25 ','MMESDiMuonIso',1)
+
+MMESanalysisConfigurator.addDiCandidateModule('MMESeleSC','PATEleSCPairProducer','smearedElectronsMMES','selectedPatPhotons','smearedMETMMES','smearedJetsMMES',1,9999,text = 'MMESAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
+
+MMESanalysisConfigurator.addDiCandidateModule('MMESzzCands','PATMuMuEleSCQuadProducer','MMESosDiMuonsIso','MMESeleSC','smearedMETMMES','smearedJetsMMES',1,9999,text='MMESAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
+MMESanalysisConfigurator.addCrossCleanerModule('MMESzzCleanedCands','PATMuMuEleSCQuadCrossCleaner',1,9999,text='MMESAtLeastOneZZCleanedCandidate',dR = 0.1)
+
+MMESanalysisConfigurator.addSelector('MMESzzEleIso','PATMuMuEleSCQuadSelector','(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1.photonIso()-leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt<0.25','MMESEleIso')
+
+MMESanalysisConfigurator.addSorter('MMESzzCleanedCandsSortedByZMass','PATMuMuEleSCQuadSorterByZMass')
+
+MMESanalysisConfigurator.addSelector('MMESzzCleanedCandsAboveThreshold','PATMuMuEleSCQuadSelector','leg1().leg1().pt() > 20 && leg1().leg2().pt() > 10 && leg2().leg1().pt() > 10 && leg2().leg2().pt() > 10 && abs(leg2.leg1.eta())<2.5 && leg2.leg2.isEE()','MMESAtLeastOneZZCandOverThresholds')
+
+MMESselectionSequence = MMESanalysisConfigurator.returnSequence()
 
 ######################_______________________________EndOfConfigurators__________________________################################

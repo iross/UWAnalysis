@@ -15,6 +15,7 @@ typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATMuTauPair> PATE
 typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATElecMuPair> PATEleEleEleMuQuadCrossCleaner;
 typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATMuPair> PATEleEleMuMuQuadCrossCleaner;
 typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATElecPair, PATElecSCPair> PATEleEleEleSCQuadCrossCleaner;
+typedef CompositePtrCandidateT1T2MEtCrossCleaner<PATMuPair, PATElecSCPair> PATMuMuEleSCQuadCrossCleaner;
 
 #include "FWCore/Framework/interface/MakerMacros.h"
 
@@ -31,3 +32,4 @@ DEFINE_FWK_MODULE(PATEleEleMuTauQuadCrossCleaner);
 DEFINE_FWK_MODULE(PATEleEleEleMuQuadCrossCleaner);
 DEFINE_FWK_MODULE(PATEleEleMuMuQuadCrossCleaner);
 DEFINE_FWK_MODULE(PATEleEleEleSCQuadCrossCleaner);
+DEFINE_FWK_MODULE(PATMuMuEleSCQuadCrossCleaner);

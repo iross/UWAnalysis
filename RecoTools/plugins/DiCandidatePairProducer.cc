@@ -30,6 +30,7 @@ typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATMuTauPair> PATEleEle
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATElecMuPair> PATEleEleEleMuQuadProducer;
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATMuPair> PATEleEleMuMuQuadProducer;
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,PATElecSCPair> PATEleEleEleSCQuadProducer;
+typedef CompositePtrCandidateT1T2MEtProducer<PATMuPair,PATElecSCPair> PATMuMuEleSCQuadProducer;
 
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,pat::Electron> PATEleEleEleTriProducer;
 typedef CompositePtrCandidateT1T2MEtProducer<PATElecPair,pat::Muon> PATEleEleMuTriProducer;
@@ -63,6 +64,7 @@ DEFINE_FWK_MODULE(PATEleEleMuTauQuadProducer);
 DEFINE_FWK_MODULE(PATEleEleEleMuQuadProducer);
 DEFINE_FWK_MODULE(PATEleEleMuMuQuadProducer);
 DEFINE_FWK_MODULE(PATEleEleEleSCQuadProducer);
+DEFINE_FWK_MODULE(PATMuMuEleSCQuadProducer);
 
 DEFINE_FWK_MODULE(PATEleEleEleTriProducer);
 DEFINE_FWK_MODULE(PATEleEleMuTriProducer);

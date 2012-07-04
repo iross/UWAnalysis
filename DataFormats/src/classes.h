@@ -323,6 +323,16 @@ namespace {
         edm::RefProd<PATEleEleEleSCQuadCollection> dummyPATEleEleEleSCQuadRefProd;
         edm::Ptr<PATEleEleEleSCQuad> dummyPATEleEleEleSCQuadPtr;
 
+        /// create dictionaries for PATMuMuEleSCQuad objects
+        PATMuMuEleSCQuad dummyPATMuMuEleSCQuad;
+        edm::Wrapper<PATMuMuEleSCQuad> dummyPATMuMuEleSCQuadWrapper;
+        PATMuMuEleSCQuadCollection dummyPATMuMuEleSCQuadCollection;
+        edm::Wrapper<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadCollectionWrapper;
+        edm::Ref<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadRef;
+        edm::RefVector<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadRefVector;
+        edm::RefProd<PATMuMuEleSCQuadCollection> dummyPATMuMuEleSCQuadRefProd;
+        edm::Ptr<PATMuMuEleSCQuad> dummyPATMuMuEleSCQuadPtr;
+
         /// create dictionaries for PATEleEleEleTri objects                                                                                                                              
         PATEleEleEleTri dummyPATEleEleEleTri;
         edm::Wrapper<PATEleEleEleTri> dummyPATEleEleEleTriWrapper;

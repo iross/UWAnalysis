@@ -36,6 +36,7 @@ typedef std::vector<PATEleEleMuTauQuad> PATEleEleMuTauQuadCollection;
 typedef std::vector<PATEleEleEleMuQuad> PATEleEleEleMuQuadCollection;
 typedef std::vector<PATEleEleMuMuQuad> PATEleEleMuMuQuadCollection;
 typedef std::vector<PATEleEleEleSCQuad> PATEleEleEleSCQuadCollection;
+typedef std::vector<PATMuMuEleSCQuad> PATMuMuEleSCQuadCollection;
 
 typedef std::vector<PATEleEleEleTri> PATEleEleEleTriCollection;
 typedef std::vector<PATEleEleMuTri> PATEleEleMuTriCollection;
@@ -69,6 +70,7 @@ typedef edm::Ref<PATEleEleMuTauQuadCollection> PATEleEleMuTauQuadRef;
 typedef edm::Ref<PATEleEleEleMuQuadCollection> PATEleEleEleMuQuadRef;
 typedef edm::Ref<PATEleEleMuMuQuadCollection> PATEleEleMuMuQuadRef;
 typedef edm::Ref<PATEleEleEleSCQuadCollection> PATEleEleEleSCQuadRef;
+typedef edm::Ref<PATMuMuEleSCQuadCollection> PATMuMuEleSCQuadRef;
 
 typedef edm::Ref<PATEleEleEleTriCollection> PATEleEleEleTriRef;
 typedef edm::Ref<PATEleEleMuTriCollection> PATEleEleMuTriRef;
@@ -102,6 +104,7 @@ typedef edm::RefProd<PATEleEleMuTauQuadCollection> PATEleEleMuTauQuadRefProd;
 typedef edm::RefProd<PATEleEleEleMuQuadCollection> PATEleEleEleMuQuadRefProd;
 typedef edm::RefProd<PATEleEleMuMuQuadCollection> PATEleEleMuMuQuadRefProd;
 typedef edm::RefProd<PATEleEleEleSCQuadCollection> PATEleEleEleSCQuadRefProd;
+typedef edm::RefProd<PATMuMuEleSCQuadCollection> PATMuMuEleSCQuadRefProd;
 
 typedef edm::RefProd<PATEleEleEleTriCollection> PATEleEleEleTriRefProd;
 typedef edm::RefProd<PATEleEleMuTriCollection> PATEleEleMuTriRefProd;
@@ -134,6 +137,7 @@ typedef edm::RefVector<PATEleEleMuTauQuadCollection> PATEleEleMuTauQuadRefVector
 typedef edm::RefVector<PATEleEleEleMuQuadCollection> PATEleEleEleMuQuadRefVector;
 typedef edm::RefVector<PATEleEleMuMuQuadCollection> PATEleEleMuMuQuadRefVector;
 typedef edm::RefVector<PATEleEleEleSCQuadCollection> PATEleEleEleSCQuadRefVector;
+typedef edm::RefVector<PATMuMuEleSCQuadCollection> PATMuMuEleSCQuadRefVector;
 
 typedef edm::RefVector<PATEleEleEleTriCollection> PATEleEleEleTriRefVector;
 typedef edm::RefVector<PATEleEleMuTriCollection> PATEleEleMuTriRefVector;
