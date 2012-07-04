@@ -74,6 +74,7 @@ process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
 process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
 process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
 process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
+process.eventSelectionMMES = cms.Path(process.MMESselectionSequence)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
 addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
@@ -119,6 +120,10 @@ from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTre
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinalTest','EEEEFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinalTest','EEEEFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
 #addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
@@ -130,24 +135,30 @@ addEleEleEleSCEventTree(process,'eleEleEleSCEventTree','EEESzzCleanedCands','EEE
 addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinal','EEESFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinalTest','EEESFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleSCEventTree
+addMuMuEleSCEventTree(process,'muMuEleSCEventTree','MMESzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addMuMuEleSCEventTree(process,'muMuEleSCEventTreeFinal','MMESFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addMuMuEleSCEventTree(process,'muMuEleSCEventTreeFinalTest','MMESFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addGenLevel
 #addGenLevel(process,'GenLevelCandidates','genParticles',MC=True)
 
-process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
-process.genParticles = cms.Path( process.genlevel )
+#process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
+#process.genParticles = cms.Path( process.genlevel )
 
 
 #Add event counter
-addEventSummary(process,False,'MMMT','eventSelectionMMMT')
-addEventSummary(process,False,'MMTT','eventSelectionMMTT')
-addEventSummary(process,False,'MMET','eventSelectionMMET')
-addEventSummary(process,False,'MMEM','eventSelectionMMEM')
-addEventSummary(process,False,'MMEE','eventSelectionMMEE')
-addEventSummary(process,False,'MMMM','eventSelectionMMMM')
-addEventSummary(process,False,'EEMT','eventSelectionEEMT')
-addEventSummary(process,False,'EEET','eventSelectionEEET')
-addEventSummary(process,False,'EETT','eventSelectionEETT')
-addEventSummary(process,False,'EEEM','eventSelectionEEEM')
-addEventSummary(process,False,'EEEE','eventSelectionEEEE')
-#addEventSummary(process,False,'EEMM','eventSelectionEEMM')
-addEventSummary(process,False,'EEES','eventSelectionEEES')
+addEventSummary(process,True,'MMMT','eventSelectionMMMT')
+addEventSummary(process,True,'MMTT','eventSelectionMMTT')
+addEventSummary(process,True,'MMET','eventSelectionMMET')
+addEventSummary(process,True,'MMEM','eventSelectionMMEM')
+addEventSummary(process,True,'MMEE','eventSelectionMMEE')
+addEventSummary(process,True,'MMMM','eventSelectionMMMM')
+addEventSummary(process,True,'EEMT','eventSelectionEEMT')
+addEventSummary(process,True,'EEET','eventSelectionEEET')
+addEventSummary(process,True,'EETT','eventSelectionEETT')
+addEventSummary(process,True,'EEEM','eventSelectionEEEM')
+addEventSummary(process,True,'EEEE','eventSelectionEEEE')
+#addEventSummary(process,True,'EEMM','eventSelectionEEMM')
+addEventSummary(process,True,'EEES','eventSelectionEEES')
+addEventSummary(process,True,'MMES','eventSelectionMMES')
