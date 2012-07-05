@@ -7,7 +7,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'START52_V9::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(100)
+        input = cms.untracked.int32(300)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -16,8 +16,9 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
 #'file:/scratch/iross/zz4l_sync_summer12.root'
+'file:/scratch/iross/testwFSR_2.root',
 #'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-06-08-8TeV-PatTuple-4495432/0651de2bb07022ffcd3866fd2307fdf9/output_94_1_CC6.root',
-'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-06-08-8TeV-PatTuple-4495432/0651de2bb07022ffcd3866fd2307fdf9/output_64_1_uXI.root'
+#'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-06-08-8TeV-PatTuple-4495432/0651de2bb07022ffcd3866fd2307fdf9/output_64_1_uXI.root'
 #'file:/scratch/iross/zz4l_sync_summer12_vetoChargedOnlyEndcap.root'
 #		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
 #			'file:/scratch/iross/zz4l_sync_fall11_take2.root'
@@ -80,7 +81,7 @@ process.eventSelectionMMM = cms.Path(process.MMMSeq)
 process.eventSelectionMME = cms.Path(process.MMESeq)
 process.eventSelectionEEM = cms.Path(process.EEMSeq)
 process.eventSelectionEEE = cms.Path(process.EEESeq)
-process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
+#process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
 addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
@@ -143,16 +144,16 @@ addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
 addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID')
 
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleSCEventTree
-addEleEleEleSCEventTree(process,'eleEleEleSCEventTree','EEESzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
-addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinal','EEESFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
-addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinalTest','EEESFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleSCEventTree
+#addEleEleEleSCEventTree(process,'eleEleEleSCEventTree','EEESzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+#addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinal','EEESFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+#addEleEleEleSCEventTree(process,'eleEleEleSCEventTreeFinalTest','EEESFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addGenLevel
 #addGenLevel(process,'GenLevelCandidates','genParticles',MC=True)
 
-process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
-process.genParticles = cms.Path( process.genlevel )
+#process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
+#process.genParticles = cms.Path( process.genlevel )
 
 
 #Add event counter
@@ -168,4 +169,4 @@ addEventSummary(process,True,'EETT','eventSelectionEETT')
 addEventSummary(process,True,'EEEM','eventSelectionEEEM')
 addEventSummary(process,True,'EEEE','eventSelectionEEEE')
 addEventSummary(process,True,'EEMM','eventSelectionEEMM')
-addEventSummary(process,False,'EEES','eventSelectionEEES')
+#addEventSummary(process,False,'EEES','eventSelectionEEES')

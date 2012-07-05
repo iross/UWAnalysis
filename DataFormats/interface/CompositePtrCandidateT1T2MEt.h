@@ -134,7 +134,26 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     // MET projected along the direction of the nearest lepton if within pi/2 otherwise just full MET
     double projMET() const { return projMET_; }
 
+    //FSR variables
+    double phoPt() const {return phoPt_;}
+    double phoEta() const {return phoEta_;}
+    double phoPhi() const {return phoPhi_;}
+    double lepDR() const {return lepDR_;}
+    double lepPt() const {return lepPt_;}
+    double leg1PhotonIso() const {return leg1PhotonIso_;}
+    double leg2PhotonIso() const {return leg2PhotonIso_;}
+    const reco::Candidate::LorentzVector& noPhoP4() const { return noPhoP4_;}
 
+    void setFSRVariables(double phoPt, double phoEta, double phoPhi, double lepDR, double lepPt, reco::Candidate::LorentzVector noPhoP4, double leg1PhotonIso, double leg2PhotonIso){
+       phoPt_ = phoPt;
+       phoEta_ = phoEta;
+       phoPhi_ = phoPhi;
+       lepDR_ = lepDR;
+       lepPt_ = lepPt;
+       noPhoP4_ = noPhoP4;
+       leg2PhotonIso_ = leg1PhotonIso;
+       leg2PhotonIso_ = leg2PhotonIso;
+    }
 
     //Vertex variables
 
@@ -360,6 +379,16 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double pZetaVis_;
     /// Projected MET Variable
     double projMET_;
+
+    //FSR vars
+    double phoPt_;
+    double phoEta_; 
+    double phoPhi_;
+    double lepPt_;
+    double lepDR_;
+    reco::Candidate::LorentzVector noPhoP4_;
+    double leg1PhotonIso_;
+    double leg2PhotonIso_;
 
     /// Vertex variables
     double dca_;

@@ -363,6 +363,45 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,counterName,counter)
                    self.sequence*=counter
 
+    def addFSRRecovery(self,moduleName,moduleType,src,gsrc,esrc="cleanPatElectrons",msrc="cleanPatMuons",text='',min = 1,max=1000):
+               recovered  = cms.EDProducer(moduleType)
+               recovered.src  = cms.InputTag(src)
+               recovered.gSrc  = cms.InputTag(gsrc)
+               recovered.eSrc  = cms.InputTag(esrc)
+               recovered.mSrc  = cms.InputTag(msrc)
+               pyModule = sys.modules[self.pyModuleName[0]]
+               if pyModule is None:
+                 raise ValueError("'pyModuleName' Parameter invalid")
+               setattr(pyModule,moduleName,recovered)
+               self.sequence*=recovered
+               self.input=moduleName
+
+               #Create the Filter
+               filter  = cms.EDFilter("PATCandViewCountFilter")
+               filter.minNumber = cms.uint32(min)
+               filter.maxNumber = cms.uint32(max)
+               filter.src = cms.InputTag(moduleName)
+               filterName = moduleName+'Filter'
+               filter.setLabel(filterName)
+               #Register the filter in the namespace
+               pyModule = sys.modules[self.pyModuleName[0]]
+               if pyModule is None:
+                 raise ValueError("'pyModuleName' Parameter invalid")
+               setattr(pyModule,filterName,filter)
+               self.sequence*=filter
+
+              #now the counter
+               if text is not '':
+                   counter  = cms.EDProducer("EventCounter")
+                   counter.name=cms.string(text)
+                   counterName = moduleName+'Counter'
+                   counter.setLabel(counterName)
+                   pyModule = sys.modules[self.pyModuleName[0]]
+                   if pyModule is None:
+                       raise ValueError("'pyModuleName' Parameter invalid")
+                   setattr(pyModule,counterName,counter)
+                   self.sequence*=counter
+
 ################################################################################
 #####     NSV fit configuration                                            #####
 ################################################################################
