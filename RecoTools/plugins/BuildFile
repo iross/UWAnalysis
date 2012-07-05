@@ -10,6 +10,7 @@
   <use name=DataFormats/MuonReco>
   <use name=DataFormats/PatCandidates>
   <use name=DataFormats/EgammaCandidates>
+  <use name=DataFormats/ParticleFlowCandidate>
   <use name=RecoEgamma/EgammaTools>
   <use name=PhysicsTools/IsolationAlgos>
   <use name=PhysicsTools/PatUtils>
