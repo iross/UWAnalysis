@@ -151,7 +151,7 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
        lepDR_ = lepDR;
        lepPt_ = lepPt;
        noPhoP4_ = noPhoP4;
-       leg2PhotonIso_ = leg1PhotonIso;
+       leg1PhotonIso_ = leg1PhotonIso;
        leg2PhotonIso_ = leg2PhotonIso;
     }
 
