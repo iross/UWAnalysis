@@ -1,4 +1,3 @@
-
 import FWCore.ParameterSet.Config as cms
 from CommonTools.ParticleFlow.Isolation.tools_cfi import *
 
@@ -109,10 +108,10 @@ def defaultReconstructionSKIM(process):
           process.patCandidateSummary
           )
 
-    process.recoPAT = cms.Sequence(process.ak5PFJets+process.PFTau+process.patDefaultSequence)
-
     #remove MC matching
-    removeMCMatching(process,['All'],"",False)
+    removeMCMatching(process, ['All'], outputModules = [])
+
+    process.recoPAT = cms.Sequence(process.ak5PFJets+process.PFTau+process.patDefaultSequence)
 
     #HPS
     switchToPFTauHPS(process)
@@ -121,8 +120,6 @@ def defaultReconstructionSKIM(process):
     switchToElePFIsolation(process,'gsfElectrons')
     switchToMuPFIsolation(process,'muons')
     runPFNoPileUp(process)
-
-
 
 def defaultReconstruction(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2']):
     #Make PAT
@@ -602,13 +599,13 @@ def muonOverloading(process,src):
 
 
 def runPFNoPileUp(process):
-    process.load("CommonTools.ParticleFlow.ParticleSelectors.pfCandsForIsolation_cff")
+    process.load("CommonTools.ParticleFlow.pfParticleSelection_cff")
     process.pfPileUpCandidates = cms.EDProducer(
             "TPPFCandidatesOnPFCandidates",
             enable =  cms.bool( True ),
             verbose = cms.untracked.bool( False ),
             name = cms.untracked.string("pileUpCandidates"),
-            topCollection = cms.InputTag("pfNoPileUp"),
+            topCollection = cms.InputTag("pfNoPileUpIso"),
             bottomCollection = cms.InputTag("particleFlow"),
             )
 
@@ -626,23 +623,22 @@ def runPFNoPileUp(process):
             pdgId = cms.vint32(211,-211,321,-321,999211,2212,-2212,11,-11,13,-13)
             )
     process.pfAllNeutrals = cms.EDFilter("PdgIdPFCandidateSelector",
-            src = cms.InputTag("pfNoPileUp"),
+            src = cms.InputTag("pfNoPileUpIso"),
             pdgId = cms.vint32(111,130,310,2112,22)
             )
 
-    process.pfAllElectrons.src = cms.InputTag("pfNoPileUp")
+    process.pfAllElectrons.src = cms.InputTag("pfNoPileUpIso")
 
     process.pfAllMuons = cms.EDFilter("PdgIdPFCandidateSelector",
-            src = cms.InputTag("pfNoPileUp"),
+            src = cms.InputTag("pfNoPileUpIso"),
             pdgId = cms.vint32(13,-13)
             )
 
     process.pfPostSequence = cms.Sequence(
-            process.pfCandsForIsolationSequence+
+            process.pfParticleSelectionSequence+
             process.pfAllMuons+
             process.pfPileUpCandidates+
-            process.pileUpHadrons+
-            process.pfAllNeutrals
+            process.pileUpHadrons
             )      
 
     process.patPreIsoSeq = process.pfPostSequence
@@ -653,7 +649,7 @@ def switchToMuPFIsolation(process,muons):
 
     ###Muon Isolation
 
-    process.muPFIsoDepositAll     = isoDepositReplace(muons,cms.InputTag("pfNoPileUp"))
+    process.muPFIsoDepositAll     = isoDepositReplace(muons,cms.InputTag("pfNoPileUpIso"))
     process.muPFIsoDepositCharged = isoDepositReplace(muons,"pfAllChargedHadrons")
     process.muPFIsoDepositNeutral = isoDepositReplace(muons,"pfAllNeutralHadrons")
     process.muPFIsoDepositGamma = isoDepositReplace(muons,"pfAllPhotons")
@@ -777,7 +773,7 @@ def switchToMuPFIsolation(process,muons):
 def switchToElePFIsolation(process,electrons):
     ###Electron Isolation
 
-    process.elePFIsoDepositAll     = isoDepositReplace(electrons,cms.InputTag("pfNoPileUp"))
+    process.elePFIsoDepositAll     = isoDepositReplace(electrons,cms.InputTag("pfNoPileUpIso"))
     process.elePFIsoDepositCharged = isoDepositReplace(electrons,"pfAllChargedHadrons")
     process.elePFIsoDepositNeutral = isoDepositReplace(electrons,"pfAllNeutralHadrons")
     process.elePFIsoDepositGamma = isoDepositReplace(electrons,"pfAllPhotons")
@@ -903,6 +899,10 @@ def switchToElePFIsolation(process,electrons):
                 cms.InputTag("elePFIsoValueGammaVeto")
                 )
             )
+
+    #52x requires PFId and NoPFId values definied. Quick and dirty workaround IAR 06.Jul.2012
+    process.patElectrons.isolationValuesNoPFId = process.patElectrons.isolationValues.clone()
+
     process.patEleIsoSeq = process.patDefaultSequence
     process.patDefaultSequence = cms.Sequence(process.eleisolationPrePat*process.patEleIsoSeq)
 
