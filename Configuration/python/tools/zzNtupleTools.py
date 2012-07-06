@@ -1178,6 +1178,34 @@ def SCCommon(src,legName,legMethod,pluginType):
         cms.PSet(
             pluginType  = cms.string(pluginType),
             src         = cms.InputTag(src),
+            tag         = cms.string(legName + "ecalRecHitSumEtDR03"),
+            method      = cms.string(legMethod + "ecalRecHitSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "hcalTowerSumEtConeDR03"),
+            method      = cms.string(legMethod + "hcalTowerSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "hcalDepth1TowerSumEtConeDR03"),
+            method      = cms.string(legMethod + "hcalDepth1TowerSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "hcalDepth2TowerSumEtConeDR03"),
+            method      = cms.string(legMethod + "hcalDepth2TowerSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
             tag         = cms.string(legName + "isEE"),
             method      = cms.string(legMethod + "isEE"),
             leadingOnly = cms.untracked.bool(True)
