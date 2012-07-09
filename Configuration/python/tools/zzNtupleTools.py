@@ -1426,7 +1426,7 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
         ),
         #ZZ quantities
         zzShared = zzCommon(src,'PATMuMuMuMuQuadFiller'),
-        fsrShared = fsrCommon(src, 'PATMuMuTauTauQuadFiller'),
+        fsrShared = fsrCommon(src, 'PATMuMuMuMuQuadFiller'),
         metShared = metCommon(src,'PATMuMuMuMuQuadFiller'),
         #genShared = genCommon(src,'PATMuMuMuMuQuadFiller'),
         counters = countCommon(src,'PATMuMuMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
