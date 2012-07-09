@@ -155,6 +155,29 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
        leg2PhotonIso_ = leg2PhotonIso;
     }
 
+    //ZZ system angles
+    double costheta1() const{ return costheta1_;}
+    double costheta2() const{ return costheta2_;}
+    double Phi() const{ return Phi_;}
+    double costhetaStar() const{ return costhetaStar_;}
+    double phiStar1() const{ return phiStar1_;}
+    double phiStar2() const{ return phiStar2_;}
+    double phiStar12() const{ return phiStar12_;}
+    double phi1() const{ return phi1_;}
+    double phi2() const{ return phi2_;}
+
+    void setAngles(double costheta1, double costheta2, double phi, double costhetastar, double phistar1, double phistar2, double phistar12, double phi1, double phi2){
+        costheta1_ = costheta1;
+        costheta2_ = costheta2;
+        Phi_ = phi;
+        costhetaStar_ = costhetastar;
+        phiStar1_ = phistar1;
+        phiStar2_ = phistar2;
+        phiStar12_ = phistar12;
+        phi1_ = phi1;
+        phi2_ = phi2;
+    }
+
     //Vertex variables
 
     //Z difference of the first and second leg after propagation of tracks to the beamspot
@@ -389,6 +412,17 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     reco::Candidate::LorentzVector noPhoP4_;
     double leg1PhotonIso_;
     double leg2PhotonIso_;
+
+    //Angles
+    double costheta1_;
+    double costheta2_; 
+    double Phi_;
+    double costhetaStar_; 
+    double phiStar1_;
+    double phiStar2_;
+    double phiStar12_; 
+    double phi1_;
+    double phi2_;
 
     /// Vertex variables
     double dca_;

@@ -57,6 +57,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
 			VPSet plugins;
 			VPSet zzShared = iConfig.exists("zzShared") ? iConfig.getParameter<VPSet>("zzShared") : VPSet();
 			VPSet fsrShared = iConfig.exists("fsrShared") ? iConfig.getParameter<VPSet>("fsrShared") : VPSet();
+			VPSet anglesShared = iConfig.exists("anglesShared") ? iConfig.getParameter<VPSet>("anglesShared") : VPSet();
 			VPSet metShared = iConfig.exists("metShared") ? iConfig.getParameter<VPSet>("metShared") : VPSet();
 			VPSet genShared = iConfig.exists("genShared") ? iConfig.getParameter<VPSet>("genShared") : VPSet();
 			VPSet counters = iConfig.exists("counters") ? iConfig.getParameter<VPSet>("counters") : VPSet();
@@ -67,6 +68,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
 			
 			plugins.insert(plugins.end(),zzShared.begin(),zzShared.end());
 			plugins.insert(plugins.end(),fsrShared.begin(),fsrShared.end());
+			plugins.insert(plugins.end(),anglesShared.begin(),anglesShared.end());
 			plugins.insert(plugins.end(),metShared.begin(),metShared.end());
 			plugins.insert(plugins.end(),genShared.begin(),genShared.end());
 			plugins.insert(plugins.end(),counters.begin(),counters.end());

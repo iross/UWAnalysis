@@ -288,6 +288,43 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,counterName,counter)
                    self.sequence*=counter
 
+    def addAngleInfo(self,moduleName,moduleType,min = 1,max=9999,text = '',Mll = 4.0):
+               dicand  = cms.EDProducer(moduleType)
+               dicand.src = cms.InputTag(self.input)
+               pyModule = sys.modules[self.pyModuleName[0]]
+               if pyModule is None:
+                 raise ValueError("'pyModuleName' Parameter invalid")
+               setattr(pyModule,moduleName,dicand)
+               self.sequence*=dicand
+               self.input=moduleName
+
+               #Create the Filter
+
+               filter  = cms.EDFilter("PATCandViewCountFilter")
+               filter.minNumber = cms.uint32(min)
+               filter.maxNumber = cms.uint32(max)
+               filter.src = cms.InputTag(moduleName)
+               filterName = moduleName+'Filter'
+               filter.setLabel(filterName)
+               #Register the filter in the namespace
+               pyModule = sys.modules[self.pyModuleName[0]]
+               if pyModule is None:
+                 raise ValueError("'pyModuleName' Parameter invalid")
+               setattr(pyModule,filterName,filter)
+               self.sequence*=filter
+
+          #now the counter
+               if text is not '':
+                   counter  = cms.EDProducer("EventCounter")
+                   counter.name=cms.string(text)
+                   counterName = moduleName+'Counter'
+                   counter.setLabel(counterName)
+                   pyModule = sys.modules[self.pyModuleName[0]]
+                   if pyModule is None:
+                       raise ValueError("'pyModuleName' Parameter invalid")
+                   setattr(pyModule,counterName,counter)
+                   self.sequence*=counter
+
     def addInvMassModule(self,moduleName,moduleType,min = 1,max=9999,text = '',Mll = 4.0):
                dicand  = cms.EDProducer(moduleType)
                dicand.src = cms.InputTag(self.input)
