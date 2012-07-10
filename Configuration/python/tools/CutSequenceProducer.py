@@ -288,7 +288,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,counterName,counter)
                    self.sequence*=counter
 
-    def addAngleInfo(self,moduleName,moduleType,min = 1,max=9999,text = '',Mll = 4.0):
+    def addAngleInfo(self,moduleName,moduleType,min = 1,max=9999,text = ''):
                dicand  = cms.EDProducer(moduleType)
                dicand.src = cms.InputTag(self.input)
                pyModule = sys.modules[self.pyModuleName[0]]
