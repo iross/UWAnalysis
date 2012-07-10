@@ -62,11 +62,7 @@ class MELACalculator : public edm::EDProducer
         for(unsigned int i=0;i<collection->size();++i) {
             double costheta1=-137.0; double costheta2=-137.0; double phi=-137.0; double costhetastar=-137.0; double phistar1=-137.0; double phistar2=-137.0; double phistar12=-137.0; double phi1=-137.0; double phi2=-137.0;
             CompositePtrCandidateT1T2MEt<T1,T2> cand = collection->at(i);
-            
-            std::cout << "Was: " << cand.p4().M() << std::endl;
 
-            TLorentzVector test = convertToTLorentz(cand.p4());
-            std::cout << "Now: " << test.M() << std::endl;
             TLorentzVector HP4 = convertToTLorentz(cand.p4());
             TLorentzVector z1P4 = convertToTLorentz(cand.leg1()->p4());
             TLorentzVector z1l1P4 = convertToTLorentz(cand.leg1()->leg1()->p4());
@@ -75,9 +71,8 @@ class MELACalculator : public edm::EDProducer
             TLorentzVector z2l1P4 = convertToTLorentz(cand.leg2()->leg1()->p4());
             TLorentzVector z2l2P4 = convertToTLorentz(cand.leg2()->leg2()->p4());
 
-
             calculateAngles(HP4, z1P4, z1l1P4, z1l2P4, z2P4, z2l1P4, z2l2P4, costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2);
-            std::cout << costheta2 << ", " <<  costheta2 << ", " <<  phi << ", " <<  costhetastar << ", " <<  phistar1 << ", " <<  phistar2 << ", " <<  phistar12 << ", " <<  phi1 << ", " <<  phi2 << std::endl;
+//            std::cout << costheta2 << ", " <<  costheta2 << ", " <<  phi << ", " <<  costhetastar << ", " <<  phistar1 << ", " <<  phistar2 << ", " <<  phistar12 << ", " <<  phi1 << ", " <<  phi2 << std::endl;
             cand.setAngles(costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2);
             compositePtrCandidateCollection->push_back(cand);
         }
