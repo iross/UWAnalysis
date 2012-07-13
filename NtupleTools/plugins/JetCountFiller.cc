@@ -20,6 +20,7 @@ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleMuQuadJetCountFiller, "PATEle
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleEleQuadJetCountFiller, "PATEleEleEleEleQuadJetCountFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuMuQuadJetCountFiller, "PATEleEleMuMuQuadJetCountFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleSCQuadJetCountFiller, "PATEleEleEleSCQuadJetCountFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleSCEleEleQuadJetCountFiller, "PATEleSCEleEleQuadJetCountFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleSCQuadJetCountFiller, "PATMuMuEleSCQuadJetCountFiller");
 
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriJetCountFiller, "PATMuMuMuTriJetCountFiller");

@@ -371,12 +371,15 @@ EEEMselectionSequence =EEEManalysisConfigurator.returnSequence()
 
 
 
+
+
+
 ######################__________________________________EEES_____________________________________##############################
 
 EEESanalysisConfigurator = CutSequenceProducer(
-        initialCounter  = 'initialEventsEEES',
+        initialCounter = 'initialEventsEEES',
         pyModuleName = __name__,
-        pyNameSpace  = locals()
+        pyNameSpace = locals()
         )
 #EEEManalysisConfigurator.addHLTFilter("EEEMHLT",DATAMC2012TriggerPaths,"HLT_reqEEEM")
 EEESanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','EEES')
@@ -399,7 +402,7 @@ EEESanalysisConfigurator.addSelector('EEESzzCleanedCandsAboveThreshold','PATEleE
 
 
 #EEEManalysisConfigurator.addSelector('EEEMzzCleanedThirdMuID','PATEleEleEleMuQuadSelector','leg2.leg2.userInt("tightID")>0.5 && abs(leg2.leg2.eta())<2.5','EEEMThirdMuID')
-#EEEManalysisConfigurator.addSelector('EEEMzzEleId','PATEleEleEleMuQuadSelector','leg2.leg1.userFloat("mvaNonTrigV0Pass")>0','EEEMEleCiCLoose') 
+#EEEManalysisConfigurator.addSelector('EEEMzzEleId','PATEleEleEleMuQuadSelector','leg2.leg1.userFloat("mvaNonTrigV0Pass")>0','EEEMEleCiCLoose')
 #EEEManalysisConfigurator.addSelector('EEEMzzEleIso','PATEleEleEleMuQuadSelector','(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1.photonIso()-leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt<0.25','EEEMEleIso')
 #EEEManalysisConfigurator.addSelector('EEEMzzMuIso2','PATEleEleEleMuQuadSelector','(leg2.leg2.chargedHadronIso()+max(0.0,leg2.leg2.neutralHadronIso()+leg2.leg2.photonIso()-leg2.leg2.userFloat("zzRho2012")*leg2.leg2.userFloat("EAGammaNeuHadron04")))/leg2.leg2.pt<0.25','EEEMMuIso')
 #EEEManalysisConfigurator.addSorter('EEEMzzCleanedCandsSortedByZMass','PATEleEleEleMuQuadSorterByZMass')
@@ -411,6 +414,44 @@ EEESanalysisConfigurator.addSelector('EEESzzCleanedCandsAboveThreshold','PATEleE
 #EEEManalysisConfigurator.addSelector('EEEMzzCleanedCandsETMass','PATEleEleEleMuQuadSelector','leg2.mass()<90','EEEMEMMass')
 
 EEESselectionSequence = EEESanalysisConfigurator.returnSequence()
+
+
+
+
+
+
+######################__________________________________ESEE_____________________________________##############################
+
+ESEEanalysisConfigurator = CutSequenceProducer(
+        initialCounter  = 'initialEventsESEE',
+        pyModuleName = __name__,
+        pyNameSpace  = locals()
+        )
+# Build e,SC pairs
+ESEEanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuon','cleanPatElectrons','selectedPatJets','ESEE')
+ESEEanalysisConfigurator.addDiCandidateModule('ESEEeleSC','PATEleSCPairProducer','smearedElectronsESEE','selectedPatPhotons','smearedMETESEE','smearedJetsESEE',1,9999,text = 'ESEEAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
+ESEEanalysisConfigurator.addSelector('ESEEosEleSC','PATEleSCPairSelector','mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.5 && leg2.isEE()','ESEEEleSCCreation',1)
+
+# Build ee pairs
+ESEEanalysisConfigurator.addDiCandidateModule('ESEEdiElectrons','PATElePairProducer', 'smearedElectronsESEE','smearedElectronsESEE','smearedMETESEE','smearedJetsESEE',1,genParticles='genDaughters')
+ESEEanalysisConfigurator.addSelector('ESEEosDiElectrons','PATElePairSelector','charge == 0 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits() < 2 && leg1.pt() > 7 && abs(leg1.eta()) < 2.5 && abs(leg1.userFloat("ip3DS")) < 4 && abs(leg1.userFloat("ipDXY")) < 0.5 && abs(leg1.userFloat("dz")) < 1.0 && leg2.userFloat("mvaNonTrigV0Pass") > 0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits() < 2 && leg2.pt() > 7 && abs(leg2.eta()) < 2.5 && abs(leg2.userFloat("ip3DS")) < 4 && abs(leg2.userFloat("ipDXY")) < 0.5 && abs(leg2.userFloat("dz")) < 1.0  ','',1)
+ESEEanalysisConfigurator.addSelector('ESEEosDiElectronsIso','PATElePairSelector','(leg1.chargedHadronIso() + max(0.0,leg1.neutralHadronIso() + leg1.photonIso() - leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt < 0.40 && (leg2.chargedHadronIso() + max(0.0,leg2.neutralHadronIso() + leg2.photonIso() - leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt < 0.40 ','a Z with iso ee should cut none',1)
+
+# Build ZZ candidates from ee and eSC pairs
+ESEEanalysisConfigurator.addDiCandidateModule('ESEEzzCands','PATEleSCEleEleQuadProducer','ESEEosEleSC','ESEEosDiElectronsIso','smearedMETESEE','smearedJetsESEE',1,9999,text='ESEEAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
+ESEEanalysisConfigurator.addCrossCleanerModule('ESEEzzCleanedCands','PATEleSCEleEleQuadCrossCleaner',1,9999,text='ESEEAtLeastOneZZCleanedCandidate',dR = 0.1)
+ESEEanalysisConfigurator.addSelector('ESEEzzEleIso','PATEleSCEleEleQuadSelector','(leg2.leg1.chargedHadronIso() + max(0.0,leg2.leg1.neutralHadronIso() + leg2.leg1.photonIso() - leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt < 0.25','ESEEEleIso')
+ESEEanalysisConfigurator.addSorter('ESEEzzCleanedCandsSortedByZMass','PATEleSCEleEleQuadSorterByZMass')
+#ESEEanalysisConfigurator.addSelector('ESEEzzCleanedCandsAboveThreshold','PATEleSCEleEleQuadSelector','leg1().leg1().pt() > 20 && leg1().leg2().pt() > 10 && leg2().leg1().pt() > 10 && leg2().leg2().pt() > 10 && abs(leg2.leg1.eta()) < 2.5 && abs(leg2.leg2.eta()) < 2.5','ESEEAtLeastOneZZCandOverThresholds')
+
+# Of the three elec candidates, one must have pt > 20 and another pt > 10
+# All electrons must have |eta| < 2.5, and SC must be endcap
+threshold='( leg1.leg1.pt() > 20 && (leg2.leg1.pt() > 10 || leg2.leg2.pt() > 10) || leg2.leg1.pt() > 20 && (leg1.leg1.pt() > 10 || leg2.leg2.pt() > 10) || leg2.leg2.pt() > 20 && (leg1.leg1.pt() > 10 || leg2.leg1.pt() > 10) ) && abs(leg1.leg1.eta()) < 2.5 && abs(leg2.leg1.eta()) < 2.5 && abs(leg2.leg2.eta()) < 2.5 && leg1.leg2.isEE()'
+
+ESEEanalysisConfigurator.addSelector('ESEEzzCleanedCandsAboveThreshold','PATEleSCEleEleQuadSelector',threshold,'ESEEAtLeastOneZZCandOverThresholds')
+
+ESEEselectionSequence = ESEEanalysisConfigurator.returnSequence()
+
 
 
 

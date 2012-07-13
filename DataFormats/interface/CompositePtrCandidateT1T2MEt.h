@@ -427,6 +427,7 @@ typedef CompositePtrCandidateT1T2MEt<PATElecPair,PATElecPair> PATEleEleEleEleQua
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATMuTauPair> PATEleEleMuTauQuad;
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATElecMuPair> PATEleEleEleMuQuad;
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATMuPair> PATEleEleMuMuQuad;
+typedef CompositePtrCandidateT1T2MEt<PATElecSCPair, PATElecPair> PATEleSCEleEleQuad;
 typedef CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair> PATEleEleEleSCQuad;
 typedef CompositePtrCandidateT1T2MEt<PATMuPair, PATElecSCPair> PATMuMuEleSCQuad;
 
