@@ -17,3 +17,6 @@ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuMuTruthFiller, "PATEleEleMuMuT
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleNuTruthFiller, "PATEleEleEleNuTruthFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuNuTruthFiller, "PATMuMuMuNuTruthFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleNuTruthFiller, "PATMuMuEleNuTruthFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleSCEleEleTruthFiller, "PATEleSCEleEleTruthFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleSCTruthFiller, "PATEleEleEleSCTruthFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleSCTruthFiller, "PATMuMuEleSCTruthFiller");
