@@ -1905,6 +1905,14 @@ def addEleSCEleEleEventTree(process, name,
             z1l2 = eleCommon(src,'z2l1','leg2.leg1.','PATEleSCEleEleQuadFiller'),
             z2l1 = eleCommon(src,'z2l2','leg2.leg2.','PATEleSCEleEleQuadFiller')
             )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATEleSCEleEleTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name + 'Path', p)
@@ -1949,6 +1957,14 @@ def addEleEleEleSCEventTree(process, name,
             z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATEleEleEleSCQuadFiller'),
             z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATEleEleEleSCQuadFiller')
             )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATEleEleEleSCTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name + 'Path', p)
