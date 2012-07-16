@@ -160,6 +160,11 @@ typedef SingleObjectSelector<
         > PATMuMuEleSCQuadSelector;
 
 typedef SingleObjectSelector<
+            std::vector<PATEleSCMuMuQuad>,
+            StringCutObjectSelector<PATEleSCMuMuQuad>
+        > PATEleSCMuMuQuadSelector;
+
+typedef SingleObjectSelector<
             std::vector<PATEleEleEleTri>,
             StringCutObjectSelector<PATEleEleEleTri>
         > PATEleEleEleTriSelector;

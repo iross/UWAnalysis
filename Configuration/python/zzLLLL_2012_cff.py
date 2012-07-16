@@ -481,4 +481,35 @@ MMESanalysisConfigurator.addSelector('MMESzzCleanedCandsAboveThreshold','PATMuMu
 
 MMESselectionSequence = MMESanalysisConfigurator.returnSequence()
 
+######################__________________________________ESMM_____________________________________##############################
+
+ESMManalysisConfigurator = CutSequenceProducer(
+        initialCounter = 'initialEventsESMM',
+        pyModuleName = __name__,
+        pyNameSpace = locals()
+        )
+
+# Build EleSC Pairs
+ESMManalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','ESMM')
+ESMManalysisConfigurator.addDiCandidateModule('ESMMeleSC','PATEleSCPairProducer','smearedElectronsESMM','selectedPatPhotons','smearedMETESMM','smearedJetsESMM',1,9999,text = 'ESMMAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
+ESMManalysisConfigurator.addSelector('ESMMosEleSC','PATEleSCPairSelector','mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.5 && leg2.isEE()','ESMMEleSCCreation',1)
+
+# Build Muon Pairs
+ESMManalysisConfigurator.addDiCandidateModule('ESMMdiMuons','PATMuPairProducer', 'smearedMuonsESMM','smearedMuonsESMM','smearedMETESMM','smearedJetsESMM',1,genParticles='genDaughters')
+ESMManalysisConfigurator.addSelector('ESMMosDiMuons','PATMuPairSelector','leg1.pfCandidateRef().isNonnull()&&leg2.pfCandidateRef().isNonnull()&&charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z2',1)
+ESMManalysisConfigurator.addSelector('ESMMosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z2 with iso',1)
+
+# Build ZZ candidates from muon and eSC pairs
+ESMManalysisConfigurator.addDiCandidateModule('ESMMzzCands','PATEleSCMuMuQuadProducer','ESMMosEleSC','ESMMosDiMuonsIso','smearedMETESMM','smearedJetsESMM',1,9999,text='ESMMAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
+ESMManalysisConfigurator.addCrossCleanerModule('ESMMzzCleanedCands','PATEleSCMuMuQuadCrossCleaner',1,9999,text='ESMMAtLeastOneZZCleanedCandidate',dR = 0.1)
+ESMManalysisConfigurator.addSelector('ESMMzzEleIso','PATEleSCMuMuQuadSelector','(leg2.leg1.chargedHadronIso() + max(0.0,leg2.leg1.neutralHadronIso() + leg2.leg1.photonIso() - leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt < 0.25','ESMMEleIso')
+ESMManalysisConfigurator.addSorter('ESMMzzCleanedCandsSortedByZMass','PATEleSCMuMuQuadSorterByZMass')
+
+# Of the three elec candidates, one must have pt > 20 and another pt > 10
+# All electrons must have |eta| < 2.5, and SC must be endcap
+threshold = 'leg1.leg1.pt() > 7 && ( (leg2.leg1.pt() > 20 && leg2.leg2.pt() > 10) || (leg2.leg1.pt() > 10 && leg2.leg2.pt() > 20)) && abs(leg1.leg1.eta()) < 2.5 && abs(leg2.leg1.eta()) < 2.4 && abs(leg2.leg2.eta()) < 2.4 && leg1.leg2.isEE()'
+ESMManalysisConfigurator.addSelector('ESMMzzCleanedCandsAboveThreshold','PATEleSCMuMuQuadSelector',threshold,'ESMMAtLeastOneZZCandOverThresholds')
+
+ESMMselectionSequence = ESMManalysisConfigurator.returnSequence()
+
 ######################_______________________________EndOfConfigurators__________________________################################

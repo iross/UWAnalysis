@@ -335,6 +335,7 @@ typedef TruthFiller<PATEleEleMuMuQuad> PATEleEleMuMuTruthFiller;
 typedef TruthFiller<PATEleSCEleEleQuad> PATEleSCEleEleTruthFiller;
 typedef TruthFiller<PATEleEleEleSCQuad> PATEleEleEleSCTruthFiller;
 typedef TruthFiller<PATMuMuEleSCQuad> PATMuMuEleSCTruthFiller;
+typedef TruthFiller<PATEleSCMuMuQuad> PATEleSCMuMuTruthFiller;
 //typedef TruthFiller<PATEleEleMuNuQuad> PATEleEleMuNuTruthFiller;
 //typedef TruthFiller<PATEleEleEleNuQuad> PATEleEleEleNuTruthFiller;
 //typedef TruthFiller<PATMuMuMuNuQuad> PATMuMuMuNuTruthFiller;

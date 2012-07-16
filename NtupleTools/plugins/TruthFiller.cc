@@ -20,3 +20,4 @@ DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuMuTruthFiller, "PATEleEleMuMuT
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleSCEleEleTruthFiller, "PATEleSCEleEleTruthFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleSCTruthFiller, "PATEleEleEleSCTruthFiller");
 DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleSCTruthFiller, "PATMuMuEleSCTruthFiller");
+DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleSCMuMuTruthFiller, "PATEleSCMuMuTruthFiller");
