@@ -77,5 +77,5 @@
     double ymax = 5;
 	TCanvas * esee = ESEEplotter->makeStackedPlotMC("mass",selection,lumi,6,100,160,"M_{4l}","GeV/c^{2}",61,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
 
-    //std::cout << selection << std::endl;
+    td::cout << selection << std::endl;
 }
