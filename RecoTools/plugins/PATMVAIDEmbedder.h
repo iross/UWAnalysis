@@ -79,19 +79,19 @@ class PATMVAIDEmbedder : public edm::EDProducer {
 					//0.8 < |eta| < 1.479: BDT > 0.12
 					//|eta| > 1.479: BDT > 0.6
 					if (electron.pt()>5 && electron.pt()<10){
-						if (fabs(electron.eta())<0.8) {
+						if (fabs(electron.superCluster()->eta())<0.8) {
 							if (electron.electronID(id_)>0.47) passID=true;
 						} 
-						else if (fabs(electron.eta())<1.479) {
+						else if (fabs(electron.superCluster()->eta())<1.479) {
 							if (electron.electronID(id_)>0.004) passID=true;
 						}
 						else {
 							if (electron.electronID(id_)>0.295) passID=true;
 						}
 					} else {
-						if (fabs(electron.eta())<0.8 ) {
+						if (fabs(electron.superCluster()->eta())<0.8 ) {
 							if (electron.electronID(id_)>0.5) passID=true;
-						} else if (fabs(electron.eta())<1.479) {
+						} else if (fabs(electron.superCluster()->eta())<1.479) {
 							if (electron.electronID(id_)>0.12) passID=true;
 						} else {
 							if (electron.electronID(id_)>0.6) passID=true;

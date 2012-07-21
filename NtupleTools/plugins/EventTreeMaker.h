@@ -56,6 +56,8 @@ class EventTreeMaker : public edm::EDAnalyzer {
 			//if Ian's VPsets exist, add them to the fillers. 
 			VPSet plugins;
 			VPSet zzShared = iConfig.exists("zzShared") ? iConfig.getParameter<VPSet>("zzShared") : VPSet();
+			VPSet fsrShared = iConfig.exists("fsrShared") ? iConfig.getParameter<VPSet>("fsrShared") : VPSet();
+			VPSet anglesShared = iConfig.exists("anglesShared") ? iConfig.getParameter<VPSet>("anglesShared") : VPSet();
 			VPSet metShared = iConfig.exists("metShared") ? iConfig.getParameter<VPSet>("metShared") : VPSet();
 			VPSet genShared = iConfig.exists("genShared") ? iConfig.getParameter<VPSet>("genShared") : VPSet();
 			VPSet counters = iConfig.exists("counters") ? iConfig.getParameter<VPSet>("counters") : VPSet();
@@ -65,6 +67,8 @@ class EventTreeMaker : public edm::EDAnalyzer {
 			VPSet z2l2 = iConfig.exists("z2l2") ? iConfig.getParameter<VPSet>("z2l2") : VPSet();
 			
 			plugins.insert(plugins.end(),zzShared.begin(),zzShared.end());
+			plugins.insert(plugins.end(),fsrShared.begin(),fsrShared.end());
+			plugins.insert(plugins.end(),anglesShared.begin(),anglesShared.end());
 			plugins.insert(plugins.end(),metShared.begin(),metShared.end());
 			plugins.insert(plugins.end(),genShared.begin(),genShared.end());
 			plugins.insert(plugins.end(),counters.begin(),counters.end());

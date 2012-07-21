@@ -134,7 +134,49 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     // MET projected along the direction of the nearest lepton if within pi/2 otherwise just full MET
     double projMET() const { return projMET_; }
 
+    //FSR variables
+    double phoPt() const {return phoPt_;}
+    double phoEta() const {return phoEta_;}
+    double phoPhi() const {return phoPhi_;}
+    double lepDR() const {return lepDR_;}
+    double lepPt() const {return lepPt_;}
+    double leg1PhotonIso() const {return leg1PhotonIso_;}
+    double leg2PhotonIso() const {return leg2PhotonIso_;}
+    const reco::Candidate::LorentzVector& noPhoP4() const { return noPhoP4_;}
 
+    void setFSRVariables(double phoPt, double phoEta, double phoPhi, double lepDR, double lepPt, reco::Candidate::LorentzVector noPhoP4, double leg1PhotonIso, double leg2PhotonIso){
+       phoPt_ = phoPt;
+       phoEta_ = phoEta;
+       phoPhi_ = phoPhi;
+       lepDR_ = lepDR;
+       lepPt_ = lepPt;
+       noPhoP4_ = noPhoP4;
+       leg1PhotonIso_ = leg1PhotonIso;
+       leg2PhotonIso_ = leg2PhotonIso;
+    }
+
+    //ZZ system angles
+    double costheta1() const{ return costheta1_;}
+    double costheta2() const{ return costheta2_;}
+    double Phi() const{ return Phi_;}
+    double costhetaStar() const{ return costhetaStar_;}
+    double phiStar1() const{ return phiStar1_;}
+    double phiStar2() const{ return phiStar2_;}
+    double phiStar12() const{ return phiStar12_;}
+    double phi1() const{ return phi1_;}
+    double phi2() const{ return phi2_;}
+
+    void setAngles(double costheta1, double costheta2, double phi, double costhetastar, double phistar1, double phistar2, double phistar12, double phi1, double phi2){
+        costheta1_ = costheta1;
+        costheta2_ = costheta2;
+        Phi_ = phi;
+        costhetaStar_ = costhetastar;
+        phiStar1_ = phistar1;
+        phiStar2_ = phistar2;
+        phiStar12_ = phistar12;
+        phi1_ = phi1;
+        phi2_ = phi2;
+    }
 
     //Vertex variables
 
@@ -360,6 +402,27 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double pZetaVis_;
     /// Projected MET Variable
     double projMET_;
+
+    //FSR vars
+    double phoPt_;
+    double phoEta_; 
+    double phoPhi_;
+    double lepPt_;
+    double lepDR_;
+    reco::Candidate::LorentzVector noPhoP4_;
+    double leg1PhotonIso_;
+    double leg2PhotonIso_;
+
+    //Angles
+    double costheta1_;
+    double costheta2_; 
+    double Phi_;
+    double costhetaStar_; 
+    double phiStar1_;
+    double phiStar2_;
+    double phiStar12_; 
+    double phi1_;
+    double phi2_;
 
     /// Vertex variables
     double dca_;

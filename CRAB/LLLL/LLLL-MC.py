@@ -67,6 +67,7 @@ process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
 process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
 process.eventSelectionMMEM = cms.Path(process.MMEMselectionSequence)
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
+process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
 process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
 process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
@@ -104,7 +105,7 @@ addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEFinalSel','EEEEFi
 addMuMuEleEleEventTree(process,'muMuEleEleEventTreeID','MMEEzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
-addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
@@ -137,6 +138,18 @@ from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTre
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinalTest','EEEEFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinalTest','EEMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
+addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
+addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
+addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID')
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
 #addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')

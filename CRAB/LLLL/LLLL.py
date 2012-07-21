@@ -15,7 +15,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-05-29-8TeV-PatTuple-67c1f94/a7f10efca7dd683ad59c7e946715fa59/output_49_0_TNg.root',
+#            'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-06-08-8TeV-PatTuple-data-4495432/c7a1c2223886075833473549ad1960ce/output_86_1_JSc.root'
+            'file:/hdfs/store/user/iross/DoubleElectron/data_DoubleElectron_Run2012B_PromptReco_v1_a_2012-06-08-8TeV-PatTuple-data-4495432/c7a1c2223886075833473549ad1960ce/output_8_2_736.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -48,13 +49,18 @@ process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
 process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
 process.eventSelectionMMEM = cms.Path(process.MMEMselectionSequence)
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
+process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
 process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
 process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
 process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
 process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
 process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
-#process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
+process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
+process.eventSelectionMMM = cms.Path(process.MMMSeq)
+process.eventSelectionMME = cms.Path(process.MMESeq)
+process.eventSelectionEEM = cms.Path(process.EEMSeq)
+process.eventSelectionEEE = cms.Path(process.EEESeq)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
 addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
@@ -72,14 +78,6 @@ from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleMuEventTree
 addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
-addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-addMuMuEleEleEventTree(process,'muMuEleEleEventTreeID','MMEEzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
-addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
 addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeFinal','EETTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
@@ -96,26 +94,46 @@ from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
+addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
-addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID','EEEEzzEleIDSecond','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
-#addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-#addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
-#addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMzzMuIDSecondPair','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeID','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
+addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuEleEleEventTree(process,'muMuEleEleEventTreeID','MMEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeID','EEMMosDiMuons','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTree','MMEEonlyzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeFinal','MMEEonlyFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeID','MMEEonlyosDiElectrons','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
+addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
+addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID')
+from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
+addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID')
 
 #Add event counter
-addEventSummary(process,False,'MMMT','eventSelectionMMMT')
-addEventSummary(process,False,'MMTT','eventSelectionMMTT')
-addEventSummary(process,False,'MMET','eventSelectionMMET')
-addEventSummary(process,False,'MMEM','eventSelectionMMEM')
-addEventSummary(process,False,'MMEE','eventSelectionMMEE')
-addEventSummary(process,False,'MMMM','eventSelectionMMMM')
-addEventSummary(process,False,'EEMT','eventSelectionEEMT')
-addEventSummary(process,False,'EEET','eventSelectionEEET')
-addEventSummary(process,False,'EETT','eventSelectionEETT')
-addEventSummary(process,False,'EEEM','eventSelectionEEEM')
-addEventSummary(process,False,'EEEE','eventSelectionEEEE')
-#addEventSummary(process,False,'EEMM','eventSelectionEEMM')
+addEventSummary(process,True,'MMMT','eventSelectionMMMT')
+addEventSummary(process,True,'MMTT','eventSelectionMMTT')
+addEventSummary(process,True,'MMET','eventSelectionMMET')
+addEventSummary(process,True,'MMEM','eventSelectionMMEM')
+addEventSummary(process,True,'MMEE','eventSelectionMMEE')
+addEventSummary(process,True,'MMMM','eventSelectionMMMM')
+addEventSummary(process,True,'EEMT','eventSelectionEEMT')
+addEventSummary(process,True,'EEET','eventSelectionEEET')
+addEventSummary(process,True,'EETT','eventSelectionEETT')
+addEventSummary(process,True,'EEEM','eventSelectionEEEM')
+addEventSummary(process,True,'EEEE','eventSelectionEEEE')
+addEventSummary(process,True,'EEMM','eventSelectionEEMM')
 

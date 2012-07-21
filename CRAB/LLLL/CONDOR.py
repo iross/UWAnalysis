@@ -13,4 +13,6 @@ process.maxEvents = cms.untracked.PSet(
         input = cms.untracked.int32(-1)
         )
 
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
+
 process.TFileService.fileName=cms.string("$outputFileName")

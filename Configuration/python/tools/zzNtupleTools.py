@@ -116,6 +116,170 @@ def zzCommon(src,pluginType):
             )
     return sharedV
 
+def fsrCommon(src,pluginType):
+    sharedV = cms.VPSet(
+#        cms.PSet(
+#            pluginType = cms.string(pluginType),
+#            src        = cms.InputTag(src),
+#            tag        = cms.string("massNoFSR"),
+#            method     = cms.string("(leg1.noPhoP4()+leg2.noPhoP4()).M()"),
+#            leadingOnly=cms.untracked.bool(True)
+#            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z1MassNoFSR"),
+            method     = cms.string("leg1.noPhoP4().M()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z2MassNoFSR"),
+            method     = cms.string("leg2.noPhoP4().M()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z1phoEta"),
+            method     = cms.string("leg1.phoEta()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z1phoPhi"),
+            method     = cms.string("leg1.phoPhi()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z1phoLepDR"),
+            method     = cms.string("leg1.lepDR()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z1phoLepPt"),
+            method     = cms.string("leg1.lepPt()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z1phoPt"),
+            method     = cms.string("leg1.phoPt()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z2phoEta"),
+            method     = cms.string("leg2.phoEta()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z2phoPhi"),
+            method     = cms.string("leg2.phoPhi()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z2phoLepDR"),
+            method     = cms.string("leg2.lepDR()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z2phoLepPt"),
+            method     = cms.string("leg2.lepPt()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("z2phoPt"),
+            method     = cms.string("leg2.phoPt()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        )
+    return sharedV
+
+def anglesCommon(src,pluginType):
+    sharedV = cms.VPSet(
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("costheta1"),
+            method     = cms.string("costheta1()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("costheta2"),
+            method     = cms.string("costheta2()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("Phi"),
+            method     = cms.string("Phi()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("costhetaStar"),
+            method     = cms.string("costhetaStar()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("phiStar1"),
+            method     = cms.string("phiStar1()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("phiStar2"),
+            method     = cms.string("phiStar2()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("phiStar12"),
+            method     = cms.string("phiStar12()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("phi1"),
+            method     = cms.string("phi1()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string("phi2"),
+            method     = cms.string("phi2()"),
+            leadingOnly=cms.untracked.bool(True)
+            ),
+        )
+    return sharedV
+
 def metCommon(src,pluginType):
     sharedV = cms.VPSet(
             cms.PSet(
@@ -1117,6 +1281,13 @@ def eleCommon(src,legName,legMethod,pluginType):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"r9"),
+            method     = cms.string(legMethod+"r9()"),
+            leadingOnly=cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"userIso0"),
             method     = cms.string(legMethod+"userIso(0)"),
             leadingOnly=cms.untracked.bool(True)
@@ -1297,6 +1468,8 @@ def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             cms.InputTag(src)
         ),
         zzShared = zzCommon(src,'PATMuMuTauTauQuadFiller'),
+#        fsrShared = fsrCommon(src, 'PATMuMuTauTauQuadFiller'),
+        anglesShared = anglesCommon(src, 'PATMuMuTauTauQuadFiller'),
         metShared = metCommon(src,'PATMuMuTauTauQuadFiller'),
         trigger = cms.PSet(
             pluginType = cms.string("TriggerFiller"),
@@ -1357,6 +1530,8 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
         ),
         #ZZ quantities
         zzShared = zzCommon(src,'PATMuMuMuMuQuadFiller'),
+        fsrShared = fsrCommon(src, 'PATMuMuMuMuQuadFiller'),
+        anglesShared = anglesCommon(src, 'PATMuMuMuMuQuadFiller'),
         metShared = metCommon(src,'PATMuMuMuMuQuadFiller'),
         #genShared = genCommon(src,'PATMuMuMuMuQuadFiller'),
         counters = countCommon(src,'PATMuMuMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
@@ -1408,6 +1583,7 @@ def addMuMuMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
         zzShared = zzCommon(src,'PATMuMuMuTauQuadFiller'),
         metShared = metCommon(src,'PATMuMuMuTauQuadFiller'),
         #genShared = genCommon(src,'PATMuMuMuTauQuadFiller'),
+        anglesShared = anglesCommon(src,'PATMuMuMuTauQuadFiller'),
         counters = countCommon(src,'PATMuMuMuTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         z1l1 = muCommon(src,"z1l1","leg1.leg1.",'PATMuMuMuTauQuadFiller'),
         z1l2 = muCommon(src,"z1l2","leg1.leg2.",'PATMuMuMuTauQuadFiller'),
@@ -1453,6 +1629,8 @@ def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             tag        = cms.string("vertices")
         ),
         zzShared = zzCommon(src,'PATMuMuEleTauQuadFiller'),
+#        fsrShared = fsrCommon(src, 'PATMuMuEleTauQuadFiller'),
+        anglesShared = anglesCommon(src,'PATMuMuEleTauQuadFiller'),
         metShared = metCommon(src,'PATMuMuEleTauQuadFiller'),
         #genShared = genCommon(src,'PATMuMuEleTauQuadFiller'),
         #ZZ quantities
@@ -1505,6 +1683,7 @@ def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
         #ZZ quantities
         zzShared = zzCommon(src,'PATMuMuEleMuQuadFiller'),
         metShared = metCommon(src,'PATMuMuEleMuQuadFiller'),
+        anglesShared = anglesCommon(src,'PATMuMuEleMuQuadFiller'),
         #genShared = genCommon(src,'PATMuMuEleMuQuadFiller'),
         counters = countCommon(src,'PATMuMuEleMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         #mumu quantities
@@ -1553,6 +1732,8 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
         ),
         #ZZ quantities
         zzShared = zzCommon(src,'PATMuMuEleEleQuadFiller'),
+        fsrShared = fsrCommon(src, 'PATMuMuEleEleQuadFiller'),
+        anglesShared = anglesCommon(src, 'PATMuMuEleEleQuadFiller'),
         metShared = metCommon(src,'PATMuMuEleEleQuadFiller'),
         #genShared = genCommon(src,'PATMuMuEleEleQuadFiller'),
         counters = countCommon(src,'PATMuMuEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
@@ -1605,6 +1786,8 @@ def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
         counters = countCommon(src,'PATEleEleTauTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         #ele ele quantities
         zzShared = zzCommon(src,'PATEleEleTauTauQuadFiller'),
+#        fsrShared = fsrCommon(src, 'PATEleEleTauTauQuadFiller'),
+        anglesShared = anglesCommon(src,'PATEleEleTauTauQuadFiller'),
         metShared = metCommon(src,'PATEleEleTauTauQuadFiller'),
         #genShared = genCommon(src,'PATEleEleTauTauQuadFiller'),
         z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleTauTauQuadFiller'),
@@ -1652,6 +1835,8 @@ def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
         #ZZ quantities
         counters = countCommon(src,'PATEleEleEleTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         zzShared = zzCommon(src,'PATEleEleEleTauQuadFiller'),
+#        fsrShared = fsrCommon(src, 'PATEleEleEleTauQuadFiller'),
+        anglesShared = anglesCommon(src,'PATEleEleEleTauQuadFiller'),
         metShared = metCommon(src,'PATEleEleEleTauQuadFiller'),
         #genShared = genCommon(src,'PATEleEleEleTauQuadFiller'),
         z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleTauQuadFiller'),
@@ -1700,6 +1885,7 @@ def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
         counters = countCommon(src,'PATEleEleMuTauQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         zzShared = zzCommon(src,'PATEleEleMuTauQuadFiller'),
         metShared = metCommon(src,'PATEleEleMuTauQuadFiller'),
+        anglesShared = anglesCommon(src,'PATEleEleMuTauQuadFiller'),
         #genShared = genCommon(src,'PATEleEleMuTauQuadFiller'),
         z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleMuTauQuadFiller'),
         z1l2 = eleCommon(src,'z1l2','leg1.leg2.','PATEleEleMuTauQuadFiller'),
@@ -1747,6 +1933,8 @@ def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
         #ZZ quantities
         counters = countCommon(src,'PATEleEleEleMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         zzShared = zzCommon(src,'PATEleEleEleMuQuadFiller'),
+#        fsrShared = fsrCommon(src, 'PATEleEleEleMuQuadFiller'),
+        anglesShared = anglesCommon(src,'PATEleEleEleMuQuadFiller'),
         metShared = metCommon(src,'PATEleEleEleMuQuadFiller'),
         #genShared = genCommon(src,'PATEleEleEleMuQuadFiller'),
         z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleMuQuadFiller'),
@@ -1795,6 +1983,8 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
         #ZZ quantities
         counters = countCommon(src,'PATEleEleEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         zzShared = zzCommon(src,'PATEleEleEleEleQuadFiller'),
+        fsrShared = fsrCommon(src, 'PATEleEleEleEleQuadFiller'),
+        anglesShared = anglesCommon(src,'PATEleEleEleEleQuadFiller'),
         metShared = metCommon(src,'PATEleEleEleEleQuadFiller'),
         #genShared = genCommon(src,'PATEleEleEleEleQuadFiller'),
         z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleEleEleQuadFiller'),
@@ -1847,6 +2037,8 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
         #ZZ quantities
         counters = countCommon(src,'PATEleEleMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
         zzShared = zzCommon(src,'PATEleEleMuMuQuadFiller'),
+        fsrShared = fsrCommon(src, 'PATEleEleMuMuQuadFiller'),
+        anglesShared = anglesCommon(src,'PATEleEleMuMuQuadFiller'),
         metShared = metCommon(src,'PATEleEleMuMuQuadFiller'),
         #genShared = genCommon(src,'PATEleEleMuMuQuadFiller'),
         z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleEleMuMuQuadFiller'),
