@@ -143,6 +143,7 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double leg1PhotonIso() const {return leg1PhotonIso_;}
     double leg2PhotonIso() const {return leg2PhotonIso_;}
     const reco::Candidate::LorentzVector& noPhoP4() const { return noPhoP4_;}
+    double massNoFSR() const {return noPhoMass_;}
 
     void setFSRVariables(double phoPt, double phoEta, double phoPhi, double lepDR, double lepPt, reco::Candidate::LorentzVector noPhoP4, double leg1PhotonIso, double leg2PhotonIso){
        phoPt_ = phoPt;
@@ -153,6 +154,10 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
        noPhoP4_ = noPhoP4;
        leg1PhotonIso_ = leg1PhotonIso;
        leg2PhotonIso_ = leg2PhotonIso;
+    }
+
+    void setNoFSRMass(double mass){
+        noPhoMass_ = mass;
     }
 
     //ZZ system angles
@@ -412,6 +417,7 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     reco::Candidate::LorentzVector noPhoP4_;
     double leg1PhotonIso_;
     double leg2PhotonIso_;
+    double noPhoMass_;
 
     //Angles
     double costheta1_;
