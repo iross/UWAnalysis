@@ -71,8 +71,19 @@ class MELACalculator : public edm::EDProducer
             TLorentzVector z2l1P4 = convertToTLorentz(cand.leg2()->leg1()->p4());
             TLorentzVector z2l2P4 = convertToTLorentz(cand.leg2()->leg2()->p4());
 
+            TLorentzVector temp;
+            if (cand.leg1()->leg1()->charge() >0 ){ //make sure angles are calculated wrt negative lepton
+                temp=z1l1P4;
+                z1l1P4=z1l2P4;
+                z1l2P4=temp;
+            }
+            if (cand.leg2()->leg1()->charge() >0 ){
+                temp=z2l1P4;
+                z2l1P4=z2l2P4;
+                z2l2P4=temp;
+            }
+
             calculateAngles(HP4, z1P4, z1l1P4, z1l2P4, z2P4, z2l1P4, z2l2P4, costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2);
-//            std::cout << costheta2 << ", " <<  costheta2 << ", " <<  phi << ", " <<  costhetastar << ", " <<  phistar1 << ", " <<  phistar2 << ", " <<  phistar12 << ", " <<  phi1 << ", " <<  phi2 << std::endl;
             cand.setAngles(costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2);
             compositePtrCandidateCollection->push_back(cand);
         }
