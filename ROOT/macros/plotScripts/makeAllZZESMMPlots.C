@@ -36,13 +36,13 @@
     //TCanvas* test = ESMMplotter->makeComparison("z2l1RelPfIsoRho",selection,"1",10,0,0.5,"Rel Pf Iso");
     selection += "&& z1l1RelPfIsoRho < 0.2 && z2l2RelPfIsoRho < 0.2 && z2l1RelPfIsoRho < 0.2";
     
-    //TCanvas* test = ESMMplotter->makeComparison("z1l2HE",selection,"1",20,0,1,"H/E");
-    //selection += "&& z1l2HE < 0.3";
+    TCanvas* test = ESMMplotter->makeComparison("z1l2HE",selection,"1",20,0,1,"H/E");
+    selection += "&& z1l2HE < 0.3";
 
     //TCanvas* test = ESMMplotter->makeComparison("z1l2sigmaIetaIeta",selection,"1",20,0,0.08,"sigma iEta iEta");
     //TCanvas* test = ESMMplotter->makeComparison("z1l2e1x5/z1l2e5x5",selection,"1",25,0,1,"e1x5/e5x5");
     //TCanvas* test = ESMMplotter->makeComparison("z1l2e2x5/z1l2e5x5",selection,"1",25,0,1,"e2x5/e5x5");
-    //selection += "&& z1l2sigmaIetaIeta < 0.04";
+    selection += "&& z1l2sigmaIetaIeta < 0.04";
 
     //TCanvas* test = ESMMplotter->makeComparison("mass",selection,"1",25,100,300,"M_{4l} [GeV/c^{2}]");
 
@@ -60,9 +60,9 @@
     TCanvas* test = ESMMplotter->makeComparison("z1l2hcalDepth1TowerSumEtConeDR03/z1l2Pt",selection,"1",25,0,1,"");
     TCanvas* test = ESMMplotter->makeComparison("z1l2hcalDepth2TowerSumEtConeDR03/z1l2Pt",selection,"1",25,0,1,"");
 
-    //selection += "&& z2l2ecalRecHitSumEtDR03";
+    selection += "&& z1l2ecalRecHitSumEtDR03/z1l2Pt < 0.08";
 
-    //selection += "&& z2Mass < 70";
+    selection += "&& z2Mass < 70";
     
     //TCanvas* test = ESMMplotter->makeComparison("z1Mass",selection,"1",20,40,120,"M_{eSC}");
     double ymax = 10;
