@@ -76,7 +76,10 @@ class CompositePtrCandidateT1T2MEtCrossCleaner : public edm::EDProducer
 
       }
 
-
+    //embed noFSR mass info here, why not.
+    for (unsigned int i = 0; i < compositePtrCandidateCollection->size(); ++i) {
+        compositePtrCandidateCollection->at(i).setNoFSRMass((compositePtrCandidateCollection->at(i).leg1()->noPhoP4()+compositePtrCandidateCollection->at(i).leg2()->noPhoP4()).M());
+    }
 
     evt.put(compositePtrCandidateCollection);
   }
