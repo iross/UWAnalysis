@@ -1,6 +1,6 @@
 {
-  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/SimplePlotter.C+");
-  gROOT->ProcessLine(".L UWAnalysis/ROOT/interactive/tdrstyle.C");
+  gROOT->ProcessLine(".L /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/ROOT/interactive/SimplePlotter.C+");
+  gROOT->ProcessLine(".L /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/ROOT/interactive/tdrstyle.C");
   setTDRStyle();
   
   SimplePlotter *EEEMplotter = new SimplePlotter();

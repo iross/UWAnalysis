@@ -629,6 +629,7 @@ float weightTrue2011to2012(float input){
         h.SetBinContent(k+1,w[k]);
     }
 
+    std::cout << "2011->2012 weights being applied" << std::endl;
     return h.GetBinContent(h.FindBin(input));
 
 }
@@ -732,28 +733,32 @@ int main (int argc, char* argv[])
     TFile *fPU3 = new TFile("../Weight3D.root");
     TFile *fPU4 = new TFile("Weight3D.root");
 
-    if(fPU2!=0 && fPU2->IsOpen()&& fPU22!=0 && fPU22->IsOpen() && (!(fPU3!=0 && fPU3->IsOpen())) &&(!(fPU4!=0 && fPU4->IsOpen()))){
-        doPU=2;
-        printf("ENABLING PU WEIGHTING USING 3D- I HAVE TO CALCULATE WEIGHTS SORRY\n");
-        LumiWeights = new edm::Lumi3DReWeighting("../puInfoMC3D.root","../puInfo3D.root","pileup","pileup");
-        LumiWeights->weight3D_init(1.0);
-    }
-    else  if(fPU3!=0 && fPU3->IsOpen()) {
-        doPU=2;
-        printf("ENABLING PU WEIGHTING USING 3D with ready distribution\n");
-        fPU3->Close();
-        LumiWeights = new edm::Lumi3DReWeighting(mc,data);
-        LumiWeights->weight3D_init("../Weight3D.root");
-    }
-    else   if(fPU4!=0 && fPU4->IsOpen()) {
+    if ( !fPU2->IsZombie() && !fPU22->IsZombie() && !fPU3->IsZombie() && !fPU4->IsZombie() )
+    {
 
-        //searxch in this folder
-        doPU=2;
-        printf("ENABLING PU WEIGHTING USING 3D with  distribution you just made\n");
-        fPU4->Close();
-        LumiWeights = new edm::Lumi3DReWeighting(mc,data);
-        LumiWeights->weight3D_init("Weight3D.root");
+        if(fPU2!=0 && fPU2->IsOpen()&& fPU22!=0 && fPU22->IsOpen() && (!(fPU3!=0 && fPU3->IsOpen())) &&(!(fPU4!=0 && fPU4->IsOpen()))){
+            doPU=2;
+            printf("ENABLING PU WEIGHTING USING 3D- I HAVE TO CALCULATE WEIGHTS SORRY\n");
+            LumiWeights = new edm::Lumi3DReWeighting("../puInfoMC3D.root","../puInfo3D.root","pileup","pileup");
+            LumiWeights->weight3D_init(1.0);
+        }
+        else  if(fPU3!=0 && fPU3->IsOpen()) {
+            doPU=2;
+            printf("ENABLING PU WEIGHTING USING 3D with ready distribution\n");
+            fPU3->Close();
+            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
+            LumiWeights->weight3D_init("../Weight3D.root");
+        }
+        else   if(fPU4!=0 && fPU4->IsOpen()) {
 
+            //searxch in this folder
+            doPU=2;
+            printf("ENABLING PU WEIGHTING USING 3D with  distribution you just made\n");
+            fPU4->Close();
+            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
+            LumiWeights->weight3D_init("Weight3D.root");
+
+        }
     }
 
 
@@ -776,11 +781,15 @@ int main (int argc, char* argv[])
     TH1F* evC  = (TH1F*)f->Get(parser.stringValue("histoName").c_str());
     float ev = evC->GetBinContent(1);
 
-
     printf("Found  %f Events Counted\n",ev);
 
     //temp, hack, etc
     doPU=3;
+
+    std::cout << doRho << std::endl;
+    std::cout << puWeight << std::endl;
+    std::cout << rhoWeight << std::endl;
+
     readdir(f,parser,ev,doPU,doRho,puWeight,rhoWeight);
     f->Close();
     if(fPU!=0 && fPU->IsOpen())

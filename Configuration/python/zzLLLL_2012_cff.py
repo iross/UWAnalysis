@@ -89,7 +89,7 @@ MMMManalysisConfigurator.addDiCandidateModule('MMMMdiMuons','PATMuPairProducer',
 #3a. Pair #1 built, (SF/OS, closest to Z0) 
 MMMManalysisConfigurator.addSelector('MMMMosDiMuons','PATMuPairSelector','leg1.pfCandidateRef().isNonnull()&&leg2.pfCandidateRef().isNonnull()&&charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z1 MMMM',1)
 
-MMMManalysisConfigurator.addFSRRecovery('MMMMfsredMM','MuMuZFSRRecovery','MMMMosDiMuons','boostedFsrPhotons','smearedElectronsMMMM','cleanPatMuons')
+#MMMManalysisConfigurator.addFSRRecovery('MMMMfsredMM','MuMuZFSRRecovery','MMMMosDiMuons','boostedFsrPhotons','smearedElectronsMMMM','cleanPatMuons')
 
 #leg[12]PhotonIso() has FSR cand photons removed
 MMMManalysisConfigurator.addSelector('MMMMosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z1 with iso',1)
@@ -143,7 +143,7 @@ EEEEanalysisConfigurator.addDiCandidateModule('EEEEdiElectrons','PATElePairProdu
 #3a. Pair #1 built, (SF/OS, closest to Z0) 
 EEEEanalysisConfigurator.addSelector('EEEEosDiElectrons','PATElePairSelector','charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0&&leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','',1)
 
-EEEEanalysisConfigurator.addFSRRecovery('EEEEfsredEE','EleEleZFSRRecovery','EEEEosDiElectrons','boostedFsrPhotons','smearedElectronsEEEE','cleanPatMuons','fsrrrrrr')
+#EEEEanalysisConfigurator.addFSRRecovery('EEEEfsredEE','EleEleZFSRRecovery','EEEEosDiElectrons','boostedFsrPhotons','smearedElectronsEEEE','cleanPatMuons','fsrrrrrr')
 
 EEEEanalysisConfigurator.addSelector('EEEEosDiElectronsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z1 with iso eeee',1)
 
@@ -195,12 +195,12 @@ MMEEanalysisConfigurator.addDiCandidateModule('MMEEdiMuons','PATMuPairProducer',
 #3a. Pair #1 built, (SF/OS, closest to Z0) 
 MMEEanalysisConfigurator.addSelector('MMEEosDiMuonsnoPF','PATMuPairSelector','charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z1 MMEE no pf',1)
 MMEEanalysisConfigurator.addSelector('MMEEosDiMuons','PATMuPairSelector','leg1.pfCandidateRef().isNonnull()&&leg2.pfCandidateRef().isNonnull()&&charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z1 MMEE',1)
-MMEEanalysisConfigurator.addFSRRecovery('MMEEfsredMM','MuMuZFSRRecovery','MMEEosDiMuons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
+#MMEEanalysisConfigurator.addFSRRecovery('MMEEfsredMM','MuMuZFSRRecovery','MMEEosDiMuons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
 MMEEanalysisConfigurator.addSelector('MMEEosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z1 with iso MMEE',1)
 
 MMEEanalysisConfigurator.addDiCandidateModule('MMEEdiElectrons','PATElePairProducer', 'smearedElectronsMMEE','smearedElectronsMMEE','smearedMETMMEE','smearedJetsMMEE',1,genParticles='genDaughters')
 MMEEanalysisConfigurator.addSelector('MMEEosDiElectrons','PATElePairSelector','charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0&&leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','',1)
-MMEEanalysisConfigurator.addFSRRecovery('MMEEfsredEE','EleEleZFSRRecovery','MMEEosDiElectrons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
+#MMEEanalysisConfigurator.addFSRRecovery('MMEEfsredEE','EleEleZFSRRecovery','MMEEosDiElectrons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
 MMEEanalysisConfigurator.addSelector('MMEEosDiElectronsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','MMEE Zee with iso',1)
 
 MMEEanalysisConfigurator.addDiCandidateModule('MMEEzzCands','PATMuMuEleEleQuadProducer','MMEEosDiMuonsIso','MMEEosDiElectronsIso','smearedMETMMEE','smearedJetsMMEE',1,9999,text='MMEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
@@ -238,12 +238,12 @@ EEMManalysisConfigurator.addDiCandidateModule('EEMMdiMuons','PATElePairProducer'
 #3a. Pair #1 built, (SF/OS, closest to Z0) 
 #todo
 EEMManalysisConfigurator.addSelector('EEMMosDiElectrons','PATElePairSelector','charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0&&leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 EEMM no pf',1)
-EEMManalysisConfigurator.addFSRRecovery('EEMMfsredEE','EleEleZFSRRecovery','EEMMosDiElectrons','boostedFsrPhotons','smearedElectronsEEMM','cleanPatMuons')
+#EEMManalysisConfigurator.addFSRRecovery('EEMMfsredEE','EleEleZFSRRecovery','EEMMosDiElectrons','boostedFsrPhotons','smearedElectronsEEMM','cleanPatMuons')
 EEMManalysisConfigurator.addSelector('EEMMosDiElectronsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z1 with iso EEMM',1)
 
 EEMManalysisConfigurator.addDiCandidateModule('EEMMdiElectrons','PATMuPairProducer', 'smearedMuonsEEMM','smearedMuonsEEMM','smearedMETEEMM','smearedJetsEEMM',1,genParticles='genDaughters')
 EEMManalysisConfigurator.addSelector('EEMMosDiMuons','PATMuPairSelector','charge==0&&leg1.pfCandidateRef().isNonnull()&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&abs(leg1.eta())<2.4 && leg1.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0&&leg2.pfCandidateRef().isNonnull()&&(leg2.isGlobalMuon()||leg2.isTrackerMuon())&&abs(leg2.eta())<2.4 && leg2.pt()>5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','',1)
-EEMManalysisConfigurator.addFSRRecovery('EEMMfsredMM','MuMuZFSRRecovery','EEMMosDiMuons','boostedFsrPhotons','smearedElectronsEEMM','cleanPatMuons')
+#EEMManalysisConfigurator.addFSRRecovery('EEMMfsredMM','MuMuZFSRRecovery','EEMMosDiMuons','boostedFsrPhotons','smearedElectronsEEMM','cleanPatMuons')
 EEMManalysisConfigurator.addSelector('EEMMosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','a Z with iso ee should cut none',1)
 
 #Don't require best--want the overlap numbers
@@ -283,12 +283,12 @@ MMEEonlyanalysisConfigurator.addDiCandidateModule('MMEEonlydiMuons','PATMuPairPr
 #3a. Pair #1 built, (SF/OS, closest to Z0) 
 MMEEonlyanalysisConfigurator.addSelector('MMEEonlyosDiMuonsnoPF','PATMuPairSelector','charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z1 MMEEonly no pf',1)
 MMEEonlyanalysisConfigurator.addSelector('MMEEonlyosDiMuons','PATMuPairSelector','leg1.pfCandidateRef().isNonnull()&&leg2.pfCandidateRef().isNonnull()&&charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z1 MMEE only',1)
-MMEEonlyanalysisConfigurator.addFSRRecovery('MMEEonlyfsredMM','MuMuZFSRRecovery','MMEEonlyosDiMuons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
+#MMEEonlyanalysisConfigurator.addFSRRecovery('MMEEonlyfsredMM','MuMuZFSRRecovery','MMEEonlyosDiMuons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
 MMEEonlyanalysisConfigurator.addSelector('MMEEonlyosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z1 with iso MMEE only',1)
 
 MMEEonlyanalysisConfigurator.addDiCandidateModule('MMEEonlydiElectrons','PATElePairProducer', 'smearedElectronsMMEE','smearedElectronsMMEE','smearedMETMMEE','smearedJetsMMEE',1,genParticles='genDaughters')
 MMEEonlyanalysisConfigurator.addSelector('MMEEonlyosDiElectrons','PATElePairSelector','charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0&&leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','',1)
-MMEEonlyanalysisConfigurator.addFSRRecovery('MMEEonlyfsredEE','EleEleZFSRRecovery','MMEEonlyosDiElectrons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
+#MMEEonlyanalysisConfigurator.addFSRRecovery('MMEEonlyfsredEE','EleEleZFSRRecovery','MMEEonlyosDiElectrons','boostedFsrPhotons','smearedElectronsMMEE','cleanPatMuons')
 MMEEonlyanalysisConfigurator.addSelector('MMEEonlyosDiElectronsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','a Z with iso ee should cut none mmee only',1)
 
 #Don't require best--want the overlap numbers
@@ -557,35 +557,38 @@ EEEMselectionSequence =EEEManalysisConfigurator.returnSequence()
 
 
 
+
+
+
 ######################__________________________________EEES_____________________________________##############################
 
 EEESanalysisConfigurator = CutSequenceProducer(
-        initialCounter  = 'initialEventsEEES',
+        initialCounter = 'initialEventsEEES',
         pyModuleName = __name__,
-        pyNameSpace  = locals()
+        pyNameSpace = locals()
         )
 #EEEManalysisConfigurator.addHLTFilter("EEEMHLT",DATAMC2012TriggerPaths,"HLT_reqEEEM")
 EEESanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','EEES')
 EEESanalysisConfigurator.addDiCandidateModule('EEESdiElectrons','PATElePairProducer', 'smearedElectronsEEES','smearedElectronsEEES','smearedMETEEES','smearedJetsEEES',1,genParticles='genDaughters')
 EEESanalysisConfigurator.addSelector('EEESosDiElectrons','PATElePairSelector','charge == 0 && mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && leg2.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.4 && abs(leg2.eta()) < 2.4','EEESDiEleCreation',1)
-#EEESanalysisConfigurator.addSelector('EEEMosDiMuonsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.25 ','EEEMDiEleIso',1)
 
 EEESanalysisConfigurator.addDiCandidateModule('EEESeleSC','PATEleSCPairProducer','smearedElectronsEEES','selectedPatPhotons','smearedMETEEES','smearedJetsEEES',1,9999,text = 'EEESAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
 
 EEESanalysisConfigurator.addDiCandidateModule('EEESzzCands','PATEleEleEleSCQuadProducer','EEESosDiElectrons','EEESeleSC','smearedMETEEES','smearedJetsEEES',1,9999,text='EEESAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
 EEESanalysisConfigurator.addCrossCleanerModule('EEESzzCleanedCands','PATEleEleEleSCQuadCrossCleaner',1,9999,text='EEESAtLeastOneZZCleanedCandidate',dR = 0.1)
 
-EEESanalysisConfigurator.addSelector('EEESzzEleIso','PATEleEleEleSCQuadSelector','(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1.photonIso()-leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt<0.25','EEESEleIso')
+EEESanalysisConfigurator.addSelector('EEESzzEleIso','PATEleEleEleSCQuadSelector','(leg2.leg1.chargedHadronIso() + max(0.0,leg2.leg1.neutralHadronIso() + leg2.leg1.photonIso() - leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt < 0.25','EEESEleIso')
 
 EEESanalysisConfigurator.addSorter('EEESzzCleanedCandsSortedByZMass','PATEleEleEleSCQuadSorterByZMass')
 
+EEESanalysisConfigurator.addSelector('EEESzzCleanedCandsAboveThreshold','PATEleEleEleSCQuadSelector','leg1().leg1().pt() > 20 && leg1().leg2().pt() > 10 && leg2().leg1().pt() > 10 && leg2().leg2().pt() > 10 && abs(leg2.leg1.eta())<2.5 && leg2.leg2.isEE()','EEESAtLeastOneZZCandOverThresholds')
 #EEEManalysisConfigurator.addDiCandidateModule('EEEMeleMu','PATEleMuPairProducer', 'smearedElectronsEEEM','smearedMuonsEEEM','smearedMETEEEM','smearedJetsEEEM',1,9999,text = 'EEEMAtLeastOneMuTau',leadingObjectsOnly = False,dR = 0.5,recoMode = "",genParticles='genDaughters')
 #EEEManalysisConfigurator.addDiCandidateModule('EEEMzzCands','PATEleEleEleMuQuadProducer','EEEMosDiElectrons','EEEMeleMu','smearedMETEEEM','smearedJetsEEEM',1,9999,text='EEEMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.005,recoMode ="",genParticles='genDaughters')
 #EEEManalysisConfigurator.addCrossCleanerModule('EEEMzzCleanedCands','PATEleEleEleMuQuadCrossCleaner',1,9999,text='EEEMAtLeastOneZZCleanedCandidate',dR = 0.1)
 
 
 #EEEManalysisConfigurator.addSelector('EEEMzzCleanedThirdMuID','PATEleEleEleMuQuadSelector','leg2.leg2.userInt("tightID")>0.5 && abs(leg2.leg2.eta())<2.5','EEEMThirdMuID')
-#EEEManalysisConfigurator.addSelector('EEEMzzEleId','PATEleEleEleMuQuadSelector','leg2.leg1.userFloat("mvaNonTrigV0Pass")>0','EEEMEleCiCLoose') 
+#EEEManalysisConfigurator.addSelector('EEEMzzEleId','PATEleEleEleMuQuadSelector','leg2.leg1.userFloat("mvaNonTrigV0Pass")>0','EEEMEleCiCLoose')
 #EEEManalysisConfigurator.addSelector('EEEMzzEleIso','PATEleEleEleMuQuadSelector','(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1.photonIso()-leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt<0.25','EEEMEleIso')
 #EEEManalysisConfigurator.addSelector('EEEMzzMuIso2','PATEleEleEleMuQuadSelector','(leg2.leg2.chargedHadronIso()+max(0.0,leg2.leg2.neutralHadronIso()+leg2.leg2.photonIso()-leg2.leg2.userFloat("zzRho2012")*leg2.leg2.userFloat("EAGammaNeuHadron04")))/leg2.leg2.pt<0.25','EEEMMuIso')
 #EEEManalysisConfigurator.addSorter('EEEMzzCleanedCandsSortedByZMass','PATEleEleEleMuQuadSorterByZMass')
@@ -599,5 +602,100 @@ EEESanalysisConfigurator.addSorter('EEESzzCleanedCandsSortedByZMass','PATEleEleE
 EEESselectionSequence = EEESanalysisConfigurator.returnSequence()
 
 
+
+
+
+
+######################__________________________________ESEE_____________________________________##############################
+
+ESEEanalysisConfigurator = CutSequenceProducer(
+        initialCounter  = 'initialEventsESEE',
+        pyModuleName = __name__,
+        pyNameSpace  = locals()
+        )
+# Build e,SC pairs
+ESEEanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuon','cleanPatElectrons','selectedPatJets','ESEE')
+ESEEanalysisConfigurator.addDiCandidateModule('ESEEeleSC','PATEleSCPairProducer','smearedElectronsESEE','selectedPatPhotons','smearedMETESEE','smearedJetsESEE',1,9999,text = 'ESEEAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
+ESEEanalysisConfigurator.addSelector('ESEEosEleSC','PATEleSCPairSelector','mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.5 && leg2.isEE()','ESEEEleSCCreation',1)
+
+# Build ee pairs
+ESEEanalysisConfigurator.addDiCandidateModule('ESEEdiElectrons','PATElePairProducer', 'smearedElectronsESEE','smearedElectronsESEE','smearedMETESEE','smearedJetsESEE',1,genParticles='genDaughters')
+ESEEanalysisConfigurator.addSelector('ESEEosDiElectrons','PATElePairSelector','charge == 0 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits() < 2 && leg1.pt() > 7 && abs(leg1.eta()) < 2.5 && abs(leg1.userFloat("ip3DS")) < 4 && abs(leg1.userFloat("ipDXY")) < 0.5 && abs(leg1.userFloat("dz")) < 1.0 && leg2.userFloat("mvaNonTrigV0Pass") > 0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits() < 2 && leg2.pt() > 7 && abs(leg2.eta()) < 2.5 && abs(leg2.userFloat("ip3DS")) < 4 && abs(leg2.userFloat("ipDXY")) < 0.5 && abs(leg2.userFloat("dz")) < 1.0  ','',1)
+ESEEanalysisConfigurator.addSelector('ESEEosDiElectronsIso','PATElePairSelector','(leg1.chargedHadronIso() + max(0.0,leg1.neutralHadronIso() + leg1.photonIso() - leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt < 0.40 && (leg2.chargedHadronIso() + max(0.0,leg2.neutralHadronIso() + leg2.photonIso() - leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt < 0.40 ','a Z with iso ee should cut none',1)
+
+# Build ZZ candidates from ee and eSC pairs
+ESEEanalysisConfigurator.addDiCandidateModule('ESEEzzCands','PATEleSCEleEleQuadProducer','ESEEosEleSC','ESEEosDiElectronsIso','smearedMETESEE','smearedJetsESEE',1,9999,text='ESEEAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
+ESEEanalysisConfigurator.addCrossCleanerModule('ESEEzzCleanedCands','PATEleSCEleEleQuadCrossCleaner',1,9999,text='ESEEAtLeastOneZZCleanedCandidate',dR = 0.1)
+ESEEanalysisConfigurator.addSelector('ESEEzzEleIso','PATEleSCEleEleQuadSelector','(leg2.leg1.chargedHadronIso() + max(0.0,leg2.leg1.neutralHadronIso() + leg2.leg1.photonIso() - leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt < 0.25','ESEEEleIso')
+ESEEanalysisConfigurator.addSorter('ESEEzzCleanedCandsSortedByZMass','PATEleSCEleEleQuadSorterByZMass')
+#ESEEanalysisConfigurator.addSelector('ESEEzzCleanedCandsAboveThreshold','PATEleSCEleEleQuadSelector','leg1().leg1().pt() > 20 && leg1().leg2().pt() > 10 && leg2().leg1().pt() > 10 && leg2().leg2().pt() > 10 && abs(leg2.leg1.eta()) < 2.5 && abs(leg2.leg2.eta()) < 2.5','ESEEAtLeastOneZZCandOverThresholds')
+
+# Of the three elec candidates, one must have pt > 20 and another pt > 10
+# All electrons must have |eta| < 2.5, and SC must be endcap
+threshold='( leg1.leg1.pt() > 20 && (leg2.leg1.pt() > 10 || leg2.leg2.pt() > 10) || leg2.leg1.pt() > 20 && (leg1.leg1.pt() > 10 || leg2.leg2.pt() > 10) || leg2.leg2.pt() > 20 && (leg1.leg1.pt() > 10 || leg2.leg1.pt() > 10) ) && abs(leg1.leg1.eta()) < 2.5 && abs(leg2.leg1.eta()) < 2.5 && abs(leg2.leg2.eta()) < 2.5 && leg1.leg2.isEE()'
+
+ESEEanalysisConfigurator.addSelector('ESEEzzCleanedCandsAboveThreshold','PATEleSCEleEleQuadSelector',threshold,'ESEEAtLeastOneZZCandOverThresholds')
+
+ESEEselectionSequence = ESEEanalysisConfigurator.returnSequence()
+
+
+
+
+######################__________________________________MMES_____________________________________##############################
+
+MMESanalysisConfigurator = CutSequenceProducer(
+        initialCounter  = 'initialEventsMMES',
+        pyModuleName = __name__,
+        pyNameSpace  = locals()
+        )
+MMESanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','MMES')
+
+MMESanalysisConfigurator.addDiCandidateModule('MMESdiMuons','PATMuPairProducer', 'smearedMuonsMMES','smearedMuonsMMES','smearedMETMMES','smearedJetsMMES',1,genParticles='genDaughters')
+MMESanalysisConfigurator.addSelector('MMESosDiMuons','PATMuPairSelector','mass>40 && charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMESDiMuonCreation',1)
+MMESanalysisConfigurator.addSelector('MMESosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.25 ','MMESDiMuonIso',1)
+
+MMESanalysisConfigurator.addDiCandidateModule('MMESeleSC','PATEleSCPairProducer','smearedElectronsMMES','selectedPatPhotons','smearedMETMMES','smearedJetsMMES',1,9999,text = 'MMESAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
+
+MMESanalysisConfigurator.addDiCandidateModule('MMESzzCands','PATMuMuEleSCQuadProducer','MMESosDiMuonsIso','MMESeleSC','smearedMETMMES','smearedJetsMMES',1,9999,text='MMESAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
+MMESanalysisConfigurator.addCrossCleanerModule('MMESzzCleanedCands','PATMuMuEleSCQuadCrossCleaner',1,9999,text='MMESAtLeastOneZZCleanedCandidate',dR = 0.1)
+
+MMESanalysisConfigurator.addSelector('MMESzzEleIso','PATMuMuEleSCQuadSelector','(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1.photonIso()-leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt<0.25','MMESEleIso')
+
+MMESanalysisConfigurator.addSorter('MMESzzCleanedCandsSortedByZMass','PATMuMuEleSCQuadSorterByZMass')
+
+MMESanalysisConfigurator.addSelector('MMESzzCleanedCandsAboveThreshold','PATMuMuEleSCQuadSelector','leg1().leg1().pt() > 20 && leg1().leg2().pt() > 10 && leg2().leg1().pt() > 10 && leg2().leg2().pt() > 10 && abs(leg2.leg1.eta())<2.5 && leg2.leg2.isEE()','MMESAtLeastOneZZCandOverThresholds')
+
+MMESselectionSequence = MMESanalysisConfigurator.returnSequence()
+
+######################__________________________________ESMM_____________________________________##############################
+
+ESMManalysisConfigurator = CutSequenceProducer(
+        initialCounter = 'initialEventsESMM',
+        pyModuleName = __name__,
+        pyNameSpace = locals()
+        )
+
+# Build EleSC Pairs
+ESMManalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuons','cleanPatElectrons','selectedPatJets','ESMM')
+ESMManalysisConfigurator.addDiCandidateModule('ESMMeleSC','PATEleSCPairProducer','smearedElectronsESMM','selectedPatPhotons','smearedMETESMM','smearedJetsESMM',1,9999,text = 'ESMMAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
+ESMManalysisConfigurator.addSelector('ESMMosEleSC','PATEleSCPairSelector','mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.5 && leg2.isEE()','ESMMEleSCCreation',1)
+
+# Build Muon Pairs
+ESMManalysisConfigurator.addDiCandidateModule('ESMMdiMuons','PATMuPairProducer', 'smearedMuonsESMM','smearedMuonsESMM','smearedMETESMM','smearedJetsESMM',1,genParticles='genDaughters')
+ESMManalysisConfigurator.addSelector('ESMMosDiMuons','PATMuPairSelector','leg1.pfCandidateRef().isNonnull()&&leg2.pfCandidateRef().isNonnull()&&charge==0&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&(leg2.isGlobalMuon()||leg2.isTrackerMuon()) && abs(leg1.eta())<2.4 && abs(leg2.eta())<2.4 && leg1.pt()>5 && leg2.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z2',1)
+ESMManalysisConfigurator.addSelector('ESMMosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("EAGammaNeuHadron04")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("EAGammaNeuHadron04")))/leg2.pt<0.40 ','one Z2 with iso',1)
+
+# Build ZZ candidates from muon and eSC pairs
+ESMManalysisConfigurator.addDiCandidateModule('ESMMzzCands','PATEleSCMuMuQuadProducer','ESMMosEleSC','ESMMosDiMuonsIso','smearedMETESMM','smearedJetsESMM',1,9999,text='ESMMAtLeastOneZZ',leadingObjectsOnly = False, dR = 0.005, recoMode="", genParticles='genDaughters')
+ESMManalysisConfigurator.addCrossCleanerModule('ESMMzzCleanedCands','PATEleSCMuMuQuadCrossCleaner',1,9999,text='ESMMAtLeastOneZZCleanedCandidate',dR = 0.1)
+ESMManalysisConfigurator.addSelector('ESMMzzEleIso','PATEleSCMuMuQuadSelector','(leg2.leg1.chargedHadronIso() + max(0.0,leg2.leg1.neutralHadronIso() + leg2.leg1.photonIso() - leg2.leg1.userFloat("zzRho2012")*leg2.leg1.userFloat("EAGammaNeuHadron04")))/leg2.leg1.pt < 0.25','ESMMEleIso')
+ESMManalysisConfigurator.addSorter('ESMMzzCleanedCandsSortedByZMass','PATEleSCMuMuQuadSorterByZMass')
+
+# Of the three elec candidates, one must have pt > 20 and another pt > 10
+# All electrons must have |eta| < 2.5, and SC must be endcap
+threshold = 'leg1.leg1.pt() > 7 && ( (leg2.leg1.pt() > 20 && leg2.leg2.pt() > 10) || (leg2.leg1.pt() > 10 && leg2.leg2.pt() > 20)) && abs(leg1.leg1.eta()) < 2.5 && abs(leg2.leg1.eta()) < 2.4 && abs(leg2.leg2.eta()) < 2.4 && leg1.leg2.isEE()'
+ESMManalysisConfigurator.addSelector('ESMMzzCleanedCandsAboveThreshold','PATEleSCMuMuQuadSelector',threshold,'ESMMAtLeastOneZZCandOverThresholds')
+
+ESMMselectionSequence = ESMManalysisConfigurator.returnSequence()
 
 ######################_______________________________EndOfConfigurators__________________________################################
