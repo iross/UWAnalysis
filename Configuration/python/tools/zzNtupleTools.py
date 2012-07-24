@@ -1431,6 +1431,39 @@ def SCCommon(src,legName,legMethod,pluginType,leadOnly=True):
         )
     return sharedV
 
+def zCommon(src,pluginType):
+    sharedV = cms.VPSet(
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("mass"),
+                method     = cms.string("mass()"),
+                leadingOnly=cms.untracked.bool(True)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("pt"),
+                method     = cms.string("pt()"),
+                leadingOnly=cms.untracked.bool(True)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("charge"),
+                method     = cms.string("charge()"),
+                leadingOnly=cms.untracked.bool(True)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("met"),
+                method     = cms.string("met.pt()"),
+                leadingOnly=cms.untracked.bool(True)
+                ),
+            )
+    return sharedV
+
 def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold',MC=False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
     eventTree = cms.EDAnalyzer('EventTreeMaker',
@@ -2227,3 +2260,66 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
     p = cms.Path(getattr(process,name))
     setattr(process, name+'Path', p)
 
+def addEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False, leadingOnly=False):
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag(
+            cms.InputTag(src)
+        ),
+        zzShared = zCommon(src,'PATElePairFiller'),
+        trigger = cms.PSet(
+            pluginType = cms.string("TriggerFiller"),
+            src        = cms.InputTag("patTrigger"),
+            paths      = cms.vstring(TriggerPaths)
+        ),
+        PVs = cms.PSet(
+            pluginType = cms.string("VertexSizeFiller"),
+            src        = cms.InputTag("primaryVertexFilter"),
+            tag        = cms.string("vertices")
+        ),
+        z1l1 = eleCommon(src,'l1','leg1.','PATElePairFiller',leadingOnly),
+        z1l2 = eleCommon(src,'l2','leg2.','PATElePairFiller',leadingOnly),
+    )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),            method     = cms.string('1')
+        )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process, name+'Path', p)
+
+def addMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False, leadingOnly=False):
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag(
+            cms.InputTag(src)
+        ),
+        zzShared = zCommon(src,'PATMuPairFiller'),
+        trigger = cms.PSet(
+            pluginType = cms.string("TriggerFiller"),
+            src        = cms.InputTag("patTrigger"),
+            paths      = cms.vstring(TriggerPaths)
+        ),
+        PVs = cms.PSet(
+            pluginType = cms.string("VertexSizeFiller"),
+            src        = cms.InputTag("primaryVertexFilter"),
+            tag        = cms.string("vertices")
+        ),
+        #Candidate size quantities
+        z1l1 = muCommon(src,'l1','leg1.','PATMuPairFiller',leadingOnly),
+        z1l2 = muCommon(src,'l2','leg2.','PATMuPairFiller',leadingOnly),
+    )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATMuMuTauTauTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process, name+'Path', p)
