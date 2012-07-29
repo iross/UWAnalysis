@@ -13,6 +13,8 @@
 #include <cstdlib>
 #include <cmath>
 #include <iomanip>
+#include <set>
+#include <sstream>
 #include <algorithm>
 #include "TTree.h"
 #include "TFile.h"
@@ -22,7 +24,7 @@ using namespace std;
 bool ptCut(int pdgId, double pt);
 void zzAcceptance();
 bool passPtCuts(double pt[], int pdgId[]);
-bool matchReco(string treeName, int gEVENT, int gRUN, int gLUMI, TFile* f);
+set<string> genRecoEventIds(string treeName, TFile *f);
 
 
 
@@ -37,8 +39,8 @@ int main()
 
 void zzAcceptance()
 {
-    //TFile *f = new TFile("/scratch/belknap/ZZGenLvl.root");
-    TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
+    TFile *f = new TFile("/scratch/belknap/ZZGenLvl.root");
+    //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
     TTree *t = (TTree*)f->Get("genlevel/genEventTree");
 
@@ -94,7 +96,13 @@ void zzAcceptance()
     int massCounts  = 0;
     int etaCounts   = 0;
     int ptCounts    = 0;
+
+    // reconstruced event counts
     int eeeeCounts  = 0;
+
+    // create set of identifiers for the reco events
+    set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",f);
+
 
     for (int i = 0; i < t->GetEntries(); ++i)
     {
@@ -134,7 +142,13 @@ void zzAcceptance()
                     {
                         ptCounts++;
 
-                        if ( matchReco("eleEleEleEleEventTree",EVENT,RUN,LUMI,f) )
+                        // create identifier for current gen event
+                        stringstream ss;
+                        ss << EVENT << LUMI;
+
+                        // if the set of EEEE identifiers contains the gen identifier,
+                        // then the event was reconstructed.
+                        if ( eeeeId.count(ss.str()) == 1 )
                             eeeeCounts++;
                     }
                 }
@@ -146,36 +160,39 @@ void zzAcceptance()
     cout << setw(15) << "Z Mass Cuts"     << setw(8) << massCounts  << " " << double(massCounts)/double(startCounts)  << endl;
     cout << setw(15) << "Eta Cuts"        << setw(8) << etaCounts   << " " << double(etaCounts)/double(startCounts)   << endl;
     cout << setw(15) << "pT Cuts"         << setw(8) << ptCounts    << " " << double(ptCounts)/double(startCounts)    << endl;
-    cout << setw(15) << "4e Reco"         << setw(8) << eeeeCounts  << " " << double(eeeeCounts)/double(startCounts)  << endl;
+    cout << setw(15) << "eeee Reco"       << setw(8) << eeeeCounts  << " " << double(eeeeCounts)/double(startCounts)  << endl;
 }
 
 
 
 /**
- * Was this event reconstructed?
+ * Generates a set of identifies for reconstructed events in the given tree.
+ * The identifier is the concatenation of EVENT and LUMI to avoid duplicates.
  */
-bool matchReco(string treeName, int gEVENT, int gRUN, int gLUMI, TFile* f)
+set<string> genRecoEventIds(string treeName, TFile *f)
 {
     string name = treeName + "/eventTree";
     TTree *t = (TTree*)f->Get(name.c_str());
 
-    unsigned int rEVENT;
-    unsigned int rRUN;
-    unsigned int rLUMI;
+    unsigned int EVENT;
+    unsigned int LUMI;
 
-    t->SetBranchAddress("EVENT",&rEVENT);
-    t->SetBranchAddress("RUN",&rRUN);
-    t->SetBranchAddress("LUMI",&rLUMI);
+    t->SetBranchAddress("EVENT",&EVENT);
+    t->SetBranchAddress("LUMI",&LUMI);
+
+    set<string> ids;
 
     for (int i = 0; i < t->GetEntries(); ++i)
     {
         t->GetEntry(i);
 
-        if (rEVENT == gEVENT && rRUN == gRUN && rLUMI == gLUMI)
-            return true;
+        stringstream ss;
+        ss << EVENT << LUMI;
+
+        ids.insert(ss.str());
     }
 
-    return false;
+    return ids;
 }
 
 
