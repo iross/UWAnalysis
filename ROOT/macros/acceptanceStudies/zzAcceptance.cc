@@ -156,11 +156,11 @@ void zzAcceptance()
         }
     }
 
-    cout << setw(15) << "Starting Events" << setw(8) << startCounts << " " << double(startCounts)/double(startCounts) << endl;
-    cout << setw(15) << "Z Mass Cuts"     << setw(8) << massCounts  << " " << double(massCounts)/double(startCounts)  << endl;
-    cout << setw(15) << "Eta Cuts"        << setw(8) << etaCounts   << " " << double(etaCounts)/double(startCounts)   << endl;
-    cout << setw(15) << "pT Cuts"         << setw(8) << ptCounts    << " " << double(ptCounts)/double(startCounts)    << endl;
-    cout << setw(15) << "eeee Reco"       << setw(8) << eeeeCounts  << " " << double(eeeeCounts)/double(startCounts)  << endl;
+    cout << setw(15) << "Starting Events" << setw(8) << startCounts << " " << setprecision(4) << 100.0*double(startCounts)/double(startCounts) << " %" << endl;
+    cout << setw(15) << "Z Mass Cuts"     << setw(8) << massCounts  << " " << setprecision(4) << 100.0*double(massCounts)/double(startCounts)  << " %" << endl;
+    cout << setw(15) << "Eta Cuts"        << setw(8) << etaCounts   << " " << setprecision(4) << 100.0*double(etaCounts)/double(startCounts)   << " %" << endl;
+    cout << setw(15) << "pT Cuts"         << setw(8) << ptCounts    << " " << setprecision(4) << 100.0*double(ptCounts)/double(startCounts)    << " %" << endl;
+    cout << setw(15) << "eeee Reco"       << setw(8) << eeeeCounts  << " " << setprecision(4) << 100.0*double(eeeeCounts)/double(startCounts)  << " %" << endl;
 }
 
 
