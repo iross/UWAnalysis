@@ -1,42 +1,42 @@
 {
 "DoubleMu2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
 "DoubleMu2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012B_PromptReco_v1_Run193752_196531/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012B_PromptReco_v1_Run193752_196531/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
 "DoubleElectron2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
 "DoubleElectron2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012B_PromptReco_v1_Run193752_196531/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012B_PromptReco_v1_Run193752_196531/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
 "MuEG2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
 "MuEG2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012B_PromptReco_v1_Run193752_196531/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012B_PromptReco_v1_Run193752_196531/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -99,7 +99,7 @@
     },
 "DYJets":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/1/",
+    "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/",
     "url" : "",
     "xsection" : 3503.71,
     "note_" : ""
