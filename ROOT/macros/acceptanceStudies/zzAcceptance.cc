@@ -91,14 +91,15 @@ void zzAcceptance()
     int pdgId[4];
     double pt[4];
 
-    // initialize counts to zero
-    int startCounts = 0;
-    int massCounts  = 0;
-    int etaCounts   = 0;
-    int ptCounts    = 0;
+    // 0: mmmm, 1:eemm, 2:eeee
+    int channel;
 
-    // reconstruced event counts
-    int eeeeCounts  = 0;
+    // initialize counts to zero
+    int startCounts[] = {0,0,0};
+    int massCounts[]  = {0,0,0};
+    int etaCounts[]   = {0,0,0};
+    int ptCounts[]    = {0,0,0};
+    int recoCounts[]  = {0,0,0};
 
     // create set of identifiers for the reco events
     set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",f);
@@ -108,59 +109,72 @@ void zzAcceptance()
     {
         t->GetEntry(i);
 
+        bool mmmm = abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13;
+        bool eemm = (abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13) || (abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11);
+        bool eeee = abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11;
+
+        if (mmmm)
+            channel = 0;
+        else if (eemm)
+            channel = 1;
+        else if (eeee)
+            channel = 2;
+        else
+            continue;
+
         // look at only muons and electrons
-        if ( ( abs(z1l1pdgId) == 11 || abs(z1l1pdgId) == 13 ) && ( abs(z2l1pdgId) == 11 || abs(z2l1pdgId) == 13 ) )
+        startCounts[channel]++;
+
+        // apply mass cuts to Z1 and Z2
+        if ( 60 < z1Mass && z1Mass < 120 && 60 < z2Mass && z2Mass < 120 )
         {
-            startCounts++;
+            massCounts[channel]++;
 
-            // apply mass cuts to Z1 and Z2
-            if ( 60 < z1Mass && z1Mass < 120 && 60 < z2Mass && z2Mass < 120 )
+            bool l1EtaPass = ( abs(z1l1pdgId) == 11 && abs(z1l1Eta) < 2.5 && abs(z1l2Eta) < 2.5 ) || ( abs(z1l1pdgId) == 13 && abs(z1l1Eta) < 2.4 && abs(z1l2Eta) < 2.4 );
+            bool l2EtaPass = ( abs(z2l1pdgId) == 11 && abs(z2l1Eta) < 2.5 && abs(z2l2Eta) < 2.5 ) || ( abs(z2l1pdgId) == 13 && abs(z2l1Eta) < 2.4 && abs(z2l2Eta) < 2.4 );
+
+            // apply eta cuts to leptons
+            if ( l1EtaPass && l2EtaPass )
             {
-                massCounts++;
+                etaCounts[channel]++;
 
-                bool l1EtaPass = ( abs(z1l1pdgId) == 11 && abs(z1l1Eta) < 2.5 && abs(z1l2Eta) < 2.5 ) || ( abs(z1l1pdgId) == 13 && abs(z1l1Eta) < 2.4 && abs(z1l2Eta) < 2.4 );
-                bool l2EtaPass = ( abs(z2l1pdgId) == 11 && abs(z2l1Eta) < 2.5 && abs(z2l2Eta) < 2.5 ) || ( abs(z2l1pdgId) == 13 && abs(z2l1Eta) < 2.4 && abs(z2l2Eta) < 2.4 );
+                // load lepton info into arrays
+                pdgId[0] = z1l1pdgId;
+                pdgId[1] = z1l2pdgId;
+                pdgId[2] = z2l1pdgId;
+                pdgId[3] = z2l2pdgId;
 
-                // apply eta cuts to leptons
-                if ( l1EtaPass && l2EtaPass )
+                pt[0] = z1l1Pt;
+                pt[1] = z1l2Pt;
+                pt[2] = z2l1Pt;
+                pt[3] = z2l2Pt;
+
+                // apply pt cuts to leptons
+                if ( passPtCuts(pt, pdgId) )
                 {
-                    etaCounts++;
+                    ptCounts[channel]++;
 
-                    // load lepton info into arrays
-                    pdgId[0] = z1l1pdgId;
-                    pdgId[1] = z1l2pdgId;
-                    pdgId[2] = z2l1pdgId;
-                    pdgId[3] = z2l2pdgId;
+                    // create identifier for current gen event
+                    stringstream ss;
+                    ss << EVENT << LUMI;
 
-                    pt[0] = z1l1Pt;
-                    pt[1] = z1l2Pt;
-                    pt[2] = z2l1Pt;
-                    pt[3] = z2l2Pt;
-
-                    // apply pt cuts to leptons
-                    if ( passPtCuts(pt, pdgId) )
-                    {
-                        ptCounts++;
-
-                        // create identifier for current gen event
-                        stringstream ss;
-                        ss << EVENT << LUMI;
-
-                        // if the set of EEEE identifiers contains the gen identifier,
-                        // then the event was reconstructed.
-                        if ( eeeeId.count(ss.str()) == 1 )
-                            eeeeCounts++;
-                    }
+                    // if the set of EEEE identifiers contains the gen identifier,
+                    // then the event was reconstructed.
+                    if ( eeeeId.count(ss.str()) == 1 )
+                        recoCounts[channel]++;
                 }
             }
         }
     }
 
-    cout << setw(15) << "Starting Events" << setw(8) << startCounts << " " << setprecision(4) << 100.0*double(startCounts)/double(startCounts) << " %" << endl;
-    cout << setw(15) << "Z Mass Cuts"     << setw(8) << massCounts  << " " << setprecision(4) << 100.0*double(massCounts)/double(startCounts)  << " %" << endl;
-    cout << setw(15) << "Eta Cuts"        << setw(8) << etaCounts   << " " << setprecision(4) << 100.0*double(etaCounts)/double(startCounts)   << " %" << endl;
-    cout << setw(15) << "pT Cuts"         << setw(8) << ptCounts    << " " << setprecision(4) << 100.0*double(ptCounts)/double(startCounts)    << " %" << endl;
-    cout << setw(15) << "eeee Reco"       << setw(8) << eeeeCounts  << " " << setprecision(4) << 100.0*double(eeeeCounts)/double(startCounts)  << " %" << endl;
+    int allCounts = startCounts[0] + startCounts[1] + startCounts[2];
+
+    cout << setw(15) << " "               << " " << setw(5)                  << "MMMM"                                            << " " << setw(5)                  << "EEMM"                                            << " " << setw(5)                  << "EEEE"                                            << endl;
+    cout << setw(15) << "Starting Events" << " " << fixed << setprecision(2) << 100*double(startCounts[0])/double(allCounts)      << " " << fixed << setprecision(2) << 100*double(startCounts[1])/double(allCounts)      << " " << fixed << setprecision(2) << 100*double(startCounts[2])/double(allCounts)      << endl;
+    cout << setw(15) << "Z Mass Cuts"     << " " << fixed << setprecision(2) << 100*double(massCounts[0])/double(startCounts[0])  << " " << fixed << setprecision(2) << 100*double(massCounts[1])/double(startCounts[1])  << " " << fixed << setprecision(2) << 100*double(massCounts[2])/double(startCounts[2])  << endl;
+    cout << setw(15) << "Eta Cuts"        << " " << fixed << setprecision(2) << 100*double(etaCounts[0])/double(startCounts[0])   << " " << fixed << setprecision(2) << 100*double(etaCounts[1])/double(startCounts[1])   << " " << fixed << setprecision(2) << 100*double(etaCounts[2])/double(startCounts[2])   << endl;
+    cout << setw(15) << "pT Cuts"         << " " << fixed << setprecision(2) << 100*double(ptCounts[0])/double(startCounts[0])    << " " << fixed << setprecision(2) << 100*double(ptCounts[1])/double(startCounts[1])    << " " << fixed << setprecision(2) << 100*double(ptCounts[2])/double(startCounts[2])    << endl;
+    cout << setw(15) << "Reco Events"     << " " << fixed << setprecision(2) << 100*double(recoCounts[0])/double(startCounts[0])  << " " << fixed << setprecision(2) << 100*double(recoCounts[1])/double(startCounts[1])  << " " << fixed << setprecision(2) << 100*double(recoCounts[2])/double(startCounts[2])  << endl;
 }
 
 
