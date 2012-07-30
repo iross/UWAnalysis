@@ -178,11 +178,9 @@ addEleSCMuMuEventTree(process,'eleSCMuMuEventTree','ESMMzzCleanedCandsAboveThres
 addEleSCMuMuEventTree(process,'eleSCMuMuEventTreeFinal','ESMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 addEleSCMuMuEventTree(process,'eleSCMuMuEventTreeFinalTest','ESMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
-#from UWAnalysis.Configuration.tools.zzNtupleTools import addGenLevel
-#addGenLevel(process,'GenLevelCandidates','genParticles',MC=True,leadingOnly=False)
-
-#process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
-#process.genParticles = cms.Path( process.genlevel )
+# Store all Gen Level particles. For H -> ZZ or ZZ only.
+process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
+process.genParticles = cms.Path( process.genlevel )
 
 
 #Add event counter
