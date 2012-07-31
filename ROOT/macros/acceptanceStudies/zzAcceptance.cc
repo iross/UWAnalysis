@@ -18,8 +18,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+
 #include "TTree.h"
 #include "TFile.h"
+#include "TH1F.h"
 
 using namespace std;
 
@@ -27,6 +29,7 @@ bool ptCut(int pdgId, double pt);
 void zzAcceptance();
 bool passPtCuts(double pt[], int pdgId[]);
 set<string> genRecoEventIds(string treeName, TFile *f);
+double recoEff(string histName, TFile *f);
 
 
 
@@ -41,10 +44,12 @@ int main()
 
 void zzAcceptance()
 {
-    TFile *f = new TFile("/scratch/belknap/ZZGenLvl2.root");
+    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/ZZGenLvl.root"); // gen level events only
+    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/ZZGenReco.root"); // Reconstructed Monte Carlo
+    
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
-    TTree *t = (TTree*)f->Get("genlevel/genEventTree");
+    TTree *t = (TTree*)fGen->Get("genlevel/genEventTree");
 
     int z1l1pdgId;
     int z1l2pdgId;
@@ -99,17 +104,17 @@ void zzAcceptance()
     vector<string> channelNames;
     channelNames.push_back("MMMM");
     channelNames.push_back("EEEE");
-    channelNames.push_back("EEMM");
+    channelNames.push_back("MMEE");
 
     // initialize counts to zero
     int startCounts[] = {0,0,0};
     int massCounts[]  = {0,0,0};
     int etaCounts[]   = {0,0,0};
     int ptCounts[]    = {0,0,0};
-    //int recoCounts[]  = {0,0,0};
+    int recoCounts[]  = {0,0,0};
     
     // create set of identifiers for the reco events
-    //set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",f);
+    set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",fRec);
 
     int nEntries = t->GetEntries();
 
@@ -118,14 +123,14 @@ void zzAcceptance()
         t->GetEntry(i);
 
         bool mmmm = abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13;
-        bool eemm = ( abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13 ) || ( abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11 );
+        bool mmee = ( abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13 ) || ( abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11 );
         bool eeee = abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11;
 
         if (mmmm)
             channel = 0;
         else if (eeee)
             channel = 1;
-        else if (eemm)
+        else if (mmee)
             channel = 2;
         else
             continue;
@@ -162,7 +167,6 @@ void zzAcceptance()
                 {
                     ptCounts[channel]++;
 
-                    /*
                     // create identifier for current gen event
                     stringstream ss;
                     ss << EVENT << LUMI;
@@ -171,19 +175,54 @@ void zzAcceptance()
                     // then the event was reconstructed.
                     if ( eeeeId.count(ss.str()) == 1 )
                         recoCounts[channel]++;
-                    */
                 }
             }
         }
     }
 
-
-
     // Print the results to the console
-    cout << setw(6) << "Name" << setw(7) << "BR" << setw(7) << "mass" << setw(7) << "etaCut" << setw(7) << "ptCut" << endl;
-    for (int i = 0; i < 3; ++i)
-        cout << setw(6) << channelNames.at(i) << setw(7) << fixed << setprecision(3) << double(startCounts[i])/double(nEntries) << setw(7) << fixed << setprecision(3) << double(massCounts[i])/double(nEntries) <<  setw(7) << fixed << setprecision(3) << double(etaCounts[i])/double(nEntries) << setw(7) << fixed << setprecision(3) << double(ptCounts[i])/double(nEntries) << endl;
+    cout << setw(6) << "Name";
+    cout << setw(10) << "BR";
+    cout << setw(10) << "mass";
+    cout << setw(10) << "etaCut";
+    cout << setw(10) << "ptCut";
+    cout << setw(10) << "recoMatch";
+    cout << setw(10) << "recoEf";
+    cout << endl;
 
+    for (int i = 0; i < 3; ++i)
+    {
+        cout << setw(6) << channelNames.at(i);
+        cout << setw(10) << fixed << setprecision(3) << double(startCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(3) << double(massCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(3) << double(etaCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(3) << double(ptCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(3) << double(recoCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(3) << recoEff(channelNames.at(i),fRec);
+        cout << endl;
+    }
+
+}
+
+
+
+
+/**
+ * Calculates the reco efficiency
+ *
+ * @param histName The name of the histogram. e.g. EEEE, MMEE, etc.
+ * @param *f Pointer the the file where the histograms are located
+ * @return The reconstruction efficiency
+ */
+double recoEff(string histName, TFile *f)
+{
+    string name = histName + "/results";
+    TH1F* hist = (TH1F*)f->Get(name.c_str());
+
+    double initEvents = hist->GetBinContent(1);
+    double recoEvents = hist->GetBinContent(hist->GetMinimumBin());
+
+    return recoEvents/initEvents;
 }
 
 
