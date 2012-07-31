@@ -15,6 +15,8 @@
 #include <iomanip>
 #include <set>
 #include <sstream>
+#include <string>
+#include <vector>
 #include <algorithm>
 #include "TTree.h"
 #include "TFile.h"
@@ -39,7 +41,7 @@ int main()
 
 void zzAcceptance()
 {
-    TFile *f = new TFile("/scratch/belknap/ZZGenLvl.root");
+    TFile *f = new TFile("/scratch/belknap/ZZGenLvl2.root");
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
     TTree *t = (TTree*)f->Get("genlevel/genEventTree");
@@ -91,33 +93,39 @@ void zzAcceptance()
     int pdgId[4];
     double pt[4];
 
-    // 0: mmmm, 1:eemm, 2:eeee
+    // 0: mmmm, 1:eeee, 2:eemm
     int channel;
+
+    vector<string> channelNames;
+    channelNames.push_back("MMMM");
+    channelNames.push_back("EEEE");
+    channelNames.push_back("EEMM");
 
     // initialize counts to zero
     int startCounts[] = {0,0,0};
     int massCounts[]  = {0,0,0};
     int etaCounts[]   = {0,0,0};
     int ptCounts[]    = {0,0,0};
-    int recoCounts[]  = {0,0,0};
-
+    //int recoCounts[]  = {0,0,0};
+    
     // create set of identifiers for the reco events
-    set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",f);
+    //set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",f);
 
+    int nEntries = t->GetEntries();
 
-    for (int i = 0; i < t->GetEntries(); ++i)
+    for (int i = 0; i < nEntries; ++i)
     {
         t->GetEntry(i);
 
         bool mmmm = abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13;
-        bool eemm = (abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13) || (abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11);
+        bool eemm = ( abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 13 && abs(z2l2pdgId) == 13 ) || ( abs(z1l1pdgId) == 13 && abs(z1l2pdgId) == 13 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11 );
         bool eeee = abs(z1l1pdgId) == 11 && abs(z1l2pdgId) == 11 && abs(z2l1pdgId) == 11 && abs(z2l2pdgId) == 11;
 
         if (mmmm)
             channel = 0;
-        else if (eemm)
-            channel = 1;
         else if (eeee)
+            channel = 1;
+        else if (eemm)
             channel = 2;
         else
             continue;
@@ -154,6 +162,7 @@ void zzAcceptance()
                 {
                     ptCounts[channel]++;
 
+                    /*
                     // create identifier for current gen event
                     stringstream ss;
                     ss << EVENT << LUMI;
@@ -162,19 +171,19 @@ void zzAcceptance()
                     // then the event was reconstructed.
                     if ( eeeeId.count(ss.str()) == 1 )
                         recoCounts[channel]++;
+                    */
                 }
             }
         }
     }
 
-    int allCounts = startCounts[0] + startCounts[1] + startCounts[2];
 
-    cout << setw(15) << " "               << " " << setw(5)                  << "MMMM"                                            << " " << setw(5)                  << "EEMM"                                            << " " << setw(5)                  << "EEEE"                                            << endl;
-    cout << setw(15) << "Starting Events" << " " << fixed << setprecision(2) << 100*double(startCounts[0])/double(allCounts)      << " " << fixed << setprecision(2) << 100*double(startCounts[1])/double(allCounts)      << " " << fixed << setprecision(2) << 100*double(startCounts[2])/double(allCounts)      << endl;
-    cout << setw(15) << "Z Mass Cuts"     << " " << fixed << setprecision(2) << 100*double(massCounts[0])/double(startCounts[0])  << " " << fixed << setprecision(2) << 100*double(massCounts[1])/double(startCounts[1])  << " " << fixed << setprecision(2) << 100*double(massCounts[2])/double(startCounts[2])  << endl;
-    cout << setw(15) << "Eta Cuts"        << " " << fixed << setprecision(2) << 100*double(etaCounts[0])/double(startCounts[0])   << " " << fixed << setprecision(2) << 100*double(etaCounts[1])/double(startCounts[1])   << " " << fixed << setprecision(2) << 100*double(etaCounts[2])/double(startCounts[2])   << endl;
-    cout << setw(15) << "pT Cuts"         << " " << fixed << setprecision(2) << 100*double(ptCounts[0])/double(startCounts[0])    << " " << fixed << setprecision(2) << 100*double(ptCounts[1])/double(startCounts[1])    << " " << fixed << setprecision(2) << 100*double(ptCounts[2])/double(startCounts[2])    << endl;
-    cout << setw(15) << "Reco Events"     << " " << fixed << setprecision(2) << 100*double(recoCounts[0])/double(startCounts[0])  << " " << fixed << setprecision(2) << 100*double(recoCounts[1])/double(startCounts[1])  << " " << fixed << setprecision(2) << 100*double(recoCounts[2])/double(startCounts[2])  << endl;
+
+    // Print the results to the console
+    cout << setw(6) << "Name" << setw(7) << "BR" << setw(7) << "mass" << setw(7) << "etaCut" << setw(7) << "ptCut" << endl;
+    for (int i = 0; i < 3; ++i)
+        cout << setw(6) << channelNames.at(i) << setw(7) << fixed << setprecision(3) << double(startCounts[i])/double(nEntries) << setw(7) << fixed << setprecision(3) << double(massCounts[i])/double(nEntries) <<  setw(7) << fixed << setprecision(3) << double(etaCounts[i])/double(nEntries) << setw(7) << fixed << setprecision(3) << double(ptCounts[i])/double(nEntries) << endl;
+
 }
 
 
