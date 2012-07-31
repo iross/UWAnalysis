@@ -87,7 +87,7 @@ def makeScatter(fd,year,lumi):
 		can.SaveAs(year+"/"+state+"/"+state+"_z1Mass_z2Mass.root")
 		can.SaveAs(year+"/"+state+"/"+state+"_z1Mass_z2Mass.C")
 
-def makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi="2.95",extra="1",var="z1Mass",varNice="Z_{M}^{1}",bins=range(60,120,5),texx=63,texyf=0.3,legx=0.2):
+def makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi="2.95",extra="1",var="z1Mass",varNice="Z_{M}^{1}",bins=range(60,120,5),texx=63,texyf=0.3,legx=0.2,legy=0.5):
     #	eventDump(d["eeee"],extra)
 #	eventDump(d["eemm"],extra)
 #	eventDump(d["mmmm"],extra)
@@ -102,17 +102,19 @@ def makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi="2.95",extra="1",var
     data={}
     hists={}
     files={}
-    for dataset in datasets:
+    for dataset in sorted(datasets):
         data[dataset]={}
         hists[dataset]={}
         files[dataset]=TFile(datasets[dataset]['file'])        
         for tree in trees:
             data[dataset][tree]=files[dataset].Get(trees[tree])
             if datasets[dataset]['isMC']:
-                hists[dataset][tree]=makeHist(files[dataset].Get(trees[tree]),var,"("+extra+")*(__WEIGHT__noPU*"+lumi+"*1000)",50,100,600,False,True,bins)
+                hists[dataset][tree]=makeHist(files[dataset].Get(trees[tree]),var,"("+extra+")*(__WEIGHT__*"+lumi+"*1000)",50,100,600,False,True,bins)
             else:
                 hists[dataset][tree]=makeHist(files[dataset].Get(trees[tree]),var,extra,50,100,600,False,True,bins)
                 hists[dataset][tree].GetXaxis().SetTitle(varNice)
+#                hists[dataset][tree].SetMarkerSize(2)
+                hists[dataset][tree].SetMarkerStyle(20)
                 if bins[0]-bins[1] == bins[len(bins)-2]-bins[len(bins)-1]: # if spaced evenly
                     div=(float(bins[len(bins)-1])-float(bins[0]))/(len(bins)-1)
                     hists[dataset][tree].GetYaxis().SetTitle("Events / %.0f GeV" %div)
@@ -128,12 +130,13 @@ def makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi="2.95",extra="1",var
 
     can = TCanvas("can","can",600,600)
     for tree in trees:
-        leg=TLegend(legx,0.6,legx+0.2,0.9)
+        leg=TLegend(legx,legy,legx+0.2,legy+0.2)
         leg.SetFillColor(kWhite)
+        leg.SetBorderSize(1)
         if not os.path.exists(dir+"/"+tree):
             os.makedirs(dir+"/"+tree)
         hs=THStack("hs","stack")
-        for dataset in datasets:
+        for dataset in sorted(datasets):
             if not datasets[dataset]['isMC']:
                 leg.AddEntry(hists[dataset][tree],"Data","p")
             else:
@@ -143,9 +146,10 @@ def makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi="2.95",extra="1",var
         ymax=max(hists['DATA'][tree].GetMaximum(),hs.GetMaximum())
         ymax=ceil(ymax+sqrt(ymax))
         ymax=int(ymax)
-        l1 = TLatex(bins[0]+2,ymax*1.01,"CMS Preliminary "+year);
+        ymax=1.3*ymax
+        l1 = TLatex(bins[0]+2,0.95*ymax,"CMS Preliminary "+year);
         l1.SetTextSize(0.04);
-        l2 = TLatex(texx,texyf*ymax,"#splitline{L_{int} ="+lumi+" fb^{-1}}{#sqrt{s} = "+l+" TeV}");
+        l2 = TLatex(bins[0]+2,0.85*ymax,"#splitline{L_{int} ="+lumi+" fb^{-1}}{#sqrt{s} = "+l+" TeV}");
         l2.SetTextSize(0.04);
         hists['DATA'][tree].GetYaxis().SetRangeUser(0,ymax)
         hists['DATA'][tree].Draw('e1')
@@ -154,6 +158,7 @@ def makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi="2.95",extra="1",var
         leg.Draw()
         l1.Draw()
         l2.Draw()
+        can.RedrawAxis()
 #        can.SetLogy(1)
         if bins[0]-bins[1] == bins[len(bins)-2]-bins[len(bins)-1]: # if spaced evenly
             can.SaveAs(dir+"/"+tree+"/"+tree+"_"+var+""+postfix+".png")
@@ -224,16 +229,26 @@ if __name__ == '__main__':
 
     #todo: define samples, nice names, colors, etc.
     datasets={}
-    datasets["ZZ"]=addDataset("ZZ4M.root",kAzure-9,True)
-    datasets["ZJets"]=addDataset("DYJets.root",kGreen-5,True)
     datasets["DATA"]=addDataset("DATA.root",kBlack,False)
+    datasets["ZZ"]=addDataset("ZZ4L.root",kAzure-9,True)
+    datasets["ZJets"]=addDataset("DYJets.root",kGreen-5,True)
     trees={}
-    trees["mm"]="muMuEventTree/eventTree"
+#    trees["mm"]="muMuEventTree/eventTree"
+#    trees["ee"]="eleEleEventTree/eventTree"
+#    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="mass[0]",varNice="M_{ll}",bins=range(60,121,1),texx=400,texyf=0.4,legx=0.7,legy=0.5)
+#    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="l1Pt[0]",varNice="l_{1} P_{T}",bins=range(0,81,1),texx=400,texyf=0.4,legx=0.2,legy=0.5)
+#    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="l2Pt[0]",varNice="l_{2} P_{T}",bins=range(0,61,1),texx=400,texyf=0.4,legx=0.2,legy=0.5)
+#    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="vertices[0]",varNice="Reco. Vertices",bins=range(0,51,1),texx=400,texyf=0.4,legx=0.7,legy=0.5)
 
-    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="mass[0]",varNice="M_{#mu#mu}",bins=range(60,125,1),texx=400,texyf=0.4,legx=0.6)
-    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="l1Pt[0]",varNice="#mu_{1} P_{T}",bins=range(0,60,1),texx=400,texyf=0.4,legx=0.6)
-    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="l2Pt[0]",varNice="#mu_{2} P_{T}",bins=range(0,60,1),texx=400,texyf=0.4,legx=0.6)
-    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="vertices[0]",varNice="Reco. Vertices",bins=range(0,50,1),texx=400,texyf=0.4,legx=0.6)
+    trees={}
+    trees["mmmt"]="muMuMuTauEventTree/eventTree"
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="mass[0]",varNice="M_{#mu#mu#mu#tau}",bins=range(100,610,10),texx=400,texyf=0.4,legx=0.7)
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="z1Mass[0]",varNice="M^{1}_{ll}",bins=range(60,125,5),texx=400,texyf=0.4,legx=0.7,legy=0.5)
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="z2Mass[0]",varNice="M^{2}_{ll}",bins=range(60,125,5),texx=400,texyf=0.4,legx=0.7,legy=0.5)
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="z1l1Pt[0]",varNice="Z^{1}l_{1} P_{T}",bins=range(0,81,1),texx=400,texyf=0.4,legx=0.2,legy=0.5)
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="z1l2Pt[0]",varNice="Z^{1}l_{2} P_{T}",bins=range(0,81,1),texx=400,texyf=0.4,legx=0.2,legy=0.5)
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="z2l1Pt[0]",varNice="Z^{2}l_{1} P_{T}",bins=range(0,81,1),texx=400,texyf=0.4,legx=0.2,legy=0.5)
+    makePlots(datasets,trees,dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="z2l2Pt[0]",varNice="Z^{2}l_{2} P_{T}",bins=range(0,81,1),texx=400,texyf=0.4,legx=0.2,legy=0.5)
 
 #	makePlots(dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="mass",varNice="M_{4l}",bins=range(80,610,10),texx=400,texyf=0.4,legx=0.6)
 #	makePlots(dir="2012",postfix="8TeV",lumi=lumi,extra=extra,var="mass",varNice="M_{4l}",bins=range(90,170,5),texx=400,texyf=0.4,legx=0.6)
