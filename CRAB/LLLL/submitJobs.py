@@ -31,7 +31,6 @@ datasets = json.load(file)
 for dataset in datasets:
     passes = True
     if args.samples:
-        print args.samples
         passes = False
         for pattern in args.samples:
             if fnmatch.fnmatchcase(dataset, pattern):
@@ -41,7 +40,6 @@ for dataset in datasets:
         if datasets[dataset]['url'] == '':
             out.write('farmoutAnalysisJobs --skip-existing-output --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/{type}.py\n'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],type=datasets[dataset]['type']))
         else:
-            print datasets[dataset]['path']
             out.write('farmoutAnalysisJobs --skip-existing-output --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/{type}.py\n'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'],type=datasets[dataset]['type']))
 
 out.write("rm DATA.py\n")
