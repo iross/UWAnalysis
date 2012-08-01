@@ -1,0 +1,32 @@
+#include "FWCore/Framework/interface/MakerMacros.h"
+#include "FWCore/PluginManager/interface/ModuleDef.h"
+#include "UWAnalysis/DataFormats/interface/CompositePtrCandidateT1T2MEt.h"
+#include "UWAnalysis/DataFormats/interface/CompositePtrCandidateT1T2MEtFwd.h"
+#include "UWAnalysis/RecoTools/plugins/QuadCandEmbedder.h"
+
+typedef QuadCandEmbedder<PATMuMuMuTauQuad> PATMuMuMuTauQuadEmbedder;
+typedef QuadCandEmbedder<PATMuMuTauTauQuad> PATMuMuTauTauQuadEmbedder;
+typedef QuadCandEmbedder<PATMuMuEleTauQuad> PATMuMuEleTauQuadEmbedder;
+typedef QuadCandEmbedder<PATMuMuEleMuQuad> PATMuMuEleMuQuadEmbedder;
+typedef QuadCandEmbedder<PATMuMuMuMuQuad> PATMuMuMuMuQuadEmbedder;
+typedef QuadCandEmbedder<PATMuMuEleEleQuad> PATMuMuEleEleQuadEmbedder;
+typedef QuadCandEmbedder<PATEleEleEleTauQuad> PATEleEleEleTauQuadEmbedder;
+typedef QuadCandEmbedder<PATEleEleTauTauQuad> PATEleEleTauTauQuadEmbedder;
+typedef QuadCandEmbedder<PATEleEleEleEleQuad> PATEleEleEleEleQuadEmbedder;
+typedef QuadCandEmbedder<PATEleEleMuTauQuad> PATEleEleMuTauQuadEmbedder;
+typedef QuadCandEmbedder<PATEleEleEleMuQuad> PATEleEleEleMuQuadEmbedder;
+typedef QuadCandEmbedder<PATEleEleMuMuQuad> PATEleEleMuMuQuadEmbedder;
+
+
+DEFINE_FWK_MODULE(PATMuMuMuTauQuadEmbedder);
+DEFINE_FWK_MODULE(PATMuMuTauTauQuadEmbedder);
+DEFINE_FWK_MODULE(PATMuMuEleTauQuadEmbedder);
+DEFINE_FWK_MODULE(PATMuMuEleMuQuadEmbedder);
+DEFINE_FWK_MODULE(PATMuMuMuMuQuadEmbedder);
+DEFINE_FWK_MODULE(PATMuMuEleEleQuadEmbedder);
+DEFINE_FWK_MODULE(PATEleEleEleTauQuadEmbedder);
+DEFINE_FWK_MODULE(PATEleEleTauTauQuadEmbedder);
+DEFINE_FWK_MODULE(PATEleEleEleEleQuadEmbedder);
+DEFINE_FWK_MODULE(PATEleEleMuTauQuadEmbedder);
+DEFINE_FWK_MODULE(PATEleEleEleMuQuadEmbedder);
+DEFINE_FWK_MODULE(PATEleEleMuMuQuadEmbedder);
