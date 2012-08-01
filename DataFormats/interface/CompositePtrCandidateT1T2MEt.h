@@ -146,14 +146,34 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double massNoFSR() const {return noPhoMass_;}
 
     void setFSRVariables(double phoPt, double phoEta, double phoPhi, double lepDR, double lepPt, reco::Candidate::LorentzVector noPhoP4, double leg1PhotonIso, double leg2PhotonIso){
-       phoPt_ = phoPt;
-       phoEta_ = phoEta;
-       phoPhi_ = phoPhi;
-       lepDR_ = lepDR;
-       lepPt_ = lepPt;
-       noPhoP4_ = noPhoP4;
-       leg1PhotonIso_ = leg1PhotonIso;
-       leg2PhotonIso_ = leg2PhotonIso;
+        phoPt_ = phoPt;
+        phoEta_ = phoEta;
+        phoPhi_ = phoPhi;
+        lepDR_ = lepDR;
+        lepPt_ = lepPt;
+        noPhoP4_ = noPhoP4;
+        leg1PhotonIso_ = leg1PhotonIso;
+        leg2PhotonIso_ = leg2PhotonIso;
+    }
+
+    double invM12() const {return M12_;}
+    double invM13() const {return M13_;}
+    double invM14() const {return M14_;}
+    double invM23() const {return M23_;}
+    double invM24() const {return M24_;}
+    double invM34() const {return M34_;}
+    double fourFour() const {return fourFour_;}
+    double sixSix() const {return sixSix_;}
+
+    void setInvMasses(reco::Candidate::LorentzVector p411, reco::Candidate::LorentzVector p412, reco::Candidate::LorentzVector p421, reco::Candidate::LorentzVector p422, bool fourFour, bool sixSix){
+        M12_ = (p411+p412).M();
+        M13_ = (p411+p421).M();
+        M14_ = (p411+p422).M();
+        M23_ = (p412+p421).M();
+        M24_ = (p412+p422).M();
+        M34_ = (p421+p422).M(); 
+        fourFour_ = fourFour;
+        sixSix_ = sixSix;
     }
 
     void setNoFSRMass(double mass){
@@ -419,6 +439,15 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double leg2PhotonIso_;
     double noPhoMass_;
 
+    double M12_;
+    double M13_;
+    double M14_;
+    double M23_;
+    double M24_;
+    double M34_;
+    bool fourFour_;
+    bool sixSix_;
+    //
     //Angles
     double costheta1_;
     double costheta2_; 
