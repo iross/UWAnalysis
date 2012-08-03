@@ -17,21 +17,10 @@ class Selector:
         if cutS.endswith("&&"):
             cutS=cutS[:-len("&&")]
         return cutS
-        print cutS
 
 def defineCuts(*args):
     cutS=""
     for i in args:
-        cutS=cutS+i+"&&"
-    #trim last &&
-    if cutS.endswith("&&"):
-        cutS=cutS[:-len("&&")]
-    return cutS
-
-def defineCuts(*args):
-    cutS=""
-    for i in args:
-        print i
         cutS=cutS+i+"&&"
     #trim last &&
     if cutS.endswith("&&"):
