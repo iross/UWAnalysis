@@ -59,12 +59,12 @@ process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
 process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
 process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
 process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
-process.eventSelectionMMM = cms.Path(process.MMMSeq)
-process.eventSelectionMME = cms.Path(process.MMESeq)
-process.eventSelectionEEM = cms.Path(process.EEMSeq)
-process.eventSelectionEEE = cms.Path(process.EEESeq)
-process.eventSelectionMM = cms.Path(process.ZMMSeq)
-process.eventSelectionEE = cms.Path(process.ZEESeq)
+#process.eventSelectionMMM = cms.Path(process.MMMSeq)
+#process.eventSelectionMME = cms.Path(process.MMESeq)
+#process.eventSelectionEEM = cms.Path(process.EEMSeq)
+#process.eventSelectionEEE = cms.Path(process.EEESeq)
+#process.eventSelectionMM = cms.Path(process.ZMMSeq)
+#process.eventSelectionEE = cms.Path(process.ZEESeq)
 #process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
@@ -119,18 +119,18 @@ from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinalTest','EEMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
-addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
-addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
-addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
-addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEventTree
-addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
-addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+#addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
+#addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
+#addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
+#addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEventTree
+#addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
+#addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleSCEventTree
 #addEleEleEleSCEventTree(process,'eleEleEleSCEventTree','EEESzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
@@ -150,6 +150,6 @@ addEventSummary(process,True,'EETT','eventSelectionEETT')
 addEventSummary(process,True,'EEEM','eventSelectionEEEM')
 addEventSummary(process,True,'EEEE','eventSelectionEEEE')
 addEventSummary(process,True,'EEMM','eventSelectionEEMM')
-addEventSummary(process,True,'MM','eventSelectionEE')
-addEventSummary(process,True,'EE','eventSelectionMM')
+#addEventSummary(process,True,'MM','eventSelectionEE')
+#addEventSummary(process,True,'EE','eventSelectionMM')
 #addEventSummary(process,False,'EEES','eventSelectionEEES')

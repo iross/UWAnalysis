@@ -29,7 +29,7 @@ bool ptCut(int pdgId, double pt);
 void zzAcceptance();
 bool passPtCuts(double pt[], int pdgId[]);
 set<string> genRecoEventIds(string treeName, TFile *f);
-double recoEff(string histName, TFile *f);
+double recoEff(string histName, string treeName, TFile *f);
 
 
 
@@ -44,8 +44,11 @@ int main()
 
 void zzAcceptance()
 {
-    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/ZZGenLvl.root"); // gen level events only
-    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/ZZGenReco.root"); // Reconstructed Monte Carlo
+    //TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZGenLvl.root"); // gen level events only
+    //TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZGenReco.root"); // Reconstructed Monte Carlo
+    
+    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EGen.root"); // gen level events only
+    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EReco.root"); // Reconstructed Monte Carlo
     
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
@@ -106,6 +109,11 @@ void zzAcceptance()
     channelNames.push_back("EEEE");
     channelNames.push_back("MMEE");
 
+    vector<string> treeNames;
+    treeNames.push_back("muMuMuMuEventTreeFinal");
+    treeNames.push_back("eleEleEleEleEventTreeFinal");
+    treeNames.push_back("muMuEleEleEventTreeFinal");
+
     // initialize counts to zero
     int startCounts[] = {0,0,0};
     int massCounts[]  = {0,0,0};
@@ -114,7 +122,9 @@ void zzAcceptance()
     int recoCounts[]  = {0,0,0};
     
     // create set of identifiers for the reco events
-    set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTree",fRec);
+    set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTreeFinal",fRec);
+    set<string> mmmmId = genRecoEventIds("muMuMuMuEventTreeFinal",fRec);
+    set<string> mmeeId = genRecoEventIds("muMuEleEleEventTreeFinal",fRec);
 
     int nEntries = t->GetEntries();
 
@@ -175,6 +185,12 @@ void zzAcceptance()
                     // then the event was reconstructed.
                     if ( eeeeId.count(ss.str()) == 1 )
                         recoCounts[channel]++;
+
+                    if ( mmmmId.count(ss.str()) == 1 )
+                        recoCounts[channel]++;
+
+                    if ( mmeeId.count(ss.str()) == 1 )
+                        recoCounts[channel]++;
                 }
             }
         }
@@ -198,10 +214,9 @@ void zzAcceptance()
         cout << setw(10) << fixed << setprecision(3) << double(etaCounts[i])/double(nEntries);
         cout << setw(10) << fixed << setprecision(3) << double(ptCounts[i])/double(nEntries);
         cout << setw(10) << fixed << setprecision(3) << double(recoCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(3) << recoEff(channelNames.at(i),fRec);
+        cout << setw(10) << fixed << setprecision(3) << recoEff(channelNames.at(i),treeNames.at(i),fRec)*double(nEntries)/double(ptCounts[i]);
         cout << endl;
     }
-
 }
 
 
@@ -214,13 +229,17 @@ void zzAcceptance()
  * @param *f Pointer the the file where the histograms are located
  * @return The reconstruction efficiency
  */
-double recoEff(string histName, TFile *f)
+double recoEff(string histName, string treeName, TFile *f)
 {
-    string name = histName + "/results";
-    TH1F* hist = (TH1F*)f->Get(name.c_str());
+    string hName = histName + "/results";
+    string tName = treeName + "/eventTree";
+    TH1F* hist = (TH1F*)f->Get(hName.c_str());
+    TTree* tree = (TTree*)f->Get(tName.c_str());
 
     double initEvents = hist->GetBinContent(1);
-    double recoEvents = hist->GetBinContent(hist->GetMinimumBin());
+    double recoEvents = tree->GetEntries("60 < z1Mass && z1Mass < 120 && 60 < z2Mass && z2Mass < 120");
+
+    cout << "[" << recoEvents << "/" << initEvents << "]";
 
     return recoEvents/initEvents;
 }
@@ -262,7 +281,7 @@ set<string> genRecoEventIds(string treeName, TFile *f)
 /**
  * Do the leptons pass the pt cuts?
  *
- * One must pass pt > 20, another pt > 10,
+ * One must pass pt > 20, another pt > 10 (trigger thresholds)
  * and the remaining two must pass pt > 5 if muon and 7 if elec.
  */
 bool passPtCuts(double pt[], int pdgId[])
@@ -270,7 +289,7 @@ bool passPtCuts(double pt[], int pdgId[])
     int cutId [] = {0,1,2,3};
 
     // try all permutations of cuts applied to leptons
-    // if permutation works, then return true
+    // if a permutation works, then return true
     do
     {
         int l1 = cutId[0];
@@ -289,7 +308,7 @@ bool passPtCuts(double pt[], int pdgId[])
 
 
 /**
- * Does the lepton (mu,e) pass trig. threshold?
+ * Does the lepton (mu,e) pass pT cuts?
  */
 bool ptCut(int pdgId, double pt)
 {

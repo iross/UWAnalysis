@@ -1,5 +1,5 @@
 {
-	gROOT->ProcessLine(".x UWAnalysis/ROOT/macros/plotters/loadEleEleEleElePlotter.C");
+	gROOT->ProcessLine(".x $CMSSW_BASE/src/UWAnalysis/ROOT/macros/plotters/loadEleEleEleElePlotter.C");
 
 	std::string lumi="976";
 

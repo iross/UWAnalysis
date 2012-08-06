@@ -4,21 +4,39 @@
 cat LLLL-Gen.py > MC.py
 cat CONDOR.py >> MC.py
 
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo4mu_8TeV-powheg-pythia6 \
+#    ZZTo4mu_8TeV_powheg_pythia6_genOnly \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo4e_8TeV-powheg-pythia6 \
+#    ZZTo4e_8TeV_powheg_pythia6_genOnly \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+
 farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo4mu_8TeV-powheg-pythia6 \
-    ZZTo4mu_8TeV_powheg_pythia6_genOnly \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo4tau_8TeV-powheg-pythia6 \
+    ZZTo4tau_8TeV_powheg_pythia6_genOnly \
+    /afs/hep.wisc.edu/cms/belknap/UWTest \
+    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo2e2mu_8TeV-powheg-pythia6 \
+#    ZZTo2e2mu_8TeV_powheg_pythia6_genOnly \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo2e2tau_8TeV-powheg-pythia6 \
+    ZZTo2e2tau_8TeV_powheg_pythia6_genOnly \
     /afs/hep.wisc.edu/cms/belknap/UWTest \
     /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
 
 farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo4e_8TeV-powheg-pythia6 \
-    ZZTo4e_8TeV_powheg_pythia6_genOnly \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
-
-farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo2e2mu_8TeV-powheg-pythia6 \
-    ZZTo2e2mu_8TeV_powheg_pythia6_genOnly \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/mc/Summer12/ZZTo2mu2tau_8TeV-powheg-pythia6 \
+    ZZTo2mu2tau_8TeV_powheg_pythia6_genOnly \
     /afs/hep.wisc.edu/cms/belknap/UWTest \
     /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
 
