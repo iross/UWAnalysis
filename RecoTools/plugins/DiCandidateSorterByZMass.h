@@ -71,8 +71,6 @@ class DiCandidateSorterByZMass : public edm::EDProducer {
 			}
 
 			std::auto_ptr<std::vector<T> > out(new std::vector<T>);
-			double tempSum=0;
-			unsigned int bestIndex=0;
 			for(unsigned int i=0;i<toBeSorted.size();++i){
 //				if (toBeSorted.at(i).leg1()->mass()==toBeSorted.at(0).leg1()->mass() && toBeSorted.at(i).leg2()->leg1()->pt()+toBeSorted.at(i).leg2()->leg2()->pt() > tempSum){;
 //					tempSum=toBeSorted.at(i).leg2()->leg1()->pt()+toBeSorted.at(i).leg2()->leg2()->pt();

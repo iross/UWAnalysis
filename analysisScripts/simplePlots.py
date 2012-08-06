@@ -18,10 +18,8 @@ def makeHist(tree, var, cuts, nbin, xmin, xmax, overflow=False, customBinning=Fa
 	h = TH1F("temp","temp",nbin,xmin,xmax)
 	h.Sumw2()
 	if customBinning:
-		logging.debug("Using custom binning with bins:%d",bins)
 		h = TH1F("temp","temp",len(bins)-1,array('d',bins))
 	if overflow:
-		logging.debug("Adding overflow bin.")
 #		print "\twas",hist.GetBinContent(nbin)
 		hist.SetBinContent(nbin,hist.GetBinContent(nbin)+hist.GetBinContent(nbin+1))
 #		print "\tnow",hist.GetBinContent(nbin)
