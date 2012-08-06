@@ -16,8 +16,9 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
             #'file:/hdfs/store/user/dbelknap/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/GGH_HZZ4L_M-125_2012-06-20-PatTuple-MC-b497351/4cb1f8ea0bfd28794ef77b00678681f4/output_101_2_67C.root'
-            #'file:/hdfs/store/user/belknap/2012-08-01-PatTuple-MC/ZZJetsTo4L_pythia/1/patTuple_cfg-1CFB3C62-3B94-E111-AD52-008CFA008768.root'
-            'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/output_100_1_gLg.root'
+            'file:/hdfs/store/user/belknap/2012-08-01-PatTuple-MC/ZZJetsTo4L_pythia/1/patTuple_cfg-1CFB3C62-3B94-E111-AD52-008CFA008768.root'
+            #'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/output_100_1_gLg.root'
+            #'file:/hdfs/store/mc/Summer12/ZZTo4e_8TeV-powheg-pythia6/AODSIM/PU_S7_START52_V9-v1/0000/EEF7DC8C-559A-E111-AEC4-00266CFFBF30.root'
             #'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-05-29-8TeV-PatTuple-67c1f94/a7f10efca7dd683ad59c7e946715fa59/output_49_0_TNg.root',
             #		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
             #			'file:/scratch/iross/zz4l_sync_fall11_take2.root'
