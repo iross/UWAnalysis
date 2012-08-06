@@ -169,6 +169,34 @@ def zzCommon(src,pluginType,leadOnly=True):
                 method     = cms.string('leg1.leg1.userFloat("rho")'),
                 leadingOnly= cms.untracked.bool(leadOnly)
                 ),  
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag      = cms.string("z1l1PhotonIso"),
+                method     = cms.string('leg1.leg1PhotonIso()'),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),  
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag      = cms.string("z1l2PhotonIso"),
+                method     = cms.string('leg1.leg2PhotonIso()'),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),  
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag      = cms.string("z2l1PhotonIso"),
+                method     = cms.string('leg2.leg1PhotonIso()'),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),  
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag      = cms.string("z2l2PhotonIso"),
+                method     = cms.string('leg2.leg2PhotonIso()'),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),  
             )
     return sharedV
 
