@@ -6,7 +6,7 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string("PUFiller"),
                 src        = cms.InputTag("addPileupInfo"),
-                tag        = cms.string("pu"),
+                tag        = cms.string("pu")
                 ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
@@ -1402,6 +1402,34 @@ def SCCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType  = cms.string(pluginType),
             src         = cms.InputTag(src),
+            tag         = cms.string(legName + "ecalRecHitSumEtDR03"),
+            method      = cms.string(legMethod + "ecalRecHitSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "hcalTowerSumEtConeDR03"),
+            method      = cms.string(legMethod + "hcalTowerSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "hcalDepth1TowerSumEtConeDR03"),
+            method      = cms.string(legMethod + "hcalDepth1TowerSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "hcalDepth2TowerSumEtConeDR03"),
+            method      = cms.string(legMethod + "hcalDepth2TowerSumEtConeDR03()"),
+            leadingOnly = cms.untracked.bool(True)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
             tag         = cms.string(legName + "isEE"),
             method      = cms.string(legMethod + "isEE"),
             leadingOnly = cms.untracked.bool(leadOnly)
@@ -1460,6 +1488,13 @@ def SCCommon(src,legName,legMethod,pluginType,leadOnly=True):
             src         = cms.InputTag(src),
             tag         = cms.string(legName + "maxEnergyXtal"),
             method      = cms.string(legMethod + "maxEnergyXtal"),
+            leadingOnly = cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType  = cms.string(pluginType),
+            src         = cms.InputTag(src),
+            tag         = cms.string(legName + "HE"),
+            method      = cms.string(legMethod + "hadronicOverEm"),
             leadingOnly = cms.untracked.bool(leadOnly)
         )
         #cms.PSet(
@@ -2149,14 +2184,66 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
     setattr(process, name+'Path', p)
 
 
-def addEleEleEleSCEventTree(process, name,
-        leadingOnly= False,
+def addEleSCEleEleEventTree(process, name,
         src     = 'zzCleanedCandsAboveThreshold',
         srcEEEE = 'zzCleanedCandsAboveThreshold',
         srcEEMM = 'zzCleanedCandsAboveThreshold',
         srcMMEE = 'zzCleanedCandsAboveThreshold',
         srcMMMM = 'zzCleanedCandsAboveThreshold',
         MC      = False):
+
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
+    
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag( cms.InputTag(src) ),
+
+            trigger = cms.PSet(
+                pluginType  = cms.string("TriggerFiller"),
+                src         = cms.InputTag("patTrigger"),
+                paths       = cms.vstring(TriggerPaths)
+                ),
+            PVs = cms.PSet(
+                pluginType  = cms.string("VertexSizeFiller"),
+                src         = cms.InputTag("primaryVertexFilter"),
+                tag         = cms.string("vertices")
+                ),
+            Rho = cms.PSet(
+                pluginType  = cms.string("EventWeightFiller"),
+                src         = cms.InputTag("kt6PFJets","rho"),
+                tag         = cms.string("rho")
+                ),
+            # ZZ Quantities
+            counters = countCommon(src,'PATEleSCEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+            zzShared = zzCommon(src,'PATEleSCEleEleQuadFiller'),
+            metShared = metCommon(src,'PATEleSCEleEleQuadFiller'),
+
+            z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleSCEleEleQuadFiller'),
+            z2l2 =  SCCommon(src,'z1l2','leg1.leg2.','PATEleSCEleEleQuadFiller'),
+            z1l2 = eleCommon(src,'z2l1','leg2.leg1.','PATEleSCEleEleQuadFiller'),
+            z2l1 = eleCommon(src,'z2l2','leg2.leg2.','PATEleSCEleEleQuadFiller')
+            )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATEleSCEleEleTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process, name + 'Path', p)
+
+
+
+def addEleEleEleSCEventTree(process, name,
+        src     = 'zzCleanedCandsAboveThreshold',
+        srcEEEE = 'zzCleanedCandsAboveThreshold',
+        srcEEMM = 'zzCleanedCandsAboveThreshold',
+        srcMMEE = 'zzCleanedCandsAboveThreshold',
+        srcMMMM = 'zzCleanedCandsAboveThreshold',
+        MC      = False,
+        leadingOnly = False):
 
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
     
@@ -2188,10 +2275,120 @@ def addEleEleEleSCEventTree(process, name,
             z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATEleEleEleSCQuadFiller',leadingOnly),
             z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATEleEleEleSCQuadFiller',leadingOnly)
             )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATEleEleEleSCTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name + 'Path', p)
 
+
+
+def addMuMuEleSCEventTree(process, name,
+        src     = 'zzCleanedCandsAboveThreshold',
+        srcEEEE = 'zzCleanedCandsAboveThreshold',
+        srcEEMM = 'zzCleanedCandsAboveThreshold',
+        srcMMEE = 'zzCleanedCandsAboveThreshold',
+        srcMMMM = 'zzCleanedCandsAboveThreshold',
+        MC      = False):
+    
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
+
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag( cms.InputTag(src) ),
+
+            trigger = cms.PSet(
+                pluginType  = cms.string("TriggerFiller"),
+                src         = cms.InputTag("patTrigger"),
+                paths       = cms.vstring(TriggerPaths)
+                ),
+            PVs = cms.PSet(
+                pluginType  = cms.string("VertexSizeFiller"),
+                src         = cms.InputTag("primaryVertexFilter"),
+                tag         = cms.string("vertices")
+                ),
+            Rho = cms.PSet(
+                pluginType  = cms.string("EventWeightFiller"),
+                src         = cms.InputTag("kt6PFJets","rho"),
+                tag         = cms.string("rho")
+                ),
+            # ZZ Quantities
+            counters = countCommon(src,'PATMuMuEleSCQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+            zzShared = zzCommon(src,'PATMuMuEleSCQuadFiller'),
+            metShared = metCommon(src,'PATMuMuEleSCQuadFiller'),
+
+            z1l1 =  muCommon(src,'z1l1','leg1.leg1.','PATMuMuEleSCQuadFiller'),
+            z1l2 =  muCommon(src,'z1l2','leg1.leg2.','PATMuMuEleSCQuadFiller'),
+            z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATMuMuEleSCQuadFiller'),
+            z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATMuMuEleSCQuadFiller')
+            )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATMuMuEleSCTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process,name + 'Path',p)
+
+
+def addEleSCMuMuEventTree(process, name,
+        src     = 'zzCleanedCandsAboveThreshold',
+        srcEEEE = 'zzCleanedCandsAboveThreshold',
+        srcEEMM = 'zzCleanedCandsAboveThreshold',
+        srcMMEE = 'zzCleanedCandsAboveThreshold',
+        srcMMMM = 'zzCleanedCandsAboveThreshold',
+        MC      = False):
+    
+    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
+
+    eventTree = cms.EDAnalyzer('EventTreeMaker',
+            coreCollections = cms.VInputTag( cms.InputTag(src) ),
+
+            trigger = cms.PSet(
+                pluginType  = cms.string("TriggerFiller"),
+                src         = cms.InputTag("patTrigger"),
+                paths       = cms.vstring(TriggerPaths)
+                ),
+            PVs = cms.PSet(
+                pluginType  = cms.string("VertexSizeFiller"),
+                src         = cms.InputTag("primaryVertexFilter"),
+                tag         = cms.string("vertices")
+                ),
+            Rho = cms.PSet(
+                pluginType  = cms.string("EventWeightFiller"),
+                src         = cms.InputTag("kt6PFJets","rho"),
+                tag         = cms.string("rho")
+                ),
+            # ZZ Quantities
+            counters = countCommon(src,'PATEleSCMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
+            zzShared = zzCommon(src,'PATEleSCMuMuQuadFiller'),
+            metShared = metCommon(src,'PATEleSCMuMuQuadFiller'),
+
+            z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleSCMuMuQuadFiller'),
+            z1l2 =  SCCommon(src,'z1l2','leg1.leg2.','PATEleSCMuMuQuadFiller'),
+            z2l1 =  muCommon(src,'z2l1','leg2.leg1.','PATEleSCMuMuQuadFiller'),
+            z2l2 =  muCommon(src,'z2l2','leg2.leg2.','PATEleSCMuMuQuadFiller')
+            )
+    if MC:
+        eventTree.truth = cms.PSet(
+            pluginType = cms.string("PATEleSCMuMuTruthFiller"),
+            src        = cms.InputTag(src),
+            gensrc        = cms.InputTag("genParticles"),
+            tag        = cms.string("refitVertex"),
+            method     = cms.string('1')
+        )
+    setattr(process, name, eventTree)
+    p = cms.Path(getattr(process,name))
+    setattr(process,name + 'Path',p)
 
 
 def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):

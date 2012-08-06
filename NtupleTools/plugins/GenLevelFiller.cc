@@ -11,6 +11,9 @@ GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
     hMass   = 0;
     hEta    = 0;
     hPhi    = 0;
+    EVENT   = 0;
+    RUN     = 0;
+    LUMI    = 0;
 
     for (int i = 0; i < 2; ++i)
     {
@@ -28,6 +31,10 @@ GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
         lPdgId[i]   = 0;
     }
 
+    // Event numbers
+    tree->Branch("EVENT",&EVENT,"EVENT/I");
+    tree->Branch("RUN",&RUN,"RUN/I");
+    tree->Branch("LUMI",&LUMI,"LUMI/I");
 
     // Fill Higgs values
     tree->Branch("hPt",&hPt,"hPt/D");
@@ -78,6 +85,11 @@ void GenLevelFiller::endJob() {}
 
 void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+    // Grab event identification
+    EVENT  = iEvent.id().event();
+    RUN    = iEvent.id().run();
+    LUMI   = iEvent.luminosityBlock();
+
     // initialize variables to zero before
     // running over gen particles
     hPt     = 0;

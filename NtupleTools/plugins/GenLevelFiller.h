@@ -39,6 +39,10 @@ class GenLevelFiller : public edm::EDAnalyzer
 		double lPt[4], lEta[4], lPhi[4];
 		int lPdgId[4];
 
+        int EVENT;
+        int RUN;
+        int LUMI;
+
         TTree * tree;
 
         virtual void beginJob();
