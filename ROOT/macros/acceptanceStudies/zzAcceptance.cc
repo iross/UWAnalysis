@@ -23,7 +23,9 @@
 #include "TFile.h"
 #include "TH1F.h"
 
+
 using namespace std;
+
 
 bool ptCut(int pdgId, double pt);
 void zzAcceptance();
@@ -44,12 +46,18 @@ int main()
 
 void zzAcceptance()
 {
-    //TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZGenLvl.root"); // gen level events only
-    //TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZGenReco.root"); // Reconstructed Monte Carlo
+    // Pythia Sample 8 TeV
+    // TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZGenLvl.root"); // gen level events only
+    // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EReco.root"); // Reconstructed Monte Carlo
     
+    // Powheg Sample 8 TeV
     TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EGen.root"); // gen level events only
     TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EReco.root"); // Reconstructed Monte Carlo
     
+    // Pythia ggZZ Sample 8 TeV
+    // TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ4LGen.root"); // gen level events only
+    // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ4LReco.root"); // Reconstructed Monte Carlo
+
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
     TTree *t = (TTree*)fGen->Get("genlevel/genEventTree");
@@ -198,23 +206,24 @@ void zzAcceptance()
 
     // Print the results to the console
     cout << setw(6) << "Name";
-    cout << setw(10) << "BR";
-    cout << setw(10) << "mass";
-    cout << setw(10) << "etaCut";
-    cout << setw(10) << "ptCut";
-    cout << setw(10) << "recoMatch";
-    cout << setw(10) << "recoEf";
+    cout << setw(11) << "BR";
+    cout << setw(11) << "mass";
+    cout << setw(11) << "etaCut";
+    cout << setw(11) << "ptCut";
+    cout << setw(11) << "recoMatch";
+    cout << setw(11) << "recoEf";
     cout << endl;
 
     for (int i = 0; i < 3; ++i)
     {
         cout << setw(6) << channelNames.at(i);
-        cout << setw(10) << fixed << setprecision(3) << double(startCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(3) << double(massCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(3) << double(etaCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(3) << double(ptCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(3) << double(recoCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(3) << recoEff(channelNames.at(i),treeNames.at(i),fRec)*double(nEntries)/double(ptCounts[i]);
+        cout << setw(10) << fixed << setprecision(4) << 100*double(startCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(4) << 100*double(massCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(4) << 100*double(etaCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(4) << 100*double(ptCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(4) << 100*double(recoCounts[i])/double(nEntries);
+        cout << setw(10) << fixed << setprecision(4) << recoEff(channelNames.at(i),treeNames.at(i),fRec)*double(nEntries)/double(ptCounts[i]);
+        cout << "\t" << ptCounts[i] << "/" << startCounts[i];
         cout << endl;
     }
 }
@@ -239,7 +248,7 @@ double recoEff(string histName, string treeName, TFile *f)
     double initEvents = hist->GetBinContent(1);
     double recoEvents = tree->GetEntries("60 < z1Mass && z1Mass < 120 && 60 < z2Mass && z2Mass < 120");
 
-    cout << "[" << recoEvents << "/" << initEvents << "]";
+    cout << " " << recoEvents << "/" << initEvents << " ";
 
     return recoEvents/initEvents;
 }

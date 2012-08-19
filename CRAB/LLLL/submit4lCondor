@@ -6,7 +6,7 @@ cat CONDOR.py >> DATA.py
 cat LLLL-MC.py > MC.py
 cat CONDOR.py >> MC.py
 
-NAME=06Aug12
+NAME=17Aug12
 
 mkdir -p /scratch/belknap/DAGs/$NAME/
 
