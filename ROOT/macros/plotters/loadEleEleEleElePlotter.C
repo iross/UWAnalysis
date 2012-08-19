@@ -1,9 +1,12 @@
 {
-	gROOT->ProcessLine(".L $CMSSW_BASE/src/UWAnalysis/ROOT/interactive/SimplePlotter.C+");
+	gROOT->ProcessLine(".L $CMSSW_BASE/src/UWAnalysis/ROOT/interactive/SimplePlotter.C");
 	gROOT->ProcessLine(".L $CMSSW_BASE/src/UWAnalysis/ROOT/interactive/tdrstyle.C");
 	setTDRStyle();
 
 	SimplePlotter *EEEEplotter = new SimplePlotter();
+
+    // TString DATADIR="/afs/hep.wisc.edu/cms/belknap/dataSamples/HZZ4l/";
+    TString DATADIR="/Users/austin/Desktop/HiggsZZ/HZZ/samples/";
 
 	// EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","sandbox/zz-latest/VV.root","EWK WW/WZ","__WEIGHT__",0,kRed+2,kRed+4);
 	// EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","sandbox/zz-latest/Z2or3Jets.root","Z+jets","__WEIGHT__",0,kViolet-5,kViolet+3);
@@ -11,7 +14,10 @@
 	// EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","sandbox/zz-latest/TOP.root","t#bar{t}","__WEIGHT__",0,kGreen+2,kGreen+2);
 	// EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","sandbox/zz-latest/ZZ.root","EWK ZZ","__WEIGHT__",0,kOrange+7,kOrange+3);
 
-    EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","/afs/hep.wisc.edu/cms/belknap/dataSamples/HZZ4l/DATA.root","Data","1",1,kBlack,1);
+    EEEEplotter->addFile("eleEleEleEleEventTreeFinal/eventTree",DATADIR+"DATA.root",  "Data","1",1,kBlack,1);
+    EEEEplotter->addFile("eleEleEleEleEventTreeFinal/eventTree",DATADIR+"ggH125.root","H(125)","__WEIGHT__",-1,kWhite,kRed+1);
+    EEEEplotter->addFile("eleEleEleEleEventTreeFinal/eventTree",DATADIR+"ZZ4l.root",  "ZZ","__WEIGHT__",0,kAzure-9,kBlack);
+    EEEEplotter->addFile("eleEleEleEleEventTreeFinal/eventTree",DATADIR+"DYJets.root","Z+Jets","__WEIGHT__",0,kTeal-7,kBlack);
 
 	// EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","sandbox/higgs-latest/ggH120.root","H(120)#rightarrow ZZ","__WEIGHT__",-1,kOrange-2,kBlack);
 	// EEEEplotter->addFile("eleEleEleEleEventTree/eventTree","sandbox/higgs-latest/ggH130.root","H(130)#rightarrow ZZ","__WEIGHT__",-1,kOrange-2,kBlack);
