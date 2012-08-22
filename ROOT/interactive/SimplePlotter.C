@@ -155,9 +155,11 @@ class SimplePlotter {
                 {
                     set<int> eventIds;
                     int EVENT;
+                    int RUN;
                     int nEntries = trees_[i]->GetEntries();
 
                     trees_[i]->SetBranchAddress("EVENT",&EVENT);
+                    trees_[i]->SetBranchAddress("RUN",&RUN);
                     TEntryList *tlist = new TEntryList(trees_[i]);
 
                     // ensure that there are no duplicated event numbers
@@ -168,6 +170,7 @@ class SimplePlotter {
                         {
                             eventIds.insert(EVENT);
                             tlist->Enter(j,trees_[i]);
+                            cout << "Run: " << RUN << ", Event: " << EVENT << endl;
                         }
                     }
 

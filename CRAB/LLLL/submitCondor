@@ -46,40 +46,58 @@ cat CONDOR.py >> MC.py
 #    /afs/hep.wisc.edu/cms/belknap/UWTest \
 #    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
 
-farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4E_powheg \
-    ZZ4E_powheg_06_aug_12 \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4E_powheg \
+#    ZZ4E_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4M_powheg \
+#    ZZ4M_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4T_powheg \
+#    ZZ4T_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2E2M_powheg \
+#    ZZ2E2M_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2E2T_powheg \
+#    ZZ2E2T_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2M2T_powheg \
+#    ZZ2M2T_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
 
 farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4M_powheg \
-    ZZ4M_powheg_06_aug_12 \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/tapas/2012-08-16-8TeV-PatTuple/ZZ4M_powheg \
+    ZZ4M_powheg_8TeV_test \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
 
 farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4T_powheg \
-    ZZ4T_powheg_06_aug_12 \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/tapas/2012-08-16-8TeV-PatTuple/ZZ4E_powheg \
+    ZZ4E_powheg_8TeV_test \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
 
 farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2E2M_powheg \
-    ZZ2E2M_powheg_06_aug_12 \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
-
-farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2E2T_powheg \
-    ZZ2E2T_powheg_06_aug_12 \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
-
-farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2M2T_powheg \
-    ZZ2M2T_powheg_06_aug_12 \
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/tapas/2012-08-16-8TeV-PatTuple/ZZ2E2M_powheg \
+    ZZ2E2M_powheg_8TeV_test \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
 
 rm MC.py

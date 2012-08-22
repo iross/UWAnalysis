@@ -16,18 +16,18 @@
     std::string selection="40 < z1Mass && z1Mass < 120 && 12 < z2Mass && z2Mass < 120";
 
 	double ymax=22;
-	TCanvas * mumuMassSel =   MMEEplotter->makeStackedPlot("z1Mass",selection,lumi,32,40,120,"Mass(#mu,#mu)","GeV/c",61,0.9*ymax,0.85*ymax,0.6,0.6,false,0.0001,ymax);
-	mumuMassSel->SaveAs("MMEEPlots/mumuMassSel.png");
-	mumuMassSel->SaveAs("MMEEPlots/mumuMassSel.pdf");  
+	// TCanvas * mumuMassSel =   MMEEplotter->makeStackedPlot("z1Mass",selection,lumi,32,40,120,"Mass(#mu,#mu)","GeV/c",61,0.9*ymax,0.85*ymax,0.6,0.6,false,0.0001,ymax);
+	// mumuMassSel->SaveAs("MMEEPlots/mumuMassSel.png");
+	// mumuMassSel->SaveAs("MMEEPlots/mumuMassSel.pdf");  
 
-	ymax=18;
-	TCanvas * eleeleMassSel =   MMEEplotter->makeStackedPlot("z2Mass",selection,lumi,44,10,120,"Mass(e,e)","GeV/c",61,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-	eleeleMassSel->SaveAs("MMEEPlots/eleeleMassSel.png");
-	eleeleMassSel->SaveAs("MMEEPlots/eleeleMassSel.pdf");  
+	// ymax=18;
+	// TCanvas * eleeleMassSel =   MMEEplotter->makeStackedPlot("z2Mass",selection,lumi,44,10,120,"Mass(e,e)","GeV/c",61,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+	// eleeleMassSel->SaveAs("MMEEPlots/eleeleMassSel.png");
+	// eleeleMassSel->SaveAs("MMEEPlots/eleeleMassSel.pdf");  
 
 	ymax=10;
 	TCanvas * mass4l =   MMEEplotter->makeStackedPlot("mass",selection,lumi,52,80,600,"ZZ Invariant Mass","GeV/c",151,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-	mass4l->SaveAs("MMEEPlots/mass4l.png");
-	mass4l->SaveAs("MMEEPlots/mass4l.pdf");
+	// mass4l->SaveAs("MMEEPlots/mass4l.png");
+	// mass4l->SaveAs("MMEEPlots/mass4l.pdf");
 }
 

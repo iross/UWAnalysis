@@ -171,7 +171,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
 
             zn++;
         }
-        // if gg to ZZ to 4l
+        // if gg to ZZ to 4l @ 8 TeV
         // consider electrons, muons, or taus
         else if ( isGGZZ_ && candIt->status() == 3 && ( abs(candIt->pdgId()) == 11 || abs(candIt->pdgId()) == 13 || abs(candIt->pdgId()) == 15 ) )
         {
@@ -180,7 +180,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         }
     }
 
-    // special case for running on ggZZ sample
+    // special case for running on 8 TeV ggZZ sample
     if ( isGGZZ_ && lepCount >= 4 )
     {
         // leptons must be sorted before they can be permuted
@@ -224,34 +224,34 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         }
         while ( next_permutation(leptons.begin(), leptons.end(), compareLeptons) );
 
-        zPt[0]   = Z1.Pt();
-        zEta[0]  = Z1.Eta();
-        zPhi[0]  = Z1.Phi();
-        zMass[0] = Z1.M();
-        zPt[1]   = Z2.Pt();
-        zEta[1]  = Z2.Eta();
-        zPhi[1]  = Z2.Phi();
-        zMass[1] = Z2.M();
+        zPt[0]    = Z1.Pt();
+        zEta[0]   = Z1.Eta();
+        zPhi[0]   = Z1.Phi();
+        zMass[0]  = Z1.M();
+        zPt[1]    = Z2.Pt();
+        zEta[1]   = Z2.Eta();
+        zPhi[1]   = Z2.Phi();
+        zMass[1]  = Z2.M();
 
-        lPt[0]   = L1.Pt();
-        lEta[0]  = L1.Eta();
-        lPhi[0]  = L1.Phi();
-        lPdgId[0]= id1;
+        lPt[0]    = L1.Pt();
+        lEta[0]   = L1.Eta();
+        lPhi[0]   = L1.Phi();
+        lPdgId[0] = id1;
 
-        lPt[1]   = L2.Pt();
-        lEta[1]  = L2.Eta();
-        lPhi[1]  = L2.Phi();
-        lPdgId[1]= id2;
+        lPt[1]    = L2.Pt();
+        lEta[1]   = L2.Eta();
+        lPhi[1]   = L2.Phi();
+        lPdgId[1] = id2;
 
-        lPt[2]   = L3.Pt();
-        lEta[2]  = L3.Eta();
-        lPhi[2]  = L3.Phi();
-        lPdgId[2]= id3;
+        lPt[2]    = L3.Pt();
+        lEta[2]   = L3.Eta();
+        lPhi[2]   = L3.Phi();
+        lPdgId[2] = id3;
 
-        lPt[3]   = L4.Pt();
-        lEta[3]  = L4.Eta();
-        lPhi[3]  = L4.Phi();
-        lPdgId[3]= id4;
+        lPt[3]    = L4.Pt();
+        lEta[3]   = L4.Eta();
+        lPhi[3]   = L4.Phi();
+        lPdgId[3] = id4;
     }
 
     tree->Fill();
