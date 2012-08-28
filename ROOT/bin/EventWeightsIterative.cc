@@ -459,14 +459,14 @@ int main (int argc, char* argv[])
         if(fPU2!=0 && fPU2->IsOpen()&& fPU22!=0 && fPU22->IsOpen() && (!(fPU3!=0 && fPU3->IsOpen())) &&(!(fPU4!=0 && fPU4->IsOpen()))){
             doPU=2;
             printf("ENABLING PU WEIGHTING USING 3D- I HAVE TO CALCULATE WEIGHTS SORRY\n");
-            LumiWeights = new edm::Lumi3DReWeighting("../puInfoMC3D.root","../puInfo3D.root","pileup","pileup");
+            LumiWeights = new edm::Lumi3DReWeighting("../puInfoMC3D.root","../puInfo3D.root","pileup","pileup","");
             LumiWeights->weight3D_init(1.0);
         }
         else  if(fPU3!=0 && fPU3->IsOpen()) {
             doPU=2;
             printf("ENABLING PU WEIGHTING USING 3D with ready distribution\n");
             fPU3->Close();
-            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
+            LumiWeights = new edm::Lumi3DReWeighting(mc,data,"");
             LumiWeights->weight3D_init("../Weight3D.root");
         }
         else   if(fPU4!=0 && fPU4->IsOpen()) {
@@ -475,7 +475,7 @@ int main (int argc, char* argv[])
             doPU=2;
             printf("ENABLING PU WEIGHTING USING 3D with  distribution you just made\n");
             fPU4->Close();
-            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
+            LumiWeights = new edm::Lumi3DReWeighting(mc,data,"");
             LumiWeights->weight3D_init("Weight3D.root");
 
         }

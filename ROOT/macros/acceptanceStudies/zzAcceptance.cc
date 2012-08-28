@@ -51,13 +51,13 @@ void zzAcceptance()
     // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EReco.root"); // Reconstructed Monte Carlo
     
     // Powheg Sample 8 TeV
-    // TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EGen.root"); // gen level events only
-    // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EReco.root"); // Reconstructed Monte Carlo
+    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ2E2MGen.root"); // gen level events only
+    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ2E2Mtest.root"); // Reconstructed Monte Carlo
     
     // Pythia ggZZ Sample 8 TeV
-    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ2L2LGen7reco.root"); // gen level events only
-    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ4LReco.root"); // Reconstructed Monte Carlo
-
+    // TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ2L2LGen7reco.root"); // gen level events only
+    // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ4LReco.root"); // Reconstructed Monte Carlo
+    
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
     TTree *t = (TTree*)fGen->Get("genlevel/genEventTree");
