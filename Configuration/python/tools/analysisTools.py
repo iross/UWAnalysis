@@ -54,7 +54,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             isAOD = cms.bool(False),
 
             # set to True to get debugging printout   
-            debug = cms.bool(True),
+            debug = cms.bool(False),
 
             # energy measurement type
             energyMeasurementType = cms.uint32(0),
