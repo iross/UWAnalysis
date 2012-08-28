@@ -10,9 +10,8 @@ from PhysicsTools.PatAlgos.tools.pfTools import *
 from PhysicsTools.PatAlgos.tools.trigTools import *
 import sys
 
-def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],MCRAW=False):
+def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2']):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
-    #process.load("Configuration.StandardSequences.Geometry_cff")
     process.load("Configuration.Geometry.GeometryIdeal_cff")
     process.load("Configuration.StandardSequences.MagneticField_cff")
     process.load("Configuration.StandardSequences.Services_cff")
@@ -78,23 +77,41 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           recalculateMVA=cms.bool(True)
           )
 
-        #remove taus within 0.3 of a electron
-        process.llttTaus = cms.EDProducer("PATTauCleaner",
-              src = cms.InputTag("cleanPatTaus"),
-              preselection = cms.string(""),
-              checkOverlaps = cms.PSet(
-                  muons = cms.PSet(
-                      src=cms.InputTag("mvaedElectrons"),
-                      algorithm=cms.string("byDeltaR"),
-                      preselection=cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
-                      deltaR=cms.double(0.3),
-                      checkRecoComponents = cms.bool(False),
-                      pairCut=cms.string(""),
-                      requireNoOverlaps=cms.bool(True)
-                      )
-                  ),
-              finalCut = cms.string("")
-              )
+    #remove electrons within 0.3 of a muon
+    process.llttElectrons = cms.EDProducer("PATElectronCleaner",
+          src = cms.InputTag("mvaedElectrons"),
+          preselection = cms.string(""),
+          checkOverlaps = cms.PSet(
+              muons = cms.PSet(
+                  src=cms.InputTag("cleanPatMuons"),
+                  algorithm=cms.string("byDeltaR"),
+                  preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                  deltaR=cms.double(0.3),
+                  checkRecoComponents = cms.bool(False),
+                  pairCut=cms.string(""),
+                  requireNoOverlaps=cms.bool(True)
+                  )
+              ),
+          finalCut = cms.string("")
+          )
+
+    #remove taus within 0.3 of a electron
+    process.llttTaus = cms.EDProducer("PATTauCleaner",
+          src = cms.InputTag("cleanPatTaus"),
+          preselection = cms.string(""),
+          checkOverlaps = cms.PSet(
+              muons = cms.PSet(
+                  src=cms.InputTag("mvaedElectrons"),
+                  algorithm=cms.string("byDeltaR"),
+                  preselection=cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                  deltaR=cms.double(0.3),
+                  checkRecoComponents = cms.bool(False),
+                  pairCut=cms.string(""),
+                  requireNoOverlaps=cms.bool(True)
+                  )
+              ),
+          finalCut = cms.string("")
+          )
 
     process.analysisSequence*=process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
