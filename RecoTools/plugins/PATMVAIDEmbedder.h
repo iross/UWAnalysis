@@ -59,6 +59,20 @@ class PATMVAIDEmbedder : public edm::EDProducer {
             recalMVA_(iConfig.getParameter<bool>("recalculateMVA"))
     {
         produces<pat::ElectronCollection>();
+        myMVANonTrig  = new EGammaMvaEleEstimator();
+
+        std::vector<std::string> myManualCatWeigths;
+        Bool_t manualCat = true;
+        if (recalMVA_) {
+            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat1.weights.xml");
+            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat2.weights.xml");
+            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat3.weights.xml");
+            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat4.weights.xml");
+            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat5.weights.xml");
+            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat6.weights.xml");
+            myMVANonTrig->initialize("BDT",EGammaMvaEleEstimator::kNonTrig,manualCat,myManualCatWeigths);
+        }
+
     }
 
         ~PATMVAIDEmbedder() {}
@@ -73,20 +87,6 @@ class PATMVAIDEmbedder : public edm::EDProducer {
             std::auto_ptr<pat::ElectronCollection > out(new pat::ElectronCollection);
 
             Handle<pat::ElectronCollection > cands;
-
-            myMVANonTrig  = new EGammaMvaEleEstimator();
-
-            std::vector<std::string> myManualCatWeigths;
-            Bool_t manualCat = true;
-            if (recalMVA_) {
-                myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat1.weights.xml");
-                myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat2.weights.xml");
-                myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat3.weights.xml");
-                myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat4.weights.xml");
-                myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat5.weights.xml");
-                myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat6.weights.xml");
-                myMVANonTrig->initialize("BDT",EGammaMvaEleEstimator::kNonTrig,manualCat,myManualCatWeigths);
-            }
 
             InputTag  vertexLabel(string("offlinePrimaryVertices"));
             Handle<reco::VertexCollection> thePrimaryVertexColl;
