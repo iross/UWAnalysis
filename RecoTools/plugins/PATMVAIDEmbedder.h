@@ -118,7 +118,7 @@ class PATMVAIDEmbedder : public edm::EDProducer {
                     double mvaVal = electron.electronID(id_);
 
                     if (recalMVA_){
-                        getValues(electron, *pv, thebuilder, true);
+                        getValues(electron, *pv, thebuilder, false);
                         mvaVal = myMVANonTrig->mvaValue( myMVAVar_fbrem, 
                                 myMVAVar_kfchi2,
                                 myMVAVar_kfhits,
