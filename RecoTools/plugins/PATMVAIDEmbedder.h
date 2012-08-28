@@ -61,12 +61,12 @@ class PATMVAIDEmbedder : public edm::EDProducer {
         std::vector<std::string> myManualCatWeights;
         Bool_t manualCat = true;
         if (recalMVA_) {
-            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat1.weights.xml");
-            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat2.weights.xml");
-            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat3.weights.xml");
-            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat4.weights.xml");
-            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat5.weights.xml");
-            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat6.weights.xml");
+            myManualCatWeights.push_back(edm::FileInPath("EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat1.weights.xml").fullPath());
+            myManualCatWeights.push_back(edm::FileInPath("EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat2.weights.xml").fullPath());
+            myManualCatWeights.push_back(edm::FileInPath("EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat3.weights.xml").fullPath());
+            myManualCatWeights.push_back(edm::FileInPath("EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat4.weights.xml").fullPath());
+            myManualCatWeights.push_back(edm::FileInPath("EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat5.weights.xml").fullPath());
+            myManualCatWeights.push_back(edm::FileInPath("EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat6.weights.xml").fullPath());
             myMVANonTrig.initialize("BDT",EGammaMvaEleEstimator::kNonTrig,manualCat,myManualCatWeights);
         }
 
