@@ -57,6 +57,7 @@ class PATElectronMVAIsoEmbedder : public edm::EDProducer {
 					//pT >= 10 &&735 0.8 <= abs(eta) < 1.479 (Barrel) 0.467 0.271
 					//pT >= 10 && abs(eta) > 1.479 ( Endcap ) 0.795 0.135
 //					std::cout << "MVA iso " << id_ << "val: " << electron.userFloat(id_) << std::endl;
+                    std::cout << electron.eta() << ", sc eta: " << electron.superCluster()->eta() << std::endl;
 					if (electron.pt()>5 && electron.pt()<10){
 						if (fabs(electron.eta())<0.8) {
 							if (electron.userFloat(id_)>0.385) passID=true;
