@@ -51,26 +51,23 @@ Implementation:
 class PATMVAIDEmbedder : public edm::EDProducer {
     public:
 
-
-
         explicit PATMVAIDEmbedder(const edm::ParameterSet& iConfig):
             src_(iConfig.getParameter<edm::InputTag>("src")),
             id_(iConfig.getParameter<std::string>("id")),
             recalMVA_(iConfig.getParameter<bool>("recalculateMVA"))
     {
         produces<pat::ElectronCollection>();
-        myMVANonTrig  = new EGammaMvaEleEstimator();
 
-        std::vector<std::string> myManualCatWeigths;
+        std::vector<std::string> myManualCatWeights;
         Bool_t manualCat = true;
         if (recalMVA_) {
-            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat1.weights.xml");
-            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat2.weights.xml");
-            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat3.weights.xml");
-            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat4.weights.xml");
-            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat5.weights.xml");
-            myManualCatWeigths.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat6.weights.xml");
-            myMVANonTrig->initialize("BDT",EGammaMvaEleEstimator::kNonTrig,manualCat,myManualCatWeigths);
+            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat1.weights.xml");
+            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat2.weights.xml");
+            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat3.weights.xml");
+            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat4.weights.xml");
+            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat5.weights.xml");
+            myManualCatWeights.push_back("/afs/hep.wisc.edu/cms/iross/HZZ2l2tau/zz525/src/EGamma/EGammaAnalysisTools/data/Electrons_BDTG_NonTrigV0_Cat6.weights.xml");
+            myMVANonTrig.initialize("BDT",EGammaMvaEleEstimator::kNonTrig,manualCat,myManualCatWeights);
         }
 
     }
@@ -119,7 +116,7 @@ class PATMVAIDEmbedder : public edm::EDProducer {
 
                     if (recalMVA_){
                         getValues(electron, *pv, thebuilder, false);
-                        mvaVal = myMVANonTrig->mvaValue( myMVAVar_fbrem, 
+                        mvaVal = myMVANonTrig.mvaValue( myMVAVar_fbrem, 
                                 myMVAVar_kfchi2,
                                 myMVAVar_kfhits,
                                 myMVAVar_gsfchi2,
@@ -273,7 +270,7 @@ class PATMVAIDEmbedder : public edm::EDProducer {
         // ----------member data ---------------------------
         edm::InputTag src_;
         std::string id_;
-        EGammaMvaEleEstimator* myMVANonTrig;
+        EGammaMvaEleEstimator myMVANonTrig;
         bool recalMVA_;
         Float_t                   myMVAVar_fbrem;
         Float_t                   myMVAVar_kfchi2;
