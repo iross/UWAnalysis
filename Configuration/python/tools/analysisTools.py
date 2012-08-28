@@ -43,29 +43,40 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
     #  electronTriggerMatch(process,triggerProcess)
     #  tauTriggerMatch(process,triggerProcess)
 
-    if not MCRAW :
-        process.mvaedElectrons=cms.EDProducer("PATMVAIDEmbedder",
-              src=cms.InputTag("cleanPatElectrons"),
-              id=cms.string("mvaNonTrigV0")
-              )
+    process.calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducer",
+            # input collections
+            inputPatElectronsTag = cms.InputTag("cleanPatElectrons"),
 
-        #remove electrons within 0.3 of a muon
-        process.llttElectrons = cms.EDProducer("PATElectronCleaner",
-              src = cms.InputTag("mvaedElectrons"),
-              preselection = cms.string(""),
-              checkOverlaps = cms.PSet(
-                  muons = cms.PSet(
-                      src=cms.InputTag("cleanPatMuons"),
-                      algorithm=cms.string("byDeltaR"),
-                      preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
-                      deltaR=cms.double(0.3),
-                      checkRecoComponents = cms.bool(False),
-                      pairCut=cms.string(""),
-                      requireNoOverlaps=cms.bool(True)
-                      )
-                  ),
-              finalCut = cms.string("")
-              )
+            # data or MC corrections
+            # if isMC is false, data corrections are applied
+            isMC = cms.bool(False),
+
+            # set to True to read AOD format
+            isAOD = cms.bool(False),
+
+            # set to True to get debugging printout   
+            debug = cms.bool(False),
+
+            # energy measurement type
+            energyMeasurementType = cms.uint32(0),
+
+            updateEnergyError = cms.bool(True),
+
+            # input datasets
+            # Prompt means May10+Promptv4+Aug05+Promptv6 for 2011
+            # ReReco means Jul05+Aug05+Oct03 for 2011
+            # Jan16ReReco means Jan16 for 2011
+            # Summer11 means summer11 MC..
+            #inputDataset = cms.string("ReReco"),
+            inputDataset = cms.string("ICHEP2012"),
+            )
+
+    process.mvaedElectrons=cms.EDProducer("PATMVAIDEmbedder",
+          src=cms.InputTag("calibratedPatElectrons"),
+          id=cms.string("mvaNonTrigV0"),
+          #recalculate MVA if you're applying the ECAL corrections here...
+          recalculateMVA=cms.bool(True)
+          )
 
         #remove taus within 0.3 of a electron
         process.llttTaus = cms.EDProducer("PATTauCleaner",
@@ -85,7 +96,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
               finalCut = cms.string("")
               )
 
-        process.analysisSequence*=process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 

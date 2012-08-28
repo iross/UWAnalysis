@@ -1334,6 +1334,13 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"mvaNonTrigCorrected"),
+            method     = cms.string(legMethod+"userFloat('mvaNonTrigV0Corrected')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"mvaNonTrigPass"),
             method     = cms.string(legMethod+"userFloat('mvaNonTrigV0Pass')"),
             leadingOnly=cms.untracked.bool(leadOnly)
