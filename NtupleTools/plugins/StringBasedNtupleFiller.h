@@ -1,3 +1,5 @@
+// todo: this will no longer need to know about leadingOnly... it'll be handled in EventTreeMaker
+
 // system include files
 #include <memory>
 
@@ -6,32 +8,28 @@
 #include "DataFormats/PatCandidates/interface/LookupTableRecord.h"
 #include <TTree.h>
 
-#include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
+//#include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
+#include "UWAnalysis/NtupleTools/interface/NtupleFillerBaseTest.h"
 
 //
 // class decleration
 //
 template<typename T>
-class StringBasedNtupleFiller : public NtupleFillerBase
-{
+class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
     public:
         StringBasedNtupleFiller() {}
 
         StringBasedNtupleFiller(const edm::ParameterSet& iConfig, TTree* t):
-            NtupleFillerBase(iConfig,t),
+            NtupleFillerBaseTest<T>(iConfig,t),
             src_(iConfig.getParameter<edm::InputTag>("src")),
             var_(iConfig.getParameter<std::string>("method")),
-            tag_(iConfig.getParameter<std::string>("tag")),
-            leadingOnly_(iConfig.getUntrackedParameter<bool>("leadingOnly",true))
+            tag_(iConfig.getParameter<std::string>("tag"))
         {
             value = new std::vector<double>();
             singleValue=0.;
             function = new StringObjectFunction<T>(var_);
 
-            if(!leadingOnly_)
-                vbranch = t->Branch(tag_.c_str(),"std::vector<double>",&value);
-            else
-                vbranch = t->Branch(tag_.c_str(),&singleValue,(tag_+"/F").c_str());
+            vbranch = t->Branch(tag_.c_str(),&singleValue,(tag_+"/F").c_str());
 
         }
 
@@ -51,22 +49,19 @@ class StringBasedNtupleFiller : public NtupleFillerBase
             if(value->size()>0)
                 value->clear();
 
-            if(iEvent.getByLabel(src_,handle))
-            {
-                if(leadingOnly_)
-                {
-                    if(handle->size()>0)
-                        singleValue = (*function)(handle->at(0));
-                }
-                else
-                    for(unsigned int i = 0; i < handle->size(); ++i)
-                        value->push_back((*function)(handle->at(i)));
+            if(iEvent.getByLabel(src_,handle)){
+                if(handle->size()>0)
+                    singleValue = (*function)(handle->at(0));
             }
             else
                 printf("Obj not found \n");
             //    vbranch->Fill();
         }
 
+        void fillTest(const T& cand, const edm::Event& iEvent, const edm::EventSetup& iSetup)
+        {
+            singleValue = (*function)(cand);
+        }
 
     protected:
         edm::InputTag src_;
@@ -86,39 +81,39 @@ class StringBasedNtupleFiller : public NtupleFillerBase
 #include "DataFormats/METReco/interface/PFMET.h"
 #include "DataFormats/METReco/interface/GenMET.h"
 
-typedef StringBasedNtupleFiller<reco::GenParticle> PATGenParticleFiller;
-typedef StringBasedNtupleFiller<PATMuTauPair> PATMuTauPairFiller;
-typedef StringBasedNtupleFiller<PATMuJetPair> PATMuJetPairFiller;
-typedef StringBasedNtupleFiller<PATDiTauPair> PATDiTauPairFiller;
-typedef StringBasedNtupleFiller<PATElecTauPair> PATEleTauPairFiller;
-typedef StringBasedNtupleFiller<PATElecMuPair> PATEleMuPairFiller;
-typedef StringBasedNtupleFiller<PATElecPair> PATElePairFiller;
-typedef StringBasedNtupleFiller<PATElecSCPair> PATElecSCPairFiller;
-typedef StringBasedNtupleFiller<PATMuonNuPair> PATMuonNuPairFiller;
-typedef StringBasedNtupleFiller<PATCandNuPair> PATCandNuPairFiller;
-typedef StringBasedNtupleFiller<PATMuTrackPair> PATMuTrackPairFiller;
-typedef StringBasedNtupleFiller<PATEleTrackPair> PATEleTrackPairFiller;
-typedef StringBasedNtupleFiller<PATMuPair> PATMuPairFiller;
-typedef StringBasedNtupleFiller<pat::Muon> PATMuonFiller;
-typedef StringBasedNtupleFiller<reco::MET> PATMETFiller;
-typedef StringBasedNtupleFiller<reco::PFMET> PATPFMETFiller;
-typedef StringBasedNtupleFiller<reco::GenMET> PATGenMETFiller;
+//typedef StringBasedNtupleFiller<reco::GenParticle> PATGenParticleFiller;
+//typedef StringBasedNtupleFiller<PATMuTauPair> PATMuTauPairFiller;
+//typedef StringBasedNtupleFiller<PATMuJetPair> PATMuJetPairFiller;
+//typedef StringBasedNtupleFiller<PATDiTauPair> PATDiTauPairFiller;
+//typedef StringBasedNtupleFiller<PATElecTauPair> PATEleTauPairFiller;
+//typedef StringBasedNtupleFiller<PATElecMuPair> PATEleMuPairFiller;
+//typedef StringBasedNtupleFiller<PATElecPair> PATElePairFiller;
+//typedef StringBasedNtupleFiller<PATElecSCPair> PATElecSCPairFiller;
+//typedef StringBasedNtupleFiller<PATMuonNuPair> PATMuonNuPairFiller;
+//typedef StringBasedNtupleFiller<PATCandNuPair> PATCandNuPairFiller;
+//typedef StringBasedNtupleFiller<PATMuTrackPair> PATMuTrackPairFiller;
+//typedef StringBasedNtupleFiller<PATEleTrackPair> PATEleTrackPairFiller;
+//typedef StringBasedNtupleFiller<PATMuPair> PATMuPairFiller;
+//typedef StringBasedNtupleFiller<pat::Muon> PATMuonFiller;
+//typedef StringBasedNtupleFiller<reco::MET> PATMETFiller;
+//typedef StringBasedNtupleFiller<reco::PFMET> PATPFMETFiller;
+//typedef StringBasedNtupleFiller<reco::GenMET> PATGenMETFiller;
 
-typedef StringBasedNtupleFiller<PATMuMuMuTauQuad> PATMuMuMuTauQuadFiller;
-typedef StringBasedNtupleFiller<PATMuMuTauTauQuad> PATMuMuTauTauQuadFiller;
-typedef StringBasedNtupleFiller<PATMuMuEleTauQuad> PATMuMuEleTauQuadFiller;
-typedef StringBasedNtupleFiller<PATMuMuEleMuQuad> PATMuMuEleMuQuadFiller;
+//typedef StringBasedNtupleFiller<PATMuMuMuTauQuad> PATMuMuMuTauQuadFiller;
+//typedef StringBasedNtupleFiller<PATMuMuTauTauQuad> PATMuMuTauTauQuadFiller;
+//typedef StringBasedNtupleFiller<PATMuMuEleTauQuad> PATMuMuEleTauQuadFiller;
+//typedef StringBasedNtupleFiller<PATMuMuEleMuQuad> PATMuMuEleMuQuadFiller;
 typedef StringBasedNtupleFiller<PATMuMuEleEleQuad> PATMuMuEleEleQuadFiller;
 typedef StringBasedNtupleFiller<PATMuMuMuMuQuad> PATMuMuMuMuQuadFiller;
-typedef StringBasedNtupleFiller<PATEleEleTauTauQuad> PATEleEleTauTauQuadFiller;
-typedef StringBasedNtupleFiller<PATEleEleEleTauQuad> PATEleEleEleTauQuadFiller;
-typedef StringBasedNtupleFiller<PATEleEleMuTauQuad> PATEleEleMuTauQuadFiller;
-typedef StringBasedNtupleFiller<PATEleEleEleMuQuad> PATEleEleEleMuQuadFiller;
+//typedef StringBasedNtupleFiller<PATEleEleTauTauQuad> PATEleEleTauTauQuadFiller;
+//typedef StringBasedNtupleFiller<PATEleEleEleTauQuad> PATEleEleEleTauQuadFiller;
+//typedef StringBasedNtupleFiller<PATEleEleMuTauQuad> PATEleEleMuTauQuadFiller;
+//typedef StringBasedNtupleFiller<PATEleEleEleMuQuad> PATEleEleEleMuQuadFiller;
 typedef StringBasedNtupleFiller<PATEleEleEleEleQuad> PATEleEleEleEleQuadFiller;
 typedef StringBasedNtupleFiller<PATEleEleMuMuQuad> PATEleEleMuMuQuadFiller;
-typedef StringBasedNtupleFiller<PATEleEleEleSCQuad> PATEleEleEleSCQuadFiller;
+//typedef StringBasedNtupleFiller<PATEleEleEleSCQuad> PATEleEleEleSCQuadFiller;
 
-typedef StringBasedNtupleFiller<PATEleEleEleTri> PATEleEleEleTriFiller;
-typedef StringBasedNtupleFiller<PATEleEleMuTri> PATEleEleMuTriFiller;
-typedef StringBasedNtupleFiller<PATMuMuEleTri> PATMuMuEleTriFiller;
-typedef StringBasedNtupleFiller<PATMuMuMuTri> PATMuMuMuTriFiller;
+//typedef StringBasedNtupleFiller<PATEleEleEleTri> PATEleEleEleTriFiller;
+//typedef StringBasedNtupleFiller<PATEleEleMuTri> PATEleEleMuTriFiller;
+//typedef StringBasedNtupleFiller<PATMuMuEleTri> PATMuMuEleTriFiller;
+//typedef StringBasedNtupleFiller<PATMuMuMuTri> PATMuMuMuTriFiller;
