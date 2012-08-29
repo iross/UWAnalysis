@@ -1,5 +1,3 @@
-// todo: this will no longer need to know about leadingOnly... it'll be handled in EventTreeMaker
-
 // system include files
 #include <memory>
 
@@ -25,7 +23,6 @@ class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
             var_(iConfig.getParameter<std::string>("method")),
             tag_(iConfig.getParameter<std::string>("tag"))
         {
-            value = new std::vector<double>();
             singleValue=0.;
             function = new StringObjectFunction<T>(var_);
 
@@ -46,9 +43,6 @@ class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
 
             singleValue=-1;
 
-            if(value->size()>0)
-                value->clear();
-
             if(iEvent.getByLabel(src_,handle)){
                 if(handle->size()>0)
                     singleValue = (*function)(handle->at(0));
@@ -67,8 +61,6 @@ class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
         edm::InputTag src_;
         std::string var_;
         std::string tag_;
-        bool leadingOnly_;
-        std::vector<double>* value;
         float singleValue;
         StringObjectFunction<T>*function;
         TBranch *vbranch;
