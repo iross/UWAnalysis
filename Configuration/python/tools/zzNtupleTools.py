@@ -1771,7 +1771,7 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
     eventTree = cms.EDAnalyzer('MMEEEventTree',
         #common quantities
-        leadingOnly=cms.untracked.bool(leadingOnly),
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
