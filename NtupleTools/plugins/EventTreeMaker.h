@@ -48,7 +48,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
                 edm::ParameterSet ntupleFillerCfg = iConfig.getParameter<edm::ParameterSet>(*branchName);
                 std::string fillerPlugin = ntupleFillerCfg.getParameter<std::string>("pluginType");
                 //Need to do this separately for non-templated 
-                if (fillerPlugin.find("QuadFiller") != std::string::npos) {
+                if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos) {
                     NtupleFillerBaseTest<T>* filler = U::get()->create(fillerPlugin,ntupleFillerCfg,t);
                     fillers.push_back(filler);
                 } else {
@@ -83,7 +83,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
 
             for (std::vector<edm::ParameterSet>::const_iterator branch = plugins.begin(); branch != plugins.end(); ++branch){
                 std::string fillerPlugin = branch->getParameter<std::string>("pluginType");
-                if (fillerPlugin.find("QuadFiller") != std::string::npos) {
+                if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos) {
                     NtupleFillerBaseTest<T>* filler = U::get()->create(fillerPlugin,*branch,t);
                     fillers.push_back(filler);
                 } else {
@@ -153,7 +153,26 @@ class EventTreeMaker : public edm::EDAnalyzer {
 
 };	 
 
+//4l
 typedef EventTreeMaker<PATMuMuMuMuQuad,MMMMFillerFactory> MMMMEventTree;
 typedef EventTreeMaker<PATEleEleEleEleQuad,EEEEFillerFactory> EEEEEventTree;
 typedef EventTreeMaker<PATMuMuEleEleQuad,MMEEFillerFactory> MMEEEventTree;
 typedef EventTreeMaker<PATEleEleMuMuQuad,EEMMFillerFactory> EEMMEventTree;
+
+//2l2t
+typedef EventTreeMaker<PATMuMuMuTauQuad,MMMTFillerFactory> MMMTEventTree;
+typedef EventTreeMaker<PATMuMuTauTauQuad,MMTTFillerFactory> MMTTEventTree;
+typedef EventTreeMaker<PATMuMuEleTauQuad,MMETFillerFactory> MMETEventTree;
+typedef EventTreeMaker<PATMuMuEleMuQuad,MMEMFillerFactory> MMEMEventTree;
+typedef EventTreeMaker<PATEleEleMuTauQuad,EEMTFillerFactory> EEMTEventTree;
+typedef EventTreeMaker<PATEleEleTauTauQuad,EETTFillerFactory> EETTEventTree;
+typedef EventTreeMaker<PATEleEleEleTauQuad,EEETFillerFactory> EEETEventTree;
+typedef EventTreeMaker<PATEleEleEleMuQuad,EEEMFillerFactory> EEEMEventTree;
+
+//Z+l
+typedef EventTreeMaker<PATEleEleEleTri,EEEFillerFactory> EEEEventTree;
+typedef EventTreeMaker<PATEleEleMuTri,EEMFillerFactory> EEMEventTree;
+typedef EventTreeMaker<PATMuMuEleTri,MMEFillerFactory> MMEEventTree;
+typedef EventTreeMaker<PATMuMuMuTri,MMMFillerFactory> MMMEventTree;
+
+//Z

@@ -6,7 +6,7 @@
 #include "DataFormats/PatCandidates/interface/LookupTableRecord.h"
 #include <TTree.h>
 
-//#include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
+#include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
 #include "UWAnalysis/NtupleTools/interface/NtupleFillerBaseTest.h"
 
 //
@@ -91,21 +91,22 @@ class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
 //typedef StringBasedNtupleFiller<reco::PFMET> PATPFMETFiller;
 //typedef StringBasedNtupleFiller<reco::GenMET> PATGenMETFiller;
 
-//typedef StringBasedNtupleFiller<PATMuMuMuTauQuad> PATMuMuMuTauQuadFiller;
-//typedef StringBasedNtupleFiller<PATMuMuTauTauQuad> PATMuMuTauTauQuadFiller;
-//typedef StringBasedNtupleFiller<PATMuMuEleTauQuad> PATMuMuEleTauQuadFiller;
-//typedef StringBasedNtupleFiller<PATMuMuEleMuQuad> PATMuMuEleMuQuadFiller;
+typedef StringBasedNtupleFiller<PATMuMuMuTauQuad> PATMuMuMuTauQuadFiller;
+typedef StringBasedNtupleFiller<PATMuMuTauTauQuad> PATMuMuTauTauQuadFiller;
+typedef StringBasedNtupleFiller<PATMuMuEleTauQuad> PATMuMuEleTauQuadFiller;
+typedef StringBasedNtupleFiller<PATMuMuEleMuQuad> PATMuMuEleMuQuadFiller;
 typedef StringBasedNtupleFiller<PATMuMuEleEleQuad> PATMuMuEleEleQuadFiller;
 typedef StringBasedNtupleFiller<PATMuMuMuMuQuad> PATMuMuMuMuQuadFiller;
-//typedef StringBasedNtupleFiller<PATEleEleTauTauQuad> PATEleEleTauTauQuadFiller;
-//typedef StringBasedNtupleFiller<PATEleEleEleTauQuad> PATEleEleEleTauQuadFiller;
-//typedef StringBasedNtupleFiller<PATEleEleMuTauQuad> PATEleEleMuTauQuadFiller;
-//typedef StringBasedNtupleFiller<PATEleEleEleMuQuad> PATEleEleEleMuQuadFiller;
+
+typedef StringBasedNtupleFiller<PATEleEleMuTauQuad> PATEleEleMuTauQuadFiller;
+typedef StringBasedNtupleFiller<PATEleEleTauTauQuad> PATEleEleTauTauQuadFiller;
+typedef StringBasedNtupleFiller<PATEleEleEleTauQuad> PATEleEleEleTauQuadFiller;
+typedef StringBasedNtupleFiller<PATEleEleEleMuQuad> PATEleEleEleMuQuadFiller;
 typedef StringBasedNtupleFiller<PATEleEleEleEleQuad> PATEleEleEleEleQuadFiller;
 typedef StringBasedNtupleFiller<PATEleEleMuMuQuad> PATEleEleMuMuQuadFiller;
 //typedef StringBasedNtupleFiller<PATEleEleEleSCQuad> PATEleEleEleSCQuadFiller;
 
-//typedef StringBasedNtupleFiller<PATEleEleEleTri> PATEleEleEleTriFiller;
-//typedef StringBasedNtupleFiller<PATEleEleMuTri> PATEleEleMuTriFiller;
-//typedef StringBasedNtupleFiller<PATMuMuEleTri> PATMuMuEleTriFiller;
-//typedef StringBasedNtupleFiller<PATMuMuMuTri> PATMuMuMuTriFiller;
+typedef StringBasedNtupleFiller<PATEleEleEleTri> PATEleEleEleTriFiller;
+typedef StringBasedNtupleFiller<PATEleEleMuTri> PATEleEleMuTriFiller;
+typedef StringBasedNtupleFiller<PATMuMuEleTri> PATMuMuEleTriFiller;
+typedef StringBasedNtupleFiller<PATMuMuMuTri> PATMuMuMuTriFiller;

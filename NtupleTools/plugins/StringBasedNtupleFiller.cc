@@ -18,23 +18,28 @@
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMETFiller, "PATMETFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATGenMETFiller, "PATGenMETFiller");
 
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTauQuadFiller, "PATMuMuMuTauQuadFiller");
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuTauTauQuadFiller, "PATMuMuTauTauQuadFiller");
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTauQuadFiller, "PATMuMuEleTauQuadFiller");
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleMuQuadFiller, "PATMuMuEleMuQuadFiller");
+DEFINE_EDM_PLUGIN(MMMTFillerFactory, PATMuMuMuTauQuadFiller, "PATMuMuMuTauQuadFiller");
+DEFINE_EDM_PLUGIN(MMTTFillerFactory, PATMuMuTauTauQuadFiller, "PATMuMuTauTauQuadFiller");
+DEFINE_EDM_PLUGIN(MMETFillerFactory, PATMuMuEleTauQuadFiller, "PATMuMuEleTauQuadFiller");
+DEFINE_EDM_PLUGIN(MMEMFillerFactory, PATMuMuEleMuQuadFiller, "PATMuMuEleMuQuadFiller");
 DEFINE_EDM_PLUGIN(MMEEFillerFactory, PATMuMuEleEleQuadFiller, "PATMuMuEleEleQuadFiller");
 
 DEFINE_EDM_PLUGIN(MMMMFillerFactory, PATMuMuMuMuQuadFiller, "PATMuMuMuMuQuadFiller");
 
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleTauTauQuadFiller, "PATEleEleTauTauQuadFiller");
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleTauQuadFiller, "PATEleEleEleTauQuadFiller");
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleMuQuadFiller, "PATEleEleEleMuQuadFiller");
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTauQuadFiller, "PATEleEleMuTauQuadFiller");
+DEFINE_EDM_PLUGIN(EEMTFillerFactory, PATEleEleMuTauQuadFiller, "PATEleEleMuTauQuadFiller");
+DEFINE_EDM_PLUGIN(EETTFillerFactory, PATEleEleTauTauQuadFiller, "PATEleEleTauTauQuadFiller");
+DEFINE_EDM_PLUGIN(EEETFillerFactory, PATEleEleEleTauQuadFiller, "PATEleEleEleTauQuadFiller");
+DEFINE_EDM_PLUGIN(EEEMFillerFactory, PATEleEleEleMuQuadFiller, "PATEleEleEleMuQuadFiller");
 DEFINE_EDM_PLUGIN(EEEEFillerFactory, PATEleEleEleEleQuadFiller, "PATEleEleEleEleQuadFiller");
 DEFINE_EDM_PLUGIN(EEMMFillerFactory, PATEleEleMuMuQuadFiller, "PATEleEleMuMuQuadFiller");
+
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleSCQuadFiller, "PATEleEleEleSCQuadFiller");
-//
-//DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleEleTriFiller, "PATEleEleEleTriFiller");
+
+DEFINE_EDM_PLUGIN(EEEFillerFactory, PATEleEleEleTriFiller, "PATEleEleEleTriFiller");
+DEFINE_EDM_PLUGIN(EEMFillerFactory, PATEleEleMuTriFiller, "PATEleEleMuTriFiller");
+DEFINE_EDM_PLUGIN(MMEFillerFactory, PATMuMuEleTriFiller, "PATMuMuEleTriFiller");
+DEFINE_EDM_PLUGIN(MMMFillerFactory, PATMuMuMuTriFiller, "PATMuMuMuTriFiller");
+
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTriFiller, "PATEleEleMuTriFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTriFiller, "PATMuMuEleTriFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriFiller, "PATMuMuMuTriFiller");
