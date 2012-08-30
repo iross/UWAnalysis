@@ -7,7 +7,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'START52_V9::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(2000)
+        input = cms.untracked.int32(500)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -65,92 +65,96 @@ defaultAnalysisPath(process,'HLT',
 #        )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_2012_cff")
-process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence)
-process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
-process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
-process.eventSelectionMMEM = cms.Path(process.MMEMselectionSequence)
+process.load("UWAnalysis.Configuration.zzLLLL_2012_loose_cff")
+#process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence)
+#process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
+#process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
+#process.eventSelectionMMEM = cms.Path(process.MMEMselectionSequence)
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
-process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
+#process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
-process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
-process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
-process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
-process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
+#process.eventSelectionEEMT = cms.Path(process.EEMTselectionSequence)
+#process.eventSelectionEEET = cms.Path(process.EEETselectionSequence)
+#process.eventSelectionEETT = cms.Path(process.EETTselectionSequence)
+#process.eventSelectionEEEM = cms.Path(process.EEEMselectionSequence)
 process.eventSelectionEEEE = cms.Path(process.EEEEselectionSequence)
-process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
-process.eventSelectionMMM = cms.Path(process.MMMSeq)
-process.eventSelectionMME = cms.Path(process.MMESeq)
-process.eventSelectionEEM = cms.Path(process.EEMSeq)
-process.eventSelectionEEE = cms.Path(process.EEESeq)
-process.eventSelectionMM = cms.Path(process.ZMMSeq)
-process.eventSelectionEE = cms.Path(process.ZEESeq)
+#process.eventSelectionEEMM = cms.Path(process.EEMMselectionSequence)
+#process.eventSelectionMMM = cms.Path(process.MMMSeq)
+#process.eventSelectionMME = cms.Path(process.MMESeq)
+#process.eventSelectionEEM = cms.Path(process.EEMSeq)
+#process.eventSelectionEEE = cms.Path(process.EEESeq)
+#process.eventSelectionMM = cms.Path(process.ZMMSeq)
+#process.eventSelectionEE = cms.Path(process.ZEESeq)
 #process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
 
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
-addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuTauTauEventTree(process,'muMuTauTauEventTreeFinal','MMTTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuTauTauEventTree(process,'muMuTauTauEventTreeID','MMTTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuTauEventTree
-addMuMuMuTauEventTree(process,'muMuMuTauEventTree','MMMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuMuTauEventTree(process,'muMuMuTauEventTreeFinal','MMMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuMuTauEventTree(process,'muMuMuTauEventTreeID','MMMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleTauEventTree
-addMuMuEleTauEventTree(process,'muMuEleTauEventTree','MMETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuEleTauEventTree(process,'muMuEleTauEventTreeFinal','MMETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuEleTauEventTree(process,'muMuEleTauEventTreeID','MMETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleMuEventTree
-addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
+#addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuTauTauEventTree(process,'muMuTauTauEventTreeFinal','MMTTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuTauTauEventTree(process,'muMuTauTauEventTreeID','MMTTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuTauEventTree
+#addMuMuMuTauEventTree(process,'muMuMuTauEventTree','MMMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuMuTauEventTree(process,'muMuMuTauEventTreeFinal','MMMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuMuTauEventTree(process,'muMuMuTauEventTreeID','MMMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleTauEventTree
+#addMuMuEleTauEventTree(process,'muMuEleTauEventTree','MMETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuEleTauEventTree(process,'muMuEleTauEventTreeFinal','MMETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuEleTauEventTree(process,'muMuEleTauEventTreeID','MMETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleMuEventTree
+#addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
 addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 addMuMuEleEleEventTree(process,'muMuEleEleEventTreeID','MMEEzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
-addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTree','MMEEonlyzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeFinal','MMEEonlyFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeID','MMEEonlyzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
+#addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTree','MMEEonlyzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeFinal','MMEEonlyFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeID','MMEEonlyzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
 addMuMuMuMuEventTree(process,'muMuMuMuEventTreeID','MMMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
-addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeFinal','EETTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleTauEventTree
-addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeFinal','EEETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuTauEventTree
-addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeFinal','EEMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
-addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeFinal','EETTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleTauEventTree
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeFinal','EEETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuTauEventTree
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeFinal','EEMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinalTest','EEEEFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinalTest','EEMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
-addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
-addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
-addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
-addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEventTree
-addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=False)
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
-addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
+
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
+#addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinalTest','EEMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
+#addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
+#addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
+#addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
+#addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEventTree
+#addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=False)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
+#addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
 
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleSCEventTree
@@ -166,18 +170,18 @@ addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
 
 
 #Add event counter
-addEventSummary(process,True,'MMMT','eventSelectionMMMT')
-addEventSummary(process,True,'MMTT','eventSelectionMMTT')
-addEventSummary(process,True,'MMET','eventSelectionMMET')
-addEventSummary(process,True,'MMEM','eventSelectionMMEM')
+#addEventSummary(process,True,'MMMT','eventSelectionMMMT')
+#addEventSummary(process,True,'MMTT','eventSelectionMMTT')
+#addEventSummary(process,True,'MMET','eventSelectionMMET')
+#addEventSummary(process,True,'MMEM','eventSelectionMMEM')
 addEventSummary(process,True,'MMEE','eventSelectionMMEE')
 addEventSummary(process,True,'MMMM','eventSelectionMMMM')
-addEventSummary(process,True,'EEMT','eventSelectionEEMT')
-addEventSummary(process,True,'EEET','eventSelectionEEET')
-addEventSummary(process,True,'EETT','eventSelectionEETT')
-addEventSummary(process,True,'EEEM','eventSelectionEEEM')
+#addEventSummary(process,True,'EEMT','eventSelectionEEMT')
+#addEventSummary(process,True,'EEET','eventSelectionEEET')
+#addEventSummary(process,True,'EETT','eventSelectionEETT')
+#addEventSummary(process,True,'EEEM','eventSelectionEEEM')
 addEventSummary(process,True,'EEEE','eventSelectionEEEE')
-addEventSummary(process,True,'EEMM','eventSelectionEEMM')
-addEventSummary(process,True,'MM','eventSelectionEE')
-addEventSummary(process,True,'EE','eventSelectionMM')
+#addEventSummary(process,True,'EEMM','eventSelectionEEMM')
+#addEventSummary(process,True,'MM','eventSelectionEE')
+#addEventSummary(process,True,'EE','eventSelectionMM')
 #addEventSummary(process,False,'EEES','eventSelectionEEES')
