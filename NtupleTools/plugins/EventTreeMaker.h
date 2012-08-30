@@ -48,7 +48,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
                 edm::ParameterSet ntupleFillerCfg = iConfig.getParameter<edm::ParameterSet>(*branchName);
                 std::string fillerPlugin = ntupleFillerCfg.getParameter<std::string>("pluginType");
                 //Need to do this separately for non-templated 
-                if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos) {
+                if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos || fillerPlugin.find("PairFiller") != std::string::npos) {
                     NtupleFillerBaseTest<T>* filler = U::get()->create(fillerPlugin,ntupleFillerCfg,t);
                     fillers.push_back(filler);
                 } else {
@@ -83,7 +83,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
 
             for (std::vector<edm::ParameterSet>::const_iterator branch = plugins.begin(); branch != plugins.end(); ++branch){
                 std::string fillerPlugin = branch->getParameter<std::string>("pluginType");
-                if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos) {
+                if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos || fillerPlugin.find("PairFiller") != std::string::npos) {
                     NtupleFillerBaseTest<T>* filler = U::get()->create(fillerPlugin,*branch,t);
                     fillers.push_back(filler);
                 } else {
@@ -176,3 +176,5 @@ typedef EventTreeMaker<PATMuMuEleTri,MMEFillerFactory> MMEEventTree;
 typedef EventTreeMaker<PATMuMuMuTri,MMMFillerFactory> MMMEventTree;
 
 //Z
+typedef EventTreeMaker<PATElecPair,EEFillerFactory> EEEventTree;
+typedef EventTreeMaker<PATMuPair,MMFillerFactory> MMEventTree;

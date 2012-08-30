@@ -2318,7 +2318,8 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 
 def addEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False, leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
+    eventTree = cms.EDAnalyzer('EEEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2349,7 +2350,8 @@ def addEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
 
 def addMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False, leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
+    eventTree = cms.EDAnalyzer('MMEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
