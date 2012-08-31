@@ -18,11 +18,7 @@ parser.add_option("--samples",dest="samples",type="string",default="")
 file = open(options.json)
 tag = options.tag
 
-out = open("submitJobs.sh","write")
 merge = open("mergeJobs.sh","write")
-
-merge.write("mkdir sandbox\n")
-merge.write("cd sandbox\n")
 
 datasets = json.load(file)
 
@@ -40,7 +36,7 @@ for dataset in datasets:
             passes = True
     if passes:
         makeFileList(dataset)
-        merge.write('farmoutAnalysisJobs --skip-existing-output --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=../fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
+        merge.write('farmoutAnalysisJobs --skip-existing-output --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
 
 file.close()
 merge.close()
