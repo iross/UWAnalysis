@@ -2070,7 +2070,7 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
     eventTree = cms.EDAnalyzer('EEMMEventTree',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
