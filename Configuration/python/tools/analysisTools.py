@@ -10,7 +10,7 @@ from PhysicsTools.PatAlgos.tools.pfTools import *
 from PhysicsTools.PatAlgos.tools.trigTools import *
 import sys
 
-def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2']):
+def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy'):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
     process.load("Configuration.StandardSequences.Geometry_cff")
     process.load("Configuration.StandardSequences.MagneticField_cff")
@@ -42,9 +42,49 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
     #  electronTriggerMatch(process,triggerProcess)
     #  tauTriggerMatch(process,triggerProcess)
 
+    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+            src = cms.InputTag("cleanPatMuons"),
+            target = cms.string(EAtarget),
+            )
+
+    process.eaElectrons = cms.EDProducer("PATElectronEffectiveAreaEmbedder",
+            src = cms.InputTag("cleanPatElectrons"),
+            target = cms.string(EAtarget),
+            )
+
+    process.calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducer",
+            # input collections
+            inputPatElectronsTag = cms.InputTag("eaElectrons"),
+
+            # data or MC corrections
+            # if isMC is false, data corrections are applied
+            isMC = cms.bool(False),
+
+            # set to True to read AOD format
+            isAOD = cms.bool(False),
+
+            # set to True to get debugging printout   
+            debug = cms.bool(False),
+
+            # energy measurement type
+            energyMeasurementType = cms.uint32(0),
+
+            updateEnergyError = cms.bool(True),
+
+            # input datasets
+            # Prompt means May10+Promptv4+Aug05+Promptv6 for 2011
+            # ReReco means Jul05+Aug05+Oct03 for 2011
+            # Jan16ReReco means Jan16 for 2011
+            # Summer11 means summer11 MC..
+            #inputDataset = cms.string("ReReco"),
+            inputDataset = cms.string("ICHEP2012"),
+            )
+
     process.mvaedElectrons=cms.EDProducer("PATMVAIDEmbedder",
-          src=cms.InputTag("cleanPatElectrons"),
-          id=cms.string("mvaNonTrigV0")
+          src=cms.InputTag("calibratedPatElectrons"),
+          id=cms.string("mvaNonTrigV0"),
+          #recalculate MVA if you're applying the ECAL corrections here...
+          recalculateMVA=cms.bool(True)
           )
 
     #remove electrons within 0.3 of a muon
@@ -83,7 +123,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
