@@ -650,7 +650,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 # pass candidate collection so we can cross-clean
                 # dR
                 tag        = cms.string("nElectrons"),
-                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.4"),
+                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.4"),
                 ),
         cms.PSet(
                 pluginType = cms.string("MuonCountFiller"),
@@ -658,7 +658,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 # pass candidate collection so we can cross-clean
                 # dR
                 tag        = cms.string("nMuons"),
-                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.40"),
                 ),
         cms.PSet(
                 pluginType = cms.string("TauCountFiller"),
@@ -675,7 +675,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 mindR = cms.double(0.3),
                 tag        = cms.string("nExtraElectrons"),
 
-                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.40"),
                 ),
         cms.PSet(
                 pluginType = cms.string(pluginType+"MuExtraCountFiller"),
@@ -683,7 +683,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 candSrc        = cms.InputTag(src),
                 mindR = cms.double(0.3),
                 tag        = cms.string("nExtraMuons"),
-                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.40"),
                 ),
         cms.PSet(
                 pluginType = cms.string(pluginType+"TauExtraCountFiller"),
@@ -904,15 +904,22 @@ def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"effArea"),
+            method     = cms.string(legMethod+"userFloat('effArea')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso2012"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
@@ -1313,15 +1320,22 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"effArea"),
+            method     = cms.string(legMethod+"userFloat('effArea')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso2012"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(

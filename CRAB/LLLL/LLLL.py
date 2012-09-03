@@ -27,7 +27,8 @@ process.source = cms.Source("PoolSource",
             # 'file:/scratch/iross/2E2M_Missing_3_pattuple.root'
             
 #            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
-#'file:/scratch/iross/muEG2012EventFSR.root'
+#            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
+#            'file:/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-00CDF016-F499-E111-8EB7-001D09F290BF.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -44,7 +45,8 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
-            ]
+            ],
+        EAtarget="2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         )
 
 #EventSelection

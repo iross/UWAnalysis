@@ -43,7 +43,8 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
-            ]
+            ],
+        EAtarget = "2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         )
 
 #createGeneratedParticlesPATtuple(process,
