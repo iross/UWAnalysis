@@ -13,7 +13,7 @@
 	
 	gROOT->ProcessLine(".!mkdir MMEEPlots");
     
-    std::string selection="40 < z1Mass && z1Mass < 120 && 12 < z2Mass && z2Mass < 120";
+    std::string selection="40 < z1Mass && z1Mass < 120 && 12 < z2Mass && z2Mass < 120 && mass > 100";
 
 	double ymax=22;
 	// TCanvas * mumuMassSel =   MMEEplotter->makeStackedPlot("z1Mass",selection,lumi,32,40,120,"Mass(#mu,#mu)","GeV/c",61,0.9*ymax,0.85*ymax,0.6,0.6,false,0.0001,ymax);

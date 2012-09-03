@@ -155,11 +155,19 @@ class SimplePlotter {
                 {
                     set<int> eventIds;
                     int EVENT;
+                    int LUMI;
                     int RUN;
+                    float mass;
+                    float z1mass;
+                    float z2mass;
                     int nEntries = trees_[i]->GetEntries();
 
                     trees_[i]->SetBranchAddress("EVENT",&EVENT);
                     trees_[i]->SetBranchAddress("RUN",&RUN);
+                    trees_[i]->SetBranchAddress("LUMI",&LUMI);
+                    trees_[i]->SetBranchAddress("mass",&mass);
+                    trees_[i]->SetBranchAddress("z1Mass",&z1mass);
+                    trees_[i]->SetBranchAddress("z2Mass",&z2mass);
                     TEntryList *tlist = new TEntryList(trees_[i]);
 
                     // ensure that there are no duplicated event numbers
@@ -170,7 +178,9 @@ class SimplePlotter {
                         {
                             eventIds.insert(EVENT);
                             tlist->Enter(j,trees_[i]);
-                            cout << "Run: " << RUN << ", Event: " << EVENT << endl;
+
+                            if ( mass > 100 && 40 < z1mass && z1mass < 120 && 12 < z2mass && z2mass < 120 )
+                                cout << RUN << ":" << LUMI << " " << EVENT << endl;
                         }
                     }
 

@@ -12,18 +12,18 @@
 
 	//std::string selection=LEleZ+SEEZcuts;
     
-    std::string selection="40 < z1Mass && z1Mass < 120 && 12 < z2Mass && z2Mass < 120";
+    std::string selection="40 < z1Mass && z1Mass < 120 && 12 < z2Mass && z2Mass < 120 && mass > 100";
 	
 	gROOT->ProcessLine(".!mkdir EEEEPlots");
 	double ymax=22;
-	TCanvas * eleele1MassSel =   EEEEplotter->makeStackedPlot("z1Mass",selection,lumi,32,40,120,"Leading Z Mass(e,e)","GeV/c",41,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-	eleele1MassSel->SaveAs("EEEEPlots/eleele1MassSel.png");
-	eleele1MassSel->SaveAs("EEEEPlots/eleele1MassSel.pdf");  
-	
-	ymax = 18;
-	TCanvas * eleele2MassSel =   EEEEplotter->makeStackedPlot("z2Mass",selection,lumi,44,10,120,"Second Z Mass(e,e)","GeV/c",11,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-	eleele2MassSel->SaveAs("EEEEPlots/eleele2MassSel.png");
-	eleele2MassSel->SaveAs("EEEEPlots/eleele2MassSel.pdf");  
+	// TCanvas * eleele1MassSel =   EEEEplotter->makeStackedPlot("z1Mass",selection,lumi,32,40,120,"Leading Z Mass(e,e)","GeV/c",41,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+	// eleele1MassSel->SaveAs("EEEEPlots/eleele1MassSel.png");
+	// eleele1MassSel->SaveAs("EEEEPlots/eleele1MassSel.pdf");  
+	// 
+	// ymax = 18;
+	// TCanvas * eleele2MassSel =   EEEEplotter->makeStackedPlot("z2Mass",selection,lumi,44,10,120,"Second Z Mass(e,e)","GeV/c",11,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+	// eleele2MassSel->SaveAs("EEEEPlots/eleele2MassSel.png");
+	// eleele2MassSel->SaveAs("EEEEPlots/eleele2MassSel.pdf");  
 	
 	// TCanvas * eleele2Pt1 =   EEEEplotter->makeStackedPlot("eleele2Pt1",selection,lumi,20,0,100,"Leading e p_{T}","GeV/c",1,0.4,0.37,0.6,0.6,false,0.0001,0.5);
 	// eleele2Pt1->SaveAs("EEEEPlots/ePt1.png");
@@ -32,28 +32,28 @@
 	// TCanvas * eleele2Pt2 =   EEEEplotter->makeStackedPlot("eleele2Pt2",selection,lumi,20,0,100,"Second e p_{T}","GeV/c",1,0.4,0.37,0.6,0.6,false,0.0001,0.5);
 	// eleele2Pt2->SaveAs("EEEEPlots/ePt2.png");
 	// eleele2Pt2->SaveAs("EEEEPlots/ePt2.pdf");  
-	ymax=10;
+	ymax=16;
 	TCanvas * mass4l =   EEEEplotter->makeStackedPlot("mass",selection,lumi,52,80,600,"ZZ Invariant Mass","GeV/c",101,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-	mass4l->SaveAs("EEEEPlots/mass4l.png");
-	mass4l->SaveAs("EEEEPlots/mass4l.pdf");
+	// mass4l->SaveAs("EEEEPlots/mass4l.png");
+	// mass4l->SaveAs("EEEEPlots/mass4l.pdf");
 
-    ymax = 20;
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z1l1RelPfIsoRho",selection,lumi,20,0,0.4,"z1l1 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z1l1Iso.png");
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z1l2RelPfIsoRho",selection,lumi,20,0,0.4,"z1l2 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z1l2Iso.png");
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z2l1RelPfIsoRho",selection,lumi,20,0,0.4,"z2l1 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z2l1Iso.png");
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z2l2RelPfIsoRho",selection,lumi,20,0,0.4,"z2l2 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z2l2Iso.png");
+    // ymax = 20;
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z1l1RelPfIsoRho",selection,lumi,20,0,0.4,"z1l1 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z1l1Iso.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z1l2RelPfIsoRho",selection,lumi,20,0,0.4,"z1l2 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z1l2Iso.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z2l1RelPfIsoRho",selection,lumi,20,0,0.4,"z2l1 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z2l1Iso.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z2l2RelPfIsoRho",selection,lumi,20,0,0.4,"z2l2 Rel Iso","",0.025,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z2l2Iso.png");
 
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z1l1SIP",selection,lumi,20,0,4,"z1l1 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z1l1SIP.png");
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z1l2SIP",selection,lumi,20,0,4,"z1l2 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z1l2SIP.png");
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z2l1SIP",selection,lumi,20,0,4,"z2l1 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z2l1SIP.png");
-    TCanvas *plot = EEEEplotter->makeStackedPlot("z2l2SIP",selection,lumi,20,0,4,"z2l2 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
-    plot->SaveAs("EEEEPlots/z2l2SIP.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z1l1SIP",selection,lumi,20,0,4,"z1l1 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z1l1SIP.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z1l2SIP",selection,lumi,20,0,4,"z1l2 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z1l2SIP.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z2l1SIP",selection,lumi,20,0,4,"z2l1 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z2l1SIP.png");
+    // TCanvas *plot = EEEEplotter->makeStackedPlot("z2l2SIP",selection,lumi,20,0,4,"z2l2 SIP","",0.1,ymax*0.9,ymax*0.85,0.6,0.6,false,0.0001,ymax);
+    // plot->SaveAs("EEEEPlots/z2l2SIP.png");
 }
 

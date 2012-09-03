@@ -5,7 +5,7 @@
 
     SimplePlotter *MMEEplotter = new SimplePlotter();
 
-    // TString DATADIR="/afs/hep.wisc.edu/cms/belknap/dataSamples/HZZ4l/";
+    // TString DATADIR="/afs/hep.wisc.edu/cms/belknap/dataSamples/HZZ4l/samples/";
     TString DATADIR="/Users/austin/Desktop/HiggsZZ/HZZ/samples/";
     /*
        MMEEplotter->addFile("muMuEleEleEventTree/eventTree","sandbox/zz-latest/VV.root","EWK WW/WZ","__WEIGHT__",0,kRed+2,kRed+4);
@@ -34,10 +34,10 @@
     MMEEplotter->addFile("muMuEleEleEventTree/eventTree","sandbox/zzee-latest/DATA.root","DATA","1",1,kBlack,1);
     */
 
-    MMEEplotter->addFile("muMuEleEleonlyEventTreeFinal/eventTree",DATADIR+"DATA.root",  "Data","1",1,kBlack,1);
-    MMEEplotter->addFile("muMuEleEleonlyEventTreeFinal/eventTree",DATADIR+"ggH125.root","H(125)","__WEIGHT__",-1,kWhite,kRed+1);
-    MMEEplotter->addFile("muMuEleEleonlyEventTreeFinal/eventTree",DATADIR+"ZZ4l.root",  "ZZ","__WEIGHT__",0,kAzure-9,kBlack);
-    MMEEplotter->addFile("muMuEleEleonlyEventTreeFinal/eventTree",DATADIR+"DYJets.root","Z+Jets","__WEIGHT__",0,kTeal-7,kBlack);
+    MMEEplotter->addFile("muMuEleEleEventTreeFinal/eventTree",DATADIR+"DATA.root",  "Data","1",1,kBlack,1);
+    // MMEEplotter->addFile("muMuEleEleEventTreeFinal/eventTree",DATADIR+"ggH125.root","H(125)","__WEIGHT__",-1,kWhite,kRed+1);
+    // MMEEplotter->addFile("muMuEleEleEventTreeFinal/eventTree",DATADIR+"ZZ4l.root",  "ZZ","__WEIGHT__",0,kAzure-9,kBlack);
+    //MMEEplotter->addFile("muMuEleEleEventTreeFinal/eventTree",DATADIR+"DYJets.root","Z+Jets","__WEIGHT__",0,kTeal-7,kBlack);
 
 
 }
