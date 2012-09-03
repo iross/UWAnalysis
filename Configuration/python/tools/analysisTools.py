@@ -10,7 +10,7 @@ from PhysicsTools.PatAlgos.tools.pfTools import *
 from PhysicsTools.PatAlgos.tools.trigTools import *
 import sys
 
-def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2']):
+def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy'):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
     process.load("Configuration.StandardSequences.Geometry_cff")
     process.load("Configuration.StandardSequences.MagneticField_cff")
@@ -42,9 +42,19 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
     #  electronTriggerMatch(process,triggerProcess)
     #  tauTriggerMatch(process,triggerProcess)
 
+    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+            src = cms.InputTag("cleanPatMuons"),
+            target = cms.string(EAtarget),
+            )
+
+    process.eaElectrons = cms.EDProducer("PATElectronEffectiveAreaEmbedder",
+            src = cms.InputTag("cleanPatElectrons"),
+            target = cms.string(EAtarget),
+            )
+
     process.calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducer",
             # input collections
-            inputPatElectronsTag = cms.InputTag("cleanPatElectrons"),
+            inputPatElectronsTag = cms.InputTag("eaElectrons"),
 
             # data or MC corrections
             # if isMC is false, data corrections are applied
@@ -113,7 +123,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
