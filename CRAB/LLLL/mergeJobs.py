@@ -1,22 +1,22 @@
 '''
 File: submitJobs.py
 Author: Ian Ross (iross@cern.ch), University of Wisconsin Madison
-Description: Generate job submission file.
+Description: Generate job submission file (for merging analysis root files).
 '''
 
 import json
 import fnmatch
 import subprocess
-from optparse import OptionParser
+from RecoLuminosity.LumiDB import argparse
 
-parser=OptionParser(description="%prog -- dump some analysis-level plots and yields",usage="%prog --extra='extra cuts to apply'")
-parser.add_option("--tag",dest="tag",type="string",default="")
-parser.add_option("--json",dest="json",type="string",default="datasets.json")
-parser.add_option("--samples",dest="samples",type="string",default="")
-(options,args)=parser.parse_args()
+parser=argparse.ArgumentParser(description="%prog -- dump some analysis-level plots and yields")
+parser.add_argument("--tag",dest="tag",type=str,default="")
+parser.add_argument("--json",dest="json",type=str,default="datasets.json")
+parser.add_argument("--samples",dest="samples",nargs="+",type=str,default="")
+args=parser.parse_args()
 
-file = open(options.json)
-tag = options.tag
+file = open(args.json)
+tag = args.tag
 
 merge = open("mergeJobs.sh","write")
 
@@ -30,10 +30,11 @@ def makeFileList(dataset):
 
 for dataset in datasets:
     passes = True
-    if options.samples:
+    if args.samples:
         passes = False
-        if fnmatch.fnmatchcase(dataset, options.samples):
-            passes = True
+        for pattern in args.samples:
+            if fnmatch.fnmatchcase(dataset, pattern):
+                passes = True
     if passes:
         makeFileList(dataset)
         merge.write('farmoutAnalysisJobs --skip-existing-output --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
