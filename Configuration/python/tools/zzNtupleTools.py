@@ -877,14 +877,14 @@ def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso2012"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
@@ -1215,6 +1215,27 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"dz"),
+            method     = cms.string(legMethod+"userFloat('dz')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"dXY"),
+            method     = cms.string(legMethod+"userFloat('ipDXY')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"SIP"),
+            method     = cms.string(legMethod+"userFloat('ip3DS')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"SIP"),
             method     = cms.string(legMethod+"userFloat('ip3DS')"),
             leadingOnly=cms.untracked.bool(leadOnly)
@@ -1286,14 +1307,14 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso2012"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('EAGammaNeuHadron04')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
