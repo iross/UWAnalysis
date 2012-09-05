@@ -42,7 +42,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
     #  electronTriggerMatch(process,triggerProcess)
     #  tauTriggerMatch(process,triggerProcess)
 
-    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+    process.eaMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
             src = cms.InputTag("cleanPatMuons"),
             target = cms.string(EAtarget),
             )
@@ -80,8 +80,20 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             inputDataset = cms.string("ICHEP2012"),
             )
 
+    process.goodElectrons = cms.EDFilter("PATElectronSelector",
+          src = cms.InputTag("calibratedPatElectrons"),
+          cut = cms.string("pt()>7 && abs(eta)<2.5 && abs(userFloat('ipDXY'))<0.5 && abs(userFloat('dz'))<1 && gsfTrack.trackerExpectedHitsInner.numberOfHits<=1"),
+          filter = cms.bool(False)
+          )
+
+    process.goodPatMuons = cms.EDFilter("PATMuonSelector",
+          src = cms.InputTag("eaMuons"),
+          cut = cms.string("pt()>5 && abs(eta)<2.4 && abs(userFloat('ipDXY'))<0.5 && abs(userFloat('dz'))<1 && (isGlobalMuon() || isTrackerMuon() )"),
+          filter = cms.bool(False)
+          )
+
     process.mvaedElectrons=cms.EDProducer("PATMVAIDEmbedder",
-          src=cms.InputTag("calibratedPatElectrons"),
+          src=cms.InputTag("goodElectrons"),
           id=cms.string("mvaNonTrigV0"),
           #recalculate MVA if you're applying the ECAL corrections here...
           recalculateMVA=cms.bool(True)
@@ -110,7 +122,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           src = cms.InputTag("cleanPatTaus"),
           preselection = cms.string(""),
           checkOverlaps = cms.PSet(
-              muons = cms.PSet(
+              electrons = cms.PSet(
                   src=cms.InputTag("mvaedElectrons"),
                   algorithm=cms.string("byDeltaR"),
                   preselection=cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
@@ -123,7 +135,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.eaMuons*process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
