@@ -13,6 +13,13 @@
     "xsection" : 0.0,
     "note_" : ""
     },
+"DoubleMu2012C":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleMu_Run2012C_PromptReco_v2_Run198934_201264",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    },
 "DoubleElectron2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/",
@@ -27,6 +34,13 @@
     "xsection" : 0.0,
     "note_" : ""
     },
+"DoubleElectron2012C":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleElectron_Run2012C_PromptReco_v2_Run198934_201264",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    },
 "MuEG2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/",
@@ -40,6 +54,13 @@
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
+    },
+"MuEG2012C":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_MuEG_Run2012C_PromptReco_v2_Run198934_201264",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
     },
 "ZZ2E2M":{
     "type" : "MC",
