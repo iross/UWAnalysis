@@ -203,6 +203,13 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
         phi2_ = phi2;
     }
 
+    // set Z masses
+    void setBestZmasses(double best, double subBest)
+    {
+        bestZmass_ = best;
+        subBestZmass_ = subBest;
+    }
+
     //Vertex variables
 
     //Z difference of the first and second leg after propagation of tracks to the beamspot
@@ -240,6 +247,8 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     int   vbfNJetsGap30() const {return vbfNJetsGap30_;}
 
 
+    double bestZmass() const { return bestZmass_; }
+    double subBestZmass() const { return subBestZmass_; }
 
     //M JJ variables
     double mJJ() const {return mjj_;}
@@ -369,6 +378,8 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
 
 
 
+
+
     /// set values of recoil
     void setRecoil(reco::Candidate::LorentzVector recoil) { recoil_ = recoil; }
     void setRecoilDPhi(double recoilDPhi) { recoilDPhi_ = recoilDPhi; }
@@ -458,6 +469,10 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double phiStar12_; 
     double phi1_;
     double phi2_;
+
+    // Z cand masses
+    double bestZmass_;
+    double subBestZmass_;
 
     /// Vertex variables
     double dca_;

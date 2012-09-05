@@ -29,11 +29,12 @@ Description: Embed some information about 4l out->at(i)idates (angles, cross-leg
 template <class T>
 class QuadCandEmbedder : public edm::EDProducer {
     public:
-        explicit QuadCandEmbedder(const edm::ParameterSet& iConfig){
+        explicit QuadCandEmbedder(const edm::ParameterSet& iConfig)
+        {
             src_ = iConfig.getParameter<edm::InputTag>("src");
             minMll_ = iConfig.getParameter<double>("minMll");
             produces<std::vector<T> >();
-            }
+        }
 
         ~QuadCandEmbedder() {}
 
@@ -50,10 +51,12 @@ class QuadCandEmbedder : public edm::EDProducer {
                 toBeSorted =  *cands;
 
             std::auto_ptr<std::vector<T> > out(new std::vector<T>);
-            for(unsigned int i=0;i<toBeSorted.size();++i){
+            for(unsigned int i = 0; i < toBeSorted.size(); ++i)
+            {
                 out->push_back(toBeSorted.at(i));
             }
-            for (unsigned int i = 0; i < out->size(); ++i) {
+            for (unsigned int i = 0; i < out->size(); ++i)
+            {
                 double costheta1=-137.0; double costheta2=-137.0; double phi=-137.0; double costhetastar=-137.0; double phistar1=-137.0; double phistar2=-137.0; double phistar12=-137.0; double phi1=-137.0; double phi2=-137.0;
 
                 TLorentzVector HP4 = convertToTLorentz(out->at(i).p4());
@@ -120,6 +123,22 @@ class QuadCandEmbedder : public edm::EDProducer {
                 out->at(i).setAngles(costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2);
                 out->at(i).setNoFSRMass((out->at(i).leg1()->noPhoP4()+out->at(i).leg2()->noPhoP4()).M());
                 out->at(i).setInvMasses(out->at(i).leg1()->leg1()->p4(),out->at(i).leg1()->leg2()->p4(),out->at(i).leg2()->leg1()->p4(),out->at(i).leg2()->leg2()->p4(),fourFour,sixSix);
+
+                double bestZmass;
+                double subBestZmass;
+                double z1mass = z1P4.M();
+                double z2mass = z2P4.M();
+                if ( fabs(z1mass - 91.2) < fabs(z2mass - 91.2) )
+                {
+                    bestZmass    = z1mass;
+                    subBestZmass = z2mass;
+                }
+                else
+                {
+                    bestZmass    = z2mass;
+                    subBestZmass = z1mass;
+                }
+                out->at(i).setBestZmasses(bestZmass, subBestZmass);
             }
             iEvent.put(out);
 
@@ -290,7 +309,4 @@ class QuadCandEmbedder : public edm::EDProducer {
         // ----------member data ---------------------------
         edm::InputTag src_;
         double minMll_;
-
-
-
 };
