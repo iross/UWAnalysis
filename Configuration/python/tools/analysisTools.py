@@ -135,7 +135,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.eaMuons*process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.eaMuons*process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.goodElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
