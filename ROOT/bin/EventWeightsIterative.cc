@@ -10,7 +10,7 @@
 
 std::vector<float> data;
 std::vector<float> mc;
-edm::Lumi3DReWeighting *LumiWeights;
+//edm::Lumi3DReWeighting *LumiWeights;
 
 
 void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,bool doRho,TH1F* puWeight,TH1F* rhoWeight); 
@@ -459,15 +459,15 @@ int main (int argc, char* argv[])
         if(fPU2!=0 && fPU2->IsOpen()&& fPU22!=0 && fPU22->IsOpen() && (!(fPU3!=0 && fPU3->IsOpen())) &&(!(fPU4!=0 && fPU4->IsOpen()))){
             doPU=2;
             printf("ENABLING PU WEIGHTING USING 3D- I HAVE TO CALCULATE WEIGHTS SORRY\n");
-            LumiWeights = new edm::Lumi3DReWeighting("../puInfoMC3D.root","../puInfo3D.root","pileup","pileup");
-            LumiWeights->weight3D_init(1.0);
+//            LumiWeights = new edm::Lumi3DReWeighting("../puInfoMC3D.root","../puInfo3D.root","pileup","pileup");
+//            LumiWeights->weight3D_init(1.0);
         }
         else  if(fPU3!=0 && fPU3->IsOpen()) {
             doPU=2;
             printf("ENABLING PU WEIGHTING USING 3D with ready distribution\n");
             fPU3->Close();
-            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
-            LumiWeights->weight3D_init("../Weight3D.root");
+//            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
+//            LumiWeights->weight3D_init("../Weight3D.root");
         }
         else   if(fPU4!=0 && fPU4->IsOpen()) {
 
@@ -475,8 +475,8 @@ int main (int argc, char* argv[])
             doPU=2;
             printf("ENABLING PU WEIGHTING USING 3D with  distribution you just made\n");
             fPU4->Close();
-            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
-            LumiWeights->weight3D_init("Weight3D.root");
+//            LumiWeights = new edm::Lumi3DReWeighting(mc,data);
+//            LumiWeights->weight3D_init("Weight3D.root");
 
         }
     }
@@ -591,10 +591,10 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
 
                 }
                 else if(doPU==2) {
-                    float w = LumiWeights->weight3D( bxm,bx,bxp);
-                    if(i==1)
-                        printf("PU WEIGHT = %f\n",w);
-                    weight*=w;
+//                    float w = LumiWeights->weight3D( bxm,bx,bxp);
+//                    if(i==1)
+//                        printf("PU WEIGHT = %f\n",w);
+//                    weight*=w;
                 }
                 else if(doPU==3) {
                     weight*=weightTrue2012(truth);
