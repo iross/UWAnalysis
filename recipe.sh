@@ -10,9 +10,13 @@ if [ -z "$HAS_TICKET" ]; then
   exit 1
 fi
 
+cd $CMSSW_BASE/src
 # Add all the SVfit nonsense 
 cvs co -r bMinimalSVfit-08-03-11 AnalysisDataFormats/TauAnalysis                  
 cvs co -r bMinimalSVfit_2012May13 TauAnalysis/CandidateTools                       
+
+#to compile our limit package
+cvs co -r V02-01-00      HiggsAnalysis/CombinedLimit
 
 #electron e corrections
 cvs co -r ICHEP2012_V03 -d EgammaCalibratedGsfElectrons UserCode/EGamma/EgammaCalibratedGsfElectrons
@@ -29,7 +33,5 @@ cvs up -r 1.3 EGamma/EGammaAnalysisTools/interface/ElectronEffectiveArea.h
 cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTools 
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
-
-cd $CMSSW_BASE/src
 
 echo "To compile: scram b -j 4"
