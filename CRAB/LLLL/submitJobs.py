@@ -23,14 +23,12 @@ out = open("submitJobs.sh","write")
 def getLumis(input_file):
     """Return lumisToProcess string"""
 
-    lumis="process.source.lumisToProcess = cms.untracked.VLuminosityBlockRange("
     infile=open("dataJSONs/"+input_file)
     entry=json.load(infile)
+    lumis="process.source.lumisToProcess = cms.untracked.VLuminosityBlockRange()\n"
     for run in sorted(entry):
         for lumirange in entry[run]:
-            lumis += "'%s:%s-%s:%s'," % (run, lumirange[0], run, lumirange[1])
-    lumis=lumis[:-1] #remove that last comma
-    lumis+=")\n"
+            lumis += "process.source.lumisToProcess.append('%s:%s-%s:%s')\n" % (run, lumirange[0], run, lumirange[1])
     return lumis
 
 out.write("cat LLLL-MC.py > MC.py\n")
