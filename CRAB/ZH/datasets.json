@@ -1,0 +1,114 @@
+{
+"DoubleMu2012A":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+    },
+"DoubleMu2012B":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012B_PromptReco_v1_Run193752_196531/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+    },
+"DoubleElectron2012A":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+    },
+"DoubleElectron2012B":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012B_PromptReco_v1_Run193752_196531/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+    },
+"MuEG2012A":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+    },
+"MuEG2012B":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012B_PromptReco_v1_Run193752_196531/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+    },
+"ZZ2E2M":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZTo2e2mu_8TeV-powheg-pythia6/ZZ2E2M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/",
+    "url" : "",
+    "xsection" : 0.1767,
+    "note_" : ""
+    },
+"ZZ4E":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZTo4e_8TeV-powheg-pythia6/ZZ4E_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
+    "url" : "",
+    "xsection" : 0.07691,
+    "note_" : ""
+    },
+"ZZ4M":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
+    "url" : "",
+    "xsection" : 0.07691,
+    "note_" : ""
+    },
+"ZZ4T":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZTo4tau_8TeV-powheg-pythia6/ZZ4T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
+    "url" : "",
+    "xsection" : 0.07691,
+    "note_" : ""
+    },
+"ZZ2M2T":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZTo2mu2tau_8TeV-powheg-pythia6/ZZ2M2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/",
+    "url" : "",
+    "xsection" : 0.1767,
+    "note_" : ""
+    },
+"ZZ2E2T":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZTo2e2tau_8TeV-powheg-pythia6/ZZ2E2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147",
+    "url" : "",
+    "xsection" : 0.1767,
+    "note_" : ""
+    },
+"ggZZ4L":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/GluGluToZZTo4L_8TeV-gg2zz-pythia6/ggZZ4L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/",
+    "url" : "",
+    "xsection" : 0.0028,
+    "_note" : "assumed cross-section is 1.2x last year's gg sample"
+    },
+"ggZZ2L2L":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/ggZZ2L2L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/",
+    "url" : "",
+    "xsection" : 0.00418,
+    "_note" : "assumed cross-section is 1.2x last year's gg sample"
+    },
+"DYJets":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/",
+    "url" : "",
+    "xsection" : 3503.71,
+    "note_" : ""
+    },
+"ggH125":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/GGH_HZZ4L_M-125_2012-07-31-h125-201db65/47d9ccf645ca347c59079ac6ca6f1e25",
+    "url" : "",
+    "xsection" : 0.0062775,
+    "note_" : "#scale column CI from yellow report by 9/4 for full Higgs->ZZ->4l"
+    }
+}

@@ -1,0 +1,37 @@
+mkdir sandbox
+
+cd sandbox
+
+#find /scratch/$USER/ZZ4M_8TeV_13Jun-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4M.root
+#find /scratch/$USER/ZZ4E_8TeV_13Jun-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4E.root
+#find /scratch/$USER/ZZ4T_8TeV_13Jun-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ4T.root
+#find /scratch/$USER/ZZ2E2M_8TeV_13Jun-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2M.root
+#find /scratch/$USER/ZZ2E2T_8TeV_13Jun-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2E2T.root
+#find /scratch/$USER/ZZ2M2T_8TeV_13Jun-MC/*/*.root |xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ZZ2M2T.root
+
+#find /scratch/iross/ggZZ4L_7TeV_12Jun_v2-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ4L_7TeV.root
+#find /scratch/iross/ggZ2L2L_7TeV_12Jun_v2-MC/*/*.root |xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggZZ2L2L_7TeV.root
+
+#find /scratch/iross/DYJets50_13Jun-MC/*/*.root | xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd DYJets.root
+
+find /scratch/iross/ggH125_17Jun-MC/*/*.root | xargs ls -l|awk '{if ($5>1000) print $9}'|xargs hadd ggH125.root
+
+#find /scratch/iross/DoubleElectron2012A_13Jun-DATA/*/*.root | xargs ls -l | awk '{if ($5>1000) print $9}' | xargs hadd DoubleElectron2012A_13Jun.root
+#find /scratch/iross/DoubleElectron2012B_13Jun-DATA/*/*.root | xargs ls -l | awk '{if ($5>1000) print $9}' | xargs hadd DoubleElectron2012B_13Jun.root
+#find /scratch/iross/DoubleMu2012A_13Jun-DATA/*/*.root | xargs ls -l | awk '{if ($5>1000) print $9}' | xargs hadd DoubleMu2012A_13Jun.root
+#find /scratch/iross/DoubleMu2012B_13Jun-DATA/*/*.root | xargs ls -l | awk '{if ($5>1000) print $9}' | xargs hadd DoubleMu2012B_13Jun.root
+#hadd DATA_13Jun.root Double[EM]*.root
+
+#EventWeightsIterative outputFile='ZZ4M.root'        weight=0.07691   type=2  histoName='MMEE/results' branch="weight"
+#EventWeightsIterative outputFile='ZZ4E.root'        weight=0.07691   type=2  histoName='MMEE/results' branch="weight"
+#EventWeightsIterative outputFile='ZZ4T.root'        weight=0.07691   type=2  histoName='MMEE/results' branch="weight"
+#EventWeightsIterative outputFile='ZZ2E2M.root'      weight=0.1767   type=2  histoName='MMEE/results' branch="weight"
+#EventWeightsIterative outputFile='ZZ2E2T.root'      weight=0.1767   type=2  histoName='MMEE/results' branch="weight"
+#EventWeightsIterative outputFile='ZZ2M2T.root'      weight=0.1767   type=2  histoName='MMEE/results' branch="weight"
+#EventWeightsIterative outputFile='DYJets.root'      weight=3503.71   type=2  histoName='MMEE/results' branch="weight"
+
+#EventWeightsIterative outputFile='ggZZ4L_7TeV.root'         weight=0.00174*1.285  type=2  histoName='MMEE/results' branch="weight" extra="2011to2012"
+#EventWeightsIterative outputFile='ggZZ2L2L_7TeV.root'         weight=0.00348*1.285   type=2  histoName='MMEE/results' branch="weight" extra="2011to2012"
+
+#scale column CI from yellow report by 9/4 for full Higgs->ZZ->4l
+EventWeightsIterative outputFile='ggH125.root'         weight=0.0062775   type=2  histoName='MMEE/results' branch="weight" extra="2011to2012"
