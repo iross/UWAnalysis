@@ -7,7 +7,7 @@ cat LLLL-MC.py > MC.py
 cat CONDOR.py >> MC.py
 
 NAME=05sep12
-FLAGS=
+FLAGS=--resubmit-failed-jobs
 
 mkdir -p /scratch/belknap/DAGs/$NAME/
 
