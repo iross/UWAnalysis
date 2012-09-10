@@ -34,4 +34,5 @@ cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTo
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
 
+cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
