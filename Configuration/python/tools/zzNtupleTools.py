@@ -1552,6 +1552,13 @@ def zlCommon(src,pluginType,leadOnly=True):
                 method     = cms.string("leg1.charge()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
                 ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("met"),
+                method     = cms.string("met.pt()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
             )
     return sharedV
 
