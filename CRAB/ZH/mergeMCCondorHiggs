@@ -1,0 +1,126 @@
+mkdir sandbox
+
+cd sandbox
+
+find /scratch/$USER/ggH115-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH115.root
+find /scratch/$USER/ggH120-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH120.root
+find /scratch/$USER/ggH130-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH130.root
+find /scratch/$USER/ggH140-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH140.root
+find /scratch/$USER/ggH150-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH150.root
+find /scratch/$USER/ggH160-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH160.root
+find /scratch/$USER/ggH170-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH170.root
+find /scratch/$USER/ggH180-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH180.root
+find /scratch/$USER/ggH190-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH190.root
+find /scratch/$USER/ggH200-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH200.root
+find /scratch/$USER/ggH210-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH210.root
+find /scratch/$USER/ggH220-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH220.root
+find /scratch/$USER/ggH230-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH230.root
+find /scratch/$USER/ggH250-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH250.root
+find /scratch/$USER/ggH275-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH275.root
+find /scratch/$USER/ggH300-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH300.root
+find /scratch/$USER/ggH325-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH325.root
+find /scratch/$USER/ggH350-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH350.root
+find /scratch/$USER/ggH375-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH375.root
+find /scratch/$USER/ggH400-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH400.root
+find /scratch/$USER/ggH425-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH425.root
+find /scratch/$USER/ggH450-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH450.root
+find /scratch/$USER/ggH475-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH475.root
+find /scratch/$USER/ggH500-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH500.root
+find /scratch/$USER/ggH525-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH525.root
+find /scratch/$USER/ggH550-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH550.root
+find /scratch/$USER/ggH575-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH575.root
+find /scratch/$USER/ggH600-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd ggH600.root
+
+find /scratch/$USER/vbf115-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf115.root
+find /scratch/$USER/vbf120-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf120.root
+find /scratch/$USER/vbf130-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf130.root
+find /scratch/$USER/vbf140-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf140.root
+find /scratch/$USER/vbf150-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf150.root
+find /scratch/$USER/vbf160-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf160.root
+find /scratch/$USER/vbf170-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf170.root
+find /scratch/$USER/vbf180-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf180.root
+find /scratch/$USER/vbf190-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf190.root
+find /scratch/$USER/vbf200-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf200.root
+find /scratch/$USER/vbf210-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf210.root
+find /scratch/$USER/vbf220-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf220.root
+find /scratch/$USER/vbf230-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf230.root
+find /scratch/$USER/vbf250-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf250.root
+find /scratch/$USER/vbf275-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf275.root
+find /scratch/$USER/vbf300-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf300.root
+find /scratch/$USER/vbf325-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf325.root
+find /scratch/$USER/vbf350-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf350.root
+find /scratch/$USER/vbf375-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf375.root
+find /scratch/$USER/vbf400-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf400.root
+find /scratch/$USER/vbf425-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf425.root
+find /scratch/$USER/vbf450-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf450.root
+find /scratch/$USER/vbf475-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf475.root
+find /scratch/$USER/vbf500-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf500.root
+find /scratch/$USER/vbf525-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf525.root
+find /scratch/$USER/vbf550-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf550.root
+find /scratch/$USER/vbf575-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf575.root
+find /scratch/$USER/vbf600-MC2/*/*.root	|xargs ls -l|awk '{if ($5 > 1000) print $9}'|xargs hadd vbf600.root
+
+EventWeightsIterative outputFile='ggH115.root'         	weight=0.00188    type=115 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH120.root'       	weight=0.00281   type=120 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH130.root'         	weight=0.00589    type=130 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH140.root'       	weight=0.00866   type=140 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH150.root'         	weight=0.00895    type=150 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH160.root'       	weight=0.00386   type=160 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH170.root'         	weight=0.00187    type=170 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH180.root'       	weight=0.00412   type=180 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH190.root'         	weight=0.0125    type=190 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH200.root'       	weight=0.0136   type=200 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH210.root'       	weight=0.0131   type=210 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH220.root'       	weight=0.0123   type=220 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH230.root'       	weight=0.0115   type=230 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH250.root'			weight=0.00997 	type=250 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH275.root'       	weight=0.00851   type=275 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH300.root'  		weight=0.00752  	type=300 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH325.root'       	weight=0.00701   type=325 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH350.root'        	weight=0.00701   type=350 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH375.root'       	weight=0.00657   type=375 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH400.root'       	weight=0.00554   type=400 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH425.root'       	weight=0.00456   type=425 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH450.root'        	weight=0.00357   type=450 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH475.root'       	weight=0.00291   type=475 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH500.root'        	weight=0.00224   type=500 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH525.root'       	weight=0.00183   type=525 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH550.root'        	weight=0.00142   type=550 histoName='MMEE/results'
+EventWeightsIterative outputFile='ggH575.root'       	weight=0.00116   type=575 histoName='MMEE/results' 
+EventWeightsIterative outputFile='ggH600.root'        	weight=0.0009	type=600 histoName='MMEE/results'
+
+EventWeightsIterative outputFile='vbf115.root'         	weight=0.000141    type=115 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf120.root'       	weight=0.000214   type=120 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf130.root'         	weight=0.000481    type=130 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf140.root'       	weight=0.000751   type=140 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf150.root'         	weight=0.000819    type=150 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf160.root'       	weight=0.000373   type=160 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf170.root'         	weight=0.000198    type=170 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf180.root'       	weight=0.000458   type=180 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf190.root'         	weight=0.00147    type=190 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf200.root'       	weight=0.00165   type=200 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf210.root'       	weight=0.00163   type=210 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf220.root'       	weight=0.00156   type=220 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf230.root'       	weight=0.00147   type=230 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf250.root'			weight=0.0013 	type=250 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf275.root'       	weight=0.0011   type=275 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf300.root'  		weight=0.00094  type=300 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf325.root'       	weight=0.00079   type=325 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf350.root'        	weight=0.00066   type=350 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf375.root'       	weight=0.00054   type=375 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf400.root'       	weight=0.00044   type=400 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf425.root'       	weight=0.00038   type=425 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf450.root'        	weight=0.00033   type=450 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf475.root'       	weight=0.00029   type=475 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf500.root'        	weight=0.00025   type=500 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf525.root'       	weight=0.00023   type=525 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf550.root'        	weight=0.00020   type=550 histoName='MMEE/results'
+EventWeightsIterative outputFile='vbf575.root'       	weight=0.00019   type=575 histoName='MMEE/results' 
+EventWeightsIterative outputFile='vbf600.root'        	weight=0.00018	type=600 histoName='MMEE/results'
+
+
+
+
+
+
+
