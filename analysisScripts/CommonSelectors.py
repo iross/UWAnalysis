@@ -36,11 +36,15 @@ common = Selector([
 #    "(mass<110 || mass >140) && mass < 300",
 	])
 
+pt20_10 = Selector([
+    "((z1l1Pt>20&&(z1l2Pt>10||z2l1Pt>10||z2l2Pt>10)) || (z1l2Pt>20&&(z1l1Pt>10||z2l1Pt>10||z2l2Pt>10)) || (z2l1Pt>20&&(z1l1Pt>10||z1l2Pt>10||z2l2Pt>10)) || (z2l2Pt>20&&(z1l1Pt>10||z1l2Pt>10||z2l1Pt>10)))"
+    ])
+
 z1ee = Selector([
 	"z1l1Pt>20",
 	"z1l2Pt>10",
-#	"z1l1MissHits<2",
-#	"z1l2MissHits<2",
+	"z1l1MissHits<2",
+	"z1l2MissHits<2",
 	])
 
 z1mm = Selector([
@@ -50,16 +54,23 @@ z1mm = Selector([
 #	"z1l2ValidHits>10"
 	])
 
+z1relIso = Selector([
+    "z1l1pfCombIso2012<0.40",
+    "z1l2pfCombIso2012<0.40",
+    ])
+
 z2ee = Selector([
 #	"z2Mass>60",
 #	"z2Mass<120",
 	"z2l1Pt>7",
 	"z2l2Pt>7",
-#	"(z2l1CiCTight&1)==1",
-#	"(z2l2CiCTight&1)==1",
+    "z2l1mvaNonTrigPass>0",
+    "z2l2mvaNonTrigPass>0",
 	"z2l1MissHits<2",
 	"z2l2MissHits<2",
-	"z2Charge==0"
+	"z2Charge==0",
+    "abs(z2l1SIP)<4",
+    "abs(z2l2SIP)<4",
 	])
 
 z2mm = Selector([
@@ -67,6 +78,16 @@ z2mm = Selector([
 #	"z2Mass<120",
 	"z2l1Pt>5",
 	"z2l2Pt>5",
+    "z2l1isPF",
+    "z2l2isPF",
+    "(z2l1isGlobal||z2l1isTracker)",
+    "(z2l2isGlobal||z2l2isTracker)",
+    "abs(z2l1SIP)<4",
+    "abs(z2l2SIP)<4",
+    "abs(z2l1dz)<1",
+    "abs(z2l2dz)<1",
+    "abs(z2l1dXY)<0.5",
+    "abs(z2l2dXY)<0.5",
 #	"z2l1ValidHits>10",
 #	"z2l2ValidHits>10",
 	"z2Charge==0"
@@ -156,8 +177,9 @@ z2StdIsomm = Selector([
 eleDen = Selector([
 	"z2l1Pt>7",
 	"z2l1SIP<4",
+    "z1Mass>81&&z1Mass<101",
 #	"z2l1MissHits<2",
-	"met<25"
+#	"mStdIsommet<25"
 	])
 
 eleNum = Selector([
@@ -166,7 +188,8 @@ eleNum = Selector([
 	"z2l1SIP<4",
 	"z2l1MissHits<2",
 	"z2l1mvaNonTrigPass>0",
-    "z2l1pfCombIso2012<0.40"
+    "z2l1pfCombIso2012<0.40",
+    "z1Mass>81&&z1Mass<101",
 	])
 	
 muDen = Selector([
@@ -174,6 +197,7 @@ muDen = Selector([
 	"abs(z2l1Eta)<2.5",
 	"z2l1Pt>5",
 	"z2l1SIP<4",
+    "z1Mass>81&&z1Mass<101",
 	])
 muNum = Selector([
 	"met<25",
@@ -181,7 +205,8 @@ muNum = Selector([
 	"z2l1Pt>5",
 	"z2l1SIP<4",
 	"z2l1isPF&&(z2l1isGlobal||z2l1isTracker)",
-    "z2l1pfCombIso2012<0.40"
+    "z2l1pfCombIso2012<0.40",
+    "z1Mass>81&&z1Mass<101",
 	])
 
 mmFakeable = Selector([
