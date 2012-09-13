@@ -12,6 +12,7 @@
 *.tgz
 *.txt
 *.pkl
+*.pck
 *AutoDict*
 *CVS*
 .#*
