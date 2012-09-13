@@ -683,6 +683,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
     return sharedV
 
 def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
+    isoLeg=legMethod[:-1] # for photon iso, we access with leg1.leg1Photon() because of possible recovery of photon in FSR
     sharedV = cms.VPSet(
         cms.PSet(
             pluginType = cms.string(pluginType),
@@ -890,8 +891,15 @@ def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
-            tag        = cms.string(legName+"pfCombIso2012"),
+            tag        = cms.string(legName+"pfCombIso2012_noFSR"),
             method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"pfCombIso2012"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+isoLeg+"PhotonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
@@ -1071,6 +1079,7 @@ def tauCommon(src,legName,legMethod,pluginType,leadOnly=True):
     return sharedV
 
 def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
+    isoLeg=legMethod[:-1] # for photon iso, we access with leg1.leg1Photon() because of possible recovery of photon in FSR
     sharedV = cms.VPSet(
         cms.PSet(
            pluginType = cms.string(pluginType),
@@ -1320,8 +1329,15 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
-            tag        = cms.string(legName+"pfCombIso2012"),
+            tag        = cms.string(legName+"pfCombIso2012_noFSR"),
             method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"pfCombIso2012"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+isoLeg+"PhotonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
