@@ -7,8 +7,7 @@ Quickstart recipe
     cd zz533/src                                                                                                                                                                                                    
     cmsenv
     git clone git@github.com:iross/UWAnalysis
-    cd UWAnalysis
-    sh recipe.sh
+    sh UWAnalysis/recipe.sh
     scram b -j 4
 
 Quick Explanation
