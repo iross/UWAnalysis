@@ -34,10 +34,21 @@ cuts["eem"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),muDen.cuts())
 cuts["mme"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),eleDen.cuts())
 cuts["mmm"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),muDen.cuts())
 
-#todo BG/control trees
 cuts["eeeeAA"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),eeAA.cuts(),"z2Charge==0")
 cuts["eeeeAI"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),eeAI.cuts(),"z2Charge==0")
 cuts["eeeeIA"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),eeIA.cuts(),"z2Charge==0")
+
+cuts["mmeeAA"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),eeAA.cuts(),"z2Charge==0")
+cuts["mmeeAI"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),eeAI.cuts(),"z2Charge==0")
+cuts["mmeeIA"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),eeIA.cuts(),"z2Charge==0")
+
+cuts["eemmAA"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),mmAA.cuts(),"z2Charge==0")
+cuts["eemmAI"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),mmAI.cuts(),"z2Charge==0")
+cuts["eemmIA"]=defineCuts(common.cuts(),z1ee.cuts(),z1relIso.cuts(),mmIA.cuts(),"z2Charge==0")
+
+cuts["mmmmAA"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),mmAA.cuts(),"z2Charge==0")
+cuts["mmmmAI"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),mmAI.cuts(),"z2Charge==0")
+cuts["mmmmIA"]=defineCuts(common.cuts(),z1mm.cuts(),z1relIso.cuts(),mmIA.cuts(),"z2Charge==0")
 
 f=TFile(file,"update")
 t=f.Get("eleEleEleEleEventTree/eventTree")
@@ -56,11 +67,36 @@ eeeeIATree=makeTree(eeeeIAEvents,"eeeeIAFinal",vars4l)
 
 t=f.Get("muMuMuMuEventTree/eventTree")
 mmmmEvents=uniquify(t,cuts["mmmm"],"dummy",vars4l)
+mmmmAAEvents=uniquify(t,cuts["mmmmAA"],"dummy",vars4l)
+mmmmAIEvents=uniquify(t,cuts["mmmmAI"],"dummy",vars4l)
+mmmmIAEvents=uniquify(t,cuts["mmmmIA"],"dummy",vars4l)
 mmmmTree=makeTree(mmmmEvents,"mmmmFinal",vars4l)
+mmmmAATree=makeTree(mmmmAAEvents,"mmmmAAFinal",vars4l)
+mmmmAITree=makeTree(mmmmAIEvents,"mmmmAIFinal",vars4l)
+mmmmIATree=makeTree(mmmmIAEvents,"mmmmIAFinal",vars4l)
 
 t=f.Get("muMuEleEleEventTree/eventTree")
 mmeeEvents=uniquify(t,cuts["mmee"],"dummy",vars4l)
 mmeeTree=makeTree(mmeeEvents,"mmeeFinal",vars4l)
+
+#mmee and eemm come from "ONLY" branch
+t=f.Get("muMuEleEleonlyEventTree/eventTree")
+print "mmee"
+mmeeAAEvents=uniquify(t,cuts["mmeeAA"],"dummy",vars4l)
+mmeeAIEvents=uniquify(t,cuts["mmeeAI"],"dummy",vars4l)
+mmeeIAEvents=uniquify(t,cuts["mmeeIA"],"dummy",vars4l)
+mmeeAATree=makeTree(mmeeAAEvents,"mmeeAAFinal",vars4l)
+mmeeAITree=makeTree(mmeeAIEvents,"mmeeAIFinal",vars4l)
+mmeeIATree=makeTree(mmeeIAEvents,"mmeeIAFinal",vars4l)
+
+print "eemm"
+t=f.Get("eleEleMuMuEventTree/eventTree")
+eemmAAEvents=uniquify(t,cuts["eemmAA"],"dummy",vars4l)
+eemmAIEvents=uniquify(t,cuts["eemmAI"],"dummy",vars4l)
+eemmIAEvents=uniquify(t,cuts["eemmIA"],"dummy",vars4l)
+eemmAATree=makeTree(eemmAAEvents,"eemmAAFinal",vars4l)
+eemmAITree=makeTree(eemmAIEvents,"eemmAIFinal",vars4l)
+eemmIATree=makeTree(eemmIAEvents,"eemmIAFinal",vars4l)
 
 t=f.Get("muMuEventTree/eventTree")
 mmEvents=uniquify(t,cuts["mm"],"dummy",varsZ)
@@ -91,7 +127,17 @@ eeeeAATree.Write()
 eeeeAITree.Write()
 eeeeIATree.Write()
 mmmmTree.Write()
+mmmmAATree.Write()
+mmmmAITree.Write()
+mmmmIATree.Write()
 mmeeTree.Write()
+mmeeAATree.Write()
+mmeeAATree.Write()
+mmeeAITree.Write()
+eemmIATree.Write()
+eemmAITree.Write()
+eemmIATree.Write()
+
 mmTree.Write()
 eeTree.Write()
 mmeTree.Write()
