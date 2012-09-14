@@ -2,6 +2,11 @@
 
 : ${CMSSW_BASE:?"CMSSW_BASE is not set!  Run cmsenv before recipe.sh"}
 
+echo "Setting up CVS... input username:"
+read cvsuser
+export CVSROOT=:ext:$cvsuser@cmscvs.cern.ch:/cvs_server/repositories/CMSSW
+export CVS_RSH=ssh
+
 echo "Checking for CERN CVS kerberos ticket"
 HAS_TICKET=`klist 2>&1 | grep CERN.CH`
 
@@ -34,4 +39,5 @@ cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTo
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
 
+cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
