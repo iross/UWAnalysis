@@ -41,7 +41,11 @@ def uniquify(tree, cuts, arbMode,vars):
     cleanTree=tree.CopyTree(cuts)
     events={} #collection of candidates, one per event
     widgets = [Bar('>'), ' ', ETA(), ' ',str(cleanTree.GetEntries()), ' ',ReverseBar('<')]
-    pbar = ProgressBar(widgets=widgets, maxval=max(0,cleanTree.GetEntries())).start()
+    try:
+        pbar = ProgressBar(widgets=widgets, maxval=max(0,cleanTree.GetEntries())).start()
+    except ZeroDivisionError: 
+        print "No events passing!"
+        pbar = ProgressBar(widgets=widgets, maxval=1).start()
     n=0
     for event in cleanTree:
         eventID=str(event.EVENT/event.met) #divide by met to make sure no EVENT repetitions (relevant especially to MC)
