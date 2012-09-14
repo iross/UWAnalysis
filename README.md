@@ -24,13 +24,19 @@ Submitting Jobs
 CRAB job submission and retrieval scripts are produced via the CRAB/Z[ZH]/submitJobs.py and CRAB/Z[ZH]/mergeJobs.py scripts. The datasets.json file is used to define the datasets of interest (and some of their properties). todo: explain JSON
 
 To create the jobs:
+
     python submitJobs --tag=[identifying tag]
+    
 By default, this will create job submissions for ALL datasets in datasets.json. To run over a subset, pass a search term (or terms) via the --samples option:
+
     python submitJobs.py --tag=data2012_testRun --samples "Double*2012*" "MuE*2012*"
+    
 Then submit the jobs by running the freshly created shell script:
+
     sh submitJobs.sh
 
 When jobs are complete, running similar mergeJobs commands will create farmout jobs to merge subsets of the data, which must then be added together by hand to create the final ntuple.
+   
     python mergeJobs.py --tag=data2012_testRun --samples "Double*2012*" "MuE*2012*"
     sh mergeJobs.sh
     #once these jobs are done, you'll need to go to /scratch/$USER/ and hadd the merged output files
