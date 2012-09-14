@@ -32,11 +32,10 @@ def arbitrate(event1,event2, method=''):
         #return the first
     pass
 
-def uniquify(tree, cuts, arbMode,vars=vars):
+def uniquify(tree, cuts, arbMode,vars):
     """Takes a tree as input, applies cuts, and returns a tree with only one entry per event."""
 #    tree.SetBranchStatus("*",0)
     tree.SetBranchStatus("jetsPt20",0)
-    vars.extend(["met","EVENT","RUN","LUMI"])
 #    for var in vars:
 #        tree.SetBranchStatus(var,1) #don't load unnecessary branches
     cleanTree=tree.CopyTree(cuts)
@@ -69,11 +68,10 @@ def uniquify(tree, cuts, arbMode,vars=vars):
     pbar.finish()
     return events
 
-def makeTree(events,name,vars=vars):
+def makeTree(events,name,vars):
     """Takes dict of events, returns a new tree with appropriate variables"""
-    vars.extend(["met","EVENT","RUN","LUMI"])
+    print vars
     n={}
-#    fout=TFile("dummy.root","recreate")
     newTree=TTree(name,name)
     for var in vars:
         n[var]=N.zeros(1,dtype=float)       
@@ -82,8 +80,6 @@ def makeTree(events,name,vars=vars):
         for var in events[i].keys():
             n[var][0]=events[i][var]
         newTree.Fill()
-#    newTree.Write()
-#    fout.Close()
     return newTree
 
 def combineTrees(file,tree1,cuts1,tree2,cuts2,vars,name="eleelemumueventtreemerged"):
