@@ -25,7 +25,7 @@ CRAB job submission and retrieval scripts are produced via the CRAB/Z[ZH]/submit
 
 To create the jobs:
 
-    python submitJobs --tag=[identifying tag]
+    python submitJobs.py --tag=[identifying tag]
     
 By default, this will create job submissions for ALL datasets in datasets.json. To run over a subset, pass a search term (or terms) via the --samples option:
 
