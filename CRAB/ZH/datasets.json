@@ -140,5 +140,12 @@
     "url" : "",
     "xsection" : 0.0062775,
     "note_" : "#scale column CI from yellow report by 9/4 for full Higgs->ZZ->4l"
+    },
+"vh125":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/friis/WH_ZH_TTH_HToTauTau_M-125_8TeV-pythia6-tauola/VH_H2Tau_M-125_2012-05-29-8TeV-PatTuple-67c1f94/4729152ae17d7e4009729a1d0d9e952d/",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : "for ZH testing"
     }
 }

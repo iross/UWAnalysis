@@ -138,7 +138,7 @@ MMEManalysisConfigurator.addCrossCleanerModule('MMEMzzCleanedCands','PATMuMuEleM
 
 MMEManalysisConfigurator.addSelector('MMEMzzCleanedThirdMuID','PATMuMuEleMuQuadSelector','leg2.leg1.userFloat("mvaNonTrigV0Pass")>0 && leg2.leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2&&abs(leg2.leg1.eta())<2.5','MMEMThirdMuID')
 MMEManalysisConfigurator.addSelector('MMEMzzEleIso','PATMuMuEleMuQuadSelector','(leg2.leg1.userIso(0)+max(leg2.leg1.userIso(1)+leg2.leg1.neutralHadronIso()-0.5*leg2.leg1.userIso(2),0.0))/leg2.leg1.pt()<0.25','MMEMEleIso')
-MMEManalysisConfigurator.addSelector('MMEMzzMuID2','PATMuMuEleMuQuadSelector','leg2.leg2.pfCandidateRef().isNonnull()&&abs(leg2.leg2.eta())<2.4 ','MMEMMuIso')
+MMEManalysisConfigurator.addSelector('MMEMzzMuID2','PATMuMuEleMuQuadSelector','leg2.leg2.pfCandidateRef().isNonnull()&&abs(leg2.leg2.eta())<2.4 ','MMEMMuID')
 MMEManalysisConfigurator.addSelector('MMEMzzMuIso2','PATMuMuEleMuQuadSelector','(leg2.leg2.chargedHadronIso()+max(0.0,leg2.leg2.neutralHadronIso()+leg2.leg2.photonIso()-leg2.leg2.userFloat("zzRho2012")*leg2.leg2.userFloat("effArea")))/leg2.leg2.pt<0.25','MMEMMuIso')
 MMEManalysisConfigurator.addSorter('MMEMzzCleanedCandsSortedByZMass','PATMuMuEleMuQuadSorterByZMass')
 #MMEManalysisConfigurator.addSelector('MMEMzzdZ','PATMuMuEleMuQuadSelector','abs(leg1.leg1.userFloat("dz")-leg1.leg2.userFloat("dz"))<0.1&&abs(leg1.leg1.userFloat("dz")-leg2.leg1.userFloat("dz"))<0.1&&abs(leg1.leg1.userFloat("dz")-leg2.leg2.userFloat("dz"))<0.1','MMEMdZ')

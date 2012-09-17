@@ -15,7 +15,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-'file:/scratch/iross/sync4l_wFSR.root'
+#'file:/scratch/iross/sync4l_wFSR.root'
+'file:/hdfs/store/user/friis/WH_ZH_TTH_HToTauTau_M-125_8TeV-pythia6-tauola/VH_H2Tau_M-125_2012-05-29-8TeV-PatTuple-67c1f94/4729152ae17d7e4009729a1d0d9e952d/output_38_1_ah0.root'
 #'file:/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/1/patTuple_cfg-04542532-9A9B-E111-95D3-0025B31E3D3C.root'
 #'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/output_98_1_Crv.root'
 #'file:/scratch/iross/testwFSR_2.root',
