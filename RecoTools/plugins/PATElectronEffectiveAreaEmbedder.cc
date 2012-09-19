@@ -41,8 +41,8 @@ PATElectronEffectiveAreaEmbedder::PATElectronEffectiveAreaEmbedder(
     std::string target = pset.getParameter<std::string>("target");
     if (target == "2011Data") {
       target_ = ElectronEffectiveArea::kEleEAData2011;
-    } else if (target == "2012Data") {
-      target_ = ElectronEffectiveArea::kEleEAData2012;
+//    } else if (target == "2012Data") {
+//      target_ = ElectronEffectiveArea::kEleEAData2012;
     } else if (target == "Fall11MC") {
       target_ = ElectronEffectiveArea::kEleEAFall11MC;
     } else if (target == "Summer11MC") {

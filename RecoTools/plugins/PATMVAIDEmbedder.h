@@ -31,7 +31,7 @@ Implementation:
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "DataFormats/PatCandidates/interface/Electron.h"
 
-
+#include "RecoEcal/EgammaCoreTools/interface/EcalClusterLazyTools.h"
 #include "TrackingTools/TransientTrack/interface/TransientTrackBuilder.h"
 #include "TrackingTools/Records/interface/TransientTrackRecord.h"
 #include "TrackingTools/IPTools/interface/IPTools.h"
@@ -184,7 +184,6 @@ class PATMVAIDEmbedder : public edm::EDProducer {
             myMVAVar_kfhits          =  (validKF) ? myTrackRef->hitPattern().trackerLayersWithMeasurement() : -1. ; 
             myMVAVar_gsfchi2         =  ele.gsfTrack()->normalizedChi2();  // to be checked 
 
-
             myMVAVar_deta            =  ele.deltaEtaSuperClusterTrackAtVtx();
             myMVAVar_dphi            =  ele.deltaPhiSuperClusterTrackAtVtx();
             myMVAVar_detacalo        =  ele.deltaEtaSeedClusterTrackAtCalo();
@@ -195,12 +194,12 @@ class PATMVAIDEmbedder : public edm::EDProducer {
             //            if (!isnan(vCov[2])) myMVAVar_spp = sqrt (vCov[2]);   //EleSigmaIPhiIPhi
             //            else myMVAVar_spp = 0.;
 
-            myMVAVar_spp             = ele.sigmaIphiIphi();
+            myMVAVar_spp             = ele.sigmaIphiIphi(); //todo: get this in 42x... need reducedEB/reducedEE RecHit collections
             myMVAVar_etawidth        =  ele.superCluster()->etaWidth();
             myMVAVar_phiwidth        =  ele.superCluster()->phiWidth();
             myMVAVar_e1x5e5x5        =  (ele.e5x5()) !=0. ? 1.-(ele.e1x5()/ele.e5x5()) : -1. ;
             //            myMVAVar_R9              =  myEcalCluster.e3x3(*(ele.superCluster()->seed())) / ele.superCluster()->rawEnergy();
-            myMVAVar_R9              =  ele.r9();
+            myMVAVar_R9              =  ele.r9(); //todo: get this in 42x
             myMVAVar_nbrems          =  fabs(ele.numberOfBrems());
 
             myMVAVar_HoE             =  ele.hadronicOverEm();

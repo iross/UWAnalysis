@@ -1,5 +1,6 @@
 #include "PhysicsTools/FWLite/interface/CommandLineParser.h" 
-#include "PhysicsTools/Utilities/interface/Lumi3DReWeighting.h"
+//#include "PhysicsTools/Utilities/interface/Lumi3DReWeighting.h"
+
 #include "TFile.h"
 #include "TROOT.h"
 #include "TKey.h"
@@ -419,7 +420,6 @@ float weightTrue2011to2012(float input){
         h.SetBinContent(k+1,w[k]);
     }
 
-    std::cout << "2011->2012 weights being applied" << std::endl;
     return h.GetBinContent(h.FindBin(input));
 
 }
@@ -505,10 +505,6 @@ int main (int argc, char* argv[])
 
     //temp, hack, etc
     doPU=3;
-
-    std::cout << doRho << std::endl;
-    std::cout << puWeight << std::endl;
-    std::cout << rhoWeight << std::endl;
 
     readdir(f,parser,ev,doPU,doRho,puWeight,rhoWeight);
     f->Close();

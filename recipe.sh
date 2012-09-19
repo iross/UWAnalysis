@@ -20,8 +20,13 @@ cd $CMSSW_BASE/src
 cvs co -r bMinimalSVfit-08-03-11 AnalysisDataFormats/TauAnalysis                  
 cvs co -r bMinimalSVfit_2012May13 TauAnalysis/CandidateTools                       
 
+cvs co -r V08-03-15 PhysicsTools/Utilities
+
+# Get MVA vars in my electrons
+addpkg DataFormats/PatCandidates  V06-04-19-05
+
 #to compile our limit package
-cvs co -r V02-01-00 HiggsAnalysis/CombinedLimit
+cvs co  -r Michalis_THKeys_111103 HiggsAnalysis/CombinedLimit
 
 #electron e corrections
 cvs co -r ICHEP2012_V03 -d EgammaCalibratedGsfElectrons UserCode/EGamma/EgammaCalibratedGsfElectrons

@@ -664,8 +664,8 @@ void PatElectronEnergyCalibrator::computeEpCombination
            else
             { finalMomentum = scEnergy ; finalMomentumError = electron.ecalEnergyError() ; }
           }
-         if (elClass == reco::GsfElectron::BADTRACK)
-          { finalMomentum = scEnergy; finalMomentumError = electron.ecalEnergyError() ; }
+//         if (elClass == reco::GsfElectron::BADTRACK) //todo: is this safe?
+//          { finalMomentum = scEnergy; finalMomentumError = electron.ecalEnergyError() ; }
          if (elClass == reco::GsfElectron::SHOWERING)
           {
            if (scEnergy<30)
