@@ -896,7 +896,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
     def addSmearing(self,taus,muons,electrons,jets,mpost=''):
           #remove electrons within 0.05 of a muon
           tempElectrons = cms.EDProducer("PATElectronCleaner",
-                  src = cms.InputTag("mvaedElectrons"),
+                  src = cms.InputTag(electrons),
                   preselection = cms.string(""),
                   checkOverlaps = cms.PSet(
                       muons = cms.PSet(
