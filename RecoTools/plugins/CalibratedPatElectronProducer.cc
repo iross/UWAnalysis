@@ -53,9 +53,9 @@ CalibratedPatElectronProducer::CalibratedPatElectronProducer( const edm::Paramet
   debug = cfg.getParameter<bool>("debug");
   energyMeasurementType = cfg.getParameter<uint>("energyMeasurementType");
   //basic checks
-  if (isMC&&(dataset!="Summer11"&&dataset!="Fall11"&&dataset!="Summer12"))
+  if (isMC&&(dataset!="Summer11"&&dataset!="Fall11"&&dataset!="Summer12"&&dataset!="Summer12_HCP2012"))
    { throw cms::Exception("CalibratedPatElectronProducer|ConfigError")<<"Unknown MC dataset" ; }
-  if (!isMC&&(dataset!="Prompt"&&dataset!="ReReco"&&dataset!="Jan16ReReco"&&dataset!="Prompt2012"&&dataset!="ICHEP2012"))
+  if (!isMC&&(dataset!="Prompt"&&dataset!="ReReco"&&dataset!="Jan16ReReco"&&dataset!="Prompt2012"&&dataset!="ICHEP2012"&&dataset!="HCP2012"))
    { throw cms::Exception("CalibratedPatElectronProducer|ConfigError")<<"Unknown Data dataset" ; }
   cout << "[CalibratedPatElectronProducer] Correcting scale for dataset " << dataset << endl;
 
@@ -110,4 +110,3 @@ void CalibratedPatElectronProducer::produce( edm::Event & event, const edm::Even
 #include "FWCore/Framework/interface/ESProducer.h"
 #include "FWCore/Framework/interface/ModuleFactory.h"
 DEFINE_FWK_MODULE(CalibratedPatElectronProducer);
-
