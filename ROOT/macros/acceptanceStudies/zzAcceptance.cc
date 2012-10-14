@@ -27,12 +27,17 @@
 using namespace std;
 
 
+// Function prototypes
 bool ptCut(int pdgId, double pt);
 void zzAcceptance();
 bool passPtCuts(double pt[], int pdgId[]);
 set<string> genRecoEventIds(string treeName, TFile *f);
 double recoEff(string histName, string treeName, TFile *f);
 
+
+// Global Constants
+const double ZMASS = 91.1876;
+const double HMASS = 125.0;
 
 
 int main()
@@ -51,12 +56,16 @@ void zzAcceptance()
     // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ4EReco.root"); // Reconstructed Monte Carlo
     
     // Powheg Sample 8 TeV
-    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ2E2MGen.root"); // gen level events only
-    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ2E2Mtest.root"); // Reconstructed Monte Carlo
+    // TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ2E2MGen.root"); // gen level events only
+    // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ZZ2E2Mtest.root"); // Reconstructed Monte Carlo
     
     // Pythia ggZZ Sample 8 TeV
     // TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ2L2LGen7reco.root"); // gen level events only
     // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggZZ4LReco.root"); // Reconstructed Monte Carlo
+    
+    // Higgs ggH125 Sample 8 TeV
+    TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggH125Gen.root");
+    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggH125Reco.root");
     
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
@@ -79,6 +88,7 @@ void zzAcceptance()
 
     double z1Mass;
     double z2Mass;
+    double Mass;
 
     int EVENT;
     int RUN;
@@ -101,6 +111,7 @@ void zzAcceptance()
 
     t->SetBranchAddress("z1Mass",&z1Mass);
     t->SetBranchAddress("z2Mass",&z2Mass);
+    t->SetBranchAddress("hMass",&Mass);
 
     t->SetBranchAddress("EVENT",&EVENT);
     t->SetBranchAddress("RUN",&RUN);
@@ -128,6 +139,7 @@ void zzAcceptance()
     int etaCounts[]   = {0,0,0};
     int ptCounts[]    = {0,0,0};
     int recoCounts[]  = {0,0,0};
+    int higgsCounts[] = {0,0,0};
     
     // create set of identifiers for the reco events
     set<string> eeeeId = genRecoEventIds("eleEleEleEleEventTreeFinal",fRec);
@@ -156,8 +168,15 @@ void zzAcceptance()
         // look at only muons and electrons
         startCounts[channel]++;
 
+        if ( fabs(z1Mass - ZMASS) > fabs(z2Mass - ZMASS) )
+        {
+            double tmp = z2Mass;
+            z2Mass = z1Mass;
+            z1Mass = tmp;
+        }
+
         // apply mass cuts to Z1 and Z2
-        if ( 60 < z1Mass && z1Mass < 120 && 60 < z2Mass && z2Mass < 120 )
+        if ( 40 < z1Mass && z1Mass < 120 && 12 < z2Mass && z2Mass < 120 && 100 < Mass )
         {
             massCounts[channel]++;
 
@@ -185,45 +204,60 @@ void zzAcceptance()
                 {
                     ptCounts[channel]++;
 
-                    // create identifier for current gen event
-                    stringstream ss;
-                    ss << EVENT << LUMI;
+                    // Higgs phase-space
+                    if ( 110 < Mass && Mass < 140 )
+                    {
+                        higgsCounts[channel]++;
+                        // create identifier for current gen event
+                        stringstream ss;
+                        ss << EVENT << LUMI;
 
-                    // if the set of EEEE identifiers contains the gen identifier,
-                    // then the event was reconstructed.
-                    if ( eeeeId.count(ss.str()) == 1 )
-                        recoCounts[channel]++;
+                        // if the set of EEEE identifiers contains the gen identifier,
+                        // then the event was reconstructed.
+                        if ( eeeeId.count(ss.str()) == 1 )
+                            recoCounts[channel]++;
 
-                    if ( mmmmId.count(ss.str()) == 1 )
-                        recoCounts[channel]++;
+                        if ( mmmmId.count(ss.str()) == 1 )
+                            recoCounts[channel]++;
 
-                    if ( mmeeId.count(ss.str()) == 1 )
-                        recoCounts[channel]++;
+                        if ( mmeeId.count(ss.str()) == 1 )
+                            recoCounts[channel]++;
+                    }
                 }
             }
         }
     }
 
+    int wordWidth = 10;
+
     // Print the results to the console
     cout << setw(6) << "Name";
-    cout << setw(11) << "BR";
-    cout << setw(11) << "mass";
-    cout << setw(11) << "etaCut";
-    cout << setw(11) << "ptCut";
-    cout << setw(11) << "recoMatch";
-    cout << setw(11) << "recoEf";
+    cout << setw(wordWidth) << "BR";
+    cout << setw(wordWidth) << "mass";
+    cout << setw(wordWidth) << "etaCut";
+    cout << setw(wordWidth) << "ptCut";
+    cout << setw(wordWidth) << "higgs";
+    cout << setw(wordWidth) << "recoMatch";
+    cout << setw(wordWidth) << "recoAcc";
+    cout << setw(wordWidth) << "recoEff";
+    cout << setw(wordWidth) << "yeild";
     cout << endl;
+
+    double lumi = 5.26e3;
+    double xSec = 0.0062133278;
 
     for (int i = 0; i < 3; ++i)
     {
         cout << setw(6) << channelNames.at(i);
-        cout << setw(10) << fixed << setprecision(4) << 100*double(startCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(4) << 100*double(massCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(4) << 100*double(etaCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(4) << 100*double(ptCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(4) << 100*double(recoCounts[i])/double(nEntries);
-        cout << setw(10) << fixed << setprecision(4) << recoEff(channelNames.at(i),treeNames.at(i),fRec)*double(nEntries)/double(ptCounts[i]);
-        cout << "\t" << ptCounts[i] << "/" << startCounts[i];
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(startCounts[i])/double(nEntries);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(massCounts[i])/double(nEntries);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(etaCounts[i])/double(nEntries);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(ptCounts[i])/double(nEntries);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(higgsCounts[i])/double(nEntries);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(recoCounts[i])/double(nEntries);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*recoEff(channelNames.at(i),treeNames.at(i),fRec);
+        cout << setw(wordWidth) << fixed << setprecision(4) << 100*recoEff(channelNames.at(i),treeNames.at(i),fRec)/(double(etaCounts[i])/double(nEntries));
+        cout << setw(wordWidth) << fixed << setprecision(4) << lumi*xSec*recoEff(channelNames.at(i),treeNames.at(i),fRec);
         cout << endl;
     }
 }
@@ -246,9 +280,8 @@ double recoEff(string histName, string treeName, TFile *f)
     TTree* tree = (TTree*)f->Get(tName.c_str());
 
     double initEvents = hist->GetBinContent(1);
-    double recoEvents = tree->GetEntries("60 < z1Mass && z1Mass < 120 && 60 < z2Mass && z2Mass < 120");
-
-    cout << " " << recoEvents << "/" << initEvents << " ";
+    // double recoEvents = tree->GetEntries("40 < bestZmass && bestZmass < 120 && 12 < subBestZmass && subBestZmass < 120 && 110 < mass && mass < 140");
+    double recoEvents = tree->GetEntries("40 < bestZmass && bestZmass < 120 && 12 < subBestZmass && subBestZmass < 120 && 100 < mass");
 
     return recoEvents/initEvents;
 }
