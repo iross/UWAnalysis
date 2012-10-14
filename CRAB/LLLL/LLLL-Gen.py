@@ -20,7 +20,8 @@ process.source = cms.Source("PoolSource",
             #'file:/hdfs/store/mc/Summer12/GluGluToZZTo4L_8TeV-gg2zz-pythia6/AODSIM/PU_S7_START52_V9-v1/0000/EE103AAA-32B6-E111-892D-008CFA0014EC.root'
             #'file:/hdfs/store/user/iross/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/ggZZ2L2L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/output_27_1_T9B.root'
             #'file:/hdfs/store/mc/Summer12/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/AODSIM/PU_S7_START52_V9-v1/0000/D0768C9C-9CB5-E111-9F43-001D0967D2E7.root'
-            'file:/hdfs/store/mc/Fall11/GluGluToZZTo4L_7TeV-gg2zz-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/A4153103-CBF0-E011-B3C9-001B21670928.root'
+            #'file:/hdfs/store/mc/Fall11/GluGluToZZTo4L_7TeV-gg2zz-pythia6/AODSIM/PU_S6_START42_V14B-v1/0000/A4153103-CBF0-E011-B3C9-001B21670928.root'
+            'file:/hdfs/store/mc/Summer12/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/AODSIM/PU_S7_START52_V9-v1/0000/F2181B64-BB95-E111-B3E7-00261894382D.root'
             #'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-05-29-8TeV-PatTuple-v2-67c1f94/c8fc7c2ff4112a438286838f75d59cdb/output_137_1_gDw.root'
             #'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-05-29-8TeV-PatTuple-67c1f94/a7f10efca7dd683ad59c7e946715fa59/output_49_0_TNg.root',
             #		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
