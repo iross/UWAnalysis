@@ -1,0 +1,18 @@
+#!/bin/bash
+#voms-proxy-init --voms cms --valid 100:00
+
+cat LLLL-MC.py > MC.py
+cat CONDOR.py >> MC.py
+
+FLAGS=--resubmit-failed-jobs
+# FLAGS=
+
+farmoutAnalysisJobs \
+    $FLAGS \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6 \
+    --output-dag-file=/scratch/belknap/DAGs/higgsAccept/reco \
+    ggH125_8TeV_powheg_reco \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+rm MC.py
