@@ -1,12 +1,21 @@
+'''
+@file extractDatasets.py
+@author D. Austin Belknap
+
+Can generate the datasets.json file needed to submit Condor jobs
+given the output of Tapas's patTuple database tool and a file
+containing the list of samples you want included. See the README.
+'''
+
 import re
 import json
 from optparse import OptionParser
 
 parser = OptionParser()
 
-parser.add_option("--datasetList", dest="inFile")
-parser.add_option("--patTupleList", dest="patTuples")
-parser.add_option("--outputJson", dest="outFile")
+parser.add_option("--datasetList", dest="inFile", help="The list of datasets you want included in the output JSON.")
+parser.add_option("--patTupleList", dest="patTuples", help="The list of patTuples from Tapas's database tool.")
+parser.add_option("--outputJson", dest="outFile", help="The output JSON file.")
 
 (options, args) = parser.parse_args()
 
@@ -15,7 +24,12 @@ patFile = open(options.patTuples,'r')
 outFile = open(options.outFile,'w')
 
 
-
+'''
+Find the patTuple path(s) associated with a data/mc sample.
+@param inString The entire output of Tapas's patTuple database tool as a string
+@param sampleName The name of the sample from DAS
+@return A list of the patTuple paths
+'''
 def findPath(inString, sampleName):
     RE = re.compile("\s*Storage Dir: (.+)\n\s*Datadef key: .+\n\s*Dataset name: "+sampleName)
     results = RE.findall(inString)
@@ -29,8 +43,13 @@ def findPath(inString, sampleName):
 
 datasets = {}
 
-dataRE = re.compile("^(\w+)\s+DATA\s+(.+)$")
-mcRE   = re.compile("^(\w+)\s+MC\s+(\d+\.\d+)\s+(.+)$")
+# Regular expressions for parsing the sample list
+dataRE  = re.compile("^(\w+)\s+DATA\s+(.+)$")
+mcRE    = re.compile("^(\w+)\s+MC\s+(\d+\.\d+)\s+(.+)$")
+
+# check for comments and if xSec was forgotten for MC
+mcREerr = re.compile("^\w+\s+MC\s+.+$")
+comment = re.compile("^\s*\#")
 
 patString = patFile.read()
 
@@ -38,6 +57,12 @@ for line in inFile:
 
     dataMatch = dataRE.match(line)
     mcMatch   = mcRE.match(line)
+    mcErr     = mcREerr.match(line) 
+    isComment = comment.match(line)
+
+    # ignore comment lines
+    if (isComment):
+        continue
 
     if (dataMatch):
         name       = dataMatch.group(1)
@@ -51,11 +76,19 @@ for line in inFile:
         xsection   = float(mcMatch.group(2))
         sampleName = mcMatch.group(3)
 
+    # check if the xSec was forgotten with the MC datasets
+    elif (mcErr):
+        print "Provide cross-section for MC sample"
+        print "\t" + line
+
     else:
         continue
 
+    # extract the patTuple paths
     samplePaths = findPath(patString, sampleName)
 
+
+    # Store the information into a python map
     if len(samplePaths) == 1:
         datasets[name] = {"type" : sampleType,
                           "path" : samplePaths[0],
@@ -78,6 +111,7 @@ for line in inFile:
                                   "note_" : ""
                                   }
 
+# Run the map through the JSON parser, and write to file
 outFile.write(json.dumps(datasets,indent=4))
 
 outFile.close()

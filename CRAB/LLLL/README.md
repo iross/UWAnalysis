@@ -8,7 +8,7 @@ Then run
     source /afs/hep.wisc.edu/home/tapas/work/phedex-subs/setFinalStateAnalysisPythonPath 
     python /afs/hep.wisc.edu/home/tapas/work/phedex-subs/getPatTupleInfo.py -h
 
-which will print help information on the `getPatTupleInfo.py -h` tool. Suppose you wanted
+which will print help information on the `getPatTupleInfo.py` tool. Suppose you wanted
 the latest 8 TeV samples. You would run
 
     python /afs/hep.wisc.edu/home/tapas/work/phedex-subs/getPatTupleInfo.py -e 8 -l > pattuples.txt
