@@ -4,7 +4,7 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'START52_V9::All'
+process.GlobalTag.globaltag = 'START53_V10::All'
 
 process.maxEvents = cms.untracked.PSet(
         input = cms.untracked.int32(-1)
@@ -15,9 +15,11 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-'file:/scratch/iross/sync4l_wFSR.root'
+#'file:/scratch/iross/sync4l_wFSR.root'
 #'file:/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/1/patTuple_cfg-04542532-9A9B-E111-95D3-0025B31E3D3C.root'
 #'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/output_98_1_Crv.root'
+#'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag_fsrTest1.root'
+'file:/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball/3/patTuple_cfg-840D9B31-6DD3-E111-B578-001E67397D91.root'
 #'file:/scratch/iross/testwFSR_2.root',
 #'file:/scratch/iross/zz4l_sync_summer12_vetoChargedOnlyEndcap.root'
 #		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
@@ -58,7 +60,7 @@ defaultAnalysisPath(process,'HLT',
 #        )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_2012_cff")
+process.load("UWAnalysis.Configuration.zzLLLL_loose_2012_cff")
 process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence)
 process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
 process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
@@ -172,8 +174,8 @@ addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=True)
 #addEleSCMuMuEventTree(process,'eleSCMuMuEventTreeFinalTest','ESMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
 # Store all Gen Level particles. For H -> ZZ or ZZ only.
-process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
-process.genParticles = cms.Path( process.genlevel )
+#process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
+#process.genParticles = cms.Path( process.genlevel )
 
 
 #Add event counter
