@@ -26,7 +26,11 @@ def makeFileList(dataset):
     """Dump list of completed files into a .txt file. It's used for merging. And for keeping track of what's done, I guess."""
     subprocess.call("mkdir -p fileLists",shell=True)
     subprocess.call("touch fileLists/{dataset}.txt".format(dataset=dataset),shell=True)
-    subprocess.call("ls /hdfs/store/user/$USER/{dataset}_{tag}-{type}_{dataset}/*/*.root | sed -e 's/\/hdfs//g' > fileLists/{dataset}.txt".format(dataset=dataset,tag=tag,type=datasets[dataset]['type']),shell=True)
+    if datasets[dataset]['type']=='DATA':
+        subprocess.call("ls /hdfs/store/user/$USER/{dataset}_{tag}-{type}_{dataset}/*.root | sed -e 's/\/hdfs//g' > fileLists/{dataset}.txt".format(dataset=dataset,tag=tag,type=datasets[dataset]['type']),shell=True)
+    else:
+        subprocess.call("ls /hdfs/store/user/$USER/{dataset}_{tag}-{type}/*.root | sed -e 's/\/hdfs//g' > fileLists/{dataset}.txt".format(dataset=dataset,tag=tag,type=datasets[dataset]['type']),shell=True)
+
 
 for dataset in datasets:
     passes = True
