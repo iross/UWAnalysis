@@ -545,6 +545,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
 
             TBranch *newBranch = t->Branch(parser.stringValue("branch").c_str(),&weight,(parser.stringValue("branch")+"/F").c_str());
             TBranch *noPUBranch = t->Branch((parser.stringValue("branch")+"noPU").c_str(),&weight,(parser.stringValue("branch")+"noPU/F").c_str());
+            TBranch *noxsBranch = t->Branch((parser.stringValue("branch")+"noxSec").c_str(), &weight, (parser.stringValue("branch") + "noxSec/F").c_str());
             TBranch *typeBranch = t->Branch("TYPE",&type,"TYPE/I");
             int vertices;
             float bxm=0;
@@ -571,6 +572,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
             {
                 t->GetEntry(i);
                 weight = parser.doubleValue("weight")/(ev);
+                float xSec = parser.doubleValue("weight");
                 noPUBranch->Fill();
                 if(doPU==1) {
                     int bin=puWeight->FindBin(vertices);
@@ -606,6 +608,8 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
                 }
 
                 newBranch->Fill();
+                weight /= xSec;
+                noxsBranch->Fill();
                 typeBranch->Fill();
             }
             t->Write("",TObject::kOverwrite);
