@@ -40,6 +40,8 @@
 </bin>
 <bin   name="EventWeightsForEfficiencyFast" file="EventWeightsForEfficiencyFast.cc">
 </bin>
+<bin   name="EventWeightsForEfficiencyFast4l" file="EventWeightsForEfficiencyFast4l.cc">
+</bin>
 
 <bin   name="EventWeightsForEfficiencyHisto" file="EventWeightsForEfficiencyHisto.cc">
 </bin>
