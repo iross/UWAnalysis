@@ -902,7 +902,8 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                       muons = cms.PSet(
                           src=cms.InputTag("cleanPatMuons"),
                           algorithm=cms.string("byDeltaR"),
-                          preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() || isGlobalMuon()) && pt>5 && abs(userFloat('iPDXY')) < 0.5 && abs(userFloat('dz'))<1.0 && abs(eta)<2.4"),
+#                          preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() || isGlobalMuon()) && pt>5 && abs(userFloat('iPDXY')) < 0.5 && abs(userFloat('dz'))<1.0 && abs(eta)<2.4"),
+                          preselection=cms.string("(pfCandidateRef().isNonnull() || isGlobalMuon() )"),
                           deltaR=cms.double(0.05),
                           checkRecoComponents = cms.bool(False),
                           pairCut=cms.string(""),
