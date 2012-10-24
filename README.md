@@ -4,7 +4,7 @@ UWAnalysis, ZZ version
 Quickstart recipe
 -----------------
     scram pro -n zz533 CMSSW CMSSW_5_3_3_patch1
-    cd zz533/src                                                                                                                                                                                                    
+    cd zz533/src
     cmsenv
     git clone git@github.com:iross/UWAnalysis
     sh UWAnalysis/recipe.sh
