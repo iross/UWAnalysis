@@ -874,7 +874,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
                     //                    weight*=w;
                 }
                 else if(doPU==3) {
-                    weight*=weightTrue2012(truth);
+                    weight*=weightTruePileupV10toIchep53X(truth);
                 }
                 if(doRho) {
                     weight*=rhoWeight->GetBinContent(rhoWeight->FindBin(rho));
