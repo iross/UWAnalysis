@@ -23,6 +23,7 @@
   <use   name="DataFormats/HepMCCandidate"/>
   <use   name="UWAnalysis/RecoTools"/>
   <use   name="UWAnalysis/DataFormats"/>
+  <use   name="ZZMatrixElement/MELA"/>
   <use   name="TauAnalysis/CandidateTools"/>
   <use   name="AnalysisDataFormats/TauAnalysis"/>
   <use   name="CommonTools/UtilAlgos"/>

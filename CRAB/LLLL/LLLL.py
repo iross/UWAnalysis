@@ -15,22 +15,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-#            'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-06-08-8TeV-PatTuple-data-4495432/c7a1c2223886075833473549ad1960ce/output_86_1_JSc.root'
-#            'file:/hdfs/store/user/iross/DoubleElectron/data_DoubleElectron_Run2012B_PromptReco_v1_a_2012-06-08-8TeV-PatTuple-data-4495432/c7a1c2223886075833473549ad1960ce/output_8_2_736.root'
-#            'file:/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/test/2eTestB.root'
-            #'file:/scratch/iross/4E_excess_pattuple.root'
-#            'file:/afs/hep.wisc.edu/cms/belknap/dataSamples/HZZ4l/skims/mmeePat3.root'
-            # 'file:/afs/hep.wisc.edu/cms/belknap/FinalState525/src/FinalStateAnalysis/4eMiss.root',
-            #'file:/scratch/iross/4M_Missing_pattuple.root'
-            # 'file:/scratch/iross/2E2M_Missing_1_pattuple.root',
-            # 'file:/scratch/iross/2E2M_Missing_2_pattuple.root',
-            # 'file:/scratch/iross/2E2M_Missing_3_pattuple.root'
-            
-#            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
-#            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
-#            'file:/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-00CDF016-F499-E111-8EB7-001D09F290BF.root'
-'file:/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012C_PromptReco_v2_Run201265_203755/patTuple_cfg-A672AF5A-6C0A-E211-9E51-001D09F241B9.root'
-#'file:/scratch/iross/muEG2012EventFSR.root'
+#'file:/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012A_13Jul2012_v1/patTuple_cfg-BCC5F219-FFD9-E111-A6E0-848F69FD294C.root'
+'file:/scratch/iross/missingEvents_pattuple_2.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -40,7 +26,9 @@ process.source = cms.Source("PoolSource",
         )
 
 process.source.secondaryFileNames = cms.untracked.vstring(
-        "file:/hdfs/store/data/Run2012C/DoubleElectron/AOD/PromptReco-v2/000/203/742/A672AF5A-6C0A-E211-9E51-001D09F241B9.root"
+#        "file:/hdfs/store/data/Run2012C/DoubleMu/AOD/PromptReco-v2/000/201/278/487F6493-1EEE-E111-A398-001D09F297EF.root"
+        "file:/hdfs/store/data/Run2012B/DoubleElectron/AOD/13Jul2012-v1/00000/AAB0C291-89D4-E111-8D74-0026189438A0.root"
+#        "file:/hdfs/store/data/Run2012B/DoubleElectron/AOD/13Jul2012-v1/00000/387EB788-6FD4-E111-9DBA-002618943944.root"
         )
 
 from UWAnalysis.Configuration.tools.analysisTools import *
