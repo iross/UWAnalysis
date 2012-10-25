@@ -12,10 +12,11 @@ import sys
 
 def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy'):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
-    process.load("Configuration.StandardSequences.Geometry_cff")
+    process.load("Configuration.Geometry.GeometryIdeal_cff")
+    #process.load("Configuration.StandardSequences.Geometry_cff")
     process.load("Configuration.StandardSequences.MagneticField_cff")
     process.load("Configuration.StandardSequences.Services_cff")
-    process.load("Configuration.StandardSequences.Reconstruction_cff")
+    #process.load("Configuration.StandardSequences.Reconstruction_cff")
     process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
     process.load("DQMServices.Core.DQM_cfg")
     process.load("DQMServices.Components.DQMEnvironment_cfi")

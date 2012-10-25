@@ -12,6 +12,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <set.h>
 
 
 class SimplePlotter {
@@ -97,7 +98,7 @@ class SimplePlotter {
 
         TCanvas* makeStackedPlot(TString var,TString selection,TString lumi, int bins, float min, float max,TString labelX,TString units,double xLabel,double yLabel,double yLabel2,double xLegend,double yLegend,bool log,double ymin,double ymax,TString postFix = "",bool ofl = false )
         {
-            THStack *hs = new THStack("hs","CMS Preliminary 2010");
+            THStack *hs = new THStack("hs","CMS Preliminary 2012");
             TLegend *l = new TLegend(xLegend,yLegend,xLegend+0.3,yLegend+0.3);
 
             float S=0.;
@@ -117,7 +118,9 @@ class SimplePlotter {
             {
                 TH1F * hh = new TH1F("hh","",bins,min,max);
                 hh->Sumw2();
-                if(types_[i]<=0){//MC
+
+                if(types_[i]<=0)
+                {//MC
                     trees_[i]->Draw(var +">>hh",lumi+"*1000*"+preselection_[i]+"*("+selection+")","goff");
                     hh->SetLineWidth(2);
                     hh->SetFillColor(colors_[i]);
@@ -125,7 +128,8 @@ class SimplePlotter {
 
                     hh->SetLineColor(lcolors_[i]);
                     hh->SetName("hh"+var);
-                    if(types_[i]==-1) {
+                    if(types_[i]==-1)
+                    {
                         S+=hh->IntegralAndError(1,hh->GetNbinsX(),err);
                         MCErr+=err*err;
 
@@ -136,10 +140,10 @@ class SimplePlotter {
                         signal->SetLineColor(lcolors_[i]);
 
                     }
-                    else if(types_[i]==0) {
+                    else if(types_[i]==0)
+                    {
                         B+=hh->IntegralAndError(1,hh->GetNbinsX(),err);
                         MCErr+=err*err;
-
                     }
                     histos.push_back(hh);
 
@@ -147,7 +151,41 @@ class SimplePlotter {
 
 
                 }
-                else {
+                else
+                {
+                    set<int> eventIds;
+                    int EVENT;
+                    int LUMI;
+                    int RUN;
+                    float mass;
+                    float z1mass;
+                    float z2mass;
+                    int nEntries = trees_[i]->GetEntries();
+
+                    trees_[i]->SetBranchAddress("EVENT",&EVENT);
+                    trees_[i]->SetBranchAddress("RUN",&RUN);
+                    trees_[i]->SetBranchAddress("LUMI",&LUMI);
+                    trees_[i]->SetBranchAddress("mass",&mass);
+                    trees_[i]->SetBranchAddress("bestZmass",&z1mass);
+                    trees_[i]->SetBranchAddress("subBestZmass",&z2mass);
+                    TEntryList *tlist = new TEntryList(trees_[i]);
+
+                    // ensure that there are no duplicated event numbers
+                    for (int j = 0; j < nEntries; ++j)
+                    {
+                        trees_[i]->GetEvent(j);
+                        if (eventIds.count(EVENT) == 0)
+                        {
+                            eventIds.insert(EVENT);
+                            tlist->Enter(j,trees_[i]);
+
+                            if ( 40 < z1mass && z1mass < 120 && 12 < z2mass && z2mass < 120 && 100 < mass )
+                                cout << RUN << ":" << LUMI << " " << EVENT << endl;
+                        }
+                    }
+
+                    trees_[i]->SetEntryList(tlist);
+
                     trees_[i]->Draw(var +">>hh",preselection_[i]+"*("+selection+")","goff");
                     hh->SetMarkerStyle(20);
                     hh->SetLineWidth(2);
@@ -220,10 +258,10 @@ class SimplePlotter {
             hs->Add(signal);
             hs->Draw("A,HIST,SAME");
 
-            TLatex *l1 = new TLatex(xLabel,yLabel,"CMS Preliminary 2011");
+            TLatex *l1 = new TLatex(xLabel,yLabel,"CMS Preliminary 2012");
             l1->SetTextSize(0.04);
             l1->Draw();
-            TLatex *l2 = new TLatex(xLabel,yLabel2,"L_{int} = "+lumi+" fb^{-1}, #sqrt{s} = 7 TeV");
+            TLatex *l2 = new TLatex(xLabel,yLabel2,"L_{int} = "+lumi+" fb^{-1}, #sqrt{s} = 8 TeV");
             l2->SetTextSize(0.04);
             l2->Draw();
 
@@ -249,7 +287,7 @@ class SimplePlotter {
 
         TCanvas* makeStackedPlotMC(TString var,TString selection,TString lumi, int bins, float min, float max,TString labelX,TString units,double xLabel,double yLabel,double yLabel2,double xLegend,double yLegend,bool log,double ymin,double ymax,TString postFix = "",bool ofl = false )
         {
-            THStack *hs = new THStack("hs","CMS Preliminary 2010");
+            THStack *hs = new THStack("hs","CMS Preliminary 2012");
             TLegend *l = new TLegend(xLegend, yLegend, xLegend + 0.2, yLegend + 0.2);
 
             float S		= 0.0;

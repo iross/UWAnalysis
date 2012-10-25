@@ -1,0 +1,186 @@
+#!/bin/bash
+
+cat LLLL.py    > DATA.py
+cat CONDOR.py >> DATA.py
+
+cat LLLL-MC.py > MC.py
+cat CONDOR.py >> MC.py
+
+NAME=05sep12
+FLAGS=--resubmit-failed-jobs
+
+mkdir -p /scratch/belknap/DAGs/$NAME/
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/DoubleElectron2012C \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleElectron_Run2012C_PromptReco_v2_Run198934_201264/ \
+    DoubleElectron2012C_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/DoubleMu2012C \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleMu_Run2012C_PromptReco_v2_Run198934_201264/ \
+    DoubleMu2012C_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/MuEG2012C \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_MuEG_Run2012C_PromptReco_v2_Run198934_201264/ \
+    MuEG2012C_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/ggZZ4L \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/GluGluToZZTo4L_8TeV-gg2zz-pythia6/ggZZ4L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/ \
+    ggZZ4L_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/DoubleMu2012B \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012B_PromptReco_v1_Run193752_196531/ \
+    DoubleMu2012B_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/DoubleMu2012A \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/ \
+    DoubleMu2012A_$NAME \
+   $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/ZZ2M2T \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/ZZTo2mu2tau_8TeV-powheg-pythia6/ZZ2M2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/ \
+    ZZ2M2T_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/ZZ4T \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/ZZTo4tau_8TeV-powheg-pythia6/ZZ4T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/ \
+    ZZ4T_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/ggH125 \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/GGH_HZZ4L_M-125_2012-07-31-h125-201db65/47d9ccf645ca347c59079ac6ca6f1e25 \
+    ggH125_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/ggZZ2L2L \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/ggZZ2L2L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/ \
+    ggZZ2L2L_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --skip-existing-output \
+    $FLAGS \
+    --output-dag-file=/scratch/belknap/DAGs/$NAME/ZZ2E2T \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/ZZTo2e2tau_8TeV-powheg-pythia6/ZZ2E2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147 \
+    ZZ2E2T_$NAME \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/MuEG2012B \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012B_PromptReco_v1_Run193752_196531/ \
+	MuEG2012B_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/ZZ4M \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/ \
+	ZZ4M_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/MuEG2012A \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/ \
+	MuEG2012A_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/DoubleElectron2012A \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/ \
+	DoubleElectron2012A_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/ZZ2E2M \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/ZZTo2e2mu_8TeV-powheg-pythia6/ZZ2E2M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/ \
+	ZZ2E2M_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/DoubleElectron2012B \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012B_PromptReco_v1_Run193752_196531/ \
+	DoubleElectron2012B_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/DATA.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/ZZ4E \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/iross/ZZTo4e_8TeV-powheg-pythia6/ZZ4E_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/ \
+	ZZ4E_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+	--skip-existing-output \
+    $FLAGS \
+	--output-dag-file=/scratch/belknap/DAGs/$NAME/DYJets \
+	--input-dir=root://cmsxrootd.hep.wisc.edu//hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/ \
+	DYJets_$NAME \
+	$CMSSW_BASE \
+	$CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+rm DATA.py
+rm MC.py

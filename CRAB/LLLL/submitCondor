@@ -1,5 +1,5 @@
 #!/bin/bash
-#voms-proxy-init --voms cms --valid 100:00
+#!voms-proxy-init --voms cms --valid 100:00
 
 cat LLLL-MC.py > MC.py
 cat CONDOR.py >> MC.py
@@ -33,11 +33,71 @@ cat CONDOR.py >> MC.py
 #    TTJets_TuneZ2star_8TeV-madgraph-tauola-switch \
 #    /afs/hep.wisc.edu/cms/belknap/UWTest \
 #    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/dbelknap/ZZTo4L_TuneZ2star_8TeV_pythia6_tauola \
+#    ZZTo4L_TuneZ2star_8TeV_pythia6_tauola-GenLvl\
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-01-PatTuple-MC/ZZJetsTo4L_pythia \
+#    ZZTo4L_8TeV_pythia6_uwSample \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4E_powheg \
+#    ZZ4E_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4M_powheg \
+#    ZZ4M_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ4T_powheg \
+#    ZZ4T_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2E2M_powheg \
+#    ZZ2E2M_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2E2T_powheg \
+#    ZZ2E2T_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
+#
+#farmoutAnalysisJobs \
+#    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/belknap/2012-08-03-PatTuple-MC/ZZ2M2T_powheg \
+#    ZZ2M2T_powheg_06_aug_12 \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest \
+#    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
 
 farmoutAnalysisJobs \
-    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/dbelknap/ZZTo4L_TuneZ2star_8TeV_pythia6_tauola \
-    ZZTo4L_TuneZ2star_8TeV_pythia6_tauola-GenLvl\
-    /afs/hep.wisc.edu/cms/belknap/UWTest \
-    /afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/MC.py
-    
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/tapas/2012-08-16-8TeV-PatTuple/ZZ4M_powheg \
+    ZZ4M_powheg_8TeV_test \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/tapas/2012-08-16-8TeV-PatTuple/ZZ4E_powheg \
+    ZZ4E_powheg_8TeV_test \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
+farmoutAnalysisJobs \
+    --input-dir=root://cmsxrootd.hep.wisc.edu//store/user/tapas/2012-08-16-8TeV-PatTuple/ZZ2E2M_powheg \
+    ZZ2E2M_powheg_8TeV_test \
+    $CMSSW_BASE \
+    $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/MC.py
+
 rm MC.py

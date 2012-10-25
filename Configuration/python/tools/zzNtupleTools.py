@@ -18,6 +18,13 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
+                tag        = cms.string("rapidity"),
+                method     = cms.string("rapidity()"),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
                 tag        = cms.string("pt"),
                 method     = cms.string("pt()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
@@ -42,6 +49,20 @@ def zzCommon(src,pluginType,leadOnly=True):
                 tag        = cms.string("z2Mass"),
                 method     = cms.string("leg2.mass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("bestZmass"),
+                method     = cms.string("bestZmass()"),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("subBestZmass"),
+                method     = cms.string("subBestZmass()"),
+                leadingOnly= cms.untracked.bool(leadOnly)
                 ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
