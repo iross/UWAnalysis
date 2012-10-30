@@ -134,9 +134,6 @@ class QuadCandEmbedder : public edm::EDProducer {
                 spin2MMela.computeKD(z1l1P4, out->at(i).leg1()->leg1()->pdgId(), z1l2P4, out->at(i).leg1()->leg2()->pdgId(), z2l1P4, out->at(i).leg2()->leg1()->pdgId(), z2l2P4, out->at(i).leg2()->leg2()->pdgId(),
                         kdS2M, psigS2M, psigAltS2M);
 
-                std::cout << "MELA:" << kd << " " << psig << " " << pbkg << std::endl;
-                std::cout << "MELA PS:" << kdPS << " " << psigPS << " " << psigAltPS << std::endl;
-                std::cout << "MELA S2M:" << kdS2M << " " << psigS2M << " " << psigAltS2M << std::endl;
                 out->at(i).setAngles(costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2, kd, psig, pbkg, kdPS, psigPS, psigAltPS, kdS2M, psigS2M, psigAltS2M);
 
                 out->at(i).setNoFSRMass((out->at(i).leg1()->noPhoP4()+out->at(i).leg2()->noPhoP4()).M());
