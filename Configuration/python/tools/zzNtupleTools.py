@@ -3,11 +3,11 @@ import FWCore.ParameterSet.Config as cms
 
 def zzCommon(src,pluginType,leadOnly=True):
     sharedV = cms.VPSet(
-#            cms.PSet(
-#                pluginType = cms.string("PUFiller"),
-#                src        = cms.InputTag("addPileupInfo"),
-#                tag        = cms.string("pu"),
-#                ),
+            cms.PSet(
+                pluginType = cms.string("PUFiller"),
+                src        = cms.InputTag("addPileupInfo"),
+                tag        = cms.string("pu"),
+                ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
