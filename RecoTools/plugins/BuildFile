@@ -22,6 +22,7 @@
   <use name=DataFormats/HepMCCandidate>	 
   <use name=UWAnalysis/RecoTools>	
   <use name=UWAnalysis/DataFormats>
+  <use name=ZZMatrixElement/MELA>
   <use name=CommonTools/UtilAlgos>
   <use name=Geometry/CommonDetUnit>
   <use name=Geometry/TrackerGeometryBuilder>

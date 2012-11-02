@@ -20,8 +20,17 @@ tag = args.tag
 
 out = open("submitJobs.sh","write")
 
-out.write("cat LLLL.py > DATA.py\n")
-out.write("cat CONDOR.py >> DATA.py\n")
+def getLumis(input_file):
+    """Return lumisToProcess string"""
+
+    infile=open("dataJSONs/"+input_file)
+    entry=json.load(infile)
+    lumis="process.source.lumisToProcess = cms.untracked.VLuminosityBlockRange()\n"
+    for run in sorted(entry):
+        for lumirange in entry[run]:
+            lumis += "process.source.lumisToProcess.append('%s:%s-%s:%s')\n" % (run, lumirange[0], run, lumirange[1])
+    return lumis
+
 out.write("cat LLLL-MC.py > MC.py\n")
 out.write("cat CONDOR.py >> MC.py\n")
 out.write("mkdir -p /scratch/$USER/DAGs/{0}/\n".format(tag))
@@ -30,6 +39,7 @@ datasets = json.load(file)
 
 for dataset in datasets:
     passes = True
+    runFile='MC.py'
     if args.samples:
         passes = False
         for pattern in args.samples:
@@ -37,12 +47,22 @@ for dataset in datasets:
                 passes = True
 
     if passes:
-        if datasets[dataset]['url'] == '':
-            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/$USER/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/{type}.py\n'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],type=datasets[dataset]['type']))
-        else:
-            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/$USER/DAGs/{tag}/{dataset} --input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/{type}.py\n'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'],type=datasets[dataset]['type']))
+        if datasets[dataset]['type']=="DATA":
+            print dataset
+            subprocess.call("cat LLLL.py > DATA_{dataset}.py".format(dataset=dataset),shell=True)
+            subprocess.call("cat CONDOR.py >> DATA_{dataset}.py".format(dataset=dataset),shell=True)
+            lumis=getLumis(datasets[dataset]['json'])
+            f=open("DATA_{dataset}.py".format(dataset=dataset),"a+b")
+            f.write(lumis)
+            f.close()
+            runFile="DATA_{dataset}.py".format(dataset=dataset)
 
-out.write("rm DATA.py\n")
+        if datasets[dataset]['url'] == '':
+            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'])+runFile+'\n')
+        else:
+            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'])+runFile+'.py\n')
+
+out.write("rm DATA*.py\n")
 out.write("rm MC.py\n")
 
 file.close()

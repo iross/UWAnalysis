@@ -2,6 +2,7 @@
 "DoubleMu2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -9,13 +10,23 @@
 "DoubleMu2012B":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012B_PromptReco_v1_Run193752_196531/",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
+"DoubleMu2012C":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleMu_Run2012C_PromptReco_v2_Run198934_201264",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    },
 "DoubleElectron2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -23,13 +34,23 @@
 "DoubleElectron2012B":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012B_PromptReco_v1_Run193752_196531/",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
     },
+"DoubleElectron2012C":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleElectron_Run2012C_PromptReco_v2_Run198934_201264",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    },
 "MuEG2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -37,50 +58,59 @@
 "MuEG2012B":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012B_PromptReco_v1_Run193752_196531/",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
+    },
+"MuEG2012C":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_MuEG_Run2012C_PromptReco_v2_Run198934_201264",
+    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
     },
 "ZZ2E2M":{
     "type" : "MC",
     "path" : "/hdfs/store/user/iross/ZZTo2e2mu_8TeV-powheg-pythia6/ZZ2E2M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/",
     "url" : "",
-    "xsection" : 0.1767,
+    "xsection" : 0.07691,
     "note_" : ""
     },
 "ZZ4E":{
     "type" : "MC",
     "path" : "/hdfs/store/user/iross/ZZTo4e_8TeV-powheg-pythia6/ZZ4E_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
     "url" : "",
-    "xsection" : 0.07691,
+    "xsection" : 0.1767,
     "note_" : ""
     },
 "ZZ4M":{
     "type" : "MC",
     "path" : "/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
     "url" : "",
-    "xsection" : 0.07691,
+    "xsection" : 0.1767,
     "note_" : ""
     },
 "ZZ4T":{
     "type" : "MC",
     "path" : "/hdfs/store/user/iross/ZZTo4tau_8TeV-powheg-pythia6/ZZ4T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
     "url" : "",
-    "xsection" : 0.07691,
+    "xsection" : 0.1767,
     "note_" : ""
     },
 "ZZ2M2T":{
     "type" : "MC",
     "path" : "/hdfs/store/user/iross/ZZTo2mu2tau_8TeV-powheg-pythia6/ZZ2M2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/",
     "url" : "",
-    "xsection" : 0.1767,
+    "xsection" : 0.07691,
     "note_" : ""
     },
 "ZZ2E2T":{
     "type" : "MC",
     "path" : "/hdfs/store/user/iross/ZZTo2e2tau_8TeV-powheg-pythia6/ZZ2E2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147",
     "url" : "",
-    "xsection" : 0.1767,
+    "xsection" : 0.07691,
     "note_" : ""
     },
 "ggZZ4L":{
@@ -110,5 +140,12 @@
     "url" : "",
     "xsection" : 0.0062775,
     "note_" : "#scale column CI from yellow report by 9/4 for full Higgs->ZZ->4l"
+    },
+"vh125":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/friis/WH_ZH_TTH_HToTauTau_M-125_8TeV-pythia6-tauola/VH_H2Tau_M-125_2012-05-29-8TeV-PatTuple-67c1f94/4729152ae17d7e4009729a1d0d9e952d/",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : "for ZH testing"
     }
 }

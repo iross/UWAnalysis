@@ -39,5 +39,8 @@ cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTo
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
 
+# MELA
+cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
+
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"

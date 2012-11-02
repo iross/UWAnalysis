@@ -171,7 +171,7 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
         M14_ = (p411+p422).M();
         M23_ = (p412+p421).M();
         M24_ = (p412+p422).M();
-        M34_ = (p421+p422).M(); 
+        M34_ = (p421+p422).M();
         fourFour_ = fourFour;
         sixSix_ = sixSix;
     }
@@ -181,17 +181,27 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     }
 
     //ZZ system angles
-    double costheta1() const{ return costheta1_;}
-    double costheta2() const{ return costheta2_;}
-    double Phi() const{ return Phi_;}
-    double costhetaStar() const{ return costhetaStar_;}
-    double phiStar1() const{ return phiStar1_;}
-    double phiStar2() const{ return phiStar2_;}
-    double phiStar12() const{ return phiStar12_;}
-    double phi1() const{ return phi1_;}
-    double phi2() const{ return phi2_;}
+    float costheta1() const{ return costheta1_;}
+    float costheta2() const{ return costheta2_;}
+    float Phi() const{ return Phi_;}
+    float costhetaStar() const{ return costhetaStar_;}
+    float phiStar1() const{ return phiStar1_;}
+    float phiStar2() const{ return phiStar2_;}
+    float phiStar12() const{ return phiStar12_;}
+    float phi1() const{ return phi1_;}
+    float phi2() const{ return phi2_;}
+    //MELA crap
+    float kd() const{ return kd_;}
+    float psig() const{ return psig_;}
+    float pbkg() const{ return pbkg_;}
+    float kdPS() const{ return kdPS_;}
+    float psigPS() const{ return psigPS_;}
+    float psigAltPS() const{ return psigAltPS_;}
+    float kdS2M() const{ return kdS2M_;}
+    float psigS2M() const{ return psigS2M_;}
+    float psigAltS2M() const{ return psigAltS2M_;}
 
-    void setAngles(double costheta1, double costheta2, double phi, double costhetastar, double phistar1, double phistar2, double phistar12, double phi1, double phi2){
+    void setAngles(float costheta1, float costheta2, float phi, float costhetastar, float phistar1, float phistar2, float phistar12, float phi1, float phi2, float kd, float psig, float pbkg, float kdPS, float psigPS, float psigAltPS, float kdS2M, float psigS2M, float psigAltS2M){
         costheta1_ = costheta1;
         costheta2_ = costheta2;
         Phi_ = phi;
@@ -201,6 +211,15 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
         phiStar12_ = phistar12;
         phi1_ = phi1;
         phi2_ = phi2;
+        kd_ = kd;
+        psig_ = psig;
+        pbkg_ = pbkg;
+        kdPS_ = kdPS;
+        psigPS_ = psigPS;
+        psigAltPS_ = psigAltPS;
+        kdS2M_ = kdS2M;
+        psigS2M_ = psigS2M;
+        psigAltS2M_ = psigAltS2M;
     }
 
     // set Z masses
@@ -441,7 +460,7 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
 
     //FSR vars
     double phoPt_;
-    double phoEta_; 
+    double phoEta_;
     double phoPhi_;
     double lepPt_;
     double lepDR_;
@@ -458,17 +477,27 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double M34_;
     bool fourFour_;
     bool sixSix_;
-    //
+    //MELA crap
+    float kd_;
+    float psig_;
+    float pbkg_;
+    float kdPS_;
+    float psigPS_;
+    float psigAltPS_;
+    float kdS2M_;
+    float psigS2M_;
+    float psigAltS2M_;
+
     //Angles
-    double costheta1_;
-    double costheta2_; 
-    double Phi_;
-    double costhetaStar_; 
-    double phiStar1_;
-    double phiStar2_;
-    double phiStar12_; 
-    double phi1_;
-    double phi2_;
+    float costheta1_;
+    float costheta2_;
+    float Phi_;
+    float costhetaStar_;
+    float phiStar1_;
+    float phiStar2_;
+    float phiStar12_;
+    float phi1_;
+    float phi2_;
 
     // Z cand masses
     double bestZmass_;
