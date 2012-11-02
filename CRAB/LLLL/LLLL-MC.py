@@ -16,7 +16,9 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
 #            'file:/scratch/iross/gg125_sync.root'
-            'file:/scratch/iross/gg125_sync_noSkim.root'
+#            'file:/scratch/iross/gg125_sync_noSkim.root'
+            'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
+#            'file:/scratch/iross/eeeeMysteries_patTuple.root'
 #'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag_fsrTest1.root'
 #            'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
 #'file:/scratch/iross/sync4l_wFSR.root'
@@ -37,9 +39,9 @@ process.source = cms.Source("PoolSource",
             )
         )
 
-process.source.secondaryFileNames = cms.untracked.vstring(
-        'file:/hdfs/store/mc/Summer12_DR53X/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/AODSIM/PU_S10_START53_V7A-v1/0000/FEEEEFFF-7FFB-E111-8FE2-002618943810.root',
-        )
+#process.source.secondaryFileNames = cms.untracked.vstring(
+#        'file:/hdfs/store/mc/Summer12_DR53X/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/AODSIM/PU_S10_START53_V7A-v1/0000/FEEEEFFF-7FFB-E111-8FE2-002618943810.root',
+#        )
 
 from UWAnalysis.Configuration.tools.analysisTools import *
 defaultAnalysisPath(process,'HLT',
