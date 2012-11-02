@@ -1,3 +1,7 @@
+// This file is imported from:
+//http://cmssw.cvs.cern.ch/cgi-bin/cmssw.cgi/UserCode/Mangano/WWAnalysis/AnalysisStep/plugins/CalibratedPatElectronProducer.cc?revision=1.2&view=markup
+
+
 // -*- C++ -*-
 //
 // Package:    EgammaElectronProducers
@@ -11,7 +15,11 @@
      <Notes on implementation>
 */
 
+//#if CMSSW_VERSION>500
+
+
 #include "UWAnalysis/RecoTools/plugins/CalibratedPatElectronProducer.h"
+#include "UWAnalysis/RecoTools/plugins/PatElectronEnergyCalibrator.h"
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
@@ -29,8 +37,6 @@
 #include "DataFormats/EgammaCandidates/interface/GsfElectronFwd.h"
 #include "DataFormats/BeamSpot/interface/BeamSpot.h"
 #include "DataFormats/PatCandidates/interface/Electron.h"
-
-#include "UWAnalysis/RecoTools/plugins/PatElectronEnergyCalibrator.h"
 
 #include <iostream>
 
@@ -50,17 +56,17 @@ CalibratedPatElectronProducer::CalibratedPatElectronProducer( const edm::Paramet
   isMC = cfg.getParameter<bool>("isMC");
   isAOD = cfg.getParameter<bool>("isAOD");
   updateEnergyError = cfg.getParameter<bool>("updateEnergyError");
+  applyCorrections = cfg.getParameter<bool>("applyCorrections");
   debug = cfg.getParameter<bool>("debug");
-  energyMeasurementType = cfg.getParameter<uint>("energyMeasurementType");
-  //basic checks
-  if (isMC&&(dataset!="Summer11"&&dataset!="Fall11"&&dataset!="Summer12"&&dataset!="Summer12_HCP2012"))
-   { throw cms::Exception("CalibratedPatElectronProducer|ConfigError")<<"Unknown MC dataset" ; }
-  if (!isMC&&(dataset!="Prompt"&&dataset!="ReReco"&&dataset!="Jan16ReReco"&&dataset!="Prompt2012"&&dataset!="ICHEP2012"&&dataset!="HCP2012"))
-   { throw cms::Exception("CalibratedPatElectronProducer|ConfigError")<<"Unknown Data dataset" ; }
-  cout << "[CalibratedPatElectronProducer] Correcting scale for dataset " << dataset << endl;
 
+  //basic checks
+  if (isMC&&(dataset!="Summer11"&&dataset!="Fall11"&&dataset!="Summer12"&&dataset!="Summer12_DR53X_HCP2012"))
+   { throw cms::Exception("CalibratedgsfElectronProducer|ConfigError")<<"Unknown MC dataset" ; }
+  if (!isMC&&(dataset!="Prompt"&&dataset!="ReReco"&&dataset!="Jan16ReReco"&&dataset!="ICHEP2012"&&dataset!="2012Jul13ReReco"))
+   { throw cms::Exception("CalibratedgsfElectronProducer|ConfigError")<<"Unknown Data dataset" ; }
+   cout << "[CalibratedGsfElectronProducer] Correcting scale for dataset " << dataset << endl;
  }
- 
+
 CalibratedPatElectronProducer::~CalibratedPatElectronProducer()
  {}
 
@@ -75,31 +81,26 @@ void CalibratedPatElectronProducer::produce( edm::Event & event, const edm::Even
   ElectronCollection::const_iterator electron ;
   ElectronCollection::iterator ele ;
   // first clone the initial collection
-  for(edm::View<reco::Candidate>::const_iterator ele=oldElectrons->begin(); ele!=oldElectrons->end(); ++ele){    
+  for(edm::View<reco::Candidate>::const_iterator ele=oldElectrons->begin(); ele!=oldElectrons->end(); ++ele){
     const pat::ElectronRef elecsRef = edm::RefToBase<reco::Candidate>(oldElectrons,ele-oldElectrons->begin()).castTo<pat::ElectronRef>();
     pat::Electron clone = *edm::RefToBase<reco::Candidate>(oldElectrons,ele-oldElectrons->begin()).castTo<pat::ElectronRef>();
     electrons->push_back(clone);
   }
 
-  PatElectronEnergyCalibrator theEnCorrector(dataset, isAOD, isMC, updateEnergyError, energyMeasurementType, debug);
+  ElectronEnergyCalibrator theEnCorrector(dataset, isAOD, isMC, updateEnergyError, applyCorrections, debug);
 
   for
    ( ele = electrons->begin() ;
      ele != electrons->end() ;
      ++ele )
-   {     
-     if (energyMeasurementType == 0) {
-       // energy calibration for ecalDriven electrons
-       if (ele->core()->ecalDrivenSeed()) {        
-         theEnCorrector.correct(*ele, event, setup);
-       }
-       else {
-         //std::cout << "[CalibratedPatElectronProducer] is tracker driven only!!" << std::endl;
-       }
-     } else {
-       //correct all electrons for regression energy measurements
-       theEnCorrector.correct(*ele, event, setup);
-     }
+   {
+      // energy calibration for ecalDriven electrons
+      if (ele->core()->ecalDrivenSeed()) {
+        theEnCorrector.correct(*ele, event, setup);
+      }
+      else {
+        //std::cout << "[CalibratedPatElectronProducer] is tracker driven only!!" << std::endl;
+      }
    }
    event.put(electrons) ;
 
@@ -110,3 +111,6 @@ void CalibratedPatElectronProducer::produce( edm::Event & event, const edm::Even
 #include "FWCore/Framework/interface/ESProducer.h"
 #include "FWCore/Framework/interface/ModuleFactory.h"
 DEFINE_FWK_MODULE(CalibratedPatElectronProducer);
+
+//#endif
+

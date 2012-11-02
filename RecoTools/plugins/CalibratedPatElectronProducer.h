@@ -1,3 +1,6 @@
+// This file is imported from
+// http://cmssw.cvs.cern.ch/cgi-bin/cmssw.cgi/UserCode/Mangano/WWAnalysis/AnalysisStep/interface/CalibratedPatElectronProducer.h?revision=1.1&view=markup
+
 #ifndef CalibratedPatElectronProducer_h
 #define CalibratedPatElectronProducer_h
 
@@ -7,7 +10,7 @@
 #include "FWCore/Framework/interface/Event.h"
 #include "FWCore/Framework/interface/EventSetup.h"
 
-class CalibratedPatElectronProducer: public edm::EDProducer 
+class CalibratedPatElectronProducer: public edm::EDProducer
  {
   public:
 
@@ -24,9 +27,9 @@ class CalibratedPatElectronProducer: public edm::EDProducer
     bool isAOD ;
     bool isMC ;
     bool updateEnergyError ;
+    bool applyCorrections ;
     bool debug ;
-    uint energyMeasurementType;
-    
+
  } ;
 
 #endif
