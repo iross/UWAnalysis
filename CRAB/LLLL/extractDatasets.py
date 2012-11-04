@@ -13,9 +13,9 @@ from optparse import OptionParser
 
 parser = OptionParser()
 
-parser.add_option("--datasetList", dest="inFile", help="The list of datasets you want included in the output JSON.")
+parser.add_option("--datasetList",  dest="inFile",    help="The list of datasets you want included in the output JSON.")
 parser.add_option("--patTupleList", dest="patTuples", help="The list of patTuples from Tapas's database tool.")
-parser.add_option("--outputJson", dest="outFile", help="The output JSON file.")
+parser.add_option("--outputJson",   dest="outFile",   help="The output JSON file.")
 
 (options, args) = parser.parse_args()
 
