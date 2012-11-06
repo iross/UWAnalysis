@@ -17,15 +17,17 @@ if ".root" not in file:
     file=file+".root"
 
 #vars to store
-vars4l = ["mass","z1Mass","z2Mass","z1l1Pt","z1l2Pt","z2l1Pt","z2l2Pt","bestZmass","subBestZmass","RUN","LUMI","EVENT","met","z1l1pfCombIso2012","z1l2pfCombIso2012","z2l1pfCombIso2012","z2l2pfCombIso2012","__WEIGHT__","__WEIGHT__noPU","z1l1pfCombIso2012_noFSR","z1l2pfCombIso2012_noFSR","z2l1pfCombIso2012_noFSR","z2l2pfCombIso2012_noFSR","weight","weightnoPU","z1l1Eta","z1l2Eta","z2l1Eta","z2l2Eta"]
+vars4l = ["mass","z1Mass","z2Mass","z1l1Pt","z1l2Pt","z2l1Pt","z2l2Pt","bestZmass","subBestZmass","RUN","LUMI","EVENT","met","z1l1pfCombIso2012","z1l2pfCombIso2012","z2l1pfCombIso2012","z2l2pfCombIso2012","__WEIGHT__","__WEIGHT__noPU","z1l1pfCombIso2012_noFSR","z1l2pfCombIso2012_noFSR","z2l1pfCombIso2012_noFSR","z2l2pfCombIso2012_noFSR","weight","weightnoPU","z1l1Eta","z1l2Eta","z2l1Eta","z2l2Eta","massNoFSR","z1l1Phi","z1l2Phi","z2l1Phi","z2l2Phi","z2Charge","z1l1pfPhotonIso","z1l1PhotonIso","z1l2pfPhotonIso","z1l2PhotonIso","z2l1pfPhotonIso","z2l1PhotonIso","z2l2pfPhotonIso","z2l2PhotonIso"]
 varsZ = ["mass","l1Pt","l2Pt","l1Eta","l2Eta","l1Phi","l2Phi","RUN","LUMI","EVENT","met","l1pfCombIso2012","l2pfCombIso2012","__WEIGHT__","__WEIGHT__noPU","l1SIP","l2SIP"]
 
 #set selections
 cuts={}
 
-cuts["eeee"]=defineCuts(pt20_10.cuts(),z2ee.cuts(),z2RelPFIso.cuts(),"fourFour&&z2Mass>4&&z2Mass<120&&z1Mass>40&&z1Mass<120")
-cuts["mmmm"]=defineCuts(pt20_10.cuts(),z2mm.cuts(),z2RelPFIso.cuts(),"fourFour&&z2Mass>4&&z2Mass<120&&z1Mass>40&&z1Mass<120")
-cuts["mmee"]=defineCuts(pt20_10.cuts(),z2ee.cuts(),z2RelPFIso.cuts(),"fourFour&&((z1Mass>40&&z1Mass<120&&z2Mass>4&&z2Mass<120)||(z2Mass>40&&z2Mass<120&&z1Mass>4&&z1Mass<120))") #...this tree should have full selection applied right now
+
+#NOTE: don't apply mass cuts until AFTER best Z1 selection
+cuts["eeee"]=defineCuts(pt20_10.cuts(),z2ee.cuts(),z2RelPFIso.cuts(),"fourFour")
+cuts["mmmm"]=defineCuts(pt20_10.cuts(),z2mm.cuts(),z2RelPFIso.cuts(),"fourFour")
+cuts["mmee"]=defineCuts(pt20_10.cuts(),z2ee.cuts(),z2RelPFIso.cuts(),"fourFour") #...this tree should have full selection applied right now
 cuts["mm"]=defineCuts("l1Pt>20&&l2Pt>10") #all cuts applied before trees filled
 cuts["ee"]=defineCuts("l1Pt>20&&l2Pt>10") #all cuts applied before trees filled
 
@@ -56,33 +58,28 @@ t=f.Get("eleEleEleEleEventTreeFinal/eventTree")
 fout=TFile(outfile,"recreate")
 
 #uniquify
-eeeeEvents=uniquify(t,cuts["eeee"],"bestZmass",vars4l)
-for e in eeeeEvents:
-    if eeeeEvents[e]['EVENT']==232250171:
-        raw_input("Hey, it made it into the events list!")
-print eeeeEvents
-sys.exit(cuts["eeee"])
+eeeeEvents=uniquify(t,cuts["eeee"],"bestZmass",vars4l,True)
 eeeeAAEvents=uniquify(t,cuts["eeeeAA"],"bestZmass",vars4l)
 eeeeAIEvents=uniquify(t,cuts["eeeeAI"],"bestZmass",vars4l)
 eeeeIAEvents=uniquify(t,cuts["eeeeIA"],"bestZmass",vars4l)
-eeeeTree=makeTree(eeeeEvents,"eeeeFinal",vars4l)
-eeeeAATree=makeTree(eeeeAAEvents,"eeeeAAFinal",vars4l)
-eeeeAITree=makeTree(eeeeAIEvents,"eeeeAIFinal",vars4l)
-eeeeIATree=makeTree(eeeeIAEvents,"eeeeIAFinal",vars4l)
+eeeeTree=makeTree(eeeeEvents,"eeeeFinal")
+eeeeAATree=makeTree(eeeeAAEvents,"eeeeAAFinal")
+eeeeAITree=makeTree(eeeeAIEvents,"eeeeAIFinal")
+eeeeIATree=makeTree(eeeeIAEvents,"eeeeIAFinal")
 
 t=f.Get("muMuMuMuEventTreeFinal/eventTree")
-mmmmEvents=uniquify(t,cuts["mmmm"],"bestZmass",vars4l)
+mmmmEvents=uniquify(t,cuts["mmmm"],"bestZmass",vars4l,True)
 mmmmAAEvents=uniquify(t,cuts["mmmmAA"],"bestZmass",vars4l)
 mmmmAIEvents=uniquify(t,cuts["mmmmAI"],"bestZmass",vars4l)
 mmmmIAEvents=uniquify(t,cuts["mmmmIA"],"bestZmass",vars4l)
-mmmmTree=makeTree(mmmmEvents,"mmmmFinal",vars4l)
-mmmmAATree=makeTree(mmmmAAEvents,"mmmmAAFinal",vars4l)
-mmmmAITree=makeTree(mmmmAIEvents,"mmmmAIFinal",vars4l)
-mmmmIATree=makeTree(mmmmIAEvents,"mmmmIAFinal",vars4l)
+mmmmTree=makeTree(mmmmEvents,"mmmmFinal")
+mmmmAATree=makeTree(mmmmAAEvents,"mmmmAAFinal")
+mmmmAITree=makeTree(mmmmAIEvents,"mmmmAIFinal")
+mmmmIATree=makeTree(mmmmIAEvents,"mmmmIAFinal")
 
 t=f.Get("muMuEleEleEventTreeFinal/eventTree")
 mmeeEvents=uniquify(t,cuts["mmee"],"bestZmass",vars4l)
-mmeeTree=makeTree(mmeeEvents,"mmeeFinal",vars4l)
+mmeeTree=makeTree(mmeeEvents,"mmeeFinal")
 
 #mmee and eemm come from "ONLY" branch
 t=f.Get("muMuEleEleonlyEventTreeFinal/eventTree")
@@ -90,18 +87,18 @@ print "mmee"
 mmeeAAEvents=uniquify(t,cuts["mmeeAA"],"bestZmass",vars4l)
 mmeeAIEvents=uniquify(t,cuts["mmeeAI"],"bestZmass",vars4l)
 mmeeIAEvents=uniquify(t,cuts["mmeeIA"],"bestZmass",vars4l)
-mmeeAATree=makeTree(mmeeAAEvents,"mmeeAAFinal",vars4l)
-mmeeAITree=makeTree(mmeeAIEvents,"mmeeAIFinal",vars4l)
-mmeeIATree=makeTree(mmeeIAEvents,"mmeeIAFinal",vars4l)
+mmeeAATree=makeTree(mmeeAAEvents,"mmeeAAFinal")
+mmeeAITree=makeTree(mmeeAIEvents,"mmeeAIFinal")
+mmeeIATree=makeTree(mmeeIAEvents,"mmeeIAFinal")
 
 print "eemm"
 t=f.Get("eleEleMuMuEventTreeFinal/eventTree")
 eemmAAEvents=uniquify(t,cuts["eemmAA"],"bestZmass",vars4l)
 eemmAIEvents=uniquify(t,cuts["eemmAI"],"bestZmass",vars4l)
 eemmIAEvents=uniquify(t,cuts["eemmIA"],"bestZmass",vars4l)
-eemmAATree=makeTree(eemmAAEvents,"eemmAAFinal",vars4l)
-eemmAITree=makeTree(eemmAIEvents,"eemmAIFinal",vars4l)
-eemmIATree=makeTree(eemmIAEvents,"eemmIAFinal",vars4l)
+eemmAATree=makeTree(eemmAAEvents,"eemmAAFinal")
+eemmAITree=makeTree(eemmAIEvents,"eemmAIFinal")
+eemmIATree=makeTree(eemmIAEvents,"eemmIAFinal")
 
 #temp.. don't do these because they take so damn long
 #t=f.Get("muMuEventTree/eventTree")
@@ -111,21 +108,21 @@ eemmIATree=makeTree(eemmIAEvents,"eemmIAFinal",vars4l)
 #eeEvents=uniquify(t,cuts["ee"],"dummy",varsZ)
 #eeTree=makeTree(eeEvents,"eeFinal",varsZ)
 
-#t=f.Get("muMuEleEventTree/eventTree")
-#mmeEvents=uniquify(t,cuts["mme"],"dummy",vars4l) #use 4l vars for now
-#mmeTree=makeTree(mmeEvents,"mmeFinal",vars4l)
+t=f.Get("muMuEleEventTree/eventTree")
+mmeEvents=uniquify(t,cuts["mme"],"dummy",vars4l) #use 4l vars for now
+mmeTree=makeTree(mmeEvents,"mmeFinal")
 
-#t=f.Get("muMuMuEventTree/eventTree")
-#mmmEvents=uniquify(t,cuts["mmm"],"dummy",vars4l) #use 4l vars for now
-#mmmTree=makeTree(mmmEvents,"mmmFinal",vars4l)
+t=f.Get("muMuMuEventTree/eventTree")
+mmmEvents=uniquify(t,cuts["mmm"],"dummy",vars4l) #use 4l vars for now
+mmmTree=makeTree(mmmEvents,"mmmFinal")
 
-#t=f.Get("eleEleEleEventTree/eventTree")
-#eeeEvents=uniquify(t,cuts["eee"],"dummy",vars4l) #use 4l vars for now
-#eeeTree=makeTree(eeeEvents,"eeeFinal",vars4l)
+t=f.Get("eleEleEleEventTree/eventTree")
+eeeEvents=uniquify(t,cuts["eee"],"dummy",vars4l) #use 4l vars for now
+eeeTree=makeTree(eeeEvents,"eeeFinal")
 
-#t=f.Get("eleEleMuEventTree/eventTree")
-#eemEvents=uniquify(t,cuts["eem"],"dummy",vars4l) #use 4l vars for now
-#eemTree=makeTree(eemEvents,"eemFinal",vars4l)
+t=f.Get("eleEleMuEventTree/eventTree")
+eemEvents=uniquify(t,cuts["eem"],"dummy",vars4l) #use 4l vars for now
+eemTree=makeTree(eemEvents,"eemFinal")
 
 #write trees
 eeeeTree.Write()
@@ -146,10 +143,10 @@ eemmIATree.Write()
 
 #mmTree.Write()
 #eeTree.Write()
-#mmeTree.Write()
-#mmmTree.Write()
-#eeeTree.Write()
-#eemTree.Write()
+mmeTree.Write()
+mmmTree.Write()
+eeeTree.Write()
+eemTree.Write()
 
 f.Close()
 fout.Close()
@@ -163,7 +160,7 @@ llllTree.Add(outfile+"/mmmmFinal")
 print llllTree.GetEntries()
 llllTreeFinal=llllTree.CloneTree()
 llllTreeFinal.SetName("llllTree")
-llllTreeFinal.Write()   
+llllTreeFinal.Write()
 fout2.Close()
 
 #dump them for quick event checks.
