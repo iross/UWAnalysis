@@ -2,6 +2,7 @@
  * Apply weighiting for high-mass higgs MC samples.
  *
  * This code is based on Tongguang's code for applying high-mass weights.
+ * Run this code ONLY on Higgs MC samples.
  *
  * @author D. Austin Belknap
  */
@@ -38,7 +39,7 @@ int main(int argc, char** argv)
     string fileName;
     int c;
 
-    while ((c = getopt (argc, argv, "f:m:")) != -1)
+    while ((c = getopt (argc, argv, "hf:m:e:")) != -1)
     {
         switch(c)
         {
@@ -54,31 +55,52 @@ int main(int argc, char** argv)
                 sqrts = atoi(optarg);
                 break;
 
+            case 'h':
+                cout << "Usage: EventWeightsHighMassHiggs -m <mass> -f <file.root> -e <energy = 8 or 7>" << endl;
+                return 0;
+
             case '?':
                 cerr << "Unknown option" << endl;
                 return 1;
         }
     }
 
-    TFile *file = new TFile(fileName.c_str());
+    cout << "Processing: " << fileName << ", mass = " << mass << ", sqrts = " << sqrts << endl;
+
+    // Grab the relevant trees
+    TFile *file = new TFile(fileName.c_str(),"UPDATE");
     TTree* EEEE = (TTree*)file->Get("eleEleEleEleEventTreeFinal/eventTree");
     TTree* MMEE = (TTree*)file->Get("muMuEleEleEventTreeFinal/eventTree");
     TTree* MMMM = (TTree*)file->Get("muMuMuMuEventTreeFinal/eventTree");
 
+    // add the weights to the trees
+    cout << " -> " << "Applying 4e weights" << endl;
     applyWeights(EEEE, mass, sqrts);
+    cout << " -> " << "Applying 2e2mu weights" << endl;
     applyWeights(MMEE, mass, sqrts);
+    cout << " -> " << "Applying 4mu weights" << endl;
     applyWeights(MMMM, mass, sqrts);
+
+    file->Close();
 
     return 0;
 }
 
+/**
+ * Applies the weight on an event-by-event basis for an individual tree
+ *
+ * @param *tree The tree to which we add the weighting variables. It must contain "hMass".
+ * @param mass The nominal Higgs mass for this MC sample.
+ * @param sqrts The center-of-mass energy for the MC sample.
+ */
 void applyWeights(TTree *tree, int mass, int sqrts)
 {
     // grab the right lineshape file based on mass and sqrt(s)
     stringstream ss;
-    ss << "${CMSSW_BASE}/src/UWAnalysis/ROOT/bin/highMassLineshapes/" << "mZZ_Higgs" << mass << "_" << sqrts << "TeV_Lineshape+Interference.txt";
+    ss << "/afs/hep.wisc.edu/cms/belknap/UWAnalysis533/src/UWAnalysis/ROOT/bin/highMassLineshapes/" << "mZZ_Higgs" << mass << "_" << sqrts << "TeV_Lineshape+Interference.txt";
     string shapeFilename = ss.str();
 
+    // initialize weights to 1.0
     float weight = 1.0;
     float weightPlus = 1.0;
     float weightMinus = 1.0;
@@ -99,7 +121,17 @@ void applyWeights(TTree *tree, int mass, int sqrts)
 
     float bincenter, initial, pow, powp, powm, out, outp, outm;
 
+    // fill vectors with data from lineshape file
     ifstream shapeFile(shapeFilename.c_str());
+
+    if ( shapeFile.good() )
+        cout << "\t" << "Opened: " << shapeFilename << endl;
+    else
+    {
+        cerr << "Could not open: " << shapeFilename << endl;
+        exit(1);
+    }
+
     while( shapeFile.good() )
     {
         shapeFile >> bincenter >> initial >> pow >> powp >> powm >> out >> outp >> outm;
@@ -121,49 +153,50 @@ void applyWeights(TTree *tree, int mass, int sqrts)
         }
     }
 
+    // loop over the tree and apply weights to each event
     int nEntries = tree->GetEntries();
     for (int i = 0; i < nEntries; ++i)
     {
-        weight = 1.0;
-        weightPlus = 1.0;
+        tree->GetEntry(i);
+
+        weight      = 1.0;
+        weightPlus  = 1.0;
         weightMinus = 1.0;
 
         // set weights to 0 if out of range
-        if( hMass < bincenters_.front() || hMass >  bincenters_.back() )
+        if( hMass < bincenters_.front() || hMass > bincenters_.back() )
         {
             weight      = 0.0;
             weightPlus  = 0.0;
             weightMinus = 0.0;
-
-            weightBranch->Fill();
-            weightPlusBranch->Fill();
-            weightMinusBranch->Fill();
-
-            continue;
         }
-
-        vector<float>::iterator low = lower_bound( bincenters_.begin(), bincenters_.end(), hMass ); 
-        int lowindex=(low - bincenters_.begin());
-
-        // exact match
-        if(hMass == *low )
-        {
-            weight      = weight_[lowindex];
-            weightPlus  = weightPlus_[lowindex];
-            weightMinus = weightMinus_[lowindex];
-        }
-        // linear interpolation
         else
         {
-            lowindex--; // lower_bound finds the first element not smaller than X
-            weight      = weight_[lowindex]      + (hMass - bincenters_[lowindex] )*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
-            weightPlus  = weightPlus_[lowindex]  + (hMass - bincenters_[lowindex] )*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
-            weightMinus = weightMinus_[lowindex] + (hMass - bincenters_[lowindex] )*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
+            vector<float>::iterator low = lower_bound(bincenters_.begin(), bincenters_.end(), hMass); 
+            int lowindex=(low - bincenters_.begin());
+
+            // exact match
+            if(hMass == *low )
+            {
+                weight      = weight_[lowindex];
+                weightPlus  = weightPlus_[lowindex];
+                weightMinus = weightMinus_[lowindex];
+            }
+            // linear interpolation
+            else
+            {
+                lowindex--; // lower_bound finds the first element not smaller than X
+                weight      = weight_[lowindex]      + (hMass - bincenters_[lowindex])*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
+                weightPlus  = weightPlus_[lowindex]  + (hMass - bincenters_[lowindex])*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
+                weightMinus = weightMinus_[lowindex] + (hMass - bincenters_[lowindex])*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
+            }
         }
 
         weightBranch->Fill();
         weightPlusBranch->Fill();
         weightMinusBranch->Fill();
     }
+
+    // write the new branches to the tree.
     tree->Write("",TObject::kOverwrite);
 }
