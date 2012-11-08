@@ -9,6 +9,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
 #include <string>
 #include <fstream>
 #include <vector>
@@ -98,7 +99,8 @@ void applyWeights(TTree *tree, int mass, int sqrts)
 {
     // grab the right lineshape file based on mass and sqrt(s)
     stringstream ss;
-    ss << "/afs/hep.wisc.edu/cms/belknap/UWAnalysis533/src/UWAnalysis/ROOT/bin/highMassLineshapes/" << "mZZ_Higgs" << mass << "_" << sqrts << "TeV_Lineshape+Interference.txt";
+    string cmsswBase = string( getenv("CMSSW_BASE") );
+    ss << cmsswBase << "/src/UWAnalysis/ROOT/bin/highMassLineshapes/" << "mZZ_Higgs" << mass << "_" << sqrts << "TeV_Lineshape+Interference.txt";
     string shapeFilename = ss.str();
 
     float weight, weightPlus, weightMinus, hMass;
@@ -125,7 +127,7 @@ void applyWeights(TTree *tree, int mass, int sqrts)
         cout << "\t" << "Opened: " << shapeFilename << endl;
     else
     {
-        cerr << "Could not open: " << shapeFilename << endl;
+        cerr << "Error: Could not open " << shapeFilename << endl;
         exit(1);
     }
 
