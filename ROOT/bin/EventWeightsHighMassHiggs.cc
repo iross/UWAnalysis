@@ -81,6 +81,7 @@ int main(int argc, char** argv)
     cout << " -> " << "Applying 4mu weights" << endl;
     applyWeights(MMMM, mass, sqrts);
 
+    file->Write("",TObject::kOverwrite);
     file->Close();
 
     return 0;
@@ -100,18 +101,14 @@ void applyWeights(TTree *tree, int mass, int sqrts)
     ss << "/afs/hep.wisc.edu/cms/belknap/UWAnalysis533/src/UWAnalysis/ROOT/bin/highMassLineshapes/" << "mZZ_Higgs" << mass << "_" << sqrts << "TeV_Lineshape+Interference.txt";
     string shapeFilename = ss.str();
 
-    // initialize weights to 1.0
-    float weight = 1.0;
-    float weightPlus = 1.0;
-    float weightMinus = 1.0;
-    float hMass;
+    float weight, weightPlus, weightMinus, hMass;
 
     // Create new branches
-    TBranch *weightBranch      = tree->Branch("__HIGGSWEIGHT__", &weight, "__HIGGSWEIGHT__/F");
-    TBranch *weightPlusBranch  = tree->Branch("__HIGGSWEIGHT__Plus", &weightPlus, "__HIGGSWEIGHT__Plus/F");
+    TBranch *weightBranch      = tree->Branch("__HIGGSWEIGHT__",      &weight,      "__HIGGSWEIGHT__/F");
+    TBranch *weightPlusBranch  = tree->Branch("__HIGGSWEIGHT__Plus",  &weightPlus,  "__HIGGSWEIGHT__Plus/F");
     TBranch *weightMinusBranch = tree->Branch("__HIGGSWEIGHT__Minus", &weightMinus, "__HIGGSWEIGHT__Minus/F");
 
-    tree->SetBranchAddress("hMass",&hMass);
+    tree->SetBranchAddress("hMass", &hMass);
 
     // book vectors
     vector<float> weight_;
@@ -185,7 +182,8 @@ void applyWeights(TTree *tree, int mass, int sqrts)
             // linear interpolation
             else
             {
-                lowindex--; // lower_bound finds the first element not smaller than X
+                // lower_bound finds the first element not smaller than X
+                lowindex--;
                 weight      = weight_[lowindex]      + (hMass - bincenters_[lowindex])*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
                 weightPlus  = weightPlus_[lowindex]  + (hMass - bincenters_[lowindex])*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
                 weightMinus = weightMinus_[lowindex] + (hMass - bincenters_[lowindex])*(weight_[lowindex + 1] - weight_[lowindex])/(bincenters_[lowindex + 1] - bincenters_[lowindex]);
