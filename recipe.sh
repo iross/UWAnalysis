@@ -39,6 +39,10 @@ cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTo
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
 
+# Muon ghost cleaning https://www.dropbox.com/s/oddw6hrl67tgnrk/gp-ghost.pptx
+cvs co -r U09-04-03-00-01 DataFormats/MuonReco 
+cvs co -r V02-03-00 MuonAnalysis/MuonAssociators
+
 # MELA
 cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
 
