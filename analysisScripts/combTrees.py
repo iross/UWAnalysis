@@ -20,8 +20,13 @@ from progressbar import Bar, ETA, ProgressBar, ReverseBar
 def arbitrate(event1,event2, method=''):
     """Takes a pair of events, chooses which one to keep"""
     if method=='bestZmass':
-        if abs(event1['z1Mass']-91.2)<abs(event2['z1Mass']-91.2): #note: this will still save some events killed in the baseline
+        if abs(event1['z1Mass']-91.2)<abs(event2['z1Mass']-91.2):
             return event1
+        elif abs(event1['z1Mass']-91.2)==abs(event2['z1Mass']-91.2):
+            if (event1['z2l1Pt']+event1['z2l2Pt'] > event2['z2l1Pt']+event2['z2l2Pt']):
+                return event1
+            else:
+                return event2
         else:
             return event2
     if method=='dummy':
@@ -32,7 +37,7 @@ def arbitrate(event1,event2, method=''):
         #return the first
     pass
 
-def uniquify(tree, cuts, arbMode,vars):
+def uniquify(tree, cuts, arbMode,vars,allVars=False):
     """Takes a tree as input, applies cuts, and returns a tree with only one entry per event."""
 #    tree.SetBranchStatus("*",0)
     tree.SetBranchStatus("jetsPt20",0)
@@ -43,20 +48,24 @@ def uniquify(tree, cuts, arbMode,vars):
     widgets = [Bar('>'), ' ', ETA(), ' ',str(cleanTree.GetEntries()), ' ',ReverseBar('<')]
     try:
         pbar = ProgressBar(widgets=widgets, maxval=max(0,cleanTree.GetEntries())).start()
-    except ZeroDivisionError: 
-        print "No events passing!"
+    except ZeroDivisionError:
+#        print "No events passing!"
         pbar = ProgressBar(widgets=widgets, maxval=1).start()
     n=0
+    if allVars:
+        vars=[]
+        for branch in cleanTree.GetListOfBranches():
+            vars.append(branch.GetName())
     for event in cleanTree:
         eventID=str(event.EVENT/event.met) #divide by met to make sure no EVENT repetitions (relevant especially to MC)
-        if eventID not in events: 
+        if eventID not in events:
             events[eventID]={}
             myDic={}
             for var in vars:
                 try:
                     myDic[var]=event.GetLeaf(var).GetValue()
                 except ReferenceError:
-                    print "Couldn't get variable!",var,"does not exist."
+#                    print "Couldn't get variable!",var,"does not exist."
                     continue
             events[eventID]=myDic
         else:
@@ -66,7 +75,11 @@ def uniquify(tree, cuts, arbMode,vars):
                     tempEvent[var]=event.GetLeaf(var).GetValue()
                 except ReferenceError:
                     continue
-            events[eventID]=arbitrate(events[eventID],tempEvent,method=arbMode)
+            if arbMode is "BG": #for BG, we want to store all cands, so don't arbitrate (and make a new key for the event)
+                eventID=str(event.EVENT/event.met/event.z2l1Phi)
+                events[eventID]=tempEvent
+            else:
+                events[eventID]=arbitrate(events[eventID],tempEvent,method=arbMode)
         n=n+1
         pbar.update(n)
     pbar.finish()
@@ -74,11 +87,12 @@ def uniquify(tree, cuts, arbMode,vars):
 
 def makeTree(events,name,vars):
     """Takes dict of events, returns a new tree with appropriate variables"""
-    print vars
+#    print vars
     n={}
     newTree=TTree(name,name)
+    newTree.SetAutoSave(3000000000) #set autosave to 3 GB
     for var in vars:
-        n[var]=N.zeros(1,dtype=float)       
+        n[var]=N.zeros(1,dtype=float)
         newTree.Branch(var,n[var],var+'/d')
     for i in events:
         for var in events[i].keys():
@@ -100,65 +114,9 @@ def combineTrees(file,tree1,cuts1,tree2,cuts2,vars,name="eleelemumueventtreemerg
 
     try:
         totTree.SetName(name)
-        totTree.Write()   
+        totTree.Write()
     except ReferenceError:
         print "Tree empty. :("
-
-#	totTree = TTree(name,name)
-#	n={}
-#	for var in vars:
-#		n[var]=N.zeros(1,dtype=float)		
-#		totTree.Branch(var,n[var],var+'/d')
-#	j=0
-#	print("Adding %s to merged tree",cleanedTree1)
-#    #todo: Combine the trees first, then check grab unique events IAR 10.Sep.2012
-#	for i in cleanedTree1:
-#			try:
-#				if var.find("weight")!=-1:
-#					n[var][0]=i.GetLeaf(var).GetValue() * i.GetLeaf("__CORR__").GetValue() * 1.25 #temp--reweigh sherpa samples
-#				else: 
-#					n[var][0]=i.GetLeaf(var).GetValue()
-#			except ReferenceError:
-##				svar=str(var)
-##				logging.error("Couldn't get %s",svar)
-#				continue
-#		totTree.Fill()
-#		j+=1
-#	tree1Events = {}
-#    #check for overlap within/between the trees
-#	for i in cleanedTree1:
-#		tree1Events[i.EVENT/i.met] = i
-#	tree2Events = {}
-#	for j in cleanedTree2:
-#		tree2Events[j.EVENT/j.met] = j
-#	tree2_not_tree1 = set(tree2Events.keys()) - set(tree1Events.keys())
-#	tree1_not_tree2 = set(tree1Events.keys()) - set(tree2Events.keys())
-#	#add these events to the totTree
-#	j=0
-#	print "Checking ",cleanedTree2.GetEntries(),"for overlap in",cleanedTree2
-#	print len(tree2_not_tree1),"in 2, not in 1"
-#	print len(tree1_not_tree2),"in 1, not in 2"
-#	print len(set(tree1Events.keys()).intersection(set(tree2Events.keys()))),"overlap"
-#	for i in cleanedTree2:
-#		#loop and make sure it's not used in mmee
-#		repeat=True
-#		if i.EVENT/i.met in tree2_not_tree1:
-#			repeat=False
-#		if (repeat==False):
-#			for var in vars:
-#				try:
-#					if var.find("weight")!=-1:
-#						n[var][0]=i.GetLeaf(var).GetValue() * i.GetLeaf("__CORR__").GetValue() * 1.25
-#					else:
-#						n[var][0]=i.GetLeaf(var).GetValue()
-#				except ReferenceError:
-#					svar=str(var)
-#					logging.error("Couldn't get %s",svar)
-#					continue
-#			totTree.Fill()
-#		j+=1
-#	print cleanedTree1.GetEntries(),cleanedTree2.GetEntries(),totTree.GetEntries()
-#	passing["eleEleMuMuTot"]=totTree.GetEntries()
     return totTree
 
 def filterTree(tree1,cuts1,tree2,cuts2,vars,name="eleEleMuMuEventTreeMerged"):
@@ -169,7 +127,7 @@ def filterTree(tree1,cuts1,tree2,cuts2,vars,name="eleEleMuMuEventTreeMerged"):
     totTree = TTree(name,name)
     n={}
     for var in vars:
-        n[var]=N.zeros(1,dtype=float)		
+        n[var]=N.zeros(1,dtype=float)
         totTree.Branch(var,n[var],var+'/d')
     j=0
     tree1Events = {}
