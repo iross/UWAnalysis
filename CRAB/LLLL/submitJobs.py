@@ -13,6 +13,7 @@ parser=argparse.ArgumentParser(description="%prog -- dump some analysis-level pl
 parser.add_argument("--tag",dest="tag",type=str,default="")
 parser.add_argument("--json",dest="json",type=str,default="datasets.json")
 parser.add_argument("--samples",dest="samples",nargs="+",type=str,default="")
+parser.add_argument("--resubmit-failed-jobs",dest="resubmit",action='store_true')
 args=parser.parse_args()
 
 file = open(args.json)
@@ -57,10 +58,15 @@ for dataset in datasets:
             f.close()
             runFile="DATA_{dataset}.py".format(dataset=dataset)
 
-        if datasets[dataset]['url'] == '':
-            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'])+runFile+'\n')
+        if (args.resubmit):
+            farmOpts=' --resubmit-failed-jobs '
         else:
-            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'])+runFile+'.py\n')
+            farmOpts=' --output-dag-file=/scratch/$USER/DAGs/{tag}/{dataset} '
+
+        if datasets[dataset]['url'] == '':
+            out.write('farmoutAnalysisJobs' + farmOpts + '--input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'])+runFile+'\n')
+        else:
+            out.write('farmoutAnalysisJobs' + farmOpts + '--input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'])+runFile+'.py\n')
 
 out.write("rm DATA*.py\n")
 out.write("rm MC.py\n")
