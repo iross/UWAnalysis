@@ -15,6 +15,7 @@
   <use   name="RecoEgamma/EgammaTools"/>
   <use   name="PhysicsTools/IsolationAlgos"/>
   <use   name="PhysicsTools/PatUtils"/>
+  <use   name="PhysicsTools/PatAlgos"/>
   <use   name="PhysicsTools/UtilAlgos"/>
   <use   name="PhysicsTools/Utilities"/>
   <use   name="SimGeneral/HepPDTRecord"/>
@@ -23,6 +24,7 @@
   <use   name="DataFormats/HepMCCandidate"/>
   <use   name="UWAnalysis/RecoTools"/>
   <use   name="UWAnalysis/DataFormats"/>
+  <use   name="ZZMatrixElement/MELA"/>
   <use   name="TauAnalysis/CandidateTools"/>
   <use   name="AnalysisDataFormats/TauAnalysis"/>
   <use   name="CommonTools/UtilAlgos"/>
