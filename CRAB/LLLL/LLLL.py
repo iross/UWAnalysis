@@ -15,7 +15,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
+            'file:/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012C_PromptReco_v2_Run201265_203755/patTuple_cfg-5A945CF2-41ED-E111-8A54-0030486730C6.root'
+#            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
 #            'file:/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-00CDF016-F499-E111-8EB7-001D09F290BF.root'
             ),
         inputCommands=cms.untracked.vstring(
@@ -32,7 +33,8 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu17_TkMu8",
             "HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
-            "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
+            "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
+            "HLT_Ele15_Ele8_Ele5_CaloIdL_TrkIdVL"
             ],
         EAtarget="2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         )
@@ -132,6 +134,6 @@ addEventSummary(process,True,'EEMT','eventSelectionEEMT')
 addEventSummary(process,True,'EEET','eventSelectionEEET')
 addEventSummary(process,True,'EETT','eventSelectionEETT')
 addEventSummary(process,True,'EEEM','eventSelectionEEEM')
-addEventSummary(process,True,'MM','eventSelectionEE')
-addEventSummary(process,True,'EE','eventSelectionMM')
+addEventSummary(process,True,'MM','eventSelectionMM')
+addEventSummary(process,True,'EE','eventSelectionEE')
 #addEventSummary(process,False,'EEES','eventSelectionEEES')
