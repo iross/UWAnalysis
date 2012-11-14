@@ -6,7 +6,7 @@
 #include <TTree.h>
 
 #include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
-#include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h" 
+#include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
 
 //
 // class decleration
@@ -31,10 +31,10 @@ class PUFiller : public NtupleFillerBase {
 
 
   ~PUFiller()
-    { 
+    {
 
     }
-       
+
 
   void fill(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   {
@@ -45,26 +45,26 @@ class PUFiller : public NtupleFillerBase {
 	  i!=PupInfo->end();++i) {
 	int BX = i->getBunchCrossing();
 	if(BX==-1) {
-	  value[0] =  i->getPU_NumInteractions(); 
+	  value[0] =  i->getPU_NumInteractions();
 	}
 	if(BX==0) {
-	  value[2] =  i->getPU_NumInteractions(); 
-	  value[1] =i->getTrueNumInteractions(); 
+	  value[2] =  i->getPU_NumInteractions();
+	  value[1] =i->getTrueNumInteractions();
 	}
 	if(BX==1) {
-	  value[4] =  i->getPU_NumInteractions(); 
+	  value[4] =  i->getPU_NumInteractions();
 	}
       }
     }
     else
       {
-	printf("PU Info not found\n");
+//	printf("PU Info not found\n");
       }
 
 
 
   }
-  
+
 
  protected:
   edm::InputTag src_;
