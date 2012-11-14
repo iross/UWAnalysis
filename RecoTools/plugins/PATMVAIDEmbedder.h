@@ -2,7 +2,7 @@
 //
 // Package:    PATMuonTrackVetoSelector
 // Class:      PATMuonTrackVetoSelector
-// 
+//
 /**\class PATMuonTrackVetoSelector PATMuonTrackVetoSelector.cc UWAnalysis/PATMuonTrackVetoSelector/src/PATMuonTrackVetoSelector.cc
 
 Description: <one line class summary>
@@ -106,7 +106,7 @@ class PATMVAIDEmbedder : public edm::EDProducer {
                 dummy = Vertex(p, e, 0, 0, 0);
             }
 
-            if(iEvent.getByLabel(src_,cands)) 
+            if(iEvent.getByLabel(src_,cands))
                 for(unsigned int  i=0;i!=cands->size();++i){
                     bool passID=false;
                     //loop over electrons, embed MVA values
@@ -116,7 +116,7 @@ class PATMVAIDEmbedder : public edm::EDProducer {
 
                     if (recalMVA_){
                         getValues(electron, *pv, thebuilder, false);
-                        mvaVal = myMVANonTrig.mvaValue( myMVAVar_fbrem, 
+                        mvaVal = myMVANonTrig.mvaValue( myMVAVar_fbrem,
                                 myMVAVar_kfchi2,
                                 myMVAVar_kfhits,
                                 myMVAVar_gsfchi2,
@@ -145,7 +145,7 @@ class PATMVAIDEmbedder : public edm::EDProducer {
                     if (electron.pt()>5 && electron.pt()<10){
                         if (fabs(electron.superCluster()->eta())<0.8) {
                             if (mvaVal>0.47) passID=true;
-                        } 
+                        }
                         else if (fabs(electron.superCluster()->eta())<1.479) {
                             if (mvaVal>0.004) passID=true;
                         }
@@ -167,6 +167,14 @@ class PATMVAIDEmbedder : public edm::EDProducer {
                         electron.addUserFloat(id_+"Pass",0.0);
                     if(recalMVA_)
                         electron.addUserFloat(id_+"Corrected",mvaVal);
+//                    std::cout << "Electron: " << electron.pt() << "\t" << electron.eta() << "\t" << electron.phi() << std::endl;
+//                    std::cout << "\tID\t" << electron.userFloat("mvaNonTrigV0Pass") << "\t" << electron.userFloat("ip3DS") << "\t" << electron.userFloat("ipDXY") << "\t" << electron.userFloat("dz") << std::endl;
+//                    std::cout << "\tID 2\t" << electron.gsfTrack()->trackerExpectedHitsInner().numberOfHits() << electron.charge() << std::endl;
+//                    std::cout << "\tISO\t" << (electron.chargedHadronIso()+electron.neutralHadronIso()+electron.photonIso()-electron.userFloat("zzRho2012")*electron.userFloat("effArea"))/electron.pt() << std::endl;
+//                    std::cout << "\tDEFAULT ISO\t" << electron.chargedHadronIso() << "\t" << electron.neutralHadronIso() << "\t" << electron.photonIso() << std::endl;
+//                    std::cout << "\tUSER ISO\t" << electron.userIso(0) << "\t" << electron.userIso(1) << "\t" << electron.userIso(2) << "\t" << electron.userIso(3) << "\t" << electron.userIso(4) << std::endl;
+//                    std::cout << "\tUSER ISO\t" << electron.userIso(5) << "\t" << electron.userIso(6) << "\t" << electron.userIso(7) << "\t" << electron.userIso(8) << "\t" << electron.userIso(9) << std::endl;
+//                    std::cout << "\tUSER ISO\t" << electron.userIso(10) << "\t" << electron.userIso(11) << "\t" << electron.userIso(12) << "\t" << electron.userIso(13) << "\t" << electron.userIso(14) << std::endl;
                     out->push_back(electron);
                 }
 
@@ -174,21 +182,21 @@ class PATMVAIDEmbedder : public edm::EDProducer {
         }
 
         void getValues(const pat::Electron& ele, const reco::Vertex& vertex, const TransientTrackBuilder& transientTrackBuilder, bool printDebug=false){
-            bool validKF= false; 
+            bool validKF= false;
             reco::TrackRef myTrackRef = ele.closestCtfTrackRef();
             validKF = (myTrackRef.isAvailable());
-            validKF = (myTrackRef.isNonnull());  
+            validKF = (myTrackRef.isNonnull());
 
             myMVAVar_fbrem           =  ele.fbrem();
             myMVAVar_kfchi2          =  (validKF) ? myTrackRef->normalizedChi2() : 0 ;
-            myMVAVar_kfhits          =  (validKF) ? myTrackRef->hitPattern().trackerLayersWithMeasurement() : -1. ; 
-            myMVAVar_gsfchi2         =  ele.gsfTrack()->normalizedChi2();  // to be checked 
+            myMVAVar_kfhits          =  (validKF) ? myTrackRef->hitPattern().trackerLayersWithMeasurement() : -1. ;
+            myMVAVar_gsfchi2         =  ele.gsfTrack()->normalizedChi2();  // to be checked
 
 
             myMVAVar_deta            =  ele.deltaEtaSuperClusterTrackAtVtx();
             myMVAVar_dphi            =  ele.deltaPhiSuperClusterTrackAtVtx();
             myMVAVar_detacalo        =  ele.deltaEtaSeedClusterTrackAtCalo();
-            myMVAVar_dphicalo        =  ele.deltaPhiSeedClusterTrackAtCalo();   
+            myMVAVar_dphicalo        =  ele.deltaPhiSeedClusterTrackAtCalo();
 
             myMVAVar_see             =  ele.sigmaIetaIeta();    //EleSigmaIEtaIEta
             //            std::vector<float> vCov = myEcalCluster.localCovariances(*(ele.superCluster()->seed())) ;
@@ -211,58 +219,58 @@ class PATMVAIDEmbedder : public edm::EDProducer {
             myMVAVar_PreShowerOverRaw=  ele.superCluster()->preshowerEnergy() / ele.superCluster()->rawEnergy();
 
 
-            myMVAVar_eta             =  ele.superCluster()->eta();         
-            myMVAVar_pt              =  ele.pt();                  
+            myMVAVar_eta             =  ele.superCluster()->eta();
+            myMVAVar_pt              =  ele.pt();
             //d0
             if (ele.gsfTrack().isNonnull()) {
-                myMVAVar_d0 = (-1.0)*ele.gsfTrack()->dxy(vertex.position()); 
+                myMVAVar_d0 = (-1.0)*ele.gsfTrack()->dxy(vertex.position());
             } else if (ele.closestCtfTrackRef().isNonnull()) {
-                myMVAVar_d0 = (-1.0)*ele.closestCtfTrackRef()->dxy(vertex.position()); 
+                myMVAVar_d0 = (-1.0)*ele.closestCtfTrackRef()->dxy(vertex.position());
             } else {
                 myMVAVar_d0 = -9999.0;
             }
 
             //default values for IP3D
-            myMVAVar_ip3d = -999.0; 
+            myMVAVar_ip3d = -999.0;
             // myMVAVar_ip3dSig = 0.0;
             if (ele.gsfTrack().isNonnull()) {
                 const double gsfsign   = ( (-ele.gsfTrack()->dxy(vertex.position()))   >=0 ) ? 1. : -1.;
 
-                const reco::TransientTrack &tt = transientTrackBuilder.build(ele.gsfTrack()); 
+                const reco::TransientTrack &tt = transientTrackBuilder.build(ele.gsfTrack());
                 const std::pair<bool,Measurement1D> &ip3dpv =  IPTools::absoluteImpactParameter3D(tt,vertex);
                 if (ip3dpv.first) {
                     double ip3d = gsfsign*ip3dpv.second.value();
-                    //double ip3derr = ip3dpv.second.error();  
-                    myMVAVar_ip3d = ip3d; 
+                    //double ip3derr = ip3dpv.second.error();
+                    myMVAVar_ip3d = ip3d;
                     // myMVAVar_ip3dSig = ip3d/ip3derr;
                 }
             }
             if(printDebug) {
-                cout << " My Local Variables " << endl; 
-                cout << " fbrem " <<  myMVAVar_fbrem  
-                    << " kfchi2 " << myMVAVar_kfchi2  
-                    << " mykfhits " << myMVAVar_kfhits  
-                    << " gsfchi2 " << myMVAVar_gsfchi2  
-                    << " deta " <<  myMVAVar_deta  
-                    << " dphi " << myMVAVar_dphi  
-                    << " detacalo " << myMVAVar_detacalo  
-                    << " dphicalo " << myMVAVar_dphicalo  
-                    << " see " << myMVAVar_see  
-                    << " spp " << myMVAVar_spp  
-                    << " etawidth " << myMVAVar_etawidth  
-                    << " phiwidth " << myMVAVar_phiwidth  
-                    << " e1x5e5x5 " << myMVAVar_e1x5e5x5  
-                    << " R9 " << myMVAVar_R9  
-                    << " mynbrems " << myMVAVar_nbrems  
-                    << " HoE " << myMVAVar_HoE  
-                    << " EoP " << myMVAVar_EoP  
-                    << " IoEmIoP " << myMVAVar_IoEmIoP  
-                    << " eleEoPout " << myMVAVar_eleEoPout  
-                    << " EoPout " << myMVAVar_EoPout  
-                    << " PreShowerOverRaw " << myMVAVar_PreShowerOverRaw  
-                    << " d0 " << myMVAVar_d0  
-                    << " ip3d " << myMVAVar_ip3d  
-                    << " eta " << myMVAVar_eta  
+                cout << " My Local Variables " << endl;
+                cout << " fbrem " <<  myMVAVar_fbrem
+                    << " kfchi2 " << myMVAVar_kfchi2
+                    << " mykfhits " << myMVAVar_kfhits
+                    << " gsfchi2 " << myMVAVar_gsfchi2
+                    << " deta " <<  myMVAVar_deta
+                    << " dphi " << myMVAVar_dphi
+                    << " detacalo " << myMVAVar_detacalo
+                    << " dphicalo " << myMVAVar_dphicalo
+                    << " see " << myMVAVar_see
+                    << " spp " << myMVAVar_spp
+                    << " etawidth " << myMVAVar_etawidth
+                    << " phiwidth " << myMVAVar_phiwidth
+                    << " e1x5e5x5 " << myMVAVar_e1x5e5x5
+                    << " R9 " << myMVAVar_R9
+                    << " mynbrems " << myMVAVar_nbrems
+                    << " HoE " << myMVAVar_HoE
+                    << " EoP " << myMVAVar_EoP
+                    << " IoEmIoP " << myMVAVar_IoEmIoP
+                    << " eleEoPout " << myMVAVar_eleEoPout
+                    << " EoPout " << myMVAVar_EoPout
+                    << " PreShowerOverRaw " << myMVAVar_PreShowerOverRaw
+                    << " d0 " << myMVAVar_d0
+                    << " ip3d " << myMVAVar_ip3d
+                    << " eta " << myMVAVar_eta
                     << " pt " << myMVAVar_pt << endl;
             }
         }
