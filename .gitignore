@@ -27,3 +27,7 @@
 aTGCRooStats/run_*
 aTGCRooStats/root_*
 multicrab_*
+
+mergeJobs.sh
+submitJobs.sh
+.todo
