@@ -201,10 +201,17 @@
 },
 "DYJets":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/",
+    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball",
     "url" : "",
     "xsection" : 3503.71,
     "note_" : ""
+},
+"TTbar":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/TTJets_MassiveBinDECAY_TuneZ2star_8TeV-madgraph-tauola",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
 },
 "ggH115" :
 {
