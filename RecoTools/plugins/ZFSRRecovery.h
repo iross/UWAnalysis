@@ -29,7 +29,7 @@
 #include <string>
 
 template<typename T1>
-class ZFSRRecovery : public edm::EDProducer 
+class ZFSRRecovery : public edm::EDProducer
 {
     typedef edm::Ptr<T1> T1Ptr;
 
@@ -43,6 +43,7 @@ class ZFSRRecovery : public edm::EDProducer
         eSrc_ = cfg.getParameter<edm::InputTag>("eSrc");
         mSrc_ = cfg.getParameter<edm::InputTag>("mSrc");
         gSrc_ = cfg.getParameter<edm::InputTag>("gSrc");
+        passThrough_ = cfg.getParameter<bool>("passThrough");
 
         produces<CompositePtrCandidateCollection>("");
     }
@@ -81,23 +82,23 @@ class ZFSRRecovery : public edm::EDProducer
                     if (electrons->at(i).userFloat("mvaNonTrigV0Pass")>0 && electrons->at(i).pt()>7 && fabs(electrons->at(i).eta())<2.5 && fabs(electrons->at(i).userFloat("ip3DS"))<4){
                         if ((fabs(electrons->at(i).phi()-photons->at(j).phi()) < 2.0 && fabs(electrons->at(i).eta()-photons->at(j).eta())<0.05) || deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi())<0.15){
                             scOL=true;
-                        } 
+                        }
                     } else continue;
                 }
-                if (!scOL) { 
+                if (!scOL) {
                     for (unsigned int i = 0; i < electrons->size(); ++i) {
                         if (electrons->at(i).userFloat("mvaNonTrigV0Pass")>0 && electrons->at(i).pt()>7 && fabs(electrons->at(i).eta())<2.5 && abs(electrons->at(i).userFloat("ip3DS"))<4){
                             if (deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
-                                mindR=deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());   
+                                mindR=deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
                                 lepPt=electrons->at(i).pt();
                                 eleMatch=true;
                             }
                         }
-                    }                                                           
+                    }
                     for (unsigned int i = 0; i < muons->size(); ++i) {
                         if ((muons->at(i).isTrackerMuon() || muons->at(i).isGlobalMuon()) && muons->at(i).pfCandidateRef().isNonnull()){
                             if (deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
-                                mindR=deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());   
+                                mindR=deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
                                 lepPt=muons->at(i).pt();
                                 muMatch=true;
                             }
@@ -135,6 +136,7 @@ class ZFSRRecovery : public edm::EDProducer
             double leg1iso=newColl->at(i).leg1()->photonIso();
             double leg2iso=newColl->at(i).leg2()->photonIso();
             newColl->at(i).setFSRVariables(-999.0, -999.0, -999.0, -999.0, -999.0, newColl->at(i).p4(), leg1iso, leg2iso);
+//            if (passThrough_) continue; //embed the leg1/leg2iso without attempting any photon recovery
             bool fixed=false;
             for (unsigned int j = 0; j < goodPhotons.size(); ++j) {
                 double newM = (newColl->at(i).p4() + goodPhotons.at(j).p4()).M();
@@ -162,6 +164,7 @@ class ZFSRRecovery : public edm::EDProducer
     edm::InputTag eSrc_;
     edm::InputTag mSrc_;
     edm::InputTag gSrc_;
+    bool passThrough_;
 
 };
 

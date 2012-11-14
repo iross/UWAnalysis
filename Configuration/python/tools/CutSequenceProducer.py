@@ -433,12 +433,13 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,counterName,counter)
                    self.sequence*=counter
 
-    def addFSRRecovery(self,moduleName,moduleType,src,gsrc,esrc="cleanPatElectrons",msrc="cleanPatMuons",text='',min = 1,max=1000):
+    def addFSRRecovery(self,moduleName,moduleType,src,gsrc,esrc="cleanPatElectrons",msrc="cleanPatMuons",text='',min = 1,max=1000,passThrough=False):
                recovered  = cms.EDProducer(moduleType)
                recovered.src  = cms.InputTag(src)
                recovered.gSrc  = cms.InputTag(gsrc)
                recovered.eSrc  = cms.InputTag(esrc)
                recovered.mSrc  = cms.InputTag(msrc)
+               recovered.passThrough = cms.bool(passThrough)
                pyModule = sys.modules[self.pyModuleName[0]]
                if pyModule is None:
                  raise ValueError("'pyModuleName' Parameter invalid")
@@ -1110,7 +1111,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
             raise ValueError("'pyModuleName' Parameter invalid")
         setattr(pyModule,moduleName,hltSkimmer)
         self.sequence*=hltSkimmer
-        
+
         if summaryText is not '':
             counter  = cms.EDProducer("EventCounter")
             counter.name=cms.string(summaryText)
