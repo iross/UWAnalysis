@@ -251,9 +251,9 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
 
     process.analysisSequence*=process.looseMu*process.goodPatMuons+process.eaElectrons*process.mvaedElectrons*process.calibratedPatElectrons+process.llttElectrons+process.llttTaus
 
-    process.analysisSequence*=process.pfPileUp*process.pfPileUpIso+process.pfNoPileUp*process.pfNoPileUpIso
+#    process.analysisSequence*=process.pfPileUp*process.pfPileUpIso+process.pfNoPileUp*process.pfNoPileUpIso
 
-    process.analysisSequence*=process.fsrPhotonPFIsoChHad04+process.fsrPhotonPFIsoChHad04pt02+process.fsrPhotonPFIsoNHad04+process.fsrPhotonPFIsoPhoton04+process.fsrPhotonPFIsoChHadPU04+process.fsrPhotonPFIsoChHadPU04pt02+process.fsrPhotonPFIsoChHad03+process.fsrPhotonPFIsoChHad03pt02+process.fsrPhotonPFIsoNHad03+process.fsrPhotonPFIsoPhoton03+process.fsrPhotonPFIsoChHadPU03+process.fsrPhotonPFIsoChHadPU03pt02+process.boostedFsrPhotonsTest
+#    process.analysisSequence*=process.fsrPhotonPFIsoChHad04+process.fsrPhotonPFIsoChHad04pt02+process.fsrPhotonPFIsoNHad04+process.fsrPhotonPFIsoPhoton04+process.fsrPhotonPFIsoChHadPU04+process.fsrPhotonPFIsoChHadPU04pt02+process.fsrPhotonPFIsoChHad03+process.fsrPhotonPFIsoChHad03pt02+process.fsrPhotonPFIsoNHad03+process.fsrPhotonPFIsoPhoton03+process.fsrPhotonPFIsoChHadPU03+process.fsrPhotonPFIsoChHadPU03pt02+process.boostedFsrPhotonsTest
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
