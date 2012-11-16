@@ -20,7 +20,7 @@ Development is being done on the way the ntuples are structured. As of 2012-09-1
 
 Submitting Jobs
 ---------------
-CRAB job submission and retrieval scripts are produced via the CRAB/Z[ZH]/submitJobs.py and CRAB/Z[ZH]/mergeJobs.py scripts. The datasets.json file is used to define the datasets of interest (and some of their properties). todo: explain JSON
+CRAB job submission and retrieval scripts are produced via the CRAB/[ZH,LLLL]/submitJobs.py and CRAB/[ZH,LLLL]/mergeJobs.py scripts. The datasets.json file is used to define the datasets of interest (and some of their properties). todo: explain JSON
 
 To create the jobs:
 
