@@ -43,7 +43,7 @@ defaultAnalysisPath(process,'HLT',
         )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_2012_loose_cff")
+process.load("UWAnalysis.Configuration.zzLLLL_2012_cff")
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
 process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
