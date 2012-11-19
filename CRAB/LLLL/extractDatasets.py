@@ -53,6 +53,8 @@ comment = re.compile("^\s*\#")
 
 patString = patFile.read()
 
+notFound = []
+
 for line in inFile:
 
     dataMatch = dataRE.match(line)
@@ -87,6 +89,8 @@ for line in inFile:
     # extract the patTuple paths
     samplePaths = findPath(patString, sampleName)
 
+    if len(samplePaths) == 0:
+        notFound.append(sampleName)
 
     # Store the information into a python map
     if len(samplePaths) == 1:
@@ -110,6 +114,11 @@ for line in inFile:
                                   "xsection" : xsection,
                                   "note_" : ""
                                   }
+
+if len(notFound) > 0:
+    print "PAT-Tuples not found:"
+    for i in notFound:
+        print i
 
 # Run the map through the JSON parser, and write to file
 outFile.write(json.dumps(datasets,indent=4))
