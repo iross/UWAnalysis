@@ -1,7 +1,7 @@
 {
 "DoubleMu2012A":{
     "type" : "DATA",
-        "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleMu_Run2012A_13Jul2012_v1",
+        "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012A_13Jul2012_v1",
         "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
         "url" : "",
         "xsection" : 0.0,
@@ -9,7 +9,7 @@
 },
 "DoubleMu2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleMu_Run2012A_recover_06Aug2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012A_recover_06Aug2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -17,7 +17,7 @@
 },
 "DoubleMu2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleMu_Run2012B_13Jul2012_v4",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012B_13Jul2012_v4",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -25,7 +25,7 @@
 },
 "DoubleMu2012C_v1":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleMu_Run2012C_PromptReco_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012C_PromptReco_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -33,7 +33,7 @@
 },
 "DoubleMu2012C_v2a":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleMu_Run2012C_PromptReco_v2_Run198934_201264",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012C_PromptReco_v2_Run198934_201264",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -41,7 +41,7 @@
 },
 "DoubleMu2012C_v2b":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleMu_Run2012C_PromptReco_v2_Run201265_203755",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012C_PromptReco_v2_Run201265_203755",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -49,7 +49,7 @@
 },
 "DoubleElectron2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012A_13Jul2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleElectron_Run2012A_13Jul2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -57,7 +57,7 @@
 },
 "DoubleElectron2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012A_recover_06Aug2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleElectron_Run2012A_recover_06Aug2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -65,7 +65,7 @@
 },
 "DoubleElectron2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012B_13Jul2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleElectron_Run2012B_13Jul2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -73,7 +73,7 @@
 },
 "DoubleElectron2012C_v1":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012C_PromptReco_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleElectron_Run2012C_PromptReco_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -81,7 +81,7 @@
 },
 "DoubleElectron2012C_v2a":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012C_PromptReco_v2_Run198934_201264",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleElectron_Run2012C_PromptReco_v2_Run198934_201264",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -89,7 +89,7 @@
 },
 "DoubleElectron2012C_v2b":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_DoubleElectron_Run2012C_PromptReco_v2_Run201265_203755",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleElectron_Run2012C_PromptReco_v2_Run201265_203755",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -97,7 +97,7 @@
 },
 "MuEG2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_MuEG_Run2012A_13Jul2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_MuEG_Run2012A_13Jul2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -105,7 +105,7 @@
 },
 "MuEG2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_MuEG_Run2012A_recover_06Aug2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_MuEG_Run2012A_recover_06Aug2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -113,7 +113,7 @@
 },
 "MuEG2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_MuEG_Run2012B_13Jul2012_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_MuEG_Run2012B_13Jul2012_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -121,7 +121,7 @@
 },
 "MuEG2012C_v1":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_MuEG_Run2012C_PromptReco_v1",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_MuEG_Run2012C_PromptReco_v1",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -129,7 +129,7 @@
 },
 "MuEG2012C_v2a":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_MuEG_Run2012C_PromptReco_v2_Run198934_201264",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_MuEG_Run2012C_PromptReco_v2_Run198934_201264",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -137,7 +137,7 @@
 },
 "MuEG2012C_v2b":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/data_MuEG_Run2012C_PromptReco_v2_Run201265_203755",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_MuEG_Run2012C_PromptReco_v2_Run201265_203755",
     "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
     "url" : "",
     "xsection" : 0.0,
@@ -145,42 +145,42 @@
 },
 "ZZ2E2M":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2mu_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2e2mu_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
 },
 "ZZ4E":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo4e_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4e_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.07691,
     "note_" : ""
 },
 "ZZ4M":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo4mu_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.07691,
     "note_" : ""
 },
 "ZZ4T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo4tau_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4tau_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.07691,
     "note_" : ""
 },
 "ZZ2M2T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2mu2tau_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2mu2tau_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
 },
 "ZZ2E2T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2tau_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2e2tau_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
@@ -199,19 +199,19 @@
     "xsection" : 0.00418,
     "_note" : "assumed cross-section is 1.2x last year's gg sample"
 },
-"DYJets":{
+"f4_0p000_0p000":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball",
-    "url" : "",
-    "xsection" : 3503.71,
-    "note_" : ""
-},
-"TTbar":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/TTJets_MassiveBinDECAY_TuneZ2star_8TeV-madgraph-tauola",
+    "path" : "/hdfs/store/user/iross/SHERPA_testPatTuple",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
+    },
+"DYJets":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/",
+    "url" : "",
+    "xsection" : 3503.71,
+    "note_" : ""
 },
 "ggH115" :
 {
