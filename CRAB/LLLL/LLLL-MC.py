@@ -21,8 +21,8 @@ process.source = cms.Source("PoolSource",
 #'file:/scratch/iross/gg125_sync_noSkim.root'
 #'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
 #'file:/scratch/iross/eeeeMysteries_patTuple.root'
-#'file:/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2mu_8TeV-powheg-pythia6/patTuple_cfg-E6FECB8F-DDEE-E111-9AE6-1CC1DE1D16AA.root'
-'file:/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball/3/patTuple_cfg-840D9B31-6DD3-E111-B578-001E67397D91.root'
+#'file:/hdfs/store/user/iross/SHERPA_testPatTuple/f4_0p000_0p000/patTuple_cfg-REDIGI_RAW2DIGI_L1Reco_RECO_156_1_94m.root'
+'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4e_8TeV-powheg-pythia6/patTuple_cfg-600833F3-5CF9-E111-B44B-0017A4770430.root'
 #'file:/scratch/iross/testwFSR_2.root',
 #'file:/scratch/iross/zz4l_sync_summer12_vetoChargedOnlyEndcap.root'
 #		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
