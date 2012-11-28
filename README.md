@@ -1,5 +1,8 @@
 UWAnalysis, ZZ version
 ======================
+About this branch
+-----------------
+The 'cleanup' branch is an attempt to pull 53x + 42x releases together while getting rid of loads of unnecessary junk
 
 Quickstart recipe
 -----------------
