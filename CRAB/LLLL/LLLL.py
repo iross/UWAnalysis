@@ -4,7 +4,7 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'GR_R_52_V8::All'
+process.GlobalTag.globaltag = 'FT_R_42_V24::All'
 
 process.maxEvents = cms.untracked.PSet(
         input = cms.untracked.int32(2000)
@@ -15,13 +15,7 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-#            'file:/hdfs/store/user/iross/DoubleMu/data_DoubleMu_Run2012B_PromptReco_v1_a_2012-06-08-8TeV-PatTuple-data-4495432/c7a1c2223886075833473549ad1960ce/output_86_1_JSc.root'
-#            'file:/hdfs/store/user/iross/DoubleElectron/data_DoubleElectron_Run2012B_PromptReco_v1_a_2012-06-08-8TeV-PatTuple-data-4495432/c7a1c2223886075833473549ad1960ce/output_8_2_736.root'
-#            'file:/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-DAF9D1BD-8F97-E111-A628-BCAEC5329709.root'
-#            'file:/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/1/patTuple_cfg-00CDF016-F499-E111-8EB7-001D09F290BF.root'
-'file:/scratch/iross/seriosly.root',
-'file:/scratch/iross/seriosly_2.root',
-#'file:/scratch/iross/muEG2012EventFSR.root'
+            'file:/hdfs/store/user/tapas/2012-11-04-7TeV-42X-PatTuple_HCP2012/data_DoubleElectron_Run2011A_16Jan2012_v1/patTuple_cfg-7E641CE1-7044-E111-B939-002618943978.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -39,11 +33,11 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
-        EAtarget="2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        EAtarget="2011Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_2012_loose_cff")
+process.load("UWAnalysis.Configuration.zzLLLL_HCP_7TeV_cff")
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
 process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
