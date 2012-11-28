@@ -22,14 +22,16 @@ cvs co -r bMinimalSVfit_2012May13 TauAnalysis/CandidateTools
 
 cvs co -r V08-03-15 PhysicsTools/Utilities
 
-# Get MVA vars in my electrons
+# PAT RECIPE V08-06-58 IAR 27.Sep.2012
 addpkg DataFormats/PatCandidates  V06-04-19-05
+addpkg PhysicsTools/PatAlgos V08-06-58
+addpkg PhysicsTools/PatUtils V03-09-18
+addpkg CommonTools/ParticleFlow B4_2_X_V00-03-05
+addpkg PhysicsTools/SelectorUtils V00-03-24
+addpkg PhysicsTools/UtilAlgos V08-02-14 
 
 #to compile our limit package
 cvs co  -r Michalis_THKeys_111103 HiggsAnalysis/CombinedLimit
-
-#electron e corrections
-cvs co -r ICHEP2012_V03 -d EgammaCalibratedGsfElectrons UserCode/EGamma/EgammaCalibratedGsfElectrons
 
 #get the stuff for recalculating the electron MVAs, if necessary
 cvs co -r V00-00-08 -d EGamma/EGammaAnalysisTools UserCode/EGamma/EGammaAnalysisTools
@@ -43,6 +45,11 @@ cvs up -r 1.3 EGamma/EGammaAnalysisTools/interface/ElectronEffectiveArea.h
 cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTools 
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
+
+# MELA
+cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
+
+#todo: ghost muon cleaning recipe, ???
 
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
