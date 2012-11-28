@@ -18,6 +18,13 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
+                tag        = cms.string("rapidity"),
+                method     = cms.string("rapidity()"),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
                 tag        = cms.string("pt"),
                 method     = cms.string("pt()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
@@ -42,6 +49,20 @@ def zzCommon(src,pluginType,leadOnly=True):
                 tag        = cms.string("z2Mass"),
                 method     = cms.string("leg2.mass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("bestZmass"),
+                method     = cms.string("bestZmass()"),
+                leadingOnly= cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("subBestZmass"),
+                method     = cms.string("subBestZmass()"),
+                leadingOnly= cms.untracked.bool(leadOnly)
                 ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
@@ -160,6 +181,69 @@ def zzCommon(src,pluginType,leadOnly=True):
                 src        = cms.InputTag(src),
                 tag        = cms.string("M34"),
                 method     = cms.string("invM34()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("kd"),
+                method     = cms.string("kd()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("psig"),
+                method     = cms.string("psig()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("pbkg"),
+                method     = cms.string("pbkg()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("kdPS"),
+                method     = cms.string("kdPS()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("psigPS"),
+                method     = cms.string("psigPS()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("pbkg"),
+                method     = cms.string("pbkg()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("kdS2M"),
+                method     = cms.string("kdS2M()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("psigS2M"),
+                method     = cms.string("psigS2M()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("pbkg"),
+                method     = cms.string("pbkg()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
                 ),
             cms.PSet(
@@ -579,13 +663,13 @@ def genCommon(src,pluginType,leadOnly=True):
 
 def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=True):
     sharedV = cms.VPSet(
-#        cms.PSet(
-#            pluginType = cms.string(pluginType+"JetCountFiller"),
-#            src        = cms.InputTag(src),
-#            tag        = cms.string("jetsPt20"),
-#            method     = cms.string('pt()>20'),
-#            leadingOnly=cms.untracked.bool(leadOnly)
-#        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType+"JetCountFiller"),
+            src        = cms.InputTag(src),
+            tag        = cms.string("jetsPt20"),
+            method     = cms.string('pt()>20'),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
 #       cms.PSet(
 #           pluginType = cms.string(pluginType+"JetCountFillerOL"),
 #           src        = cms.InputTag(src),
@@ -600,20 +684,20 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
 #           method     = cms.string('pt()>20&&bDiscriminator("")>3.3&&abs(eta)<2.4'),
 #           leadingOnly=cms.untracked.bool(leadOnly)
 #       ),
-#        cms.PSet(
-#            pluginType = cms.string(pluginType+"JetCountFiller"),
-#            src        = cms.InputTag(src),
-#            tag        = cms.string("jetsPt20bLoose"),
-#            method     = cms.string('pt()>20&&bDiscriminator("")>1.7&&abs(eta)<2.4'),
-#            leadingOnly=cms.untracked.bool(leadOnly)
-#        ),
-#        cms.PSet(
-#            pluginType = cms.string(pluginType+"JetCountFiller"),
-#            src        = cms.InputTag(src),
-#            tag        = cms.string("jetsPt20bMed"),
-#            method     = cms.string('pt()>20&&bDiscriminator("")>3.3&&abs(eta)<2.4'),
-#            leadingOnly=cms.untracked.bool(leadOnly)
-#        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType+"JetCountFiller"),
+            src        = cms.InputTag(src),
+            tag        = cms.string("jetsPt20bLoose"),
+            method     = cms.string('pt()>20&&bDiscriminator("")>1.7&&abs(eta)<2.4'),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType+"JetCountFiller"),
+            src        = cms.InputTag(src),
+            tag        = cms.string("jetsPt20bMed"),
+            method     = cms.string('pt()>20&&bDiscriminator("")>3.3&&abs(eta)<2.4'),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
         cms.PSet(
             pluginType = cms.string("CollectionSizeFiller"),
             src        = cms.InputTag(src),

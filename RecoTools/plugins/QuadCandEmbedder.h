@@ -154,10 +154,6 @@ class QuadCandEmbedder : public edm::EDProducer {
                     subBestZmass = z1mass;
                 }
                 out->at(i).setBestZmasses(bestZmass, subBestZmass);
-                std::cout << out->at(i).leg1()->leg1()->pt() << std::endl;
-                std::cout << out->at(i).leg1()->leg2()->pt() << std::endl;
-                std::cout << out->at(i).leg2()->leg1()->pt() << std::endl;
-                std::cout << out->at(i).leg2()->leg2()->pt() << std::endl;
             }
             iEvent.put(out);
 
