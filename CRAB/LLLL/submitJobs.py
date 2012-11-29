@@ -51,11 +51,12 @@ for dataset in datasets:
             print dataset
             subprocess.call("cat LLLL.py > DATA_{dataset}.py".format(dataset=dataset),shell=True)
             subprocess.call("cat CONDOR.py >> DATA_{dataset}.py".format(dataset=dataset),shell=True)
-            lumis=getLumis(datasets[dataset]['json'])
-            f=open("DATA_{dataset}.py".format(dataset=dataset),"a+b")
-            f.write(lumis)
-            f.close()
-            runFile="DATA_{dataset}.py".format(dataset=dataset)
+            if 'json' in datasets[dataset]:
+                lumis=getLumis(datasets[dataset]['json'])
+                f=open("DATA_{dataset}.py".format(dataset=dataset),"a+b")
+                f.write(lumis)
+                f.close()
+                runFile="DATA_{dataset}.py".format(dataset=dataset)
 
         if datasets[dataset]['url'] == '':
             out.write('farmoutAnalysisJobs --skip-existing-output --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'])+runFile+'\n')
