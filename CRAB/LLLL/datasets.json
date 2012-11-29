@@ -1,144 +1,289 @@
 {
-"DoubleMu2012A":{
+"DoubleElectron2011A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012A_PromptReco_v1_Run190456_193683/",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
+    "path" : "/hdfs/store/user/tapas/2012-11-04-7TeV-42X-PatTuple_HCP2012/data_DoubleElectron_Run2011A_16Jan2012_v1",
     "url" : "",
-    "xsection" : 0.0,
-    "note_" : ""
-    },
-"DoubleMu2012B":{
-    "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_DoubleMu_Run2012B_PromptReco_v1_Run193752_196531/",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
-    "url" : "",
-    "xsection" : 0.0,
-    "note_" : ""
-    },
-"DoubleMu2012C":{
-    "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleMu_Run2012C_PromptReco_v2_Run198934_201264",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
-    "url" : "",
-    "xsection" : 0.0,
+    "xsection" : ,
     "notes_" : ""
     },
-"DoubleElectron2012A":{
+"DoubleElectron2011B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012A_PromptReco_v1_Run190456_193683/",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/data_DoubleElectron_Run2011B_16Jan2012_v1",
     "url" : "",
-    "xsection" : 0.0,
-    "note_" : ""
-    },
-"DoubleElectron2012B":{
-    "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-25-8TeV-PatTuple/data_DoubleElectron_Run2012B_PromptReco_v1_Run193752_196531/",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
-    "url" : "",
-    "xsection" : 0.0,
-    "note_" : ""
-    },
-"DoubleElectron2012C":{
-    "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_DoubleElectron_Run2012C_PromptReco_v2_Run198934_201264",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
-    "url" : "",
-    "xsection" : 0.0,
+    "xsection" : ,
     "notes_" : ""
     },
-"MuEG2012A":{
+"DoubleMu2011A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012A_PromptReco_v1_Run190456_193683/",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
+    "path" : "...",
     "url" : "",
-    "xsection" : 0.0,
-    "note_" : ""
-    },
-"MuEG2012B":{
-    "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-07-18-8TeV-PatTuple/data_MuEG_Run2012B_PromptReco_v1_Run193752_196531/",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
-    "url" : "",
-    "xsection" : 0.0,
-    "note_" : ""
-    },
-"MuEG2012C":{
-    "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-08-30-8TeV-PatTuple/data_MuEG_Run2012C_PromptReco_v2_Run198934_201264",
-    "json" : "Cert_190456-201678_8TeV_PromptReco_Collisions12_JSON.txt",
-    "url" : "",
-    "xsection" : 0.0,
+    "xsection" : ,
     "notes_" : ""
     },
-"ZZ2E2M":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/ZZTo2e2mu_8TeV-powheg-pythia6/ZZ2E2M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/",
+"DoubleMu2011B":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/data_DoubleMu_Run2011B_16Jan2012_v1",
     "url" : "",
-    "xsection" : 0.07691,
-    "note_" : ""
+    "xsection" : ,
+    "notes_" : ""
     },
-"ZZ4E":{
+"ZZ2e2mu":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/ZZTo4e_8TeV-powheg-pythia6/ZZ4E_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo2e2mu_powheg_v2",
     "url" : "",
-    "xsection" : 0.1767,
-    "note_" : ""
+    "xsection" : 0.03067,
+    "notes_" : ""
     },
-"ZZ4M":{
+"ZZ2e2tau":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo2e2tau_powheg_v2",
     "url" : "",
-    "xsection" : 0.1767,
-    "note_" : ""
+    "xsection" : 0.03067,
+    "notes_" : ""
     },
-"ZZ4T":{
+"ZZ2mu2tau":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/ZZTo4tau_8TeV-powheg-pythia6/ZZ4T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo2mu2tau_powheg_v2",
     "url" : "",
-    "xsection" : 0.1767,
-    "note_" : ""
+    "xsection" : 0.03067,
+    "notes_" : ""
     },
-"ZZ2M2T":{
+"ZZ4e":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/ZZTo2mu2tau_8TeV-powheg-pythia6/ZZ2M2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo4e_powheg_v2",
     "url" : "",
-    "xsection" : 0.07691,
-    "note_" : ""
+    "xsection" : 0.01386,
+    "notes_" : ""
     },
-"ZZ2E2T":{
+"ZZ4mu":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/ZZTo2e2tau_8TeV-powheg-pythia6/ZZ2E2T_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/342e9f1a0246ed141644c1a3c0e96147",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo4mu_powheg_v2",
     "url" : "",
-    "xsection" : 0.07691,
-    "note_" : ""
+    "xsection" : 0.01386,
+    "notes_" : ""
+    },
+"ZZ4tau":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo4tau_powheg_v2",
+    "url" : "",
+    "xsection" : 0.01386,
+    "notes_" : ""
     },
 "ggZZ4L":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/GluGluToZZTo4L_8TeV-gg2zz-pythia6/ggZZ4L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/GluGluToZZTo4L",
     "url" : "",
-    "xsection" : 0.0028,
-    "_note" : "assumed cross-section is 1.2x last year's gg sample"
+    "xsection" : 0.00174,
+    "_note" : ""
     },
 "ggZZ2L2L":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/ggZZ2L2L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/GluGluToZZTo4L",
     "url" : "",
-    "xsection" : 0.00418,
-    "_note" : "assumed cross-section is 1.2x last year's gg sample"
+    "xsection" : 0.00348,
+    "_note" : ""
     },
 "DYJets":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/Zjets_M50",
     "url" : "",
     "xsection" : 3503.71,
     "note_" : ""
     },
-"ggH125":{
+"ggH115":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/GGH_HZZ4L_M-125_2012-07-31-h125-201db65/47d9ccf645ca347c59079ac6ca6f1e25",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_115",
     "url" : "",
-    "xsection" : 0.0062775,
-    "note_" : "#scale column CI from yellow report by 9/4 for full Higgs->ZZ->4l"
-    }
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH120":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_120",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH130":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_130",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH140":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_140",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH150":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_150",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH160":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_160",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH170":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_170",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH180":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_180",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH190":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_190",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH200":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_200",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH210":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_210",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH220":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_220",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH230":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_230",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH250":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_250",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH275":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_275",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH300":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_300",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH325":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_325",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH350":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_350",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH375":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_375",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH400":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_400",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH425":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_425",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH450":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_450",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH475":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_475",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH500":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_500",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH525":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_525",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH550":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_550",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH575":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_575",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
+"ggH600":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ggH_ZZ_4l_600",
+    "url" : "",
+    "xsection" : ,
+    "notes_" : ""
+    },
 }
