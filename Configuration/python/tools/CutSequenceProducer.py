@@ -433,13 +433,12 @@ class CutSequenceProducer(cms._ParameterTypeBase):
                    setattr(pyModule,counterName,counter)
                    self.sequence*=counter
 
-    def addFSRRecovery(self,moduleName,moduleType,src,gsrc,esrc="cleanPatElectrons",msrc="cleanPatMuons",text='',min = 1,max=1000,passThrough=False):
+    def addFSRRecovery(self,moduleName,moduleType,src,gsrc,esrc="cleanPatElectrons",msrc="cleanPatMuons",text='',min = 1,max=1000):
                recovered  = cms.EDProducer(moduleType)
                recovered.src  = cms.InputTag(src)
                recovered.gSrc  = cms.InputTag(gsrc)
                recovered.eSrc  = cms.InputTag(esrc)
                recovered.mSrc  = cms.InputTag(msrc)
-               recovered.passThrough = cms.bool(passThrough)
                pyModule = sys.modules[self.pyModuleName[0]]
                if pyModule is None:
                  raise ValueError("'pyModuleName' Parameter invalid")
@@ -897,13 +896,14 @@ class CutSequenceProducer(cms._ParameterTypeBase):
     def addSmearing(self,taus,muons,electrons,jets,mpost=''):
           #remove electrons within 0.05 of a muon
           tempElectrons = cms.EDProducer("PATElectronCleaner",
-                  src = cms.InputTag("mvaedElectrons"),
+                  src = cms.InputTag(electrons),
                   preselection = cms.string(""),
                   checkOverlaps = cms.PSet(
                       muons = cms.PSet(
                           src=cms.InputTag("cleanPatMuons"),
                           algorithm=cms.string("byDeltaR"),
-                          preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() || isGlobalMuon()) && pt>5 && abs(userFloat('iPDXY')) < 0.5 && abs(userFloat('dz'))<1.0 && abs(eta)<2.4"),
+#                          preselection=cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() || isGlobalMuon()) && pt>5 && abs(userFloat('iPDXY')) < 0.5 && abs(userFloat('dz'))<1.0 && abs(eta)<2.4"),
+                          preselection=cms.string("(pfCandidateRef().isNonnull() || isGlobalMuon() )"),
                           deltaR=cms.double(0.05),
                           checkRecoComponents = cms.bool(False),
                           pairCut=cms.string(""),
@@ -1111,7 +1111,7 @@ class CutSequenceProducer(cms._ParameterTypeBase):
             raise ValueError("'pyModuleName' Parameter invalid")
         setattr(pyModule,moduleName,hltSkimmer)
         self.sequence*=hltSkimmer
-
+        
         if summaryText is not '':
             counter  = cms.EDProducer("EventCounter")
             counter.name=cms.string(summaryText)
