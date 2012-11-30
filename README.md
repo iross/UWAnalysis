@@ -12,15 +12,15 @@ Quickstart recipe
 
 Quick Explanation
 -----------------
-Each analysis is driven by a python file in UWAnalysis/Configuration/python. This file uses the CutSequenceProducer python class in tools sub directory to create a series of cuts. The user can plug an ntuple plotter in any step of the selection (i.e preselection for background estimates or final selection for shapes). The file tools/analysisTools.py has the core configuration which is common for the analysi. After that the UWAnalysis/CRAB directory has the different final states. There is a file for MC and a file for data. If you look in the py file you will see that it loads the sequence defined in analysisTools. There are also other potential switches to add systematics (shift and clone selection sequence) or add ntuples for each systematics or at preselection selection level. The user can easilly change those. For CRAB submission on the data there is a dedicated script to create a CRAB area and it is explained below.
+Each analysis is driven by a python file in UWAnalysis/Configuration/python. This file uses the CutSequenceProducer python class in tools sub directory to create a series of cuts. The user can plug an ntuple plotter in any step of the selection (i.e preselection for background estimates or final selection for shapes). The file tools/analysisTools.py has the core configuration which is common for the analysis. After that the UWAnalysis/CRAB directory has the different final states. There is a file for MC and a file for data. If you look in the py file you will see that it loads the sequence defined in analysisTools. There are also other potential switches to add systematics (shift and clone selection sequence) or add ntuples for each systematics or at preselection selection level. The user can easilly change those. For CRAB submission on the data there is a dedicated script to create a CRAB area and it is explained below.
 
 The ntuplization is absolutely done with python and is controlled by the file UWAnalysis/Configuration/python/tools/zzNtupleTools.py.
 
-Development is being done on the way the ntuples are structured. As of 2012-09-14, the default mode on the master branch is to save one candidate combination per event. In the event that multiple candidates pass the selection, the chosen one is defined as the one at the head of the grand list of candidates (different methods of sorting can be applied).
+Development is being done on the way the ntuples are structured. As of 2012-11-14, the default mode on the master branch is to save one candidate combination per event. In the event that multiple candidates pass the selection, the chosen one is defined as the one at the head of the grand list of candidates (different methods of sorting can be applied).
 
 Submitting Jobs
 ---------------
-CRAB job submission and retrieval scripts are produced via the CRAB/Z[ZH]/submitJobs.py and CRAB/Z[ZH]/mergeJobs.py scripts. The datasets.json file is used to define the datasets of interest (and some of their properties). todo: explain JSON
+CRAB job submission and retrieval scripts are produced via the CRAB/[ZH,LLLL]/submitJobs.py and CRAB/[ZH,LLLL]/mergeJobs.py scripts. The datasets.json file is used to define the datasets of interest (and some of their properties). todo: explain JSON
 
 To create the jobs:
 
