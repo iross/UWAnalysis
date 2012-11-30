@@ -1,19 +1,17 @@
 #!/bin/bash
 
-: ${CMSSW_BASE:?"CMSSW_BASE is not set!  Run cmsenv before recipe.sh"}
+echo "Checking for CERN CVS kerberos ticket"
+HAS_TICKET=`klist 2>&1 | grep CERN.CH`
 
-#echo "Setting up CVS... input username:"
-#read cvsuser
-#export CVSROOT=:ext:$cvsuser@cmscvs.cern.ch:/cvs_server/repositories/CMSSW
-#export CVS_RSH=ssh
+# Check if we can checkout anonymously
+IS_ANON=`echo $CVSROOT | grep pserver`
 
-#echo "Checking for CERN CVS kerberos ticket"
-#HAS_TICKET=`klist 2>&1 | grep CERN.CH`
-
-#if [ -z "$HAS_TICKET" ]; then
-#  echo "ERROR: You need to kinit yourname@CERN.CH to enable CVS checkouts"
-#  exit 1
-#fi
+if [ -z "$HAS_TICKET" ]; then
+    if [ -z "$IS_ANON" ] ; then
+        echo "ERROR: You need to kinit yourname@CERN.CH to enable CVS checkouts"
+        exit 1
+    fi
+fi
 
 cd $CMSSW_BASE/src
 # Add all the SVfit nonsense 
