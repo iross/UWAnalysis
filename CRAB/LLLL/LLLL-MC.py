@@ -15,22 +15,7 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-#            'file:/scratch/iross/gg125_sync.root'
-#            'file:/scratch/iross/gg125_sync_noSkim.root'
-            'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
-#            'file:/scratch/iross/eeeeMysteries_patTuple.root'
-#'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag_fsrTest1.root'
-#            'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
-#'file:/scratch/iross/sync4l_wFSR.root'
-#'file:/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/1/patTuple_cfg-04542532-9A9B-E111-95D3-0025B31E3D3C.root'
-#'file:/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2mu_8TeV-powheg-pythia6/patTuple_cfg-E6FECB8F-DDEE-E111-9AE6-1CC1DE1D16AA.root'
-#'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/output_98_1_Crv.root'
-#'file:/scratch/iross/testwFSR_2.root',
-#'file:/scratch/iross/zz4l_sync_summer12_vetoChargedOnlyEndcap.root'
-#		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
-#			'file:/scratch/iross/zz4l_sync_fall11_take2.root'
-#            'file:/scratch/iross/zz4l_sync_2.root'
-            #		'file:eemm_ZZ4Lfall_50evts.root'
+            'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
