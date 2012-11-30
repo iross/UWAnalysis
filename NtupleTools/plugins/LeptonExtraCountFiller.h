@@ -86,6 +86,9 @@ typedef LeptonExtraCountFiller<PATEleEleEleMuQuad, pat::Tau> PATEleEleEleMuQuadT
 typedef LeptonExtraCountFiller<PATEleEleEleEleQuad, pat::Tau> PATEleEleEleEleQuadTauExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleMuMuQuad, pat::Tau> PATEleEleMuMuQuadTauExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleEleSCQuad, pat::Tau> PATEleEleEleSCQuadTauExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleSCEleEleQuad, pat::Tau> PATEleSCEleEleQuadTauExtraCountFiller;
+typedef LeptonExtraCountFiller<PATMuMuEleSCQuad, pat::Tau> PATMuMuEleSCQuadTauExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleSCMuMuQuad, pat::Tau> PATEleSCMuMuQuadTauExtraCountFiller;
 
 typedef LeptonExtraCountFiller<PATMuMuMuTauQuad, pat::Muon> PATMuMuMuTauQuadMuExtraCountFiller;
 typedef LeptonExtraCountFiller<PATMuMuTauTauQuad, pat::Muon> PATMuMuTauTauQuadMuExtraCountFiller;
@@ -100,6 +103,9 @@ typedef LeptonExtraCountFiller<PATEleEleEleMuQuad, pat::Muon> PATEleEleEleMuQuad
 typedef LeptonExtraCountFiller<PATEleEleEleEleQuad, pat::Muon> PATEleEleEleEleQuadMuExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleMuMuQuad, pat::Muon> PATEleEleMuMuQuadMuExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleEleSCQuad, pat::Muon> PATEleEleEleSCQuadMuExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleSCEleEleQuad, pat::Muon> PATEleSCEleEleQuadMuExtraCountFiller;
+typedef LeptonExtraCountFiller<PATMuMuEleSCQuad, pat::Muon> PATMuMuEleSCQuadMuExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleSCMuMuQuad, pat::Muon> PATEleSCMuMuQuadMuExtraCountFiller;
 
 typedef LeptonExtraCountFiller<PATMuMuMuTauQuad, pat::Electron> PATMuMuMuTauQuadEleExtraCountFiller;
 typedef LeptonExtraCountFiller<PATMuMuTauTauQuad, pat::Electron> PATMuMuTauTauQuadEleExtraCountFiller;
@@ -114,3 +120,6 @@ typedef LeptonExtraCountFiller<PATEleEleEleMuQuad, pat::Electron> PATEleEleEleMu
 typedef LeptonExtraCountFiller<PATEleEleEleEleQuad, pat::Electron> PATEleEleEleEleQuadEleExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleMuMuQuad, pat::Electron> PATEleEleMuMuQuadEleExtraCountFiller;
 typedef LeptonExtraCountFiller<PATEleEleEleSCQuad, pat::Electron> PATEleEleEleSCQuadEleExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleSCEleEleQuad, pat::Electron> PATEleSCEleEleQuadEleExtraCountFiller;
+typedef LeptonExtraCountFiller<PATMuMuEleSCQuad, pat::Electron> PATMuMuEleSCQuadEleExtraCountFiller;
+typedef LeptonExtraCountFiller<PATEleSCMuMuQuad, pat::Electron> PATEleSCMuMuQuadEleExtraCountFiller;

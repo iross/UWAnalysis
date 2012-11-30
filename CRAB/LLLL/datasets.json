@@ -145,42 +145,42 @@
 },
 "ZZ2E2M":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2e2mu_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2mu_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
 },
 "ZZ4E":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4e_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo4e_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.07691,
     "note_" : ""
 },
 "ZZ4M":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo4mu_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.07691,
     "note_" : ""
 },
 "ZZ4T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4tau_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo4tau_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.07691,
     "note_" : ""
 },
 "ZZ2M2T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2mu2tau_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2mu2tau_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
 },
 "ZZ2E2T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2e2tau_8TeV-powheg-pythia6",
+    "path" : "/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2tau_8TeV-powheg-pythia6",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
@@ -199,13 +199,6 @@
     "xsection" : 0.00418,
     "_note" : "assumed cross-section is 1.2x last year's gg sample"
 },
-"f4_0p000_0p000":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_testPatTuple",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
 "DYJets":{
     "type" : "MC",
     "path" : "/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/",

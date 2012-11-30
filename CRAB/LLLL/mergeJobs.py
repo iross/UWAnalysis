@@ -43,8 +43,8 @@ for dataset in datasets:
         makeFileList(dataset)
         merge.write('farmoutAnalysisJobs --skip-existing-output --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
         if datasets[dataset]['type']=="DATA":
-            merge.write('jobReportSummary.py /scratch/$USER/{dataset}_{tag}-DATA_{dataset}/*/*.xml --json-out /scratch/$USER/{dataset}_{tag}.json\n'.format(dataset=dataset,tag=tag))
-
+            merge.write('jobReportSummary /scratch/$USER/{dataset}_{tag}-DATA_{dataset}/*/*.xml --json-out /scratch/$USER/{dataset}_{tag}.json\n'.format(dataset=dataset,tag=tag))
+            
 
 file.close()
 merge.close()
