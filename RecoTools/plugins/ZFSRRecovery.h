@@ -29,7 +29,7 @@
 #include <string>
 
 template<typename T1>
-class ZFSRRecovery : public edm::EDProducer 
+class ZFSRRecovery : public edm::EDProducer
 {
     typedef edm::Ptr<T1> T1Ptr;
 
@@ -81,23 +81,23 @@ class ZFSRRecovery : public edm::EDProducer
                     if (electrons->at(i).userFloat("mvaNonTrigV0Pass")>0 && electrons->at(i).pt()>7 && fabs(electrons->at(i).eta())<2.5 && fabs(electrons->at(i).userFloat("ip3DS"))<4){
                         if ((fabs(electrons->at(i).phi()-photons->at(j).phi()) < 2.0 && fabs(electrons->at(i).eta()-photons->at(j).eta())<0.05) || deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi())<0.15){
                             scOL=true;
-                        } 
+                        }
                     } else continue;
                 }
-                if (!scOL) { 
+                if (!scOL) {
                     for (unsigned int i = 0; i < electrons->size(); ++i) {
                         if (electrons->at(i).userFloat("mvaNonTrigV0Pass")>0 && electrons->at(i).pt()>7 && fabs(electrons->at(i).eta())<2.5 && abs(electrons->at(i).userFloat("ip3DS"))<4){
                             if (deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
-                                mindR=deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());   
+                                mindR=deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
                                 lepPt=electrons->at(i).pt();
                                 eleMatch=true;
                             }
                         }
-                    }                                                           
+                    }
                     for (unsigned int i = 0; i < muons->size(); ++i) {
                         if ((muons->at(i).isTrackerMuon() || muons->at(i).isGlobalMuon()) && muons->at(i).pfCandidateRef().isNonnull()){
                             if (deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
-                                mindR=deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());   
+                                mindR=deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
                                 lepPt=muons->at(i).pt();
                                 muMatch=true;
                             }
