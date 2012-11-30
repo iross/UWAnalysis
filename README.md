@@ -1,10 +1,10 @@
-UWAnalysis, ZZ version
+UWAnalysis, ZZ version [![Build Status](http://login06.hep.wisc.edu:8080/job/UWAnalysis-42x/badge/icon)](http://login06.hep.wisc.edu:8080/job/UWAnalysis-42x/)
 ======================
 
 Quickstart recipe
 -----------------
-    scram pro -n zz533 CMSSW CMSSW_5_3_3_patch1
-    cd zz533/src                                                                                                                                                                                                    
+    scram pro -n zz428 CMSSW CMSSW_4_2_8_patch7
+    cd zz428/src                                                                                                                                                                                                    
     cmsenv
     git clone git@github.com:iross/UWAnalysis
     sh UWAnalysis/recipe.sh
@@ -28,7 +28,7 @@ To create the jobs:
     
 By default, this will create job submissions for ALL datasets in datasets.json. To run over a subset, pass a search term (or terms) via the --samples option:
 
-    python submitJobs.py --tag=data2012_testRun --samples "Double*2012*" "MuE*2012*"
+    python submitJobs.py --tag=data2011_testRun --samples "Double*" "MuE*"
     
 Then submit the jobs by running the freshly created shell script:
 
@@ -36,7 +36,7 @@ Then submit the jobs by running the freshly created shell script:
 
 When jobs are complete, running similar mergeJobs commands will create farmout jobs to merge subsets of the data, which must then be added together by hand to create the final ntuple.
    
-    python mergeJobs.py --tag=data2012_testRun --samples "Double*2012*" "MuE*2012*"
+    python mergeJobs.py --tag=data2011_testRun --samples "Double*" "MuE*"
     sh mergeJobs.sh
     #once these jobs are done, you'll need to go to /scratch/$USER/ and hadd the merged output files
 
