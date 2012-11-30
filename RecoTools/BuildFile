@@ -4,6 +4,7 @@
 <use name=DataFormats/PatCandidates>
 <use name=EGamma/EGammaAnalysisTools>
 <use name=PhysicsTools/CandUtils>
+<use name=PhysicsTools/PatAlgos>
 <use name=PhysicsTools/UtilAlgos>
 <use name="DQMServices/Core">
 <use name=RecoVertex/KalmanVertexFit>

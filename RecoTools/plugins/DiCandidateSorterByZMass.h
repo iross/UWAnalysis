@@ -67,7 +67,7 @@ class DiCandidateSorterByZMass : public edm::EDProducer {
 
 			if(toBeSorted.size()>0) {
 				Sorter sorter;
-				std::sort(toBeSorted.begin(),toBeSorted.end(),sorter);
+				std::stable_sort(toBeSorted.begin(),toBeSorted.end(),sorter);
 			}
 
 			std::auto_ptr<std::vector<T> > out(new std::vector<T>);

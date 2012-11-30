@@ -263,6 +263,35 @@
   <class name="edm::RefProd<PATEleEleEleSCQuadCollection>"/>
   <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecPair, PATElecSCPair> >"/>
 
+  <!-- create dictionaries for PATEleSCEleEleQuad objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATElecSCPair, PATElecPair>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATElecPair> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATElecPair> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATElecPair> > >"/>
+  <class name="edm::Ref<PATEleSCEleEleQuadCollection,PATEleSCEleEleQuad,edm::refhelper::FindUsingAdvance<PATEleSCEleEleQuadCollection,PATEleSCEleEleQuad> >"/>
+  <class name="edm::RefVector<PATEleSCEleEleQuadCollection,PATEleSCEleEleQuad,edm::refhelper::FindUsingAdvance<PATEleSCEleEleQuadCollection,PATEleSCEleEleQuad> >"/>
+  <class name="edm::RefProd<PATEleSCEleEleQuadCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATElecPair> >"/>
+
+  <!-- create dictionaries for PATMuMuEleSCQuad objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATMuPair, PATElecSCPair>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, PATElecSCPair> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATMuPair, PATElecSCPair> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATMuPair, PATElecSCPair> > >"/>
+  <class name="edm::Ref<PATMuMuEleSCQuadCollection,PATMuMuEleSCQuad,edm::refhelper::FindUsingAdvance<PATMuMuEleSCQuadCollection,PATMuMuEleSCQuad> >"/>
+  <class name="edm::RefVector<PATMuMuEleSCQuadCollection,PATMuMuEleSCQuad,edm::refhelper::FindUsingAdvance<PATMuMuEleSCQuadCollection,PATMuMuEleSCQuad> >"/>
+  <class name="edm::RefProd<PATMuMuEleSCQuadCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATMuPair, PATElecSCPair> >"/>
+
+  <!-- create dictionaries for PATEleSCMuMuQuad objects -->
+  <class name="CompositePtrCandidateT1T2MEt<PATElecSCPair, PATMuPair>"/>
+  <class name="std::vector<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATMuPair> >"/>
+  <class name="edm::Wrapper<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATMuPair> >"/>
+  <class name="edm::Wrapper<std::vector<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATMuPair> > >"/>
+  <class name="edm::Ref<PATEleSCMuMuQuadCollection,PATEleSCMuMuQuad,edm::refhelper::FindUsingAdvance<PATEleSCMuMuQuadCollection,PATEleSCMuMuQuad> >"/>
+  <class name="edm::RefVector<PATEleSCMuMuQuadCollection,PATEleSCMuMuQuad,edm::refhelper::FindUsingAdvance<PATEleSCMuMuQuadCollection,PATEleSCMuMuQuad> >"/>
+  <class name="edm::RefProd<PATEleSCMuMuQuadCollection>"/>
+  <class name="edm::Ptr<CompositePtrCandidateT1T2MEt<PATElecSCPair, PATMuPair> >"/>
 
   <!-- create dictionaries for PATTauNuPair objects -->
   <class name="CompositePtrCandidateTMEt<pat::Tau>"/>

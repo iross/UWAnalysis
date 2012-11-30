@@ -43,7 +43,6 @@ class ZFSRRecovery : public edm::EDProducer
         eSrc_ = cfg.getParameter<edm::InputTag>("eSrc");
         mSrc_ = cfg.getParameter<edm::InputTag>("mSrc");
         gSrc_ = cfg.getParameter<edm::InputTag>("gSrc");
-        passThrough_ = cfg.getParameter<bool>("passThrough");
 
         produces<CompositePtrCandidateCollection>("");
     }
@@ -136,7 +135,6 @@ class ZFSRRecovery : public edm::EDProducer
             double leg1iso=newColl->at(i).leg1()->photonIso();
             double leg2iso=newColl->at(i).leg2()->photonIso();
             newColl->at(i).setFSRVariables(-999.0, -999.0, -999.0, -999.0, -999.0, newColl->at(i).p4(), leg1iso, leg2iso);
-//            if (passThrough_) continue; //embed the leg1/leg2iso without attempting any photon recovery
             bool fixed=false;
             for (unsigned int j = 0; j < goodPhotons.size(); ++j) {
                 double newM = (newColl->at(i).p4() + goodPhotons.at(j).p4()).M();
@@ -164,7 +162,6 @@ class ZFSRRecovery : public edm::EDProducer
     edm::InputTag eSrc_;
     edm::InputTag mSrc_;
     edm::InputTag gSrc_;
-    bool passThrough_;
 
 };
 

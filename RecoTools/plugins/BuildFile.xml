@@ -15,7 +15,6 @@
   <use   name="RecoEgamma/EgammaTools"/>
   <use   name="PhysicsTools/IsolationAlgos"/>
   <use   name="PhysicsTools/PatUtils"/>
-  <use   name="PhysicsTools/PatAlgos"/>
   <use   name="PhysicsTools/UtilAlgos"/>
   <use   name="PhysicsTools/Utilities"/>
   <use   name="SimGeneral/HepPDTRecord"/>
