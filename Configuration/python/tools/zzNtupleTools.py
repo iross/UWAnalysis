@@ -6,7 +6,7 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string("PUFiller"),
                 src        = cms.InputTag("addPileupInfo"),
-                tag        = cms.string("pu")
+                tag        = cms.string("pu"),
                 ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
@@ -14,13 +14,6 @@ def zzCommon(src,pluginType,leadOnly=True):
                 tag        = cms.string("mass"),
                 method     = cms.string("mass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
-                ),
-            cms.PSet(
-                pluginType = cms.string(pluginType),
-                src        = cms.InputTag(src),
-                tag        = cms.string("rapidity"),
-                method     = cms.string("rapidity()"),
-                leadingOnly= cms.untracked.bool(leadOnly)
                 ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
@@ -734,7 +727,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 # pass candidate collection so we can cross-clean
                 # dR
                 tag        = cms.string("nElectrons"),
-                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.4"),
+                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.4"),
                 ),
         cms.PSet(
                 pluginType = cms.string("MuonCountFiller"),
@@ -742,7 +735,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 # pass candidate collection so we can cross-clean
                 # dR
                 tag        = cms.string("nMuons"),
-                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.40"),
+                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
                 ),
         cms.PSet(
                 pluginType = cms.string("TauCountFiller"),
@@ -759,7 +752,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 mindR = cms.double(0.3),
                 tag        = cms.string("nExtraElectrons"),
 
-                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.40"),
+                method     = cms.string("pt>10 && userFloat('mvaNonTrigV0Pass')>0 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
                 ),
         cms.PSet(
                 pluginType = cms.string(pluginType+"MuExtraCountFiller"),
@@ -767,7 +760,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
                 candSrc        = cms.InputTag(src),
                 mindR = cms.double(0.3),
                 tag        = cms.string("nExtraMuons"),
-                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('effArea')))/pt<0.40"),
+                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
                 ),
         cms.PSet(
                 pluginType = cms.string(pluginType+"TauExtraCountFiller"),
@@ -781,6 +774,7 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
     return sharedV
 
 def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
+    isoLeg=legMethod[:-1] # for photon iso, we access with leg1.leg1Photon() because of possible recovery of photon in FSR
     sharedV = cms.VPSet(
         cms.PSet(
             pluginType = cms.string(pluginType),
@@ -988,15 +982,15 @@ def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
-            tag        = cms.string(legName+"effArea"),
-            method     = cms.string(legMethod+"userFloat('effArea')"),
+            tag        = cms.string(legName+"pfCombIso2012_noFSR"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso2012"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+isoLeg+"PhotonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
@@ -1176,6 +1170,7 @@ def tauCommon(src,legName,legMethod,pluginType,leadOnly=True):
     return sharedV
 
 def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
+    isoLeg=legMethod[:-1] # for photon iso, we access with leg1.leg1Photon() because of possible recovery of photon in FSR
     sharedV = cms.VPSet(
         cms.PSet(
            pluginType = cms.string(pluginType),
@@ -1334,6 +1329,27 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
+            tag        = cms.string(legName+"dz"),
+            method     = cms.string(legMethod+"userFloat('dz')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"dXY"),
+            method     = cms.string(legMethod+"userFloat('ipDXY')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"SIP"),
+            method     = cms.string(legMethod+"userFloat('ip3DS')"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
             tag        = cms.string(legName+"SIP"),
             method     = cms.string(legMethod+"userFloat('ip3DS')"),
             leadingOnly=cms.untracked.bool(leadOnly)
@@ -1404,15 +1420,15 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
-            tag        = cms.string(legName+"effArea"),
-            method     = cms.string(legMethod+"userFloat('effArea')"),
+            tag        = cms.string(legName+"pfCombIso2012_noFSR"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"pfCombIso2012"),
-            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+legMethod+"photonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
+            method     = cms.string("("+legMethod+"chargedHadronIso()+max(0.0,"+legMethod+"neutralHadronIso()+"+isoLeg+"PhotonIso()-"+legMethod+"userFloat('effArea')*"+legMethod+"userFloat('zzRho2012')))/"+legMethod+"pt()"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
@@ -1427,13 +1443,6 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"mvaNonTrig"),
             method     = cms.string(legMethod+"electronID('mvaNonTrigV0')"),
-            leadingOnly=cms.untracked.bool(leadOnly)
-        ),
-        cms.PSet(
-            pluginType = cms.string(pluginType),
-            src        = cms.InputTag(src),
-            tag        = cms.string(legName+"mvaNonTrigCorrected"),
-            method     = cms.string(legMethod+"userFloat('mvaNonTrigV0Corrected')"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         cms.PSet(
@@ -1507,34 +1516,6 @@ def SCCommon(src,legName,legMethod,pluginType,leadOnly=True):
         cms.PSet(
             pluginType  = cms.string(pluginType),
             src         = cms.InputTag(src),
-            tag         = cms.string(legName + "ecalRecHitSumEtDR03"),
-            method      = cms.string(legMethod + "ecalRecHitSumEtConeDR03()"),
-            leadingOnly = cms.untracked.bool(True)
-        ),
-        cms.PSet(
-            pluginType  = cms.string(pluginType),
-            src         = cms.InputTag(src),
-            tag         = cms.string(legName + "hcalTowerSumEtConeDR03"),
-            method      = cms.string(legMethod + "hcalTowerSumEtConeDR03()"),
-            leadingOnly = cms.untracked.bool(True)
-        ),
-        cms.PSet(
-            pluginType  = cms.string(pluginType),
-            src         = cms.InputTag(src),
-            tag         = cms.string(legName + "hcalDepth1TowerSumEtConeDR03"),
-            method      = cms.string(legMethod + "hcalDepth1TowerSumEtConeDR03()"),
-            leadingOnly = cms.untracked.bool(True)
-        ),
-        cms.PSet(
-            pluginType  = cms.string(pluginType),
-            src         = cms.InputTag(src),
-            tag         = cms.string(legName + "hcalDepth2TowerSumEtConeDR03"),
-            method      = cms.string(legMethod + "hcalDepth2TowerSumEtConeDR03()"),
-            leadingOnly = cms.untracked.bool(True)
-        ),
-        cms.PSet(
-            pluginType  = cms.string(pluginType),
-            src         = cms.InputTag(src),
             tag         = cms.string(legName + "isEE"),
             method      = cms.string(legMethod + "isEE"),
             leadingOnly = cms.untracked.bool(leadOnly)
@@ -1593,13 +1574,6 @@ def SCCommon(src,legName,legMethod,pluginType,leadOnly=True):
             src         = cms.InputTag(src),
             tag         = cms.string(legName + "maxEnergyXtal"),
             method      = cms.string(legMethod + "maxEnergyXtal"),
-            leadingOnly = cms.untracked.bool(leadOnly)
-        ),
-        cms.PSet(
-            pluginType  = cms.string(pluginType),
-            src         = cms.InputTag(src),
-            tag         = cms.string(legName + "HE"),
-            method      = cms.string(legMethod + "hadronicOverEm"),
             leadingOnly = cms.untracked.bool(leadOnly)
         )
         #cms.PSet(
@@ -1685,13 +1659,20 @@ def zlCommon(src,pluginType,leadOnly=True):
                 method     = cms.string("leg1.charge()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
                 ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("met"),
+                method     = cms.string("met.pt()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
             )
     return sharedV
 
 def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold',MC=False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            leadingOnly = cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('MMTTEventTree',
+            leadingOnly = cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -1735,8 +1716,8 @@ def addMuMuTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 #mumumumu tree
 def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly = cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('MMMMEventTree',
+        leadingOnly = cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -1786,8 +1767,8 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 #mumumutau tree
 def addMuMuMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('MMMTEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -1835,8 +1816,8 @@ def addMuMuMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 #mumuelectau tree
 def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('MMETEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -1887,8 +1868,8 @@ def addMuMuEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 #mumuelemu tree
 def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-   eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+   eventTree = cms.EDAnalyzer('MMEMEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -1937,9 +1918,9 @@ def addMuMuEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 #mumueleele
 def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
+    eventTree = cms.EDAnalyzer('MMEEEventTree',
         #common quantities
-        leadingOnly=cms.untracked.bool(leadingOnly),
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -1990,8 +1971,8 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
 #eleeletautau
 def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EETTEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2040,8 +2021,8 @@ def addEleEleTauTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 #eleeleeletau
 def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEETEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2089,8 +2070,8 @@ def addEleEleEleTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 #eleelemutau
 def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEMTEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2138,8 +2119,8 @@ def addEleEleMuTauEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 #eleeleelemu
 def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEEMEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2188,8 +2169,8 @@ def addEleEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', s
 #eleeleeleele
 def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEEEEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2237,8 +2218,8 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
 
 def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-        leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEMMEventTree',
+        leadingOnly=cms.bool(leadingOnly),
         coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2289,66 +2270,14 @@ def addEleEleMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
     setattr(process, name+'Path', p)
 
 
-def addEleSCEleEleEventTree(process, name,
+def addEleEleEleSCEventTree(process, name,
+        leadingOnly= False,
         src     = 'zzCleanedCandsAboveThreshold',
         srcEEEE = 'zzCleanedCandsAboveThreshold',
         srcEEMM = 'zzCleanedCandsAboveThreshold',
         srcMMEE = 'zzCleanedCandsAboveThreshold',
         srcMMMM = 'zzCleanedCandsAboveThreshold',
         MC      = False):
-
-    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
-
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            coreCollections = cms.VInputTag( cms.InputTag(src) ),
-
-            trigger = cms.PSet(
-                pluginType  = cms.string("TriggerFiller"),
-                src         = cms.InputTag("patTrigger"),
-                paths       = cms.vstring(TriggerPaths)
-                ),
-            PVs = cms.PSet(
-                pluginType  = cms.string("VertexSizeFiller"),
-                src         = cms.InputTag("primaryVertexFilter"),
-                tag         = cms.string("vertices")
-                ),
-            Rho = cms.PSet(
-                pluginType  = cms.string("EventWeightFiller"),
-                src         = cms.InputTag("kt6PFJets","rho"),
-                tag         = cms.string("rho")
-                ),
-            # ZZ Quantities
-            counters = countCommon(src,'PATEleSCEleEleQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
-            zzShared = zzCommon(src,'PATEleSCEleEleQuadFiller'),
-            metShared = metCommon(src,'PATEleSCEleEleQuadFiller'),
-
-            z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleSCEleEleQuadFiller'),
-            z2l2 =  SCCommon(src,'z1l2','leg1.leg2.','PATEleSCEleEleQuadFiller'),
-            z1l2 = eleCommon(src,'z2l1','leg2.leg1.','PATEleSCEleEleQuadFiller'),
-            z2l1 = eleCommon(src,'z2l2','leg2.leg2.','PATEleSCEleEleQuadFiller')
-            )
-    if MC:
-        eventTree.truth = cms.PSet(
-            pluginType = cms.string("PATEleSCEleEleTruthFiller"),
-            src        = cms.InputTag(src),
-            gensrc        = cms.InputTag("genParticles"),
-            tag        = cms.string("refitVertex"),
-            method     = cms.string('1')
-        )
-    setattr(process, name, eventTree)
-    p = cms.Path(getattr(process,name))
-    setattr(process, name + 'Path', p)
-
-
-
-def addEleEleEleSCEventTree(process, name,
-        src     = 'zzCleanedCandsAboveThreshold',
-        srcEEEE = 'zzCleanedCandsAboveThreshold',
-        srcEEMM = 'zzCleanedCandsAboveThreshold',
-        srcMMEE = 'zzCleanedCandsAboveThreshold',
-        srcMMMM = 'zzCleanedCandsAboveThreshold',
-        MC      = False,
-        leadingOnly = False):
 
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
 
@@ -2380,126 +2309,16 @@ def addEleEleEleSCEventTree(process, name,
             z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATEleEleEleSCQuadFiller',leadingOnly),
             z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATEleEleEleSCQuadFiller',leadingOnly)
             )
-    if MC:
-        eventTree.truth = cms.PSet(
-            pluginType = cms.string("PATEleEleEleSCTruthFiller"),
-            src        = cms.InputTag(src),
-            gensrc        = cms.InputTag("genParticles"),
-            tag        = cms.string("refitVertex"),
-            method     = cms.string('1')
-        )
     setattr(process, name, eventTree)
     p = cms.Path(getattr(process,name))
     setattr(process, name + 'Path', p)
 
 
 
-def addMuMuEleSCEventTree(process, name,
-        src     = 'zzCleanedCandsAboveThreshold',
-        srcEEEE = 'zzCleanedCandsAboveThreshold',
-        srcEEMM = 'zzCleanedCandsAboveThreshold',
-        srcMMEE = 'zzCleanedCandsAboveThreshold',
-        srcMMMM = 'zzCleanedCandsAboveThreshold',
-        MC      = False):
-
-    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
-
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            coreCollections = cms.VInputTag( cms.InputTag(src) ),
-
-            trigger = cms.PSet(
-                pluginType  = cms.string("TriggerFiller"),
-                src         = cms.InputTag("patTrigger"),
-                paths       = cms.vstring(TriggerPaths)
-                ),
-            PVs = cms.PSet(
-                pluginType  = cms.string("VertexSizeFiller"),
-                src         = cms.InputTag("primaryVertexFilter"),
-                tag         = cms.string("vertices")
-                ),
-            Rho = cms.PSet(
-                pluginType  = cms.string("EventWeightFiller"),
-                src         = cms.InputTag("kt6PFJets","rho"),
-                tag         = cms.string("rho")
-                ),
-            # ZZ Quantities
-            counters = countCommon(src,'PATMuMuEleSCQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
-            zzShared = zzCommon(src,'PATMuMuEleSCQuadFiller'),
-            metShared = metCommon(src,'PATMuMuEleSCQuadFiller'),
-
-            z1l1 =  muCommon(src,'z1l1','leg1.leg1.','PATMuMuEleSCQuadFiller'),
-            z1l2 =  muCommon(src,'z1l2','leg1.leg2.','PATMuMuEleSCQuadFiller'),
-            z2l1 = eleCommon(src,'z2l1','leg2.leg1.','PATMuMuEleSCQuadFiller'),
-            z2l2 =  SCCommon(src,'z2l2','leg2.leg2.','PATMuMuEleSCQuadFiller')
-            )
-    if MC:
-        eventTree.truth = cms.PSet(
-            pluginType = cms.string("PATMuMuEleSCTruthFiller"),
-            src        = cms.InputTag(src),
-            gensrc        = cms.InputTag("genParticles"),
-            tag        = cms.string("refitVertex"),
-            method     = cms.string('1')
-        )
-    setattr(process, name, eventTree)
-    p = cms.Path(getattr(process,name))
-    setattr(process,name + 'Path',p)
-
-
-def addEleSCMuMuEventTree(process, name,
-        src     = 'zzCleanedCandsAboveThreshold',
-        srcEEEE = 'zzCleanedCandsAboveThreshold',
-        srcEEMM = 'zzCleanedCandsAboveThreshold',
-        srcMMEE = 'zzCleanedCandsAboveThreshold',
-        srcMMMM = 'zzCleanedCandsAboveThreshold',
-        MC      = False):
-
-    process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root"))
-
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            coreCollections = cms.VInputTag( cms.InputTag(src) ),
-
-            trigger = cms.PSet(
-                pluginType  = cms.string("TriggerFiller"),
-                src         = cms.InputTag("patTrigger"),
-                paths       = cms.vstring(TriggerPaths)
-                ),
-            PVs = cms.PSet(
-                pluginType  = cms.string("VertexSizeFiller"),
-                src         = cms.InputTag("primaryVertexFilter"),
-                tag         = cms.string("vertices")
-                ),
-            Rho = cms.PSet(
-                pluginType  = cms.string("EventWeightFiller"),
-                src         = cms.InputTag("kt6PFJets","rho"),
-                tag         = cms.string("rho")
-                ),
-            # ZZ Quantities
-            counters = countCommon(src,'PATEleSCMuMuQuad',srcEEEE,srcEEMM,srcMMEE,srcMMMM),
-            zzShared = zzCommon(src,'PATEleSCMuMuQuadFiller'),
-            metShared = metCommon(src,'PATEleSCMuMuQuadFiller'),
-
-            z1l1 = eleCommon(src,'z1l1','leg1.leg1.','PATEleSCMuMuQuadFiller'),
-            z1l2 =  SCCommon(src,'z1l2','leg1.leg2.','PATEleSCMuMuQuadFiller'),
-            z2l1 =  muCommon(src,'z2l1','leg2.leg1.','PATEleSCMuMuQuadFiller'),
-            z2l2 =  muCommon(src,'z2l2','leg2.leg2.','PATEleSCMuMuQuadFiller')
-            )
-    if MC:
-        eventTree.truth = cms.PSet(
-            pluginType = cms.string("PATEleSCMuMuTruthFiller"),
-            src        = cms.InputTag(src),
-            gensrc        = cms.InputTag("genParticles"),
-            tag        = cms.string("refitVertex"),
-            method     = cms.string('1')
-        )
-    setattr(process, name, eventTree)
-    p = cms.Path(getattr(process,name))
-    setattr(process,name + 'Path',p)
-
-
 def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('MMMEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2536,8 +2355,8 @@ def addMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
 
 def addMuMuEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('MMEEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2574,8 +2393,8 @@ def addMuMuEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEE
 
 def addEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEMEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2610,8 +2429,8 @@ def addEleEleMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
 
 def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False,leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
-            leadingOnly=cms.untracked.bool(leadingOnly),
+    eventTree = cms.EDAnalyzer('EEEEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2648,7 +2467,8 @@ def addEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', src
 
 def addEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False, leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
+    eventTree = cms.EDAnalyzer('EEEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
@@ -2679,7 +2499,8 @@ def addEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEE
 
 def addMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcEEEE='zzCleanedCandsAboveThreshold', srcEEMM='zzCleanedCandsAboveThreshold', srcMMEE='zzCleanedCandsAboveThreshold', srcMMMM='zzCleanedCandsAboveThreshold', MC = False, leadingOnly=False):
     process.TFileService = cms.Service("TFileService", fileName = cms.string("analysis.root") )
-    eventTree = cms.EDAnalyzer('EventTreeMaker',
+    eventTree = cms.EDAnalyzer('MMEventTree',
+            leadingOnly=cms.bool(leadingOnly),
             coreCollections = cms.VInputTag(
             cms.InputTag(src)
         ),
