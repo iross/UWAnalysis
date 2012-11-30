@@ -7,18 +7,18 @@
 #include <TTree.h>
 
 #include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
-#include "UWAnalysis/NtupleTools/interface/NtupleFillerBaseTest.h"
+#include "UWAnalysis/NtupleTools/interface/NtupleFillerBaseMultiCand.h"
 
 //
 // class decleration
 //
 template<typename T>
-class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
+class StringBasedNtupleFiller : public NtupleFillerBaseMultiCand<T>{
     public:
         StringBasedNtupleFiller() {}
 
         StringBasedNtupleFiller(const edm::ParameterSet& iConfig, TTree* t):
-            NtupleFillerBaseTest<T>(iConfig,t),
+            NtupleFillerBaseMultiCand<T>(iConfig,t),
             src_(iConfig.getParameter<edm::InputTag>("src")),
             var_(iConfig.getParameter<std::string>("method")),
             tag_(iConfig.getParameter<std::string>("tag"))
@@ -32,7 +32,7 @@ class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
 
 
         ~StringBasedNtupleFiller()
-        { 
+        {
             if(function!=0) delete function;
         }
 
@@ -52,7 +52,7 @@ class StringBasedNtupleFiller : public NtupleFillerBaseTest<T>{
             //    vbranch->Fill();
         }
 
-        void fillTest(const T& cand, const edm::Event& iEvent, const edm::EventSetup& iSetup)
+        void fill(const T& cand, const edm::Event& iEvent, const edm::EventSetup& iSetup)
         {
             singleValue = (*function)(cand);
         }

@@ -18,7 +18,7 @@
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
 #include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
-#include "UWAnalysis/NtupleTools/interface/NtupleFillerBaseTest.h"
+#include "UWAnalysis/NtupleTools/interface/NtupleFillerBaseMultiCand.h"
 
 
 #include <TTree.h>
@@ -41,15 +41,15 @@ class EventTreeMaker : public edm::EDAnalyzer {
             leadingOnly_ = iConfig.getParameter<bool>("leadingOnly");
 
             std::vector<std::string> branchNames = iConfig.getParameterNamesForType<edm::ParameterSet>();
-            for ( std::vector<std::string>::const_iterator branchName = branchNames.begin(); 
+            for ( std::vector<std::string>::const_iterator branchName = branchNames.begin();
                     branchName != branchNames.end(); ++branchName ) {
                 std::cout << " reading configuration parameters for Branch = " << (*branchName) << std::endl;
 
                 edm::ParameterSet ntupleFillerCfg = iConfig.getParameter<edm::ParameterSet>(*branchName);
                 std::string fillerPlugin = ntupleFillerCfg.getParameter<std::string>("pluginType");
-                //Need to do this separately for non-templated 
+                //Need to do this separately for non-templated
                 if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos || fillerPlugin.find("PairFiller") != std::string::npos) {
-                    NtupleFillerBaseTest<T>* filler = U::get()->create(fillerPlugin,ntupleFillerCfg,t);
+                    NtupleFillerBaseMultiCand<T>* filler = U::get()->create(fillerPlugin,ntupleFillerCfg,t);
                     fillers.push_back(filler);
                 } else {
                     NtupleFillerBase* filler = NtupleFillerFactory::get()->create(fillerPlugin,ntupleFillerCfg,t);
@@ -57,7 +57,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
                 }
             }
 
-            //if Ian's VPsets exist, add them to the fillers. 
+            //if Ian's VPsets exist, add them to the fillers.
             VPSet plugins;
             VPSet zzShared = iConfig.exists("zzShared") ? iConfig.getParameter<VPSet>("zzShared") : VPSet();
             VPSet fsrShared = iConfig.exists("fsrShared") ? iConfig.getParameter<VPSet>("fsrShared") : VPSet();
@@ -84,7 +84,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
             for (std::vector<edm::ParameterSet>::const_iterator branch = plugins.begin(); branch != plugins.end(); ++branch){
                 std::string fillerPlugin = branch->getParameter<std::string>("pluginType");
                 if (fillerPlugin.find("QuadFiller") != std::string::npos || fillerPlugin.find("TriFiller") != std::string::npos || fillerPlugin.find("PairFiller") != std::string::npos) {
-                    NtupleFillerBaseTest<T>* filler = U::get()->create(fillerPlugin,*branch,t);
+                    NtupleFillerBaseMultiCand<T>* filler = U::get()->create(fillerPlugin,*branch,t);
                     fillers.push_back(filler);
                 } else {
                     NtupleFillerBase* filler = NtupleFillerFactory::get()->create(fillerPlugin,*branch,t);
@@ -95,7 +95,7 @@ class EventTreeMaker : public edm::EDAnalyzer {
         }
 
         ~EventTreeMaker()
-        { 
+        {
             for(unsigned int i=0;i<fillers.size();++i)
             {
                 if(fillers[i]!=0)
@@ -119,14 +119,14 @@ class EventTreeMaker : public edm::EDAnalyzer {
                     if(handle->size()>0){
                         if (leadingOnly_) {
                             for(unsigned int j=0;j<fillers.size();++j)
-                                fillers.at(j)->fillTest(handle->at(0),iEvent, iSetup);
-                            for(unsigned int j=0;j<sharedFillers.size();++j)
+                                fillers.at(j)->fill(handle->at(0),iEvent, iSetup);
+                            for(unsigned int j=0;j<sharedFillers.size();++j) //loop over non-templated stuff
                                 sharedFillers.at(j)->fill(iEvent, iSetup);
                             t->Fill();
                         } else {
                             for (unsigned int j = 0; j < handle->size(); ++j) {
                                 for (unsigned int k = 0; k < fillers.size(); ++k) {
-                                    fillers.at(k)->fillTest(handle->at(j),iEvent,iSetup);
+                                    fillers.at(k)->fill(handle->at(j),iEvent,iSetup);
                                 }
                                 for (unsigned int k = 0; k < sharedFillers.size(); ++k) {
                                     sharedFillers.at(k)->fill(iEvent,iSetup);
@@ -148,10 +148,10 @@ class EventTreeMaker : public edm::EDAnalyzer {
 
         bool leadingOnly_;
         std::vector<edm::InputTag> coreColl;
-        std::vector<NtupleFillerBaseTest<T>*> fillers;
+        std::vector<NtupleFillerBaseMultiCand<T>*> fillers;
         std::vector<NtupleFillerBase*> sharedFillers;
 
-};	 
+};
 
 //4l
 typedef EventTreeMaker<PATMuMuMuMuQuad,MMMMFillerFactory> MMMMEventTree;
