@@ -5,6 +5,7 @@
 *.d
 ._*
 
+.todo
 *.root
 *.png
 *.eps
