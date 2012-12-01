@@ -12,10 +12,6 @@ if [ -z "$HAS_TICKET" ]; then
         exit 1
     fi
 fi
-if [ -z "$HAS_TICKET" ]; then
-  echo "ERROR: You need to kinit yourname@CERN.CH to enable CVS checkouts"
-  exit 1
-fi
 
 cd $CMSSW_BASE/src
 # Add all the SVfit nonsense 
