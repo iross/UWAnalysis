@@ -206,6 +206,13 @@
     "xsection" : 3503.71,
     "note_" : ""
 },
+"TTbar":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/TTJets_MassiveBinDECAY_TuneZ2star_8TeV-madgraph-tauola",
+    "url" : "",
+    "xsection" : 225.0,
+    "notes_" : ""
+},
 "ggH115" :
 {
     "type" : "MC",
