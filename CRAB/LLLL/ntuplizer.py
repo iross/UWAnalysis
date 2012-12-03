@@ -25,6 +25,11 @@ options.register ('reportEvery',
                   VarParsing.VarParsing.multiplicity.singleton, # singleton or list
                   VarParsing.VarParsing.varType.int,          # string, int, or float
                   "Report every n events (default: 1)")
+options.register ('effAreaTarget',
+                  "2012Data", # default value. Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+                  VarParsing.VarParsing.multiplicity.singleton, # singleton or list
+                  VarParsing.VarParsing.varType.string,          # string, int, or float
+                  "Effective area target (default: 2012Data)")
 
 options.maxEvents = 2000
 options.inputFiles = "file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012C_PromptReco_v1/patTuple_cfg-E09F95D2-2CCB-E111-897D-001D09F24399.root"
@@ -79,7 +84,7 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
-        EAtarget="2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        EAtarget=options.effAreaTarget
         )
 
 #EventSelection
