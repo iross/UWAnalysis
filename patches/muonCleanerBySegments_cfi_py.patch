@@ -1,0 +1,27 @@
+Index: python/muonCleanerBySegments_cfi.py
+===================================================================
+RCS file: /local/reps/CMSSW/CMSSW/MuonAnalysis/MuonAssociators/python/muonCleanerBySegments_cfi.py,v
+retrieving revision 1.2
+diff -r1.2 muonCleanerBySegments_cfi.py
+11,13c11,13
+<     fractionOfSharedSegments = cms.double(0.499), # i.e. clean up if sharing is >=50% 
+<     # Choice of the best muon: 
+<     #  - default: 
+---
+>     fractionOfSharedSegments = cms.double(0.499), # i.e. clean up if sharing is >=50%
+>     # Choice of the best muon:
+>     #  - default:
+21,22c21,22
+<     #customArbitration = cms.string("first.isPFMuon && !second.isPFMuon || "+   # <=== prefer PF Muons
+<     #                               "(first.isPFMuon == second.isPFMuon && ("+  #      over non-PF ones
+---
+>     #customArbitration = cms.string("first.pfCandidateRef().isNonnull && !second.pfCandidateRef().isNonnull || "+   # <=== prefer PF Muons
+>     #                               "(first.pfCandidateRef().isNonnull == second.pfCandidateRef().isNonnull && ("+  #      over non-PF ones
+26c26
+<     #                               "       first.track.ptError/first.track.pt < second.track.ptError/second.track.pt || "+ 
+---
+>     #                               "       first.track.ptError/first.track.pt < second.track.ptError/second.track.pt || "+
+35c35
+< cleanPatMuonsBySegments = cms.EDProducer("PATMuonCleanerBySegments", 
+---
+> cleanPatMuonsBySegments = cms.EDProducer("PATMuonCleanerBySegments",

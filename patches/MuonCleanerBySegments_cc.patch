@@ -1,0 +1,29 @@
+Index: plugins/MuonCleanerBySegments.cc
+===================================================================
+RCS file: /local/reps/CMSSW/CMSSW/MuonAnalysis/MuonAssociators/plugins/MuonCleanerBySegments.cc,v
+retrieving revision 1.1
+diff -r1.1 MuonCleanerBySegments.cc
+19c19
+<             
+---
+> 
+63c63
+<    
+---
+> 
+89c89
+<     produces<std::vector<T> >(); 
+---
+>     produces<std::vector<T> >();
+93c93
+< void 
+---
+> void
+107c107
+<         if (!preselection_(mu1)) good[i] = false; 
+---
+>         if (!preselection_(mu1)) good[i] = false;
+142c142
+<     if (mu1.isPFMuon()     != mu2.isPFMuon())     return mu1.isPFMuon();
+---
+>     if (mu1.pfCandidateRef().isNonnull()     != mu2.pfCandidateRef().isNonnull())     return mu1.pfCandidateRef().isNonnull();
