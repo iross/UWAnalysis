@@ -1,4 +1,4 @@
-UWAnalysis, ZZ version [![Build Status](http://login06.hep.wisc.edu:8080/job/UWAnalysis-53x/badge/icon)](http://login06.hep.wisc.edu:8080/job/UWAnalysis-53x/)
+UWAnalysis, ZZ version 
 ======================
 
 Quickstart recipe
