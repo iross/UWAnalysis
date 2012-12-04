@@ -49,13 +49,13 @@ cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
 
 #todo: ghost muon cleaning recipe, ???
 
-cvs co -r U09-00-00-01 DataFormats/MuonReco 
-cvs co -r V02-03-00 MuonAnalysis/MuonAssociators
-pushd MuonAnalysis/MuonAssociators/plugins/
-patch -p1 MuonCleanerBySegments.cc $CMSSW_BASE/src/UWAnalysis/patches/MuonCleanerBySegments_cc.patch
-cd ../python/
-patch -p1 muonCleanerBySegments_cfi.py $CMSSW_BASE/src/UWAnalysis/patches/muonCleanerBySegments_cfi_py.patch
-popd
+#cvs co -r U09-00-00-01 DataFormats/MuonReco 
+#cvs co -r V02-03-00 MuonAnalysis/MuonAssociators
+#pushd MuonAnalysis/MuonAssociators/plugins/
+#patch -p1 MuonCleanerBySegments.cc $CMSSW_BASE/src/UWAnalysis/patches/MuonCleanerBySegments_cc.patch
+#cd ../python/
+#patch -p1 muonCleanerBySegments_cfi.py $CMSSW_BASE/src/UWAnalysis/patches/muonCleanerBySegments_cfi_py.patch
+#popd
 
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
