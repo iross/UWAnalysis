@@ -3,9 +3,12 @@
 
 // system include files
 #include <memory>
+#include <vector>
+#include <algorithm>
 
 // user include files
 #include <TTree.h>
+#include <TLorentzVector.h>
 
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticleFwd.h"
@@ -33,6 +36,7 @@ class GenLevelFiller : public edm::EDAnalyzer
 {
     private:
         edm::InputTag gensrc_;
+        bool isGGZZ_;
 
         double hPt, hMass, hEta, hPhi;
         double zPt[2], zMass[2], zEta[2], zPhi[2];
@@ -50,10 +54,13 @@ class GenLevelFiller : public edm::EDAnalyzer
         virtual void endJob();
 
 
+
     public:
         explicit GenLevelFiller(const edm::ParameterSet& iConfig);
   
         ~GenLevelFiller();
 };
+
+bool compareLeptons(std::vector<reco::GenParticle>::const_iterator i, std::vector<reco::GenParticle>::const_iterator j);
 
 #endif

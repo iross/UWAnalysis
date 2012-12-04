@@ -1,7 +1,8 @@
 #include "UWAnalysis/NtupleTools/plugins/GenLevelFiller.h"
 
 GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
-    gensrc_(iConfig.getParameter<edm::InputTag>("gensrc"))
+    gensrc_(iConfig.getParameter<edm::InputTag>("gensrc")),
+    isGGZZ_(iConfig.getParameter<bool>("isGGZZ"))
 {
     edm::Service<TFileService> fs;
     tree = fs->make<TTree>( "genEventTree"  , "");
@@ -118,6 +119,9 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     iEvent.getByLabel(gensrc_, genCandidates);
 
     int zn = 0;
+    int lepCount = 0;
+
+    std::vector<std::vector<reco::GenParticle>::const_iterator> leptons;
 
     // iterate over gen particle collection
     reco::GenParticleCollection::const_iterator candIt;
@@ -132,7 +136,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
             hPhi    = candIt->phi();
         }
         // if Z boson
-        else if ( candIt->pdgId() == 23 && zn < 2 )
+        else if ( !isGGZZ_ && candIt->pdgId() == 23 && zn < 2 )
         {
             zPt[zn]     = candIt->pt();
             zMass[zn]   = candIt->mass();
@@ -167,9 +171,95 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
 
             zn++;
         }
+        // if gg to ZZ to 4l @ 8 TeV
+        // consider electrons, muons, or taus
+        else if ( isGGZZ_ && candIt->status() == 3 && ( abs(candIt->pdgId()) == 11 || abs(candIt->pdgId()) == 13 || abs(candIt->pdgId()) == 15 ) )
+        {
+            lepCount++;
+            leptons.push_back(candIt);
+        }
+    }
+
+    // special case for running on 8 TeV ggZZ sample
+    if ( isGGZZ_ && lepCount >= 4 )
+    {
+        // leptons must be sorted before they can be permuted
+        std::sort(leptons.begin(),leptons.end(),compareLeptons);
+
+        double min = 91.2;
+        TLorentzVector L1, L2, L3, L4, Z1, Z2;
+        int id1, id2, id3, id4;
+        do
+        {
+            // ensure opposite-charge-same-flavor pairs
+            // permute through different combinations of the leptons to build Z candidates
+            if ( leptons.at(0)->pdgId() == -leptons.at(1)->pdgId() && leptons.at(2)->pdgId() == -leptons.at(3)->pdgId() )
+            {
+                // build lepton 4-vectors from lepton candidates
+                TLorentzVector l1, l2, l3, l4, z1, z2;
+                l1.SetPtEtaPhiM(leptons.at(0)->pt(),leptons.at(0)->eta(),leptons.at(0)->phi(),leptons.at(0)->mass());
+                l2.SetPtEtaPhiM(leptons.at(1)->pt(),leptons.at(1)->eta(),leptons.at(1)->phi(),leptons.at(1)->mass());
+                l3.SetPtEtaPhiM(leptons.at(2)->pt(),leptons.at(2)->eta(),leptons.at(2)->phi(),leptons.at(2)->mass());
+                l4.SetPtEtaPhiM(leptons.at(3)->pt(),leptons.at(3)->eta(),leptons.at(3)->phi(),leptons.at(3)->mass());
+
+                z1 = l1 + l2; // create Z 4-vectors from leptons
+                z2 = l3 + l4;
+
+                // set Z1 to be closest to nominal Z mass
+                if ( fabs(z1.M()-91.2) < min )
+                {
+                    min = fabs(z1.M()-91.2);
+                    Z1 = z1;
+                    Z2 = z2;
+                    L1 = l1;
+                    L2 = l2;
+                    L3 = l3;
+                    L4 = l4;
+                    id1 = leptons.at(0)->pdgId();
+                    id2 = leptons.at(1)->pdgId();
+                    id3 = leptons.at(2)->pdgId();
+                    id4 = leptons.at(3)->pdgId();
+                }
+            }
+        }
+        while ( next_permutation(leptons.begin(), leptons.end(), compareLeptons) );
+
+        zPt[0]    = Z1.Pt();
+        zEta[0]   = Z1.Eta();
+        zPhi[0]   = Z1.Phi();
+        zMass[0]  = Z1.M();
+        zPt[1]    = Z2.Pt();
+        zEta[1]   = Z2.Eta();
+        zPhi[1]   = Z2.Phi();
+        zMass[1]  = Z2.M();
+
+        lPt[0]    = L1.Pt();
+        lEta[0]   = L1.Eta();
+        lPhi[0]   = L1.Phi();
+        lPdgId[0] = id1;
+
+        lPt[1]    = L2.Pt();
+        lEta[1]   = L2.Eta();
+        lPhi[1]   = L2.Phi();
+        lPdgId[1] = id2;
+
+        lPt[2]    = L3.Pt();
+        lEta[2]   = L3.Eta();
+        lPhi[2]   = L3.Phi();
+        lPdgId[2] = id3;
+
+        lPt[3]    = L4.Pt();
+        lEta[3]   = L4.Eta();
+        lPhi[3]   = L4.Phi();
+        lPdgId[3] = id4;
     }
 
     tree->Fill();
+}
+
+bool compareLeptons(std::vector<reco::GenParticle>::const_iterator i, std::vector<reco::GenParticle>::const_iterator j)
+{
+    return (i->pt() < j->pt());
 }
 
 DEFINE_FWK_MODULE(GenLevelFiller);
