@@ -15,7 +15,7 @@
     },
 "DoubleMu2011A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-11-04-7TeV-42X-PatTuple_HCP2012/data_DoubleMu_Run2011A_16Jan2012_v1
+    "path" : "/hdfs/store/user/tapas/2012-11-04-7TeV-42X-PatTuple_HCP2012/data_DoubleMu_Run2011A_16Jan2012_v1",
     "url" : "",
     "xsection" : 0,
     "notes_" : ""
