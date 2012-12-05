@@ -59,9 +59,9 @@ for dataset in datasets:
             runFile="DATA_{dataset}.py".format(dataset=dataset)
 
         if datasets[dataset]['url'] == '':
-            out.write('farmoutAnalysisJobs --skip-existing-output --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'])+runFile+'\n')
+            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dir=root://cmsxrootd.hep.wisc.edu/{path} {dataset}_{tag} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'])+runFile+'\n')
         else:
-            out.write('farmoutAnalysisJobs --skip-existing-output --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'])+runFile+'.py\n')
+            out.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}/{dataset} --input-dbs-path={path} --dbs-service-url={url} {dataset} $CMSSW_BASE $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/'.format(tag=tag,dataset=dataset,path=datasets[dataset]['path'],url=datasets[dataset]['url'])+runFile+'.py\n')
 
 out.write("rm DATA*.py\n")
 out.write("rm MC.py\n")
