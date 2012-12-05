@@ -49,6 +49,8 @@ cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
 #Ghost muon cleaning https://www.dropbox.com/s/oddw6hrl67tgnrk/gp-ghost.pptx
 cvs co -r U09-00-00-01 DataFormats/MuonReco 
 cvs co -r V02-03-00 MuonAnalysis/MuonAssociators/plugins/MuonCleanerBySegments.cc
+cvs co -r V02-03-00 MuonAnalysis/MuonAssociators/plugins/BuildFile.xml
+cvs co -r V02-03-00 MuonAnalysis/MuonAssociators/BuildFile.xml
 cvs co -r V02-03-00 MuonAnalysis/MuonAssociators/python/muonCleanerBySegments_cfi.py
 # apply patches
 pushd MuonAnalysis/MuonAssociators/plugins/
