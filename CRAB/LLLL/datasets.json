@@ -357,6 +357,14 @@
     "xsection" : 0.0,
     "note_" : ""
 },
+"ggH145" :
+{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/GluGluToHToZZTo4L_M-145_8TeV-powheg-pythia6/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+},
 "ggH150" :
 {
     "type" : "MC",
@@ -737,6 +745,14 @@
 {
     "type" : "MC",
     "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/VBF_HToZZTo4L_M-140_8TeV-powheg-pythia6/",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+},
+"VBF145" :
+{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/VBF_HToZZTo4L_M-145_8TeV-powheg-pythia6/",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
