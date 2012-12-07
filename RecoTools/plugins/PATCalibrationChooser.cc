@@ -2,9 +2,17 @@
 File: PATCalibrationChooser
 Author: Ian Ross (iross@cern.ch), University of Wisconsin Madison
 Description: Switch lepton to the specified calibration+regression (or Rochestor corr) combination
-Regression types: NoTrackVars, WithTrackVars, NoRegression
 Calibration types: SmearedRegression, RegressionOnly, SmearedNoRegression
+
+Available calibration targets:
+ 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
+             Prompt, ReReco, ICHEP2012
+ 2012 MC   : Summer12, Summer12_DR53X_HCP2012
+ 2011 Data : Jan16ReReco
+ 2011 MC   : Summer11, Fall11
+
 Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
+
 */
 // system include files
 #include <memory>
@@ -12,34 +20,19 @@ Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
 // user include files
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/EDProducer.h"
-
-#include "FWCore/Framework/interface/Event.h"
-#include "FWCore/Framework/interface/MakerMacros.h"
-
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
+#include "FWCore/Framework/interface/Event.h"
+
 #include "DataFormats/PatCandidates/interface/Electron.h"
-
-#include "Math/GenVector/VectorUtil.h"
-
-//template<class T>
-//reco::TransientTrack getTrack(const T& cand, const TransientTrackBuilder& builder);
-//template<>
-//reco::TransientTrack getTrack<pat::Muon>(const pat::Muon& muon, const TransientTrackBuilder& builder) { return builder.build(muon.innerTrack()); }
-//template<>
-//reco::TransientTrack getTrack<pat::Electron>(const pat::Electron& electron, const TransientTrackBuilder& builder) { return builder.build(electron.gsfTrack()); }
-//template<>
-//reco::TransientTrack getTrack<pat::Tau>(const pat::Tau& tau, const TransientTrackBuilder& builder) {
-//    if (tau.signalPFChargedHadrCands()[0]->trackRef().isNonnull()) return (builder.build(tau.signalPFChargedHadrCands()[0]->trackRef()));
-//    else return (builder.build(tau.signalPFChargedHadrCands()[0]->gsfTrackRef()));
-//}
+#include "DataFormats/PatCandidates/interface/Muon.h"
 
 template <typename T>
 class PATCalibrationChooser : public edm::EDProducer {
     public:
         explicit PATCalibrationChooser(const edm::ParameterSet& iConfig):
             src_(iConfig.getParameter<edm::InputTag>("src")),
-            regressionType_(iConfig.existsAs<std::string>("regType") ? iConfig.getParameter<std::string>("regType") : "dummy"),
-            calibrationType_(iConfig.existsAs<std::string>("calType") ? iConfig.getParameter<std::string>("calType") : "dummy"),
+            correctionType_(iConfig.existsAs<std::string>("corrType") ? iConfig.getParameter<std::string>("corrType") : "dummy"),
+            calibrationTarget_(iConfig.existsAs<std::string>("calTarget") ? iConfig.getParameter<std::string>("calTarget") : "dummy"),
             rochcorType_(iConfig.existsAs<std::string>("rochcorType") ? iConfig.getParameter<std::string>("rochcorType") : "dummy")
             {
                 produces<std::vector<T> >();
@@ -57,38 +50,40 @@ class PATCalibrationChooser : public edm::EDProducer {
             if(iEvent.getByLabel(src_,cands))
                 for(unsigned int  i=0;i!=cands->size();++i){
                     T lepton = cands->at(i);
-                    std::cout << "Before:" << cands->at(i).pt() << std::endl;
                     const math::XYZTLorentzVector* temp = getUserLorentzVector(lepton);
                     if (temp==NULL) {
-                        printf("Could not find corrected P4 with label EGCorr_%s%s\n",calibrationType_.c_str(),regressionType_.c_str());
                         lepton.setP4(cands->at(i).p4());
                     } else {
                         lepton.setP4(*temp);
                     }
-
-                    std::cout << lepton.pt() << std::endl;
                     out->push_back(lepton);
                 }
             iEvent.put(out);
         }
 
-//        const math::XYZTLorentzVector* getUserLorentzVector(pat::Muon cand)
-//        {
-//            const math::XYZTLorentzVector* p4 = cand.userData<math::XYZTLorentzVector>("p4_"+rochcorType__);
-//            return p4;
-//        }
+        const math::XYZTLorentzVector* getUserLorentzVector(pat::Muon cand)
+        {
+            const math::XYZTLorentzVector* p4 = cand.userData<math::XYZTLorentzVector>("p4_"+rochcorType_);
+            if (p4 == NULL) {
+                edm::LogWarning("CalibrationChooser") << "Could not find corrected p4 with label p4_" << rochcorType_ << "!" << std::endl;
+            }
+            return p4;
+        }
 
         const math::XYZTLorentzVector* getUserLorentzVector(pat::Electron cand)
         {
-            const math::XYZTLorentzVector* p4 = cand.userData<math::XYZTLorentzVector>("EGCorr_"+calibrationType_+regressionType_);
+            const math::XYZTLorentzVector* p4 = cand.userData<math::XYZTLorentzVector>("EGCorr_"+calibrationTarget_+correctionType_);
+            if (p4 == NULL) {
+                edm::LogWarning("CalibrationChooser") << "Could not find corrected p4 with label p4_" << calibrationTarget_ << correctionType_ << "!" << std::endl;
+            }
             return p4;
 
         }
 
         // ----------member data ---------------------------
         edm::InputTag src_;
-        std::string regressionType_;
-        std::string calibrationType_;
+        std::string correctionType_;
+        std::string calibrationTarget_;
         std::string rochcorType_;
 };
 
@@ -97,3 +92,5 @@ class PATCalibrationChooser : public edm::EDProducer {
 
 typedef PATCalibrationChooser<pat::Electron> PATElectronCalibrationChooser;
 DEFINE_FWK_MODULE(PATElectronCalibrationChooser);
+typedef PATCalibrationChooser<pat::Muon> PATMuonCalibrationChooser;
+DEFINE_FWK_MODULE(PATMuonCalibrationChooser);
