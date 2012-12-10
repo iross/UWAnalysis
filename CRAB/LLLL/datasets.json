@@ -199,6 +199,69 @@
     "xsection" : 0.00418,
     "_note" : "assumed cross-section is 1.2x last year's gg sample"
 },
+"aTGC_f4_m0p015_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_m0p015_0p015",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_m0p015_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_m0p015_m0p015",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_m0p015_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_m0p015_0p000",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_0p015_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p015_0p015",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_0p015_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p015_m0p015",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_0p015_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p015_0p000",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_0p000_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p000_0p015",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_0p000_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p000_m0p015",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
+"aTGC_f4_0p000_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p000_0p000",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    }
 "DYJets":{
     "type" : "MC",
     "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball",
