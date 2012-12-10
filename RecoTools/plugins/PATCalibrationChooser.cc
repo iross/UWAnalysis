@@ -74,7 +74,7 @@ class PATCalibrationChooser : public edm::EDProducer {
         {
             const math::XYZTLorentzVector* p4 = cand.userData<math::XYZTLorentzVector>("EGCorr_"+calibrationTarget_+correctionType_);
             if (p4 == NULL) {
-                edm::LogWarning("CalibrationChooser") << "Could not find corrected p4 with label p4_" << calibrationTarget_ << correctionType_ << "!" << std::endl;
+                edm::LogWarning("CalibrationChooser") << "Could not find corrected p4 with label EGCorr_" << calibrationTarget_ << correctionType_ << "!" << std::endl;
             }
             return p4;
 
