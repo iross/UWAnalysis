@@ -11,7 +11,11 @@ process.maxEvents = cms.untracked.PSet(
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 10
+process.MessageLogger.categories.append('CalibrationChooser')
+process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
+            limit=cms.untracked.int32(10)
+            )
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
