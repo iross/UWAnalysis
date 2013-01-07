@@ -10,6 +10,11 @@ options.register ('leadingOnly',
                   VarParsing.VarParsing.multiplicity.singleton, # singleton or list
                   VarParsing.VarParsing.varType.int,          # string, int, or float
                   "Only save leading candidate (default: 1)")
+options.register ('leptonDump',
+                  0, # default value
+                  VarParsing.VarParsing.multiplicity.singleton, # singleton or list
+                  VarParsing.VarParsing.varType.int,          # string, int, or float
+                  "Dump information for all leptons (default: 0)")
 options.register ('run2l2t',
                   0, # default value
                   VarParsing.VarParsing.multiplicity.singleton, # singleton or list
@@ -32,7 +37,6 @@ options.register ('effAreaTarget',
                   "Effective area target (default: 2012Data)")
 
 options.maxEvents = 2000
-options.inputFiles = "file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/data_DoubleMu_Run2012C_PromptReco_v1/patTuple_cfg-E09F95D2-2CCB-E111-897D-001D09F24399.root"
 
 options.parseArguments()
 
@@ -47,7 +51,6 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 if options.isMC:
     print "\nUsing MC settings!\n"
     process.GlobalTag.globaltag = 'START53_V10::All'
-    options.inputFiles = 'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
 else:
     process.GlobalTag.globaltag = 'GR_R_52_V8::All'
 
@@ -57,6 +60,10 @@ process.maxEvents = cms.untracked.PSet(
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = options.reportEvery
+process.MessageLogger.categories.append('CalibrationChooser')
+process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
+            limit=cms.untracked.int32(10)
+            )
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
@@ -144,6 +151,14 @@ addEventSummary(process,leadingOnly,'EEMM','eventSelectionEEMM')
 addEventSummary(process,leadingOnly,'MMMM','eventSelectionMMMM')
 addEventSummary(process,leadingOnly,'MM','eventSelectionEE')
 addEventSummary(process,leadingOnly,'EE','eventSelectionMM')
+
+if options.leptonDump:
+#    from UWAnalysis.Configuration.tools.zzNtupleTools import addMuTree
+#    addMuTree(process,'muons','corrMuons',leadingOnly=False)
+    from UWAnalysis.Configuration.tools.zzNtupleTools import addEleTree
+    addEleTree(process,'finalElectrons','mvaedElectrons',leadingOnly=False)
+    addEleTree(process,'correctedElectrons','corrElectrons',leadingOnly=False)
+    addEleTree(process,'cleanElectrons','cleanPatElectrons',leadingOnly=False)
 
 if options.run2l2t:
     process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence)
