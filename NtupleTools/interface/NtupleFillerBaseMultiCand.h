@@ -55,6 +55,10 @@ typedef NtupleFillerBaseMultiCand<PATMuMuMuTri> FillerBaseMMM;
 typedef NtupleFillerBaseMultiCand<PATMuPair> FillerBaseMM;
 typedef NtupleFillerBaseMultiCand<PATElecPair> FillerBaseEE;
 
+typedef NtupleFillerBaseMultiCand<pat::Electron> FillerBaseE;
+typedef NtupleFillerBaseMultiCand<pat::Muon> FillerBaseM;
+typedef NtupleFillerBaseMultiCand<pat::Tau> FillerBaseT;
+
 //typedef edmplugin::PluginFactory<NtupleFillerBaseMultiCand*(const edm::ParameterSet&,TTree*)> NtupleFillerFactory;
 typedef edmplugin::PluginFactory<FillerBaseMMMM*(const edm::ParameterSet&,TTree*)> MMMMFillerFactory;
 typedef edmplugin::PluginFactory<FillerBaseEEEE*(const edm::ParameterSet&,TTree*)> EEEEFillerFactory;
@@ -78,5 +82,9 @@ typedef edmplugin::PluginFactory<FillerBaseMMM*(const edm::ParameterSet&,TTree*)
 
 typedef edmplugin::PluginFactory<FillerBaseMM*(const edm::ParameterSet&,TTree*)> MMFillerFactory;
 typedef edmplugin::PluginFactory<FillerBaseEE*(const edm::ParameterSet&,TTree*)> EEFillerFactory;
+
+typedef edmplugin::PluginFactory<FillerBaseE*(const edm::ParameterSet&,TTree*)> EFillerFactory;
+typedef edmplugin::PluginFactory<FillerBaseM*(const edm::ParameterSet&,TTree*)> MFillerFactory;
+typedef edmplugin::PluginFactory<FillerBaseT*(const edm::ParameterSet&,TTree*)> TFillerFactory;
 
 #endif

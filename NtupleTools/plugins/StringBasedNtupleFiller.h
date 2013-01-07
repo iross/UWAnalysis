@@ -113,3 +113,7 @@ typedef StringBasedNtupleFiller<PATMuMuMuTri> PATMuMuMuTriFiller;
 
 typedef StringBasedNtupleFiller<PATElecPair> PATElePairFiller;
 typedef StringBasedNtupleFiller<PATMuPair> PATMuPairFiller;
+
+typedef StringBasedNtupleFiller<pat::Electron> PATEleFiller;
+typedef StringBasedNtupleFiller<pat::Muon> PATMuFiller;
+typedef StringBasedNtupleFiller<pat::Tau> PATTauFiller;
