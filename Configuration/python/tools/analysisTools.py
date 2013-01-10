@@ -72,7 +72,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
 
     process.corrElectrons = cms.EDProducer("PATElectronCalibrationChooser",
             src = cms.InputTag("cleanPatElectrons"),
-            corrType = cms.string("RegressionOnly"), # Calibration types: SmearedRegression, RegressionOnly, SmearedNoRegression
+            corrType = cms.string("SmearedRegression"), # Calibration types: SmearedRegression, RegressionOnly, SmearedNoRegression
             calTarget = cms.string("Summer12_DR53X_HCP2012")
             )
 
