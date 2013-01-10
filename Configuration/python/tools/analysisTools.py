@@ -12,10 +12,11 @@ import sys
 
 def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy'):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
+#    process.load("Configuration.Geometry.GeometryIdeal_cff")
     process.load("Configuration.StandardSequences.Geometry_cff")
     process.load("Configuration.StandardSequences.MagneticField_cff")
     process.load("Configuration.StandardSequences.Services_cff")
-    process.load("Configuration.StandardSequences.Reconstruction_cff")
+    #process.load("Configuration.StandardSequences.Reconstruction_cff")
     process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
     process.load("DQMServices.Core.DQM_cfg")
     process.load("DQMServices.Components.DQMEnvironment_cfi")
@@ -30,8 +31,8 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
     process.analysisSequence = cms.Sequence()
     process.primaryVertexFilter = cms.EDFilter("VertexSelector",
           src = cms.InputTag('offlinePrimaryVertices'),
-          cut = cms.string('ndof() > 4 && position().rho() < 2 && abs(z()) < 24'),
-          filter = cms.bool(False)
+          cut = cms.string('!isFake && ndof() > 4 && position().rho() <= 2 && abs(z()) <= 24'),
+          filter = cms.bool(True)
           )
 
     process.analysisSequence*=process.primaryVertexFilter
@@ -49,49 +50,42 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             fractionOfSharedSegments = cms.double(0.499)
             )
 
-    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+    #todo--correction types must be based from runtime config
+
+    process.corrMuons = cms.EDProducer("PATMuonCalibrationChooser",
             src = cms.InputTag("looseMu"),
+            rochcorType = cms.string("dummy") # Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
+            )
+
+    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+            src = cms.InputTag("corrMuons"),
             target = cms.string(EAtarget),
+            )
+
+    # available calibration targets:
+    # 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
+    #             Prompt, ReReco, ICHEP2012
+    # 2012 MC   : Summer12, Summer12_DR53X_HCP2012
+    #
+    # 2011 Data : Jan16ReReco
+    # 2011 MC   : Summer11, Fall11
+
+    process.corrElectrons = cms.EDProducer("PATElectronCalibrationChooser",
+            src = cms.InputTag("cleanPatElectrons"),
+            corrType = cms.string("SmearedRegression"), # Calibration types: SmearedRegression, RegressionOnly, SmearedNoRegression
+            calTarget = cms.string("Summer12_DR53X_HCP2012")
             )
 
     process.eaElectrons = cms.EDProducer("PATElectronEffectiveAreaEmbedder",
-            src = cms.InputTag("cleanPatElectrons"),
+            src = cms.InputTag("corrElectrons"),
             target = cms.string(EAtarget),
             )
 
-    process.calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducer",
-            # input collections
-            inputPatElectronsTag = cms.InputTag("eaElectrons"),
-
-            # data or MC corrections
-            # if isMC is false, data corrections are applied
-            isMC = cms.bool(False),
-
-            # set to True to read AOD format
-            isAOD = cms.bool(False),
-
-            # set to True to get debugging printout
-            debug = cms.bool(False),
-
-            # energy measurement type
-            energyMeasurementType = cms.uint32(0),
-
-            updateEnergyError = cms.bool(True),
-
-            # input datasets
-            # Prompt means May10+Promptv4+Aug05+Promptv6 for 2011
-            # ReReco means Jul05+Aug05+Oct03 for 2011
-            # Jan16ReReco means Jan16 for 2011
-            # Summer11 means summer11 MC..
-            #inputDataset = cms.string("ReReco"),
-            inputDataset = cms.string("ICHEP2012"),
-            )
-
     process.mvaedElectrons=cms.EDProducer("PATMVAIDEmbedder",
-          src=cms.InputTag("calibratedPatElectrons"),
+          src=cms.InputTag("eaElectrons"),
           id=cms.string("mvaNonTrigV0"),
           #recalculate MVA if you're applying the ECAL corrections here...
-          recalculateMVA=cms.bool(True)
+          recalculateMVA=cms.bool(False)
           )
 
     #remove electrons within 0.3 of a muon
@@ -130,7 +124,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.looseMu*process.goodPatMuons+process.eaElectrons*process.calibratedPatElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.looseMu*process.corrMuons*process.goodPatMuons+process.corrElectrons*process.eaElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
