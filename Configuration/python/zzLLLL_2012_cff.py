@@ -22,7 +22,7 @@ ZMMSeq = ZMM.returnSequence()
 ZEE = CutSequenceProducer(initialCounter  = 'initialEventsZEE',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
-ZEE.addDiCandidateModule('ZEEInit','PATElePairProducer', 'calibratedPatElectrons','calibratedPatElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
+ZEE.addDiCandidateModule('ZEEInit','PATElePairProducer', 'mvaedElectrons','mvaedElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 ZEE.addSelector('ZEESel','PATElePairSelector','mass>40&&charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0','one Z1 eem',1)
 ZEE.addSelector('ZEEIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.40 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.40','EEMLeadingZMuIso')
 ZEE.addSorter('ZEEFinal',"PATElePairSorter")
@@ -48,7 +48,7 @@ MMEtri = CutSequenceProducer(initialCounter  = 'initialEventsMME',
 MMEtri.addHLTFilter("MMEHLT",DATAMC2012TriggerPaths,"MME HLT_req")
 MMEtri.addDiCandidateModule('triMMEosDiMuons','PATMuPairProducer', 'goodPatMuons','goodPatMuons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 MMEtri.addSelector('MMEosDiMuons','PATMuPairSelector','mass>40&&charge==0&&leg1.pfCandidateRef().isNonnull()&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&abs(leg1.eta())<2.4 && leg1.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.pfCandidateRef().isNonnull()&&(leg2.isGlobalMuon()||leg2.isTrackerMuon())&&abs(leg2.eta())<2.4 && leg2.pt()>5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 MME',1)
-MMEtri.addDiCandidateModule('triMMEzzCands','PATMuMuEleTriProducer','triMMEosDiMuons','calibratedPatElectrons','systematicsMET','selectedPatJets',1,9999,text='MMEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
+MMEtri.addDiCandidateModule('triMMEzzCands','PATMuMuEleTriProducer','triMMEosDiMuons','mvaedElectrons','systematicsMET','selectedPatJets',1,9999,text='MMEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 MMEtri.addCrossCleanerModule('triMMEzzCleanedCands','PATMuMuEleTriCrossCleaner',1,9999,text='MMEAtLeastOneZZCleanedCandidate',dR = 0.02)
 MMEtri.addSelector('triMMEzzMuIso','PATMuMuEleTriSelector','(leg1.leg1.chargedHadronIso()+max(0.0,leg1.leg1.neutralHadronIso()+leg1.leg1.photonIso()-leg1.leg1.userFloat("zzRho2012")*leg1.leg1.userFloat("effArea")))/leg1.leg1.pt<0.40 && (leg1.leg2.chargedHadronIso()+max(0.0,leg1.leg2.neutralHadronIso()+leg1.leg2.photonIso()-leg1.leg2.userFloat("zzRho2012")*leg1.leg2.userFloat("effArea")))/leg1.leg2.pt<0.40  ','MMELeadingZMuIso')
 MMEtri.addSelector('triMMEthirdEleID','PATMuMuEleTriSelector','leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0 && leg2.gsfTrack.trackerExpectedHitsInner.numberOfHits()<2','MMEthirdMuID')
@@ -59,7 +59,7 @@ EEMtri = CutSequenceProducer(initialCounter  = 'initialEventsEEM',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
 EEMtri.addHLTFilter("EEMHLT",DATAMC2012TriggerPaths,"EEM HLT_req")
-EEMtri.addDiCandidateModule('triEEMosDiMuons','PATElePairProducer', 'calibratedPatElectrons','calibratedPatElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
+EEMtri.addDiCandidateModule('triEEMosDiMuons','PATElePairProducer', 'mvaedElectrons','mvaedElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 EEMtri.addSelector('EEMosDiMuons','PATElePairSelector','mass>40&&charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 EEM',1)
 EEMtri.addDiCandidateModule('triEEMzzCands','PATEleEleMuTriProducer','triEEMosDiMuons','goodPatMuons','systematicsMET','selectedPatJets',1,9999,text='EEMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 EEMtri.addCrossCleanerModule('triEEMzzCleanedCands','PATEleEleMuTriCrossCleaner',1,9999,text='EEMAtLeastOneZZCleanedCandidate',dR = 0.02)
@@ -72,9 +72,9 @@ EEEtri = CutSequenceProducer(initialCounter  = 'initialEventsEEE',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
 EEEtri.addHLTFilter("EEEHLT",DATAMC2012TriggerPaths,"EEE HLT_req")
-EEEtri.addDiCandidateModule('triEEEosDiMuons','PATElePairProducer', 'calibratedPatElectrons','calibratedPatElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
+EEEtri.addDiCandidateModule('triEEEosDiMuons','PATElePairProducer', 'mvaedElectrons','mvaedElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 EEEtri.addSelector('EEEosDiMuons','PATElePairSelector','mass>40&&charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 EEE',1)
-EEEtri.addDiCandidateModule('triEEEzzCands','PATEleEleEleTriProducer','triEEEosDiMuons','calibratedPatElectrons','systematicsMET','selectedPatJets',1,9999,text='EEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
+EEEtri.addDiCandidateModule('triEEEzzCands','PATEleEleEleTriProducer','triEEEosDiMuons','mvaedElectrons','systematicsMET','selectedPatJets',1,9999,text='EEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 EEEtri.addCrossCleanerModule('triEEEzzCleanedCands','PATEleEleEleTriCrossCleaner',1,9999,text='EEEAtLeastOneZZCleanedCandidate',dR = 0.02)
 EEEtri.addSelector('triEEEzzMuIso','PATEleEleEleTriSelector','(leg1.leg1.chargedHadronIso()+max(0.0,leg1.leg1.neutralHadronIso()+leg1.leg1.photonIso()-leg1.leg1.userFloat("zzRho2012")*leg1.leg1.userFloat("effArea")))/leg1.leg1.pt<0.40 && (leg1.leg2.chargedHadronIso()+max(0.0,leg1.leg2.neutralHadronIso()+leg1.leg2.photonIso()-leg1.leg2.userFloat("zzRho2012")*leg1.leg2.userFloat("effArea")))/leg1.leg2.pt<0.40','EEELeadingZMuIso')
 EEEtri.addSelector('triEEEthirdEleID','PATEleEleEleTriSelector','leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0 && leg2.gsfTrack.trackerExpectedHitsInner.numberOfHits()<2','EEEthirdMuID')
@@ -85,7 +85,7 @@ MMMManalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsM
                                   pyNameSpace  = locals())
 
 MMMManalysisConfigurator.addHLTFilter("MMMMHLT",DATAMC2012TriggerPaths,"HLT_req")
-MMMManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMMM')
+MMMManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMMM')
 
 MMMManalysisConfigurator.addDiCandidateModule('MMMMdiMuons','PATMuPairProducer', 'smearedMuonsMMMM','smearedMuonsMMMM','smearedMETMMMM','smearedJetsMMMM',1,genParticles='genDaughters')
 #3a. Pair #1 built, (SF/OS, closest to Z0)
@@ -134,7 +134,7 @@ EEEEanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsE
                                   pyNameSpace  = locals())
 
 EEEEanalysisConfigurator.addHLTFilter("EEEEHLT",DATAMC2012TriggerPaths,"EEEE HLT_req")
-EEEEanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EEEE')
+EEEEanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EEEE')
 
 EEEEanalysisConfigurator.addDiCandidateModule('EEEEdiElectrons','PATElePairProducer', 'smearedElectronsEEEE','smearedElectronsEEEE','smearedMETEEEE','smearedJetsEEEE',1,genParticles='genDaughters')
 #3a. Pair #1 built, (SF/OS, closest to Z0)
@@ -183,7 +183,7 @@ MMEEanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsM
                                   pyNameSpace  = locals())
 
 MMEEanalysisConfigurator.addHLTFilter("MMEEHLT",DATAMC2012TriggerPaths,"MMEE HLT_req")
-MMEEanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMEE')
+MMEEanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMEE')
 
 MMEEanalysisConfigurator.addDiCandidateModule('MMEEdiMuons','PATMuPairProducer', 'smearedMuonsMMEE','smearedMuonsMMEE','smearedMETMMEE','smearedJetsMMEE',1,genParticles='genDaughters')
 
@@ -227,7 +227,7 @@ EEMManalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsE
                                   pyNameSpace  = locals())
 
 EEMManalysisConfigurator.addHLTFilter("EEMMHLT",DATAMC2012TriggerPaths,"EEMM HLT_req")
-EEMManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EEMM')
+EEMManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EEMM')
 
 EEMManalysisConfigurator.addDiCandidateModule('EEMMdiMuons','PATElePairProducer', 'smearedElectronsEEMM','smearedElectronsEEMM','smearedMETEEMM','smearedJetsEEMM',1,genParticles='genDaughters')
 
@@ -272,7 +272,7 @@ MMEEonlyanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEve
                                   pyNameSpace  = locals())
 
 MMEEonlyanalysisConfigurator.addHLTFilter("MMEEonlyHLT",DATAMC2012TriggerPaths,"MMEEonly HLT_req")
-MMEEonlyanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMEEonly')
+MMEEonlyanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMEEonly')
 
 MMEEonlyanalysisConfigurator.addDiCandidateModule('MMEEonlydiMuons','PATMuPairProducer', 'smearedMuonsMMEE','smearedMuonsMMEE','smearedMETMMEE','smearedJetsMMEE',1,genParticles='genDaughters')
 
@@ -319,7 +319,7 @@ MMMTanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsM
                                                                             pyNameSpace  = locals())
 MMMTanalysisConfigurator.addHLTFilter("MMMTHLT",DATAMC2012TriggerPaths,"HLT_req_MMMT")
 
-MMMTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMMT')
+MMMTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMMT')
 MMMTanalysisConfigurator.addDiCandidateModule('MMMTdiMuons','PATMuPairProducer', 'smearedMuonsMMMT','smearedMuonsMMMT','smearedMETMMMT','smearedJetsMMMT',1,genParticles='genDaughters')
 MMMTanalysisConfigurator.addSelector('MMMTosDiMuons','PATMuPairSelector','charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMMTDiMuonCreation',1)
 MMMTanalysisConfigurator.addSelector('MMMTosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.25 ','MMMTDiMuonIso',1)
@@ -353,7 +353,7 @@ MMTTanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsM
                                                                             pyNameSpace  = locals())
 MMTTanalysisConfigurator.addHLTFilter("MMTTHLT",DATAMC2012TriggerPaths,"HLT_reqMMTT")
 
-MMTTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMTT')
+MMTTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMTT')
 MMTTanalysisConfigurator.addDiCandidateModule('MMTTdiMuons','PATMuPairProducer', 'smearedMuonsMMTT','smearedMuonsMMTT','smearedMETMMTT','smearedJetsMMTT',1,genParticles='genDaughters')
 MMTTanalysisConfigurator.addSelector('MMTTosDiMuons','PATMuPairSelector','mass>40 && charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMTTDiMuonCreation',1)
 MMTTanalysisConfigurator.addSelector('MMTTosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.25 ','MMTTDiMuonIso',1)
@@ -381,7 +381,7 @@ MMETanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsM
                                                                             pyNameSpace  = locals())
 
 MMETanalysisConfigurator.addHLTFilter("MMETHLT",DATAMC2012TriggerPaths,"HLT_reqMMET")
-MMETanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMET')
+MMETanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMET')
 MMETanalysisConfigurator.addDiCandidateModule('MMETdiMuons','PATMuPairProducer', 'smearedMuonsMMET','smearedMuonsMMET','smearedMETMMET','smearedJetsMMET',1,genParticles='genDaughters')
 MMETanalysisConfigurator.addSelector('MMETosDiMuons','PATMuPairSelector','mass>40 && charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMETDiMuonCreation',1)
 MMETanalysisConfigurator.addSelector('MMETosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.25 ','MMETDiMuonIso',1)
@@ -410,7 +410,7 @@ MMEManalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsM
                                                                             pyNameSpace  = locals())
 
 MMEManalysisConfigurator.addHLTFilter("MMEMHLT",DATAMC2012TriggerPaths,"HLT_reqMMEM")
-MMEManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMEM')
+MMEManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMEM')
 MMEManalysisConfigurator.addDiCandidateModule('MMEMdiMuons','PATMuPairProducer', 'smearedMuonsMMEM','smearedMuonsMMEM','smearedMETMMEM','smearedJetsMMEM',1,genParticles='genDaughters')
 MMEManalysisConfigurator.addSelector('MMEMosDiMuons','PATMuPairSelector','mass>40 && charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMEMDiMuonCreation',1)
 MMEManalysisConfigurator.addSelector('MMEMosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.25 ','MMEMDiMuonIso',1)
@@ -438,7 +438,7 @@ EEMTanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsE
                                                                             pyNameSpace  = locals())
 
 EEMTanalysisConfigurator.addHLTFilter("EEMTHLT",DATAMC2012TriggerPaths,"HLT_reqEEMT")
-EEMTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EEMT')
+EEMTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EEMT')
 EEMTanalysisConfigurator.addDiCandidateModule('EEMTdiElectrons','PATElePairProducer', 'smearedElectronsEEMT','smearedElectronsEEMT','smearedMETEEMT','smearedJetsEEMT',1,genParticles='genDaughters')
 
 EEMTanalysisConfigurator.addSelector('EEMTosDiElectrons','PATElePairSelector','charge==0 && mass>40 && leg1.userFloat("mvaNonTrigV0Pass")>0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && abs(leg1.eta())<2.4 && abs(leg2.eta()) < 2.4','EEMTDiEleCreation',1)
@@ -469,7 +469,7 @@ EEETanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsE
                                                                             pyNameSpace  = locals())
 
 EEETanalysisConfigurator.addHLTFilter("EEETHLT",DATAMC2012TriggerPaths,"HLT_reqEEET")
-EEETanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EEET')
+EEETanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EEET')
 EEETanalysisConfigurator.addDiCandidateModule('EEETdiElectrons','PATElePairProducer', 'smearedElectronsEEET','smearedElectronsEEET','smearedMETEEET','smearedJetsEEET',1,genParticles='genDaughters')
 EEETanalysisConfigurator.addSelector('EEETosDiElectrons','PATElePairSelector','charge==0 && mass>40 && leg1.userFloat("mvaNonTrigV0Pass")>0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && abs(leg1.eta())<2.4 && abs(leg2.eta()) < 2.4','EEETDiEleCreation',1)
 EEETanalysisConfigurator.addSelector('EEETosDiMuonsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.25 ','EEETDiEleIso',1)
@@ -498,7 +498,7 @@ EETTanalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsE
                                                                             pyNameSpace  = locals())
 
 EETTanalysisConfigurator.addHLTFilter("EETTHLT",DATAMC2012TriggerPaths,"HLT_reqEETT")
-EETTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EETT')
+EETTanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EETT')
 EETTanalysisConfigurator.addDiCandidateModule('EETTdiElectrons','PATElePairProducer', 'smearedElectronsEETT','smearedElectronsEETT','smearedMETEETT','smearedJetsEETT',1,genParticles='genDaughters')
 EETTanalysisConfigurator.addSelector('EETTosDiElectrons','PATElePairSelector','charge==0 && mass>40 && leg1.userFloat("mvaNonTrigV0Pass")>0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && abs(leg1.eta())<2.4 && abs(leg2.eta()) < 2.4','EETTDiEleCreation',1)
 
@@ -526,7 +526,7 @@ EEEManalysisConfigurator = CutSequenceProducer(initialCounter  = 'initialEventsE
                                           pyModuleName = __name__,
                                                                             pyNameSpace  = locals())
 EEEManalysisConfigurator.addHLTFilter("EEEMHLT",DATAMC2012TriggerPaths,"HLT_reqEEEM")
-EEEManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EEEM')
+EEEManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EEEM')
 EEEManalysisConfigurator.addDiCandidateModule('EEEMdiElectrons','PATElePairProducer', 'smearedElectronsEEEM','smearedElectronsEEEM','smearedMETEEEM','smearedJetsEEEM',1,genParticles='genDaughters')
 EEEManalysisConfigurator.addSelector('EEEMosDiElectrons','PATElePairSelector','charge==0 && mass>40 && leg1.userFloat("mvaNonTrigV0Pass")>0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && abs(leg1.eta())<2.4 && abs(leg2.eta()) < 2.4','EEEMDiEleCreation',1)
 EEEManalysisConfigurator.addSelector('EEEMosDiMuonsIso','PATElePairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1.photonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.25 && (leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2.photonIso()-leg2.userFloat("zzRho2012")*leg2.userFloat("effArea")))/leg2.pt<0.25 ','EEEMDiEleIso',1)
@@ -564,7 +564,7 @@ EEESanalysisConfigurator = CutSequenceProducer(
         pyNameSpace = locals()
         )
 #EEEManalysisConfigurator.addHLTFilter("EEEMHLT",DATAMC2012TriggerPaths,"HLT_reqEEEM")
-EEESanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','EEES')
+EEESanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','EEES')
 EEESanalysisConfigurator.addDiCandidateModule('EEESdiElectrons','PATElePairProducer', 'smearedElectronsEEES','smearedElectronsEEES','smearedMETEEES','smearedJetsEEES',1,genParticles='genDaughters')
 EEESanalysisConfigurator.addSelector('EEESosDiElectrons','PATElePairSelector','charge == 0 && mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && leg2.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.4 && abs(leg2.eta()) < 2.4','EEESDiEleCreation',1)
 
@@ -610,7 +610,7 @@ ESEEanalysisConfigurator = CutSequenceProducer(
         pyNameSpace  = locals()
         )
 # Build e,SC pairs
-ESEEanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuon','calibratedPatElectrons','selectedPatJets','ESEE')
+ESEEanalysisConfigurator.addSmearing('cleanPatTaus','cleanPatMuon','mvaedElectrons','selectedPatJets','ESEE')
 ESEEanalysisConfigurator.addDiCandidateModule('ESEEeleSC','PATEleSCPairProducer','smearedElectronsESEE','selectedPatPhotons','smearedMETESEE','smearedJetsESEE',1,9999,text = 'ESEEAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
 ESEEanalysisConfigurator.addSelector('ESEEosEleSC','PATEleSCPairSelector','mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.5 && leg2.isEE()','ESEEEleSCCreation',1)
 
@@ -644,7 +644,7 @@ MMESanalysisConfigurator = CutSequenceProducer(
         pyModuleName = __name__,
         pyNameSpace  = locals()
         )
-MMESanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','MMES')
+MMESanalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','MMES')
 
 MMESanalysisConfigurator.addDiCandidateModule('MMESdiMuons','PATMuPairProducer', 'smearedMuonsMMES','smearedMuonsMMES','smearedMETMMES','smearedJetsMMES',1,genParticles='genDaughters')
 MMESanalysisConfigurator.addSelector('MMESosDiMuons','PATMuPairSelector','mass>40 && charge==0 && leg1.userInt("tightID")>0.5 && abs(leg1.eta()) < 2.5 && leg2.userInt("tightID")>0.5 && abs(leg2.eta())<2.5','MMESDiMuonCreation',1)
@@ -672,7 +672,7 @@ ESMManalysisConfigurator = CutSequenceProducer(
         )
 
 # Build EleSC Pairs
-ESMManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','calibratedPatElectrons','selectedPatJets','ESMM')
+ESMManalysisConfigurator.addSmearing('cleanPatTaus','goodPatMuons','mvaedElectrons','selectedPatJets','ESMM')
 ESMManalysisConfigurator.addDiCandidateModule('ESMMeleSC','PATEleSCPairProducer','smearedElectronsESMM','selectedPatPhotons','smearedMETESMM','smearedJetsESMM',1,9999,text = 'ESMMAtLeastOneMuTau',leadingObjectsOnly = False, dR = 0.5, recoMode ="", genParticles='genDaughters')
 ESMManalysisConfigurator.addSelector('ESMMosEleSC','PATEleSCPairSelector','mass > 40 && leg1.userFloat("mvaNonTrigV0Pass") > 0 && abs(leg1.eta()) < 2.5 && leg2.isEE()','ESMMEleSCCreation',1)
 

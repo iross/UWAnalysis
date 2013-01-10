@@ -50,13 +50,34 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             fractionOfSharedSegments = cms.double(0.499)
             )
 
-    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+    #todo--correction types must be based from runtime config
+
+    process.corrMuons = cms.EDProducer("PATMuonCalibrationChooser",
             src = cms.InputTag("looseMu"),
+            rochcorType = cms.string("dummy") # Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
+            )
+
+    process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
+            src = cms.InputTag("corrMuons"),
             target = cms.string(EAtarget),
             )
 
-    process.eaElectrons = cms.EDProducer("PATElectronEffectiveAreaEmbedder",
+    # available calibration targets:
+    # 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
+    #             Prompt, ReReco, ICHEP2012
+    # 2012 MC   : Summer12, Summer12_DR53X_HCP2012
+    #
+    # 2011 Data : Jan16ReReco
+    # 2011 MC   : Summer11, Fall11
+
+    process.corrElectrons = cms.EDProducer("PATElectronCalibrationChooser",
             src = cms.InputTag("cleanPatElectrons"),
+            corrType = cms.string("RegressionOnly"), # Calibration types: SmearedRegression, RegressionOnly, SmearedNoRegression
+            calTarget = cms.string("Summer12_DR53X_HCP2012")
+            )
+
+    process.eaElectrons = cms.EDProducer("PATElectronEffectiveAreaEmbedder",
+            src = cms.InputTag("corrElectrons"),
             target = cms.string(EAtarget),
             )
 
@@ -64,35 +85,8 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           src=cms.InputTag("eaElectrons"),
           id=cms.string("mvaNonTrigV0"),
           #recalculate MVA if you're applying the ECAL corrections here...
-          recalculateMVA=cms.bool(True)
+          recalculateMVA=cms.bool(False)
           )
-
-    process.calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducer",
-            # input collections
-            inputPatElectronsTag = cms.InputTag("mvaedElectrons"),
-
-            # data or MC corrections
-            # if isMC is false, data corrections are applied
-            isMC = cms.bool(True),
-
-            # set to True to read AOD format
-            isAOD = cms.bool(False),
-
-            # set to True to get debugging printout
-            debug = cms.bool(False),
-            applyCorrections = cms.bool(False),
-
-            updateEnergyError = cms.bool(True),
-
-            # input datasets
-            # Prompt means May10+Promptv4+Aug05+Promptv6 for 2011
-            # ReReco means Jul05+Aug05+Oct03 for 2011
-            # Jan16ReReco means Jan16 for 2011
-            # Summer11 means summer11 MC..
-            #inputDataset = cms.string("ReReco"),
-            inputDataset = cms.string("Summer12_DR53X_HCP2012"),
-            )
-
 
     #remove electrons within 0.3 of a muon
     process.llttElectrons = cms.EDProducer("PATElectronCleaner",
@@ -130,130 +124,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.pfPileUp = cms.EDProducer("PFPileUp",
-            PFCandidates = cms.InputTag("particleFlow"),
-            Enable = cms.bool(True),
-            checkClosestZVertex = cms.bool(True),
-            verbose = cms.untracked.bool(True),
-            Vertices = cms.InputTag("offlinePrimaryVertices")
-            )
-    process.pfPileUpIso = cms.EDProducer("PFPileUp",
-            checkClosestZVertex = cms.bool(True),
-            Enable = cms.bool(True),
-            PFCandidates = cms.InputTag("particleFlow"),
-            verbose = cms.untracked.bool(False),
-            Vertices = cms.InputTag("offlinePrimaryVertices")
-            )
-    process.pfNoPileUp = cms.EDProducer("TPPFCandidatesOnPFCandidates",
-            bottomCollection = cms.InputTag("particleFlow"),
-            enable = cms.bool(True),
-            topCollection = cms.InputTag("pfPileUp"),
-            name = cms.untracked.string('pileUpOnPFCandidates'),
-            verbose = cms.untracked.bool(False)
-            )
-    process.pfNoPileUpIso = cms.EDProducer("TPPFCandidatesOnPFCandidates",
-            bottomCollection = cms.InputTag("particleFlow"),
-            enable = cms.bool(True),
-            topCollection = cms.InputTag("pfPileUpIso"),
-            name = cms.untracked.string('pileUpOnPFCandidates'),
-            verbose = cms.untracked.bool(False)
-            )
-    process.fsrPhotonPFIsoChHad04 = cms.EDProducer(
-            "LeptonPFIsoFromStep1",
-            leptonLabel = cms.InputTag("boostedFsrPhotons"),
-            pfLabel     = cms.InputTag("pfNoPileUpIso"),
-            pfSelection = cms.string("charge != 0 && abs(pdgId) == 211"), # neutral hadrons
-            deltaR     = cms.double(0.4), # radius
-            deltaRself = cms.double(0.0001), # self-veto 0.0001
-            vetoConeEndcaps = cms.double(0.0), # no special veto in the endcaps
-            directional = cms.bool(False),
-            )
-    # Separate version with Patrick's threshold
-    process.fsrPhotonPFIsoChHad04pt02 = process.fsrPhotonPFIsoChHad04.clone(
-            pfSelection = process.fsrPhotonPFIsoChHad04.pfSelection.value() + " && pt > 0.2"
-            )
-    process.fsrPhotonPFIsoNHad04 = process.fsrPhotonPFIsoChHad04.clone(
-            pfSelection = "charge == 0 && abs(pdgId) == 130 && pt > 0.5", # neutral hadrons
-            deltaRself  = 0.01, # larger veto cone for neutrals
-            )
-    process.fsrPhotonPFIsoPhoton04 = process.fsrPhotonPFIsoChHad04.clone(
-            pfSelection = "charge == 0 && abs(pdgId) == 22 && pt > 0.5", # photons
-            deltaRself  = 0.01, # larger veto cone for neutrals
-            )
-    # for deltaBeta corrections
-    process.fsrPhotonPFIsoChHadPU04 = process.fsrPhotonPFIsoChHad04.clone(pfLabel = 'pfPileUpIso')
-    process.fsrPhotonPFIsoChHadPU04pt02 = process.fsrPhotonPFIsoChHad04pt02.clone(pfLabel = 'pfPileUpIso')
-
-    ## deltaR = 0.3 copy
-    process.fsrPhotonPFIsoChHad03       = process.fsrPhotonPFIsoChHad04.clone(deltaR = 0.3)
-    process.fsrPhotonPFIsoChHad03pt02   = process.fsrPhotonPFIsoChHad04pt02.clone(deltaR = 0.3)
-    process.fsrPhotonPFIsoNHad03        = process.fsrPhotonPFIsoNHad04.clone(deltaR = 0.3)
-    process.fsrPhotonPFIsoPhoton03      = process.fsrPhotonPFIsoPhoton04.clone(deltaR = 0.3)
-    process.fsrPhotonPFIsoChHadPU03     = process.fsrPhotonPFIsoChHadPU04.clone(deltaR = 0.3)
-    process.fsrPhotonPFIsoChHadPU03pt02 = process.fsrPhotonPFIsoChHadPU04pt02.clone(deltaR = 0.3)
-
-    process.boostedFsrPhotonsTest = cms.EDProducer("PATPFParticleProducerUser",
-        # General configurables
-        pfCandidateSource = cms.InputTag("boostedFsrPhotons"),
-
-        # MC matching configurables
-        addGenMatch = cms.bool(False),
-        genParticleMatch = cms.InputTag(""),   ## particles source to be used for the MC matching
-        ## must be an InputTag or VInputTag to a product of
-        ## type edm::Association<reco::GenParticleCollection>
-        embedGenMatch = cms.bool(False),       ## embed gen match inside the object instead of storing the ref
-
-        # add user data
-        userData = cms.PSet(
-            # add custom classes here
-            userClasses = cms.PSet(
-                src = cms.VInputTag('')
-                ),
-            # add doubles here
-            userFloats = cms.PSet(
-                src = cms.VInputTag('')
-                ),
-            # add ints here
-            userInts = cms.PSet(
-                src = cms.VInputTag('')
-                ),
-            # add candidate ptrs here
-            userCands = cms.PSet(
-                src = cms.VInputTag('')
-                ),
-            # add "inline" functions here
-            userFunctions = cms.vstring(),
-            userFunctionLabels = cms.vstring()
-            ),
-
-        # Efficiencies
-        addEfficiencies = cms.bool(False),
-        efficiencies    = cms.PSet(),
-
-        # resolution
-        addResolutions  = cms.bool(False),
-        resolutions     = cms.PSet(),
-        )
-    process.boostedFsrPhotonsTest.userData.userFloats.src = cms.VInputTag(
-            cms.InputTag("fsrPhotonPFIsoChHad04"),
-            cms.InputTag("fsrPhotonPFIsoChHad04pt02"),
-            cms.InputTag("fsrPhotonPFIsoNHad04"),
-            cms.InputTag("fsrPhotonPFIsoPhoton04"),
-            cms.InputTag("fsrPhotonPFIsoChHadPU04"),
-            cms.InputTag("fsrPhotonPFIsoChHadPU04pt02"),
-            cms.InputTag("fsrPhotonPFIsoChHad03"),
-            cms.InputTag("fsrPhotonPFIsoChHad03pt02"),
-            cms.InputTag("fsrPhotonPFIsoNHad03"),
-            cms.InputTag("fsrPhotonPFIsoPhoton03"),
-            cms.InputTag("fsrPhotonPFIsoChHadPU03"),
-            cms.InputTag("fsrPhotonPFIsoChHadPU03pt02"),
-        )
-
-    process.analysisSequence*=process.looseMu*process.goodPatMuons+process.eaElectrons*process.mvaedElectrons*process.calibratedPatElectrons+process.llttElectrons+process.llttTaus
-
-#    process.analysisSequence*=process.pfPileUp*process.pfPileUpIso+process.pfNoPileUp*process.pfNoPileUpIso
-
-#    process.analysisSequence*=process.fsrPhotonPFIsoChHad04+process.fsrPhotonPFIsoChHad04pt02+process.fsrPhotonPFIsoNHad04+process.fsrPhotonPFIsoPhoton04+process.fsrPhotonPFIsoChHadPU04+process.fsrPhotonPFIsoChHadPU04pt02+process.fsrPhotonPFIsoChHad03+process.fsrPhotonPFIsoChHad03pt02+process.fsrPhotonPFIsoNHad03+process.fsrPhotonPFIsoPhoton03+process.fsrPhotonPFIsoChHadPU03+process.fsrPhotonPFIsoChHadPU03pt02+process.boostedFsrPhotonsTest
+    process.analysisSequence*=process.looseMu*process.corrMuons*process.goodPatMuons+process.corrElectrons*process.eaElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
