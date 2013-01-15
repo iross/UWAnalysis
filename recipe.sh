@@ -13,6 +13,10 @@ if [ -z "$HAS_TICKET" ]; then
     fi
 fi
 
+#for new pattuples
+cvs co -r V06-05-06-03 DataFormats/PatCandidates 
+cvs co -r V08-09-47 PhysicsTools/PatAlgos
+
 cd $CMSSW_BASE/src
 # Add all the SVfit nonsense 
 cvs co -r bMinimalSVfit-08-03-11 AnalysisDataFormats/TauAnalysis                  
