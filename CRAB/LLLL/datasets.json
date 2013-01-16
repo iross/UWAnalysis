@@ -1,28 +1,28 @@
 {
 "DoubleElectron2011A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-11-04-7TeV-42X-PatTuple_HCP2012/data_DoubleElectron_Run2011A_16Jan2012_v1",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2011A-16Jan2012-v1/AOD/2012-12-29-7TeV-53X-PatTuple",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
     },
 "DoubleElectron2011B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/data_DoubleElectron_Run2011B_16Jan2012_v1",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2011B-16Jan2012-v1/AOD/2012-12-29-7TeV-53X-PatTuple",
     "url" : "",
     "xsection" : 0,
     "notes_" : ""
     },
 "DoubleMu2011A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-11-04-7TeV-42X-PatTuple_HCP2012/data_DoubleMu_Run2011A_16Jan2012_v1",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2011A-16Jan2012-v1/AOD/2012-12-29-7TeV-53X-PatTuple",
     "url" : "",
     "xsection" : 0,
     "notes_" : ""
     },
 "DoubleMu2011B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/data_DoubleMu_Run2011B_16Jan2012_v1",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2011B-16Jan2012-v1/AOD/2012-12-29-7TeV-53X-PatTuple",
     "url" : "",
     "xsection" : 0,
     "notes_" : ""
