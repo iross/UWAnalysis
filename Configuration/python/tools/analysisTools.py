@@ -10,7 +10,7 @@ from PhysicsTools.PatAlgos.tools.pfTools import *
 from PhysicsTools.PatAlgos.tools.trigTools import *
 import sys
 
-def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy'):
+def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy',calTarget='dummy',rochCor='dummy'):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
     process.load("Configuration.Geometry.GeometryIdeal_cff")
     #process.load("Configuration.StandardSequences.Geometry_cff")
@@ -54,7 +54,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
 
     process.corrMuons = cms.EDProducer("PATMuonCalibrationChooser",
             src = cms.InputTag("looseMu"),
-            rochcorType = cms.string("dummy") # Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
+            rochcorType = cms.string(rochCor) # Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
             )
 
     process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
@@ -73,7 +73,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
     process.corrElectrons = cms.EDProducer("PATElectronCalibrationChooser",
             src = cms.InputTag("cleanPatElectrons"),
             corrType = cms.string("SmearedRegression"), # Calibration types: SmearedRegression, RegressionOnly, SmearedNoRegression
-            calTarget = cms.string("Summer12_DR53X_HCP2012")
+            calTarget = cms.string(calTarget)
             )
 
     process.eaElectrons = cms.EDProducer("PATElectronEffectiveAreaEmbedder",

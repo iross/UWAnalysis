@@ -32,6 +32,14 @@ process.source = cms.Source("PoolSource",
 #        'file:/hdfs/store/mc/Summer12_DR53X/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/AODSIM/PU_S10_START53_V7A-v1/0000/FEEEEFFF-7FFB-E111-8FE2-002618943810.root',
 #        )
 
+    # available calibration targets:
+    # 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
+    #             Prompt, ReReco, ICHEP2012
+    # 2012 MC   : Summer12, Summer12_DR53X_HCP2012
+    #
+    # 2011 Data : Jan16ReReco
+    # 2011 MC   : Summer11, Fall11
+
 from UWAnalysis.Configuration.tools.analysisTools import *
 defaultAnalysisPath(process,'HLT',
         [
@@ -41,7 +49,9 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
-        EAtarget = "2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        EAtarget = "2012Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        calTarget = "Summer12_DR53X_HCP2012",
+        rochCor = "RochCor2012"
         )
 
 #createGeneratedParticlesPATtuple(process,
