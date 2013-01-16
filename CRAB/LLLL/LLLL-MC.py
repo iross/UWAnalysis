@@ -33,7 +33,9 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
-        EAtarget = "Fall11MC" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        EAtarget = "Fall11MC", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        calTarget = "Summer11",
+        rochCor = "RochCor2011B"
         )
 
 #createGeneratedParticlesPATtuple(process,
@@ -50,7 +52,7 @@ defaultAnalysisPath(process,'HLT',
 #        )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_HCP_7TeV_cff")
+process.load("UWAnalysis.Configuration.zzLLLL_HCP_7TeV_loose_cff")
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
 process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
