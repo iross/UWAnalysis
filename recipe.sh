@@ -48,5 +48,9 @@ cvs co -r V02-03-00 MuonAnalysis/MuonAssociators
 # MELA
 cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
 
+# grab the latest data JSONs
+cd $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/dataJSONs
+sh update.sh
+
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
