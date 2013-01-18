@@ -7,30 +7,19 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'START53_V10::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(-1)
+        input = cms.untracked.int32(2000)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 10
+process.MessageLogger.categories.append('CalibrationChooser')
+process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
+            limit=cms.untracked.int32(10)
+            )
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-#            'file:/scratch/iross/gg125_sync.root'
-#            'file:/scratch/iross/gg125_sync_noSkim.root'
-            'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
-#            'file:/scratch/iross/eeeeMysteries_patTuple.root'
-#'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag_fsrTest1.root'
-#            'file:/scratch/iross/gg125_sync_noSkim_newPFProdtag.root'
-#'file:/scratch/iross/sync4l_wFSR.root'
-#'file:/hdfs/store/user/tapas/2012-07-24-8Tev-PatTuple/Zjets_M50/1/patTuple_cfg-04542532-9A9B-E111-95D3-0025B31E3D3C.root'
-#'file:/hdfs/store/user/tapas/2012-10-02-8TeV-53X-PatTuple_ShareFSFix/ZZTo2e2mu_8TeV-powheg-pythia6/patTuple_cfg-E6FECB8F-DDEE-E111-9AE6-1CC1DE1D16AA.root'
-#'file:/hdfs/store/user/iross/ZZTo4mu_8TeV-powheg-pythia6/ZZ4M_powheg_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/6f82f02dd7e65e9c006918dbe04173e9/output_98_1_Crv.root'
-#'file:/scratch/iross/testwFSR_2.root',
-#'file:/scratch/iross/zz4l_sync_summer12_vetoChargedOnlyEndcap.root'
-#		'file:/scratch/iross/zz4l_sync_summer12_EEveto.root',
-#			'file:/scratch/iross/zz4l_sync_fall11_take2.root'
-#            'file:/scratch/iross/zz4l_sync_2.root'
-            #		'file:eemm_ZZ4Lfall_50evts.root'
+            'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -43,6 +32,14 @@ process.source = cms.Source("PoolSource",
 #        'file:/hdfs/store/mc/Summer12_DR53X/GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/AODSIM/PU_S10_START53_V7A-v1/0000/FEEEEFFF-7FFB-E111-8FE2-002618943810.root',
 #        )
 
+    # available calibration targets:
+    # 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
+    #             Prompt, ReReco, ICHEP2012
+    # 2012 MC   : Summer12, Summer12_DR53X_HCP2012
+    #
+    # 2011 Data : Jan16ReReco
+    # 2011 MC   : Summer11, Fall11
+
 from UWAnalysis.Configuration.tools.analysisTools import *
 defaultAnalysisPath(process,'HLT',
         [
@@ -52,7 +49,9 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
-        EAtarget = "2012Data" # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        EAtarget = "2012Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        calTarget = "Summer12_DR53X_HCP2012",
+        rochCor = "RochCor2012"
         )
 
 #createGeneratedParticlesPATtuple(process,
@@ -190,8 +189,8 @@ addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=True)
 #addEleSCMuMuEventTree(process,'eleSCMuMuEventTreeFinalTest','ESMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
 # Store all Gen Level particles. For H -> ZZ or ZZ only.
-# process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"), isGGZZ=cms.bool(False))
-# process.genParticles = cms.Path( process.genlevel )
+process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"), isGGZZ=cms.bool(False))
+process.genParticles = cms.Path( process.genlevel )
 
 
 #Add event counter

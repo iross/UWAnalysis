@@ -1,21 +1,23 @@
 #!/bin/bash
 
-: ${CMSSW_BASE:?"CMSSW_BASE is not set!  Run cmsenv before recipe.sh"}
-
-echo "Setting up CVS... input username:"
-read cvsuser
-export CVSROOT=:ext:$cvsuser@cmscvs.cern.ch:/cvs_server/repositories/CMSSW
-export CVS_RSH=ssh
-
 echo "Checking for CERN CVS kerberos ticket"
 HAS_TICKET=`klist 2>&1 | grep CERN.CH`
 
+# Check if we can checkout anonymously
+IS_ANON=`echo $CVSROOT | grep pserver`
+
 if [ -z "$HAS_TICKET" ]; then
-  echo "ERROR: You need to kinit yourname@CERN.CH to enable CVS checkouts"
-  exit 1
+    if [ -z "$IS_ANON" ] ; then
+        echo "ERROR: You need to kinit yourname@CERN.CH to enable CVS checkouts"
+        exit 1
+    fi
 fi
 
 cd $CMSSW_BASE/src
+#for new pattuples
+cvs co -r V06-05-06-03 DataFormats/PatCandidates 
+cvs co -r V08-09-47 PhysicsTools/PatAlgos
+
 # Add all the SVfit nonsense 
 cvs co -r bMinimalSVfit-08-03-11 AnalysisDataFormats/TauAnalysis                  
 cvs co -r bMinimalSVfit_2012May13 TauAnalysis/CandidateTools                       
@@ -39,8 +41,16 @@ cvs co -r V00-00-10 -d Muon/MuonAnalysisTools UserCode/sixie/Muon/MuonAnalysisTo
 # Remove trainings we don't use
 rm Muon/MuonAnalysisTools/data/*xml
 
+# Muon ghost cleaning https://www.dropbox.com/s/oddw6hrl67tgnrk/gp-ghost.pptx
+cvs co -r U09-04-03-00-01 DataFormats/MuonReco 
+cvs co -r V02-03-00 MuonAnalysis/MuonAssociators
+
 # MELA
 cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
+
+# grab the latest data JSONs
+cd $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/dataJSONs
+sh update.sh
 
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
