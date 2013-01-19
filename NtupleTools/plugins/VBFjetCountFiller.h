@@ -11,19 +11,27 @@
 #include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
 #include "CommonTools/UtilAlgos/interface/StringCutObjectSelector.h"
 
-//
-// class decleration
-//
+/**
+ * This class is used to count the number of jets passing VBF criteria, and
+ * store the count in the n-tuple.
+ *
+ * @author D. Austin Belknap
+ *
+ * @file VBFjetCountFiller.h
+ */
 template<typename T>
 class VBFjetCountFiller : public NtupleFillerBase
 {
+    // rename 4-vector for convenience
+    typedef reco::Candidate::LorentzVector FourVec; 
+
     protected:
         int VBFcounts;
         edm::InputTag src_; // input collection
         std::string sel_;   // string-based cuts
         std::string tag_;   // name for this n-tuple branch
 
-        StringCutObjectSelector<pat::Jet>*function;
+        StringCutObjectSelector<pat::Jet>*function; // for jet selections
         
 
     public:
@@ -31,6 +39,11 @@ class VBFjetCountFiller : public NtupleFillerBase
         {
         }
 
+        /**
+         * Initialize the input source collection, the jet selectrion string,
+         * and the n-tuple branch name (tag). Also create the new branch and
+         * the jet selection functor.
+         */
         VBFjetCountFiller(const edm::ParameterSet& iConfig, TTree* t):
              src_(iConfig.getParameter<edm::InputTag>("src")),
              sel_(iConfig.getParameter<std::string>("method")),
@@ -49,6 +62,9 @@ class VBFjetCountFiller : public NtupleFillerBase
         }
 
 
+        /**
+         * Assign the number of VBF candidate jets to 'VBFcounts'.
+         */
         void fill(const edm::Event& iEvent, const edm::EventSetup &iSetup)
         {
             edm::Handle<std::vector<T> > cands;
@@ -61,8 +77,19 @@ class VBFjetCountFiller : public NtupleFillerBase
                 {
                     for( unsigned int i = 0; i < cands->at(0).jets().size(); ++i )
                     {
+                        // apply string-based cuts
                         if( (*function)(*(cands->at(0).jets().at(i))) )
-                            VBFcounts++;
+                        {
+                            // apply cross-cleaning against the 4 leptons and
+                            // FSR photons (if any).
+                            
+                            FourVec jet_p4 = cands->at(0).jets().at(i)->p4();
+
+                            FourVec z1l1_p4 = cands->at(0).leg1.leg1.p4();
+                            FourVec z1l2_p4 = cands->at(0).leg1.leg2.p4();
+                            FourVec z2l1_p4 = cands->at(0).leg2.leg1.p4();
+                            FourVec z2l2_p4 = cands->at(0).leg2.leg2.p4();
+                        }
                     }
                 }
             }
