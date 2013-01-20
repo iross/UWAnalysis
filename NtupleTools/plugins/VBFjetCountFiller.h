@@ -14,6 +14,12 @@
 #include "UWAnalysis/NtupleTools/interface/NtupleFillerBase.h"
 #include "CommonTools/UtilAlgos/interface/StringCutObjectSelector.h"
 
+
+bool jet_sorter( const reco::Candidate::LorentzVector& i, const reco::Candidate::LorentzVector& j )
+{
+    return ( i.Pt() > j.Pt() );
+}
+
 /**
  * This class is used to count the number of jets passing VBF criteria, and
  * store the count in the n-tuple.
@@ -136,17 +142,8 @@ class VBFjetCountFiller : public NtupleFillerBase
                 }
             }
         }
-
-
-    private:
-        /**
-         * Used to sort the jets by pT from highest to lowest
-         */
-        bool jet_sorter( FourVec i, FourVec j )
-        {
-            return ( i.Pt() > j.Pt() );
-        }
 };
+
 
 
 #include "UWAnalysis/DataFormats/interface/CompositePtrCandidateT1T2MEt.h"
