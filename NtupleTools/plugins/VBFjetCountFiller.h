@@ -1,5 +1,6 @@
 // system include files
 #include <memory>
+#include <algorithm>
 
 // user include files
 #include "CommonTools/Utils/interface/StringObjectFunction.h"
@@ -29,6 +30,8 @@ class VBFjetCountFiller : public NtupleFillerBase
 
     protected:
         int VBFcounts;
+        double fisherDisc;
+
         edm::InputTag src_; // input collection
         std::string sel_;   // string-based cuts
         std::string tag_;   // name for this n-tuple branch
@@ -52,7 +55,11 @@ class VBFjetCountFiller : public NtupleFillerBase
              tag_(iConfig.getParameter<std::string>("tag"))
         {
             VBFcounts = 0;
-            t->Branch(tag_.c_str(), &VBFcounts, (tag_+"/I").c_str());
+            fisherDisc = -1; // initialize to unphysical value
+
+            t->Branch(tag_.c_str(), &VBFcounts, (tag_+"/I").c_str()); // create count branch
+            t->Branch((tag_ + "_fisher").c_str(), &fisherDisc, (tag_ + "_fisher" + "/D").c_str()); // fisher disc. branch
+
             function = new StringCutObjectSelector<pat::Jet>(sel_,true);
         }
 
@@ -77,6 +84,9 @@ class VBFjetCountFiller : public NtupleFillerBase
             {
                 if( cands->size() > 0 )
                 {
+                    // store jet 4-vectors for Fisher Disc.
+                    std::vector<FourVec> jets_p4;
+
                     for( unsigned int i = 0; i < cands->at(0).jets().size(); ++i )
                     {
                         // apply string-based cuts
@@ -84,11 +94,12 @@ class VBFjetCountFiller : public NtupleFillerBase
                         {
                             // apply cross-cleaning against the 4 leptons and
                             // FSR photons (if any).
-                            
+
                             FourVec jet_p4 = cands->at(0).jets().at(i)->p4();
 
                             // store lepton and FSR 4-vectors
                             std::vector<FourVec> leptons_FSR;
+
 
                             leptons_FSR.push_back( cands->at(0).leg1()->leg1()->p4() );
                             leptons_FSR.push_back( cands->at(0).leg1()->leg2()->p4() );
@@ -110,11 +121,30 @@ class VBFjetCountFiller : public NtupleFillerBase
                                     passed = false;
 
                             if ( passed )
+                            {
                                 VBFcounts++;
+                                jets_p4.push_back( jet_p4 );
+                            }
                         }
+                    }
+
+                    // at least two jets are required for the fisher discriminant
+                    if ( VBFcounts >= 2 )
+                    {
+                        std::sort( jets_p4.begin(), jets_p4.end(), jet_sorter );
                     }
                 }
             }
+        }
+
+
+    private:
+        /**
+         * Used to sort the jets by pT from highest to lowest
+         */
+        bool jet_sorter( FourVec i, FourVec j )
+        {
+            return ( i.Pt() > j.Pt() );
         }
 };
 
