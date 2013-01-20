@@ -15,6 +15,9 @@
 #include "CommonTools/UtilAlgos/interface/StringCutObjectSelector.h"
 
 
+/**
+ * Used to sort jets from highest to lowest pt
+ */
 bool jet_sorter( const reco::Candidate::LorentzVector& i, const reco::Candidate::LorentzVector& j )
 {
     return ( i.Pt() > j.Pt() );
@@ -78,13 +81,15 @@ class VBFjetCountFiller : public NtupleFillerBase
 
 
         /**
-         * Assign the number of VBF candidate jets to 'VBFcounts'.
+         * Assign the number of VBF candidate jets to 'VBFcounts', and the fisher
+         * discriminant 'fisherDisc'.
          */
         void fill(const edm::Event& iEvent, const edm::EventSetup &iSetup)
         {
             edm::Handle<std::vector<T> > cands;
 
             VBFcounts = 0;
+            fisherDisc = -1;
 
             if( iEvent.getByLabel(src_, cands) )
             {
@@ -137,7 +142,14 @@ class VBFjetCountFiller : public NtupleFillerBase
                     // at least two jets are required for the fisher discriminant
                     if ( VBFcounts >= 2 )
                     {
+                        // get the two highest pt jets
                         std::sort( jets_p4.begin(), jets_p4.end(), jet_sorter );
+
+                        FourVec jet1 = jets_p4.at(0);
+                        FourVec jet2 = jets_p4.at(1);
+
+                        // see page 200 of CMS NOTE AN-12-367 v8
+                        fisherDisc = 0.09407*abs( jet1.Eta() - jet2.Eta() ) + 0.00041581*ROOT::Math::VectorUtil::InvariantMass( jet1, jet2 );
                     }
                 }
             }
