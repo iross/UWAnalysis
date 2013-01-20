@@ -5,6 +5,7 @@
 #include "CommonTools/Utils/interface/StringObjectFunction.h"
 #include "DataFormats/PatCandidates/interface/LookupTableRecord.h"
 #include "DataFormats/PatCandidates/interface/Jet.h"
+#include "DataFormats/Math/interface/deltaR.h"
 
 #include <TTree.h>
 
@@ -85,10 +86,30 @@ class VBFjetCountFiller : public NtupleFillerBase
                             
                             FourVec jet_p4 = cands->at(0).jets().at(i)->p4();
 
-                            FourVec z1l1_p4 = cands->at(0).leg1.leg1.p4();
-                            FourVec z1l2_p4 = cands->at(0).leg1.leg2.p4();
-                            FourVec z2l1_p4 = cands->at(0).leg2.leg1.p4();
-                            FourVec z2l2_p4 = cands->at(0).leg2.leg2.p4();
+                            // store lepton and FSR 4-vectors
+                            std::vector<FourVec> leptons_FSR;
+
+                            leptons_FSR.push_back( cands->at(0).leg1()->leg1()->p4() );
+                            leptons_FSR.push_back( cands->at(0).leg1()->leg2()->p4() );
+                            leptons_FSR.push_back( cands->at(0).leg2()->leg1()->p4() );
+                            leptons_FSR.push_back( cands->at(0).leg2()->leg2()->p4() );
+
+                            FourVec FSR1 = cands->at(0).leg1()->p4() - cands->at(0).leg1()->noPhoP4();
+                            FourVec FSR2 = cands->at(0).leg2()->p4() - cands->at(0).leg2()->noPhoP4();
+
+                            // only add the FSR photons if they exist
+                            if ( FSR1.Pt() > 1 )
+                                leptons_FSR.push_back( FSR1 );
+                            if ( FSR2.Pt() > 1 )
+                                leptons_FSR.push_back( FSR2 );
+
+                            bool passed = true;
+                            for ( unsigned int i = 0; i < leptons_FSR.size(); ++i )
+                                if ( ROOT::Math::VectorUtil::DeltaR( leptons_FSR.at(i), jet_p4 ) <= 0.5 )
+                                    passed = false;
+
+                            if ( passed )
+                                VBFcounts++;
                         }
                     }
                 }
@@ -100,12 +121,12 @@ class VBFjetCountFiller : public NtupleFillerBase
 #include "UWAnalysis/DataFormats/interface/CompositePtrCandidateT1T2MEt.h"
 #include "UWAnalysis/DataFormats/interface/CompositePtrCandidateTMEt.h"
 
-typedef VBFjetCountFiller<PATMuTauPair> PATMuTauPairVBFjetCountFiller;
-typedef VBFjetCountFiller<PATMuJetPair> PATMuJetPairVBFjetCountFiller;
-typedef VBFjetCountFiller<PATElecTauPair> PATEleTauPairVBFjetCountFiller;
-typedef VBFjetCountFiller<PATElecMuPair> PATEleMuPairVBFjetCountFiller;
-typedef VBFjetCountFiller<PATMuPair> PATMuPairVBFjetCountFiller;
-typedef VBFjetCountFiller<PATDiTauPair> PATDiTauPairVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATMuTauPair> PATMuTauPairVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATMuJetPair> PATMuJetPairVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATElecTauPair> PATEleTauPairVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATElecMuPair> PATEleMuPairVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATMuPair> PATMuPairVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATDiTauPair> PATDiTauPairVBFjetCountFiller;
 
 typedef VBFjetCountFiller<PATMuMuTauTauQuad> PATMuMuTauTauQuadVBFjetCountFiller;
 typedef VBFjetCountFiller<PATMuMuMuTauQuad> PATMuMuMuTauQuadVBFjetCountFiller;
@@ -124,7 +145,7 @@ typedef VBFjetCountFiller<PATEleSCEleEleQuad> PATEleSCEleEleQuadVBFjetCountFille
 typedef VBFjetCountFiller<PATMuMuEleSCQuad> PATMuMuEleSCQuadVBFjetCountFiller;
 typedef VBFjetCountFiller<PATEleSCMuMuQuad> PATEleSCMuMuQuadVBFjetCountFiller;
 
-typedef VBFjetCountFiller<PATMuMuMuTri> PATMuMuMuTriVBFjetCountFiller;
-typedef VBFjetCountFiller<PATMuMuEleTri> PATMuMuEleTriVBFjetCountFiller;
-typedef VBFjetCountFiller<PATEleEleMuTri> PATEleEleMuTriVBFjetCountFiller;
-typedef VBFjetCountFiller<PATEleEleEleTri> PATEleEleEleTriVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATMuMuMuTri> PATMuMuMuTriVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATMuMuEleTri> PATMuMuEleTriVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATEleEleMuTri> PATEleEleMuTriVBFjetCountFiller;
+// typedef VBFjetCountFiller<PATEleEleEleTri> PATEleEleEleTriVBFjetCountFiller;
