@@ -6,6 +6,7 @@
 #include "DataFormats/PatCandidates/interface/LookupTableRecord.h"
 #include "DataFormats/PatCandidates/interface/Jet.h"
 #include "DataFormats/Math/interface/deltaR.h"
+#include "Math/GenVector/VectorUtil.h"
 
 #include <TTree.h>
 
