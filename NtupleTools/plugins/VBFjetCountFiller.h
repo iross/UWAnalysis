@@ -40,6 +40,11 @@ class VBFjetCountFiller : public NtupleFillerBase
     protected:
         int VBFcounts;
         double fisherDisc;
+        double jet1pt;
+        double jet2pt;
+        double jet1eta;
+        double jet2eta;
+        double mjj;
 
         edm::InputTag src_; // input collection
         std::string sel_;   // string-based cuts
@@ -65,9 +70,21 @@ class VBFjetCountFiller : public NtupleFillerBase
         {
             VBFcounts = 0;
             fisherDisc = -1; // initialize to unphysical value
+            jet1pt = -1;
+            jet2pt = -1;
+            jet1eta = -999;
+            jet2eta = -999;
+            mjj = -1;
 
             t->Branch(tag_.c_str(), &VBFcounts, (tag_+"/I").c_str()); // create count branch
             t->Branch((tag_ + "_fisher").c_str(), &fisherDisc, (tag_ + "_fisher" + "/D").c_str()); // fisher disc. branch
+
+            t->Branch((tag_ + "_jet1pt").c_str(), &jet1pt, (tag_ + "_jet1pt" + "/D").c_str());
+            t->Branch((tag_ + "_jet2pt").c_str(), &jet2pt, (tag_ + "_jet2pt" + "/D").c_str());
+            t->Branch((tag_ + "_jet1eta").c_str(), &jet1eta, (tag_ + "_jet1eta" + "/D").c_str());
+            t->Branch((tag_ + "_jet2eta").c_str(), &jet2eta, (tag_ + "_jet2eta" + "/D").c_str());
+
+            t->Branch((tag_ + "_mjj").c_str(), &mjj, (tag_ + "_mjj" + "/D").c_str());
 
             function = new StringCutObjectSelector<pat::Jet>(sel_,true);
         }
@@ -150,6 +167,13 @@ class VBFjetCountFiller : public NtupleFillerBase
 
                         // see page 200 of CMS NOTE AN-12-367 v8
                         fisherDisc = 0.09407*abs( jet1.Eta() - jet2.Eta() ) + 0.00041581*ROOT::Math::VectorUtil::InvariantMass( jet1, jet2 );
+
+                        // store jet kinematics in the n-tuple
+                        mjj        = ROOT::Math::VectorUtil::InvariantMass( jet1, jet2 );
+                        jet1pt     = jet1.Pt();
+                        jet2pt     = jet2.Pt();
+                        jet1eta    = jet1.Eta();
+                        jet2eta    = jet2.Eta();
                     }
                 }
             }
