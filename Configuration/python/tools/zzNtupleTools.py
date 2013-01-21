@@ -1706,6 +1706,20 @@ def zlCommon(src,pluginType,leadOnly=True):
                 method     = cms.string("met.pt()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
                 ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("z1l1pfCombIso2012"),
+                method     = cms.string("(leg1.leg1.chargedHadronIso()+max(0.0,leg1.leg1.neutralHadronIso()+leg1.leg1PhotonIso()-leg1.leg1.userFloat('effArea')*leg1.leg1.userFloat('zzRho2012')))/leg1.leg1.pt()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("z1l2pfCombIso2012"),
+                method     = cms.string("(leg1.leg2.chargedHadronIso()+max(0.0,leg1.leg2.neutralHadronIso()+leg1.leg2PhotonIso()-leg1.leg2.userFloat('effArea')*leg1.leg2.userFloat('zzRho2012')))/leg1.leg2.pt()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
             )
     return sharedV
 
