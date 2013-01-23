@@ -107,6 +107,11 @@ class VBFjetCountFiller : public NtupleFillerBase
 
             VBFcounts = 0;
             fisherDisc = -1;
+            jet1pt = -1;
+            jet2pt = -1;
+            jet1eta = -999;
+            jet2eta = -999;
+            mjj = -1;
 
             if( iEvent.getByLabel(src_, cands) )
             {
@@ -185,13 +190,6 @@ class VBFjetCountFiller : public NtupleFillerBase
 #include "UWAnalysis/DataFormats/interface/CompositePtrCandidateT1T2MEt.h"
 #include "UWAnalysis/DataFormats/interface/CompositePtrCandidateTMEt.h"
 
-// typedef VBFjetCountFiller<PATMuTauPair> PATMuTauPairVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATMuJetPair> PATMuJetPairVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATElecTauPair> PATEleTauPairVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATElecMuPair> PATEleMuPairVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATMuPair> PATMuPairVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATDiTauPair> PATDiTauPairVBFjetCountFiller;
-
 typedef VBFjetCountFiller<PATMuMuTauTauQuad> PATMuMuTauTauQuadVBFjetCountFiller;
 typedef VBFjetCountFiller<PATMuMuMuTauQuad> PATMuMuMuTauQuadVBFjetCountFiller;
 typedef VBFjetCountFiller<PATMuMuEleTauQuad> PATMuMuEleTauQuadVBFjetCountFiller;
@@ -208,8 +206,3 @@ typedef VBFjetCountFiller<PATEleEleEleSCQuad> PATEleEleEleSCQuadVBFjetCountFille
 typedef VBFjetCountFiller<PATEleSCEleEleQuad> PATEleSCEleEleQuadVBFjetCountFiller;
 typedef VBFjetCountFiller<PATMuMuEleSCQuad> PATMuMuEleSCQuadVBFjetCountFiller;
 typedef VBFjetCountFiller<PATEleSCMuMuQuad> PATEleSCMuMuQuadVBFjetCountFiller;
-
-// typedef VBFjetCountFiller<PATMuMuMuTri> PATMuMuMuTriVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATMuMuEleTri> PATMuMuEleTriVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATEleEleMuTri> PATEleEleMuTriVBFjetCountFiller;
-// typedef VBFjetCountFiller<PATEleEleEleTri> PATEleEleEleTriVBFjetCountFiller;
