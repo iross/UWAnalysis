@@ -7,7 +7,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'START53_V10::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(100)
+        input = cms.untracked.int32(-1)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -19,7 +19,10 @@ process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-            'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
+            #'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
+            #'file:GluGluH125_Summer12_sync.root'
+            'file:VBFH125_Summer12_sync.root'
+            #'file:VBFH125_Summer12_sync_START53_V10.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -50,8 +53,10 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
         EAtarget = "2012Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
-        calTarget = "Summer12_DR53X_HCP2012",
-        rochCor = "RochCor2012"
+        #calTarget = "Summer12_DR53X_HCP2012",
+        #rochCor = "RochCor2012"
+        calTarget = "dummy",
+        rochCor   = "dummy"
         )
 
 #createGeneratedParticlesPATtuple(process,
