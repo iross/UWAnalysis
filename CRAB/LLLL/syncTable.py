@@ -15,12 +15,12 @@ mmee_tree = input_file.Get("muMuEleEleEventTreeFinal/eventTree")
 eeee_tree = input_file.Get("eleEleEleEleEventTreeFinal/eventTree")
 
 #selections = "mass > 70 && subBestZmass > 12"
-#selections = "mass > 70 && subBestZmass > 12 && mass > 100 && kd > 0.1"
+selections = "mass > 70 && subBestZmass > 12 && mass > 100 && kd > 0.1"
 
 events1 = set()
 events2 = set()
 
-selections = "subBestZmass > 12 && mass > 100 && VBFjets == 2"
+#selections = "subBestZmass > 12 && mass > 100 && VBFjets == 2"
 
 mmmm_sel1 = mmmm_tree.CopyTree(selections)
 mmee_sel1 = mmee_tree.CopyTree(selections)
@@ -35,7 +35,7 @@ for evt in mmee_sel1:
 for evt in eeee_sel1:
     events1.add( evt.EVENT )
 
-selections = "subBestZmass > 12 && mass > 100 && VBFjets == 2 && VBFjets_fisher > 0.4"
+#selections = "subBestZmass > 12 && mass > 100 && VBFjets == 2 && VBFjets_fisher > 0.4"
 
 mmmm_sel2 = mmmm_tree.CopyTree(selections)
 mmee_sel2 = mmee_tree.CopyTree(selections)
