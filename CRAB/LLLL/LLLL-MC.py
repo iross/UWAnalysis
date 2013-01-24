@@ -19,13 +19,10 @@ process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-            #'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
-            #'file:GluGluH125_Summer12_sync.root'
-            #'file:GluGluH125_Summer12_sync_START53_V10.root'
-            #'file:VBFH125_Summer12_sync_START53_V10.root'
-            'file:VBFH125_Summer12_sync_START53_V10_dummy.root'
-            #'file:VBFH125_Summer12_sync.root'
-            #'file:VBFH125_Summer12_sync_START53_V10.root'
+#            'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
+#            'file:/scratch/iross/GluGluH125_Summer12_sync_START53_V10.root'
+#            'file:/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/ZZJetsTo2L2Q_TuneZ2star_8TeV-madgraph-tauola/1/patTuple_cfg-BC50B9AD-5CD8-E111-975E-00215E221FB0.root'
+'file:/scratch/iross/VBFH125_Summer12_sync_START53_V10_dummy.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -57,9 +54,9 @@ defaultAnalysisPath(process,'HLT',
             ],
         EAtarget = "2012Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         calTarget = "Summer12_DR53X_HCP2012",
-        rochCor = "RochCor2012"
-        # calTarget = "dummy",
-        # rochCor   = "dummy"
+        rochCor = "RochCor2012_errDown_dummy" #why err down? Who fucking knows. That's what syncs in MC right now. IAR 23.Jan.2013
+        isMC = True,
+        isSync= True #use deterministic smearing in rochcor for syncing purposes?
         )
 
 #createGeneratedParticlesPATtuple(process,
@@ -170,6 +167,10 @@ from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEventTree
 addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=True)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
 addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=True)
+
+#temp--muon dump to debug rochcor
+from UWAnalysis.Configuration.tools.zzNtupleTools import addMuTree
+addMuTree(process,'finalMuons','goodPatMuons',leadingOnly=False)
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
 #addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')

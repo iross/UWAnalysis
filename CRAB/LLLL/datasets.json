@@ -1059,5 +1059,13 @@
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
-}
+},
+"ZZ2l2q":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/ZZJetsTo2L2Q_TuneZ2star_8TeV-madgraph-tauola",
+    "url" : "",
+    "xsection" : 0.0,
+    "url" : "",
+    "note_" : ""
+    }
 }

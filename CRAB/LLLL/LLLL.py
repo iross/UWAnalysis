@@ -48,7 +48,9 @@ defaultAnalysisPath(process,'HLT',
             ],
         EAtarget="2012Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         calTarget = "2012Jul13ReReco",
-        rochCor = "RochCor2012"
+        rochCor = "RochCor2012",
+        isMC = False,
+        isSync= False #use deterministic smearing in rochcor for syncing purposes? only gets applied to MC, I hope.
         )
 
 #EventSelection
