@@ -171,7 +171,7 @@ class VBFjetCountFiller : public NtupleFillerBase
                         FourVec jet2 = jets_p4.at(1);
 
                         // see page 200 of CMS NOTE AN-12-367 v8
-                        fisherDisc = 0.09407*abs( jet1.Eta() - jet2.Eta() ) + 0.00041581*ROOT::Math::VectorUtil::InvariantMass( jet1, jet2 );
+                        fisherDisc = 0.09407*fabs( jet1.Eta() - jet2.Eta() ) + 0.00041581*ROOT::Math::VectorUtil::InvariantMass( jet1, jet2 );
 
                         // store jet kinematics in the n-tuple
                         mjj        = ROOT::Math::VectorUtil::InvariantMass( jet1, jet2 );
