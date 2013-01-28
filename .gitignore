@@ -20,7 +20,7 @@
 *temp*
 
 *.history
-*.bk
+*bk
 *.swp
 *nohup.out
 *__afs*
