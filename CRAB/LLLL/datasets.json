@@ -264,7 +264,7 @@
     },
 "DYJets":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball",
+    "path" : "/hdfs/store/user/tapas/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2012-12-29-8TeV-53X-PatTuple_Master/",
     "url" : "",
     "xsection" : 3503.71,
     "note_" : ""
