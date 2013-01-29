@@ -43,6 +43,10 @@ DEFINE_EDM_PLUGIN(MMMFillerFactory, PATMuMuMuTriFiller, "PATMuMuMuTriFiller");
 DEFINE_EDM_PLUGIN(EEFillerFactory, PATElePairFiller, "PATElePairFiller");
 DEFINE_EDM_PLUGIN(MMFillerFactory, PATMuPairFiller, "PATMuPairFiller");
 
+DEFINE_EDM_PLUGIN(EFillerFactory, PATEleFiller, "PATEleFiller");
+DEFINE_EDM_PLUGIN(MFillerFactory, PATMuFiller, "PATMuFiller");
+DEFINE_EDM_PLUGIN(TFillerFactory, PATTauFiller, "PATTauFiller");
+
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATEleEleMuTriFiller, "PATEleEleMuTriFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuEleTriFiller, "PATMuMuEleTriFiller");
 //DEFINE_EDM_PLUGIN(NtupleFillerFactory, PATMuMuMuTriFiller, "PATMuMuMuTriFiller");

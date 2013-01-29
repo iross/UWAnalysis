@@ -26,3 +26,8 @@ DEFINE_FWK_MODULE(MMMEventTree);
 //Z
 DEFINE_FWK_MODULE(EEEventTree);
 DEFINE_FWK_MODULE(MMEventTree);
+
+//lepton dumps for syncing
+DEFINE_FWK_MODULE(EleTree);
+DEFINE_FWK_MODULE(MuTree);
+DEFINE_FWK_MODULE(TauTree);

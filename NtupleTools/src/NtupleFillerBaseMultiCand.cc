@@ -24,3 +24,7 @@ EDM_REGISTER_PLUGINFACTORY(MMMFillerFactory, "MMMFillerFactory");
 
 EDM_REGISTER_PLUGINFACTORY(MMFillerFactory, "MMFillerFactory");
 EDM_REGISTER_PLUGINFACTORY(EEFillerFactory, "EEFillerFactory");
+
+EDM_REGISTER_PLUGINFACTORY(EFillerFactory, "EFillerFactory");
+EDM_REGISTER_PLUGINFACTORY(MFillerFactory, "MFillerFactory");
+EDM_REGISTER_PLUGINFACTORY(TFillerFactory, "TFillerFactory");
