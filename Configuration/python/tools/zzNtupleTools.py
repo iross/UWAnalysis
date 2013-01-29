@@ -1724,7 +1724,7 @@ def zlCommon(src,pluginType,leadOnly=True):
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
                 tag        = cms.string("z2l1pfCombIso"),
-                method     = cms.string("(leg2.leg1.chargedHadronIso()+max(0.0,leg2.leg1.neutralHadronIso()+leg2.leg1PhotonIso()-leg2.leg1.userFloat('effArea')*leg2.leg1.userFloat('zzRho')))/leg2.leg1.pt()"),
+                method     = cms.string("(leg2.chargedHadronIso()+max(0.0,leg2.neutralHadronIso()+leg2PhotonIso()-leg2.userFloat('effArea')*leg2.userFloat('zzRho')))/leg2.pt()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
             ),
             )
