@@ -5,6 +5,7 @@
 *.d
 ._*
 
+.todo
 *.root
 *.png
 *.eps
@@ -19,7 +20,7 @@
 *temp*
 
 *.history
-*.bk
+*bk
 *.swp
 *nohup.out
 *__afs*
@@ -27,3 +28,5 @@
 aTGCRooStats/run_*
 aTGCRooStats/root_*
 multicrab_*
+CRAB/LLLL/submitJobs.sh
+CRAB/LLLL/mergeJobs.sh
