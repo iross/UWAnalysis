@@ -3,8 +3,8 @@ UWAnalysis, ZZ version
 
 Quickstart recipe
 -----------------
-    scram pro -n zz533 CMSSW CMSSW_5_3_3_patch1
-    cd zz533/src
+    scram pro -n zz535 CMSSW CMSSW_5_3_5
+    cd zz535/src                                                                                                                                                                                                    
     cmsenv
     git clone git@github.com:iross/UWAnalysis
     sh UWAnalysis/recipe.sh
@@ -40,12 +40,41 @@ When jobs are complete, running similar mergeJobs commands will create farmout j
     sh mergeJobs.sh
     #once these jobs are done, you'll need to go to /scratch/$USER/ and hadd the merged output files
 
+BG Estimation
+-----------
+The current analysis flow for putting together a complete BG estimate is:
+
+1. ### Run jobs 
+ 
+    per usual, being sure to use "leadingOnly=False" in the ntuple fillers (e.g. https://github.com/iross/UWAnalysis/blob/master/CRAB/LLLL/LLLL.py#L80) and a loose config as the runtime selection (e.g. https://github.com/iross/UWAnalysis/blob/master/CRAB/LLLL/LLLL.py#L57)
+2. ### Merge jobs.
+3. ### Post-processing. 
+
+    Because each event can produce multple candidates for each event, we must apply some post-processing.
+        
+        cd analysisScripts
+        python makeAnalysisTrees.py --file=[inputFilepath].root --out=[outputFilepath].root
+    
+    
+    By default, this creates fully selected trees, BG estimate trees (Z+1l for measurements, Z+1P1F, Z+2F regions), same-sign BG estimate trees for checks, and some summed trees.
+    Arbitration is applied, ensuring that the base selection trees only have one candidate per event.
+    The resulting BG estimation treest can have multiple candidates per event (each candidate has the potential to fake a signal-like event)
+4. ### Plotting. 
+ 
+    analysisPlots.py in https://github.com/iross/analysisScripts/ has some pretty ugly plot dump code in place, which measures and applies the relevant fakerates.
+    Alternatively, you can use the helper functions in analysisScripts/simplePlots.py, which return fakerate-scaled histograms from all BG regions:
+        
+        from simplePlots import *
+        from ROOT import TFile
+        f=TFile("whatever.root")
+        applyFakes(f,extra="&&z1Mass>81&&z1Mass<101",lowZ1=True)
 
 PatTuples
 ----------------
 Default running mode is on the common UW pattuples. Samples are being produced centrally.
 
 For information on creating/using the pattuples, see relevant sections of http://final-state-analysis.readthedocs.org/en/latest/index.html or ask one of us..
+
 
 Previous Documentation
 ----------------------
