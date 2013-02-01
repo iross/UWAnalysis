@@ -17,15 +17,36 @@ cd $CMSSW_BASE/src
 cvs co -r bMinimalSVfit-08-03-11 AnalysisDataFormats/TauAnalysis                  
 cvs co -r bMinimalSVfit_2012May13 TauAnalysis/CandidateTools                       
 
-cvs co -r V08-03-15 PhysicsTools/Utilities
-
 # PAT RECIPE V08-06-58 IAR 27.Sep.2012
 addpkg DataFormats/PatCandidates  V06-04-19-05
+# patch in 44X electrons so regression BS works
+cvs up -r 1.44 DataFormats/PatCandidates/interface/Electron.h
+cvs up -r 1.33 DataFormats/PatCandidates/src/Electron.cc
 addpkg PhysicsTools/PatAlgos V08-06-58
 addpkg PhysicsTools/PatUtils V03-09-18
 addpkg CommonTools/ParticleFlow B4_2_X_V00-03-05
 addpkg PhysicsTools/SelectorUtils V00-03-24
 addpkg PhysicsTools/UtilAlgos V08-02-14 
+# Remove this junky MHT package, we don't need it and it causes
+# link errors with the MVAMET
+rm -f PhysicsTools/PatAlgos/plugins/PATMHTProducer*
+
+#Update to calculate Single Tower H/E in 42X
+#https://twiki.cern.ch/twiki/bin/view/CMS/HoverE2012
+cvs co -r CMSSW_4_2_8_patch7 RecoEgamma/EgammaElectronAlgos
+cvs co -r CMSSW_5_2_2 RecoEgamma/EgammaElectronAlgos/src/ElectronHcalHelper.cc
+cvs co -r CMSSW_5_2_2 RecoEgamma/EgammaElectronAlgos/interface/ElectronHcalHelper.h
+cvs co -r CMSSW_5_2_2 RecoEgamma/EgammaIsolationAlgos
+
+# For a fix to prevent segfaults on certain MC samples when using
+# the GenParticlePrunder
+cvs co -r V11-03-16 PhysicsTools/HepMCCandAlgos
+
+# need these to work with the latest pattuples.
+cvs co -r V03-03-18 DataFormats/METReco
+cvs co -r V05-00-16 DataFormats/JetReco
+# apparently this file called some headers that have moved...
+cvs up -r 1.1 DataFormats/JetReco/interface/PFClusterJet.h  
 
 #to compile our limit package
 cvs co  -r Michalis_THKeys_111103 HiggsAnalysis/CombinedLimit
