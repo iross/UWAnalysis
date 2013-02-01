@@ -10,7 +10,7 @@ from PhysicsTools.PatAlgos.tools.pfTools import *
 from PhysicsTools.PatAlgos.tools.trigTools import *
 import sys
 
-def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy',calTarget='dummy',rochCor='dummy'):
+def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v1','HLT_Mu11_PFTau15_v2','HLT_Mu15_v1','HLT_Mu15_v2'],EAtarget='dummy',calTarget='dummy',rochCor='dummy',isMC=False,isSync=False):
     process.load("UWAnalysis.Configuration.startUpSequence_cff")
     #process.load("Configuration.Geometry.GeometryIdeal_cff")
     process.load("Configuration.StandardSequences.Geometry_cff")
@@ -56,9 +56,14 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             src = cms.InputTag("looseMu"),
             rochcorType = cms.string(rochCor) # Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
             )
+    process.recorrMuons = cms.EDProducer("PATMuonRochesterEmbedder",
+            src = cms.InputTag("corrMuons"),
+            isMC = cms.bool(isMC),
+            isSync = cms.bool(isSync), #use fake smearing for synchronization purposes
+            )
 
     process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
-            src = cms.InputTag("corrMuons"),
+            src = cms.InputTag("recorrMuons"),
             target = cms.string(EAtarget),
             )
 
@@ -90,7 +95,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
 
     #remove electrons within 0.3 of a muon
     process.llttElectrons = cms.EDProducer("PATElectronCleaner",
-          src = cms.InputTag("mvaedElectrons"),
+          src = cms.InputTag("eaElectrons"), #was mvaedElectrons temp IAR 31.Jan.2013
           preselection = cms.string(""),
           checkOverlaps = cms.PSet(
               muons = cms.PSet(
@@ -124,7 +129,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.looseMu*process.corrMuons*process.goodPatMuons+process.corrElectrons*process.eaElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.looseMu*process.corrMuons*process.recorrMuons*process.goodPatMuons+process.corrElectrons*process.eaElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
