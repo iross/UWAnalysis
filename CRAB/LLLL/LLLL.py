@@ -7,7 +7,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'GR_P_V41_AN1::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(2000)
+        input = cms.untracked.int32(20)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
