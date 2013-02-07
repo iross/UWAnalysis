@@ -13,6 +13,7 @@ parser=argparse.ArgumentParser(description="%prog -- dump some analysis-level pl
 parser.add_argument("--tag",dest="tag",type=str,default="")
 parser.add_argument("--json",dest="json",type=str,default="datasets.json")
 parser.add_argument("--samples",dest="samples",nargs="+",type=str,default="")
+parser.add_argument("--resubmit-failed-jobs",dest="resubmit",action="store_true")
 args=parser.parse_args()
 
 file = open(args.json)
@@ -40,8 +41,13 @@ for dataset in datasets:
             if fnmatch.fnmatchcase(dataset, pattern):
                 passes = True
     if passes:
+        if (args.resubmit):
+            farmOpts = "--resubmit-failed-jobs"
+        else:
+            farmOpts = "--skip-existing-output"
+
         makeFileList(dataset)
-        merge.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}_merge/{dataset} --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(tag=tag,dataset=dataset))
+        merge.write('farmoutAnalysisJobs ' + farmOpts + ' --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
         if datasets[dataset]['type']=="DATA":
             merge.write('jobReportSummary /scratch/$USER/{dataset}_{tag}-DATA_{dataset}/*/*.xml --json-out /scratch/$USER/{dataset}_{tag}.json\n'.format(dataset=dataset,tag=tag))
 

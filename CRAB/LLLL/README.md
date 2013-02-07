@@ -17,7 +17,7 @@ which would list all 8 TeV patTuples and store the output in `pattuples.txt`. In
 submit jobs to Condor, the file `datasets.json` is required. If necessary, the tool
 `extractDatasets.py` can be used to generate this file. The usage is
 
-    python extractDatasets.py ---patTupleList pattuples.txt --datasetList datasetlist.txt --outputJson datasets.json
+    python extractDatasets.py --patTupleList pattuples.txt --datasetList datasetlist.txt --outputJson datasets.json
 
 The file `datasetlist.txt` should be formatted as in this example:
 

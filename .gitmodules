@@ -1,3 +1,3 @@
 [submodule "analysisScripts"]
 	path = analysisScripts
-	url = git://github.com/iross/analysisScripts.git
+	url = https://github.com/dabelknap/analysisScripts.git

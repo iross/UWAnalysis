@@ -29,6 +29,8 @@
 </bin>
 <bin   name="EventWeightsIterative" file="EventWeightsIterative.cc">
 </bin>
+<bin   name="EventWeightsHighMassHiggs" file="EventWeightsHighMassHiggs.cc">
+</bin>
 <bin   name="EventWeightsKFactors" file="EventWeightsKFactors.cc">
 </bin>
 
@@ -39,6 +41,8 @@
 <bin   name="EventWeightsForEfficiency" file="EventWeightsForEfficiency.cc">
 </bin>
 <bin   name="EventWeightsForEfficiencyFast" file="EventWeightsForEfficiencyFast.cc">
+</bin>
+<bin   name="EventWeightsForEfficiencyFast4l" file="EventWeightsForEfficiencyFast4l.cc">
 </bin>
 
 <bin   name="EventWeightsForEfficiencyHisto" file="EventWeightsForEfficiencyHisto.cc">

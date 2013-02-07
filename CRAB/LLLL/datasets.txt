@@ -1,0 +1,67 @@
+#[name] [type] [provide xsec if MC] [DAS dataset name]
+
+DoubleElectron2012A         DATA                /DoubleElectron/Run2012A-13Jul2012-v1/AOD
+DoubleElectron2012Arecover  DATA                /DoubleElectron/Run2012A-recover-06Aug2012-v1/AOD
+DoubleElectron2012B         DATA                /DoubleElectron/Run2012B-13Jul2012-v1/AOD
+DoubleElectron2012Cv1       DATA                /DoubleElectron/Run2012C-PromptReco-v1/AOD
+DoubleElectron2012Cv2       DATA                /DoubleElectron/Run2012C-PromptReco-v2/AOD
+
+ZZ4T                        MC  0.07691         /ZZTo4tau_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ZZ4M                        MC  0.07691         /ZZTo4mu_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ZZ4E                        MC  0.07691         /ZZTo4e_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ZZ2M2T                      MC  0.1767          /ZZTo2mu2tau_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ZZ2E2T                      MC  0.1767          /ZZTo2e2tau_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ZZ2E2M                      MC  0.1767          /ZZTo2e2mu_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+
+ggZZ4L                      MC  0.0048
+ggZZ2L2L                    MC  0.01203
+
+ggH1000                     MC  0.000176872     /GluGluToHToZZTo4L_M-1000_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH950                      MC  0.00021825      /GluGluToHToZZTo4L_M-950_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH900                      MC  0.000274288     /GluGluToHToZZTo4L_M-900_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH850                      MC  0.000352126     /GluGluToHToZZTo4L_M-850_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH800                      MC  0.000460982     /GluGluToHToZZTo4L_M-800_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH750                      MC  0.000615984     /GluGluToHToZZTo4L_M-750_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH700                      MC  0.00084709      /GluGluToHToZZTo4L_M-700_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH650                      MC  0.00118854      /GluGluToHToZZTo4L_M-650_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH600                      MC  0.00171087      /GluGluToHToZZTo4L_M-600_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH575                      MC  0.00207611      /GluGluToHToZZTo4L_M-575_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH550                      MC  0.00252842      /GluGluToHToZZTo4L_M-550_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH525                      MC  0.00309238      /GluGluToHToZZTo4L_M-525_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH500                      MC  0.00379922      /GluGluToHToZZTo4L_M-500_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH475                      MC  0.00469389      /GluGluToHToZZTo4L_M-475_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH450                      MC  0.00580375      /GluGluToHToZZTo4L_M-450_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH425                      MC  0.00714135      /GluGluToHToZZTo4L_M-425_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH400                      MC  0.00864498      /GluGluToHToZZTo4L_M-400_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH375                      MC  0.0102521       /GluGluToHToZZTo4L_M-375_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH350                      MC  0.0115879       /GluGluToHToZZTo4L_M-350_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH325                      MC  0.0117414       /GluGluToHToZZTo4L_M-325_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH300                      MC  0.0127146       /GluGluToHToZZTo4L_M-300_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH275                      MC  0.0141714       /GluGluToHToZZTo4L_M-275_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH250                      MC  0.0164642       /GluGluToHToZZTo4L_M-250_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH220                      MC  0.0198181       /GluGluToHToZZTo4L_M-220_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH200                      MC  0.0211809       /GluGluToHToZZTo4L_M-200_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH190                      MC  0.0193933       /GluGluToHToZZTo4L_M-190_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH180                      MC  0.00624668      /GluGluToHToZZTo4L_M-180_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH170                      MC  0.00280568      /GluGluToHToZZTo4L_M-170_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH160                      MC  0.00576997      /GluGluToHToZZTo4L_M-160_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH150                      MC  0.0131932       /GluGluToHToZZTo4L_M-150_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH145                      MC  0.0135749       /GluGluToHToZZTo4L_M-145_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH140                      MC  0.0126943       /GluGluToHToZZTo4L_M-140_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH135                      MC  0.0108799       /GluGluToHToZZTo4L_M-135_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH130                      MC  0.00857219      /GluGluToHToZZTo4L_M-130_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH129                      MC  0.00807905      /GluGluToHToZZTo4L_M-129_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH128                      MC  0.00760904      /GluGluToHToZZTo4L_M-128_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH127                      MC  0.00712835      /GluGluToHToZZTo4L_M-127_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH126                      MC  0.00665046      /GluGluToHToZZTo4L_M-126_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH125                      MC  0.00617713      /GluGluToHToZZTo4L_M-125_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH124                      MC  0.00573603      /GluGluToHToZZTo4L_M-124_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH123                      MC  0.00527797      /GluGluToHToZZTo4L_M-123_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH122                      MC  0.00484898      /GluGluToHToZZTo4L_M-122_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH121                      MC  0.00445355      /GluGluToHToZZTo4L_M-121_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH120                      MC  0.004069        /GluGluToHToZZTo4L_M-120_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH119                      MC  0.00369586      /GluGluToHToZZTo4L_M-119_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH118                      MC  0.0033333       /GluGluToHToZZTo4L_M-118_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH117                      MC  0.00300224      /GluGluToHToZZTo4L_M-117_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH116                      MC  0.00269449      /GluGluToHToZZTo4L_M-116_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM
+ggH115                      MC  0.00242704      /GluGluToHToZZTo4L_M-115_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM

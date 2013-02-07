@@ -1787,6 +1787,12 @@ def addMuMuMuMuEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', srcE
             src        = cms.InputTag("patTrigger"),
             paths      = cms.vstring(TriggerPaths)
         ),
+        VBFjets = cms.PSet(
+            pluginType = cms.string("PATMuMuMuMuQuadVBFjetCountFiller"),
+            src        = cms.InputTag(src),
+            tag        = cms.string("VBFjets"),
+            method     = cms.string("pt() > 30 && abs(eta()) < 4.7 && userInt('fullIdLoose') && userFloat('idLoose')"),
+        ),
         JetsPt20 = cms.PSet(
             pluginType = cms.string("PATMuMuMuMuQuadJetCountFiller"),
             src        = cms.InputTag(src),
@@ -1989,6 +1995,12 @@ def addMuMuEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', sr
             pluginType = cms.string("TriggerFiller"),
             src        = cms.InputTag("patTrigger"),
             paths      = cms.vstring(TriggerPaths)
+        ),
+        VBFjets = cms.PSet(
+            pluginType = cms.string("PATMuMuEleEleQuadVBFjetCountFiller"),
+            src        = cms.InputTag(src),
+            tag        = cms.string("VBFjets"),
+            method     = cms.string("pt() > 30 && abs(eta()) < 4.7 && userInt('fullIdLoose') && userFloat('idLoose')"),
         ),
         JetsPt20 = cms.PSet(
             pluginType = cms.string("PATMuMuEleEleQuadJetCountFiller"),
@@ -2246,6 +2258,12 @@ def addEleEleEleEleEventTree(process,name,src = 'zzCleanedCandsAboveThreshold', 
             tag        = cms.string("jetsPt20"),
             method     = cms.string('pt()>20'),
             leadingOnly=cms.untracked.bool(True)
+        ),
+        VBFjets = cms.PSet(
+            pluginType = cms.string("PATEleEleEleEleQuadVBFjetCountFiller"),
+            src        = cms.InputTag(src),
+            tag        = cms.string("VBFjets"),
+            method     = cms.string("pt() > 30 && abs(eta()) < 4.7 && userInt('fullIdLoose') && userFloat('idLoose')"),
         ),
         PVs = cms.PSet(
             pluginType = cms.string("VertexSizeFiller"),
