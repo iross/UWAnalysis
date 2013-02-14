@@ -2,31 +2,31 @@
 "DoubleMu2012A":{
     "type" : "DATA",
         "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-13Jul2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-        "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+        "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
         "url" : "",
         "xsection" : 0.0,
         "note_" : ""
 },
 "DoubleMu2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-EcalRecover_11Dec2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "path" : "",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
-    "note_" : ""
+    "note_" : "to be added"
 },
 "DoubleMu2012B":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012B-13Jul2012-v4/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
 },
-"DoubleMu2012C_v1":{
+"DoubleMu2012C_24Aug":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-24Aug2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
@@ -34,47 +34,63 @@
 "DoubleMu2012C_v2":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-PromptReco-v2/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
 },
+"DoubleMu2012C_recover":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-EcalRecover_11Dec2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
+    "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+},
 "DoubleMu2012D":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012D-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
     },
+"DoubleMu2012D_16Jan":{
+    "type" : "DATA",
+    "path" : "",
+    "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : "to be added"
+    },
 "DoubleElectron2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012A-13Jul2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
 },
 "DoubleElectron2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-EcalRecover_11Dec2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "path" : "",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
-    "note_" : ""
+    "note_" : "to be added"
 },
 "DoubleElectron2012B":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012B-13Jul2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
 },
-"DoubleElectron2012C_v1":{
+"DoubleElectron2012C_24Aug":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-24Aug2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
@@ -82,23 +98,39 @@
 "DoubleElectron2012C_v2":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-PromptReco-v2/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
 },
+"DoubleElectron2012C_recover":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-EcalRecover_11Dec2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
+    "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
+},
 "DoubleElectron2012D":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012D-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-    "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
     },
+"DoubleElectron2012D_16Jan":{
+    "type" : "DATA",
+    "path" : "",
+    "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : "to be added"
+    },
 "MuEG2012A":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/MuEG/Run2012A-13Jul2012-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -106,7 +138,7 @@
 "MuEG2012A_recover":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/MuEG/Run2012A-recover-06Aug2012-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -114,7 +146,7 @@
 "MuEG2012B":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/MuEG/Run2012B-13Jul2012-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "note_" : ""
@@ -122,18 +154,26 @@
 "MuEG2012C_v1":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
-    "notes_" : ""
+    "notes_" : "This needs to be updated to the 24Aug reco"
 },
 "MuEG2012C_v2":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v2/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
-    "json" : "hcp.reRecoJul13PlusReRecoAug06PlusPromptReco.json",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
+},
+"MuEG2012C_recover":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-EcalRecover_11Dec2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
+    "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : "to be added -- Not in existence IAR 14.Feb.2013"
 },
 "MuEG2012D":{
     "type" : "DATA",
@@ -142,6 +182,14 @@
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""
+    },
+"MuEG2012D_16Jan":{
+    "type" : "DATA",
+    "path" : "",
+    "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
+    "url" : "",
+    "xsection" : 0.0,
+   "notes_" : "to be added"
     },
 "ZZ2E2M":{
     "type" : "MC",
@@ -173,7 +221,7 @@
 },
 "ZZ2M2T":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo2mu2tau_8TeV-powheg-pythia6/dummy/dontsubmitJobs",
+    "path" : "/hdfs/store/user/tapas/ZZTo2mu2tau_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-01-11-8TeV-53X-PatTuple_Master",
     "url" : "",
     "xsection" : 0.1767,
     "note_" : ""
@@ -199,69 +247,69 @@
     "xsection" : 0.00418,
     "_note" : "assumed cross-section is 1.2x last year's gg sample"
 },
-"aTGC_f4_m0p015_0p015":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_m0p015_0p015",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_m0p015_m0p015":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_m0p015_m0p015",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_m0p015_0p000":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_m0p015_0p000",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_0p015_0p015":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p015_0p015",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_0p015_m0p015":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p015_m0p015",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_0p015_0p000":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p015_0p000",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_0p000_0p015":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p000_0p015",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
-"aTGC_f4_0p000_m0p015":{
-    "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p000_m0p015",
-    "url" : "",
-    "xsection" : 0.0,
-    "notes_" : ""
-    },
 "aTGC_f4_0p000_0p000":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/SHERPA_f4/ZZ_aTGC_f4_0p000_0p000",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_0p0000_0p0000_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p000_0p000-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
     "url" : "",
-    "xsection" : 0.0,
+    "xsection" : 0.0578274519126,
     "notes_" : ""
-    },
+},
+"aTGC_f4_0p000_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_0p0000_0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p000_0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.060337421164,
+    "notes_" : ""
+},
+"aTGC_f4_0p000_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_0p0000_m0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p000_m0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.0596980957219,
+    "notes_" : ""
+},
+"aTGC_f4_0p015_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_0p0150_0p0000_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p015_0p000-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.0605924521505,
+    "notes_" : ""
+},
+"aTGC_f4_0p015_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_0p0150_0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p015_0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.0644588378378,
+    "notes_" : ""
+},
+"aTGC_f4_0p015_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_0p0150_m0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p015_m0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.0609425289617,
+    "notes_" : ""
+},
+"aTGC_f4_m0p015_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_m0p0150_0p0000_v2/iross-SUMMER12-AODSIM-START53_V7C_4_m0p015_0p000-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.0604524983516,
+    "notes_" : ""
+},
+"aTGC_f4_m0p015_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_m0p0150_0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_m0p015_0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.060712210929,
+    "notes_" : ""
+},
+"aTGC_f4_m0p015_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f4_m0p0150_m0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_m0p015_m0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f4",
+    "url" : "",
+    "xsection" : 0.0644455954802,
+    "notes_" : ""
+},
 "DYJets":{
     "type" : "MC",
     "path" : "/hdfs/store/user/tapas/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2012-12-29-8TeV-53X-PatTuple_Master/",
