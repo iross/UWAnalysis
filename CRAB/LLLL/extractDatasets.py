@@ -13,9 +13,9 @@ from optparse import OptionParser
 
 parser = OptionParser()
 
-parser.add_option("--datasetList", dest="inFile", help="The list of datasets you want included in the output JSON.")
-parser.add_option("--patTupleList", dest="patTuples", help="The list of patTuples from Tapas's database tool.")
-parser.add_option("--outputJson", dest="outFile", help="The output JSON file.")
+parser.add_option("-d","--datasetList",  dest="inFile",    help="The list of datasets you want included in the output JSON.")
+parser.add_option("-p","--patTupleList", dest="patTuples", help="The list of patTuples from Tapas's database tool.")
+parser.add_option("-o","--outputJson",   dest="outFile",   help="The output JSON file.")
 
 (options, args) = parser.parse_args()
 
@@ -53,6 +53,8 @@ comment = re.compile("^\s*\#")
 
 patString = patFile.read()
 
+notFound = []
+
 for line in inFile:
 
     dataMatch = dataRE.match(line)
@@ -87,6 +89,8 @@ for line in inFile:
     # extract the patTuple paths
     samplePaths = findPath(patString, sampleName)
 
+    if len(samplePaths) == 0:
+        notFound.append(sampleName)
 
     # Store the information into a python map
     if len(samplePaths) == 1:
@@ -110,6 +114,11 @@ for line in inFile:
                                   "xsection" : xsection,
                                   "note_" : ""
                                   }
+
+if len(notFound) > 0:
+    print "PAT-Tuples not found:"
+    for i in notFound:
+        print i
 
 # Run the map through the JSON parser, and write to file
 outFile.write(json.dumps(datasets,indent=4))

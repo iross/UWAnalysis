@@ -1,6 +1,4 @@
 /**
- * zzAcceptance.cc
- *
  * @file zzAcceptance.cc
  * @author D. Austin Belknap <dabelknap@wisc.edu>
  *
@@ -33,6 +31,7 @@ void zzAcceptance();
 bool passPtCuts(double pt[], int pdgId[]);
 set<string> genRecoEventIds(string treeName, TFile *f);
 double recoEff(string histName, string treeName, TFile *f);
+double recoYield(string treeName, double lumi, TFile *f);
 
 
 // Global Constants
@@ -65,7 +64,8 @@ void zzAcceptance()
     
     // Higgs ggH125 Sample 8 TeV
     TFile *fGen = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggH125Gen.root");
-    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggH125Reco.root");
+    TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/HZZ4l/ggH125.root");
+    // TFile *fRec = new TFile("/afs/hep.wisc.edu/cms/belknap/dataSamples/acceptanceStudy/ggH125Reco.root");
     
     //TFile *f = new TFile("/afs/hep.wisc.edu/cms/belknap/UWTest/src/UWAnalysis/CRAB/LLLL/analysis.root");
     
@@ -244,7 +244,6 @@ void zzAcceptance()
     cout << endl;
 
     double lumi = 5.26e3;
-    double xSec = 0.0062133278;
 
     for (int i = 0; i < 3; ++i)
     {
@@ -257,7 +256,7 @@ void zzAcceptance()
         cout << setw(wordWidth) << fixed << setprecision(4) << 100*double(recoCounts[i])/double(nEntries);
         cout << setw(wordWidth) << fixed << setprecision(4) << 100*recoEff(channelNames.at(i),treeNames.at(i),fRec);
         cout << setw(wordWidth) << fixed << setprecision(4) << 100*recoEff(channelNames.at(i),treeNames.at(i),fRec)/(double(etaCounts[i])/double(nEntries));
-        cout << setw(wordWidth) << fixed << setprecision(4) << lumi*xSec*recoEff(channelNames.at(i),treeNames.at(i),fRec);
+        cout << setw(wordWidth) << fixed << setprecision(4) << recoYield(treeNames.at(i),lumi,fRec);
         cout << endl;
     }
 }
@@ -284,6 +283,44 @@ double recoEff(string histName, string treeName, TFile *f)
     double recoEvents = tree->GetEntries("40 < bestZmass && bestZmass < 120 && 12 < subBestZmass && subBestZmass < 120 && 100 < mass");
 
     return recoEvents/initEvents;
+}
+
+
+/**
+ * Calculates the yields from reco sample
+ *
+ * @param treeName The name of the tree to process
+ * @param lumi Integrated luminosity given in pb-1
+ * @param *f The ROOT file of the sample
+ * @return The event yield
+ */
+double recoYield(string treeName, double lumi, TFile *f)
+{
+    string tName = treeName + "/eventTree";
+    TTree* tree = (TTree*)f->Get(tName.c_str());
+
+    int nEntries = tree->GetEntries();
+
+    float weight;
+    float bestZmass;
+    float subBestZmass;
+    float mass;
+
+    tree->SetBranchAddress("__WEIGHT__",&weight);
+    tree->SetBranchAddress("bestZmass",&bestZmass);
+    tree->SetBranchAddress("subBestZmass",&subBestZmass);
+    tree->SetBranchAddress("mass",&mass);
+
+    double yield = 0;
+
+    for (int i = 0; i < nEntries; ++i)
+    {
+        tree->GetEntry(i);
+        if (40 < bestZmass && bestZmass < 120 && 12 < subBestZmass && subBestZmass < 120 && 100 < mass)
+            yield += weight;
+    }
+
+    return yield*lumi;
 }
 
 

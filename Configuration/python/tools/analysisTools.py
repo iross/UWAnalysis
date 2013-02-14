@@ -63,7 +63,8 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             )
 
     process.goodPatMuons = cms.EDProducer("PATMuonEffectiveAreaEmbedder",
-            src = cms.InputTag("recorrMuons"),
+            #src = cms.InputTag("recorrMuons"),
+            src = cms.InputTag("corrMuons"),
             target = cms.string(EAtarget),
             )
 

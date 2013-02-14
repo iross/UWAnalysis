@@ -13,9 +13,79 @@ std::vector<float> mc;
 //edm::Lumi3DReWeighting *LumiWeights;
 
 
-void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,bool doRho,TH1F* puWeight,TH1F* rhoWeight); 
+void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,bool doRho,TH1F* puWeight,TH1F* rhoWeight);
 
-//https://mangano.web.cern.ch/mangano/dropBox/puRW_v5.txt
+
+double weightTruePileupMoroind(double input)
+{
+    double w[60] =
+    {
+        0.252009,
+        0.327042,
+        0.335502,
+        0.352291,
+        0.324698,
+        0.582754,
+        0.455286,
+        0.441035,
+        0.607629,
+        0.930019,
+        1.3379,
+        1.69521,
+        1.74041,
+        1.54857,
+        1.32193,
+        1.15754,
+        1.07437,
+        1.05152,
+        1.07105,
+        1.11463,
+        1.15493,
+        1.17791,
+        1.18516,
+        1.17815,
+        1.1528,
+        1.10551,
+        1.03652,
+        0.948613,
+        0.844304,
+        0.728083,
+        0.607242,
+        0.489813,
+        0.381766,
+        0.287126,
+        0.207777,
+        0.144102,
+        0.0957851,
+        0.0611744,
+        0.0376984,
+        0.0226007,
+        0.0133203,
+        0.00782018,
+        0.00464555,
+        0.00284065,
+        0.00182028,
+        0.00123555,
+        0.000891118,
+        0.000679799,
+        0.000543107,
+        0.000449514,
+        0.000382089,
+        0.000331034,
+        0.000290923,
+        0.00025824,
+        0.000230472,
+        0.000206238,
+        0.000184523,
+        0.000164717,
+        0.000146364,
+        0.000271878
+    };
+    return w[(int)floor(input)];
+}
+
+
+// https://mangano.web.cern.ch/mangano/dropBox/puRW_v5.txt
 
 float weightTruePileupV07toIchep52X(float input){
     float w[60] = {
@@ -92,7 +162,6 @@ float weightTruePileupV07toIchep52X(float input){
          */
 }
 
-
 float weightTruePileupV07toHcp53X(float input){
     float w[60] = {
         0.0447136,     
@@ -158,7 +227,6 @@ float weightTruePileupV07toHcp53X(float input){
 
     return w[(int)floor(input)];
 }
-
 
 float weightTruePileupV10toIchep53X(float input){
     float w[60] = {
@@ -226,8 +294,6 @@ float weightTruePileupV10toIchep53X(float input){
     return w[(int)floor(input)];
 }
 
-
-
 float weightTruePileupV10toHcp53X(float input){
     float w[60] = {
         0.409409,
@@ -292,10 +358,6 @@ float weightTruePileupV10toHcp53X(float input){
         9.19802e-09};
     return w[(int)floor(input)];
 }
-
-
-
-
 
 
 
@@ -565,6 +627,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
 
             TBranch *newBranch = t->Branch(parser.stringValue("branch").c_str(),&weight,(parser.stringValue("branch")+"/F").c_str());
             TBranch *noPUBranch = t->Branch((parser.stringValue("branch")+"noPU").c_str(),&weight,(parser.stringValue("branch")+"noPU/F").c_str());
+            TBranch *noxsBranch = t->Branch((parser.stringValue("branch")+"noxSec").c_str(), &weight, (parser.stringValue("branch") + "noxSec/F").c_str());
             TBranch *typeBranch = t->Branch("TYPE",&type,"TYPE/I");
             int vertices;
             float bxm=0;
@@ -591,6 +654,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
             {
                 t->GetEntry(i);
                 weight = parser.doubleValue("weight")/(ev);
+                float xSec = parser.doubleValue("weight");
                 noPUBranch->Fill();
                 if(doPU==1) {
                     int bin=puWeight->FindBin(vertices);
@@ -602,9 +666,9 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
                     //                    weight*=puWeight->GetBinContent(bin);
                     //temp hack, etc
                     if (parser.stringValue("extra")=="2011to2012"){
-                        weight*=weightTruePileupV10toHcp53X(bin); //holy hack
+                        weight*=weightTruePileupMoroind(bin); //holy hack
                     } else {
-                        weight*=weightTruePileupV10toHcp53X(bin);
+                        weight*=weightTruePileupMoroind(bin);
                     }
                     if(i==1)
                         printf("PU WEIGHT = %f\n",puWeight->GetBinContent(puWeight->FindBin(vertices)));
@@ -617,7 +681,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
                     //                    weight*=w;
                 }
                 else if(doPU==3) {
-                    weight*=weightTruePileupV10toHcp53X(truth);
+                    weight*=weightTruePileupMoroind(truth);
                 }
                 if(doRho) {
                     weight*=rhoWeight->GetBinContent(rhoWeight->FindBin(rho));
@@ -626,6 +690,8 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser,float ev,int doPU,
                 }
 
                 newBranch->Fill();
+                weight /= xSec;
+                noxsBranch->Fill();
                 typeBranch->Fill();
             }
             t->Write("",TObject::kOverwrite);
