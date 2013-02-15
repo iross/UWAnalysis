@@ -310,6 +310,69 @@
     "xsection" : 0.0644455954802,
     "notes_" : ""
 },
+"aTGC_f5_0p000_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_0p0000_0p0000_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p000_0p000-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.05787571,
+    "notes_" : ""
+},
+"aTGC_f5_0p000_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_0p0000_0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p000_0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.05948786,
+    "notes_" : ""
+},
+"aTGC_f5_0p000_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_0p0000_m0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p000_m0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.059821124,
+    "notes_" : ""
+},
+"aTGC_f5_0p015_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_0p0150_0p0000_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p015_0p000-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.0605898545,
+    "notes_" : ""
+},
+"aTGC_f5_0p015_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_0p0150_0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p015_0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.064350652,
+    "notes_" : ""
+},
+"aTGC_f5_0p015_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_0p0150_m0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_0p015_m0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.060661817,
+    "notes_" : ""
+},
+"aTGC_f5_m0p015_0p000":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_m0p0150_0p0000_v2/iross-SUMMER12-AODSIM-START53_V7C_4_m0p015_0p000-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.060396303,
+    "notes_" : ""
+},
+"aTGC_f5_m0p015_0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_m0p0150_0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_m0p015_0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.060706771,
+    "notes_" : ""
+},
+"aTGC_f5_m0p015_m0p015":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/iross/ZZ4L_Sherpa_aTGC_f5_m0p0150_m0p0150_v2/iross-SUMMER12-AODSIM-START53_V7C_4_m0p015_m0p015-RECO-v2-6c2e8f83abf0ca43d500aa4162646310/USER/aTGC_f5",
+    "url" : "",
+    "xsection" : 0.064218367,
+    "notes_" : ""
+},
 "DYJets":{
     "type" : "MC",
     "path" : "/hdfs/store/user/tapas/DYJetsToLL_M-50_TuneZ2Star_8TeV-madgraph-tarball/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2012-12-29-8TeV-53X-PatTuple_Master/",
