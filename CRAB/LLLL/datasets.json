@@ -9,7 +9,7 @@
 },
 "DoubleMu2012A_recover":{
     "type" : "DATA",
-    "path" : "",
+    "path" : "dummy",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -57,7 +57,7 @@
     },
 "DoubleMu2012D_16Jan":{
     "type" : "DATA",
-    "path" : "",
+    "path" : "dummy",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -73,7 +73,7 @@
 },
 "DoubleElectron2012A_recover":{
     "type" : "DATA",
-    "path" : "",
+    "path" : "dummy",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -121,7 +121,7 @@
     },
 "DoubleElectron2012D_16Jan":{
     "type" : "DATA",
-    "path" : "",
+    "path" : "dummy",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -185,7 +185,7 @@
     },
 "MuEG2012D_16Jan":{
     "type" : "DATA",
-    "path" : "",
+    "path" : "dummy",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
