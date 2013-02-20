@@ -7,7 +7,7 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'GR_P_V41_AN1::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(20)
+        input = cms.untracked.int32(-1)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
@@ -15,7 +15,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-            'file:/hdfs/store/user/tapas/DoubleMu/Run2012D-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master/patTuple_cfg-FED07615-0A39-E211-9B23-001D09F252E9.root'
+#            'file:/hdfs/store/user/tapas/DoubleMu/Run2012D-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master/patTuple_cfg-FED07615-0A39-E211-9B23-001D09F252E9.root'
+            'file:/hdfs/store/user/tapas/DoubleElectron/Run2012D-PromptReco-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master/patTuple_cfg-FCA40080-6B39-E211-95DF-5404A63886B7.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
