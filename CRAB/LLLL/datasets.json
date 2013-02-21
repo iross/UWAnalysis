@@ -1,19 +1,19 @@
 {
 "DoubleMu2012A":{
     "type" : "DATA",
-        "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-13Jul2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
-        "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
-        "url" : "",
-        "xsection" : 0.0,
-        "note_" : ""
-},
-"DoubleMu2012A_recover":{
-    "type" : "DATA",
-    "path" : "dummy",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-13Jul2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
-    "note_" : "to be added"
+    "note_" : ""
+},
+"DoubleMu2012A_recover":{
+    "type" : "DATA",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-recover-06Aug2012-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
+    "url" : "",
+    "xsection" : 0.0,
+    "note_" : ""
 },
 "DoubleMu2012B":{
     "type" : "DATA",
@@ -57,11 +57,11 @@
     },
 "DoubleMu2012D_16Jan":{
     "type" : "DATA",
-    "path" : "dummy",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012D-16Jan2013-v2/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
-    "notes_" : "to be added"
+    "notes_" : ""
     },
 "DoubleElectron2012A":{
     "type" : "DATA",
@@ -73,11 +73,11 @@
 },
 "DoubleElectron2012A_recover":{
     "type" : "DATA",
-    "path" : "dummy",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012A-recover-06Aug2012-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
-    "note_" : "to be added"
+    "note_" : ""
 },
 "DoubleElectron2012B":{
     "type" : "DATA",
@@ -121,11 +121,11 @@
     },
 "DoubleElectron2012D_16Jan":{
     "type" : "DATA",
-    "path" : "dummy",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012D-16Jan2013-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
-    "notes_" : "to be added"
+    "notes_" : ""
     },
 "MuEG2012A":{
     "type" : "DATA",
@@ -169,11 +169,11 @@
 },
 "MuEG2012C_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-EcalRecover_11Dec2012-v1/AOD/2012-12-29-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
     "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
-    "note_" : "to be added -- Not in existence IAR 14.Feb.2013"
+    "note_" : ""
 },
 "MuEG2012D":{
     "type" : "DATA",
@@ -185,11 +185,11 @@
     },
 "MuEG2012D_16Jan":{
     "type" : "DATA",
-    "path" : "dummy",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012D-16Jan2013-v2/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
-   "notes_" : "to be added"
+   "notes_" : ""
     },
 "ZZ2E2M":{
     "type" : "MC",
