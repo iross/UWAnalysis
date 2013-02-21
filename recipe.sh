@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Checking for CERN CVS kerberos ticket"
 HAS_TICKET=`klist 2>&1 | grep CERN.CH`
-
+ 
 # Check if we can checkout anonymously
 IS_ANON=`echo $CVSROOT | grep pserver`
 
