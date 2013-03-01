@@ -45,8 +45,13 @@ rm Muon/MuonAnalysisTools/data/*xml
 cvs co -r U09-04-03-00-01 DataFormats/MuonReco 
 cvs co -r V02-03-00 MuonAnalysis/MuonAssociators
 
-# MELA
-cvs co -r V00-01-05 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
+# MELA + MEKD garbage
+cvs co -r V02-06-00 HiggsAnalysis/CombinedLimit
+cvs co -r V00-03-01 -d Higgs/Higgs_CS_and_Width UserCode/Snowball/Higgs/Higgs_CS_and_Width 
+cvs co -r bonato_supermela_20121107 -d HZZ4L_Combination/CombinationPy UserCode/HZZ4L_Combination/CombinationPy
+cvs co -r V00-01-26 -d ZZMatrixElement/MELA UserCode/CJLST/ZZMatrixElement/MELA
+cvs co -r V00-01-04 -d ZZMatrixElement/MEKD UserCode/UFL/ZZMatrixElement/MEKD
+cvs co -r  V00-00-09 -d ZZMatrixElement/MEMCalculators UserCode/HZZ4l_MEM/ZZMatrixElement/MEMCalculators
 
 # grab the latest data JSONs
 cd $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/dataJSONs
