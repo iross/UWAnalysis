@@ -42,6 +42,7 @@ class QuadCandEmbedder : public edm::EDProducer {
             Mela mela;
             PseudoMELA psMela;
             SpinTwoMinimalMELA spin2MMela;
+            combinedMEM = MEMs(8.0);
         }
 
         ~QuadCandEmbedder() {}
@@ -102,13 +103,6 @@ class QuadCandEmbedder : public edm::EDProducer {
                 partId.push_back( out->at(i).leg2()->leg1()->pdgId() );
                 partId.push_back( out->at(i).leg2()->leg2()->pdgId() );
 
-                // compute the HCP and Moriond KDs
-                MEMs combinedMEM = MEMs(8.0);
-                combinedMEM.computeMEs( partP, partId );
-                combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kJHUGen, MEMNames::kqqZZ, MEMNames::kMCFM, &MEMs::probRatio, moriond_kd, moriond_ME_SMHiggs, moriond_ME_ggZZ);
-                combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kMELA_HCP, MEMNames::kqqZZ, MEMNames::kMELA_HCP, &MEMs::probRatio, hcp_kd, hcp_ME_SMHiggs, hcp_ME_ggZZ);
-
-
                 TLorentzVector temp;
                 if (out->at(i).leg1()->leg1()->charge() >0 ){ //make sure angles are calculated wrt negative lepton
                     temp=z1l1P4;
@@ -128,6 +122,22 @@ class QuadCandEmbedder : public edm::EDProducer {
                 int charge12 = out->at(i).leg1()->leg2()->charge();
                 int charge21 = out->at(i).leg2()->leg1()->charge();
                 int charge22 = out->at(i).leg2()->leg2()->charge();
+
+                if (charge11+charge12==0 && charge21+charge22==0) {
+                    // compute the HCP and Moriond KDs
+                    try{
+                        combinedMEM.computeMEs( partP, partId ); //this breaks (in mela, apparently) for poor candidates
+                        combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kJHUGen, MEMNames::kqqZZ, MEMNames::kMCFM, &MEMs::probRatio, moriond_kd, moriond_ME_SMHiggs, moriond_ME_ggZZ);
+                        combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kMELA_HCP, MEMNames::kqqZZ, MEMNames::kMELA_HCP, &MEMs::probRatio, hcp_kd, hcp_ME_SMHiggs, hcp_ME_ggZZ);
+                    }
+                    catch(...){
+                        std::cout << "WARNING: Something went wrong in the computeMEs function." <<
+                            "Probably some MELA angles were calculated to nan.\n" <<
+                            "I don't want to crash everything, so I'm just going to keep cruisin'. You've been warned." << std::endl;
+                        moriond_ME_ggZZ = -137.0; //I'll set these guys back to -137, since I don't really know what happens to their values if the computeMEs fails
+                        hcp_ME_ggZZ = -137.0;
+                    }
+                }
 
                 bool check11=false;
                 bool check12=false;
@@ -208,5 +218,6 @@ class QuadCandEmbedder : public edm::EDProducer {
         Mela mela;
         PseudoMELA psMela;
         SpinTwoMinimalMELA spin2MMela;
+        MEMs combinedMEM;
 
 };
