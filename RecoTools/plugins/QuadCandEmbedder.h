@@ -28,6 +28,8 @@ Description: Embed some information about 4l candidates (angles, KDs, cross-leg 
 #include "ZZMatrixElement/MELA/interface/Mela.h"
 #include "ZZMatrixElement/MELA/interface/PseudoMELA.h"
 #include "ZZMatrixElement/MELA/interface/SpinTwoMinimalMELA.h"
+#include "ZZMatrixElement/MEMCalculators/interface/MEMCalculators.h"
+
 
 template <class T>
 class QuadCandEmbedder : public edm::EDProducer {
@@ -67,13 +69,45 @@ class QuadCandEmbedder : public edm::EDProducer {
                 float kdPS=-137.0; float psigPS=-137.0; float psigAltPS=-137.0;
                 float kdS2M=-137.0; float psigS2M=-137.0; float psigAltS2M=-137.0;
 
+                double hcp_kd         = -137.0;
+                double hcp_ME_SMHiggs = -137.0;
+                double hcp_ME_ggZZ    = -137.0;
+
+                double moriond_kd         = -137.0;
+                double moriond_ME_SMHiggs = -137.0;
+                double moriond_ME_ggZZ    = -137.0;
+
                 TLorentzVector HP4 = convertToTLorentz(out->at(i).p4());
                 TLorentzVector z1P4 = convertToTLorentz(out->at(i).leg1()->p4());
                 TLorentzVector z1l1P4 = convertToTLorentz(out->at(i).leg1()->leg1()->p4());
                 TLorentzVector z1l2P4 = convertToTLorentz(out->at(i).leg1()->leg2()->p4());
+                TLorentzVector pho1P4 = z1P4 - z1l1P4 - z1l2P4;
+
                 TLorentzVector z2P4 = convertToTLorentz(out->at(i).leg2()->p4());
                 TLorentzVector z2l1P4 = convertToTLorentz(out->at(i).leg2()->leg1()->p4());
                 TLorentzVector z2l2P4 = convertToTLorentz(out->at(i).leg2()->leg2()->p4());
+                TLorentzVector pho2P4 = z2P4 - z2l1P4 - z2l2P4;
+
+                // vector of lepton 4-vectors
+                std::vector<TLorentzVector> partP;
+                partP.push_back( z1l1P4 );
+                partP.push_back( z1l2P4 );
+                partP.push_back( z2l1P4 );
+                partP.push_back( z2l2P4 );
+
+                // vector of lepton pdgIDs
+                std::vector<int> partId;
+                partId.push_back( out->at(i).leg1()->leg1()->pdgId() );
+                partId.push_back( out->at(i).leg1()->leg2()->pdgId() );
+                partId.push_back( out->at(i).leg2()->leg1()->pdgId() );
+                partId.push_back( out->at(i).leg2()->leg2()->pdgId() );
+
+                // compute the HCP and Moriond KDs
+                MEMs combinedMEM = MEMs(8.0);
+                combinedMEM.computeMEs( partP, partId );
+                combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kJHUGen, MEMNames::kqqZZ, MEMNames::kMCFM, &MEMs::probRatio, moriond_kd, moriond_ME_SMHiggs, moriond_ME_ggZZ);
+                combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kMELA_HCP, MEMNames::kqqZZ, MEMNames::kMELA_HCP, &MEMs::probRatio, hcp_kd, hcp_ME_SMHiggs, hcp_ME_ggZZ);
+
 
                 TLorentzVector temp;
                 if (out->at(i).leg1()->leg1()->charge() >0 ){ //make sure angles are calculated wrt negative lepton
@@ -135,6 +169,9 @@ class QuadCandEmbedder : public edm::EDProducer {
                         kdS2M, psigS2M, psigAltS2M);
 
                 out->at(i).setAngles(costheta1, costheta2, phi, costhetastar, phistar1, phistar2, phistar12, phi1, phi2, kd, psig, pbkg, kdPS, psigPS, psigAltPS, kdS2M, psigS2M, psigAltS2M);
+
+                // add the HCP and Moriond KDs to the candidate
+                out->at(i).setKDs( hcp_kd, moriond_kd );
 
                 out->at(i).setNoFSRMass((out->at(i).leg1()->noPhoP4()+out->at(i).leg2()->noPhoP4()).M());
                 out->at(i).setInvMasses(out->at(i).leg1()->leg1()->p4(),out->at(i).leg1()->leg2()->p4(),out->at(i).leg2()->leg1()->p4(),out->at(i).leg2()->leg2()->p4(),fourFour,sixSix);
