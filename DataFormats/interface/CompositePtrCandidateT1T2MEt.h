@@ -201,6 +201,10 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     float psigS2M() const{ return psigS2M_;}
     float psigAltS2M() const{ return psigAltS2M_;}
 
+    // HCP and Moriond kds
+    float hcp_kd() const { return hcp_kd_; }
+    float moriond_kd() const { return moriond_kd_; }
+
     void setAngles(float costheta1, float costheta2, float phi, float costhetastar, float phistar1, float phistar2, float phistar12, float phi1, float phi2, float kd, float psig, float pbkg, float kdPS, float psigPS, float psigAltPS, float kdS2M, float psigS2M, float psigAltS2M){
         costheta1_ = costheta1;
         costheta2_ = costheta2;
@@ -220,6 +224,12 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
         kdS2M_ = kdS2M;
         psigS2M_ = psigS2M;
         psigAltS2M_ = psigAltS2M;
+    }
+
+    void setKDs( float hcp_kd, float moriond_kd )
+    {
+        hcp_kd_     = hcp_kd;
+        moriond_kd_ = moriond_kd;
     }
 
     // set Z masses
@@ -487,6 +497,10 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     float kdS2M_;
     float psigS2M_;
     float psigAltS2M_;
+
+    // HCP and Moriond KDs
+    float hcp_kd_;
+    float moriond_kd_;
 
     //Angles
     float costheta1_;

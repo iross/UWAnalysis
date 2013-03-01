@@ -178,7 +178,7 @@
 "MuEG2012D":{
     "type" : "DATA",
     "path" : "/hdfs/store/user/tapas/MuEG/Run2012D-PromptReco-v1/AOD/2013-01-11-8TeV-53X-PatTuple_Master",
-    "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
+    "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
     "notes_" : ""

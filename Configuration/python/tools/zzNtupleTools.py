@@ -186,6 +186,20 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
+                tag        = cms.string("hcp_kd"),
+                method     = cms.string("hcp_kd()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("moriond_kd"),
+                method     = cms.string("moriond_kd()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
                 tag        = cms.string("psig"),
                 method     = cms.string("psig()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
