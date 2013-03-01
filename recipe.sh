@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 echo "Checking for CERN CVS kerberos ticket"
 HAS_TICKET=`klist 2>&1 | grep CERN.CH`
 
