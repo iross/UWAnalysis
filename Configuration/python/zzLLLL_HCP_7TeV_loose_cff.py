@@ -2,9 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 from UWAnalysis.Configuration.tools.CutSequenceProducer import *
 
-MC2011TriggerPaths=["HLT_Mu17_Mu8","HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"]
-DATA2011TriggerPaths=["HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL","HLT_Ele17_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL_Ele8_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL","HLT_Mu17_Mu8","HLT_DoubleMu7","HLT_Mu13_Mu8"]
-DATA2012TriggerPaths=["HLT_Mu17_Mu8","HLT_Mu17_TkMu8","HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL","HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL","HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL","HLT_Ele15_Ele8_Ele5_CaloIdL_TrkIdVL"]
+DATA2011TriggerPaths=["HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL","HLT_Ele17_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL_Ele8_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL","HLT_TripleEle10_CaloIdL_TrkIdVL","HLT_Mu17_Mu8","HLT_DoubleMu7","HLT_Mu13_Mu8","HLT_Mu8_Ele17__CaloIdL","HLT_Mu8_Ele17_CaloIdT_CaloIsoVL","HLT_Mu17_Ele8_CaloIdL","HLT_Mu17_Ele8_CaloIdT_CaloIsoVL"]
 
 
 #MM
@@ -44,7 +42,7 @@ MMMSeq = MMMtri.returnSequence()
 MMEtri = CutSequenceProducer(initialCounter  = 'initialEventsMME',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
-MMEtri.addHLTFilter("MMEHLT",DATAMC2011TriggerPaths,"MME HLT_req")
+MMEtri.addHLTFilter("MMEHLT",DATA2011TriggerPaths,"MME HLT_req")
 MMEtri.addDiCandidateModule('triMMEdiMuons','PATMuPairProducer', 'goodPatMuons','goodPatMuons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 MMEtri.addSelector('MMEosDiMuons','PATMuPairSelector','mass>40&&charge==0&&leg1.pfCandidateRef().isNonnull()&&(leg1.isGlobalMuon()||leg1.isTrackerMuon())&&abs(leg1.eta())<2.4 && leg1.pt()>5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.pfCandidateRef().isNonnull()&&(leg2.isGlobalMuon()||leg2.isTrackerMuon())&&abs(leg2.eta())<2.4 && leg2.pt()>5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 MME',1)
 MMEtri.addDiCandidateModule('triMMEzzCands','PATMuMuEleTriProducer','MMEosDiMuons','mvaedElectrons','systematicsMET','selectedPatJets',1,9999,text='MMEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
@@ -57,7 +55,7 @@ MMESeq = MMEtri.returnSequence()
 EEMtri = CutSequenceProducer(initialCounter  = 'initialEventsEEM',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
-EEMtri.addHLTFilter("EEMHLT",DATAMC2011TriggerPaths,"EEM HLT_req")
+EEMtri.addHLTFilter("EEMHLT",DATA2011TriggerPaths,"EEM HLT_req")
 EEMtri.addDiCandidateModule('triEEMdiElectrons','PATElePairProducer', 'mvaedElectrons','mvaedElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 EEMtri.addSelector('EEMosDiElectrons','PATElePairSelector','mass>40&&charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 EEM',1)
 EEMtri.addDiCandidateModule('triEEMzzCands','PATEleEleMuTriProducer','EEMosDiElectrons','goodPatMuons','systematicsMET','selectedPatJets',1,9999,text='EEMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
@@ -70,7 +68,7 @@ EEMSeq = EEMtri.returnSequence()
 EEEtri = CutSequenceProducer(initialCounter  = 'initialEventsEEE',
                                   pyModuleName = __name__,
                                   pyNameSpace  = locals())
-EEEtri.addHLTFilter("EEEHLT",DATAMC2011TriggerPaths,"EEE HLT_req")
+EEEtri.addHLTFilter("EEEHLT",DATA2011TriggerPaths,"EEE HLT_req")
 EEEtri.addDiCandidateModule('triEEEdiElectrons','PATElePairProducer', 'mvaedElectrons','mvaedElectrons','systematicsMET','selectedPatJets',1,genParticles='genDaughters')
 EEEtri.addSelector('EEEosDiElectrons','PATElePairSelector','mass>40&&charge==0&&leg1.userFloat("mvaNonTrigV0Pass")>0 && leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0 && leg2.userFloat("mvaNonTrigV0Pass")>0 && leg2.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg2.pt()>7 && abs(leg2.eta())<2.5 && abs(leg2.userFloat("ip3DS"))<4 && abs(leg2.userFloat("ipDXY"))<0.5 && abs(leg2.userFloat("dz"))<1.0  ','one Z1 EEE',1)
 EEEtri.addDiCandidateModule('triEEEzzCands','PATEleEleEleTriProducer','EEEosDiElectrons','mvaedElectrons','systematicsMET','selectedPatJets',1,9999,text='EEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')

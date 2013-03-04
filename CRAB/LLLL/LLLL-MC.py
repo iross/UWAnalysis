@@ -4,18 +4,25 @@ import sys
 process = cms.Process("ANALYSIS")
 
 process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'START42_V17::All'
+#process.GlobalTag.globaltag = 'START42_V17::All'
+process.GlobalTag.globaltag = 'GR_R_42_V19::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(2000)
+        input = cms.untracked.int32(-1)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 10
+process.MessageLogger.categories.append('CalibrationChooser')
+process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
+            limit=cms.untracked.int32(10)
+            )
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-            'file:/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo2e2tau_powheg_v2/patTuple_cfg-3496795E-D83D-E111-A6E5-0015178C6584.root'
+#            'file:/hdfs/store/user/tapas/2012-10-10-7TeV-42X-PatTuple_ShareFSFix/ZZTo2e2tau_powheg_v2/patTuple_cfg-3496795E-D83D-E111-A6E5-0015178C6584.root'
+#    'file:/hdfs/store/user/tapas/DYJetsToLL_TuneZ2_M-50_7TeV-madgraph-tauola/Fall11-PU_S6_START42_V14B-v1/AODSIM/2012-12-29-7TeV-53X-PatTuple/patTuple_cfg-FC9544DE-AEF5-E011-A65A-20CF3027A5C9.root'
+            'file:/scratch/iross/ggH_M120_7TeV_sync.root'
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -24,17 +31,31 @@ process.source = cms.Source("PoolSource",
             )
         )
 
+
+    # available calibration targets:
+    # 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
+    #             Prompt, ReReco, ICHEP2012
+    # 2012 MC   : Summer12, Summer12_DR53X_HCP2012
+    #
+    # 2011 Data : Jan16ReReco
+    # 2011 MC   : Summer11, Fall11
+
 from UWAnalysis.Configuration.tools.analysisTools import *
 defaultAnalysisPath(process,'HLT',
         [
-            "HLT_Mu17_Mu8",
-            "HLT_Mu17_TkMu8",
             "HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
-            "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
-            "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
+            "HLT_Ele17_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL_Ele8_CaloIdT_TrkIdVL_CaloIsoVL_TrkIsoVL",
+            "HLT_TripleEle10_CaloIdL_TrkIdVL",
+            "HLT_Mu17_Mu8",
+            "HLT_DoubleMu7",
+            "HLT_Mu13_Mu8",
+            "HLT_Mu8_Ele17__CaloIdL",
+            "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL",
+            "HLT_Mu17_Ele8_CaloIdL",
+            "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL"
             ],
-        EAtarget = "Fall11MC", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
-        calTarget = "Summer11",
+        EAtarget="2011Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+        calTarget = "Jan16ReReco",
         rochCor = "RochCor2011B"
         )
 
@@ -43,16 +64,17 @@ defaultAnalysisPath(process,'HLT',
 #        [
 #            "keep++ pdgId = 25",
 #            "drop pdgId = {tau+}",
-#            "drop pdgId = {tau-}",
+#           "drop pdgId = {tau-}",
 #            "keep pdgId = {mu+}",
 #            "keep pdgId = {mu-}",
 #            "keep pdgId = 11",
 #            "keep pdgId = -11"
-#            ]
+#           ]
 #        )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_HCP_7TeV_loose_cff")
+#process.load("UWAnalysis.Configuration.zzLLLL_HCP_7TeV_loose_cff")
+process.load("UWAnalysis.Configuration.zzLLLL_HCP_7TeV_cff")
 process.eventSelectionMMEE = cms.Path(process.MMEEselectionSequence)
 process.eventSelectionMMEEonly = cms.Path(process.MMEEonlyselectionSequence)
 process.eventSelectionMMMM = cms.Path(process.MMMMselectionSequence)
