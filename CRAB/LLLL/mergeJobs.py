@@ -41,10 +41,10 @@ for dataset in datasets:
                 passes = True
     if passes:
         makeFileList(dataset)
-        merge.write('farmoutAnalysisJobs --skip-existing-output --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
+        merge.write('farmoutAnalysisJobs --output-dag-file=/scratch/iross/DAGs/{tag}-merge/{dataset} --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
         if datasets[dataset]['type']=="DATA":
             merge.write('jobReportSummary /scratch/$USER/{dataset}_{tag}-DATA_{dataset}/*/*.xml --json-out /scratch/$USER/{dataset}_{tag}.json\n'.format(dataset=dataset,tag=tag))
-            
+
 
 file.close()
 merge.close()
