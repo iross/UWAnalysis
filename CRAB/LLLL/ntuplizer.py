@@ -25,6 +25,11 @@ options.register ('isMC',
                   VarParsing.VarParsing.multiplicity.singleton, # singleton or list
                   VarParsing.VarParsing.varType.int,          # string, int, or float
                   "Running on MC? (default: 0)")
+options.register ('isSync',
+                  0, # default value
+                  VarParsing.VarParsing.multiplicity.singleton, # singleton or list
+                  VarParsing.VarParsing.varType.int,          # string, int, or float
+                  "Is synchronization attempt (uses determinsitic corrections)")
 options.register ('reportEvery',
                   1, # default value
                   VarParsing.VarParsing.multiplicity.singleton, # singleton or list
@@ -35,6 +40,16 @@ options.register ('effAreaTarget',
                   VarParsing.VarParsing.multiplicity.singleton, # singleton or list
                   VarParsing.VarParsing.varType.string,          # string, int, or float
                   "Effective area target (default: 2012Data)")
+options.register ('rochCor',
+                  "RochCor2012", # default value. Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
+                  VarParsing.VarParsing.multiplicity.singleton, # singleton or list
+                  VarParsing.VarParsing.varType.string,          # string, int, or float
+                  "Which Rochester corrections? (RochCor2012, RochCor2011A, RochCor2011B)")
+options.register ('calTarget',
+                  "dummy", # default value.
+                  VarParsing.VarParsing.multiplicity.singleton, # singleton or list
+                  VarParsing.VarParsing.varType.string,          # string, int, or float
+                  "Which Rochester corrections? (Moriond2013 or Summer12_DR53X_HCP2012)")
 
 options.maxEvents = 2000
 
@@ -52,7 +67,7 @@ if options.isMC:
     print "\nUsing MC settings!\n"
     process.GlobalTag.globaltag = 'START53_V10::All'
 else:
-    process.GlobalTag.globaltag = 'GR_R_52_V8::All'
+    process.GlobalTag.globaltag = 'GR_P_V41_AN1::All'
 
 process.maxEvents = cms.untracked.PSet(
         input = cms.untracked.int32(options.maxEvents)
@@ -91,7 +106,20 @@ defaultAnalysisPath(process,'HLT',
             "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
             "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
             ],
-        EAtarget=options.effAreaTarget
+        )
+defaultAnalysisPath(process,'HLT',
+        [
+            "HLT_Mu17_Mu8",
+            "HLT_Mu17_TkMu8",
+            "HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
+            "HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL",
+            "HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL"
+            ],
+        EAtarget=options.effAreaTarget,
+        calTarget = options.calTarget,
+        rochCor = options.rochCor,
+        isMC = bool(options.isMC),
+        isSync= bool(options.isSync) #use deterministic smearing in rochcor for syncing purposes? only gets applied to MC, I hope.
         )
 
 #EventSelection
