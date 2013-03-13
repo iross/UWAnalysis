@@ -57,7 +57,8 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             rochcorType = cms.string(rochCor) # Rochester Correction types: RochCor2011A, RochCor2011B, RochCor2012
             )
     process.recorrMuons = cms.EDProducer("PATMuonRochesterEmbedder",
-            src = cms.InputTag("corrMuons"),
+            #src = cms.InputTag("corrMuons"),
+            src = cms.InputTag("looseMu"),
             isMC = cms.bool(isMC),
             isSync = cms.bool(isSync), #use fake smearing for synchronization purposes
             )
