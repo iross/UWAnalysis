@@ -794,24 +794,18 @@ def countCommon(src, pluginType, srcEEEE, srcEEMM, srcMMEE, srcMMMM, leadOnly=Tr
         cms.PSet(
                 pluginType = cms.string("ElectronCountFiller"),
                 src        = cms.InputTag('mvaedElectrons'),
-                # pass candidate collection so we can cross-clean
-                # dR
                 tag        = cms.string("nElectrons"),
-                method     = cms.string("pt>7 && abs(eta) < 2.4 && abs(userFloat('ip3DS'))<4 && abs(userFloat('ipDXY'))<0.5 && abs(userFloat('dz'))<1.0"),
+                method     = cms.string("pt>7 && abs(eta) < 2.5 && abs(userFloat('ip3DS'))<4 && abs(userFloat('ipDXY'))<0.5 && abs(userFloat('dz'))<1.0"),
                 ),
         cms.PSet(
                 pluginType = cms.string("MuonCountFiller"),
-                src        = cms.InputTag('cleanPatMuons'),
-                # pass candidate collection so we can cross-clean
-                # dR
+                src        = cms.InputTag('goodPatMuons'),
                 tag        = cms.string("nMuons"),
-                method     = cms.string("pfCandidateRef().isNonnull() && (isTrackerMuon() | isGlobalMuon()) && pt>10 && (chargedHadronIso()+max(0.0,neutralHadronIso()+photonIso()-userFloat('zzRho')*userFloat('EAGammaNeuHadron04')))/pt<0.40"),
+                method     = cms.string("(isTrackerMuon() || isGlobalMuon()) && pt>5 && abs(userFloat('ip3DS'))<4 && abs(userFloat('ipDXY'))<0.5 && abs(userFloat('dz'))<1.0 "),
                 ),
         cms.PSet(
                 pluginType = cms.string("TauCountFiller"),
                 src        = cms.InputTag('cleanPatTaus'),
-                # pass candidate collection so we can cross-clean
-                # dR
                 tag        = cms.string("nTaus"),
                 method     = cms.string("pt>20 && tauID('againstMuonLoose') && tauID('againstElectronLoose') && tauID('byLooseIsolationMVA')"),
                 ),
