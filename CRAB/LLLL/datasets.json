@@ -1,7 +1,7 @@
 {
 "DoubleMu2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-13Jul2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-13Jul2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -9,7 +9,7 @@
 },
 "DoubleMu2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-recover-06Aug2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012A-recover-06Aug2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -17,7 +17,7 @@
 },
 "DoubleMu2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012B-13Jul2012-v4/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012B-13Jul2012-v4/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -25,7 +25,7 @@
 },
 "DoubleMu2012C_24Aug":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-24Aug2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-24Aug2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -33,7 +33,7 @@
 },
 "DoubleMu2012C_v2":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-PromptReco-v2/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-PromptReco-v2/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -41,7 +41,7 @@
 },
 "DoubleMu2012C_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -49,7 +49,7 @@
 },
 "DoubleMu2012D":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012D-PromptReco-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012D-PromptReco-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -57,7 +57,7 @@
     },
 "DoubleMu2012D_16Jan":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012D-16Jan2013-v2/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleMu/Run2012D-16Jan2013-v2/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -65,7 +65,7 @@
     },
 "DoubleElectron2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012A-13Jul2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012A-13Jul2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -73,7 +73,7 @@
 },
 "DoubleElectron2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012A-recover-06Aug2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012A-recover-06Aug2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -81,7 +81,7 @@
 },
 "DoubleElectron2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012B-13Jul2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012B-13Jul2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -89,7 +89,7 @@
 },
 "DoubleElectron2012C_24Aug":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-24Aug2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-24Aug2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -97,7 +97,7 @@
 },
 "DoubleElectron2012C_v2":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-PromptReco-v2/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-PromptReco-v2/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -105,7 +105,7 @@
 },
 "DoubleElectron2012C_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -113,7 +113,7 @@
 },
 "DoubleElectron2012D":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012D-PromptReco-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012D-PromptReco-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -121,7 +121,7 @@
     },
 "DoubleElectron2012D_16Jan":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012D-16Jan2013-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/DoubleElectron/Run2012D-16Jan2013-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -129,7 +129,7 @@
     },
 "MuEG2012A":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012A-13Jul2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012A-13Jul2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -137,7 +137,7 @@
 },
 "MuEG2012A_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012A-recover-06Aug2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012A-recover-06Aug2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -145,7 +145,7 @@
 },
 "MuEG2012B":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012B-13Jul2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012B-13Jul2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -153,7 +153,7 @@
 },
 "MuEG2012C_v1":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -161,7 +161,7 @@
 },
 "MuEG2012C_v2":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v2/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v2/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -169,7 +169,7 @@
 },
 "MuEG2012C_recover":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-EcalRecover_11Dec2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "Cert_201191-201191_8TeV_11Dec2012ReReco-recover_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -177,7 +177,7 @@
 },
 "MuEG2012D":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012D-PromptReco-v1/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012D-PromptReco-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
@@ -185,7 +185,7 @@
     },
 "MuEG2012D_16Jan":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012D-16Jan2013-v2/AOD/2013-03-13-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012D-16Jan2013-v2/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt",
     "url" : "",
     "xsection" : 0.0,
