@@ -131,7 +131,7 @@ class QuadCandEmbedder : public edm::EDProducer {
                         combinedMEM.computeKD(MEMNames::kSMHiggs, MEMNames::kMELA_HCP, MEMNames::kqqZZ, MEMNames::kMELA_HCP, &MEMs::probRatio, hcp_kd, hcp_ME_SMHiggs, hcp_ME_ggZZ);
                     }
                     catch(...){
-                        std::cout << "WARNING: Something went wrong in the computeMEs function." <<
+                        edm::LogWarning("QuadCandEmbedder") << "WARNING: Something went wrong in the computeMEs function." <<
                             "Probably some MELA angles were calculated to nan.\n" <<
                             "I don't want to crash everything, so I'm just going to keep cruisin'. You've been warned." << std::endl;
                         moriond_ME_ggZZ = -137.0; //I'll set these guys back to -137, since I don't really know what happens to their values if the computeMEs fails
