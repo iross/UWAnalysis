@@ -153,11 +153,11 @@
 },
 "MuEG2012C_v1":{
     "type" : "DATA",
-    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-PromptReco-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
+    "path" : "/hdfs/store/user/tapas/MuEG/Run2012C-24Aug2012-v1/AOD/2013-04-01-8TeV-53X-PatTuple_Master",
     "json" : "moriond_2012_remove_pixel_ecal_recovered.txt",
     "url" : "",
     "xsection" : 0.0,
-    "notes_" : "This needs to be updated to the 24Aug reco"
+    "notes_" : ""
 },
 "MuEG2012C_v2":{
     "type" : "DATA",
@@ -235,16 +235,16 @@
 },
 "ggZZ4L":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/GluGluToZZTo4L_8TeV-gg2zz-pythia6/ggZZ4L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/",
+    "path" : "/hdfs/store/user/tapas/GluGluToZZTo4L_8TeV-gg2zz-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-04-01-8TeV-53X-PatTuple_Master",
     "url" : "",
-    "xsection" : 0.0028,
+    "xsection" : 0.0048,
     "_note" : "assumed cross-section is 1.2x last year's gg sample"
 },
 "ggZZ2L2L":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/iross/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/ggZZ2L2L_2012-07-24-PatTuple-ZZ-samples-4b2f7ef/2203ba93066ddf9759dd540a3ad9da22/",
+    "path" : "/hdfs/store/user/tapas/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-04-01-8TeV-53X-PatTuple_Master",
     "url" : "",
-    "xsection" : 0.00418,
+    "xsection" : 0.01203,
     "_note" : "assumed cross-section is 1.2x last year's gg sample"
 },
 "aTGC_f4_0p000_0p000":{
