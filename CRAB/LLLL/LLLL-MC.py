@@ -7,24 +7,25 @@ process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
 process.GlobalTag.globaltag = 'START53_V10::All'
 
 process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(20)
+        input = cms.untracked.int32(2000)
         )
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 10
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.MessageLogger.categories.append('CalibrationChooser')
 process.MessageLogger.cerr.CalibrationChooser = cms.untracked.PSet(
+            limit=cms.untracked.int32(10)
+            )
+process.MessageLogger.categories.append('QuadCandEmbedder')
+process.MessageLogger.cerr.QuadCandEmbedder = cms.untracked.PSet(
             limit=cms.untracked.int32(10)
             )
 
 process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(
-#            'file:/hdfs/store/user/tapas/2012-10-30-8TeV-53X-PatTuple_IanEleIsolationFix/ZZTo4mu_8TeV-powheg-pythia6/patTuple_cfg-5E8C58B9-88F1-E111-B1AD-AC162DAC3428.root'
-#            'file:/scratch/iross/GluGluH125_Summer12_sync_START53_V10.root'
-            'file:/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/ZZJetsTo2L2Q_TuneZ2star_8TeV-madgraph-tauola/1/patTuple_cfg-BC50B9AD-5CD8-E111-975E-00215E221FB0.root'
-#'file:/scratch/iross/VBFH125_Summer12_sync_START53_V10_dummy.root'
-#'file:/scratch/iross/VBFH125_Summer12_sync_START53_V10.root'
-#'file:/scratch/iross/GluGluH125_Summer12_sync_START53_V10.root'
+#            "file:/hdfs/store/user/tapas/VBF_HToZZTo4L_M-125_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-03-13-8TeV-53X-PatTuple_Master/patTuple_cfg-A4C793E2-76FA-E111-9DB7-003048678F8A.root"
+#'file:/hdfs/store/user/tapas/ZZTo2e2mu_8TeV-powheg-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-03-13-8TeV-53X-PatTuple_Master/patTuple_cfg-F4F33693-E4EE-E111-AB4F-1CC1DE1CDD20.root'
+            "file:/hdfs/store/user/tapas/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-04-01-8TeV-53X-PatTuple_Master/patTuple_cfg-8062C0E8-CB0A-E211-86D0-848F69FD294F.root"
             ),
         inputCommands=cms.untracked.vstring(
             'keep *',
@@ -56,11 +57,9 @@ defaultAnalysisPath(process,'HLT',
             ],
         EAtarget = "2012Data", # Available targets: Fal11MC, Summer11MC, 2011Data, 2012Data
         calTarget = "Summer12_DR53X_HCP2012",
-        rochCor = "RochCor2012_errDown_dummy", #why err down? Who fucking knows. That's what syncs in MC right now. IAR 23.Jan.2013
-        #calTarget = "dummy",
-        #rochCor = "dummy",
+        rochCor = "RochCor2012_errDown_dummy",
         isMC = True,
-        isSync=True #use deterministic smearing in rochcor for syncing purposes?
+        isSync=False #use deterministic smearing in rochcor for syncing purposes?
         )
 
 #createGeneratedParticlesPATtuple(process,
@@ -84,8 +83,7 @@ process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService
         )
 
 #EventSelection
-process.load("UWAnalysis.Configuration.zzLLLL_2012_cff")
-#process.load("UWAnalysis.Configuration.zzLLLL_2012_loose_cff")
+process.load("UWAnalysis.Configuration.zzLLLL_2012_loose_cff")
 #process.eventSelectionMMTT = cms.Path(process.MMTTselectionSequence)
 #process.eventSelectionMMMT = cms.Path(process.MMMTselectionSequence)
 #process.eventSelectionMMET = cms.Path(process.MMETselectionSequence)
@@ -112,70 +110,70 @@ process.eventSelectionEE = cms.Path(process.ZEESeq)
 #process.eventSelectionEEES = cms.Path(process.EEESselectionSequence)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
-addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
-addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
+addMuMuEleEleEventTree(process,'muMuEleEleEventTreeFinal','MMEEZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+addMuMuEleEleEventTree(process,'muMuEleEleEventTree','MMEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuMuEventTree
-addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
-addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
+addMuMuMuMuEventTree(process,'muMuMuMuEventTree','MMMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+addMuMuMuMuEventTree(process,'muMuMuMuEventTreeFinal','MMMMZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEleEventTree
-addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeFinal','MMEEonlyZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
-addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTree','MMEEonlyzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
+addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTreeFinal','MMEEonlyZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+addMuMuEleEleEventTree(process,'muMuEleEleonlyEventTree','MMEEonlyzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEleEventTree
-addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
-addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTree','EEEEzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+addEleEleEleEleEventTree(process,'eleEleEleEleEventTreeFinal','EEEEZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
-addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=True)
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCands','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
+addEleEleMuMuEventTree(process,'eleEleMuMuEventTreeFinal','EEMMZ4lSpace','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True,leadingOnly=False)
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuTauTauEventTree
-#addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuTauTauEventTree(process,'muMuTauTauEventTreeFinal','MMTTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuTauTauEventTree(process,'muMuTauTauEventTreeID','MMTTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addMuMuTauTauEventTree(process,'muMuTauTauEventTree','MMTTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuTauTauEventTree(process,'muMuTauTauEventTreeFinal','MMTTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuTauTauEventTree(process,'muMuTauTauEventTreeID','MMTTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuTauEventTree
-#addMuMuMuTauEventTree(process,'muMuMuTauEventTree','MMMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuMuTauEventTree(process,'muMuMuTauEventTreeFinal','MMMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuMuTauEventTree(process,'muMuMuTauEventTreeID','MMMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addMuMuMuTauEventTree(process,'muMuMuTauEventTree','MMMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuMuTauEventTree(process,'muMuMuTauEventTreeFinal','MMMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuMuTauEventTree(process,'muMuMuTauEventTreeID','MMMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleTauEventTree
-#addMuMuEleTauEventTree(process,'muMuEleTauEventTree','MMETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuEleTauEventTree(process,'muMuEleTauEventTreeFinal','MMETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuEleTauEventTree(process,'muMuEleTauEventTreeID','MMETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addMuMuEleTauEventTree(process,'muMuEleTauEventTree','MMETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuEleTauEventTree(process,'muMuEleTauEventTreeFinal','MMETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuEleTauEventTree(process,'muMuEleTauEventTreeID','MMETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleMuEventTree
-#addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addMuMuEleMuEventTree(process,'muMuEleMuEventTree','MMEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuEleMuEventTree(process,'muMuEleMuEventTreeFinal','MMEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addMuMuEleMuEventTree(process,'muMuEleMuEventTreeID','MMEMzzEleId','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleTauTauEventTree
-#addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeFinal','EETTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTree','EETTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeFinal','EETTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleTauTauEventTree(process,'eleEleTauTauEventTreeID','EETTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleTauEventTree
-#addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeFinal','EEETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTree','EEETzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeFinal','EEETFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleEleTauEventTree(process,'eleEleEleTauEventTreeID','EEETzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuTauEventTree
-#addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeFinal','EEMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTree','EEMTzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeFinal','EEMTFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleMuTauEventTree(process,'eleEleMuTauEventTreeID','EEMTzzTauID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleMuEventTree
-#addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
-#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=True)
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTree','EEEMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeFinal','EEEMFinalSel','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
+#addEleEleEleMuEventTree(process,'eleEleEleMuEventTreeID','EEEMzzMuID','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=False,leadingOnly=False)
 
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuMuEventTree
-addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID',leadingOnly=True)
+addMuMuMuEventTree(process,'muMuMuEventTree','triMMMthirdMuID',leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEleEventTree
-addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID',leadingOnly=True)
+addMuMuEleEventTree(process,'muMuEleEventTree','triMMEthirdEleID',leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuEventTree
-addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID',leadingOnly=True)
+addEleEleMuEventTree(process,'eleEleMuEventTree','triEEMthirdMuID',leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEleEventTree
-addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID',leadingOnly=True)
+addEleEleEleEventTree(process,'eleEleEleEventTree','triEEEthirdEleID',leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleEventTree
-addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=True)
+addEleEleEventTree(process,'eleEleEventTree','ZEEFinal',leadingOnly=False)
 from UWAnalysis.Configuration.tools.zzNtupleTools import addMuMuEventTree
-addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=True)
+addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
 
 #temp--muon dump to debug rochcor
-from UWAnalysis.Configuration.tools.zzNtupleTools import addMuTree
-addMuTree(process,'finalMuons','goodPatMuons',leadingOnly=True)
+#from UWAnalysis.Configuration.tools.zzNtupleTools import addMuTree
+#addMuTree(process,'finalMuons','goodPatMuons',leadingOnly=False)
 
 #from UWAnalysis.Configuration.tools.zzNtupleTools import addEleEleMuMuEventTree
 #addEleEleMuMuEventTree(process,'eleEleMuMuEventTree','EEMMzzCleanedCandsAboveThreshold','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel')
