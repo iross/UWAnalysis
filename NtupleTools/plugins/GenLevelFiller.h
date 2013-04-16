@@ -39,7 +39,9 @@ class GenLevelFiller : public edm::EDAnalyzer
         bool isGGZZ_;
 
         double hPt, hMass, hEta, hPhi;
+        double zzPt, zzMass, zzEta, zzPhi;
         double zPt[2], zMass[2], zEta[2], zPhi[2];
+        TLorentzVector zP4[2], zzP4;
 		double lPt[4], lEta[4], lPhi[4];
 		int lPdgId[4];
 
@@ -57,7 +59,7 @@ class GenLevelFiller : public edm::EDAnalyzer
 
     public:
         explicit GenLevelFiller(const edm::ParameterSet& iConfig);
-  
+
         ~GenLevelFiller();
 };
 

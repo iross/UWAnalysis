@@ -12,6 +12,10 @@ GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
     hMass   = 0;
     hEta    = 0;
     hPhi    = 0;
+    zzPt     = 0;
+    zzMass   = 0;
+    zzEta    = 0;
+    zzPhi    = 0;
     EVENT   = 0;
     RUN     = 0;
     LUMI    = 0;
@@ -22,6 +26,7 @@ GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
         zEta[i]     = 0;
         zPhi[i]     = 0;
         zMass[i]    = 0;
+        zP4[i].SetPtEtaPhiM(50,0.0,0.0,100);
     }
 
     for (int i = 0; i < 4; ++i)
@@ -42,6 +47,12 @@ GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
     tree->Branch("hMass",&hMass,"hMass/D");
     tree->Branch("hEta",&hEta,"hEta/D");
     tree->Branch("hPhi",&hPhi,"hPhi/D");
+
+    // Fill "ZZ" values (Z1+Z2)
+    tree->Branch("zzPt",&zzPt,"zzPt/D");
+    tree->Branch("zzMass",&zzMass,"zzMass/D");
+    tree->Branch("zzEta",&zzEta,"zzEta/D");
+    tree->Branch("zzPhi",&zzPhi,"zzPhi/D");
 
     // Fill Z values
     tree->Branch("z1Pt",&zPt[0],"z1Pt/D");
@@ -98,12 +109,18 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     hEta    = 0;
     hPhi    = 0;
 
+    zzPt     = 0;
+    zzMass   = 0;
+    zzEta    = 0;
+    zzPhi    = 0;
+
     for (int i = 0; i < 2; ++i)
     {
         zPt[i]      = 0;
         zEta[i]     = 0;
         zPhi[i]     = 0;
         zMass[i]    = 0;
+        zP4[i].SetPtEtaPhiM(50,0.0,0.0,100);
     }
 
     for (int i = 0; i < 4; ++i)
@@ -142,6 +159,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
             zMass[zn]   = candIt->mass();
             zEta[zn]    = candIt->eta();
             zPhi[zn]    = candIt->phi();
+            zP4[zn].SetPtEtaPhiM(candIt->pt(),candIt->eta(),candIt->phi(),candIt->mass());
 
             const reco::Candidate* l1;
             const reco::Candidate* l2;
@@ -179,6 +197,11 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
             leptons.push_back(candIt);
         }
     }
+    zzP4 = zP4[0]+zP4[1];
+    zzMass      = zzP4.M();
+    zzEta       = zzP4.Eta();
+    zzPhi       = zzP4.Phi();
+    zzPt        = zzP4.Pt();
 
     // special case for running on 8 TeV ggZZ sample
     if ( isGGZZ_ && lepCount >= 4 )
@@ -232,6 +255,12 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         zEta[1]   = Z2.Eta();
         zPhi[1]   = Z2.Phi();
         zMass[1]  = Z2.M();
+
+        zzP4 = Z1+Z2;
+        zzMass      = zzP4.M();
+        zzEta       = zzP4.Eta();
+        zzPhi       = zzP4.Phi();
+        zzPt        = zzP4.Pt();
 
         lPt[0]    = L1.Pt();
         lEta[0]   = L1.Eta();
