@@ -36,7 +36,6 @@ class GenLevelFiller : public edm::EDAnalyzer
 {
     private:
         edm::InputTag gensrc_;
-        bool isGGZZ_;
 
         double hPt, hMass, hEta, hPhi;
         double zzPt, zzMass, zzEta, zzPhi;

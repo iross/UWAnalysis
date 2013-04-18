@@ -1,8 +1,7 @@
 #include "UWAnalysis/NtupleTools/plugins/GenLevelFiller.h"
 
 GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
-    gensrc_(iConfig.getParameter<edm::InputTag>("gensrc")),
-    isGGZZ_(iConfig.getParameter<bool>("isGGZZ"))
+    gensrc_(iConfig.getParameter<edm::InputTag>("gensrc"))
 {
     edm::Service<TFileService> fs;
     tree = fs->make<TTree>( "genEventTree"  , "");
@@ -26,7 +25,7 @@ GenLevelFiller::GenLevelFiller(const edm::ParameterSet& iConfig):
         zEta[i]     = 0;
         zPhi[i]     = 0;
         zMass[i]    = 0;
-        zP4[i].SetPtEtaPhiM(50,0.0,0.0,100);
+        zP4[i].SetPtEtaPhiM(50,0.0,0.0,1000);
     }
 
     for (int i = 0; i < 4; ++i)
@@ -120,7 +119,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         zEta[i]     = 0;
         zPhi[i]     = 0;
         zMass[i]    = 0;
-        zP4[i].SetPtEtaPhiM(50,0.0,0.0,100);
+        zP4[i].SetPtEtaPhiM(50,0.0,0.0,1000);
     }
 
     for (int i = 0; i < 4; ++i)
@@ -153,7 +152,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
             hPhi    = candIt->phi();
         }
         // if Z boson
-        else if ( !isGGZZ_ && candIt->pdgId() == 23 && zn < 2 )
+        else if ( candIt->pdgId() == 23 && zn < 2 )
         {
             zPt[zn]     = candIt->pt();
             zMass[zn]   = candIt->mass();
@@ -191,7 +190,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         }
         // if gg to ZZ to 4l @ 8 TeV
         // consider electrons, muons, or taus
-        else if ( isGGZZ_ && candIt->status() == 3 && ( abs(candIt->pdgId()) == 11 || abs(candIt->pdgId()) == 13 || abs(candIt->pdgId()) == 15 ) )
+        else if ( candIt->status() == 3 && ( abs(candIt->pdgId()) == 11 || abs(candIt->pdgId()) == 13 || abs(candIt->pdgId()) == 15 ) )
         {
             lepCount++;
             leptons.push_back(candIt);
@@ -204,7 +203,7 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     zzPt        = zzP4.Pt();
 
     // special case for running on 8 TeV ggZZ sample
-    if ( isGGZZ_ && lepCount >= 4 )
+    if ( zn == 0 && lepCount >= 4 )
     {
         // leptons must be sorted before they can be permuted
         std::sort(leptons.begin(),leptons.end(),compareLeptons);
