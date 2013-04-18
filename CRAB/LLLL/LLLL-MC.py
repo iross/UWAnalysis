@@ -201,7 +201,7 @@ addMuMuEventTree(process,'muMuEventTree','ZMMFinal',leadingOnly=False)
 #addEleSCMuMuEventTree(process,'eleSCMuMuEventTreeFinalTest','ESMMFinalSelTemp','EEEEFinalSel','EEMMFinalSel','MMEEFinalSel','MMEEFinalSel',MC=True)
 
 # Store all Gen Level particles. For H -> ZZ or ZZ only.
-process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"), isGGZZ=cms.bool(False))
+process.genlevel = cms.EDAnalyzer("GenLevelFiller", gensrc = cms.InputTag("genParticles"))
 process.genParticles = cms.Path( process.genlevel )
 
 
