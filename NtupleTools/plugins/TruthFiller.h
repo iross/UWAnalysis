@@ -149,7 +149,6 @@ class TruthFiller : public NtupleFillerBase {
 
         void fill(const edm::Event& iEvent, const edm::EventSetup& iSetup)
         {
-
             hMass=0;
             hEta=0;
             hPhi=0;
@@ -250,7 +249,7 @@ class TruthFiller : public NtupleFillerBase {
 
 
                 } while ( next_permutation(leptons.begin(), leptons.end(), compareLeptons) );
-                zp4[0].SetPtEtaPhiM(Z1.Pt(), Z1.Eta(), Z2.Phi(), Z1.M());
+                zp4[0].SetPtEtaPhiM(Z1.Pt(), Z1.Eta(), Z1.Phi(), Z1.M());
                 zPt[0]    = Z1.Pt();
                 zEta[0]   = Z1.Eta();
                 zPhi[0]   = Z1.Phi();
@@ -264,59 +263,61 @@ class TruthFiller : public NtupleFillerBase {
 
             if(iEvent.getByLabel(src_,handle)) {
                 //look at everything and try to match...
-                //match z1l1
                 float tempzdR0=0.5;
                 float tempzdR1=0.5;
                 float tempdR0=0.5;
                 float tempdR1=0.5;
                 float tempdR2=0.5;
                 float tempdR3=0.5;
-                for (int i=0; i<5; ++i){
-                    if (reco::deltaR(handle->at(0).leg1()->leg1()->p4(),lp4[i])<tempdR0){
-                        tempdR0=reco::deltaR(handle->at(0).leg1()->leg1()->p4(),lp4[i]);
-                        lInd[0]=i;
-                        if (handle->at(0).leg1()->leg1()->pdgId()==lPdgId[i]){
-                            matched[0]=true;
+                zmatched[0]=false; zmatched[1]=false;
+                for (unsigned int j = 0; j < handle->size(); ++j) { //check if ANY of the candidates match leptons+Zs
+                    for (int i=0; i<5; ++i){
+                        if (reco::deltaR(handle->at(j).leg1()->leg1()->p4(),lp4[i])<tempdR0){
+                            tempdR0=reco::deltaR(handle->at(j).leg1()->leg1()->p4(),lp4[i]);
+                            lInd[0]=i;
+                            if (handle->at(j).leg1()->leg1()->pdgId()==lPdgId[i]){
+                                matched[0]=true;
+                            }
                         }
                     }
-                }
-                for (int i=0; i<5; ++i){
-                    if (reco::deltaR(handle->at(0).leg1()->leg2()->p4(),lp4[i])<tempdR1){
-                        tempdR1=reco::deltaR(handle->at(0).leg1()->leg2()->p4(),lp4[i]);
-                        lInd[1]=i;
-                        if (handle->at(0).leg1()->leg2()->pdgId()==lPdgId[i]){
-                            matched[1]=true;
+                    for (int i=0; i<5; ++i){
+                        if (reco::deltaR(handle->at(j).leg1()->leg2()->p4(),lp4[i])<tempdR1){
+                            tempdR1=reco::deltaR(handle->at(j).leg1()->leg2()->p4(),lp4[i]);
+                            lInd[1]=i;
+                            if (handle->at(j).leg1()->leg2()->pdgId()==lPdgId[i]){
+                                matched[1]=true;
+                            }
                         }
                     }
-                }
-                for (int i=0; i<5; ++i){
-                    if (reco::deltaR(handle->at(0).leg2()->leg1()->p4(),lp4[i])<tempdR2){
-                        tempdR2=reco::deltaR(handle->at(0).leg2()->leg1()->p4(),lp4[i]);
-                        lInd[2]=i;
-                        if (handle->at(0).leg2()->leg1()->pdgId()==lPdgId[i]){
-                            matched[2]=true;
+                    for (int i=0; i<5; ++i){
+                        if (reco::deltaR(handle->at(j).leg2()->leg1()->p4(),lp4[i])<tempdR2){
+                            tempdR2=reco::deltaR(handle->at(j).leg2()->leg1()->p4(),lp4[i]);
+                            lInd[2]=i;
+                            if (handle->at(j).leg2()->leg1()->pdgId()==lPdgId[i]){
+                                matched[2]=true;
+                            }
                         }
                     }
-                }
-                for (int i=0; i<5; ++i){
-                    if (reco::deltaR(handle->at(0).leg2()->leg2()->p4(),lp4[i])<tempdR3){
-                        tempdR3=reco::deltaR(handle->at(0).leg2()->leg2()->p4(),lp4[i]);
-                        lInd[3]=i;
-                        if ( handle->at(0).leg2()->leg2()->pdgId()==lPdgId[i]){
-                            matched[3]=true;
+                    for (int i=0; i<5; ++i){
+                        if (reco::deltaR(handle->at(j).leg2()->leg2()->p4(),lp4[i])<tempdR3){
+                            tempdR3=reco::deltaR(handle->at(j).leg2()->leg2()->p4(),lp4[i]);
+                            lInd[3]=i;
+                            if ( handle->at(j).leg2()->leg2()->pdgId()==lPdgId[i]){
+                                matched[3]=true;
+                            }
                         }
                     }
-                }
-                for (int i=0; i<5; ++i){
-                    if (ROOT::Math::VectorUtil::DeltaR(handle->at(0).leg1()->p4(),zp4[i])<tempzdR0 && zMass[i]>0){
-                        tempzdR0=ROOT::Math::VectorUtil::DeltaR(handle->at(0).leg1()->p4(),zp4[i]);
-                        zInd[0]=i;	zmatched[0]=true;
+                    for (int i=0; i<5; ++i){
+                        if (ROOT::Math::VectorUtil::DeltaR(handle->at(j).leg1()->p4(),zp4[i])<tempzdR0 && zMass[i]>0){
+                            tempzdR0=ROOT::Math::VectorUtil::DeltaR(handle->at(j).leg1()->p4(),zp4[i]);
+                            zInd[0]=i;	zmatched[0]=true;
+                        }
                     }
-                }
-                for (int i=0; i<5; ++i){
-                    if (ROOT::Math::VectorUtil::DeltaR(handle->at(0).leg2()->p4(),zp4[i])<tempzdR1 && zMass[i]>0){
-                        tempzdR1=ROOT::Math::VectorUtil::DeltaR(handle->at(0).leg2()->p4(),zp4[i]);
-                        zInd[1]=i;	zmatched[1]=true;
+                    for (int i=0; i<5; ++i){
+                        if (ROOT::Math::VectorUtil::DeltaR(handle->at(j).leg2()->p4(),zp4[i])<tempzdR1 && zMass[i]>0 && i != zInd[0]){
+                            tempzdR1=ROOT::Math::VectorUtil::DeltaR(handle->at(j).leg2()->p4(),zp4[i]);
+                            zInd[1]=i;	zmatched[1]=true;
+                        }
                     }
                 }
 
