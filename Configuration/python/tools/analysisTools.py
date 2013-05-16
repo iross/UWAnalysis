@@ -69,6 +69,13 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
             target = cms.string(EAtarget),
             )
 
+    process.looseMuons = cms.EDProducer("PATMuonCleaner",
+            src = cms.InputTag("goodPatMuons"),
+            preselection = cms.string("(isGlobalMuon() || (isTrackerMuon()&&numberOfMatches()>0)) && pt>5 && abs(eta)<2.4 && userFloat('dXY')<0.5 && userFloat('dz')<1.0"),
+            checkOverlaps = cms.PSet(),
+            finalCut = cms.string("")
+            )
+
     # available calibration targets:
     # 2012 Data : 2012Jul13ReReco, Summer12_DR53X_HCP2012,
     #             Prompt, ReReco, ICHEP2012
@@ -93,6 +100,13 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           id=cms.string("mvaNonTrigV0"),
           #recalculate MVA if you're applying the ECAL corrections here...
           recalculateMVA=cms.bool(False)
+          )
+
+    process.looseElectrons = cms.EDProducer("PATElectronCleaner",
+          src=cms.InputTag("mvaedElectrons"),
+          preselection = cms.string("pt>7 && abs(eta)<2.5 && userFloat('dXY')<0.5 && userFloat('dz')<1.0 && gsfTrack().trackerExpectedHitsInner().numberOfHits() < 2"),
+          checkOverlaps = cms.PSet(),
+          finalCut = cms.string(""),
           )
 
     #remove electrons within 0.3 of a muon
@@ -131,7 +145,7 @@ def defaultAnalysisPath(process,triggerProcess = 'HLT',triggerPaths = ['HLT_Mu9'
           finalCut = cms.string("")
           )
 
-    process.analysisSequence*=process.looseMu*process.corrMuons*process.recorrMuons*process.goodPatMuons+process.corrElectrons*process.eaElectrons*process.mvaedElectrons+process.llttElectrons+process.llttTaus
+    process.analysisSequence*=process.looseMu*process.corrMuons*process.recorrMuons*process.goodPatMuons*process.looseMuons+process.corrElectrons*process.eaElectrons*process.mvaedElectrons*process.looseElectrons+process.llttElectrons+process.llttTaus
 
     process.runAnalysisSequence = cms.Path(process.analysisSequence)
 
