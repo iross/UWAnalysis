@@ -18,6 +18,20 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
+                tag        = cms.string("eta"),
+                method     = cms.string("eta()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("phi"),
+                method     = cms.string("phi()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
                 tag        = cms.string("pt"),
                 method     = cms.string("pt()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
@@ -342,6 +356,48 @@ def zzCommon(src,pluginType,leadOnly=True):
                 src        = cms.InputTag(src),
                 tag        = cms.string("z1l2_z2l1_mass"),
                 method     = cms.string("sqrt((leg1.leg2.energy()+leg2.leg1.energy())^2-(leg1.leg2.px()+leg2.leg1.px())^2-(leg1.leg2.py()+leg2.leg1.py())^2-(leg1.leg2.pz()+leg2.leg1.pz())^2)"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("nPass"),
+                method     = cms.string("passingLeps()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("nFail"),
+                method     = cms.string("failingLeps()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("l1Pass"),
+                method     = cms.string("l1Pass()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("l2Pass"),
+                method     = cms.string("l2Pass()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("l3Pass"),
+                method     = cms.string("l3Pass()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+            ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
+                tag        = cms.string("l4Pass"),
+                method     = cms.string("l4Pass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
             ),
             )
@@ -867,20 +923,20 @@ def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
 #           method     = cms.string(legMethod+"globalTrack().hitPattern().numberOfValidMuonHits()"),
 #           leadingOnly=cms.untracked.bool(leadOnly)
 #       ),
-#       cms.PSet(
-#           pluginType = cms.string(pluginType),
-#           src        = cms.InputTag(src),
-#          tag        = cms.string(legName+"numMatches"),
-#           method     = cms.string(legMethod+"numberOfMatches()"),
-#           leadingOnly=cms.untracked.bool(leadOnly)
-#       ),
-#       cms.PSet(
-#           pluginType = cms.string(pluginType),
-#           src        = cms.InputTag(src),
-#           tag        = cms.string(legName+"ValidHits"),
-#           method     = cms.string(legMethod+"numberOfValidHits()"),
-#           leadingOnly=cms.untracked.bool(leadOnly)
-#       ),
+       cms.PSet(
+           pluginType = cms.string(pluginType),
+           src        = cms.InputTag(src),
+          tag        = cms.string(legName+"numMatches"),
+           method     = cms.string(legMethod+"numberOfMatches()"),
+           leadingOnly=cms.untracked.bool(leadOnly)
+       ),
+       cms.PSet(
+           pluginType = cms.string(pluginType),
+           src        = cms.InputTag(src),
+           tag        = cms.string(legName+"ValidHits"),
+           method     = cms.string(legMethod+"numberOfValidHits()"),
+           leadingOnly=cms.untracked.bool(leadOnly)
+       ),
         cms.PSet(
             pluginType = cms.string(pluginType),
             src        = cms.InputTag(src),
@@ -1082,6 +1138,41 @@ def muCommon(src,legName,legMethod,pluginType,leadOnly=True):
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"charge"),
             method=cms.string(legMethod+"charge"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"px"),
+            method=cms.string(legMethod+"px"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"py"),
+            method=cms.string(legMethod+"py"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"pz"),
+            method=cms.string(legMethod+"pz"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"energy"),
+            method=cms.string(legMethod+"energy"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"pdgId"),
+            method=cms.string(legMethod+"pdgId"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         )
@@ -1561,6 +1652,41 @@ def eleCommon(src,legName,legMethod,pluginType,leadOnly=True):
             src        = cms.InputTag(src),
             tag        = cms.string(legName+"charge"),
             method=cms.string(legMethod+"charge"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"px"),
+            method=cms.string(legMethod+"px"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"py"),
+            method=cms.string(legMethod+"py"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"pz"),
+            method=cms.string(legMethod+"pz"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"energy"),
+            method=cms.string(legMethod+"energy"),
+            leadingOnly=cms.untracked.bool(leadOnly)
+        ),
+        cms.PSet(
+            pluginType = cms.string(pluginType),
+            src        = cms.InputTag(src),
+            tag        = cms.string(legName+"pdgId"),
+            method=cms.string(legMethod+"pdgId"),
             leadingOnly=cms.untracked.bool(leadOnly)
         ),
         )

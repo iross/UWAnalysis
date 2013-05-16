@@ -156,6 +156,21 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
         leg2PhotonIso_ = leg2PhotonIso;
     }
 
+    void setPassingLeps(double pass, bool l1pass, bool l2pass, bool l3pass, bool l4pass){
+        passingLeps_ = pass;
+        l1Pass_ = l1pass;
+        l2Pass_ = l2pass;
+        l3Pass_ = l3pass;
+        l4Pass_ = l4pass;
+    }
+
+    int passingLeps() const {return passingLeps_;}
+    int failingLeps() const {return 4-passingLeps_;}
+    bool l1Pass() const {return l1Pass_;}
+    bool l2Pass() const {return l2Pass_;}
+    bool l3Pass() const {return l3Pass_;}
+    bool l4Pass() const {return l4Pass_;}
+
     double invM12() const {return M12_;}
     double invM13() const {return M13_;}
     double invM14() const {return M14_;}
@@ -478,6 +493,12 @@ class CompositePtrCandidateT1T2MEt : public reco::LeafCandidate
     double leg1PhotonIso_;
     double leg2PhotonIso_;
     double noPhoMass_;
+
+    int passingLeps_;
+    bool l1Pass_;
+    bool l2Pass_;
+    bool l3Pass_;
+    bool l4Pass_;
 
     double M12_;
     double M13_;

@@ -49,6 +49,25 @@ class QuadCandEmbedder : public edm::EDProducer {
 
 
     private:
+
+        bool checkPassing(const edm::Ptr<pat::Electron> ele, double phoIso){
+            bool pass = false;
+            if (ele->userFloat("mvaNonTrigV0Pass")>0 && ele->gsfTrack()->trackerExpectedHitsInner().numberOfHits()<2 && ele->pt()>7 && fabs(ele->eta())<2.5 && fabs(ele->userFloat("ip3DS"))<4 && fabs(ele->userFloat("ipDXY"))<0.5 && fabs(ele->userFloat("dz"))<1.0 &&(ele->chargedHadronIso()+max(0.0,ele->neutralHadronIso()+phoIso-ele->userFloat("effArea")*ele->userFloat("zzRho2012")))/ele->pt()<0.4) pass=true;
+            return pass;
+        }
+
+        bool checkPassing(const edm::Ptr<pat::Muon> mu, double phoIso){
+            bool pass = false;
+            if (mu->pfCandidateRef().isNonnull()&&(mu->isGlobalMuon()||mu->isTrackerMuon()) && fabs(mu->eta())<2.4 && mu->pt()>5 && fabs(mu->userFloat("ip3DS"))<4 && fabs(mu->userFloat("ipDXY"))<0.5 && fabs(mu->userFloat("dz"))<1.0 && (mu->chargedHadronIso()+max(0.0,mu->neutralHadronIso()+phoIso-mu->userFloat("effArea")*mu->userFloat("zzRho2012")))/mu->pt()<0.4) pass=true;
+            return pass;
+        }
+
+        bool checkPassing(const edm::Ptr<pat::Tau> tau, double phoIso){
+            bool pass = false;
+            //check tau id here. There's a 99% chance this will never be used...
+            return pass;
+        }
+
         virtual void produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
         {
             using namespace edm;
@@ -77,6 +96,17 @@ class QuadCandEmbedder : public edm::EDProducer {
                 double moriond_kd         = -137.0;
                 double moriond_ME_SMHiggs = -137.0;
                 double moriond_ME_ggZZ    = -137.0;
+
+                int nPass = 0;
+                bool l1Pass = false; bool l2Pass = false; bool l3Pass = false; bool l4Pass = false;
+
+                if (checkPassing(out->at(i).leg1()->leg1(),out->at(i).leg1()->leg1PhotonIso())) {nPass++; l1Pass=true; }
+                if (checkPassing(out->at(i).leg1()->leg2(),out->at(i).leg1()->leg2PhotonIso())) {nPass++; l2Pass=true; }
+                if (checkPassing(out->at(i).leg2()->leg1(),out->at(i).leg2()->leg1PhotonIso())) {nPass++; l3Pass=true; }
+                if (checkPassing(out->at(i).leg2()->leg2(),out->at(i).leg2()->leg2PhotonIso())) {nPass++; l4Pass=true; }
+
+                std::cout << nPass << ":" << l1Pass << l2Pass << l3Pass << l4Pass << std::endl;
+                out->at(i).setPassingLeps(nPass,l1Pass,l2Pass,l3Pass,l4Pass);
 
                 TLorentzVector HP4 = convertToTLorentz(out->at(i).p4());
                 TLorentzVector z1P4 = convertToTLorentz(out->at(i).leg1()->p4());
