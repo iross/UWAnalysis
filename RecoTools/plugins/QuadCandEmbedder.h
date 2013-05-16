@@ -105,7 +105,6 @@ class QuadCandEmbedder : public edm::EDProducer {
                 if (checkPassing(out->at(i).leg2()->leg1(),out->at(i).leg2()->leg1PhotonIso())) {nPass++; l3Pass=true; }
                 if (checkPassing(out->at(i).leg2()->leg2(),out->at(i).leg2()->leg2PhotonIso())) {nPass++; l4Pass=true; }
 
-                std::cout << nPass << ":" << l1Pass << l2Pass << l3Pass << l4Pass << std::endl;
                 out->at(i).setPassingLeps(nPass,l1Pass,l2Pass,l3Pass,l4Pass);
 
                 TLorentzVector HP4 = convertToTLorentz(out->at(i).p4());
