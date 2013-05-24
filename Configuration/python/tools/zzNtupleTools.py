@@ -375,28 +375,28 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
-                tag        = cms.string("l1Pass"),
+                tag        = cms.string("z1l1Pass"),
                 method     = cms.string("l1Pass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
             ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
-                tag        = cms.string("l2Pass"),
+                tag        = cms.string("z1l2Pass"),
                 method     = cms.string("l2Pass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
             ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
-                tag        = cms.string("l3Pass"),
+                tag        = cms.string("z2l1Pass"),
                 method     = cms.string("l3Pass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
             ),
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
-                tag        = cms.string("l4Pass"),
+                tag        = cms.string("z2l2Pass"),
                 method     = cms.string("l4Pass()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
             ),
