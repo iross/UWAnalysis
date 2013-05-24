@@ -97,7 +97,7 @@ MMMManalysisConfigurator.addSelector('MMMMosDiMuonsIso','PATMuPairSelector','(le
 #MMMManalysisConfigurator.addDiCandidateModule('MMMMzzCands','PATMuMuMuMuQuadProducer','MMMMbest','MMMMosDiMuonsIso','smearedMETMMMM','smearedJetsMMMM',1,9999,text='MMMMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 MMMManalysisConfigurator.addDiCandidateModule('MMMMzzCands','PATMuMuMuMuQuadProducer','MMMMosDiMuonsIso','MMMMfsredMM','smearedMETMMMM','smearedJetsMMMM',1,9999,text='MMMMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 MMMManalysisConfigurator.addQuadEmbedder('MMMMEmbedder','PATMuMuMuMuQuadEmbedder')
-MMMManalysisConfigurator.addSelector('MMMM2P','PATMuMuMuMuQuadSelector','passingLeps()>1','MMMM at least two Passing leptons',1)
+MMMManalysisConfigurator.addSelector('MMMM2P','PATMuMuMuMuQuadSelector','passingLeps()>1&&leg1.mass()<120&&leg2.mass()<120','MMMM at least two Passing leptons',1)
 MMMManalysisConfigurator.addCrossCleanerModule('MMMMzzCleanedCands','PATMuMuMuMuQuadCrossCleaner',1,9999,text='cross cleaned',dR = 0.02)
 MMMMselectionSequence =MMMManalysisConfigurator.returnSequence()
 
@@ -124,7 +124,7 @@ EEEEanalysisConfigurator.addSelector('EEEEosDiElectronsIso','PATElePairSelector'
 #EEEEanalysisConfigurator.addDiCandidateModule('EEEEzzCands','PATEleEleEleEleQuadProducer','EEEEbest','EEEEosDiElectronsIso','smearedMETEEEE','smearedJetsEEEE',1,9999,text='EEEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 EEEEanalysisConfigurator.addDiCandidateModule('EEEEzzCands','PATEleEleEleEleQuadProducer','EEEEosDiElectronsIso','EEEEfsredEE','smearedMETEEEE','smearedJetsEEEE',1,9999,text='EEEEAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 EEEEanalysisConfigurator.addQuadEmbedder('EEEEQuadEmbedder','PATEleEleEleEleQuadEmbedder')
-EEEEanalysisConfigurator.addSelector('EEEE2P','PATEleEleEleEleQuadSelector','passingLeps()>1','EEEE at least two Passing leptons',1)
+EEEEanalysisConfigurator.addSelector('EEEE2P','PATEleEleEleEleQuadSelector','passingLeps()>1&&leg1.mass()<120&&leg2.mass()<120','EEEE at least two Passing leptons',1)
 EEEEanalysisConfigurator.addCrossCleanerModule('EEEEzzCleanedCands','PATEleEleEleEleQuadCrossCleaner',1,9999,text='cross cleaned eeee',dR = 0.02)
 EEEEselectionSequence =EEEEanalysisConfigurator.returnSequence()
 
@@ -194,7 +194,7 @@ EEMManalysisConfigurator.addSelector('EEMMdiMuons','PATMuPairSelector','abs(leg1
 EEMManalysisConfigurator.addFSRRecovery('EEMMdiMuonsFSR','MuMuZFSRRecovery','EEMMdiMuons','boostedFsrPhotons','smearedElectronsEEMM','looseMuons')
 EEMManalysisConfigurator.addDiCandidateModule('EEMMzzCands','PATEleEleMuMuQuadProducer','EEMMosDiElectronsIso','EEMMdiMuonsFSR','smearedMETEEMM','smearedJetsEEMM',1,9999,text='EEMMAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 EEMManalysisConfigurator.addQuadEmbedder('EEMMQuadEmbedder','PATEleEleMuMuQuadEmbedder')
-EEMManalysisConfigurator.addSelector('EEMM2P','PATEleEleMuMuQuadSelector','passingLeps()>1','EEMM at least two Passing leptons',1)
+EEMManalysisConfigurator.addSelector('EEMM2P','PATEleEleMuMuQuadSelector','passingLeps()>1&&leg1.mass()<120&&leg2.mass()<120','EEMM at least two Passing leptons',1)
 EEMManalysisConfigurator.addCrossCleanerModule('EEMMzzCleanedCands','PATEleEleMuMuQuadCrossCleaner',1,9999,text='cross cleaned eemm',dR = 0.01)
 EEMMselectionSequence =EEMManalysisConfigurator.returnSequence()
 
@@ -215,12 +215,12 @@ MMEEonlyanalysisConfigurator.addFSRRecovery('MMEEonlyfsredMM','MuMuZFSRRecovery'
 MMEEonlyanalysisConfigurator.addSelector('MMEEonlyosDiMuonsIso','PATMuPairSelector','(leg1.chargedHadronIso()+max(0.0,leg1.neutralHadronIso()+leg1PhotonIso()-leg1.userFloat("zzRho2012")*leg1.userFloat("effArea")))/leg1.pt<0.40 ','one Z1 with iso MMEE only',1)
 
 MMEEonlyanalysisConfigurator.addDiCandidateModule('MMEEonlydiElectronsNoCuts','PATElePairProducer', 'smearedElectronsMMEE','smearedElectronsMMEE','smearedMETMMEE','smearedJetsMMEE',1,genParticles='genDaughters')
-MMEEonlyanalysisConfigurator.addSelector('MMEEonlydiElectrons','PATElePairSelector','leg1.gsfTrack().trackerExpectedHitsInner().numberOfHits()<2 && leg1.pt()>7 && abs(leg1.eta())<2.5 && abs(leg1.userFloat("ip3DS"))<4 && abs(leg1.userFloat("ipDXY"))<0.5 && abs(leg1.userFloat("dz"))<1.0','one Z1 MMEE no pf',1)
+MMEEonlyanalysisConfigurator.addSelector('MMEEonlydiElectrons','PATElePairSelector','leg1.pt()>7 && leg2.pt() > 7','MMEE only ee pair found',1)
 MMEEonlyanalysisConfigurator.addFSRRecovery('MMEEonlydiElectronsFSR','EleEleZFSRRecovery','MMEEonlydiElectrons','boostedFsrPhotons','smearedElectronsMMEE','looseMuons')
 MMEEonlyanalysisConfigurator.addDiCandidateModule('MMEEonlyzzCands','PATMuMuEleEleQuadProducer','MMEEonlyosDiMuonsIso','MMEEonlydiElectronsFSR','smearedMETMMEE','smearedJetsMMEE',1,9999,text='MMEEonlyAtLeastOneZZ',leadingObjectsOnly = False,dR = 0.01,recoMode ="",genParticles='genDaughters')
 MMEEonlyanalysisConfigurator.addQuadEmbedder('MMEEOnlyQuadEmbedder','PATMuMuEleEleQuadEmbedder')
+MMEEonlyanalysisConfigurator.addSelector('MMEE2Pmass','PATMuMuEleEleQuadSelector','passingLeps()>1&&leg1.mass()<120&&leg2.mass()<120','MMEE at least two Passing leptons and masses under 120',1)
 MMEEonlyanalysisConfigurator.addCrossCleanerModule('MMEEonlyzzCleanedCands','PATMuMuEleEleQuadCrossCleaner',1,9999,text='cross cleaned mmee',dR = 0.01)
-MMEEanalysisConfigurator.addSelector('MMEE2P','PATEleEleMuMuQuadSelector','passingLeps()>1','MMEE at least two Passing leptons',1)
 MMEEonlyselectionSequence =MMEEonlyanalysisConfigurator.returnSequence()
 
 ######################__________________________________MMMT_____________________________________##############################
