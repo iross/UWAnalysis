@@ -86,23 +86,18 @@ class ZFSRRecovery : public edm::EDProducer
                 }
                 if (!scOL) {
                     for (unsigned int i = 0; i < electrons->size(); ++i) {
-                        if (electrons->at(i).userFloat("mvaNonTrigV0Pass")>0 && electrons->at(i).pt()>7 && fabs(electrons->at(i).eta())<2.5 && abs(electrons->at(i).userFloat("ip3DS"))<4){
-                            if (deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
-                                mindR=deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
-                                lepPt=electrons->at(i).pt();
-                                eleMatch=true;
-                            }
+                        if (deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
+                            mindR=deltaR(electrons->at(i).eta(),electrons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
+                            lepPt=electrons->at(i).pt();
+                            eleMatch=true;
                         }
                     }
                     for (unsigned int i = 0; i < muons->size(); ++i) {
-                        if ((muons->at(i).isTrackerMuon() || muons->at(i).isGlobalMuon()) && muons->at(i).pfCandidateRef().isNonnull()){
-                            if (deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
-                                mindR=deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
-                                lepPt=muons->at(i).pt();
-                                muMatch=true;
-                            }
+                        if (deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi()) < mindR){
+                            mindR=deltaR(muons->at(i).eta(),muons->at(i).phi(),photons->at(j).eta(),photons->at(j).phi());
+                            lepPt=muons->at(i).pt();
+                            muMatch=true;
                         }
-
                     }
                     if (mindR<0.07) closeMatch=true;
 
