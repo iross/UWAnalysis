@@ -62,9 +62,9 @@ The current analysis flow for putting together a complete BG estimate is:
 4. ### Plotting. 
  
     analysisPlots.py in https://github.com/iross/analysisScripts/ has some pretty ugly plot dump code in place, which measures and applies the relevant fakerates.
-    Alternatively, you can use the helper functions in analysisScripts/simplePlots.py, which return fakerate-scaled histograms from all BG regions:
+    Alternatively, you can use the helper functions in analysisScripts/plotHelpers.py, which return fakerate-scaled histograms from all BG regions:
         
-        from simplePlots import *
+        from plotHelpers import *
         from ROOT import TFile
         f=TFile("whatever.root")
         applyFakes(f,extra="&&z1Mass>81&&z1Mass<101",lowZ1=True)
