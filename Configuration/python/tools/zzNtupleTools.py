@@ -25,6 +25,13 @@ def zzCommon(src,pluginType,leadOnly=True):
             cms.PSet(
                 pluginType = cms.string(pluginType),
                 src        = cms.InputTag(src),
+                tag        = cms.string("rapidity"),
+                method     = cms.string("rapidity()"),
+                leadingOnly=cms.untracked.bool(leadOnly)
+                ),
+            cms.PSet(
+                pluginType = cms.string(pluginType),
+                src        = cms.InputTag(src),
                 tag        = cms.string("phi"),
                 method     = cms.string("phi()"),
                 leadingOnly=cms.untracked.bool(leadOnly)
