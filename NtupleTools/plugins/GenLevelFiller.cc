@@ -165,6 +165,10 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
 
             // get Z daughters
             // set l1 to be leading pt lepton
+            if (candIt->daughter(0)==NULL or candIt->daughter(1)==NULL) {
+                continue;
+            }
+
             if (candIt->daughter(0)->pt() > candIt->daughter(1)->pt())
             {
                 l1 = candIt->daughter(0);
@@ -250,16 +254,21 @@ void GenLevelFiller::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         zEta[0]   = Z1.Eta();
         zPhi[0]   = Z1.Phi();
         zMass[0]  = Z1.M();
+
         zPt[1]    = Z2.Pt();
         zEta[1]   = Z2.Eta();
         zPhi[1]   = Z2.Phi();
         zMass[1]  = Z2.M();
 
+
         zzP4 = Z1+Z2;
+
         zzMass      = zzP4.M();
-        zzEta       = zzP4.Eta();
+        if (zzP4.Pt()>0.1)  zzEta       = zzP4.Eta();
+        else zzEta = -137.0;
         zzPhi       = zzP4.Phi();
         zzPt        = zzP4.Pt();
+
 
         lPt[0]    = L1.Pt();
         lEta[0]   = L1.Eta();

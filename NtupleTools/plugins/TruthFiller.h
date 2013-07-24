@@ -328,7 +328,8 @@ class TruthFiller : public NtupleFillerBase {
                 mz1Pt=zPt[zInd[0]]; mz1Eta=zEta[zInd[0]]; mz1Phi=zPhi[zInd[0]]; mz1Mass=zMass[zInd[0]];
                 mz2Pt=zPt[zInd[1]]; mz2Eta=zEta[zInd[1]]; mz2Phi=zPhi[zInd[1]]; mz2Mass=zMass[zInd[1]];
                 zzMass=(zp4[0]+zp4[1]).M();
-                zzEta=(zp4[0]+zp4[1]).Eta();
+                if ((zp4[0]+zp4[1]).Pt()>0.1)  zzEta = (zp4[0]+zp4[1]).Eta();
+                else zzEta=-137;
                 zzPhi=(zp4[0]+zp4[1]).Phi();
                 zzPt=(zp4[0]+zp4[1]).Pt();
             } else {
