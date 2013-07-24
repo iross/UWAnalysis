@@ -238,14 +238,14 @@
     "path" : "/hdfs/store/user/tapas/GluGluToZZTo4L_8TeV-gg2zz-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-04-01-8TeV-53X-PatTuple_Master",
     "url" : "",
     "xsection" : 0.0048,
-    "_note" : "assumed cross-section is 1.2x last year's gg sample"
+    "_note" : ""
 },
 "ggZZ2L2L":{
     "type" : "MC",
     "path" : "/hdfs/store/user/tapas/GluGluToZZTo2L2L_TuneZ2star_8TeV-gg2zz-pythia6/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-04-01-8TeV-53X-PatTuple_Master",
     "url" : "",
     "xsection" : 0.01203,
-    "_note" : "assumed cross-section is 1.2x last year's gg sample"
+    "_note" : ""
 },
 "aTGC_f4_0p000_0p000":{
     "type" : "MC",
@@ -380,9 +380,16 @@
     "xsection" : 3503.71,
     "note_" : ""
 },
+"DYJets_low":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/DYJetsToLL_M-10To50filter_8TeV-madgraph/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-03-13-8TeV-53X-PatTuple_Master/",
+    "url" : "",
+    "xsection" : 915,
+    "note_" : ""
+},
 "TTbar":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/TTJets_MassiveBinDECAY_TuneZ2star_8TeV-madgraph-tauola",
+    "path" : "/hdfs/store/user/tapas/2012-12-05-8TeV-53X-PatTuple_HCP2012/TTTo2L2Nu2B_8TeV-powheg-pythia6/d366a30620f2c3b1b7c457a4b5f9e4d9",
     "url" : "",
     "xsection" : 225.0,
     "notes_" : ""
@@ -1171,9 +1178,24 @@
     "xsection" : 0.0,
     "note_" : ""
 },
+"ZZJets4L":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/ZZJetsTo4L_TuneZ2star_8TeV-madgraph-tauola/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-02-25-8TeV-53X-PatTuple_Master/",
+    "url" : "",
+    "xsection" : 0.0,
+    "notes_" : ""
+    },
 "ZZ2l2q":{
     "type" : "MC",
-    "path" : "/hdfs/store/user/tapas/2012-09-18-8TeV-53X-PatTuple/ZZJetsTo2L2Q_TuneZ2star_8TeV-madgraph-tauola",
+    "path" : "/hdfs/store/user/tapas/ZZJetsTo2L2Q_TuneZ2star_8TeV-madgraph-tauola/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-02-25-8TeV-53X-PatTuple_Master/",
+    "url" : "",
+    "xsection" : 0.0,
+    "url" : "",
+    "note_" : ""
+    },
+"WZ":{
+    "type" : "MC",
+    "path" : "/hdfs/store/user/tapas/WZJetsTo3LNu_TuneZ2_8TeV-madgraph-tauola/Summer12_DR53X-PU_S10_START53_V7A-v1/AODSIM/2013-02-25-8TeV-53X-PatTuple_Master",
     "url" : "",
     "xsection" : 0.0,
     "url" : "",
