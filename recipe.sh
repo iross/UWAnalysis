@@ -68,5 +68,4 @@ pushd ZZMatrixElement/MELA/src/
 patch -p1 computeAngles.cc $CMSSW_BASE/src/UWAnalysis/patches/computeAngles_cc.patch
 popd
 
-cd $CMSSW_BASE/src
-echo "To compile: scram b -j 4"
+echo "To compile: go to CMSSW_BASE/src and scram b -j 4"
