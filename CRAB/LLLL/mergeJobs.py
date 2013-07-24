@@ -14,6 +14,7 @@ parser.add_argument("--tag",dest="tag",type=str,default="")
 parser.add_argument("--json",dest="json",type=str,default="datasets.json")
 parser.add_argument("--samples",dest="samples",nargs="+",type=str,default="")
 parser.add_argument("--resubmit-failed-jobs",dest="resubmit",action="store_true")
+parser.add_argument("--local",dest="local",type=int,default=0,required=False)
 args=parser.parse_args()
 
 file = open(args.json)
@@ -27,11 +28,13 @@ def makeFileList(dataset):
     """Dump list of completed files into a .txt file. It's used for merging. And for keeping track of what's done, I guess."""
     subprocess.call("mkdir -p fileLists",shell=True)
     subprocess.call("touch fileLists/{dataset}.txt".format(dataset=dataset),shell=True)
+    if args.local == 1:
+        subprocess.call("ls /scratch/$USER/{dataset}_{tag}-{type}_{dataset}/*/*.root | sed -e 's/\/hdfs//g' > fileLists/{dataset}.txt".format(dataset=dataset,tag=tag,type=datasets[dataset]['type']),shell=True)
+        return
     if datasets[dataset]['type']=='DATA':
         subprocess.call("ls /hdfs/store/user/$USER/{dataset}_{tag}-{type}_{dataset}/*.root | sed -e 's/\/hdfs//g' > fileLists/{dataset}.txt".format(dataset=dataset,tag=tag,type=datasets[dataset]['type']),shell=True)
     else:
         subprocess.call("ls /hdfs/store/user/$USER/{dataset}_{tag}-{type}/*.root | sed -e 's/\/hdfs//g' > fileLists/{dataset}.txt".format(dataset=dataset,tag=tag,type=datasets[dataset]['type']),shell=True)
-
 
 for dataset in datasets:
     passes = True
@@ -50,6 +53,8 @@ for dataset in datasets:
         merge.write('farmoutAnalysisJobs ' + farmOpts + ' --output-dir=. --merge {dataset}_{tag} $CMSSW_BASE --input-file-list=fileLists/{dataset}.txt --input-files-per-job=300\n'.format(dataset=dataset,tag=tag))
         if datasets[dataset]['type']=="DATA":
             merge.write('jobReportSummary /scratch/$USER/{dataset}_{tag}-DATA_{dataset}/*/*.xml --json-out /scratch/$USER/{dataset}_{tag}.json\n'.format(dataset=dataset,tag=tag))
+
+
 
 
 file.close()
