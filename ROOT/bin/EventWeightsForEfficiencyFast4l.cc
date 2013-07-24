@@ -1,15 +1,18 @@
-#include "PhysicsTools/FWLite/interface/CommandLineParser.h" 
+#include "PhysicsTools/FWLite/interface/CommandLineParser.h"
 #include "TFile.h"
 #include "TROOT.h"
 #include "TKey.h"
 #include "TTree.h"
 #include "TH1F.h"
+#include "TH2F.h"
 #include "TF1.h"
-#include <math.h> 
-#include "TMath.h" 
+#include <math.h>
+#include "TMath.h"
 #include <limits>
+#include <string>
+#include <sstream>
 
-void readdir(TDirectory *dir,optutl::CommandLineParser parser,char TreeToUse[]); 
+void readdir(TDirectory *dir,optutl::CommandLineParser parser,char TreeToUse[]);
 float weightMuID(float leptonPt, float leptonEta);
 float weightEleID(float leptonPt, float leptonEta) ;
 float weightMuISOZ1(float leptonPt, float leptonEta) ;
@@ -21,29 +24,71 @@ float weightMuHLT17(float leptonPt, float leptonEta) ;
 float weightEleHLT8(float leptonPt, float leptonEta) ;
 float weightEleHLT17(float leptonPt, float leptonEta) ;
 
+TH2F* eleCorrs;
+TH2F* muCorrs;
+
+void loadHistograms() {
+    TFile *fe = new TFile("/afs/hep.wisc.edu/cms/iross/analysis/zz535/src/UWAnalysis/analysisScripts/Electron_scale_factors_IDISOSIP_combined.root");
+    eleCorrs = (TH2F*)fe->Get("h_electron_scale_factor_RECO_ID_ISO_SIP");
+
+  TFile *fm = new TFile("/afs/hep.wisc.edu/cms/iross/analysis/zz535/src/UWAnalysis/analysisScripts/muonid_hcp-05.10.2012-with-tk-v2.root");
+  muCorrs = (TH2F*)fm->Get("TH2D_ALL_2012");
+
+}
+
+float rerangePt(float Pt){
+    if (Pt>100.0) return 99.9;
+    else return Pt;
+}
 
 float weightCalculator(float pt1,float eta1,float pt2,float eta2,float pt3,float eta3,float pt4,float eta4,char TreeToUse[]) {
 
     float weight=1.0 ;
 
-    if(!strcmp(TreeToUse,"muMuTauTauEventTree"))
+    pt1 = rerangePt(pt1);
+    pt2 = rerangePt(pt2);
+    pt3 = rerangePt(pt3);
+    pt4 = rerangePt(pt4);
+
+    std::stringstream ss;
+    std::string s;
+    ss << TreeToUse;
+    ss >> s;
+
+    if(s.find("muMuMuMuEventTree") != std::string::npos)
     {
-        weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2) ;
-        weight = weight*weightMuISOZ1(pt1,eta1)*weightMuISOZ1(pt2,eta2) ;
-        weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt1,eta1));
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt2,eta2));
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt3,eta3));
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt4,eta4));
     }
-    else if(!strcmp(TreeToUse,"muMuEleMuEventTree"))
+    else if(s.find("muMuEleEleEventTree") != std::string::npos)
     {
-        weight = weight*weightMuID(pt1,eta1)*weightMuID(pt2,eta2)*weightEleID(pt3,eta3)*weightMuID(pt4,eta4) ;
-        weight = weight*weightMuISOZ1(pt1,eta1)*weightMuISOZ1(pt2,eta2)*weightEleISOZ2(pt3,eta3)*weightMuISOZ2(pt4,eta4) ;
-        weight = weight*weightMuHLT17(pt1,eta1)*weightMuHLT8(pt2,eta2) ;
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt1,eta1));
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt2,eta2));
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt3,eta3));
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt4,eta4));
+    }
+    else if(s.find("eleEleMuMuEventTree") != std::string::npos)
+    {
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt1,eta1));
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt2,eta2));
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt3,eta3));
+        weight *= muCorrs->GetBinContent(muCorrs->FindBin(pt4,eta4));
+    }
+    else if(s.find("eleEleEleEleEventTree") != std::string::npos)
+    {
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt1,eta1));
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt2,eta2));
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt3,eta3));
+        weight *= eleCorrs->GetBinContent(eleCorrs->FindBin(pt4,eta4));
     }
 
     return weight;
 }
 
 
-int main (int argc, char* argv[]) 
+int main (int argc, char* argv[])
 {
     optutl::CommandLineParser parser ("Sets Event Weights in the ntuple");
     parser.addOption("branch",optutl::CommandLineParser::kString,"Branch","__HLT__");
@@ -51,19 +96,21 @@ int main (int argc, char* argv[])
 
     char TreeToUse[80]="first" ;
 
+    loadHistograms();
+
     TFile *f = new TFile(parser.stringValue("outputFile").c_str(),"UPDATE");
     readdir(f,parser,TreeToUse);
     f->Close();
 
-} 
+}
 
 
-void readdir(TDirectory *dir,optutl::CommandLineParser parser, char TreeToUse[]) 
+void readdir(TDirectory *dir,optutl::CommandLineParser parser, char TreeToUse[])
 {
     TDirectory *dirsav = gDirectory;
     TIter next(dir->GetListOfKeys());
     TKey *key;
-    char stringA[80]="first"; 
+    char stringA[80]="first";
     while ((key = (TKey*)next())) {
 
         printf("Found key=%s \n",key->GetName());
@@ -93,12 +140,12 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser, char TreeToUse[])
 
             t->SetBranchAddress("z1l1Pt",&pt1);
             t->SetBranchAddress("z1l1Eta",&eta1);
-            t->SetBranchAddress("z1l2Pt",&pt1);
-            t->SetBranchAddress("z1l2Eta",&eta1);
-            t->SetBranchAddress("z2l1Pt",&pt1);
-            t->SetBranchAddress("z2l1Eta",&eta1);
-            t->SetBranchAddress("z2l2Pt",&pt1);
-            t->SetBranchAddress("z2l2Eta",&eta1);
+            t->SetBranchAddress("z1l2Pt",&pt2);
+            t->SetBranchAddress("z1l2Eta",&eta2);
+            t->SetBranchAddress("z2l1Pt",&pt3);
+            t->SetBranchAddress("z2l1Eta",&eta3);
+            t->SetBranchAddress("z2l2Pt",&pt4);
+            t->SetBranchAddress("z2l2Eta",&eta4);
 
 
             printf("Found tree -> weighting\n");
@@ -109,6 +156,7 @@ void readdir(TDirectory *dir,optutl::CommandLineParser parser, char TreeToUse[])
 
                 newBranch->Fill();
             }
+            printf("Done weighting. Writing\n");
 
             t->Write("",TObject::kOverwrite);
             strcpy(TreeToUse,stringA) ;
@@ -135,7 +183,7 @@ float weightMuID(float leptonPt, float leptonEta){
         if(leptonPt>50) weight=0.984;
     }
     return weight ;
-}  
+}
 
 float weightEleID(float leptonPt, float leptonEta){
     float weight=1.0;
@@ -159,7 +207,7 @@ float weightEleID(float leptonPt, float leptonEta){
         if(leptonPt>60) weight=0.970;
     }
     return weight ;
-}  
+}
 float weightMuISOZ1(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -178,7 +226,7 @@ float weightMuISOZ1(float leptonPt, float leptonEta){
         if(leptonPt>50) weight=1.0;
     }
     return weight ;
-}  
+}
 float weightMuISOZ2(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -197,7 +245,7 @@ float weightMuISOZ2(float leptonPt, float leptonEta){
         if(leptonPt>50) weight=0.991;
     }
     return weight ;
-}  
+}
 float weightEleISOZ1(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -220,7 +268,7 @@ float weightEleISOZ1(float leptonPt, float leptonEta){
         if(leptonPt>60) weight=0.963;
     }
     return weight ;
-}  
+}
 float weightEleISOZ2(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -243,7 +291,7 @@ float weightEleISOZ2(float leptonPt, float leptonEta){
         if(leptonPt>60) weight=0.956;
     }
     return weight ;
-}  
+}
 float weightMuHLT8(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -262,7 +310,7 @@ float weightMuHLT8(float leptonPt, float leptonEta){
         if(leptonPt>50) weight=0.976;
     }
     return weight ;
-}  
+}
 float weightMuHLT17(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -281,7 +329,7 @@ float weightMuHLT17(float leptonPt, float leptonEta){
         if(leptonPt>50) weight=0.960;
     }
     return weight ;
-}  
+}
 float weightEleHLT8(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -304,7 +352,7 @@ float weightEleHLT8(float leptonPt, float leptonEta){
         if(leptonPt>60) weight=0.989;
     }
     return weight ;
-}  
+}
 float weightEleHLT17(float leptonPt, float leptonEta){
     float weight=1.0;
 
@@ -327,4 +375,4 @@ float weightEleHLT17(float leptonPt, float leptonEta){
         if(leptonPt>60) weight=0.989;
     }
     return weight ;
-}  
+}
