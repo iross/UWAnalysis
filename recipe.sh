@@ -57,5 +57,10 @@ cvs co -r  V00-00-09 -d ZZMatrixElement/MEMCalculators UserCode/HZZ4l_MEM/ZZMatr
 cd $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/dataJSONs
 sh update.sh
 
+echo Checking out the submodules...
+cd $CMSSW_BASE/src/UWAnalysis
+git submodule init
+git submoudle update
+
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
