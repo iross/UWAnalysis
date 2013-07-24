@@ -60,7 +60,7 @@ sh update.sh
 echo Checking out the submodules...
 pushd $CMSSW_BASE/src/UWAnalysis
 git submodule init
-git submoudle update
+git submodule update
 popd
 
 cd $CMSSW_BASE/src/
