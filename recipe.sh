@@ -58,9 +58,15 @@ cd $CMSSW_BASE/src/UWAnalysis/CRAB/LLLL/dataJSONs
 sh update.sh
 
 echo Checking out the submodules...
-cd $CMSSW_BASE/src/UWAnalysis
+pushd $CMSSW_BASE/src/UWAnalysis
 git submodule init
 git submoudle update
+popd
+
+cd $CMSSW_BASE/src/
+pushd ZZMatrixElement/MELA/src/
+patch -p1 computeAngles.cc $CMSSW_BASE/src/UWAnalysis/patches/computeAngles_cc.patch
+popd
 
 cd $CMSSW_BASE/src
 echo "To compile: scram b -j 4"
