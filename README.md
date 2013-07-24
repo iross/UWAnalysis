@@ -6,7 +6,7 @@ Quickstart recipe
     scram pro -n zz535 CMSSW CMSSW_5_3_5
     cd zz535/src                                                                                                                                                                                                    
     cmsenv
-    git clone git@github.com:iross/UWAnalysis
+    git clone https://github.com/iross/UWAnalysis.git
     sh UWAnalysis/recipe.sh
     scram b -j 4
 
